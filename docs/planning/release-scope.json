@@ -1,0 +1,1373 @@
+{
+  "artifactId": "PLAN-01",
+  "version": "0.1",
+  "date": "2026-10-08",
+  "status": "Draft",
+  "horizonMonths": 5,
+  "staffing": {
+    "developers": 1,
+    "otherHumanCapacity": "unknown"
+  },
+  "inputs": {
+    "brd": "1.0",
+    "prd": "0.4 Draft",
+    "ownerDirection": "five months; solo; minimal microservices"
+  },
+  "approval": "MoSCoW overlay is proposed; existing BRD Musts remain binding until explicit deferrals are recorded under OD-11.",
+  "rows": [
+    {
+      "id": "FR-01",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-01"
+      ],
+      "businessRequirements": [
+        "BR-01",
+        "BR-10"
+      ],
+      "spec": "SP-01",
+      "month": 1,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-01",
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-02",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-01"
+      ],
+      "businessRequirements": [
+        "BR-01"
+      ],
+      "spec": "SP-02",
+      "month": 1,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-01",
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-03",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-01"
+      ],
+      "businessRequirements": [
+        "BR-01",
+        "BR-10"
+      ],
+      "spec": "SP-02",
+      "month": 1,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-01",
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-04",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-01"
+      ],
+      "businessRequirements": [
+        "BR-01",
+        "BR-10"
+      ],
+      "spec": "SP-06",
+      "month": 2,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-01",
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-05",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-02"
+      ],
+      "businessRequirements": [
+        "BR-02"
+      ],
+      "spec": "SP-03",
+      "month": 1,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-01"
+      ]
+    },
+    {
+      "id": "FR-06",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-02"
+      ],
+      "businessRequirements": [
+        "BR-02"
+      ],
+      "spec": "SP-05",
+      "month": 2,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-01"
+      ]
+    },
+    {
+      "id": "FR-07",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-02"
+      ],
+      "businessRequirements": [
+        "BR-02"
+      ],
+      "spec": "SP-05",
+      "month": 2,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-01"
+      ]
+    },
+    {
+      "id": "FR-08",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-02"
+      ],
+      "businessRequirements": [
+        "BR-02"
+      ],
+      "spec": "SP-05",
+      "month": 2,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-01"
+      ]
+    },
+    {
+      "id": "FR-09",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-02",
+        "PP-05"
+      ],
+      "businessRequirements": [
+        "BR-03"
+      ],
+      "spec": "SP-04",
+      "month": 1,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-01"
+      ]
+    },
+    {
+      "id": "FR-10",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-01",
+        "PP-04"
+      ],
+      "businessRequirements": [
+        "BR-04"
+      ],
+      "spec": "SP-06",
+      "month": 2,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-02",
+        "BO-04"
+      ]
+    },
+    {
+      "id": "FR-11",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-03"
+      ],
+      "businessRequirements": [
+        "BR-05"
+      ],
+      "spec": "SP-07",
+      "month": 2,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-12",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-03"
+      ],
+      "businessRequirements": [
+        "BR-05"
+      ],
+      "spec": "SP-07",
+      "month": 2,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-13",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-03"
+      ],
+      "businessRequirements": [
+        "BR-14"
+      ],
+      "spec": "SP-07",
+      "month": 2,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-14",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-03"
+      ],
+      "businessRequirements": [
+        "BR-10",
+        "BR-14"
+      ],
+      "spec": "SP-06",
+      "month": 2,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-15",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P1",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-03"
+      ],
+      "businessRequirements": [
+        "BR-05",
+        "BR-14"
+      ],
+      "spec": "SP-07",
+      "month": 2,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-16",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P1",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-02",
+        "PP-05"
+      ],
+      "businessRequirements": [
+        "BR-06"
+      ],
+      "spec": "SP-08",
+      "month": 2,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-02"
+      ]
+    },
+    {
+      "id": "FR-17",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P1",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-02",
+        "PP-05"
+      ],
+      "businessRequirements": [
+        "BR-06",
+        "BR-10"
+      ],
+      "spec": "SP-08",
+      "month": 2,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-02",
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-18",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-01",
+        "PP-04",
+        "PP-05"
+      ],
+      "businessRequirements": [
+        "BR-07"
+      ],
+      "spec": "SP-08",
+      "month": 2,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-02",
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-19",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-03",
+        "PP-01",
+        "PP-04",
+        "PP-05"
+      ],
+      "businessRequirements": [
+        "BR-05",
+        "BR-07"
+      ],
+      "spec": "SP-07",
+      "month": 2,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-05",
+        "BO-02"
+      ]
+    },
+    {
+      "id": "FR-20",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-01",
+        "PP-04",
+        "PP-05"
+      ],
+      "businessRequirements": [
+        "BR-07",
+        "BR-10"
+      ],
+      "spec": "SP-08",
+      "month": 2,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-02",
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-21",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-04",
+        "PP-06"
+      ],
+      "businessRequirements": [
+        "BR-08",
+        "BR-10"
+      ],
+      "spec": "SP-09",
+      "month": 3,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-03",
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-22",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-04",
+        "PP-06"
+      ],
+      "businessRequirements": [
+        "BR-08"
+      ],
+      "spec": "SP-09",
+      "month": 3,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-03"
+      ]
+    },
+    {
+      "id": "FR-23",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-04",
+        "PP-06"
+      ],
+      "businessRequirements": [
+        "BR-08"
+      ],
+      "spec": "SP-09",
+      "month": 3,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-03"
+      ]
+    },
+    {
+      "id": "FR-24",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-04",
+        "PP-06"
+      ],
+      "businessRequirements": [
+        "BR-08"
+      ],
+      "spec": "SP-09",
+      "month": 3,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-03"
+      ]
+    },
+    {
+      "id": "FR-25",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-03",
+        "PP-06"
+      ],
+      "businessRequirements": [
+        "BR-09"
+      ],
+      "spec": "SP-10",
+      "month": 3,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-03",
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-26",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-03",
+        "PP-06"
+      ],
+      "businessRequirements": [
+        "BR-09",
+        "BR-10"
+      ],
+      "spec": "SP-10",
+      "month": 3,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-03",
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-27",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P1",
+      "releasePriority": "Should",
+      "painPoints": [
+        "PP-06"
+      ],
+      "businessRequirements": [
+        "BR-12"
+      ],
+      "spec": "SP-13",
+      "month": 4,
+      "reason": "Exact citation inspection and scoped trace inspection remain Must; bounded summary can follow.",
+      "businessObjectives": [
+        "BO-03"
+      ]
+    },
+    {
+      "id": "FR-28",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-04",
+        "PP-06"
+      ],
+      "businessRequirements": [
+        "BR-08",
+        "BR-10"
+      ],
+      "spec": "SP-09",
+      "month": 3,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-03",
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-29",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [],
+      "businessRequirements": [
+        "BR-10"
+      ],
+      "spec": "SP-09",
+      "month": 3,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-30",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-04",
+        "PP-06"
+      ],
+      "businessRequirements": [
+        "BR-08",
+        "BR-10"
+      ],
+      "spec": "SP-09",
+      "month": 3,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-03",
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-31",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-05",
+        "PP-06"
+      ],
+      "businessRequirements": [
+        "BR-11"
+      ],
+      "spec": "SP-11",
+      "month": 1,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-03",
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-32",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-06"
+      ],
+      "businessRequirements": [
+        "BR-12"
+      ],
+      "spec": "SP-11",
+      "month": 3,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-03"
+      ]
+    },
+    {
+      "id": "FR-33",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-01",
+        "PP-04"
+      ],
+      "businessRequirements": [
+        "BR-13"
+      ],
+      "spec": "SP-12",
+      "month": 4,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-01",
+        "BO-02"
+      ]
+    },
+    {
+      "id": "FR-34",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-01",
+        "PP-04",
+        "PP-05"
+      ],
+      "businessRequirements": [
+        "BR-07",
+        "BR-13"
+      ],
+      "spec": "SP-08",
+      "month": 2,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-02",
+        "BO-05",
+        "BO-01"
+      ]
+    },
+    {
+      "id": "FR-35",
+      "baselinePriority": "Should/Enhanced",
+      "deliveryPriority": "P2",
+      "releasePriority": "Wont",
+      "painPoints": [],
+      "businessRequirements": [
+        "BR-15"
+      ],
+      "spec": null,
+      "month": null,
+      "reason": "Team reporting does not address the evidence/context problem directly; outside this five-month release.",
+      "businessObjectives": [
+        "BO-01"
+      ]
+    },
+    {
+      "id": "FR-36",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-01"
+      ],
+      "businessRequirements": [
+        "BR-01"
+      ],
+      "spec": "SP-01",
+      "month": 1,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-01",
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-37",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-01"
+      ],
+      "businessRequirements": [
+        "BR-01",
+        "BR-10"
+      ],
+      "spec": "SP-01",
+      "month": 1,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-01",
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-38",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-01"
+      ],
+      "businessRequirements": [
+        "BR-01"
+      ],
+      "spec": "SP-02",
+      "month": 1,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-01",
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-39",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-01",
+        "PP-03"
+      ],
+      "businessRequirements": [
+        "BR-01",
+        "BR-10",
+        "BR-14"
+      ],
+      "spec": "SP-02",
+      "month": 1,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-01",
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-40",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-02"
+      ],
+      "businessRequirements": [
+        "BR-02"
+      ],
+      "spec": "SP-04",
+      "month": 1,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-01"
+      ]
+    },
+    {
+      "id": "FR-41",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-02"
+      ],
+      "businessRequirements": [
+        "BR-02"
+      ],
+      "spec": "SP-05",
+      "month": 2,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-01"
+      ]
+    },
+    {
+      "id": "FR-42",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-02"
+      ],
+      "businessRequirements": [
+        "BR-02"
+      ],
+      "spec": "SP-05",
+      "month": 2,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-01"
+      ]
+    },
+    {
+      "id": "FR-43",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-02",
+        "PP-05"
+      ],
+      "businessRequirements": [
+        "BR-03"
+      ],
+      "spec": "SP-04",
+      "month": 1,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-01"
+      ]
+    },
+    {
+      "id": "FR-44",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-02",
+        "PP-05"
+      ],
+      "businessRequirements": [
+        "BR-03",
+        "BR-06"
+      ],
+      "spec": "SP-04",
+      "month": 1,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-01",
+        "BO-02"
+      ]
+    },
+    {
+      "id": "FR-45",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-03"
+      ],
+      "businessRequirements": [
+        "BR-05"
+      ],
+      "spec": "SP-07",
+      "month": 2,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-46",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-04",
+        "PP-06"
+      ],
+      "businessRequirements": [
+        "BR-08",
+        "BR-12"
+      ],
+      "spec": "SP-09",
+      "month": 3,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-03"
+      ]
+    },
+    {
+      "id": "FR-47",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P1",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-03",
+        "PP-01",
+        "PP-04",
+        "PP-05"
+      ],
+      "businessRequirements": [
+        "BR-05",
+        "BR-07"
+      ],
+      "spec": "SP-07",
+      "month": 2,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-05",
+        "BO-02"
+      ]
+    },
+    {
+      "id": "FR-48",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-03"
+      ],
+      "businessRequirements": [
+        "BR-14"
+      ],
+      "spec": "SP-07",
+      "month": 2,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-49",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P1",
+      "releasePriority": "Should",
+      "painPoints": [
+        "PP-02",
+        "PP-05"
+      ],
+      "businessRequirements": [
+        "BR-06"
+      ],
+      "spec": "SP-08",
+      "month": 2,
+      "reason": "Relationship removal follows the basic create/read context path.",
+      "businessObjectives": [
+        "BO-02"
+      ]
+    },
+    {
+      "id": "FR-50",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-01"
+      ],
+      "businessRequirements": [
+        "BR-01",
+        "BR-10"
+      ],
+      "spec": "SP-06",
+      "month": 2,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-01",
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-51",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-01"
+      ],
+      "businessRequirements": [
+        "BR-01",
+        "BR-10"
+      ],
+      "spec": "SP-06",
+      "month": 2,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-01",
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-52",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-01",
+        "PP-03"
+      ],
+      "businessRequirements": [
+        "BR-01",
+        "BR-10",
+        "BR-14"
+      ],
+      "spec": "SP-06",
+      "month": 2,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-01",
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-53",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-01",
+        "PP-04",
+        "PP-05",
+        "PP-06"
+      ],
+      "businessRequirements": [
+        "BR-07",
+        "BR-08"
+      ],
+      "spec": "SP-09",
+      "month": 3,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-02",
+        "BO-05",
+        "BO-03"
+      ]
+    },
+    {
+      "id": "FR-54",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-04",
+        "PP-06"
+      ],
+      "businessRequirements": [
+        "BR-08"
+      ],
+      "spec": "SP-09",
+      "month": 3,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-03"
+      ]
+    },
+    {
+      "id": "FR-55",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-06"
+      ],
+      "businessRequirements": [
+        "BR-10",
+        "BR-12"
+      ],
+      "spec": "SP-09",
+      "month": 3,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-05",
+        "BO-03"
+      ]
+    },
+    {
+      "id": "FR-56",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P1",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-05",
+        "PP-06"
+      ],
+      "businessRequirements": [
+        "BR-10",
+        "BR-11"
+      ],
+      "spec": "SP-13",
+      "month": 4,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-05",
+        "BO-03"
+      ]
+    },
+    {
+      "id": "FR-57",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-06"
+      ],
+      "businessRequirements": [
+        "BR-12"
+      ],
+      "spec": "SP-11",
+      "month": 3,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-03"
+      ]
+    },
+    {
+      "id": "FR-58",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P1",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-06"
+      ],
+      "businessRequirements": [
+        "BR-10",
+        "BR-12"
+      ],
+      "spec": "SP-13",
+      "month": 4,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-05",
+        "BO-03"
+      ]
+    },
+    {
+      "id": "FR-59",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-01"
+      ],
+      "businessRequirements": [
+        "BR-01",
+        "BR-10"
+      ],
+      "spec": "SP-08",
+      "month": 2,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-01",
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-60",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-04",
+        "PP-06"
+      ],
+      "businessRequirements": [
+        "BR-08",
+        "BR-12"
+      ],
+      "spec": "SP-09",
+      "month": 3,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-03"
+      ]
+    },
+    {
+      "id": "FR-61",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-03",
+        "PP-06"
+      ],
+      "businessRequirements": [
+        "BR-05",
+        "BR-12",
+        "BR-14"
+      ],
+      "spec": "SP-07",
+      "month": 2,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-05",
+        "BO-03"
+      ]
+    },
+    {
+      "id": "FR-62",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P1",
+      "releasePriority": "Should",
+      "painPoints": [
+        "PP-01",
+        "PP-04"
+      ],
+      "businessRequirements": [
+        "BR-04"
+      ],
+      "spec": "SP-06",
+      "month": 2,
+      "reason": "Paste/create text preserves first knowledge flow; file import follows if capacity remains.",
+      "businessObjectives": [
+        "BO-02",
+        "BO-04"
+      ]
+    },
+    {
+      "id": "FR-63",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-01",
+        "PP-04",
+        "PP-05"
+      ],
+      "businessRequirements": [
+        "BR-07"
+      ],
+      "spec": "SP-08",
+      "month": 2,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-02",
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-64",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P1",
+      "releasePriority": "Could",
+      "painPoints": [
+        "PP-01"
+      ],
+      "businessRequirements": [
+        "BR-01"
+      ],
+      "spec": "SP-02",
+      "month": 1,
+      "reason": "Descriptive/planned-work edit convenience; proposed capacity cut only.",
+      "businessObjectives": [
+        "BO-01",
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-65",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P1",
+      "releasePriority": "Could",
+      "painPoints": [
+        "PP-01",
+        "PP-04"
+      ],
+      "businessRequirements": [
+        "BR-04"
+      ],
+      "spec": "SP-06",
+      "month": 2,
+      "reason": "Descriptive/planned-work edit convenience; proposed capacity cut only.",
+      "businessObjectives": [
+        "BO-02",
+        "BO-04"
+      ]
+    },
+    {
+      "id": "FR-66",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P1",
+      "releasePriority": "Could",
+      "painPoints": [
+        "PP-02"
+      ],
+      "businessRequirements": [
+        "BR-02"
+      ],
+      "spec": "SP-05",
+      "month": 2,
+      "reason": "Descriptive/planned-work edit convenience; proposed capacity cut only.",
+      "businessObjectives": [
+        "BO-01"
+      ]
+    },
+    {
+      "id": "FR-67",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P1",
+      "releasePriority": "Could",
+      "painPoints": [
+        "PP-02"
+      ],
+      "businessRequirements": [
+        "BR-02"
+      ],
+      "spec": "SP-05",
+      "month": 2,
+      "reason": "Descriptive/planned-work edit convenience; proposed capacity cut only.",
+      "businessObjectives": [
+        "BO-01"
+      ]
+    },
+    {
+      "id": "FR-68",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-01"
+      ],
+      "businessRequirements": [
+        "BR-01",
+        "BR-10"
+      ],
+      "spec": "SP-01",
+      "month": 1,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-01",
+        "BO-05"
+      ]
+    },
+    {
+      "id": "FR-69",
+      "baselinePriority": "Must/Core",
+      "deliveryPriority": "P0",
+      "releasePriority": "Must",
+      "painPoints": [
+        "PP-01",
+        "PP-04"
+      ],
+      "businessRequirements": [
+        "BR-13"
+      ],
+      "spec": "SP-09",
+      "month": 3,
+      "reason": "Required for the smallest correct authorised work-to-evidence flow or its verification.",
+      "businessObjectives": [
+        "BO-01",
+        "BO-02"
+      ]
+    }
+  ]
+}

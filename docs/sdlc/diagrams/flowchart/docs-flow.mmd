@@ -1,0 +1,52 @@
+flowchart TD
+    Start([User opens /p/:projectId/docs]) --> FetchDocs[Load Document Explorer List]
+    
+    FetchDocs --> RenderDocs[Render Docs grouped by classification: Public | Internal | Restricted]
+    NoteRestricted[Restricted docs without grant are completely omitted] -.-> RenderDocs
+    
+    RenderDocs --> UserChoice{User Action?}
+    
+    %% Flow 1: Create New Document
+    UserChoice -- Click 'New Document' --> CheckCreateAuth{Role can create doc?}
+    CheckCreateAuth -- No: VIEWER --> HideButton[Button hidden]
+    CheckCreateAuth -- Yes --> OpenEditorNew[Open Markdown Editor: New Document]
+    OpenEditorNew --> InputTitleBody[Author enters Title, Markdown content, and Initial Classification]
+    InputTitleBody --> SaveDraftNew[Click 'Save as Draft']
+    SaveDraftNew --> APISaveDraft[Call POST /api/v1/documents]
+    APISaveDraft -- 201 Created --> ShowSaved[Show status badge: 'Draft (v1.0)']
+    
+    %% Flow 2: Edit existing Draft vs Create new Revision
+    UserChoice -- Select Document from list --> CheckDocGrant{Has Document Grant?}
+    CheckDocGrant -- No --> Show404[/404 Not Found - No metadata leaked/]
+    CheckDocGrant -- Yes --> ViewCurrent[Display Current Version with badge 'CURRENT']
+    
+    ViewCurrent --> DocOptions{Action on Document?}
+    DocOptions -- Click 'Edit / Create Revision' --> CheckHasDraft{Does an open Draft already exist?}
+    CheckHasDraft -- Yes --> LoadExistingDraft[Open existing Draft for editing]
+    CheckHasDraft -- No --> CreateNewDraftBranch[Create new Draft version cloned from Current]
+    CreateNewDraftBranch --> LoadExistingDraft
+    
+    LoadExistingDraft --> EditMarkdown[Edit content in Markdown split editor]
+    EditMarkdown --> AutoSave[Auto-save Draft to server]
+    AutoSave --> PublishChoice{Click 'Publish as Current Version'?}
+    
+    PublishChoice -- Yes --> CheckPublishRole{Is Author or PO?}
+    CheckPublishRole -- No --> ShowWarn[Show tooltip: 'Only PO or doc author can publish']
+    CheckPublishRole -- Yes --> ConfirmPublishDialog[Show modal: 'Publish v2.0 as Current? Previous v1.0 will become Superseded']
+    ConfirmPublishDialog -- Confirm --> APIPublish[Call POST /api/v1/documents/:id/publish]
+    APIPublish -- 200 OK --> ReindexTrigger[System flags for background KMS re-indexing]
+    APIPublish --> UpdateBadges[Current version = v2.0; Old v1.0 labeled 'Superseded']
+    
+    %% Flow 3: View Version History & Diffs
+    DocOptions -- Click 'Version History' --> OpenHistoryTab[Open History Drawer]
+    OpenHistoryTab --> SelectPastVersion[Select past version: e.g. v1.0 Superseded]
+    SelectPastVersion --> RenderWarning[Display persistent banner: 'Viewing Superseded Version v1.0. This is not current.']
+    SelectPastVersion --> DiffToggle[Toggle 'Compare with Current']
+    DiffToggle --> ShowVisualDiff[Display visual side-by-side Markdown Diff]
+    
+    %% Flow 4: Access Control (Restricted Documents)
+    DocOptions -- Manage Access (Restricted Doc) --> CheckIsAdmin{User is PO / Admin?}
+    CheckIsAdmin -- Yes --> OpenAccessModal[Open Access Control Modal]
+    OpenAccessModal --> ModifyGrants[Add or Revoke Member Grants]
+    ModifyGrants --> SaveGrants[Call PUT /api/v1/documents/:id/grants]
+    SaveGrants -- Success --> GrantFeedback[Immediate invalidation of revoked users' access]

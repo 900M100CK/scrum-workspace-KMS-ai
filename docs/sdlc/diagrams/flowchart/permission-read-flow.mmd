@@ -1,0 +1,23 @@
+flowchart TD
+    User([User accesses Resource]) --> AuthCheck{Is Authenticated?}
+    AuthCheck -- No --> LoginRedirect[/Redirect to /login/]
+    AuthCheck -- Yes --> ProjCheck{Is Project Member?}
+    
+    ProjCheck -- No --> NotFound404[/Display 404 Not Found Page/]
+    ProjCheck -- Yes --> ResCheck{Resource Type?}
+    
+    ResCheck -- Task / Board --> RoleCheckTask{Role can edit?}
+    RoleCheckTask -- Yes --> RenderEditable[Render with Edit & Drag Controls]
+    RoleCheckTask -- No --> RenderReadOnly[Render Read-only Cards & Badges]
+    
+    ResCheck -- Document --> DocScope{Doc Classification?}
+    DocScope -- Public / Internal --> RenderDoc[Render Document & Version Explorer]
+    DocScope -- Restricted --> DocGrantCheck{Has Explicit User Grant?}
+    DocGrantCheck -- Yes --> RenderDoc
+    DocGrantCheck -- No --> NotFoundDoc404[/Display 404 Not Found - No metadata leaked/]
+    
+    ResCheck -- AI Q&A --> RAGFilter[Filter RAG context strictly by User ID Grants]
+    RAGFilter --> AIResult{Evidence found?}
+    AIResult -- Yes --> RenderAnswer[Render Answer with Verified Citation Chips]
+    AIResult -- Insufficient --> RenderInsufficient[Render 'Insufficient Evidence' Card]
+    AIResult -- Service Down --> RenderFallback[Display AI Offline Banner + Keep Manual UI active]

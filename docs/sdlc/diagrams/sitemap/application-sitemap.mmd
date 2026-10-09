@@ -1,0 +1,22 @@
+graph TD
+    Root["SACW Web App"] --> Auth["/login (Authentication)"]
+    Root --> Projects["/projects (Project Directory)"]
+    
+    Projects --> ProjContext["/p/:projectId (Project Scope)"]
+    
+    ProjContext --> WorkNav["Work Navigation"]
+    WorkNav --> Backlog["/backlog (Product Backlog & Sprint Planning)"]
+    WorkNav --> Board["/board (Active Sprint Board & Blockers)"]
+    
+    ProjContext --> KMSNav["Knowledge Navigation"]
+    KMSNav --> Docs["/docs (Document Explorer & Drafts)"]
+    Docs --> DocDetail["/docs/:docId (Version Viewer & Editor)"]
+    DocDetail --> DocHistory["/docs/:docId/history (Version History & Diffs)"]
+    
+    ProjContext --> AdminNav["Administration"]
+    AdminNav --> Members["/settings/members (Team & Grants)"]
+    AdminNav --> ProjSettings["/settings/general (Project Details)"]
+    
+    ProjContext --> GlobalAI["Global AI Assistant (Slide-over Drawer / Modal)"]
+    GlobalAI --> QueryHistory["Query & Citation Session"]
+    GlobalAI --> CitationViewer["/p/:projectId/citation/:citationId (Passage Viewer)"]

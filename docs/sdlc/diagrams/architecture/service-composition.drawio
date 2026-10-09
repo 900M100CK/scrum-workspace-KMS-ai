@@ -1,0 +1,62 @@
+<mxfile host="65bd71144e">
+    <diagram id="DGM-ARCH-01" name="service-composition">
+        <mxGraphModel dx="186" dy="186" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2610" pageHeight="930" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="diagram-title" parent="1" style="text;html=1;whiteSpace=wrap;fontSize=18;fontStyle=1;align=left;" value="DGM-ARCH-01 · service-composition · v0.1 Draft&#xa;Extracted from docs/architecture.md v0.2; source policy gaps remain open" vertex="1">
+                    <mxGeometry height="100" width="2230" x="80" y="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="User" parent="1" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;whiteSpace=wrap;html=1;fontSize=14;spacing=12;" value="Member" vertex="1">
+                    <mxGeometry height="150" width="350" x="80" y="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="UI" parent="1" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;whiteSpace=wrap;html=1;fontSize=14;spacing=12;" value="Web UI" vertex="1">
+                    <mxGeometry height="150" width="350" x="550" y="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="W" parent="1" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;whiteSpace=wrap;html=1;fontSize=14;spacing=12;" value="Workspace gateway and permission authority" vertex="1">
+                    <mxGeometry height="150" width="350" x="1020" y="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="WD" parent="1" style="shape=cylinder3;fillColor=#d5e8d4;strokeColor=#82b366;whiteSpace=wrap;html=1;fontSize=14;spacing=12;" value="Workspace owned data" vertex="1">
+                    <mxGeometry height="150" width="350" x="1460" y="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="K" parent="1" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;whiteSpace=wrap;html=1;fontSize=14;spacing=12;" value="Knowledge service" vertex="1">
+                    <mxGeometry height="150" width="350" x="1600" y="450" as="geometry"/>
+                </mxCell>
+                <mxCell id="KD" parent="1" style="shape=cylinder3;fillColor=#d5e8d4;strokeColor=#82b366;whiteSpace=wrap;html=1;fontSize=14;spacing=12;" value="Knowledge owned data and search" vertex="1">
+                    <mxGeometry height="150" width="350" x="1960" y="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="Provider" parent="1" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;whiteSpace=wrap;html=1;fontSize=14;spacing=12;" value="Configured embedding and generation provider" vertex="1">
+                    <mxGeometry height="150" width="350" x="960" y="650" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge-User-UI-0" edge="1" parent="1" source="User" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endSize=8;fontSize=12;labelBackgroundColor=#ffffff;" target="UI" value="">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge-UI-W-1" edge="1" parent="1" source="UI" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endSize=8;fontSize=12;labelBackgroundColor=#ffffff;" target="W" value="">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge-W-WD-2" edge="1" parent="1" source="W" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endSize=8;fontSize=12;labelBackgroundColor=#ffffff;exitX=1;exitY=0.25;exitDx=0;exitDy=0;" target="WD" value="">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge-W-K-3" edge="1" parent="1" source="W" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endSize=8;fontSize=12;labelBackgroundColor=#ffffff;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.666667;entryDx=0;entryDy=0;" target="K" value="">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge-K-KD-4" edge="1" parent="1" source="K" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endSize=8;fontSize=12;labelBackgroundColor=#ffffff;" target="KD" value="">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge-K-W-5" edge="1" parent="1" source="K" style="rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;entryX=0.5;entryY=1;edgeStyle=orthogonalEdgeStyle;exitX=-0.001;exitY=0.531;exitDx=0;exitDy=0;exitPerimeter=0;" target="W" value="">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1588.6" y="530" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge-W-Provider-6" edge="1" parent="1" source="W" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endSize=8;fontSize=12;labelBackgroundColor=#ffffff;" target="Provider" value="">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1130" y="500"/>
+                            <mxPoint x="1130" y="500"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

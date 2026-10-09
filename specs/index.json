@@ -1,0 +1,321 @@
+{
+  "artifactId": "SPEC-INDEX",
+  "version": "0.1",
+  "status": "Draft",
+  "slices": [
+    {
+      "id": "SP-01",
+      "file": "001-session.md",
+      "goal": "Use an authenticated session whose expiry and sign-out end protected access.",
+      "month": 1,
+      "dependencies": [],
+      "service": "workspace",
+      "requirements": [
+        "FR-01",
+        "FR-36",
+        "FR-37",
+        "FR-68"
+      ],
+      "operationIds": [
+        "signIn",
+        "signOut",
+        "getSession"
+      ],
+      "status": "Unimplemented"
+    },
+    {
+      "id": "SP-02",
+      "file": "002-project-membership.md",
+      "goal": "Set the authorised project scope and remove membership without grant revival.",
+      "month": 1,
+      "dependencies": [
+        "SP-01"
+      ],
+      "service": "workspace",
+      "requirements": [
+        "FR-02",
+        "FR-03",
+        "FR-38",
+        "FR-39",
+        "FR-64"
+      ],
+      "operationIds": [
+        "createProject",
+        "listProjects",
+        "addMember",
+        "removeMember",
+        "editProject"
+      ],
+      "status": "Unimplemented"
+    },
+    {
+      "id": "SP-03",
+      "file": "003-create-task.md",
+      "goal": "Persist one Story/Task/Bug in the correct authorised project and basic board state.",
+      "month": 1,
+      "dependencies": [
+        "SP-02"
+      ],
+      "service": "workspace",
+      "requirements": [
+        "FR-05"
+      ],
+      "operationIds": [
+        "createTask",
+        "listTasks",
+        "getTask"
+      ],
+      "status": "Unimplemented"
+    },
+    {
+      "id": "SP-04",
+      "file": "004-update-task.md",
+      "goal": "Update a task without stale overwrite and retain blocker resolution evidence.",
+      "month": 1,
+      "dependencies": [
+        "SP-03"
+      ],
+      "service": "workspace",
+      "requirements": [
+        "FR-09",
+        "FR-40",
+        "FR-43",
+        "FR-44"
+      ],
+      "operationIds": [
+        "editTask",
+        "setTaskState",
+        "setAssignee",
+        "recordBlocker"
+      ],
+      "status": "Unimplemented"
+    },
+    {
+      "id": "SP-05",
+      "file": "005-sprint-lifecycle.md",
+      "goal": "Run the fixed Scrum lifecycle without introducing a workflow configuration engine.",
+      "month": 2,
+      "dependencies": [
+        "SP-04"
+      ],
+      "service": "workspace",
+      "requirements": [
+        "FR-06",
+        "FR-07",
+        "FR-08",
+        "FR-41",
+        "FR-42",
+        "FR-66",
+        "FR-67"
+      ],
+      "operationIds": [
+        "createSprint",
+        "allocateTask",
+        "startSprint",
+        "completeSprint",
+        "reorderBacklog",
+        "editSprint",
+        "removeAllocation"
+      ],
+      "status": "Unimplemented"
+    },
+    {
+      "id": "SP-06",
+      "file": "006-document-access.md",
+      "goal": "Store an owned English text/Markdown source with explicit, independently enforced document access.",
+      "month": 2,
+      "dependencies": [
+        "SP-02",
+        "SP-11"
+      ],
+      "service": "knowledge",
+      "requirements": [
+        "FR-04",
+        "FR-10",
+        "FR-14",
+        "FR-50",
+        "FR-51",
+        "FR-52",
+        "FR-62",
+        "FR-65"
+      ],
+      "operationIds": [
+        "createDocument",
+        "getDocument",
+        "setClassification",
+        "grantDocumentRead",
+        "revokeDocumentRead",
+        "importDocument",
+        "editDocumentMetadata"
+      ],
+      "status": "Unimplemented"
+    },
+    {
+      "id": "SP-07",
+      "file": "007-version-publication.md",
+      "goal": "Keep immutable evidence and distinguish Draft, Current and historical sources.",
+      "month": 2,
+      "dependencies": [
+        "SP-06"
+      ],
+      "service": "knowledge",
+      "requirements": [
+        "FR-11",
+        "FR-12",
+        "FR-13",
+        "FR-15",
+        "FR-19",
+        "FR-45",
+        "FR-47",
+        "FR-48",
+        "FR-61"
+      ],
+      "operationIds": [
+        "reviseDocument",
+        "publishVersion",
+        "archiveVersion",
+        "deleteDocument",
+        "getVersion",
+        "getReadiness"
+      ],
+      "status": "Unimplemented"
+    },
+    {
+      "id": "SP-08",
+      "file": "008-linked-keyword-search.md",
+      "goal": "Address scattered context with explicit links and an AI-independent keyword path.",
+      "month": 2,
+      "dependencies": [
+        "SP-06",
+        "SP-03"
+      ],
+      "service": "knowledge",
+      "requirements": [
+        "FR-16",
+        "FR-17",
+        "FR-18",
+        "FR-20",
+        "FR-34",
+        "FR-49",
+        "FR-59",
+        "FR-63"
+      ],
+      "operationIds": [
+        "createLink",
+        "listLinks",
+        "removeLink",
+        "keywordSearch"
+      ],
+      "status": "Unimplemented"
+    },
+    {
+      "id": "SP-09",
+      "file": "009-cited-question.md",
+      "goal": "Answer an English question with exact citations or explicit insufficiency/conflict/failure.",
+      "month": 3,
+      "dependencies": [
+        "SP-07",
+        "SP-08",
+        "SP-11"
+      ],
+      "service": "knowledge",
+      "requirements": [
+        "FR-21",
+        "FR-22",
+        "FR-23",
+        "FR-24",
+        "FR-28",
+        "FR-29",
+        "FR-30",
+        "FR-46",
+        "FR-53",
+        "FR-54",
+        "FR-55",
+        "FR-60",
+        "FR-69"
+      ],
+      "operationIds": [
+        "askQuestion",
+        "openCitation",
+        "semanticSearch"
+      ],
+      "status": "Unimplemented"
+    },
+    {
+      "id": "SP-10",
+      "file": "010-current-work-question.md",
+      "goal": "Report current blockers from operational observations rather than historical text.",
+      "month": 3,
+      "dependencies": [
+        "SP-04",
+        "SP-09"
+      ],
+      "service": "knowledge",
+      "requirements": [
+        "FR-25",
+        "FR-26"
+      ],
+      "operationIds": [
+        "observeBlockedTasks",
+        "observeWorkState"
+      ],
+      "status": "Unimplemented"
+    },
+    {
+      "id": "SP-11",
+      "file": "011-audit-and-source-inspection.md",
+      "goal": "Record trustworthy change/run receipts from the first operation, independently of inspection UI.",
+      "month": 1,
+      "dependencies": [
+        "SP-01"
+      ],
+      "service": "both",
+      "requirements": [
+        "FR-31",
+        "FR-32",
+        "FR-57"
+      ],
+      "operationIds": [],
+      "status": "Unimplemented"
+    },
+    {
+      "id": "SP-12",
+      "file": "012-failure-and-evaluation.md",
+      "goal": "Produce measured retrieval, citation and fallback evidence before the final month.",
+      "month": 4,
+      "dependencies": [
+        "SP-05",
+        "SP-09",
+        "SP-10"
+      ],
+      "service": "both",
+      "requirements": [
+        "FR-33"
+      ],
+      "operationIds": [],
+      "status": "Unimplemented"
+    },
+    {
+      "id": "SP-13",
+      "file": "013-scoped-inspection.md",
+      "goal": "Let permitted users inspect recorded changes/retrieval while enforcing current source and log scope.",
+      "month": 4,
+      "dependencies": [
+        "SP-11",
+        "SP-09"
+      ],
+      "service": "both",
+      "requirements": [
+        "FR-27",
+        "FR-56",
+        "FR-58"
+      ],
+      "operationIds": [
+        "listAudit",
+        "getTrace",
+        "getRetrievalSummary"
+      ],
+      "status": "Unimplemented"
+    }
+  ]
+}

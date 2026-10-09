@@ -1,0 +1,302 @@
+{
+  "artifactId": "DATA-04",
+  "version": "0.1",
+  "status": "Draft",
+  "storageDecision": "ADR-0004 Proposed; logical model only, no applied migrations",
+  "entities": [
+    {
+      "name": "Project",
+      "owner": "workspace",
+      "key": [
+        "project_id"
+      ],
+      "fields": [
+        "name",
+        "description",
+        "revision"
+      ]
+    },
+    {
+      "name": "Membership",
+      "owner": "workspace",
+      "key": [
+        "project_id",
+        "user_id"
+      ],
+      "fields": [
+        "role",
+        "active",
+        "membership_generation",
+        "revision"
+      ]
+    },
+    {
+      "name": "Task",
+      "owner": "workspace",
+      "key": [
+        "task_id"
+      ],
+      "fields": [
+        "project_id",
+        "type",
+        "title",
+        "description",
+        "state",
+        "assignee_id",
+        "revision"
+      ]
+    },
+    {
+      "name": "Sprint",
+      "owner": "workspace",
+      "key": [
+        "sprint_id"
+      ],
+      "fields": [
+        "project_id",
+        "goal",
+        "start_date",
+        "end_date",
+        "state",
+        "revision"
+      ]
+    },
+    {
+      "name": "SprintAllocation",
+      "owner": "workspace",
+      "key": [
+        "sprint_id",
+        "task_id"
+      ],
+      "fields": [
+        "allocation_state",
+        "revision"
+      ]
+    },
+    {
+      "name": "BlockerEvent",
+      "owner": "workspace",
+      "key": [
+        "event_id"
+      ],
+      "fields": [
+        "task_id",
+        "status",
+        "description",
+        "outcome",
+        "actor_id",
+        "sequence",
+        "recorded_at"
+      ]
+    },
+    {
+      "name": "DocumentPolicy",
+      "owner": "workspace",
+      "key": [
+        "document_id"
+      ],
+      "fields": [
+        "project_id",
+        "classification",
+        "registry_state",
+        "permission_revision"
+      ]
+    },
+    {
+      "name": "ReadGrant",
+      "owner": "workspace",
+      "key": [
+        "document_id",
+        "user_id",
+        "grant_generation"
+      ],
+      "fields": [
+        "valid",
+        "membership_generation",
+        "revision"
+      ]
+    },
+    {
+      "name": "Session",
+      "owner": "workspace",
+      "key": [
+        "session_id"
+      ],
+      "fields": [
+        "user_id",
+        "expires_at",
+        "revoked",
+        "revision"
+      ]
+    },
+    {
+      "name": "Document",
+      "owner": "knowledge",
+      "key": [
+        "document_id"
+      ],
+      "fields": [
+        "project_id",
+        "kind",
+        "title",
+        "owner_id",
+        "labels",
+        "current_version_id",
+        "revision",
+        "unavailable"
+      ]
+    },
+    {
+      "name": "DocumentVersion",
+      "owner": "knowledge",
+      "key": [
+        "document_id",
+        "version_id"
+      ],
+      "fields": [
+        "document_id",
+        "state",
+        "immutable_content",
+        "created_at",
+        "revision"
+      ]
+    },
+    {
+      "name": "Passage",
+      "owner": "knowledge",
+      "key": [
+        "document_id",
+        "version_id",
+        "passage_id"
+      ],
+      "fields": [
+        "document_id",
+        "version_id",
+        "locator",
+        "immutable_excerpt"
+      ]
+    },
+    {
+      "name": "Link",
+      "owner": "knowledge",
+      "key": [
+        "link_id"
+      ],
+      "fields": [
+        "project_id",
+        "from_kind",
+        "from_id",
+        "to_kind",
+        "to_id",
+        "relation",
+        "revision"
+      ]
+    },
+    {
+      "name": "SearchJob",
+      "owner": "knowledge",
+      "key": [
+        "job_id"
+      ],
+      "fields": [
+        "document_id",
+        "version_id",
+        "aggregate_revision",
+        "processing_generation",
+        "readiness",
+        "tombstone"
+      ]
+    },
+    {
+      "name": "Execution",
+      "owner": "knowledge",
+      "key": [
+        "run_id"
+      ],
+      "fields": [
+        "actor_id",
+        "project_id",
+        "source_ids",
+        "configuration_id",
+        "duration",
+        "usage",
+        "errors",
+        "validation_outcomes"
+      ]
+    },
+    {
+      "name": "Provenance",
+      "owner": "knowledge",
+      "key": [
+        "run_id",
+        "source_id"
+      ],
+      "fields": [
+        "document_id",
+        "version_id",
+        "passage_id",
+        "entity_id",
+        "observation_revision",
+        "observed_at"
+      ]
+    },
+    {
+      "name": "BusinessAudit",
+      "owner": "per_service",
+      "key": [
+        "event_id"
+      ],
+      "fields": [
+        "actor_id",
+        "action",
+        "entity_id",
+        "time",
+        "before_ref",
+        "after_ref",
+        "correlation_id"
+      ]
+    },
+    {
+      "name": "IdempotencyRecord",
+      "owner": "per_service",
+      "key": [
+        "actor_id",
+        "operation",
+        "idempotency_key"
+      ],
+      "fields": [
+        "payload_hash",
+        "state",
+        "result_ref",
+        "expires_at"
+      ]
+    },
+    {
+      "name": "CapabilityGrant",
+      "owner": "workspace",
+      "key": [
+        "grant_id"
+      ],
+      "fields": [
+        "subject_id",
+        "project_id",
+        "resource_kind",
+        "resource_id",
+        "action",
+        "valid",
+        "permission_revision"
+      ]
+    }
+  ],
+  "invariants": [
+    "No cross-service database writes/joins",
+    "Project membership AND current document scope govern source access",
+    "Membership removal invalidates read grants; rejoin creates no restricted grant",
+    "At most one Active Sprint per project; a task has at most one Planned/Active allocation",
+    "Task blocked state derives from highest committed blocker sequence",
+    "Version/passage evidence is immutable",
+    "Draft excluded from all retrieval/model input",
+    "Old jobs cannot revive unavailable/tombstoned content",
+    "No answer cache or permission-decision cache in MVP"
+  ]
+}

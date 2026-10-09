@@ -1,0 +1,47 @@
+flowchart TD
+    Start([User opens /p/:projectId/board]) --> CheckActive{Is there an Active Sprint?}
+    
+    CheckActive -- No --> EmptyBoard[Display Empty State: 'No active sprint running']
+    EmptyBoard --> RoleCanStart{User is Scrum Master?}
+    RoleCanStart -- Yes --> CTAStart[Show CTA: 'Go to Backlog to start sprint']
+    RoleCanStart -- No --> CTANone[Show message: 'Contact Scrum Master to start a sprint']
+    
+    CheckActive -- Yes --> RenderColumns[Render Board Columns: Todo | In Progress | In Review | Done]
+    RenderColumns --> FilterOption{User applies quick filters?}
+    FilterOption -- Yes: 'Blocked Only' --> ShowBlocked[Filter cards where is_blocked == true]
+    FilterOption -- Yes: 'My Tasks' --> ShowMyTasks[Filter cards where assignee_id == currentUser.id]
+    FilterOption -- No --> ShowAll[Show all sprint task cards]
+    
+    ShowAll --> ActionChoice{User Action?}
+    ShowBlocked --> ActionChoice
+    ShowMyTasks --> ActionChoice
+    
+    %% Action 1: Drag-Drop Task
+    ActionChoice -- Drag Task to new Column --> CheckPermissionDrag{User role is PO, SM, or DEV?}
+    CheckPermissionDrag -- No: VIEWER --> BlockDrag[Card snaps back with tooltip: 'Read-only view']
+    CheckPermissionDrag -- Yes --> OptimisticMove[Move card immediately to target column]
+    OptimisticMove --> APIUpdateTask[Call PATCH /api/v1/tasks/:id/status]
+    APIUpdateTask -- Success 200 --> ConfirmCard[Update card state & audit badge]
+    APIUpdateTask -- Stale Concurrency (409) --> RollbackConflict[Rollback card position + Toast: 'Task was updated by another member']
+    APIUpdateTask -- Network Error --> RollbackNet[Rollback card position + Toast: 'Network error, please retry']
+
+    %% Action 2: Flag Blocker
+    ActionChoice -- Click Task Card --> OpenTaskModal[Open Task Detail Modal]
+    OpenTaskModal --> CheckBlockedStatus{Is task currently blocked?}
+    
+    CheckBlockedStatus -- No: Flag as Blocked --> ClickFlag[Click 'Flag Blocker' button]
+    ClickFlag --> InputReason[Display Blocker Reason input dialog]
+    InputReason --> SubmitBlocker[Submit blocker reason]
+    SubmitBlocker --> APIBlock[Call POST /api/v1/tasks/:id/blocker]
+    APIBlock -- Success --> ShowBlockerBadge[Task card gains red 'BLOCKED' badge & reason banner]
+    
+    CheckBlockedStatus -- Yes: Unflag Blocker --> ClickResolve[Click 'Resolve Blocker' button]
+    ClickResolve --> InputResolution[Optional: Input resolution note]
+    InputResolution --> SubmitResolve[Submit resolution]
+    SubmitResolve --> APIUnblock[Call POST /api/v1/tasks/:id/unblock]
+    APIUnblock -- Success --> RemoveBadge[Remove 'BLOCKED' banner, log event in history]
+    
+    %% Action 3: Inspect linked KMS docs
+    ActionChoice -- Click linked Doc Chip on Card --> CheckDocAuth{User has Doc Grant?}
+    CheckDocAuth -- Yes --> OpenDocSplit[Open Document Viewer in Split Pane]
+    CheckDocAuth -- No --> ShowNotFound[Display 404: 'Document does not exist or link unavailable']

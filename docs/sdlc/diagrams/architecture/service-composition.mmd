@@ -1,0 +1,8 @@
+flowchart LR
+    User[Member] --> UI[Web UI]
+    UI --> W[Workspace gateway and permission authority]
+    W --> WD[(Workspace owned data)]
+    W --> K[Knowledge service]
+    K --> KD[(Knowledge owned data and search)]
+    K --> W
+    W --> Provider[Configured embedding and generation provider]

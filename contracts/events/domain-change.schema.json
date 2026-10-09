@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:scrum-kms:domain-change:v1",
+  "title": "Domain change notification",
+  "x-status": "Draft",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "producer": {
+      "enum": [
+        "workspace",
+        "knowledge"
+      ]
+    },
+    "kind": {
+      "enum": [
+        "permission_changed",
+        "membership_removed",
+        "knowledge_version_changed",
+        "knowledge_deleted"
+      ]
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "aggregate_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "aggregate_revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "occurred_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "correlation_id": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "event_id",
+    "producer",
+    "kind",
+    "project_id",
+    "aggregate_id",
+    "aggregate_revision",
+    "occurred_at",
+    "correlation_id"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "producer": {
+            "const": "workspace"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "kind": {
+            "enum": [
+              "permission_changed",
+              "membership_removed"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "producer": {
+            "const": "knowledge"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "kind": {
+            "enum": [
+              "knowledge_version_changed",
+              "knowledge_deleted"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

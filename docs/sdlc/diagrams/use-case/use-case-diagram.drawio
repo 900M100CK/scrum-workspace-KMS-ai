@@ -1,0 +1,184 @@
+<mxfile host="65bd71144e">
+    <diagram name="Use-Case-Overview" id="uc-overview">
+        <mxGraphModel dx="695" dy="695" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1400" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="sys-boundary" parent="1" style="swimlane;startSize=30;dashed=1;dashPattern=8 4;fillColor=#f8fbff;strokeColor=#6c8ebf;verticalAlign=top;fontSize=14;fontStyle=1;strokeWidth=2;" value="Scrum Workspace + AI Project KMS" vertex="1">
+                    <mxGeometry height="1260" width="1120" x="340" y="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="uc01" parent="sys-boundary" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=11;" value="UC-01&#xa;Establish and end a session" vertex="1">
+                    <mxGeometry height="60" width="240" x="60" y="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="uc02" parent="sys-boundary" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=11;" value="UC-02&#xa;Create project &amp; manage membership" vertex="1">
+                    <mxGeometry height="60" width="240" x="60" y="210" as="geometry"/>
+                </mxCell>
+                <mxCell id="uc03" parent="sys-boundary" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=11;" value="UC-03&#xa;Create a task in the backlog" vertex="1">
+                    <mxGeometry height="60" width="240" x="360" y="210" as="geometry"/>
+                </mxCell>
+                <mxCell id="uc04" parent="sys-boundary" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=11;" value="UC-04&#xa;Update work state &amp; blockers" vertex="1">
+                    <mxGeometry height="60" width="240" x="60" y="390" as="geometry"/>
+                </mxCell>
+                <mxCell id="uc05" parent="sys-boundary" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=11;" value="UC-05&#xa;Plan, start &amp; complete a Sprint" vertex="1">
+                    <mxGeometry height="60" width="240" x="360" y="390" as="geometry"/>
+                </mxCell>
+                <mxCell id="uc06" parent="sys-boundary" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=11;" value="UC-06&#xa;Create restricted knowledge &amp; manage access" vertex="1">
+                    <mxGeometry height="60" width="240" x="60" y="590" as="geometry"/>
+                </mxCell>
+                <mxCell id="uc07" parent="sys-boundary" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=11;" value="UC-07&#xa;Revise, publish &amp; retire a knowledge version" vertex="1">
+                    <mxGeometry height="60" width="240" x="360" y="590" as="geometry"/>
+                </mxCell>
+                <mxCell id="uc08" parent="sys-boundary" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=11;" value="UC-08&#xa;Find linked knowledge without AI" vertex="1">
+                    <mxGeometry height="60" width="240" x="60" y="790" as="geometry"/>
+                </mxCell>
+                <mxCell id="uc09" parent="sys-boundary" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=11;" value="UC-09&#xa;Answer a question with exact evidence" vertex="1">
+                    <mxGeometry height="60" width="240" x="360" y="790" as="geometry"/>
+                </mxCell>
+                <mxCell id="uc10" parent="sys-boundary" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=11;" value="UC-10&#xa;Answer a current work-state question" vertex="1">
+                    <mxGeometry height="60" width="240" x="660" y="790" as="geometry"/>
+                </mxCell>
+                <mxCell id="uc11" parent="sys-boundary" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;fontSize=11;" value="UC-11&#xa;Capture business audit &amp; answer provenance" vertex="1">
+                    <mxGeometry height="60" width="240" x="360" y="1000" as="geometry"/>
+                </mxCell>
+                <mxCell id="uc12" parent="sys-boundary" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=11;" value="UC-12&#xa;Continue work during AI failure" vertex="1">
+                    <mxGeometry height="60" width="240" x="660" y="1000" as="geometry"/>
+                </mxCell>
+                <mxCell id="uc13" parent="sys-boundary" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=11;" value="UC-13&#xa;Inspect scoped audit &amp; answer evidence" vertex="1">
+                    <mxGeometry height="60" width="240" x="60" y="1100" as="geometry"/>
+                </mxCell>
+                <mxCell id="inc-uc02" edge="1" parent="sys-boundary" source="uc02" style="endArrow=open;dashed=1;strokeColor=#1e40af;strokeWidth=1.5;endFill=0;fontSize=9;" target="uc11" value="&lt;&lt;include&gt;&gt;">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="inc-uc03" edge="1" parent="sys-boundary" source="uc03" style="endArrow=open;dashed=1;strokeColor=#1e40af;strokeWidth=1.5;endFill=0;fontSize=9;" target="uc11" value="&lt;&lt;include&gt;&gt;">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="inc-uc04" edge="1" parent="sys-boundary" source="uc04" style="endArrow=open;dashed=1;strokeColor=#1e40af;strokeWidth=1.5;endFill=0;fontSize=9;" target="uc11" value="&lt;&lt;include&gt;&gt;">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="inc-uc05" edge="1" parent="sys-boundary" source="uc05" style="endArrow=open;dashed=1;strokeColor=#1e40af;strokeWidth=1.5;endFill=0;fontSize=9;" target="uc11" value="&lt;&lt;include&gt;&gt;">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="inc-uc06" edge="1" parent="sys-boundary" source="uc06" style="endArrow=open;dashed=1;strokeColor=#1e40af;strokeWidth=1.5;endFill=0;fontSize=9;" target="uc11" value="&lt;&lt;include&gt;&gt;">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="inc-uc07" edge="1" parent="sys-boundary" source="uc07" style="endArrow=open;dashed=1;strokeColor=#1e40af;strokeWidth=1.5;endFill=0;fontSize=9;" target="uc11" value="&lt;&lt;include&gt;&gt;">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="inc-uc08" edge="1" parent="sys-boundary" source="uc08" style="endArrow=open;dashed=1;strokeColor=#1e40af;strokeWidth=1.5;endFill=0;fontSize=9;" target="uc11" value="&lt;&lt;include&gt;&gt;">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="inc-uc09" edge="1" parent="sys-boundary" source="uc09" style="endArrow=open;dashed=1;strokeColor=#1e40af;strokeWidth=1.5;endFill=0;fontSize=9;" target="uc11" value="&lt;&lt;include&gt;&gt;">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="inc-uc10" edge="1" parent="sys-boundary" source="uc10" style="endArrow=open;dashed=1;strokeColor=#1e40af;strokeWidth=1.5;endFill=0;fontSize=9;" target="uc11" value="&lt;&lt;include&gt;&gt;">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="inc-uc12" edge="1" parent="sys-boundary" source="uc12" style="endArrow=open;dashed=1;strokeColor=#1e40af;strokeWidth=1.5;endFill=0;fontSize=9;" target="uc11" value="&lt;&lt;include&gt;&gt;">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="actor-user" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="User" vertex="1">
+                    <mxGeometry height="70" width="50" x="100" y="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="actor-member" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Authorised&#xa;Member" vertex="1">
+                    <mxGeometry height="70" width="50" x="100" y="310" as="geometry"/>
+                </mxCell>
+                <mxCell id="actor-sprint-mgr" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Sprint&#xa;Manager" vertex="1">
+                    <mxGeometry height="70" width="50" x="100" y="540" as="geometry"/>
+                </mxCell>
+                <mxCell id="actor-author" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Content Author&#xa;/ Publisher" vertex="1">
+                    <mxGeometry height="70" width="50" x="100" y="750" as="geometry"/>
+                </mxCell>
+                <mxCell id="actor-access-mgr" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Document&#xa;Access Manager" vertex="1">
+                    <mxGeometry height="70" width="50" x="100" y="900" as="geometry"/>
+                </mxCell>
+                <mxCell id="actor-inspector" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Audit / Execution&#xa;Inspector" vertex="1">
+                    <mxGeometry height="70" width="50" x="100" y="1100" as="geometry"/>
+                </mxCell>
+                <mxCell id="actor-identity" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#fff2cc;strokeColor=#d6b656;" value="Identity&#xa;Provider" vertex="1">
+                    <mxGeometry height="70" width="50" x="1570" y="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="actor-ai" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#fff2cc;strokeColor=#d6b656;" value="AI Model API&#xa;(Generation)" vertex="1">
+                    <mxGeometry height="70" width="50" x="1570" y="650" as="geometry"/>
+                </mxCell>
+                <mxCell id="actor-embed" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#fff2cc;strokeColor=#d6b656;" value="Embedding&#xa;Service" vertex="1">
+                    <mxGeometry height="70" width="50" x="1570" y="830" as="geometry"/>
+                </mxCell>
+                <mxCell id="gen-sprint" edge="1" parent="1" source="actor-sprint-mgr" style="endArrow=block;endFill=0;strokeColor=#111827;strokeWidth=1.5;" target="actor-member">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="gen-author" edge="1" parent="1" source="actor-author" style="endArrow=block;endFill=0;strokeColor=#111827;strokeWidth=1.5;" target="actor-member">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="gen-access" edge="1" parent="1" source="actor-access-mgr" style="endArrow=block;endFill=0;strokeColor=#111827;strokeWidth=1.5;" target="actor-member">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="gen-inspector" edge="1" parent="1" source="actor-inspector" style="endArrow=block;endFill=0;strokeColor=#111827;strokeWidth=1.5;" target="actor-member">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="gen-user" edge="1" parent="1" source="actor-member" style="endArrow=block;endFill=0;strokeColor=#111827;strokeWidth=1.5;" target="actor-user">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="assoc-user-uc01" edge="1" parent="1" source="actor-user" style="endArrow=none;strokeColor=#4b5563;strokeWidth=1.5;" target="uc01">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="assoc-mem-uc02" edge="1" parent="1" source="actor-member" style="endArrow=none;strokeColor=#4b5563;strokeWidth=1.5;" target="uc02">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="assoc-mem-uc03" edge="1" parent="1" source="actor-member" style="endArrow=none;strokeColor=#4b5563;strokeWidth=1.5;" target="uc03">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="assoc-mem-uc04" edge="1" parent="1" source="actor-member" style="endArrow=none;strokeColor=#4b5563;strokeWidth=1.5;" target="uc04">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="assoc-mem-uc08" edge="1" parent="1" source="actor-member" style="endArrow=none;strokeColor=#4b5563;strokeWidth=1.5;" target="uc08">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="assoc-mem-uc09" edge="1" parent="1" source="actor-member" style="endArrow=none;strokeColor=#4b5563;strokeWidth=1.5;" target="uc09">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="assoc-mem-uc10" edge="1" parent="1" source="actor-member" style="endArrow=none;strokeColor=#4b5563;strokeWidth=1.5;" target="uc10">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="assoc-mem-uc12" edge="1" parent="1" source="actor-member" style="endArrow=none;strokeColor=#4b5563;strokeWidth=1.5;" target="uc12">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="assoc-sprint-uc05" edge="1" parent="1" source="actor-sprint-mgr" style="endArrow=none;strokeColor=#4b5563;strokeWidth=1.5;" target="uc05">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="assoc-author-uc06" edge="1" parent="1" source="actor-author" style="endArrow=none;strokeColor=#4b5563;strokeWidth=1.5;" target="uc06">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="assoc-author-uc07" edge="1" parent="1" source="actor-author" style="endArrow=none;strokeColor=#4b5563;strokeWidth=1.5;" target="uc07">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="assoc-access-uc06" edge="1" parent="1" source="actor-access-mgr" style="endArrow=none;strokeColor=#4b5563;strokeWidth=1.5;" target="uc06">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="assoc-insp-uc13" edge="1" parent="1" source="actor-inspector" style="endArrow=none;strokeColor=#4b5563;strokeWidth=1.5;" target="uc13">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="assoc-idp-uc01" edge="1" parent="1" source="actor-identity" style="endArrow=none;strokeColor=#d6b656;strokeWidth=1.5;" target="uc01">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="assoc-ai-uc09" edge="1" parent="1" source="actor-ai" style="endArrow=none;strokeColor=#d6b656;strokeWidth=1.5;" target="uc09">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="assoc-ai-uc10" edge="1" parent="1" source="actor-ai" style="endArrow=none;strokeColor=#d6b656;strokeWidth=1.5;" target="uc10">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="assoc-ai-uc12" edge="1" parent="1" source="actor-ai" style="endArrow=none;strokeColor=#d6b656;strokeWidth=1.5;" target="uc12">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="assoc-embed-uc09" edge="1" parent="1" source="actor-embed" style="endArrow=none;strokeColor=#d6b656;strokeWidth=1.5;" target="uc09">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="assoc-embed-uc12" edge="1" parent="1" source="actor-embed" style="endArrow=none;strokeColor=#d6b656;strokeWidth=1.5;" target="uc12">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="assoc-insp-uc13-b" edge="1" parent="1" source="actor-inspector" style="endArrow=none;strokeColor=#4b5563;strokeWidth=1.5;" target="uc13">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

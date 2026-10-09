@@ -1,0 +1,40 @@
+flowchart TD
+    Trigger([User triggers AI Assistant: Ctrl+K or Drawer]) --> OpenDrawer[Open AI Assistant Slide-over Panel]
+    OpenDrawer --> CheckServiceHealth{AI Service Health Check}
+    
+    %% Health Check Branch: AI Service Offline
+    CheckServiceHealth -- Service Down / Timeout --> ShowOfflineBanner[Display Offline Banner: 'AI service unavailable']
+    ShowOfflineBanner --> EnableFallbackSearch[Render Standard Keyword Search Input]
+    EnableFallbackSearch --> UserEntersKeyword[User types search keyword]
+    UserEntersKeyword --> ExecuteLocalSearch[Execute exact keyword search on Documents & Tasks]
+    ExecuteLocalSearch --> ShowSearchResults[Display list of matching documents & tasks]
+    
+    %% Health Check Branch: AI Service Online
+    CheckServiceHealth -- Service OK --> RenderQueryInput[Render Natural Language Query Box]
+    RenderQueryInput --> SubmitQuestion[User enters question: e.g. 'Why was JWT chosen?']
+    SubmitQuestion --> ShowLoadingSkeleton[Show animated thinking skeleton + Progress pulse]
+    
+    ShowLoadingSkeleton --> SendQueryAPI[POST /api/v1/ai/query with User JWT Session]
+    SendQueryAPI --> ServerPermFilter[Server filters candidate chunks strictly by User Auth Scope]
+    
+    ServerPermFilter --> CheckEvidenceFound{Sufficient Evidence Found?}
+    
+    %% Insufficient Evidence Branch (SC-07)
+    CheckEvidenceFound -- No --> RenderInsufficientCard[Render 'Insufficient Evidence' Card]
+    RenderInsufficientCard --> InsufficientDetails[Show message: 'No authoritative documentation found to answer this question. Try refining keywords or check if documentation exists.']
+    RenderInsufficientCard --> CTACreateDoc[Show button: 'Add Document on this topic']
+    
+    %% Sufficient Evidence Branch (SC-02)
+    CheckEvidenceFound -- Yes --> StreamAnswer[Stream / Render Synthesized Answer]
+    StreamAnswer --> AttachCitationChips[Render Interactive Citation Chips: e.g. [ADR-0001 v1.0 #p3]]
+    AttachCitationChips --> RenderFeedbackButtons[Render Feedback Thumbs Up / Down]
+    
+    %% User Interacts with Citation Chip
+    AttachCitationChips --> UserClicksCitation[User clicks Citation Chip: [ADR-0001 v1.0 #p3]]
+    UserClicksCitation --> FetchPassage[Call GET /api/v1/documents/:id/versions/:ver/passages/:pId]
+    FetchPassage --> CheckPassageAuth{Re-validate current permission?}
+    
+    CheckPassageAuth -- Denied (Grant revoked mid-session) --> CitationRevoked[Show modal: '404 - Source unavailable']
+    CheckPassageAuth -- Permitted --> OpenPassageModal[Open Source Inspector Split View]
+    OpenPassageModal --> HighlightText[Display Document exact version and highlight matched passage]
+    OpenPassageModal --> ShowVersionStatus[Show badge: 'CURRENT' or 'SUPERSEDED']
