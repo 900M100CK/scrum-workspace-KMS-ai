@@ -1,88 +1,494 @@
 # Architecture for the five-month capstone
 
-**Artifact ID:** SAD-03  
-**Version/date:** 0.3 Draft · 9 October 2026  
-**Status:** Draft for owner review; proposed policies/deferrals are not approved.  
-**Inputs:** [BRD](BRD.md) v1.0; [PRD](sdlc/PRD_SRS.md) v0.4; [use cases](sdlc/use-cases.md) v0.2; [delivery plan](planning/five-month-plan.md) v0.1; AGENTS rules; owner confirmation to retain minimal microservices.  
+**Artifact ID:** SAD-03
+**Version/date:** 0.5 Draft · 10 October 2026\
+**Status:** Draft for owner review; organized into 4+1 views; proposed policies/deferrals are not approved.\
+**Inputs:** [BRD](BRD.md) v1.0; [PRD](sdlc/PRD_SRS.md) v0.4; [use cases](sdlc/use-cases.md) v0.2; [delivery plan](planning/five-month-plan.md) v0.1; AGENTS rules; owner confirmation to retain minimal microservices.
 **Author:** development agent acting sequentially; owner reviews business choices.
 
-## Context and decisions
+---
 
-Build a small Scrum workspace with permission-aware evidence retrieval. One student implements/integrates the system in five months. The owner retained microservices; the proposed boundary is **two business services**, not one service per feature. The web client is a UI, not an extra business domain. No claim of independent scaling benefit has been measured.
+## 1. Context, Drivers and Decisions
 
-| Decision | Status / source |
-| --- | --- |
-| Keep microservices | Owner direction; AGENTS mandate |
-| Workspace + Knowledge boundary | Proposed [ADR-0002](adr/0002-minimal-microservices.md) |
-| One application language and simple local deployment | Proposed [ADR-0003](adr/0003-student-stack.md) |
-| Relational ownership and pgvector candidate | Proposed [ADR-0004](adr/0004-knowledge-store.md) |
-| One provider configuration and bounded pilot | Proposed [ADR-0005](adr/0005-ai-provider-pilot.md) |
-| Guard protected transport handoffs at permission authority | Proposed [ADR-0006](adr/0006-permission-handoff-guard.md); requires concurrency tests |
+### 1.1 Context and Scope
+This architecture specifies a web application combining Scrum work management with permission-aware project knowledge retrieval and citation-backed AI synthesis. The project is delivered by a single student engineer over a five-month capstone timeline. The owner has explicitly directed a minimal microservices architecture rather than a modular monolith or fine-grained services.
 
-Current policy decisions OD-02–OD-04/OD-09 are drafts. Contract HTTP/JSON schemas make review concrete, not accepted interface baselines. Stack versions and numerical timeout/capacity limits must be pinned/tested in the implementation slice.
+The system is decomposed into **two business services**:
+1. **Workspace Service:** Owns identity sessions, Scrum operational entities, and authoritative project and document permission policies.
+2. **Knowledge Service:** Owns immutable document content, text passages, keyword/vector indices, evidence retrieval, citation resolution, and provenance.
 
-## Composition, ownership and trust
+The web client is a presentation UI, not an independent business domain. The AI provider integration is a guarded relay within Workspace, not an autonomous agent or independent service.
 
-| Element | Owns | Does not own |
+### 1.2 Architectural Drivers
+The design prioritizes four non-negotiable architectural drivers:
+
+| Driver | Description | Architectural Response |
 | --- | --- | --- |
-| Workspace service | Auth sessions, Project/Membership, Backlog/Sprint/Task/Blocker, all project/document policy and permission revisions, its business audit; same-origin gateway and guarded transport | Knowledge content, embeddings, AI synthesis rules |
-| Knowledge service | Documents/immutable versions/passages, source validity, manual links, keyword/vector index/jobs, evidence selection, synthesis/citation validation, execution/provenance, its business audit | Identity or independent permission rules; Workspace operational data |
-| Web UI | Forms and visible state | Authorisation decisions or direct database access |
-| Embedding/generation provider | Configured computation on permitted input | Application state mutation, permission decisions or source identity assignment |
+| **D-1: Authorization Integrity** | Enforce project AND document access at named, testable boundaries. | Centralized permission authority; dual-scope filtering; guarded handoff; not-found-equivalent denied reads. No absolute security claim. |
+| **D-2: Evidence Fidelity & Exact Citations** | Cite exact immutable passages and report insufficient evidence; evaluate claim support separately from locator validity. | Stable evidence manifests; citation ID validation; whole-draft withholding upon revocation. No zero-hallucination guarantee. |
+| **D-3: Continuity during AI Outage** | Core work and permitted reads remain usable when AI fails and their own dependencies are healthy. | Explicit question failure and independent keyword search. No transparent automatic redirection is required. |
+| **D-4: Bounded Resource Footprint** | Keep deployment proportionate to one student's workstation and five-month plan. | Two proposed service processes and separate owned databases; stack/store/provider remain Proposed. Local storage does not imply local generation. |
 
-Use one local PostgreSQL instance as a candidate hosting separate Workspace and Knowledge databases and credentials. Each service writes only its own database. There are no cross-database writes or runtime joins. Workspace's document policy registry stores document/project identity and ACL state, not document text or a duplicate knowledge lifecycle. Knowledge stores links to operational IDs and reads their current state through Workspace contracts. Each service records its own committed audit events; readers receive a correlated authorised view.
+### 1.3 Architectural Decisions Summary
+All architectural decisions are tracked via Architecture Decision Records (ADRs):
 
-Browser → gateway, gateway → Knowledge, service → database and service → model are trust boundaries. Only Workspace is publicly exposed in the initial deployment. Internal endpoints require environment-supplied per-service credentials and a validated actor session reference; Knowledge obtains identity from Workspace, never a client user_id or model text. Credential values are neither written to contracts nor traced. Session expiry, secure cookie and CSRF protection are specified before mutating HTTP handlers are enabled. Administrator/owner titles grant no blanket source read.
+| Decision | Status / Source | Rationale |
+| --- | --- | --- |
+| Microservices Architecture | Mandate / Owner Direction | Enforces strict domain separation and distinct security boundaries between operational work and AI retrieval. |
+| Workspace & Knowledge Boundary | Proposed [ADR-0002](adr/0002-minimal-microservices.md) | Isolates high-frequency operational mutations from compute-heavy knowledge retrieval and indexing workloads. |
+| Student Tech Stack | Proposed [ADR-0003](adr/0003-student-stack.md) | Single language (Node.js/TypeScript candidate), shared conventions, dependency-free context harness, local execution. |
+| Relational Storage & pgvector | Proposed [ADR-0004](adr/0004-knowledge-store.md) | PostgreSQL hosting separate logical databases; relational integrity for Scrum; pgvector extension for dense retrieval. |
+| Bounded AI Provider Pilot | Proposed [ADR-0005](adr/0005-ai-provider-pilot.md) | Single provider configuration, strict pilot budget (20–30 reference cases), synthetic fixtures, provider-independent abstraction. |
+| Protected Handoff Guard | Proposed [ADR-0006](adr/0006-permission-handoff-guard.md) | Serialize permission/lifecycle commits with final validation and protected handoffs at named server boundaries; correctness requires concurrency tests. |
 
-See the centralized diagram: [editable Draw.io](sdlc/diagrams/architecture/service-composition.drawio) · [Mermaid source](sdlc/diagrams/architecture/service-composition.mmd).
+Open policy decisions OD-01 through OD-12 remain proposals awaiting owner validation.
 
-Diagram ID: `DGM-ARCH-01`. Source content is preserved; see the [diagram review and open gaps](sdlc/diagrams/README.md).
+---
 
-The provider transport in Workspace is a narrow guard/relay, not an AI business service. Knowledge owns retrieval and generation decisions; server-registered provider endpoints prevent arbitrary URL relay. Provider network waits use a separate bounded lane from board operations. No Kubernetes, service-discovery product, broker or graph database is required for this capstone deployment.
+## 2. Logical View
 
-## Boundary contracts and failures
+The Logical View describes the functional decomposition, service boundaries, domain models, and boundary contracts.
 
-| Boundary / owner | Authentication | Consistency | Timeout configuration | Retry / failure |
+### 2.1 Service Decomposition and Responsibilities
+
+```
++-------------------------------------------------------------------------------+
+|                                    Web UI                                     |
+|  - Backlog/Sprint Board Views   - Knowledge Browser & Editor   - AI Q&A Modal |
++---------------------------------------+---------------------------------------+
+                                        | (HTTPS / Same-Origin / Opaque Session)
+                                        v
++-------------------------------------------------------------------------------+
+|                              Workspace Service                                |
+|  +--------------------------------+  +-------------------------------------+  |
+|  |       Gateway & Auth           |  |       Authoritative Policy          |  |
+|  | - Session Validation & CSRF    |  | - Project Scope & Document ACLs     |  |
+|  | - Request Routing & Rate Limit |  | - Member Invalidation & Revocation  |  |
+|  +--------------------------------+  +-------------------------------------+  |
+|  +--------------------------------+  +-------------------------------------+  |
+|  |      Scrum Work Domain         |  |      Guarded Provider Relay         |  |
+|  | - Backlog, Sprint, Task States |  | - Protected Transport Mutex         |  |
+|  | - Blocker & Event Auditing     |  | - Evidence Manifest Validation      |  |
+|  +--------------------------------+  +-------------------------------------+  |
++-------------------+-----------------------------------+-----------------------+
+                    |                                   | (Internal HTTP /
+                    | (Own DB Writes)                   |  Service Key + Actor)
+                    v                                   v
++-------------------------------+   +-------------------------------------------+
+|      Workspace Database       |   |             Knowledge Service             |
+| - sessions, users, members    |   |  +-------------------------------------+  |
+| - projects, document_acls     |   |  |      Document & Passage Store       |  |
+| - sprints, tasks, blockers    |   |  | - Documents & Immutable Versions    |  |
+| - workspace_audit_events      |   |  | - Passages & Lifecycle States       |  |
++-------------------------------+   |  +-------------------------------------+  |
+                                    |  +-------------------------------------+  |
+                                    |  |     Hybrid Retrieval & Indexing     |  |
+                                    |  | - Trigram Keyword & pgvector Search |  |
+                                    |  | - Authorized Scope Pre-Filtering    |  |
+                                    |  +-------------------------------------+  |
+                                    |  +-------------------------------------+  |
+                                    |  |     Evidence & Citation Engine      |  |
+                                    |  | - Claim Support & Citation Check    |  |
+                                    |  | - Knowledge Audit & Provenance      |  |
+                                    |  +-------------------------------------+  |
+                                    +---------------------+---------------------+
+                                                          | (Own DB Writes)
+                                                          v
+                                    +-------------------------------------------+
+                                    |            Knowledge Database             |
+                                    | - documents, versions, passages           |
+                                    | - vector_embeddings, keyword_index        |
+                                    | - knowledge_audit_events, provenance      |
+                                    +-------------------------------------------+
+```
+
+| Element | Owns | Does NOT Own |
+| --- | --- | --- |
+| **Workspace Service** | User sessions, Project membership, Backlog/Sprint/Task/Blocker states, authoritative project and document permission policies, Workspace audit log, Same-origin API Gateway, Protected transport guard. | Knowledge raw text, embeddings, passage parsing, AI retrieval/synthesis rules. |
+| **Knowledge Service** | Documents, immutable versions, passages, source lifecycle states, manual links, keyword/vector indices, evidence retrieval, synthesis claim validation, citation resolution, Knowledge provenance audit. | User identity, password verification, independent ACL rules, Workspace operational state. |
+| **Web UI** | Client view rendering, user interaction, form validation, client routing, display of citations and failure banners. | Authorization decisions, database access, model communication. |
+| **AI Provider Relay** | Narrow Workspace transport adapter; dispatch under Workspace's authoritative guard and final access checks. | Independent permission rules, source identity assignment, synthesis decisions. |
+
+Centralized Architecture Diagram: [editable Draw.io](sdlc/diagrams/architecture/service-composition.drawio) · [Mermaid source](sdlc/diagrams/architecture/service-composition.mmd) (ID: `DGM-ARCH-01`).
+
+### 2.2 Data Ownership and Storage Isolation
+- **Database-per-Service Principle:** Workspace and Knowledge each maintain their own independent logical database.
+- **Zero Cross-Database Writes:** Workspace never writes to `knowledge_db`; Knowledge never writes to `workspace_db`.
+- **Zero Runtime Joins:** Cross-service data is never joined at SQL runtime. Workspace accesses Knowledge data exclusively via Knowledge HTTP APIs; Knowledge accesses Workspace policy/operational state exclusively via authenticated Workspace internal endpoints.
+- **Authoritative vs. Linked State:**
+  - Workspace stores document policy records (`document_id`, `project_id`, `classification`, `acl_version`).
+  - Knowledge stores document content (`document_id`, versions, passages).
+  - Knowledge stores manual links to operational entities (`task_id`, `sprint_id`) as foreign references, querying current operational state via Workspace APIs when needed.
+
+### 2.3 Boundary Contracts and Schemas
+System contracts are formalized using OpenAPI 3.1.1:
+- [Workspace OpenAPI Contract](../contracts/openapi/workspace.openapi.json)
+- [Knowledge OpenAPI Contract](../contracts/openapi/knowledge.openapi.json)
+- [Logical Data Model](../contracts/data-model.json)
+
+**Security Invariants in Contracts:**
+1. **Opaque Identity:** Client requests never submit `actor_id`, `role`, or `permissions` in request bodies. Actor identity is derived strictly from server-verified sessions.
+2. **Generic Not-Found Response:** Denied or nonexistent resources return identical 404 responses `{ "code": "not_found", "message": "Resource not found" }` with `additionalProperties: false` to prevent metadata leakage.
+3. **Exact Citation Schema:** Citations require `[document_id, version_id, passage_id]` tuples; vague or unversioned citations are rejected.
+4. **Draft Exclusion:** `validity` in retrieval passage results must never include `draft`. Drafts require explicit write-permission endpoints.
+
+---
+
+## 3. Process View
+
+The Process View addresses concurrency, dynamic runtime interactions, synchronization mechanisms, boundary timeouts, and failure modes.
+
+### 3.1 Concurrency Model and Permission Handoff Guard (ADR-0006)
+In the initial single-node deployment, Workspace runs as a single process. Concurrency issues arise when permissions are revoked while an AI Q&A request is concurrently in-flight.
+
+```
+Authorized access manager               Workspace Handoff Guard                 Knowledge Service / Provider
+      |                                             |                                          |
+      |-- 1. Revoke Member Document Access -------->|                                          |
+      |                                             |-- Acquire Project Mutex                  |
+      |                                             |-- Commit Revocation to DB                |
+      |                                             |-- Invalidate Active Session Scopes       |
+      |                                             |-- Later protected handoffs recheck ----> | (Withhold revoked evidence)
+      |                                             |-- Release Project Mutex                  |
+      |<- 2. Revocation Confirmed -------------------|                                          |
+```
+
+- **Protected Mutex:** One active Workspace authority process owns project/session guards. Permission mutation commits use the same guard as protected provider-input and response transport handoffs. Role names do not grant mutation authority.
+- **Hold Duration:** For each provider submission and each protected response delivery, hold the guard from final session/access/version validation through transport handoff completion or abort. Release after that boundary; a check followed by an unguarded send is insufficient.
+- **Generation Wait:** The network wait for LLM completion occurs *outside* the guard lock to prevent blocking other workspace operations.
+- **Buffered Delivery:** Responses from the model must be fully received and buffered. Streaming partial tokens directly to the browser is strictly prohibited.
+- **Final Validation & Withholding:** Before returning the synthesized answer to the client, the guard re-verifies that **every source in the answer's evidence set** — including uncited sources that entered the model context — remains currently accessible to the requester. If any source in the evidence set has been revoked, the entire original draft answer is withheld (FR-29, ADR-0006). Uncited context can influence model output; checking only cited sources is insufficient. The answer may be regenerated only from the remaining permitted evidence as a new bounded attempt.
+- **Lifecycle and uncertain writes:** Publication, archive and deletion use the gateway project guard but commit only in Knowledge. Knowledge validates final version/availability inside that guard. An unknown remote-write outcome blocks protected handoffs until reconciliation; a timeout does not prove that the write was cancelled.
+- **Abort and restart:** Revocation success means its commit follows prior handoffs that have completed or aborted. Aborted/timed-out handoffs cannot resume or replay after restart. Membership rejoin cannot revive invalidated grants. Data already sent cannot be recalled; the boundary is server handoff, not browser rendering or provider receipt. These are requirements from Proposed ADR-0006, not executed guarantees.
+
+### 3.2 Core Dynamic Workflows
+
+#### Flow 1: Scrum Operational Work Management
+1. **Client Request:** Authenticated browser sends mutation (e.g., `POST /tasks/{task_id}/state`) with idempotency key.
+2. **Session & Policy Check:** Workspace validates session cookie, CSRF token, project membership and operation-specific authority; membership alone does not authorize mutations.
+3. **Optimistic Revision Check:** Workspace verifies expected entity version; rejects stale writes with 409 Conflict.
+4. **Local Transaction & Audit:** Workspace updates task status, inserts `BlockerEvent` or `TaskHistory`, commits transaction.
+5. **Authoritative Response:** Returns updated task representation.
+
+#### Flow 2: Knowledge Ingestion and Lifecycle Transitions
+1. **ID Allocation:** Knowledge allocates unique stable `document_id`.
+2. **Policy Registration:** Workspace validates author's `document:create` permission and registers pending ACL.
+3. **Content Persistence:** Knowledge persists initial `Current` version and parsed passages in `knowledge_db`.
+4. **Activation:** Workspace marks document registry active. Partial failure leaves state pending for safe cleanup.
+5. **Lifecycle State Machine:**
+   - Creation $\rightarrow$ `Current`
+   - Revision $\rightarrow$ `Draft` (excluded from all search/retrieval)
+   - Publication $\rightarrow$ Draft becomes `Current`, previous Current becomes `Superseded`
+   - Archive $\rightarrow$ `Archived` (excluded from default retrieval, accessible via explicit historical queries)
+   - Deletion → Active access and new answer support stop at the protected boundary; tombstones exclude stale index entries from eligible results. Physical cleanup is retryable and may lag. Old/duplicate jobs cannot restore deleted or obsolete content.
+
+#### Flow 3: Permission-Aware Hybrid Retrieval
+1. **Scope Assertion:** Requester queries Knowledge via Gateway. Workspace resolves actor's currently authorized project IDs and accessible document IDs.
+2. **Pre-Query Filtering:** Knowledge injects authorized `project_id IN (...)` and `document_id IN (...)` into both PostgreSQL trigram keyword and pgvector queries.
+3. **Lifecycle Filtering:** Ordinary keyword and semantic queries admit only eligible `Current` versions (FR-19). Exclude `Draft`, `Superseded`, `Archived` and deleted/tombstoned sources before ranking. Historical retrieval requires explicit selection and labels permitted noncurrent results (FR-47); Draft remains excluded from every retrieval scope and model context. Direct Draft reads require content-write permission. Index state does not replace current authoritative availability/version validation.
+4. **Candidate Ranking:** A fusion strategy (candidate: Reciprocal Rank Fusion / RRF) merges keyword and dense vector scores. The specific ranking algorithm is a pilot parameter to be evaluated, not a confirmed choice.
+5. **Candidate Verification:** Knowledge cross-checks candidate passage access against current Workspace policy before returning evidence set.
+
+#### Flow 4: Guarded Evidence Handoff and AI Synthesis
+1. **Evidence Packaging:** Knowledge assigns server-controlled reference IDs (`[SRC-1]`, `[SRC-2]`) stable within the run and bound to exact passage/version locators. If no eligible evidence exists, return Insufficient evidence without a model call. Nonempty retrieval is not sufficient support: related documents may omit the requested decision or rationale.
+2. **Operational Context Injection:** Knowledge queries Workspace for current operational status of linked tasks/sprints.
+3. **Guard Acquisition:** Workspace acquires the applicable guard, re-verifies session/access plus Knowledge's version/availability check, and holds it through provider-input handoff completion or abort (§3.1).
+4. **Model Execution:** Model generates response citing only provided `[SRC-x]` tags.
+5. **Synthesis Verification:** Bind citations only to retrieved locators and buffer the answer. Unsupported requested claims must receive Insufficient evidence even when related passages were retrieved; do not invent rationale. Distinguish fact, synthesis, uncertainty and detected conflicts. Locator validation alone does not establish support: PRD §7's manual claim/passage rubric and nonempty-but-insufficient fixtures are required; no automatic factual-verification guarantee is made.
+6. **Delivery Re-Check:** Reacquire the guard for final full evidence-set access and version/availability validation through response handoff completion or abort (§3.1). Withhold the entire original draft if any source is revoked (FR-29). Optional regeneration uses only remaining permitted evidence as a new bounded attempt.
+
+#### Flow 5: Citation Resolution and Inspection
+1. **Inspection Request:** User clicks citation locator `[doc_id, version_id, passage_id]`.
+2. **Authorization Gate:** Workspace re-verifies actor's current permission for the target document.
+3. **Exact Resolution:** Under the applicable protected-read guard, Knowledge returns the exact immutable passage and labelled version after current availability/validity checks. A historical citation does not redirect to Current.
+4. **Denial/unavailability:** Unauthorized or unknown identities use FR-59's generic response. An authorized citation whose evidence is unavailable reports Unavailable without substituting a newer version (FR-61).
+
+### 3.3 Boundary Timeouts, Retries and Failures
+
+All timeouts are finite startup-required configuration. The values below are **candidate defaults for pilot calibration**, not accepted specifications. Acceptance limits are selected during pilot evaluation, not universal PRD promises. Actual calibration requires installed stack versions and measured workload (ADR-0003, ADR-0004 remain Proposed).
+
+| Boundary | Auth Credential | Consistency | Timeout Config | Retry & Failure Policy |
 | --- | --- | --- | --- | --- |
-| UI → Workspace / Workspace | Opaque session verified by Workspace; mutations also CSRF-protected | Own committed records; optimistic revisions | operational_request_timeout_ms | Mutations only with actor/operation-scoped idempotency key. Conflict does not overwrite. Unknown/inaccessible reads share 404. |
-| Gateway → Knowledge / Knowledge | Service credential plus Workspace-validated actor context | Knowledge own transaction; operational/permission queries remain authoritative | knowledge_timeout_ms | Same key/payload may resume a pending operation; no unrestricted or blind mutation retry. Returns explicit unavailable/pending state. |
-| Knowledge → policy/operational Workspace / Workspace | Service credential and authenticated session reference | Current authoritative permission/operational revision, no copied rules | policy_timeout_ms | Failed/unknown check denies; current-state failure never becomes a document guess. Reads may retry only within request budget. |
-| Knowledge → guarded provider handoff / Workspace | Registered service + actor + server-selected evidence manifest | Authoritative permission guard covers validation through transport handoff | handoff_timeout_ms and provider_timeout_ms | Guard must cancel/abort before releasing on timeout. Generation waits outside handoff guard. Withhold original draft on changed evidence; optional regeneration is a new bounded attempt. |
-| Knowledge jobs → own search / Knowledge | Internal worker identity | Eventual readiness, immutable source revision/tombstone guards | index_job_timeout_ms | Same event/version generation processed once; older work cannot restore obsolete/deleted content. |
+| **UI $\rightarrow$ Gateway** | Opaque session cookie + CSRF token | Committed local records; optimistic revision | `operational_request_timeout_ms` (candidate: 5000ms) | Idempotent retry with actor key. 409 on conflict. 404 on denied/unknown. |
+| **Gateway $\rightarrow$ Knowledge** | Internal service key + validated actor context | Knowledge local transaction | `knowledge_timeout_ms` (candidate: 8000ms) | No blind retries on mutation. Returns explicit `pending` or `unavailable`. |
+| **Knowledge $\rightarrow$ Policy** | Internal service key + actor session reference | Authoritative current ACL revision | `policy_timeout_ms` (candidate: 2000ms) | Timeout/failure defaults to Deny. Never assumes access. |
+| **Workspace $\rightarrow$ Provider** | Server-configured API key / local socket | Stateless generation | `provider_timeout_ms` (candidate: 15000ms) | Bounded single attempt. On timeout/error, returns explicit failure state (FR-69). |
+| **Knowledge Jobs $\rightarrow$ Index** | Internal worker identity | Eventual consistency; tombstone-guarded | `index_job_timeout_ms` (candidate: 30000ms) | Idempotent version processing. Stale work discarded. |
 
-All bounds are finite startup-required config; defaults and acceptance limits are selected in pilot, not universal PRD promises. Idempotency stores minimal operation identity/result references, payload hash and status; replay rechecks current access. Different payload under the same actor/key conflicts. Current state and source availability are stronger than delivery events.
+### 3.4 AI Outage Behavior (FR-69 / FR-34 / BR-13)
+When the AI provider experiences outages, timeouts, or rate limits:
+1. **Explicit failure response (FR-69):** The AI question returns an explicit failure state naming the failure category, containing no generated answer. The run is recorded with the error details for audit.
+2. **UI error indication:** System displays a visible, non-blocking UI alert banner indicating AI degradation.
+3. **Keyword search independence (FR-34):** Keyword retrieval remains independently available and functional without invoking the failed AI dependency. The same permitted exact-term references can be found and opened.
+4. **Operational continuity:** Core work operations and permitted document reading remain usable when identity/work/document dependencies are healthy (AC-33); their own failures remain explicit.
 
-## Key flows
+Whether the system should automatically redirect AI questions to keyword search when the provider fails is an **undecided design choice** (no OD recorded). The current specification requires that AI failures return explicit failure responses (FR-69) and that keyword search remains independently usable (FR-34), but does not mandate transparent automatic redirection.
 
-1. **Work:** authenticate → current policy → validate expected revision/domain rules → own transaction and audit → confirmed response. Reconnect performs an authoritative reload; push/realtime transport is optional until simple refresh works.
-2. **Create knowledge:** Knowledge allocates stable ID; Workspace validates create authority and registers pending ACL with explicit classification; Knowledge commits initial Current/version/content audit; Workspace activates registry. Each step is idempotent. Pending registration denies ordinary reads/retrieval. Partial failure is reported pending and resumed, not claimed atomically successful across databases; cleanup may tombstone an orphan under a safe job.
-3. **Retrieve:** Workspace supplies current authorised project and document IDs; Knowledge applies both in the source and keyword/vector query before selecting passages. It filters lifecycle/version validity and checks candidate current access. Index ACL hints and model content cannot grant permission. Query current work separately through operational endpoints with observation revision/time.
-4. **Generate:** selected records assign stable source IDs; guard all evidence before model input handoff; Knowledge synthesises through a provider-independent interface; reject invented IDs/wrong versions and evaluate claim support separately. No evidence yields insufficient_evidence; detected conflict preserves both sources. No AI write tool exists.
-5. **Deliver/open citation:** Knowledge rechecks source validity; Workspace guard checks current access to the full evidence set. If a source is revoked, withhold the complete original answer; regenerate only in a new run using permitted sources. Citation resolution returns the exact accessible passage/version, or generic not-found/unavailable without substitution.
+### 3.5 Provider data, untrusted content and provenance
 
-## Permission concurrency and source lifecycle
+Embedding receives authorized passage text and only necessary identifiers; generation receives the question, permitted evidence excerpts and current operational observations. A provider change requires the owner-authorized data-transfer policy. Use synthetic or explicitly authorized fixtures; local vector storage does not imply local provider execution. Retrieved instructions cannot grant tools, mutate work or override the runtime assistant's read-only authority (FR-30).
 
-Proposed first deployment has one active Workspace process. A project-scoped handoff guard serialises permission mutation commits with protected provider/context and buffered response handoffs. Hold from final current permission validation until bytes are handed to the transport; generation waiting is outside that guard. Revocation may report success only after it acquires the guard and commits. A handoff aborted by its bounded timeout cannot later resume output. All policy writers, including membership removal/classification/grant changes, must use the same guard. Source publication/archive/deletion also enter the gateway project guard; their Knowledge-owned transaction remains in Knowledge. Final Knowledge validity validation runs while this guard is held, so publication cannot race the checked transport handoff. A timed-out remote mutation with unknown commit outcome leaves the scope blocked until its idempotent receipt/rollback is reconciled; releasing a local guard is not proof that a remote write stopped. Session invalidation needs equivalent ordering for the relevant session/project keys. The boundary is server handoff, not receipt/rendering by an external provider/browser.
+Business audit events, execution traces and source provenance are separate records correlated by run/entity IDs. Record model/configuration, timing, usage, failures and exact evidence identities; exclude secrets, private reasoning and unrestricted content copies. Source snippets and audit/trace inspection require their own current access checks. Capture starts with mutations/answer attempts even if the inspection UI is delivered later. Claim-support scoring follows the PRD rubric rather than citation-schema validity.
 
-This is a proposal requiring real paused-request tests; an ordinary check-then-send gap is not accepted as proof. Do not add a second Workspace replica until shared/distributed guard semantics have an ADR and tests. Separate audit/metrics must show pending/failed revocation without protected source content. Passing tests demonstrates these boundaries only, not absolute security.
+No cached permission or answer results are selected for the MVP in DATA-04. Any later cache needs scope/version/deletion-aware keys and invalidation, plus final current checks; cached results cannot bypass the protected handoff. Index jobs are idempotent by source/version/processing generation and cannot revive an older publication or tombstone.
 
-Knowledge versions: creation → Current; revision → Draft; publish Draft → Current and former Current → Superseded; archive permitted Current/Superseded → Archived; active deletion makes content unavailable. Full transitions/authority/retention remain OD-04. Draft is excluded from all retrieval/model input and requires content-write access to inspect. Historical citations remain pinned and labelled, subject to current access. Knowledge checks version/lifecycle again before new answer delivery; unavailable/obsolete candidates cannot be silently substituted.
+---
 
-Jobs carry source version, aggregate revision and processing generation. Validate against own current metadata/tombstone before publication; discard stale work. MVP uses no answer cache and no cached permission decisions. If a search/index cache is later introduced, its key must include source and scope revisions and it must not bypass final checks. Physical retention/trace periods remain owner policy, not fabricated durations.
+## 4. Development View
 
-## Interfaces, deployment and evaluation
+The Development View describes the repository layout, module layering, dependency rules, technology standards, and testing harnesses.
 
-Required interfaces are authentication/policy, operational observation, document/version storage, retrieval, generation, citation resolution and audit/provenance. Draft [OpenAPI contracts](../contracts/README.md) and [data model](sdlc/data-design.md) define ownership/shape; business logic remains independent of UI/provider. Deployment initially uses one web UI, two processes and two owned logical databases on one student machine; provider may be external or local. Machine/GPU and resource sizing are unknown. No replica/discovery setup is planned before the measured need exists.
+### 4.1 Codebase Organization
+The following is the proposed implementation layout, not a claim that handlers or all `src/` directories exist. The current repository contains a context/contract scaffold; domain boundaries require implementation and tests:
 
-Provider data inventory: embedding receives permitted passage text and IDs only as necessary; generation receives question and permitted evidence excerpts/operational observations; tracing stores run/config/IDs/usage/errors, not a full knowledge copy or private reasoning. A provider change requires the owner-authorised data-transfer policy. A local vector store does not prove local generation. Fixtures remain synthetic.
+```
+scrum-workspace-KMS-ai/
+├── apps/
+│   └── web/                     # User-facing web frontend (UI views, forms, state)
+├── services/
+│   ├── workspace/               # Gateway, Auth, Scrum domain, Permission authority
+│   │   ├── src/
+│   │   │   ├── auth/            # Session management, cookie validation
+│   │   │   ├── scrum/           # Backlog, Sprint, Task, Blocker services
+│   │   │   ├── policy/          # Authoritative project & document ACL registry
+│   │   │   └── relay/           # Guarded provider transport & mutex
+│   │   └── README.md
+│   └── knowledge/               # Knowledge, Retrieval, AI, Provenance
+│       ├── src/
+│       │   ├── documents/       # Document versions, passages, lifecycle
+│       │   ├── retrieval/       # Trigram keyword & pgvector search engine
+│       │   ├── synthesis/       # Evidence validation & prompt synthesis
+│       │   └── audit/           # Provenance & knowledge audit logger
+│       └── README.md
+├── contracts/                   # Shared interface definitions
+│   ├── openapi/                 # OpenAPI 3.1.1 JSON schemas (workspace, knowledge)
+│   └── data-model.json          # Logical data model schemas
+├── specs/                       # Bounded implementation slices (SP-01 to SP-13)
+├── eval/                        # Evaluation fixtures & 25 reference questions
+├── scripts/                     # Context validation & verification scripts
+└── tests/                       # Automated test suites & contract assertions
+```
 
-High-priority tests: cross-project/document denial, removal/rejoin, paused handoff revocation, exact/historical citations, Draft exclusion, stale/duplicate jobs, deletion, stale work state, prompt injection and provider outage. About 20–30 English questions measure retrieval separately from generation and claim support; freeze criteria after pilot. A provider comparison is bounded and conditional, not an ML research programme.
+### 4.2 Module Layering and Invariants
+1. **Domain Independence:** Business domain logic inside `services/workspace/` and `services/knowledge/` must have no dependency on UI frameworks or concrete LLM provider SDKs.
+2. **No Shared Code Writing to Databases:** No shared library may execute database writes. Database access code is strictly private to each service.
+3. **One-Way Dependency Flow:** UI depends on Gateway contracts; Gateway depends on Service contracts; Services depend on domain models. Knowledge never imports Workspace internal modules.
 
-## Checklist and handoff
+### 4.3 Build, Lint and Verification Standards
+- **Runtime:** Node.js 24+ LTS.
+- **Harness Scripts:**
+  - `npm run context:lint`: Node syntax checks on harness scripts and tests.
+  - `npm run context:check`: Validates PRD requirements, MoSCoW scope, OpenAPI operation IDs, spec coverage, and markdown anchor links.
+  - `npm run context:test`: Executes harness unit negatives against contract/context shape; it is not consumer/provider or runtime security testing.
 
-SAD/blueprint checklists: Pass for context, concerns, composition/dependency/data/interaction/state views, ownership, named interfaces, failure rules, alternatives and BR trace (BR-01–BR-14; SC-01–SC-08). Gap for accepted policy/contracts, installed stack/provider versions, physical sizing, calibrated timeout values and tested guard implementation. No full standards-conformance or security claim is made.
+The validator checks selected files listed in `scripts/verify-context.mjs`, not all documentation or full semantic trace. Record the actual Node version separately from the declared Node 24+ requirement.
 
-Handoff: Needs owner decision on business policies/stack/store/provider; independent contract/context work can proceed. Guard, own-data transactions and provider isolation are implementation gates, not facts already achieved. Author self-check is not independent review.
+---
 
+## 5. Physical / Deployment View
 
-**v0.2 documentation change:** Moved the inline diagram to the Stage 7 diagram directory, retaining its labels and relationships. Added an editable Draw.io representation; no policy or product scope is changed. Diagram consistency gaps are recorded in the central index.
+The Physical View details the physical infrastructure, node allocation, network topology, and trust boundaries.
+
+### 5.1 Deployment Topology
+
+```
++-------------------------------------------------------------------------------+
+|                       Host Environment: Developer Workstation                 |
+|                                                                               |
+|  +---------------------------+         +-----------------------------------+  |
+|  |     Web Browser (UI)      |         |       External AI Provider        |  |
+|  |   https://localhost:8000   |         |   (Cloud LLM or Local Ollama/LM)  |  |
+|  +-------------+-------------+         +-----------------+-----------------+  |
+|                |                                         ^                    |
+|                | [Trust Boundary 1]                      | [Trust Boundary 4] |
+|                | HTTPS / Same-Origin                     | HTTPS / Guarded    |
+|                v                                         |                    |
+|  +-------------------------------------------------------+-----------------+  |
+|  |                  Workspace Service Process (Port 8000)                  |  |
+|  |          - API Gateway & Static Server      - Scrum Domain              |  |
+|  |          - Authoritative Permission Policy  - Provider Guarded Relay    |  |
+|  +---------------------+---------------------------------+-----------------+  |
+|                        |                                 |                    |
+|     [Trust Boundary 3] |              [Trust Boundary 2] | Internal HTTP      |
+|     Local TCP / Socket |              Local Loopback     | Service Key +      |
+|     (workspace_db)     |              (Port 8001)        | Actor Session      |
+|                        v                                 v                    |
+|  +-----------------------------+       +-----------------------------------+  |
+|  |    PostgreSQL Instance      |       | Knowledge Service Process (8001)  |  |
+|  |  (candidate: PostgreSQL 16) |       | - Document Store & Chunking       |  |
+|  |  +-----------------------+  |       | - Keyword (trgm) & Vector (pgvec) |  |
+|  |  | workspace_db (DB)     |  |       | - Evidence & Citation Resolution  |  |
+|  |  +-----------------------+  |       +-----------------+-----------------+  |
+|  |  | knowledge_db (DB)     |  |                         |                    |
+|  |  +-----------------------+  |                         | [Trust Boundary 3] |
+|  +-----------------------------+                         | Local TCP / Socket |
+|                ^                                         | (knowledge_db)     |
+|                +-----------------------------------------+                    |
++-------------------------------------------------------------------------------+
+```
+
+### 5.2 Trust Boundaries and Network Security
+
+The candidate diagram serves UI and gateway from the same HTTPS origin on port 8000; local TLS setup is unimplemented. If a UI development server is used on port 3000, its same-origin API proxy to Workspace must be configured and tested; direct browser calls from port 3000 to port 8000 are cross-origin. Test cookie/CSRF behavior in the selected topology. Ports are candidate configuration, not deployment evidence.
+
+1. **Trust Boundary 1 (Browser $\rightarrow$ Workspace Gateway):**
+   - Protocol: HTTPS over candidate port 8000 for the topology shown (same-origin).
+   - Authentication: HttpOnly, Secure, SameSite=Strict opaque session cookies.
+   - Defense: Double-submit or header-based CSRF tokens on mutating verbs (`POST`, `PUT`, `PATCH`, `DELETE`).
+2. **Trust Boundary 2 (Workspace Gateway $\rightarrow$ Knowledge Service):**
+   - Protocol: Internal HTTP over loopback port 8001 (not exposed publicly).
+   - Authentication: Shared secret service key (`x-service-key`) + serialized actor session header (`x-actor-session`).
+   - Invariant: Knowledge rejects any request lacking both credentials.
+3. **Trust Boundary 3 (Services $\rightarrow$ PostgreSQL Database):**
+   - Protocol: Local UNIX domain socket or loopback TCP port 5432.
+   - Authentication: Dedicated database users (`workspace_user`, `knowledge_user`) with restricted grants ensuring neither can access the other's database.
+4. **Trust Boundary 4 (Workspace Relay $\rightarrow$ AI Provider):**
+   - Protocol: Outbound HTTPS to configured model API (or loopback to local inference engine).
+   - Guard: Enforces handoff timeout, isolates outbound traffic from board operations, sanitizes payload to exclude unpermitted metadata.
+
+### 5.3 Physical Resource Sizing & Constraints
+- **Hardware sizing is an unmeasured candidate estimate:** Initial development assumes execution on a single standard developer workstation (candidate baseline: 4 CPU cores, 8 GB RAM, 20 GB disk). Exact memory, CPU, and storage requirements are currently unknown and must be measured and profiled during the pilot evaluation (ADR-0003 and ADR-0004 remain Proposed).
+- **Architectural constraints:** No distributed cluster managers (Kubernetes), enterprise service discovery tools (Consul), or distributed message brokers (Kafka) are required or permitted for this capstone deployment.
+
+---
+
+## 6. Scenarios View (+1 View)
+
+The Scenarios View (+1 View) synthesizes and validates the Logical, Process, Development, and Physical views through the critical Core architectural scenarios (SC-01 through SC-08).
+
+```
+                      +-----------------------+
+                      |      Logical View     |
+                      +-----------+-----------+
+                                  |
+                                  v
++-----------------------+    +----+----+    +-----------------------+
+|    Development View   |--->|  +1 View |<---|      Process View     |
+|                       |    |Scenarios|    |                       |
++-----------------------+    +----+----+    +-----------------------+
+                                  ^
+                                  |
+                      +-----------+-----------+
+                      |     Physical View     |
+                      +-----------------------+
+```
+
+### 6.1 Scenario Walkthroughs
+
+| Scenario ID | Name & Description (per PRD §3) | Cross-View Verification & Trace |
+| --- | --- | --- |
+| **SC-01** | **Task-linked document access:** Open a task and follow permitted specifications/decisions; restricted links reveal no target metadata. | - **Logical:** Workspace Scrum entities link to Knowledge documents; permission policy enforces document scope.<br>- **Process:** Authorized task/relationship reads use target scope checks; exact passage inspection uses Flow 5; 404 on restricted targets.<br>- **Development:** `services/workspace/src/scrum` + `services/knowledge/src/documents`; SP-08, SP-06.<br>- **Physical:** Trust Boundaries 1 → 2; both `workspace_db` and `knowledge_db` queried.<br>- **FRs:** FR-16, FR-17, FR-46, FR-59. |
+| **SC-02** | **Cited decision rationale:** Ask why JWT was chosen; inspect recorded rationale and exact version. | - **Logical:** Knowledge hybrid retrieval + evidence citation engine.<br>- **Process:** Flow 3 (authorized retrieval) → Flow 4 (guarded synthesis) → Flow 5 (citation inspection).<br>- **Development:** `services/knowledge/src/retrieval`, `services/knowledge/src/synthesis`; SP-09.<br>- **Physical:** Trust Boundaries 1 → 2 → 4 → 3; pgvector + keyword queries executed.<br>- **FRs:** FR-21–FR-24, FR-46, FR-53, FR-60. |
+| **SC-03** | **Current operational state query:** Ask for blocked tasks using operational state and permitted task links. | - **Logical:** Workspace operational data (`Task`, `Blocker` current state); Knowledge retrieval queries Workspace for live status.<br>- **Process:** Flow 3 with operational context injection (step 2 of Flow 4).<br>- **Development:** `services/workspace/src/scrum`; SP-04, SP-10.<br>- **Physical:** Knowledge queries Workspace internal API (Trust Boundary 2) for current task state.<br>- **FRs:** FR-25, FR-26, FR-44. |
+| **SC-04** | **Historical blocker resolution:** Find prior blocker handling; distinguish a plan from a recorded outcome. | - **Logical:** `BlockerEvent` append-only history; Knowledge retrieval distinguishes operational records from knowledge documents.<br>- **Process:** Flow 3 retrieves historical events; synthesis must not equate plan documents with confirmed resolution records.<br>- **Development:** `services/workspace/src/scrum`; SP-04, SP-11.<br>- **Physical:** Historical events in `workspace_db` audit tables; documents in `knowledge_db`.<br>- **FRs:** FR-18, FR-24, FR-44, FR-53, FR-63. |
+| **SC-05** | **Document version replacement:** Replace an API version; current retrieval uses the replacement and history labels the old version. | - **Logical:** `Document`, `DocumentVersion` state machine (Current → Superseded); passage indexing update.<br>- **Process:** Flow 2 (publication transitions former Current to Superseded); retrieval index reflects new Current.<br>- **Development:** `services/knowledge/src/documents`; SP-06, SP-07.<br>- **Physical:** Stored in `knowledge_db`; Workspace ACL updated.<br>- **FRs:** FR-11, FR-12, FR-19, FR-45, FR-47. |
+| **SC-06** | **Access revocation and non-disclosure:** Classify, grant, revoke/remove membership, then repeat retrieval, answer delivery and citation reads without disclosure. | - **Logical:** Authoritative policy module; handoff guard; generic 404 security invariant.<br>- **Process:** §3.1 handoff guard mutex; permission mutation commits serialized with protected transport; evidence-set validation withholds draft on revocation.<br>- **Development:** `services/workspace/src/relay`, `services/workspace/src/policy`; ADR-0006.<br>- **Physical:** Re-validation across Trust Boundaries 1 & 2 before answer bytes leave server.<br>- **FRs:** FR-03, FR-04, FR-14, FR-28, FR-29, FR-39, FR-50–FR-52, FR-55, FR-59. |
+| **SC-07** | **Insufficient evidence:** An unrecorded decision receives Insufficient evidence, including when related documents exist but omit its rationale. | **Logical:** Evidence identity and claim support are distinct. **Process:** Flow 4 short-circuits empty eligible retrieval without a model call; nonempty retrieval may invoke the provider but must still report unsupported requested claims without invented rationale. **Development:** SP-09 and the PRD claim/passage rubric; Stage 8 needs both empty and nonempty-but-insufficient fixtures. **Physical:** Provider traffic depends on the branch, not on the scenario ID. **FRs:** FR-23. |
+| **SC-08** | **AI failure with operational continuity:** AI failure leaves work operations, document reading and keyword search usable; questions return an explicit failure state. | - **Logical:** Read-only AI design; independent keyword search engine; Scrum domain unaffected.<br>- **Process:** §3.4; provider relay returns explicit failure state (FR-69); keyword search remains independently available (FR-34); error recorded.<br>- **Development:** `services/knowledge/src/retrieval`; SP-08, SP-12.<br>- **Physical:** Trigram search executes on PostgreSQL; no outbound provider calls; Scrum on `workspace_db` unaffected.<br>- **FRs:** FR-33, FR-34, FR-69. |
+
+---
+
+## 7. Traceability and Review
+
+### 7.1 Requirement Traceability Matrix
+
+Each row retains the exact BR sources and requirement wording from PRD-01 v0.4 and identifies its bounded implementation spec. Section references identify design responsibility, not a claim that every acceptance criterion is fully designed or tested. Specs remain Draft/Unimplemented; read their ACs and planned tests before implementation. BR-15 remains Should/Enhanced, not an added Core commitment.
+
+| FR | BR sources from PRD | Requirement | Architecture responsibility / implementation spec |
+| --- | --- | --- | --- |
+| FR-01 | BR-01, BR-10 | The system shall derive the effective requester from an authenticated session. | 2.3; 5.2 (identity/session); [SP-01](../specs/001-session.md) |
+| FR-02 | BR-01 | An authorised project administrator shall be able to create a project. | 2.1; 3.1; 5.2 (project/membership); [SP-02](../specs/002-project-membership.md) |
+| FR-03 | BR-01, BR-10 | The system shall authorise project operations against current project access. | 2.1; 3.1; 5.2 (project/membership); [SP-02](../specs/002-project-membership.md) |
+| FR-04 | BR-01, BR-10 | Document reads shall be authorised separately from project access. | 2.2; 2.3; 3.1; 3.2 Flows 2/5 (source access); [SP-06](../specs/006-document-access.md) |
+| FR-05 | BR-02 | An authorised PO shall be able to create a Story, Task or Bug Backlog item. | 2.1; 3.2 Flow 1 (Backlog creation); [SP-03](../specs/003-create-task.md) |
+| FR-06 | BR-02 | An authorised Sprint manager shall be able to create a planned Sprint with dates and goal. | 2.1; 3.2 Flow 1 (Sprint lifecycle); [SP-05](../specs/005-sprint-lifecycle.md) |
+| FR-07 | BR-02 | An authorised Sprint manager shall be able to add an item to a Sprint Backlog. | 2.1; 3.2 Flow 1 (Sprint lifecycle); [SP-05](../specs/005-sprint-lifecycle.md) |
+| FR-08 | BR-02 | An authorised Sprint manager shall be able to start a planned Sprint under the fixed Core lifecycle. | 2.1; 3.2 Flow 1 (Sprint lifecycle); [SP-05](../specs/005-sprint-lifecycle.md) |
+| FR-09 | BR-03 | An authorised member shall be able to change a work item's basic board state. | 3.2 Flow 1; 6.1 SC-03/SC-04 (work updates); [SP-04](../specs/004-update-task.md) |
+| FR-10 | BR-04 | An authorised author shall be able to create a text/Markdown document or recorded decision. | 2.2; 2.3; 3.1; 3.2 Flows 2/5 (source access); [SP-06](../specs/006-document-access.md) |
+| FR-11 | BR-05 | A content revision shall create a distinct immutable document version. | 3.1; 3.2 Flows 2/3/5 (version/lifecycle); [SP-07](../specs/007-version-publication.md) |
+| FR-12 | BR-05 | Viewed sources shall display version identity and validity status. | 3.1; 3.2 Flows 2/3/5 (version/lifecycle); [SP-07](../specs/007-version-publication.md) |
+| FR-13 | BR-14 | An authorised lifecycle manager shall be able to archive a document/version. | 3.1; 3.2 Flows 2/3/5 (version/lifecycle); [SP-07](../specs/007-version-publication.md) |
+| FR-14 | BR-10, BR-14 | Revoked/deleted sources shall not be exposed by subsequent protected reads or answer delivery. | 2.2; 2.3; 3.1; 3.2 Flows 2/5 (source access); [SP-06](../specs/006-document-access.md) |
+| FR-15 | BR-05, BR-14 | The system shall display search readiness for a new/revised version. | 3.1; 3.2 Flows 2/3/5 (version/lifecycle); [SP-07](../specs/007-version-publication.md) |
+| FR-16 | BR-06 | An authorised member shall be able to create an explicit relationship among tasks, Sprints, documents and decisions. | 2.2; 3.2 Flows 3/5; 3.4 (links/search); [SP-08](../specs/008-linked-keyword-search.md) |
+| FR-17 | BR-06, BR-10 | Related-resource navigation shall enforce current target access. | 2.2; 3.2 Flows 3/5; 3.4 (links/search); [SP-08](../specs/008-linked-keyword-search.md) |
+| FR-18 | BR-07 | The system shall provide keyword retrieval over permitted current English knowledge. | 2.2; 3.2 Flows 3/5; 3.4 (links/search); [SP-08](../specs/008-linked-keyword-search.md) |
+| FR-19 | BR-05, BR-07 | Ordinary retrieval shall exclude Draft, Superseded and Archived versions from current results. | 3.1; 3.2 Flows 2/3/5 (version/lifecycle); [SP-07](../specs/007-version-publication.md) |
+| FR-20 | BR-07, BR-10 | Retrieval shall deny when required access checks are unknown or fail. | 2.2; 3.2 Flows 3/5; 3.4 (links/search); [SP-08](../specs/008-linked-keyword-search.md) |
+| FR-21 | BR-08, BR-10 | The assistant shall use only authorised evidence as answer context. | 3.1; 3.2 Flow 4; 3.4 (cited questions); [SP-09](../specs/009-cited-question.md) |
+| FR-22 | BR-08 | Answer citations shall be assigned from retrieved evidence records. | 3.1; 3.2 Flow 4; 3.4 (cited questions); [SP-09](../specs/009-cited-question.md) |
+| FR-23 | BR-08 | The assistant shall report insufficient evidence for an unsupported requested claim. | 3.1; 3.2 Flow 4; 3.4 (cited questions); [SP-09](../specs/009-cited-question.md) |
+| FR-24 | BR-08 | Answer presentation shall distinguish recorded fact, synthesis and uncertainty. | 3.1; 3.2 Flow 4; 3.4 (cited questions); [SP-09](../specs/009-cited-question.md) |
+| FR-25 | BR-09 | Current work-state answers shall use operational observations. | 3.2 Flow 4; 6.1 SC-03 (operational answers); [SP-10](../specs/010-current-work-question.md) |
+| FR-26 | BR-09, BR-10 | Operational answer links shall include only readable entities. | 3.2 Flow 4; 6.1 SC-03 (operational answers); [SP-10](../specs/010-current-work-question.md) |
+| FR-27 | BR-12 | A permitted answer reader shall be able to inspect a bounded retrieval summary. | 2.1; 2.3 (scoped audit/trace inspection); [SP-13](../specs/013-scoped-inspection.md) |
+| FR-28 | BR-08, BR-10 | Current document access shall be validated before answer context is sent to the model. | 3.1; 3.2 Flow 4; 3.4 (cited questions); [SP-09](../specs/009-cited-question.md) |
+| FR-29 | BR-10 | Answer delivery and source endpoint reads shall enforce current access. | 3.1; 3.2 Flow 4; 3.4 (cited questions); [SP-09](../specs/009-cited-question.md) |
+| FR-30 | BR-08, BR-10 | Retrieved text shall not change the assistant's read-only authority. | 3.1; 3.2 Flow 4; 3.4 (cited questions); [SP-09](../specs/009-cited-question.md) |
+| FR-31 | BR-11 | Each significant committed change shall create a business audit event. | 2.1; 3.2 Flows 1/4 (audit/provenance capture); [SP-11](../specs/011-audit-and-source-inspection.md) |
+| FR-32 | BR-12 | Each answer attempt shall correlate with execution trace and source provenance. | 2.1; 3.2 Flows 1/4 (audit/provenance capture); [SP-11](../specs/011-audit-and-source-inspection.md) |
+| FR-33 | BR-13 | Core work operations and permitted document reading shall remain available during AI failure. | 3.4; 4.3 (fallback/evaluation); [SP-12](../specs/012-failure-and-evaluation.md) |
+| FR-34 | BR-07, BR-13 | Keyword retrieval shall remain available when generation or semantic retrieval fails. | 2.2; 3.2 Flows 3/5; 3.4 (links/search); [SP-08](../specs/008-linked-keyword-search.md) |
+| FR-35 | BR-15 (Should) | The team should be able to view a basic Sprint report derived from work records. | 2.1 Workspace work records; Enhanced report definition/design remains open; no Core implementation slice |
+| FR-36 | BR-01 | The system shall establish an application session after successful sign-in through the selected identity mechanism. | 2.3; 5.2 (identity/session); [SP-01](../specs/001-session.md) |
+| FR-37 | BR-01, BR-10 | Sign-out shall end the current application session. | 2.3; 5.2 (identity/session); [SP-01](../specs/001-session.md) |
+| FR-38 | BR-01 | An authorised membership manager shall be able to add an existing user to a project. | 2.1; 3.1; 5.2 (project/membership); [SP-02](../specs/002-project-membership.md) |
+| FR-39 | BR-01, BR-10, BR-14 | An authorised membership manager shall be able to remove a project member. | 2.1; 3.1; 5.2 (project/membership); [SP-02](../specs/002-project-membership.md) |
+| FR-40 | BR-02 | An authorised PO shall be able to edit Backlog item content. | 3.2 Flow 1; 6.1 SC-03/SC-04 (work updates); [SP-04](../specs/004-update-task.md) |
+| FR-41 | BR-02 | An authorised PO shall be able to reorder the Product Backlog. | 2.1; 3.2 Flow 1 (Sprint lifecycle); [SP-05](../specs/005-sprint-lifecycle.md) |
+| FR-42 | BR-02 | An authorised Sprint manager shall be able to complete an active Sprint under the fixed Core policy. | 2.1; 3.2 Flow 1 (Sprint lifecycle); [SP-05](../specs/005-sprint-lifecycle.md) |
+| FR-43 | BR-03 | An authorised member shall be able to set a work item's assignee. | 3.2 Flow 1; 6.1 SC-03/SC-04 (work updates); [SP-04](../specs/004-update-task.md) |
+| FR-44 | BR-03, BR-06 | An authorised member shall be able to record a blocker event on a work item. | 3.2 Flow 1; 6.1 SC-03/SC-04 (work updates); [SP-04](../specs/004-update-task.md) |
+| FR-45 | BR-05 | An authorised publisher shall be able to designate a replacement version as current. | 3.1; 3.2 Flows 2/3/5 (version/lifecycle); [SP-07](../specs/007-version-publication.md) |
+| FR-46 | BR-08, BR-12 | A permitted user shall be able to open the exact cited passage. | 3.1; 3.2 Flow 4; 3.4 (cited questions); [SP-09](../specs/009-cited-question.md) |
+| FR-47 | BR-05, BR-07 | The system shall provide deliberately selected historical retrieval with version labels. | 3.1; 3.2 Flows 2/3/5 (version/lifecycle); [SP-07](../specs/007-version-publication.md) |
+| FR-48 | BR-14 | An authorised lifecycle manager shall be able to delete a document from active access. | 3.1; 3.2 Flows 2/3/5 (version/lifecycle); [SP-07](../specs/007-version-publication.md) |
+| FR-49 | BR-06 | An authorised member shall be able to remove an explicit relationship. | 2.2; 3.2 Flows 3/5; 3.4 (links/search); [SP-08](../specs/008-linked-keyword-search.md) |
+| FR-50 | BR-01, BR-10 | A document access manager shall be able to set its access classification. | 2.2; 2.3; 3.1; 3.2 Flows 2/5 (source access); [SP-06](../specs/006-document-access.md) |
+| FR-51 | BR-01, BR-10 | A document access manager shall be able to grant document-read access to a current member. | 2.2; 2.3; 3.1; 3.2 Flows 2/5 (source access); [SP-06](../specs/006-document-access.md) |
+| FR-52 | BR-01, BR-10, BR-14 | A document access manager shall be able to revoke a document-read grant. | 2.2; 2.3; 3.1; 3.2 Flows 2/5 (source access); [SP-06](../specs/006-document-access.md) |
+| FR-53 | BR-07, BR-08 | The system shall provide semantic passage retrieval for English natural-language questions over permitted current knowledge. | 3.1; 3.2 Flow 4; 3.4 (cited questions); [SP-09](../specs/009-cited-question.md) |
+| FR-54 | BR-08 | The assistant shall surface detected unresolved evidence conflicts. | 3.1; 3.2 Flow 4; 3.4 (cited questions); [SP-09](../specs/009-cited-question.md) |
+| FR-55 | BR-10, BR-12 | Citation opening shall validate current source access. | 3.1; 3.2 Flow 4; 3.4 (cited questions); [SP-09](../specs/009-cited-question.md) |
+| FR-56 | BR-10, BR-11 | An audit inspector shall be able to read audit events within granted scope. | 2.1; 2.3 (scoped audit/trace inspection); [SP-13](../specs/013-scoped-inspection.md) |
+| FR-57 | BR-12 | Each answer attempt shall have an execution record. | 2.1; 3.2 Flows 1/4 (audit/provenance capture); [SP-11](../specs/011-audit-and-source-inspection.md) |
+| FR-58 | BR-10, BR-12 | An execution inspector shall be able to read execution records within granted scope. | 2.1; 2.3 (scoped audit/trace inspection); [SP-13](../specs/013-scoped-inspection.md) |
+| FR-59 | BR-01, BR-10 | Protected read surfaces shall conceal resource existence from unauthorised requesters. Where the interface is HTTP, the response is 404. | 2.2; 3.2 Flows 3/5; 3.4 (links/search); [SP-08](../specs/008-linked-keyword-search.md) |
+| FR-60 | BR-08, BR-12 | Document citation identity shall be validated before release. | 3.1; 3.2 Flow 4; 3.4 (cited questions); [SP-09](../specs/009-cited-question.md) |
+| FR-61 | BR-05, BR-12, BR-14 | An unavailable cited version shall be reported without substitution. | 3.1; 3.2 Flows 2/3/5 (version/lifecycle); [SP-07](../specs/007-version-publication.md) |
+| FR-62 | BR-04 | An authorised author shall be able to import text/Markdown content as a document. | 2.2; 2.3; 3.1; 3.2 Flows 2/5 (source access); [SP-06](../specs/006-document-access.md) |
+| FR-63 | BR-07 | Displayed retrieval results shall identify their permitted source, version and validity. | 2.2; 3.2 Flows 3/5; 3.4 (links/search); [SP-08](../specs/008-linked-keyword-search.md) |
+| FR-64 | BR-01 | An authorised project administrator shall be able to edit project descriptive metadata. | 2.1; 3.1; 5.2 (project/membership); [SP-02](../specs/002-project-membership.md) |
+| FR-65 | BR-04 | An authorised author shall be able to update document organisational metadata. | 2.2; 2.3; 3.1; 3.2 Flows 2/5 (source access); [SP-06](../specs/006-document-access.md) |
+| FR-66 | BR-02 | An authorised Sprint manager shall be able to edit planned Sprint details. | 2.1; 3.2 Flow 1 (Sprint lifecycle); [SP-05](../specs/005-sprint-lifecycle.md) |
+| FR-67 | BR-02 | An authorised Sprint manager shall be able to remove an item from a Sprint Backlog. | 2.1; 3.2 Flow 1 (Sprint lifecycle); [SP-05](../specs/005-sprint-lifecycle.md) |
+| FR-68 | BR-01, BR-10 | Expired sessions shall be rejected for protected operations. | 2.3; 5.2 (identity/session); [SP-01](../specs/001-session.md) |
+| FR-69 | BR-13 | An AI question shall return an explicit failure state, not generated content, when the AI dependency fails. | 3.1; 3.2 Flow 4; 3.4 (cited questions); [SP-09](../specs/009-cited-question.md) |
+
+Inventory: 69 distinct FR rows, including FR-35 separately as Enhanced. This is an explicit responsibility/source mapping, not verified end-to-end BR/SC/EX test coverage. Stage 8 must complete scenario/exception assertions; open UX/diagram findings remain tracked in the consistency review.
+
+### 7.2 Architectural Quality Evaluation (Design Conformance)
+
+The following is an author check of design topics and remaining gaps. It is not a standards-conformance assessment, independent approval, complete semantic coverage or runtime evidence.
+
+| View / Aspect | Quality Criteria | Design Status | Evaluation Evidence & Remaining Gaps |
+| --- | --- | --- | --- |
+| **Logical View** | Modularity, separation of concerns, data ownership | **Draft / Gap** | Workspace & Knowledge strict separation; database-per-service; zero runtime joins. Physical schema migrations unrun. |
+| **Process View** | Concurrency safety, race-condition mitigation, timeouts | **Draft / Gap** | ADR-0006 handoff guard; buffered delivery; whole-draft withholding; explicit candidate timeouts. Requires concurrency tests under paused requests. |
+| **Development View** | Codebase maintainability, layer independence | **Draft / Gap** | Monorepo layout; domain isolated from adapters; context harness exists; execution evidence is recorded separately. Application handlers not yet implemented. |
+| **Physical View** | Deployment viability, trust boundary security | **Draft / Gap** | Single developer machine design; 4 distinct trust boundaries; per-service DB users. Sizing remains an unmeasured candidate estimate. |
+| **+1 Scenarios View** | End-to-end requirement validation | **Draft / Gap** | SC-01 through SC-08 described against PRD journeys; complete SC/EX assertion mapping and runtime execution remain open. |
+
+### 7.3 Open Decisions and Handoff
+- **Pending Owner Decisions:** OD-01 through OD-12 remain open proposals awaiting business confirmation.
+- **Downstream Handoff:**
+  - Stage 4 (Data Design): Implements physical schemas adhering to logical data ownership (§2.2).
+  - Stage 5 (API Design): Finalizes OpenAPI specifications following boundary contracts (§2.3, §3.3).
+  - Stage 6 (UI/UX): Designs interface states aligning with buffered delivery, citation modals, and AI fallback (§3.1, §3.4).
+  - Stage 7 (UML Diagrams): Validates and synchronizes diagram artifacts against 4+1 views.
+  - Stage 8 (Test Plan): Derives test cases from scenario exception paths and handoff guard invariants (§3.1, §6.1).
+
+---
+
+**v0.5 corrective review:** Restores complete ADR-0006 handoff/lifecycle rules, Current-only default retrieval, nonempty-but-insufficient evidence behavior, and explicit AI failure. Replaces grouped FR ranges with exact PRD BR/FR responsibility rows; clarifies proposed topology and evidence limits. No business scope, accepted ADR or contract changes. Runtime enforcement, deployment, full SC/EX coverage and diagram semantics remain unverified.

@@ -1,7 +1,7 @@
 # Minimum test and evidence plan
 
 **Artifact ID:** TEST-08  
-**Version/date:** 0.1 Draft · 8 October 2026  
+**Version/date:** 0.2 Draft · 10 October 2026\
 **Status:** Draft for owner review; proposed policies/deferrals are not approved.  
 **Inputs:** [PRD-01](PRD_SRS.md) v0.4; [architecture](../architecture.md); DATA-04/API-05 drafts; [specs](../../specs/README.md); [evaluation](../../eval/README.md).  
 **Author:** development agent acting sequentially; owner reviews business choices.
@@ -33,6 +33,8 @@ Tests record actor, source/corpus version, pause/commit/handoff boundary, observ
 
 ## Trace, exit and resumption
 
+The optional `user-stories.md` is intentionally omitted for this draft. PRD-01 numbered FR/AC pairs and UC-02 journeys provide the requirements and flow inputs for this plan; this does not waive any BR, SC or acceptance criterion. The register records this documentation choice as N/A. A complete SC-to-test and UC exception-to-test matrix remains an explicit Stage 8 gap; FR references alone do not demonstrate that every scenario or exception has an adequate assertion.
+
 Each of the 68 original Core FRs is assigned to a feature spec with its matching PRD AC; the proposed release overlay assigns 61 Must and seven optional original Core FRs. FR-35 stays Enhanced. The [scope data](../planning/release-scope.json) is the trace source; no claim of executed complete coverage is made.
 
 About 20–30 questions are defined in eval; the current 25-case set has separate pilot/final labels, exact locators, access/scenario and manual rubric. Apply scenario mutations and version the corpus before each run. Freeze pilot-derived numeric targets before final cases; keep failed results. Local/cloud comparison and time-savings claims require their stated baselines, not fabricated output or an LLM-only judge.
@@ -40,3 +42,5 @@ About 20–30 questions are defined in eval; the current 25-case set has separat
 Suspend release on any known unauthorised access, version substitution, fabricated failure answer or incorrect state overwrite; resume after the relevant regression passes. Do not lower expected answers/thresholds to clear a failure. Original Core completion stays binding until the owner records exact OD-11 deferrals and altered gate. Month 5 reserves final regression/report/demo.
 
 Checklist: Pass for source/scope/risk order/case trace/fixtures/exit/resumption/evidence needs. Gap for accepted policies, actual runtime tests, full UI/UML inputs and pilot criteria. Handoff: reviewable plan; application release unproven.
+
+**v0.2 change summary:** Records the intentional optional-story omission and the remaining SC/exception mapping gap. Existing test definitions and runtime execution status are unchanged.

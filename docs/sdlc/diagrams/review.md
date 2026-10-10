@@ -1,14 +1,15 @@
 # Diagram review
 
-**Artifact ID:** DGM-REVIEW-01  
-**Version/date:** 0.1 Draft · 9 October 2026  
-**Status:** Draft; Ready for downstream correction. Not independent approval.  
-**Scope:** Focused review of the current diagram inventory, not a complete Stage 9 document-set review.  
-**Inputs:** UML-07 inventory v0.1; SAD-03 v0.2; UX sources v0.2; UC-02 v0.2; PRD-01 v0.4; DATA-04/API-05 v0.1; current Draft OpenAPI contracts; development rules and workflow.
+**Artifact ID:** DGM-REVIEW-01
+**Version/date:** 0.2 Draft - 10 October 2026
+**Status:** Draft; Ready for downstream correction. Not independent approval.
+**Scope:** Focused diagram review from 9 October, with a current inventory correction on 10 October; not a complete Stage 9 document-set review.
+**Original review inputs (9 October snapshot):** UML-07 inventory v0.1; SAD-03 v0.2; UX sources v0.2; UC-02 v0.2; PRD-01 v0.4; DATA-04/API-05 v0.1; Draft OpenAPI contracts available at that time; development rules and workflow.
+**Inventory correction inputs (10 October):** Current filesystem inventory and UML-07 v0.3. Current SAD-03 is v0.4; the original review input remains recorded as v0.2. This correction does not claim renewed semantic comparison against SAD-03 v0.4.
 
 ## Blocking — implementation baseline
 
-1. **RV-01 / unsafe answer-delivery design.** [AI flow lines 17–29](flowchart/ai-qa-flow.mmd#L17), cells SendQueryAPI, ServerPermFilter, StreamAnswer: JWT and streaming are shown without an evidence-set recheck before provider submission and buffered response handoff. [SAD key flows / concurrency](../../architecture.md#key-flows) requires authoritative project/document checks, withholding the entire original draft after evidence revocation and opaque sessions. BR-01/BR-08/BR-10/BR-14; SC-02/SC-06. **Owner:** Stage 6 UX with Stage 3/5. Replace the inherited sketch with the guarded flow and named failure/withheld states, in both source formats; do not adopt JWT/streaming by diagram alone.
+1. **RV-01 / unsafe answer-delivery design.** [AI flow lines 17–29](flowchart/ai-qa-flow.mmd#L17), cells SendQueryAPI, ServerPermFilter, StreamAnswer: JWT and streaming are shown without an evidence-set recheck before provider submission and buffered response handoff. [SAD Process View / concurrency](../../architecture.md#31-concurrency-model-and-permission-handoff-guard-adr-0006) requires authoritative project/document checks, withholding the entire original draft after evidence revocation and opaque sessions. BR-01/BR-08/BR-10/BR-14; SC-02/SC-06. **Owner:** Stage 6 UX with Stage 3/5. Replace the inherited sketch with the guarded flow and named failure/withheld states, in both source formats; do not adopt JWT/streaming by diagram alone.
 
 2. **RV-02 / creation and editing conflict with immutable versions.** [Docs flow lines 14–16 and 24–30](flowchart/docs-flow.mmd#L14), cells SaveDraftNew, ShowSaved, LoadExistingDraft, AutoSave: new documents are saved as Draft and existing Draft content is edited/autosaved without stating new version identity. [DATA-04 state/query rules](../data-design.md#state-and-query-rules), SAD source lifecycle and UC-06/UC-07 require initial Current and immutable Draft revisions. BR-05/BR-14; SC-05. **Owner:** Stage 6 UX with Stage 4/5. Align creation and explicitly separate unsaved editor state from creating a new immutable version; preserve OD-04 as Proposed.
 
@@ -18,23 +19,25 @@
 
 4. **RV-04 / API labels cannot be used as integration contracts.** Examples: AI POST /api/v1/ai/query versus askQuestion POST /knowledge/questions; document publish without version locator versus POST /knowledge/documents/{document_id}/versions/{version_id}/publish; task PATCH status versus setTaskState POST /tasks/{task_id}/state; blocker/unblock endpoints versus recordBlocker POST /tasks/{task_id}/blockers; PUT grants versus POST read-grants and DELETE read-grants/{user_id}. See [knowledge contract](../../../contracts/openapi/knowledge.openapi.json) and [workspace contract](../../../contracts/openapi/workspace.openapi.json). No diagram prefix mapping is recorded. BR-03/BR-05/BR-08/BR-10; SC-01/SC-02/SC-05/SC-06. **Owner:** Stage 5 API then Stage 6 UX. Use operation IDs and exact facade paths, including revisions/idempotency and denied/conflict/pending/error branches.
 
-5. **RV-05 / current architecture layout fails strict validation.** [Service composition](architecture/service-composition.drawio), cells WD and diagram-title: WD has x=1460, width=350, height=150 and no y (defaults to 0); title spans x=80..2310 and y=20..120. Their rectangles intersect. Validator reports W-OVERLAP, score 5. Previous score-zero evidence describes the earlier snapshot, not this current file. BR-01–BR-14 composition view. **Owner:** Stage 7 diagram author. Restore a deliberate nonoverlapping store position and re-export/revalidate; this review does not overwrite current manual geometry.
+5. **RV-05 / architecture layout failed strict validation in the 9 October snapshot; correction remains open.** [Service composition](architecture/service-composition.drawio), cells WD and diagram-title: WD has x=1460, width=350, height=150 and no y (defaults to 0); title spans x=80..2310 and y=20..120. Their rectangles intersect. Validator reports W-OVERLAP, score 5. Previous score-zero evidence describes an earlier snapshot. No validator was rerun on 10 October. BR-01–BR-14 composition view. **Owner:** Stage 7 diagram author. Restore a deliberate nonoverlapping store position and re-export/revalidate; this review does not overwrite current manual geometry.
 
 6. **RV-06 / rendered review remains blocked by CLI launch failure.** Draw.io exists at C:/Program Files/draw.io/draw.io.exe. Windows executable metadata reports ProductVersion 32.3.0.0 / FileVersion 32.3.0. Both --version and --version --no-sandbox terminate with Electron install_dir_access.cc:52: installation ACL has an AppContainer package SID but no ALL APPLICATION PACKAGES access. This is a CLI startup failure, not an approval-review rejection. No ACL was modified. No export was attempted after startup failure; no PNG/SVG/DOM inspection or visual acceptance is claimed. **Owner:** workstation owner resolves installation permissions; Stage 7 then reruns local draft PNG export without embedded XML and inspects text/edges.
 
 ## Minor
 
-7. **RV-07 / duplicate use-case source outside its type folder.** [Root copy](use-case-diagram.drawio) and [categorized copy](use-case/use-case-diagram.drawio) differ in bytes/serialization, but parsed mxCell attributes, geometry and nested waypoint attributes are identical. Root copy was present at review start and is unindexed; retaining both permits future drift and violates the folder-per-type convention. **Owner:** Stage 7 author. Reconcile the intended canonical source and consolidate after checking for manual edits; both are preserved in this review.
+7. **RV-07 / duplicate use-case source - Resolved by inventory inspection, 10 October 2026.** The original 9 October review found `docs/sdlc/diagrams/use-case-diagram.drawio` and the [categorized copy](use-case/use-case-diagram.drawio); byte serialization differed while parsed mxCell attributes, geometry and nested waypoints matched. Current inspection confirms the root copy is absent and the categorized source exists, with eight Draw.io files in the five type folders. The categorized path is canonical. No diagram was changed or removed during this correction, and the earlier comparison is retained only as historical evidence. **Owner:** Stage 7 author; Stage 9 may close the duplicate-inventory finding.
 
 8. **RV-08 / illustrative examples and broad traces remain unverified.** Persona scores and AI JWT/ADR examples are not research or actual citation evidence; imported FR ranges require current UC/AC mapping. BR-08/BR-12; SC-02/SC-07. **Owner:** Stage 6 UX / Stage 7 trace author / Stage 8 evaluator. Label examples and map each important transition to current requirements before implementation/evaluation.
 
-## Executed checks and limits
+## Historical executed checks and limits - 9 October 2026
+
+These results are retained from the original review; they are not new execution evidence for 10 October.
 
 | Check | Result |
 | --- | --- |
 | CLI discovery | Pass: installed binary found; version obtained from Windows file metadata, not a successful CLI launch. |
 | Local CLI startup | Gap: two attempts failed with the same ACL/AppContainer error. |
-| Draw.io skill validator --strict --score | 8/9 current files pass with zero errors/warnings. Architecture has zero errors and one overlap warning; strict check fails. Includes the extra root use-case copy. |
+| Draw.io skill validator --strict --score | 8/9 files in the 9 October snapshot passed with zero errors/warnings. Architecture has zero errors and one overlap warning; strict check fails. Includes the extra root use-case copy. |
 | Use-case comparison | Pass: parsed cell attributes and geometry/waypoints match; byte hashes differ due to serialization. |
 | Source-policy and contract comparison | Findings RV-01–RV-04 and RV-08 recorded with correction owners. |
 | Export/visual checks | Not run: renderer cannot launch. Structural checks cannot establish text clipping, rendered crossings or readability. |
@@ -43,3 +46,11 @@
 **Assumptions/open decisions:** Current drafts remain Proposed; review corrects no business scope or policy. OD-02–OD-04 and OD-08–OD-10 remain upstream decisions. No installed-app ACL or diagram content/geometry was modified.
 
 **Handoff:** Ready for downstream correction. Stage 6/5 owns semantic/API changes, Stage 7 owns layout and source organization. Review again after correction and successful local rendering; no owner or independent approval implied.
+
+## Inventory correction verification - 10 October 2026
+
+- Pass: current filesystem enumeration found eight Draw.io files across five type folders.
+- Pass: the canonical `use-case/use-case-diagram.drawio` exists and the former root copy is absent; RV-07 is resolved for the current inventory.
+- Not run: Draw.io validator, CLI startup, export/rendering, full semantic review and application/security/provider tests. RV-01 through RV-06 and RV-08 remain open; historical findings are not silently revalidated or closed.
+
+**Change summary:** Removed the dead root-copy hyperlink, recorded RV-07 resolution, and separated the original source/version and nine-file validation snapshot from the current inventory. Diagram content and geometry remain unchanged. This is an author inventory self-check, not independent approval.
