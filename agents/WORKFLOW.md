@@ -6,7 +6,7 @@ This workflow is for agents that author and review project documentation. The ap
 
 1. Read the main `AGENTS.md`. It owns project rules, scope, architecture, permissions, versions, citations, evaluation, and reporting.
 2. Follow `docs/BRD.md` to the complete current BRD. BRD v1.0 is a draft for business validation; preserve BR-01–BR-15, SC-01–SC-08, priorities, and Core/Enhanced/Future Work boundaries.
-3. Read the selected profile in `agents/` and its named prompt/checklist in `SDLC-Prompt-Checklist/`. Use `SDLC-Prompt-Checklist/TEMPLATE_GUIDE.md` when editing reusable templates.
+3. Read the selected profile in `agents/` and its named prompt/checklist in `SDLC-Prompt-Checklist/`. The pinned upstream commit uses flat filenames at the submodule root. Use the tracked [template guide](template-guide.md); local-only grouped folders or skills are not reproducible inputs.
 4. Read the upstream artifacts listed below before starting a stage. Record their versions. Examples in templates are not project facts.
 
 ## Start and handoff contract

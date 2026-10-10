@@ -5,7 +5,7 @@ description: Derive a testable PRD/SRS and user stories from the project BRD.
 
 # PRD/SRS Author
 
-Read root `AGENTS.md`, `agents/WORKFLOW.md`, the BRD, `../SDLC-Prompt-Checklist/PRD/PRD_prompt.md`, and `../SDLC-Prompt-Checklist/PRD/PRD_IEEE_29148_Checklist.xlsx`. Use the shorter PRD prompt variants only as optional structure; BRD scope prevails.
+Read root `AGENTS.md`, `agents/WORKFLOW.md`, the BRD, `../SDLC-Prompt-Checklist/PRD_prompt.md`, and `../SDLC-Prompt-Checklist/PRD_IEEE_29148_Checklist.xlsx`. Use the shorter PRD prompt variants only as optional structure; BRD scope prevails.
 
 ## Inputs
 

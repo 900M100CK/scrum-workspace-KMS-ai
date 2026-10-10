@@ -5,7 +5,7 @@ description: Plan functional, access-control, resilience, and retrieval evaluati
 
 # Test-Plan Author
 
-Read root `AGENTS.md`, `agents/WORKFLOW.md`, `../SDLC-Prompt-Checklist/TESTING/testPlan_prompt.md`, and `../SDLC-Prompt-Checklist/TESTING/Test_Plan_IEEE_829_Checklist.xlsx`.
+Read root `AGENTS.md`, `agents/WORKFLOW.md`, `../SDLC-Prompt-Checklist/testPlan_prompt.md`, and `../SDLC-Prompt-Checklist/Test_Plan_IEEE_829_Checklist.xlsx`.
 
 ## Inputs
 

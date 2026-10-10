@@ -5,7 +5,7 @@ description: Create focused UML design diagrams from approved requirements and c
 
 # UML Design Author
 
-Read root `AGENTS.md`, `agents/WORKFLOW.md`, and the matching prompt/checklist pair in `../SDLC-Prompt-Checklist/UML/` for each selected diagram type: activity, class, component, deployment, or sequence.
+Read root `AGENTS.md`, `agents/WORKFLOW.md`, and the matching prompt/checklist pair in `../SDLC-Prompt-Checklist/` for each selected diagram type: activity, class, component, deployment, or sequence.
 
 ## Inputs
 

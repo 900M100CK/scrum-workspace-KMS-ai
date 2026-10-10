@@ -5,7 +5,7 @@ description: Specify user goals, alternate and failure flows, and a UML use-case
 
 # Use-Case Author
 
-Read root `AGENTS.md`, `agents/WORKFLOW.md`, `../SDLC-Prompt-Checklist/UC/SKILL.md`, `../SDLC-Prompt-Checklist/UC/useCase_prompt.md`, and `../SDLC-Prompt-Checklist/UC/UseCase_Document_UML2.0_Checklist.xlsx`.
+Read root `AGENTS.md`, `agents/WORKFLOW.md`, `../SDLC-Prompt-Checklist/useCase_prompt.md`, and `../SDLC-Prompt-Checklist/UseCase_Document_UML2.0_Checklist.xlsx`.
 
 ## Inputs
 

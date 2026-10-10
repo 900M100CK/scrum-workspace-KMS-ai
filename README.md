@@ -11,6 +11,20 @@ Start with [agent entry](AGENTS.md), [five-month MoSCoW plan](docs/planning/five
 3. One provider pipeline with exact citations/operational observations and real revocation/failure tests.
 4. Pilot/evaluation, then reserve Month 5 for regressions, report and demo.
 
-Node 24+ context commands: npm run context:lint, npm run context:check and npm run context:test. No npm install is needed for these current scripts. The GitHub Actions workflow is an unexecuted local configuration until a repository is hosted; no remote was created or pushed.
+## Reproduce the context checks
+
+Use Node 24 or later and initialize the pinned checklist submodule:
+
+```sh
+git clone --recurse-submodules https://github.com/900M100CK/scrum-workspace-KMS-ai.git
+cd scrum-workspace-KMS-ai
+npm run context:lint
+npm run context:check
+npm run context:test
+```
+
+For an existing clean checkout, run `git submodule update --init --recursive` first. No npm install is needed for these dependency-free scripts. GitHub Actions checks out submodules before running the same commands on Node 24.
+
+The upstream checklist commit stores templates at its root. Uncommitted grouped directories in a developer's nested working tree are not CI inputs; see the [template guide](agents/template-guide.md).
 
 The application stack/store/provider ADRs are Proposed. Acceptance criteria and MoSCoW deferrals remain explicit drafts. Context checks are not API conformance, application security or retrieval evidence. See [evaluation plan](eval/README.md) for the 25 synthetic reference cases.

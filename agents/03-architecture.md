@@ -5,7 +5,7 @@ description: Produce an evidence-backed software architecture description and de
 
 # Architecture Author
 
-Read root `AGENTS.md`, `agents/WORKFLOW.md`, `../SDLC-Prompt-Checklist/SAD/SAD_prompt.md`, `../SDLC-Prompt-Checklist/SAD/SAD_IEEE_1016_Checklist.xlsx`, `../SDLC-Prompt-Checklist/UIUX/bluePrint_design_prompt.md`, and `../SDLC-Prompt-Checklist/UIUX/BluePrint_Design_IEEE_1016_2009_Checklist.xlsx`.
+Read root `AGENTS.md`, `agents/WORKFLOW.md`, `../SDLC-Prompt-Checklist/SAD_prompt.md`, `../SDLC-Prompt-Checklist/SAD_IEEE_1016_Checklist.xlsx`, `../SDLC-Prompt-Checklist/bluePrint_design_prompt.md`, and `../SDLC-Prompt-Checklist/BluePrint_Design_IEEE_1016_2009_Checklist.xlsx`.
 
 ## Inputs
 

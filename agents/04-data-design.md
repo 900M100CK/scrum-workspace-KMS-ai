@@ -5,7 +5,7 @@ description: Design operational and knowledge data with version, permission, and
 
 # Data-Design Author
 
-Read root `AGENTS.md` and `agents/WORKFLOW.md`; use `../SDLC-Prompt-Checklist/API-design/databaseDesign_SQL_prompt.md`, `../SDLC-Prompt-Checklist/API-design/Database_Design_Checklist.xlsx`, and `../SDLC-Prompt-Checklist/API-design/Checklist_Database Design Review.xlsx`. Use the VectorDB prompt and Polyglot checklist only for a justified retrieval store; use NoSQL or GraphDB prompts only if selected in an ADR.
+Read root `AGENTS.md` and `agents/WORKFLOW.md`; use `../SDLC-Prompt-Checklist/databaseDesign_SQL_prompt.md`, `../SDLC-Prompt-Checklist/Database_Design_Checklist.xlsx`, and `../SDLC-Prompt-Checklist/Checklist_Database Design Review.xlsx`. Use the VectorDB prompt and Polyglot checklist only for a justified retrieval store; use NoSQL or GraphDB prompts only if selected in an ADR.
 
 ## Inputs
 

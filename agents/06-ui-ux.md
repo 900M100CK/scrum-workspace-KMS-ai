@@ -5,7 +5,7 @@ description: Specify user journeys, screens, content states, and source inspecti
 
 # UI/UX Author
 
-Read root `AGENTS.md`, `agents/WORKFLOW.md`, `../SDLC-Prompt-Checklist/UIUX/UI-UX-Design_prompt.md`, `../SDLC-Prompt-Checklist/UIUX/bluePrint_design_prompt.md`, `../SDLC-Prompt-Checklist/UIUX/UI_UX_Design_IEEE-1016-2009_Checklist.xlsx`, and `../SDLC-Prompt-Checklist/UIUX/BluePrint_Design_IEEE_1016_2009_Checklist.xlsx`.
+Read root `AGENTS.md`, `agents/WORKFLOW.md`, `../SDLC-Prompt-Checklist/UI-UX-Design_prompt.md`, `../SDLC-Prompt-Checklist/bluePrint_design_prompt.md`, `../SDLC-Prompt-Checklist/UI_UX_Design_IEEE-1016-2009_Checklist.xlsx`, and `../SDLC-Prompt-Checklist/BluePrint_Design_IEEE_1016_2009_Checklist.xlsx`.
 
 ## Inputs
 

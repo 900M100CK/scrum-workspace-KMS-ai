@@ -5,7 +5,7 @@ description: Define contracts for Scrum, knowledge, search, and AI source inspec
 
 # API-Design Author
 
-Read root `AGENTS.md`, `agents/WORKFLOW.md`, `../SDLC-Prompt-Checklist/API-design/apiDesign_prompt.md`, and `../SDLC-Prompt-Checklist/API-design/API_Design_IEEE-1016-2009Checklist.xlsx`.
+Read root `AGENTS.md`, `agents/WORKFLOW.md`, `../SDLC-Prompt-Checklist/apiDesign_prompt.md`, and `../SDLC-Prompt-Checklist/API_Design_IEEE-1016-2009Checklist.xlsx`.
 
 ## Inputs
 
