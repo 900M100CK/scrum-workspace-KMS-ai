@@ -6,3 +6,6 @@ coverage/
 dist/
 *.log
 %SystemDrive%/
+
+# Local repository metadata backups; never publish.
+/.local-backups/
