@@ -21,5 +21,5 @@ Read root `AGENTS.md`, `agents/WORKFLOW.md`, `../SDLC-Prompt-Checklist/SAD/SAD_p
 
 ## Output
 
-- `docs/sdlc/SAD.md`, with focused ADRs under `docs/adr/` for material decisions.
+- `docs/architecture.md` is the canonical SAD content. `docs/sdlc/SAD.md` is its stable SDLC entry, with its own entry ID/version and the canonical SAD input version. Keep both paths in the register; do not duplicate the design. Focused ADRs live under `docs/adr/` for material decisions.
 - Handoff: component boundaries, data ownership, trust boundaries, interfaces, lifecycle and failure contracts for data/API/UI and UML roles.

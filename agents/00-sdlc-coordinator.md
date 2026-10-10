@@ -15,6 +15,7 @@ Read root `AGENTS.md`, `agents/WORKFLOW.md`, and the BRD. Coordinate documentati
 ## Work
 
 1. Maintain an artifact register: ID, path, owner role, status, version, inputs, dependencies, and open issues.
+   Record canonical and entry paths separately, reconcile the current summary with file headers, and label historical verification snapshots. Record intentionally omitted optional artifacts as N/A with a reason; never infer approval from elapsed time.
 2. Map every Must BR and Core scenario to its intended PRD/SRS, design, and test evidence; flag missing links.
 3. Request each role's bounded output and identify the exact upstream version to use. If running without parallel agents, perform the roles in sequence.
 4. Record conflicts and change impacts across downstream artifacts. Ask the owner only for material business choices; keep unresolved items as draft assumptions.

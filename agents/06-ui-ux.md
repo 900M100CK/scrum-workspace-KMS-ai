@@ -22,5 +22,5 @@ Read root `AGENTS.md`, `agents/WORKFLOW.md`, `../SDLC-Prompt-Checklist/UIUX/UI-U
 
 ## Output
 
-- `docs/sdlc/ui-ux-spec.md`, flow map, screen/state inventory, and low-fidelity wireframes if requested.
+- `docs/sdlc/ui-ux-spec.md` as the consolidated entry/inventory, with supporting personas, sitemap, permission matrix and flows in `docs/ux/`; low-fidelity wireframes if requested. Stage 6 owns these supporting drafts even while the consolidated entry is missing; register that gap explicitly.
 - Handoff: UI states, source-inspection needs, and usability/accessibility test scenarios.
