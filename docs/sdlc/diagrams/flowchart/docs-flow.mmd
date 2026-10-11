@@ -1,52 +1,67 @@
+%% DGM-FLOW-03 v0.2 Draft - 11 October 2026
+%% Sources: PRD-01 v0.4; UC-02 v0.2; SAD-03 v0.5; Proposed ADR-0001 v0.2 / ADR-0006 v0.1; OpenAPI v0.1.0
+%% Trace: FR-04, FR-10-FR-15, FR-19, FR-39, FR-45-FR-52, FR-59, FR-61; SC-05, SC-06
+%% UX / server responsibilities are labelled. API keys are relative to /api. Policy and runtime evidence remain unapproved.
 flowchart TD
-    Start([User opens /p/:projectId/docs]) --> FetchDocs[Load Document Explorer List]
-    
-    FetchDocs --> RenderDocs[Render Docs grouped by classification: Public | Internal | Restricted]
-    NoteRestricted[Restricted docs without grant are completely omitted] -.-> RenderDocs
-    
-    RenderDocs --> UserChoice{User Action?}
-    
-    %% Flow 1: Create New Document
-    UserChoice -- Click 'New Document' --> CheckCreateAuth{Role can create doc?}
-    CheckCreateAuth -- No: VIEWER --> HideButton[Button hidden]
-    CheckCreateAuth -- Yes --> OpenEditorNew[Open Markdown Editor: New Document]
-    OpenEditorNew --> InputTitleBody[Author enters Title, Markdown content, and Initial Classification]
-    InputTitleBody --> SaveDraftNew[Click 'Save as Draft']
-    SaveDraftNew --> APISaveDraft[Call POST /api/v1/documents]
-    APISaveDraft -- 201 Created --> ShowSaved[Show status badge: 'Draft (v1.0)']
-    
-    %% Flow 2: Edit existing Draft vs Create new Revision
-    UserChoice -- Select Document from list --> CheckDocGrant{Has Document Grant?}
-    CheckDocGrant -- No --> Show404[/404 Not Found - No metadata leaked/]
-    CheckDocGrant -- Yes --> ViewCurrent[Display Current Version with badge 'CURRENT']
-    
-    ViewCurrent --> DocOptions{Action on Document?}
-    DocOptions -- Click 'Edit / Create Revision' --> CheckHasDraft{Does an open Draft already exist?}
-    CheckHasDraft -- Yes --> LoadExistingDraft[Open existing Draft for editing]
-    CheckHasDraft -- No --> CreateNewDraftBranch[Create new Draft version cloned from Current]
-    CreateNewDraftBranch --> LoadExistingDraft
-    
-    LoadExistingDraft --> EditMarkdown[Edit content in Markdown split editor]
-    EditMarkdown --> AutoSave[Auto-save Draft to server]
-    AutoSave --> PublishChoice{Click 'Publish as Current Version'?}
-    
-    PublishChoice -- Yes --> CheckPublishRole{Is Author or PO?}
-    CheckPublishRole -- No --> ShowWarn[Show tooltip: 'Only PO or doc author can publish']
-    CheckPublishRole -- Yes --> ConfirmPublishDialog[Show modal: 'Publish v2.0 as Current? Previous v1.0 will become Superseded']
-    ConfirmPublishDialog -- Confirm --> APIPublish[Call POST /api/v1/documents/:id/publish]
-    APIPublish -- 200 OK --> ReindexTrigger[System flags for background KMS re-indexing]
-    APIPublish --> UpdateBadges[Current version = v2.0; Old v1.0 labeled 'Superseded']
-    
-    %% Flow 3: View Version History & Diffs
-    DocOptions -- Click 'Version History' --> OpenHistoryTab[Open History Drawer]
-    OpenHistoryTab --> SelectPastVersion[Select past version: e.g. v1.0 Superseded]
-    SelectPastVersion --> RenderWarning[Display persistent banner: 'Viewing Superseded Version v1.0. This is not current.']
-    SelectPastVersion --> DiffToggle[Toggle 'Compare with Current']
-    DiffToggle --> ShowVisualDiff[Display visual side-by-side Markdown Diff]
-    
-    %% Flow 4: Access Control (Restricted Documents)
-    DocOptions -- Manage Access (Restricted Doc) --> CheckIsAdmin{User is PO / Admin?}
-    CheckIsAdmin -- Yes --> OpenAccessModal[Open Access Control Modal]
-    OpenAccessModal --> ModifyGrants[Add or Revoke Member Grants]
-    ModifyGrants --> SaveGrants[Call PUT /api/v1/documents/:id/grants]
-    SaveGrants -- Success --> GrantFeedback[Immediate invalidation of revoked users' access]
+    Start["Authenticated member opens document workspace"]
+    Scope["Server scopes list: project-shared or restricted with current read grant; no hidden metadata"]
+    Action{"Choose operation"}
+    Create["Create capability; explicit project-shared or restricted; POST /knowledge/documents"]
+    Register["Internal creation: pending ACL registration, initial Current persisted, registry activation"]
+    Pending["202: creation pending; no completed accessible document"]
+    Current["201: initial Current; independently fetch readiness"]
+    Read["GET /knowledge/documents/{document_id}; shared protected-read checks"]
+    Denied["401 sign-in; generic 404 unknown/denied; 503 unknown authority"]
+    View["Show authorised version and validity"]
+    Revise["Content-write check; edit unsaved form; POST /knowledge/documents/{document_id}/versions"]
+    Draft["New immutable Draft per save; direct content-write access only; no retrieval/model context"]
+    Publish["Publisher check and confirmation; POST /knowledge/documents/{document_id}/versions/{version_id}/publish"]
+    Publishing["Publishing UI; aggregate expected_revision and Idempotency-Key; guarded Knowledge commit"]
+    Published["200 confirmed: replacement Current, previous Superseded"]
+    Conflict["409: refresh permitted aggregate; require fresh user decision"]
+    Failure["Failure or uncertain result: reconcile; no blind retry; unknown lifecycle outcome blocks handoffs"]
+    Ready["GET /knowledge/documents/{document_id}/versions/{version_id}/readiness"]
+    Index["pending: Indexing; ready: Search ready; failed: Indexing failed; lifecycle separate"]
+    History["Explicit history / exact citation: recheck permission; label Superseded or Archived; never substitute"]
+    Manage["Scoped manage-access; independent of content read"]
+    Policy["POST /documents/{document_id}/classification or /read-grants; DELETE /documents/{document_id}/read-grants/{user_id}"]
+    Revoke["Guarded commit + audit; invalidate access/cache scope; recheck all protected handoffs"]
+    Removal["Membership removal invalidates restricted grants; rejoin restores project-shared only"]
+    Retire["Lifecycle capability + confirmation; POST version /archive or DELETE document"]
+    Retired["Archive excludes ordinary retrieval; delete stops active access; stale jobs cannot revive; exact citation rules apply"]
+    Start --> Scope
+    Scope --> Action
+    Action -->|Create| Create
+    Create --> Register
+    Create -->|Rejected| Denied
+    Register -->|Partial| Pending
+    Register -->|Confirmed| Current
+    Current --> Ready
+    Action -->|Open| Read
+    Read -->|Failed check| Denied
+    Read -->|Permitted| View
+    View -->|Revise| Revise
+    Revise -->|201| Draft
+    Revise -->|409| Conflict
+    Draft -->|Publish| Publish
+    Publish --> Publishing
+    Publish -->|Rejected| Denied
+    Publishing -->|200| Published
+    Publishing -->|409| Conflict
+    Publishing -->|503 or lost response| Failure
+    Published --> Ready
+    Ready -->|200| Index
+    Ready -->|Check failed| Denied
+    View -->|History / citation| History
+    Action -->|Manage access| Manage
+    Manage -->|Permitted| Policy
+    Manage -->|Denied| Denied
+    Policy -->|Committed| Revoke
+    Policy -->|409| Conflict
+    Policy -->|Error| Failure
+    Removal --> Revoke
+    View -->|Archive / delete| Retire
+    Retire -->|Confirmed| Retired
+    Retire -->|409| Conflict
+    Retire -->|Unknown / error| Failure
+    Retire -->|Rejected| Denied

@@ -1,7 +1,7 @@
 # Central diagram index
 
 **Artifact ID:** UML-07
-**Version/date:** 0.4 Draft - 10 October 2026
+**Version/date:** 0.5 Draft - 11 October 2026
 **Status:** Draft; Ready for downstream inventory use; mapped to Kruchten's 4+1 Architectural View Model; semantic correction and visual review remain open.
 **Source versions:** BRD English v1.0; PRD-01 v0.4; UC-02 v0.2; SAD-03 v0.4 (4+1 View Model); UX sources v0.2; Proposed ADR-0001 v0.2 and ADR-0002–ADR-0006 v0.1; PLAN-01 v0.1.
 
@@ -9,7 +9,20 @@
 
 Each diagram type has a folder: architecture, flowchart, sitemap, use-case and user-journey. Product diagrams live here; origin documents link to them. Prompt/checklist examples remain in SDLC-Prompt-Checklist because they are templates.
 
-Seven Mermaid sources preserve original blocks verbatim. Paired Draw.io files contain editable native cells; IDs, labels and relationships are extracted, while geometry/styles are newly generated. Journey sections, actors, order and illustrative scores are retained. The existing use-case Draw.io is relocated without byte changes. Mermaid is the structural source for the seven extractions: update both formats together, then validate. No automatic synchronization exists. The use-case diagram uses Draw.io as its source. Future exports belong beside sources in the matching type folder.
+The original seven extractions are historical. Four flowcharts now have v0.2 corrected Mermaid sources and matching editable native Draw.io cells; their three UX flow documents are v0.3. These consume PRD-01 v0.4, UC-02 v0.2, SAD-03 v0.5, Proposed ADR-0001 v0.2/ADR-0006 v0.1 and OpenAPI v0.1.0. Other diagrams retain their source snapshots below. Mermaid remains the structural source; update both formats together. The use-case diagram uses Draw.io as its source. Future exports belong beside sources in the matching type folder.
+
+## Scoped flow correction — 11 October 2026
+
+DGM-FLOW-01–DGM-FLOW-04 are v0.2 Draft. The three linked flow Markdown sources are v0.3; their older v0.2 references in the original inventory below identify extraction inputs, not current versions. Permission-matrix v0.2 remains an unreconciled source: its role shortcuts, three classifications and citation stripping must not override PRD/ADRs or the corrected permission diagram.
+
+- Docs: initial Current, two classifications, separate capabilities, immutable revisions, registration pending versus indexing readiness, publication conflict/failure, retirement and revocation/rejoin.
+- AI: four access checkpoints, guarded buffered delivery, whole-draft withholding, exact placeholder citations, non-disclosing insufficient evidence and dependency-specific fallback.
+- Board: three Core columns, capability checks, server validation, both blocker events, empty Sprint and membership-loss states.
+- Permission reads: project-shared versus explicit restricted grant, Draft content-write, exact citation read, guarded provider/answer handoffs and fail-closed errors.
+
+These corrections address the selected surfaces of DG-01–DG-05 and F-01–F-04/F-11/F-12; they do not close findings across the permission matrix, personas, sitemap or other diagrams. Terminal answer-withheld and specific unavailable-citation API mappings remain Stage 5 gaps. No PRD/ADR/contract changes or new architecture decisions are introduced. The existing Proposed ADR-0001 and ADR-0006 supply the decision rationale and enforcement boundaries.
+
+**Checklist/handoff:** Flowchart node/edge correspondence is checked separately from rendered routing and runtime enforcement. Native editable cells are retained; visual acceptance remains unverified. UML activity conformance is N/A for these labelled UX flowcharts. Ready for scoped Stage 5/8/9 follow-up; no independent approval.
 
 ## 4+1 Architectural View Model Mapping
 

@@ -1,39 +1,38 @@
 # User Flow: Scrum Board & Task Management
 
-**Artifact ID:** UX-FLOW-BOARD-01  
-**Version/date:** 0.2 Draft · 9 October 2026  
-**Trace:** BRD BR-02, BR-03, BR-04; PRD-01 (FR-07–FR-09, FR-42–FR-44, SC-01, SC-03); SAD-03  
-**Scope:** Active Sprint Board interaction, task transitions, blocker flagging/resolution, and optimistic updates.
+**Artifact ID:** UX-FLOW-BOARD-01\
+**Version/date:** 0.3 Draft · 11 October 2026\
+**Status:** Draft correction; not policy approval.\
+**Sources:** PRD-01 v0.4; UC-02 v0.2 (UC-04/UC-05); SAD-03 v0.5; Workspace OpenAPI v0.1.0; Proposed ADR-0001 v0.2/ADR-0006 v0.1.\
+**Trace:** BR-01–BR-03, BR-06, BR-10, BR-11, BR-13; FR-03, FR-08, FR-09, FR-17, FR-31, FR-33, FR-39, FR-42–FR-44, FR-59, FR-68; SC-01, SC-03, SC-04, SC-06, SC-08.
 
----
+## 1. Main flow
 
-## 1. Flow Overview
+Revalidate session and current project membership before loading board data. At most one Sprint is Active; zero Active Sprints is valid. If none exists, show “No active sprint”. A user with Sprint-management capability may navigate to Backlog/Sprint planning; do not imply Scrum Master title grants this capability.
 
-The Board view allows team members to track progress during an Active Sprint. 
-Key business rules enforced:
-- Exactly 1 Active Sprint per project (FR-07, FR-42).
-- Any member can drag tasks between columns (`Todo`, `In Progress`, `In Review`, `Done`).
-- Blockers can be flagged at any time with a mandatory reason note.
-- Optimistic UI updates with rollback on network/permission error.
+Render Core columns **To Do, In Progress, Done**. Only users with the relevant current action capability can mutate tasks; Viewer/stakeholder is read-only by default. Drag or keyboard state selection performs an optimistic move, then sends `POST /tasks/{task_id}/state` with expected revision and required idempotency key. The server validates membership, action capability, revision and state rules again.
 
----
+## 2. Blocker events
 
-## 2. Flow Diagram
+An authorised user can flag or resolve a blocker from task detail. Both use `POST /tasks/{task_id}/blockers`: `status: open` or `status: resolved`, a nonempty description, expected revision and optional outcome as defined in RecordBlocker. A resolution records an outcome only when supplied; do not infer one from a plan. Confirmed events retain actor/time/sequence and resolution history (SC-04); update the badge from confirmed state.
 
-See the centralized diagram: [editable Draw.io](../../sdlc/diagrams/flowchart/board-flow.drawio) · [Mermaid source](../../sdlc/diagrams/flowchart/board-flow.mmd).
+Paths are OpenAPI keys relative to `/api`. Client validation helps entry; server validation enforces it. Mutations follow contract concurrency/idempotency requirements.
 
-Diagram ID: `DGM-FLOW-02`. Source content is preserved; see the [diagram review and open gaps](../../sdlc/diagrams/README.md).
+## 3. Edge cases
 
----
+| Scenario | Behaviour and feedback |
+| --- | --- |
+| Viewer/stakeholder attempts mutation | Disable control: “Read-only view”. Server rejects unauthorised requests even if UI checks are bypassed. |
+| Concurrent update (`409`) | Roll back optimistic display and fetch the latest permitted state. “Task was updated. Refreshing latest state.” Do not invent another actor's identity. |
+| Offline / service failure | Revert optimistic state; show “Could not confirm the change. Refresh before retrying.” A lost response may follow a committed write; reconcile before retry. |
+| Missing blocker description | Inline validation; server independently rejects invalid input for open and resolved events. |
+| Member removed while board is open | Subsequent reads/mutations deny; cancel pending UI operations and clear protected board data when loss is detected. Generic `404`; no further updates. Already delivered data cannot be recalled. |
+| Session expired | Clear protected display and require sign-in (`401`). |
+| No Active Sprint | Empty state and capability-aware navigation; no invented Active Sprint. |
+| Linked document | Use shared protected-read flow: project-shared does not need a grant; restricted does. Draft/version rules apply. Unknown/inaccessible target gives generic `404`. |
+| AI unavailable | Board operations continue when Workspace dependencies remain healthy. |
 
-## 3. Interaction & Edge Cases
+DGM-FLOW-02: [Mermaid](../../sdlc/diagrams/flowchart/board-flow.mmd) · [Draw.io](../../sdlc/diagrams/flowchart/board-flow.drawio).
 
-| Scenario | System Behavior | UI Feedback |
-|---|---|---|
-| **Viewer drags card** | Drag action disabled; on click/hover shows lock icon | Tooltip: *"Stakeholders have read-only access."* |
-| **Concurrent state update (Conflict 409)** | Server rejects outdated version | Card reverts to original column; Warning toast: *"Task status was changed by [User] just now. Refreshing latest state."* |
-| **Offline / Network disconnect** | Task transition fails | Card reverts to previous column; Error toast: *"Could not reach server. Changes not saved."* |
-| **Flagging blocker without reason** | Submission blocked client-side | Form validation error: *"Please provide a reason for the blocker."* |
-
-
-**v0.2 documentation change:** Moved the inline diagram to the Stage 7 diagram directory, retaining its labels and relationships. Added an editable Draw.io representation; no policy or product scope is changed. Diagram consistency gaps are recorded in the central index.
+**Assumptions/open decisions:** Capability assignments remain OD-02; Sprint policy remains OD-03. UI controls do not establish server enforcement.
+**Checklist/handoff:** Pass for documented empty, blocker-resolution, server-validation and membership-loss branches; Gap for visual/accessibility, runtime and concurrency testing. Ready for downstream review/test design. v0.3 addresses B1–B4 and the local F-12 column mismatch.

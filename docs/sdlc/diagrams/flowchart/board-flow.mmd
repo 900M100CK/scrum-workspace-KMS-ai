@@ -1,47 +1,44 @@
+%% DGM-FLOW-02 v0.2 Draft - 11 October 2026
+%% Sources: PRD-01 v0.4; UC-02 v0.2; SAD-03 v0.5; Proposed ADR-0001 v0.2 / ADR-0006 v0.1; OpenAPI v0.1.0
+%% Trace: FR-03, FR-08-FR-09, FR-17, FR-31, FR-33, FR-39, FR-42-FR-44, FR-59, FR-68; SC-01, SC-03, SC-04, SC-06, SC-08
+%% UX / server responsibilities are labelled. API keys are relative to /api. Policy and runtime evidence remain unapproved.
 flowchart TD
-    Start([User opens /p/:projectId/board]) --> CheckActive{Is there an Active Sprint?}
-    
-    CheckActive -- No --> EmptyBoard[Display Empty State: 'No active sprint running']
-    EmptyBoard --> RoleCanStart{User is Scrum Master?}
-    RoleCanStart -- Yes --> CTAStart[Show CTA: 'Go to Backlog to start sprint']
-    RoleCanStart -- No --> CTANone[Show message: 'Contact Scrum Master to start a sprint']
-    
-    CheckActive -- Yes --> RenderColumns[Render Board Columns: Todo | In Progress | In Review | Done]
-    RenderColumns --> FilterOption{User applies quick filters?}
-    FilterOption -- Yes: 'Blocked Only' --> ShowBlocked[Filter cards where is_blocked == true]
-    FilterOption -- Yes: 'My Tasks' --> ShowMyTasks[Filter cards where assignee_id == currentUser.id]
-    FilterOption -- No --> ShowAll[Show all sprint task cards]
-    
-    ShowAll --> ActionChoice{User Action?}
-    ShowBlocked --> ActionChoice
-    ShowMyTasks --> ActionChoice
-    
-    %% Action 1: Drag-Drop Task
-    ActionChoice -- Drag Task to new Column --> CheckPermissionDrag{User role is PO, SM, or DEV?}
-    CheckPermissionDrag -- No: VIEWER --> BlockDrag[Card snaps back with tooltip: 'Read-only view']
-    CheckPermissionDrag -- Yes --> OptimisticMove[Move card immediately to target column]
-    OptimisticMove --> APIUpdateTask[Call PATCH /api/v1/tasks/:id/status]
-    APIUpdateTask -- Success 200 --> ConfirmCard[Update card state & audit badge]
-    APIUpdateTask -- Stale Concurrency (409) --> RollbackConflict[Rollback card position + Toast: 'Task was updated by another member']
-    APIUpdateTask -- Network Error --> RollbackNet[Rollback card position + Toast: 'Network error, please retry']
-
-    %% Action 2: Flag Blocker
-    ActionChoice -- Click Task Card --> OpenTaskModal[Open Task Detail Modal]
-    OpenTaskModal --> CheckBlockedStatus{Is task currently blocked?}
-    
-    CheckBlockedStatus -- No: Flag as Blocked --> ClickFlag[Click 'Flag Blocker' button]
-    ClickFlag --> InputReason[Display Blocker Reason input dialog]
-    InputReason --> SubmitBlocker[Submit blocker reason]
-    SubmitBlocker --> APIBlock[Call POST /api/v1/tasks/:id/blocker]
-    APIBlock -- Success --> ShowBlockerBadge[Task card gains red 'BLOCKED' badge & reason banner]
-    
-    CheckBlockedStatus -- Yes: Unflag Blocker --> ClickResolve[Click 'Resolve Blocker' button]
-    ClickResolve --> InputResolution[Optional: Input resolution note]
-    InputResolution --> SubmitResolve[Submit resolution]
-    SubmitResolve --> APIUnblock[Call POST /api/v1/tasks/:id/unblock]
-    APIUnblock -- Success --> RemoveBadge[Remove 'BLOCKED' banner, log event in history]
-    
-    %% Action 3: Inspect linked KMS docs
-    ActionChoice -- Click linked Doc Chip on Card --> CheckDocAuth{User has Doc Grant?}
-    CheckDocAuth -- Yes --> OpenDocSplit[Open Document Viewer in Split Pane]
-    CheckDocAuth -- No --> ShowNotFound[Display 404: 'Document does not exist or link unavailable']
+    Start["Open board; server checks session and project membership"]
+    Active{"Active Sprint exists? At most one"}
+    Empty["No active sprint; planning link only with Sprint-management capability"]
+    Board["Render To Do / In Progress / Done; permitted task cards"]
+    Action{"Choose action"}
+    Capability{"Current scoped action capability?"}
+    Readonly["Viewer/stakeholder default: Read-only view; server also enforces"]
+    Move["Optimistic move; POST /tasks/{task_id}/state"]
+    Block["Flag or resolve: POST /tasks/{task_id}/blockers; status open or resolved; description, optional outcome"]
+    Server["Server validates session, membership, capability, input, expected revision and idempotency"]
+    Saved["Confirm state; append blocker event actor/time/sequence; preserve resolution history"]
+    Conflict["409: rollback optimistic display; fetch latest permitted state"]
+    Failure["400: correct input; network/503: rollback, reconcile before retry; never claim saved"]
+    Loss["401: sign-in; membership loss: clear protected board and generic 404; cancel pending UI"]
+    Link["Linked source: shared protected-read flow; project-shared OR restricted plus grant; exact version rules"]
+    Doc["Show exact permitted document"]
+    Hidden["Generic 404; no metadata"]
+    AI["AI outage alone leaves Workspace operations available"]
+    Start -->|Permitted| Active
+    Start -->|Denied / expired| Loss
+    Active -->|No| Empty
+    Active -->|Yes| Board
+    Board --> Action
+    Action -->|State / blocker action| Capability
+    Capability -->|No| Readonly
+    Capability -->|State action allowed| Move
+    Capability -->|Blocker action allowed| Block
+    Move --> Server
+    Block --> Server
+    Server -->|Confirmed| Saved
+    Server -->|409| Conflict
+    Server -->|Invalid / unavailable| Failure
+    Server -->|Session / access lost| Loss
+    Action -->|Open linked source| Link
+    Link -->|Permitted| Doc
+    Link -->|Unknown / denied| Hidden
+    Link -->|Authority / service error| Failure
+    Board -->|Removal detected on refresh / update| Loss
+    AI -->|Own dependencies healthy| Board

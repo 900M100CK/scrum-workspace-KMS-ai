@@ -1,23 +1,72 @@
+%% DGM-FLOW-04 v0.2 Draft - 11 October 2026
+%% Sources: PRD-01 v0.4; UC-02 v0.2; SAD-03 v0.5; Proposed ADR-0001 v0.2 / ADR-0006 v0.1; OpenAPI v0.1.0
+%% Trace: FR-01, FR-03-FR-04, FR-14, FR-19-FR-21, FR-28-FR-29, FR-39, FR-46, FR-55, FR-59, FR-61, FR-68; SC-05, SC-06
+%% UX / server responsibilities are labelled. API keys are relative to /api. Policy and runtime evidence remain unapproved.
 flowchart TD
-    User([User accesses Resource]) --> AuthCheck{Is Authenticated?}
-    AuthCheck -- No --> LoginRedirect[/Redirect to /login/]
-    AuthCheck -- Yes --> ProjCheck{Is Project Member?}
-    
-    ProjCheck -- No --> NotFound404[/Display 404 Not Found Page/]
-    ProjCheck -- Yes --> ResCheck{Resource Type?}
-    
-    ResCheck -- Task / Board --> RoleCheckTask{Role can edit?}
-    RoleCheckTask -- Yes --> RenderEditable[Render with Edit & Drag Controls]
-    RoleCheckTask -- No --> RenderReadOnly[Render Read-only Cards & Badges]
-    
-    ResCheck -- Document --> DocScope{Doc Classification?}
-    DocScope -- Public / Internal --> RenderDoc[Render Document & Version Explorer]
-    DocScope -- Restricted --> DocGrantCheck{Has Explicit User Grant?}
-    DocGrantCheck -- Yes --> RenderDoc
-    DocGrantCheck -- No --> NotFoundDoc404[/Display 404 Not Found - No metadata leaked/]
-    
-    ResCheck -- AI Q&A --> RAGFilter[Filter RAG context strictly by User ID Grants]
-    RAGFilter --> AIResult{Evidence found?}
-    AIResult -- Yes --> RenderAnswer[Render Answer with Verified Citation Chips]
-    AIResult -- Insufficient --> RenderInsufficient[Render 'Insufficient Evidence' Card]
-    AIResult -- Service Down --> RenderFallback[Display AI Offline Banner + Keep Manual UI active]
+    Start["Protected read or AI request"]
+    Session{"Valid authenticated session?"}
+    Login["401: sign-in"]
+    Member{"Workspace confirms current project membership?"}
+    NotFound["Generic 404: same unknown/inaccessible body; no title, count, version or excerpt"]
+    Authority["Unknown / failed authority: deny output, generic service error"]
+    Type{"Resource / operation?"}
+    Work["Task / board: permitted read; controls depend on separate action capabilities"]
+    Doc["Document / version / exact citation: current authoritative checks"]
+    Draft{"Draft direct read?"}
+    Write{"Current project membership + content-write + applicable document checks?"}
+    Classification{"Classification?"}
+    Grant{"Restricted: current explicit read grant?"}
+    Allowed["Knowledge checks exact version, passage and availability inside protected-read handoff guard"]
+    View["Return exact permitted source; historical labels; no substitution"]
+    Unavailable["Specific Citation unavailable only with surviving-identity permission; otherwise generic 404; API mapping open"]
+    QRead["1. Authorised retrieval: project-shared OR restricted with grant; current membership; Current-only default; no Draft"]
+    PreModel["2. Guarded current access + Knowledge validity through provider transport handoff"]
+    Buffer["Generate outside guard; buffer all output; validate exact evidence identities"]
+    PreAnswer["3. Guarded session/access/validity of entire evidence set through response transport handoff"]
+    Valid{"All evidence still permitted and valid?"}
+    Answer["Deliver answer / conflict with verified citations"]
+    Withhold["Withhold original draft; generic failure or bounded regeneration with remaining evidence and repeated checks"]
+    Citation["4. Open citation: re-enter authenticated protected-read flow using exact locator"]
+    Insufficient["Insufficient evidence; no hidden-source or Draft explanation"]
+    Failure["Explicit AI failure; keyword/docs fallback only if Knowledge healthy; Workspace work if healthy"]
+    Boundary["Revocation/removal commit shares handoff guard; restricted grants never revive on rejoin; already sent data cannot be recalled"]
+    Start --> Session
+    Session -->|No| Login
+    Session -->|Yes| Member
+    Member -->|No| NotFound
+    Member -->|Unknown / failed| Authority
+    Member -->|Yes| Type
+    Type -->|Task / board| Work
+    Type -->|Source / citation| Doc
+    Doc --> Draft
+    Draft -->|Yes| Write
+    Write -->|Permitted| Allowed
+    Write -->|Denied| NotFound
+    Draft -->|No| Classification
+    Classification -->|project-shared| Allowed
+    Classification -->|restricted| Grant
+    Classification -->|Unknown| Authority
+    Grant -->|Yes| Allowed
+    Grant -->|No| NotFound
+    Grant -->|Check error| Authority
+    Allowed -->|Available| View
+    Allowed -->|Missing evidence| Unavailable
+    Allowed -->|Check error| Authority
+    Type -->|AI Q&A| QRead
+    QRead -->|Insufficient| Insufficient
+    QRead -->|Sufficient| PreModel
+    QRead -->|Check failed| Authority
+    PreModel -->|Handoff permitted| Buffer
+    PreModel -->|Evidence revoked| Withhold
+    PreModel -->|Check failed| Authority
+    Buffer -->|Complete| PreAnswer
+    Buffer -->|Dependency failed| Failure
+    PreAnswer --> Valid
+    PreAnswer -->|Check failed| Authority
+    Valid -->|Yes| Answer
+    Valid -->|No| Withhold
+    Withhold -->|Bounded new attempt| QRead
+    Answer --> Citation
+    Citation --> Session
+    Boundary --> PreModel
+    Boundary --> PreAnswer

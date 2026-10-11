@@ -1,40 +1,56 @@
+%% DGM-FLOW-01 v0.2 Draft - 11 October 2026
+%% Sources: PRD-01 v0.4; UC-02 v0.2; SAD-03 v0.5; Proposed ADR-0001 v0.2 / ADR-0006 v0.1; OpenAPI v0.1.0
+%% Trace: FR-18-FR-30, FR-33-FR-34, FR-46, FR-53-FR-55, FR-59-FR-61, FR-69; SC-02, SC-03, SC-05-SC-08
+%% UX / server responsibilities are labelled. API keys are relative to /api. Policy and runtime evidence remain unapproved.
 flowchart TD
-    Trigger([User triggers AI Assistant: Ctrl+K or Drawer]) --> OpenDrawer[Open AI Assistant Slide-over Panel]
-    OpenDrawer --> CheckServiceHealth{AI Service Health Check}
-    
-    %% Health Check Branch: AI Service Offline
-    CheckServiceHealth -- Service Down / Timeout --> ShowOfflineBanner[Display Offline Banner: 'AI service unavailable']
-    ShowOfflineBanner --> EnableFallbackSearch[Render Standard Keyword Search Input]
-    EnableFallbackSearch --> UserEntersKeyword[User types search keyword]
-    UserEntersKeyword --> ExecuteLocalSearch[Execute exact keyword search on Documents & Tasks]
-    ExecuteLocalSearch --> ShowSearchResults[Display list of matching documents & tasks]
-    
-    %% Health Check Branch: AI Service Online
-    CheckServiceHealth -- Service OK --> RenderQueryInput[Render Natural Language Query Box]
-    RenderQueryInput --> SubmitQuestion[User enters question: e.g. 'Why was JWT chosen?']
-    SubmitQuestion --> ShowLoadingSkeleton[Show animated thinking skeleton + Progress pulse]
-    
-    ShowLoadingSkeleton --> SendQueryAPI[POST /api/v1/ai/query with User JWT Session]
-    SendQueryAPI --> ServerPermFilter[Server filters candidate chunks strictly by User Auth Scope]
-    
-    ServerPermFilter --> CheckEvidenceFound{Sufficient Evidence Found?}
-    
-    %% Insufficient Evidence Branch (SC-07)
-    CheckEvidenceFound -- No --> RenderInsufficientCard[Render 'Insufficient Evidence' Card]
-    RenderInsufficientCard --> InsufficientDetails[Show message: 'No authoritative documentation found to answer this question. Try refining keywords or check if documentation exists.']
-    RenderInsufficientCard --> CTACreateDoc[Show button: 'Add Document on this topic']
-    
-    %% Sufficient Evidence Branch (SC-02)
-    CheckEvidenceFound -- Yes --> StreamAnswer[Stream / Render Synthesized Answer]
-    StreamAnswer --> AttachCitationChips[Render Interactive Citation Chips: e.g. [ADR-0001 v1.0 #p3]]
-    AttachCitationChips --> RenderFeedbackButtons[Render Feedback Thumbs Up / Down]
-    
-    %% User Interacts with Citation Chip
-    AttachCitationChips --> UserClicksCitation[User clicks Citation Chip: [ADR-0001 v1.0 #p3]]
-    UserClicksCitation --> FetchPassage[Call GET /api/v1/documents/:id/versions/:ver/passages/:pId]
-    FetchPassage --> CheckPassageAuth{Re-validate current permission?}
-    
-    CheckPassageAuth -- Denied (Grant revoked mid-session) --> CitationRevoked[Show modal: '404 - Source unavailable']
-    CheckPassageAuth -- Permitted --> OpenPassageModal[Open Source Inspector Split View]
-    OpenPassageModal --> HighlightText[Display Document exact version and highlight matched passage]
-    OpenPassageModal --> ShowVersionStatus[Show badge: 'CURRENT' or 'SUPERSEDED']
+    Start["User submits POST /knowledge/questions using application session"]
+    Read["1. Workspace checks session and current project/document scope; Knowledge retrieves permitted evidence"]
+    Scope["Current-only by default; explicit labelled history; no Draft; operational facts from current observations"]
+    Enough{"Evidence supports requested claim?"}
+    Insufficient["Insufficient evidence; no hints about hidden sources; capability-aware Create action"]
+    Provider["2. Guarded current access + Knowledge validity check through provider-input transport handoff"]
+    Generate["Wait outside guard; buffer whole answer; no browser token streaming"]
+    Validate["Validate server-assigned exact citations and supported claims; surface accessible conflicts"]
+    Delivery["3. Guarded recheck of entire evidence set including uncited context, session and validity"]
+    Safe{"All evidence remains permitted and valid?"}
+    Withhold["Withhold entire original draft; generic unable-to-deliver state; no source reason"]
+    Retry["Optional bounded new attempt with remaining permitted evidence; repeat checks"]
+    Answer["Guard held through answer response handoff completion or abort; render confirmed answer/conflict"]
+    Click["User opens exact citation"]
+    Citation["4. GET /knowledge/citations/{document_id}/{version_id}/{passage_id}; guarded current protected read"]
+    Inspect["Exact excerpt and version; label Current / Superseded / Archived; no substitution"]
+    Unavailable["Specific Citation unavailable only if surviving identity is readable; OD-04 / API mapping open"]
+    Denied["401 sign-in or identical generic 404 for unknown/denied; withhold protected data"]
+    Authority["Authority failure: fail closed; generic service error; no cached/unrestricted fallback"]
+    AIError["AI dependency error/timeout/budget: explicit failure, no generated answer"]
+    Fallback["Keyword search and document/work UI when own dependencies healthy"]
+    KnowledgeError["Knowledge service/storage outage: documents and keyword search unavailable; Workspace work may continue"]
+    Start --> Read
+    Read -->|Permitted| Scope
+    Read -->|Unauthenticated / denied| Denied
+    Read -->|Unknown authority| Authority
+    Scope --> Enough
+    Enough -->|No| Insufficient
+    Enough -->|Yes| Provider
+    Provider -->|Handoff succeeds| Generate
+    Provider -->|Evidence revoked: exclude before submission| Retry
+    Provider -->|Check failed| Authority
+    Generate -->|Complete| Validate
+    Generate -->|Dependency failed| AIError
+    Validate --> Delivery
+    Delivery --> Safe
+    Safe -->|Yes| Answer
+    Safe -->|Revoked / invalid| Withhold
+    Delivery -->|Check failed| Authority
+    Withhold -->|Retry within budget| Retry
+    Retry --> Read
+    Answer --> Click
+    Click --> Citation
+    Citation -->|Accessible and available| Inspect
+    Citation -->|Readable identity; evidence unavailable| Unavailable
+    Citation -->|Unknown / inaccessible| Denied
+    Citation -->|Check failed| Authority
+    AIError --> Fallback
+    Read -->|Knowledge unavailable| KnowledgeError
+    Citation -->|Knowledge unavailable| KnowledgeError
+    Fallback -->|Keyword dependency unavailable| KnowledgeError

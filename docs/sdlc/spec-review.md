@@ -2,7 +2,7 @@
 
 **Artifact ID:** SPEC-REVIEW-01
 
-**Version/date:** 0.3 Draft · 10 October 2026
+**Version/date:** 0.4 Draft · 11 October 2026
 
 **Status:** Draft; Ready for downstream correction. Not product approval or independent review.
 
@@ -29,6 +29,21 @@ This is a focused corrective re-review of version 0.1, with a scoped 4+1 archite
 Version 0.1 referred to older SAD-03 v0.2 and REG-00 v0.5 snapshots. Those references cannot establish the state of current artifacts. Updating this list alone does not revalidate all earlier findings.
 
 ## Findings and correction owners
+
+### Scoped author correction addendum — 11 October 2026
+
+The three UX flows are now v0.3, four Mermaid/Draw.io flowcharts v0.2, UML-07 v0.5 and REG-00 v0.12. The preceding v0.3 input table and findings below record the prior review snapshot. No independent closure is claimed by this editing pass.
+
+| Review items | Current correction / residual work |
+| --- | --- |
+| D1–D4, D5–D6 / F-02–F-04 | Docs flow uses initial Current, two classifications, per-operation capability and scope checks, immutable revisions, exact API paths and conflict/retirement/revocation branches. Permission matrix and other UX sources still need separate reconciliation. |
+| D4b | Lifecycle and indexing readiness are independent. Registry activation belongs to creation registration, not publication indexing. Publishing is an in-flight UI state; Current/search readiness reflect separate confirmed facts. |
+| A1–A5, P1–P2 / F-01, F-11 | Generic insufficient evidence; four access checkpoints; whole original draft withheld; exact placeholders; guarded citation inspection; capability-aware create action and dependency-specific fallback. Terminal withheld and surviving-identity unavailable-citation wire mappings remain Stage 5 gaps. |
+| B1–B4 / F-04, F-12 | Board diagram already contained resolve/no-Active branches; Markdown now matches them. Both blocker events use the contract endpoint, server validation is explicit, membership loss is handled, and columns match Core. Permission matrix still carries older state/role assumptions. |
+
+Sources: PRD v0.4, UC v0.2, SAD v0.5, Proposed ADR-0001 v0.2/ADR-0006 v0.1, OpenAPI v0.1.0. This restores documented policy rather than making a new architecture decision. Proposed statuses and OD-02/OD-04 remain unchanged. Stage 8 should add/trace assertions for registration pending, Current with failed readiness, stale publication, revocation at all four boundaries, exact unavailable citations, non-disclosing messages, Knowledge outage versus AI outage, both blocker events and membership loss.
+
+Flowcharts are UX/control-flow illustrations, not certified UML activity diagrams. Rendered usability, full workbook review, runtime permission/concurrency tests and provider evaluation remain unexecuted. Flat template paths were absent in this checkout; prompt text was read from the pinned template repository HEAD. Nested template changes were preserved. F-01–F-12 IDs/statuses below are historical until the affected surfaces are re-reviewed.
 
 Severity records the original impact. Status distinguishes source-inspected resolutions from open or pending findings; it is not approval. Ten findings remain open or pending revalidation, including three Blocking findings. F-06 and F-09 are resolved by current source inspection only.
 
