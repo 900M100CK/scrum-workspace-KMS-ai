@@ -6,6 +6,9 @@
 **Inputs:** BRD v1.0; [PRD-01](PRD_SRS.md) v0.4; [PLAN-01](../planning/five-month-plan.md); repository UC skill/prompt/checklist.  
 **Author:** development agent acting sequentially; owner reviews business choices.  
 **Changes v0.1 → v0.2:** Replaced boilerplate trigger/flow template with per-UC specific triggers, detailed numbered main success scenarios, separate alternate (Alt-*) and exception (EX-*) flows, and inline Business Rules. All FR/BR/SC traces, postconditions, relationship notes and handoff statements preserved unchanged.
+**Revision note (12 October 2026, version unchanged):** Corrected the UML relationship specification and `use-case-diagram.drawio` so UC-02, UC-03, UC-07 and UC-13 are associated with their scoped actors instead of Authorised Member; added the FR-35 trace note below. No UC flow, FR/BR/SC trace or postcondition changed.
+
+**Out-of-scope trace (FR-35 / BR-15, Should, P2):** No use case covers the basic Sprint report. PRD-01 keeps FR-35 as Enhanced and [PLAN-01](../planning/five-month-plan.md) lists it as Won't for this release. This is a proposed release overlay, not an approved deferral: the owner has not recorded it under OD-11, and original Core scope stays binding until then. A use case is added only if the owner brings FR-35 into scope.
 
 Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised members/PO/content authors/Sprint managers and scoped inspectors. Identity and AI providers are supporting systems when applicable. Protected cases require a valid session and current resource authority. Sign-in is a separate goal (UC-01), not automatically included in every case; it is a precondition. Actor accountability grants no content access.
 
@@ -672,17 +675,20 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 **System Boundary:** "Scrum Workspace + AI Project KMS"
 
 **Actors:**
-- Primary (left): User, Sprint Manager, Content Author / Publisher, Document Access Manager, Audit / Execution Inspector
+- Primary (left): User, Authorised Member, Project Administrator / Membership Manager, Product Owner, Sprint Manager, Content Author / Publisher, Lifecycle Manager, Document Access Manager, Audit / Execution Inspector
 - Secondary (right): Identity Provider, AI Model API (generation), Embedding Service
-- Actor generalisation: Sprint Manager, Content Author, Document Access Manager, and Audit/Execution Inspector are specialised instances of User (authenticated member); generalise with a solid hollow-triangle arrow.
+- Actor generalisation: Authorised Member is a specialisation of User. Project Administrator / Membership Manager, Product Owner, Sprint Manager, Content Author / Publisher, Lifecycle Manager, Document Access Manager and Audit / Execution Inspector are scoped-capability specialisations of Authorised Member; use a solid hollow-triangle arrow. Because specialisations inherit the parent's associations, Authorised Member is associated only with use cases open to every authorised member (UC-04, UC-08, UC-09, UC-10, UC-12); capability-gated cases (UC-02, UC-03, UC-07, UC-13) are associated only with their scoped actors (BR-01, BR-02, BR-10).
 
 **Associations (solid lines, no arrowhead):**
 - User ↔ UC-01
-- Authorised Member ↔ UC-02, UC-03, UC-04, UC-08, UC-10, UC-13
+- Authorised Member ↔ UC-04, UC-08, UC-09, UC-10, UC-12
+- Project Administrator / Membership Manager ↔ UC-02
+- Product Owner ↔ UC-03
 - Sprint Manager ↔ UC-05
-- Content Author ↔ UC-06, UC-07
+- Content Author / Publisher ↔ UC-06, UC-07
+- Lifecycle Manager ↔ UC-07
 - Document Access Manager ↔ UC-06
-- Authorised Member ↔ UC-09, UC-12
+- Audit / Execution Inspector ↔ UC-13
 - Identity Provider ↔ UC-01
 - AI Model API ↔ UC-09, UC-10, UC-12
 - Embedding Service ↔ UC-09, UC-12
@@ -703,7 +709,7 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 
 **Generalisation:** N/A for use-case generalisation at this time; actor generalisation as noted above.
 
-**Editable diagram:** `docs/sdlc/diagrams/use-case/use-case-diagram.drawio` — created as part of v0.2. No Draw.io validator was run; diagram is a structural specification only.
+**Editable diagram:** `docs/sdlc/diagrams/use-case/use-case-diagram.drawio` — created as part of v0.2; aligned to this actor/association list on 12 October 2026. Only an XML well-formedness and dangling-edge check was run (no Draw.io rendering or UML validator); diagram is a structural specification only.
 
 ### Checklist result (26-point UML 2.0 Benchmark)
 
@@ -740,6 +746,6 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 
 ### Handoff
 
-Shared assumptions and open decisions (OD-02–OD-05, OD-08–OD-11) remain recorded in PRD-01 and are not duplicated here. Architecture may use these use cases with stated gaps; no complete-set approval is claimed. Stage 5 (api-design.md) will inherit the actor/trigger/flow detail to specify endpoint contracts. Stage 8 (test-plan.md) maps each named EX-* flow to a test case.
+Shared assumptions and open decisions (OD-02–OD-05, OD-08–OD-11) remain recorded in PRD-01 and are not duplicated here. Architecture may use these use cases with stated gaps; no complete-set approval is claimed. Stage 5 (api-design.md) will inherit the actor/trigger/flow detail to specify endpoint contracts. Stage 8 (test-plan.md) maps each named EX-* flow to a test case; the proposed matrix is in test-plan.md §UC exception-to-test matrix. FR-35/BR-15 has no UC pending the owner's OD-11 decision.
 
 **Handoff state:** Ready for downstream (Stage 3 SAD, Stage 4 data-design). Needs owner decision on OD-02–OD-04 before Stage 5 contracts and Stage 8 test cases are finalised.
