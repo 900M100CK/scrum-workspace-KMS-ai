@@ -1,4 +1,4 @@
-%% DGM-FLOW-03 v0.2 Draft - 11 October 2026
+%% DGM-FLOW-03 v0.3 Draft - 12 October 2026
 %% Sources: PRD-01 v0.4; UC-02 v0.2; SAD-03 v0.5; Proposed ADR-0001 v0.2 / ADR-0006 v0.1; OpenAPI v0.1.0
 %% Trace: FR-04, FR-10-FR-15, FR-19, FR-39, FR-45-FR-52, FR-59, FR-61; SC-05, SC-06
 %% UX / server responsibilities are labelled. API keys are relative to /api. Policy and runtime evidence remain unapproved.
@@ -26,8 +26,8 @@ flowchart TD
     Manage["Scoped manage-access; independent of content read"]
     Policy["POST /documents/{document_id}/classification or /read-grants; DELETE /documents/{document_id}/read-grants/{user_id}"]
     Revoke["Guarded commit + audit; invalidate access/cache scope; recheck all protected handoffs"]
-    Removal["Membership removal invalidates restricted grants; rejoin restores project-shared only"]
-    Retire["Lifecycle capability + confirmation; POST version /archive or DELETE document"]
+    Removal["Event: Membership removal invalidates restricted grants; rejoin restores project-shared only"]
+    Retire["Lifecycle capability + confirmation; POST /knowledge/documents/{document_id}/versions/{version_id}/archive or DELETE /knowledge/documents/{document_id}"]
     Retired["Archive excludes ordinary retrieval; delete stops active access; stale jobs cannot revive; exact citation rules apply"]
     Start --> Scope
     Scope --> Action
@@ -65,3 +65,4 @@ flowchart TD
     Retire -->|409| Conflict
     Retire -->|Unknown / error| Failure
     Retire -->|Rejected| Denied
+    Draft -->|Revise again: new Draft| Revise

@@ -1,8 +1,9 @@
-%% DGM-FLOW-02 v0.2 Draft - 11 October 2026
+%% DGM-FLOW-02 v0.3 Draft - 12 October 2026
 %% Sources: PRD-01 v0.4; UC-02 v0.2; SAD-03 v0.5; Proposed ADR-0001 v0.2 / ADR-0006 v0.1; OpenAPI v0.1.0
 %% Trace: FR-03, FR-08-FR-09, FR-17, FR-31, FR-33, FR-39, FR-42-FR-44, FR-59, FR-68; SC-01, SC-03, SC-04, SC-06, SC-08
 %% UX / server responsibilities are labelled. API keys are relative to /api. Policy and runtime evidence remain unapproved.
 flowchart TD
+    Filters["Quick filters: All / Blocked Only / My Tasks; permitted cards only; no matches shows empty result"]
     Start["Open board; server checks session and project membership"]
     Active{"Active Sprint exists? At most one"}
     Empty["No active sprint; planning link only with Sprint-management capability"]
@@ -20,12 +21,12 @@ flowchart TD
     Link["Linked source: shared protected-read flow; project-shared OR restricted plus grant; exact version rules"]
     Doc["Show exact permitted document"]
     Hidden["Generic 404; no metadata"]
-    AI["AI outage alone leaves Workspace operations available"]
+    AI["Event: AI outage alone leaves Workspace operations available"]
     Start -->|Permitted| Active
     Start -->|Denied / expired| Loss
     Active -->|No| Empty
     Active -->|Yes| Board
-    Board --> Action
+    Board --> Filters
     Action -->|State / blocker action| Capability
     Capability -->|No| Readonly
     Capability -->|State action allowed| Move
@@ -42,3 +43,4 @@ flowchart TD
     Link -->|Authority / service error| Failure
     Board -->|Removal detected on refresh / update| Loss
     AI -->|Own dependencies healthy| Board
+    Filters -->|Choose filter or keep All| Action

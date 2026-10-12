@@ -1,7 +1,7 @@
 <mxfile host="drawio"><diagram id="DGM-FLOW-02" name="board-flow"><mxGraphModel grid="1" page="1" pageWidth="2680" pageHeight="2540"><root>
 <mxCell id="0"/>
 <mxCell id="1" parent="0"/>
-<mxCell id="diagram-title" value="DGM-FLOW-02 v0.2 Draft | board-flow | 11 October 2026 | PRD v0.4 / SAD v0.5; Proposed policies; rendering unverified" style="text;whiteSpace=wrap;html=0;fontSize=18;" vertex="1" parent="1"><mxGeometry x="60" y="20" width="2560" height="90" as="geometry"/></mxCell>
+<mxCell id="diagram-title" value="DGM-FLOW-02 v0.3 Draft | board-flow | 12 October 2026 | PRD v0.4 / SAD v0.5; Proposed policies; rendering unverified" style="text;whiteSpace=wrap;html=0;fontSize=18;" vertex="1" parent="1"><mxGeometry x="60" y="20" width="2560" height="90" as="geometry"/></mxCell>
 <mxCell id="Start" value="Open board; server checks session and project membership" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" vertex="1" parent="1"><mxGeometry x="1130" y="140" width="360" height="170" as="geometry"/></mxCell>
 <mxCell id="Active" value="Active Sprint exists? At most one" style="rhombus;fillColor=#fff2cc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" vertex="1" parent="1"><mxGeometry x="920" y="400" width="360" height="170" as="geometry"/></mxCell>
 <mxCell id="Empty" value="No active sprint; planning link only with Sprint-management capability" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" vertex="1" parent="1"><mxGeometry x="920" y="660" width="360" height="170" as="geometry"/></mxCell>
@@ -19,12 +19,12 @@
 <mxCell id="Link" value="Linked source: shared protected-read flow; project-shared OR restricted plus grant; exact version rules" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" vertex="1" parent="1"><mxGeometry x="1340" y="1180" width="360" height="170" as="geometry"/></mxCell>
 <mxCell id="Doc" value="Show exact permitted document" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" vertex="1" parent="1"><mxGeometry x="1760" y="1440" width="360" height="170" as="geometry"/></mxCell>
 <mxCell id="Hidden" value="Generic 404; no metadata" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" vertex="1" parent="1"><mxGeometry x="2180" y="1440" width="360" height="170" as="geometry"/></mxCell>
-<mxCell id="AI" value="AI outage alone leaves Workspace operations available" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" vertex="1" parent="1"><mxGeometry x="1130" y="2220" width="360" height="170" as="geometry"/></mxCell>
+<mxCell id="AI" value="Event: AI outage alone leaves Workspace operations available" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" vertex="1" parent="1"><mxGeometry x="1130" y="2220" width="360" height="170" as="geometry"/></mxCell>
 <mxCell id="edge-0" value="Permitted" edge="1" parent="1" source="Start" target="Active" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;"><mxGeometry relative="1" as="geometry"/></mxCell>
 <mxCell id="edge-1" value="Denied / expired" edge="1" parent="1" source="Start" target="Loss" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;"><mxGeometry relative="1" as="geometry"/></mxCell>
 <mxCell id="edge-2" value="No" edge="1" parent="1" source="Active" target="Empty" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;"><mxGeometry relative="1" as="geometry"/></mxCell>
 <mxCell id="edge-3" value="Yes" edge="1" parent="1" source="Active" target="Board" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="edge-4" value="" edge="1" parent="1" source="Board" target="Action" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="edge-4" value="" edge="1" parent="1" source="Board" target="Filters" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;"><mxGeometry relative="1" as="geometry"/></mxCell>
 <mxCell id="edge-5" value="State / blocker action" edge="1" parent="1" source="Action" target="Capability" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;"><mxGeometry relative="1" as="geometry"/></mxCell>
 <mxCell id="edge-6" value="No" edge="1" parent="1" source="Capability" target="Readonly" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;"><mxGeometry relative="1" as="geometry"/></mxCell>
 <mxCell id="edge-7" value="State action allowed" edge="1" parent="1" source="Capability" target="Move" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;"><mxGeometry relative="1" as="geometry"/></mxCell>
@@ -41,4 +41,6 @@
 <mxCell id="edge-18" value="Authority / service error" edge="1" parent="1" source="Link" target="Failure" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;"><mxGeometry relative="1" as="geometry"/></mxCell>
 <mxCell id="edge-19" value="Removal detected on refresh / update" edge="1" parent="1" source="Board" target="Loss" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;"><mxGeometry relative="1" as="geometry"/></mxCell>
 <mxCell id="edge-20" value="Own dependencies healthy" edge="1" parent="1" source="AI" target="Board" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="Filters" value="Quick filters: All / Blocked Only / My Tasks; permitted cards only; no matches shows empty result" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" vertex="1" parent="1"><mxGeometry x="80" y="660" width="360" height="170" as="geometry"/></mxCell>
+<mxCell id="edge-filters-action" value="Choose filter or keep All" edge="1" parent="1" source="Filters" target="Action" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;"><mxGeometry relative="1" as="geometry"/></mxCell>
 </root></mxGraphModel></diagram></mxfile>

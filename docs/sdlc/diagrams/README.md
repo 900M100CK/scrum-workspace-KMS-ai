@@ -1,7 +1,7 @@
 # Central diagram index
 
 **Artifact ID:** UML-07
-**Version/date:** 0.5 Draft - 11 October 2026
+**Version/date:** 0.6 Draft - 12 October 2026
 **Status:** Draft; Ready for downstream inventory use; mapped to Kruchten's 4+1 Architectural View Model; semantic correction and visual review remain open.
 **Source versions:** BRD English v1.0; PRD-01 v0.4; UC-02 v0.2; SAD-03 v0.4 (4+1 View Model); UX sources v0.2; Proposed ADR-0001 v0.2 and ADR-0002–ADR-0006 v0.1; PLAN-01 v0.1.
 
@@ -9,7 +9,15 @@
 
 Each diagram type has a folder: architecture, flowchart, sitemap, use-case and user-journey. Product diagrams live here; origin documents link to them. Prompt/checklist examples remain in SDLC-Prompt-Checklist because they are templates.
 
-The original seven extractions are historical. Four flowcharts now have v0.2 corrected Mermaid sources and matching editable native Draw.io cells; their three UX flow documents are v0.3. These consume PRD-01 v0.4, UC-02 v0.2, SAD-03 v0.5, Proposed ADR-0001 v0.2/ADR-0006 v0.1 and OpenAPI v0.1.0. Other diagrams retain their source snapshots below. Mermaid remains the structural source; update both formats together. The use-case diagram uses Draw.io as its source. Future exports belong beside sources in the matching type folder.
+The original seven extractions are historical. Four flowcharts now have v0.3 corrected Mermaid sources and matching editable native Draw.io cells; Board UX is v0.4 and Docs/AI UX remain v0.3. These consume PRD-01 v0.4, UC-02 v0.2, SAD-03 v0.5, Proposed ADR-0001 v0.2/ADR-0006 v0.1 and OpenAPI v0.1.0. Other diagrams retain their source snapshots below. Mermaid remains the structural source; update both formats together. The use-case diagram uses Draw.io as its source. Future exports belong beside sources in the matching type folder.
+
+## Patch follow-up — 12 October 2026
+
+Applied the owner's diagram-fixes patch content against commit `6854162`, with narrow follow-up corrections. AI withholding now has a terminal generic Unable branch and optional retry requires both budget and safe evidence. The pre-provider retry route also has an explicit stop; the permission diagram mirrors terminal withholding. These are UI/control-flow states, not new API response enums. The unresolved Stage 5 wire mapping remains open. Draft can return to Revise to create a new immutable version; Retire spells out both OpenAPI paths. Removal, Boundary and Board AI outage are explicitly labelled event entries.
+
+Board retains the three columns required by PRD AC-09/ASM-02 and restores All / Blocked Only / My Tasks over authorised cards. Splitting permission-read-flow and changing sitemap/architecture remain deferred. Recommended next order: reconcile sitemap/source-inspection navigation and permissions, then split the permission diagram while preserving checkpoint traceability. Browser navigation routes need not equal HTTP API paths; citation inspection must carry or resolve the exact document/version/passage identity without substitution.
+
+**Checklist/handoff:** Author correction only; no policy or architecture decision changed. Existing Proposed ADR-0001/ADR-0006 remain the basis. Structural checks and test results are recorded in REG-00; rendered arrow routing, full Mermaid-parser verification and runtime/security tests remain separate from node-box checks. Historical findings below are not independently closed by this patch.
 
 ## Scoped flow correction — 11 October 2026
 

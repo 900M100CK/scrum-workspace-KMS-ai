@@ -1,8 +1,9 @@
-%% DGM-FLOW-01 v0.2 Draft - 11 October 2026
+%% DGM-FLOW-01 v0.3 Draft - 12 October 2026
 %% Sources: PRD-01 v0.4; UC-02 v0.2; SAD-03 v0.5; Proposed ADR-0001 v0.2 / ADR-0006 v0.1; OpenAPI v0.1.0
 %% Trace: FR-18-FR-30, FR-33-FR-34, FR-46, FR-53-FR-55, FR-59-FR-61, FR-69; SC-02, SC-03, SC-05-SC-08
 %% UX / server responsibilities are labelled. API keys are relative to /api. Policy and runtime evidence remain unapproved.
 flowchart TD
+    Unable["Generic unable-to-deliver state: no answer, no source reason; user may ask again"]
     Start["User submits POST /knowledge/questions using application session"]
     Read["1. Workspace checks session and current project/document scope; Knowledge retrieves permitted evidence"]
     Scope["Current-only by default; explicit labelled history; no Draft; operational facts from current observations"]
@@ -13,8 +14,8 @@ flowchart TD
     Validate["Validate server-assigned exact citations and supported claims; surface accessible conflicts"]
     Delivery["3. Guarded recheck of entire evidence set including uncited context, session and validity"]
     Safe{"All evidence remains permitted and valid?"}
-    Withhold["Withhold entire original draft; generic unable-to-deliver state; no source reason"]
-    Retry["Optional bounded new attempt with remaining permitted evidence; repeat checks"]
+    Withhold["Withhold entire original draft; no answer content or source reason"]
+    Retry["Bounded new attempt with remaining permitted evidence; repeat all checks"]
     Answer["Guard held through answer response handoff completion or abort; render confirmed answer/conflict"]
     Click["User opens exact citation"]
     Citation["4. GET /knowledge/citations/{document_id}/{version_id}/{passage_id}; guarded current protected read"]
@@ -33,7 +34,7 @@ flowchart TD
     Enough -->|No| Insufficient
     Enough -->|Yes| Provider
     Provider -->|Handoff succeeds| Generate
-    Provider -->|Evidence revoked: exclude before submission| Retry
+    Provider -->|Evidence revoked: exclude; retry chosen with budget and safe evidence| Retry
     Provider -->|Check failed| Authority
     Generate -->|Complete| Validate
     Generate -->|Dependency failed| AIError
@@ -42,7 +43,7 @@ flowchart TD
     Safe -->|Yes| Answer
     Safe -->|Revoked / invalid| Withhold
     Delivery -->|Check failed| Authority
-    Withhold -->|Retry within budget| Retry
+    Withhold -->|Retry chosen with budget and safe evidence| Retry
     Retry --> Read
     Answer --> Click
     Click --> Citation
@@ -54,3 +55,5 @@ flowchart TD
     Read -->|Knowledge unavailable| KnowledgeError
     Citation -->|Knowledge unavailable| KnowledgeError
     Fallback -->|Keyword dependency unavailable| KnowledgeError
+    Withhold -->|No retry, budget exhausted or no safe evidence| Unable
+    Provider -->|Evidence revoked: no retry, budget exhausted or no safe evidence| Unable
