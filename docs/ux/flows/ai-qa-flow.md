@@ -1,7 +1,7 @@
 # User Flow: AI Q&A, Citations & Fallback
 
 **Artifact ID:** UX-FLOW-AI-03\
-**Version/date:** 0.3 Draft · 11 October 2026\
+**Version/date:** 0.4 Draft · 12 October 2026\
 **Status:** Draft correction; not policy approval.\
 **Sources:** PRD-01 v0.4; UC-02 v0.2 (UC-09/UC-10/UC-12); SAD-03 v0.5; Proposed ADR-0001 v0.2 and ADR-0006 v0.1; OpenAPI v0.1.0.\
 **Trace:** BR-07–BR-10, BR-12–BR-14; FR-18–FR-30, FR-32–FR-34, FR-46, FR-53–FR-55, FR-59–FR-61, FR-69; SC-02, SC-03, SC-05–SC-08.
@@ -66,7 +66,9 @@ Withholding/regeneration are interaction states, not new QuestionResult enum val
 | Workspace/session/permission authority fails | Deny protected output; no unrestricted search, cached answer or source fallback. |
 | Network outcome uncertain | Show unavailable/retry guidance, recheck scope on retry; no availability percentage promise. |
 
-DGM-FLOW-01: [Mermaid](../../sdlc/diagrams/flowchart/ai-qa-flow.mmd) · [Draw.io](../../sdlc/diagrams/flowchart/ai-qa-flow.drawio). [Shared permission flow](../../sdlc/diagrams/flowchart/permission-read-flow.mmd) covers all four access checkpoints. Revocation boundary is server transport handoff, not browser rendering; already transmitted data cannot be recalled.
+DGM-FLOW-01: [Mermaid](../../sdlc/diagrams/flowchart/ai-qa-flow.mmd) · [Draw.io](../../sdlc/diagrams/flowchart/ai-qa-flow.drawio). [AI permission checkpoints](../../sdlc/diagrams/flowchart/permission-ai-checkpoints.mmd) (DGM-FLOW-05) cover all four boundaries; citation opening returns to [source reads](../../sdlc/diagrams/flowchart/permission-read-flow.mmd) (DGM-FLOW-04), repeating current checks. Revocation boundary is server transport handoff, not browser rendering; already transmitted data cannot be recalled.
 
 **Assumptions/open decisions:** Proposed OD-02/OD-04 and ADR-0006 remain unaccepted. No saved-answer or feedback-persistence feature is added.
 **Checklist/handoff:** Pass for documented buffered delivery, exact-citation placeholders and non-disclosing states; Gap for terminal withheld/unavailable API mapping, visual/usability and runtime evidence. Ready for Stage 5/8 follow-up. v0.3 addresses A1–A5 and F-01 locally; wider findings need re-review.
+
+**v0.4 correction:** Updated the diagram handoff after the permission-flow split; the four checkpoints and policy assumptions are unchanged.

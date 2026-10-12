@@ -28,3 +28,7 @@ For an existing clean checkout, run `git submodule update --init --recursive` fi
 The upstream checklist commit stores templates at its root. Uncommitted grouped directories in a developer's nested working tree are not CI inputs; see the [template guide](agents/template-guide.md).
 
 The application stack/store/provider ADRs are Proposed. Acceptance criteria and MoSCoW deferrals remain explicit drafts. Context checks are not API conformance, application security or retrieval evidence. See [evaluation plan](eval/README.md) for the 25 synthetic reference cases.
+
+## Reproduce documentation checks
+
+Run `npm ci`, then `npm run docs:lint` and `npm run docs:test` on Node 24+. Development-only dependencies are pinned in the lockfile; the context commands above remain dependency-free. CI runs both harnesses. Sources, native Draw.io pairs and current versions are registered in [diagram manifest](docs/sdlc/diagrams/manifest.json). Update both representations and both current-version tables together. Unsupported types require an explicit adapter; historical snapshots remain intact. The docs:sync-permissions command regenerates only the two permission layouts with ELK; inspect renders after regeneration. These checks do not prove UI accessibility, permission enforcement or factual support.

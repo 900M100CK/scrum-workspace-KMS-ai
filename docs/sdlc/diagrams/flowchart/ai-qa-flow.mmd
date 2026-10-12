@@ -1,4 +1,5 @@
-%% DGM-FLOW-01 v0.3 Draft - 12 October 2026
+%% Origin: docs/ux/flows/ai-qa-flow.md v0.4
+%% DGM-FLOW-01 v0.4 Draft - 12 October 2026
 %% Sources: PRD-01 v0.4; UC-02 v0.2; SAD-03 v0.5; Proposed ADR-0001 v0.2 / ADR-0006 v0.1; OpenAPI v0.1.0
 %% Trace: FR-18-FR-30, FR-33-FR-34, FR-46, FR-53-FR-55, FR-59-FR-61, FR-69; SC-02, SC-03, SC-05-SC-08
 %% UX / server responsibilities are labelled. API keys are relative to /api. Policy and runtime evidence remain unapproved.
@@ -57,3 +58,4 @@ flowchart TD
     Fallback -->|Keyword dependency unavailable| KnowledgeError
     Withhold -->|No retry, budget exhausted or no safe evidence| Unable
     Provider -->|Evidence revoked: no retry, budget exhausted or no safe evidence| Unable
+%% Change: current origin metadata registered for docs:lint; graph semantics retained.

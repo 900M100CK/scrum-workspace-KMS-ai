@@ -1,17 +1,23 @@
 # Central diagram index
 
 **Artifact ID:** UML-07
-**Version/date:** 0.7 Draft - 12 October 2026
+**Version/date:** 0.8 Draft - 12 October 2026
 **Status:** Draft; Ready for downstream inventory use; mapped to Kruchten's 4+1 Architectural View Model; semantic correction and visual review remain open.
-**Source versions:** BRD English v1.0; PRD-01 v0.4; UC-02 v0.2; SAD-03 v0.5 (4+1 View Model); UX flow sources v0.3 (Board v0.4), sitemap v0.3, other UX sources v0.2; Proposed ADR-0001 v0.2 and ADR-0002–ADR-0006 v0.1; PLAN-01 v0.1.
+**Source versions:** BRD English v1.0; PRD-01 v0.4; UC-02 v0.2; SAD-03 v0.5 (4+1 View Model); UX Docs flow v0.3, Board/AI flows v0.4, sitemap, permission matrix and personas v0.3; Proposed ADR-0001 v0.2 and ADR-0002–ADR-0006 v0.1; PLAN-01 v0.1.
+
+## Current UX and diagram correction — 12 October 2026
+
+Permission matrix/personas v0.3 use separate capabilities and project-shared/restricted classifications; journey v0.2 marks all actors/scores as synthetic. DGM-FLOW-04 v0.4 covers source/work reads; DGM-FLOW-05 v0.1 preserves four AI checkpoints, failure and bounded-retry exits. Citation opening returns to DGM-FLOW-04 and repeats all checks. Existing Proposed ADR-0001/ADR-0006 supply the rationale; no API or authority decision changes. Stage 5 wire mappings and owner policy decisions remain open.
+
+The docs:lint command checks real Mermaid grammar, native XML, node labels and directed labelled edge multiplicity, journey sections/actors/scores/order, origin versions and current version tables. Unsupported diagram types fail explicitly. It does not establish claim support, policy enforcement, visual quality or independent approval. See REG-00 for execution evidence. Full UI/UX workbook review and runtime tests remain gaps; UML activity conformance is N/A for these UX flowcharts.
 
 ## Organization
 
 Each diagram type has a folder: architecture, flowchart, sitemap, use-case and user-journey. Product diagrams live here; origin documents link to them. Prompt/checklist examples remain in SDLC-Prompt-Checklist because they are templates.
 
-The original seven extractions are historical. Four flowcharts now have v0.3 corrected Mermaid sources and matching editable native Draw.io cells; Board UX is v0.4 and Docs/AI UX remain v0.3. These consume PRD-01 v0.4, UC-02 v0.2, SAD-03 v0.5, Proposed ADR-0001 v0.2/ADR-0006 v0.1 and OpenAPI v0.1.0. Other diagrams retain their source snapshots below. Mermaid remains the structural source; update both formats together. The use-case diagram uses Draw.io as its source. Future exports belong beside sources in the matching type folder.
+The original seven extractions are historical. AI/Board/Docs flowcharts are v0.4; source reads are DGM-FLOW-04 v0.4 and AI permission checkpoints are DGM-FLOW-05 v0.1. Journey is v0.2. Board/AI UX are v0.4; Docs, sitemap, permission matrix and personas are v0.3. Each Mermaid source has matching native editable Draw.io cells. These consume PRD-01 v0.4, UC-02 v0.2, SAD-03 v0.5, Proposed ADR-0001 v0.2/ADR-0006 v0.1 and OpenAPI v0.1.0. Other diagrams retain their source snapshots below. Mermaid remains the structural source; update both formats together. The use-case diagram uses Draw.io as its source. Future exports belong beside sources in the matching type folder.
 
-## Patch follow-up — 12 October 2026
+## Historical: patch follow-up — 12 October 2026
 
 Applied the owner's diagram-fixes patch content against commit `6854162`, with narrow follow-up corrections. AI withholding now has a terminal generic Unable branch and optional retry requires both budget and safe evidence. The pre-provider retry route also has an explicit stop; the permission diagram mirrors terminal withholding. These are UI/control-flow states, not new API response enums. The unresolved Stage 5 wire mapping remains open. Draft can return to Revise to create a new immutable version; Retire spells out both OpenAPI paths. Removal, Boundary and Board AI outage are explicitly labelled event entries.
 
@@ -19,7 +25,7 @@ Board retains the three columns required by PRD AC-09/ASM-02 and restores All / 
 
 **Checklist/handoff:** Author correction only; no policy or architecture decision changed. Existing Proposed ADR-0001/ADR-0006 remain the basis. Structural checks and test results are recorded in REG-00; rendered arrow routing, full Mermaid-parser verification and runtime/security tests remain separate from node-box checks. Historical findings below are not independently closed by this patch.
 
-## Reviewer follow-up — 12 October 2026
+## Historical: reviewer follow-up — 12 October 2026
 
 DGM-SITE-01 and DGM-ARCH-01 are v0.2 Draft. Sitemap: relaid out as a tree (geometry regenerated; labels and relationships of unchanged nodes retained); added keyword search, scoped audit/trace inspection, the generic 404 node and a manage-access panel under the document; the citation route now carries `documentId/versionId/passageId` to match the OpenAPI citation key; "Team & Grants" became "Team membership" because read grants are per document. Architecture: edges carry trust-boundary labels TB1–TB4 and an annotation lists their credentials, consistency and fail-closed behaviour from SAD-03 sections 3.3 and 5. These are documentation changes: no policy, API or scope decision is made, and route names remain proposals. Mermaid grammar parsing of all seven sources (mermaid 10.9.3) passed; rendered layout, arrow routing and the `Legend` annotation placement have not been inspected.
 
@@ -44,24 +50,26 @@ The system diagram inventory aligns with Philippe Kruchten's 4+1 Architectural V
 | --- | --- | --- | --- | --- |
 | **Logical View** | DGM-ARCH-01 | [Draw.io](architecture/service-composition.drawio) / [Mermaid](architecture/service-composition.mmd) | Service boundaries, component responsibilities, data ownership | [docs/architecture.md](../../architecture.md) §2; BR-01–BR-14; SC-01–SC-08 |
 | **Logical View** | DGM-SITE-01 | [Draw.io](sitemap/application-sitemap.drawio) / [Mermaid](sitemap/application-sitemap.mmd) | Client screen structure, navigation hierarchy, information layout | [docs/ux/sitemap.md](../../ux/sitemap.md) v0.3; SAD-03 §2.1 |
-| **Process View** | DGM-FLOW-01 | [Draw.io](flowchart/ai-qa-flow.drawio) / [Mermaid](flowchart/ai-qa-flow.mmd) | Runtime AI Q&A flow, citation validation, guarded transport fallback | [docs/ux/flows/ai-qa-flow.md](../../ux/flows/ai-qa-flow.md) v0.3; SAD-03 §3.1, §3.2 (Flow 4) |
+| **Process View** | DGM-FLOW-01 | [Draw.io](flowchart/ai-qa-flow.drawio) / [Mermaid](flowchart/ai-qa-flow.mmd) | Runtime AI Q&A flow, citation validation, guarded transport fallback | [docs/ux/flows/ai-qa-flow.md](../../ux/flows/ai-qa-flow.md) v0.4; SAD-03 §3.1, §3.2 (Flow 4) |
 | **Process View** | DGM-FLOW-02 | [Draw.io](flowchart/board-flow.drawio) / [Mermaid](flowchart/board-flow.mmd) | Scrum board mutations, optimistic revisions, blocker events | [docs/ux/flows/board-flow.md](../../ux/flows/board-flow.md) v0.4; SAD-03 §3.2 (Flow 1) |
 | **Process View** | DGM-FLOW-03 | [Draw.io](flowchart/docs-flow.drawio) / [Mermaid](flowchart/docs-flow.mmd) | Document authoring, immutable versioning, Draft exclusion | [docs/ux/flows/docs-flow.md](../../ux/flows/docs-flow.md) v0.3; SAD-03 §3.2 (Flow 2) |
-| **Process View** | DGM-FLOW-04 | [Draw.io](flowchart/permission-read-flow.drawio) / [Mermaid](flowchart/permission-read-flow.mmd) | Authoritative scope resolution, access denial, generic 404 | [docs/ux/permission-matrix.md](../../ux/permission-matrix.md) v0.2; SAD-03 §3.1, §3.2 (Flow 3) |
+| **Process View** | DGM-FLOW-04 | [Draw.io](flowchart/permission-read-flow.drawio) / [Mermaid](flowchart/permission-read-flow.mmd) | Authoritative scope resolution, access denial, generic 404 | [docs/ux/permission-matrix.md](../../ux/permission-matrix.md) v0.3; SAD-03 §3.1, §3.2 (Flow 3) |
+| **Process View** | DGM-FLOW-05 | [Draw.io](flowchart/permission-ai-checkpoints.drawio) / [Mermaid](flowchart/permission-ai-checkpoints.mmd) | Four AI permission checkpoints and citation return to DGM-FLOW-04 | [docs/ux/permission-matrix.md](../../ux/permission-matrix.md) v0.3; SAD-03 §3.1 |
 | **Physical View** | DGM-ARCH-01 (Deployment aspect) | [Draw.io](architecture/service-composition.drawio) / [Mermaid](architecture/service-composition.mmd) | Host processes, PostgreSQL databases, network trust boundaries | [docs/architecture.md](../../architecture.md) §5 |
 | **+1 Scenarios View** | UC-02 diagram | [Draw.io](use-case/use-case-diagram.drawio) | Actors and 13 system use cases driving architectural validation | [UC-02 v0.2](../use-cases.md); SAD-03 §6.1 |
-| **+1 Scenarios View** | DGM-JOURNEY-01 | [Draw.io](user-journey/core-user-journeys.drawio) / [Mermaid](user-journey/core-user-journeys.mmd) | End-to-end user journeys validating cross-view behaviors | [docs/ux/personas.md](../../ux/personas.md) v0.2; SAD-03 §6.1 |
+| **+1 Scenarios View** | DGM-JOURNEY-01 | [Draw.io](user-journey/core-user-journeys.drawio) / [Mermaid](user-journey/core-user-journeys.mmd) | End-to-end user journeys validating cross-view behaviors | [docs/ux/personas.md](../../ux/personas.md) v0.3; SAD-03 §6.1 |
 
 ## Inventory and Trace
 
 | ID | Sources | Purpose | Origin / Trace |
 | --- | --- | --- | --- |
 | DGM-ARCH-01 | [Draw.io](architecture/service-composition.drawio) / [Mermaid](architecture/service-composition.mmd) | Service communication and data ownership | [docs/architecture.md](../../architecture.md) v0.5; BR-01–BR-14; SC-01–SC-08; SAD-03 |
-| DGM-FLOW-01 | [Draw.io](flowchart/ai-qa-flow.drawio) / [Mermaid](flowchart/ai-qa-flow.mmd) | AI Q&A, citation inspection and fallback | [docs/ux/flows/ai-qa-flow.md](../../ux/flows/ai-qa-flow.md) v0.3; BRD BR-06, BR-07, BR-08, BR-09, BR-10, BR-12, BR-13; PRD-01 (FR-16–FR-35, FR-50–FR-63, FR-69, SC-02, SC-07, SC-08); SAD-03; ADR-0001; ADR-0005 |
+| DGM-FLOW-01 | [Draw.io](flowchart/ai-qa-flow.drawio) / [Mermaid](flowchart/ai-qa-flow.mmd) | AI Q&A, citation inspection and fallback | [docs/ux/flows/ai-qa-flow.md](../../ux/flows/ai-qa-flow.md) v0.4; BRD BR-06, BR-07, BR-08, BR-09, BR-10, BR-12, BR-13; PRD-01 (FR-16–FR-35, FR-50–FR-63, FR-69, SC-02, SC-07, SC-08); SAD-03; ADR-0001; ADR-0005 |
 | DGM-FLOW-02 | [Draw.io](flowchart/board-flow.drawio) / [Mermaid](flowchart/board-flow.mmd) | Board actions, blockers and failure branches | [docs/ux/flows/board-flow.md](../../ux/flows/board-flow.md) v0.4; BRD BR-02, BR-03, BR-04; PRD-01 (FR-07–FR-09, FR-42–FR-44, SC-01, SC-03); SAD-03 |
 | DGM-FLOW-03 | [Draw.io](flowchart/docs-flow.drawio) / [Mermaid](flowchart/docs-flow.mmd) | Document authoring, versions and access branches | [docs/ux/flows/docs-flow.md](../../ux/flows/docs-flow.md) v0.3; BRD BR-05, BR-08, BR-10, BR-14; PRD-01 (FR-10–FR-15, FR-45–FR-49, SC-05, SC-06); SAD-03; ADR-0001 |
-| DGM-FLOW-04 | [Draw.io](flowchart/permission-read-flow.drawio) / [Mermaid](flowchart/permission-read-flow.mmd) | Resource visibility by access context | [docs/ux/permission-matrix.md](../../ux/permission-matrix.md) v0.2; BRD BR-01, BR-10, BR-14; PRD-01 (FR-01–FR-04, FR-38–FR-39, FR-48, FR-59, SC-06); ADR-0001; ADR-0006 |
-| DGM-JOURNEY-01 | [Draw.io](user-journey/core-user-journeys.drawio) / [Mermaid](user-journey/core-user-journeys.mmd) | Three illustrative persona journeys | [docs/ux/personas.md](../../ux/personas.md) v0.2; BRD BR-01–BR-15; PRD-01 (FR-01–FR-69, SC-01–SC-08); SAD-03; ADR-0001; ADR-0006 |
+| DGM-FLOW-04 | [Draw.io](flowchart/permission-read-flow.drawio) / [Mermaid](flowchart/permission-read-flow.mmd) | Resource visibility by access context | [docs/ux/permission-matrix.md](../../ux/permission-matrix.md) v0.3; BRD BR-01, BR-10, BR-14; PRD-01 (FR-01–FR-04, FR-38–FR-39, FR-48, FR-59, SC-06); ADR-0001; ADR-0006 |
+| DGM-FLOW-05 | [Draw.io](flowchart/permission-ai-checkpoints.drawio) / [Mermaid](flowchart/permission-ai-checkpoints.mmd) | Retrieval, provider handoff, whole-evidence answer handoff, citation opening | [docs/ux/permission-matrix.md](../../ux/permission-matrix.md) v0.3; FR-14, FR-19–FR-21, FR-28–FR-29, FR-46, FR-55; SC-05, SC-06; ADR-0006 |
+| DGM-JOURNEY-01 | [Draw.io](user-journey/core-user-journeys.drawio) / [Mermaid](user-journey/core-user-journeys.mmd) | Three illustrative persona journeys | [docs/ux/personas.md](../../ux/personas.md) v0.3; BRD BR-01–BR-15; PRD-01 (FR-01–FR-69, SC-01–SC-08); SAD-03; ADR-0001; ADR-0006 |
 | DGM-SITE-01 | [Draw.io](sitemap/application-sitemap.drawio) / [Mermaid](sitemap/application-sitemap.mmd) | Project screen/navigation hierarchy | [docs/ux/sitemap.md](../../ux/sitemap.md) v0.3; BRD BR-01–BR-15; PRD-01 (FR-01–FR-69, SC-01–SC-08); SAD-03; ADR-0001; ADR-0006 |
 | UC-02 diagram | [Draw.io](use-case/use-case-diagram.drawio) | Actors and 13 use cases | [UC-02 v0.2](../use-cases.md); BR-01–BR-14; SC-01–SC-08 |
 
@@ -111,3 +119,27 @@ Current filesystem inspection found eight Draw.io files in the five type folders
 **Checklist result:** Pass for current inventory organization; Gap for the retained semantic, layout and rendering findings. RV-01 through RV-06 and RV-08 remain open. No validator, renderer, application/security/provider test or full semantic review was rerun for this correction.
 
 **Change summary / handoff:** Updated inventory status and distinguished historical source versions and checks from current observations. Stage 9 may record RV-07 as resolved; Stage 6/5 and Stage 7 retain their other correction responsibilities. This is an author self-check, not approval.
+
+## Current artifact versions
+
+This is the current lint inventory. Historical snapshots retain their original versions.
+
+| Artifact ID | Version | Canonical source |
+| --- | --- | --- |
+| UML-07 | v0.8 | [Source](README.md) |
+| REG-00 | v0.15 | [Source](../artifact-register.md) |
+| SAD-03 | v0.5 | [Source](../../architecture.md) |
+| UX-PERM-MATRIX-02 | v0.3 | [Source](../../ux/permission-matrix.md) |
+| UX-PERSONAS-01 | v0.3 | [Source](../../ux/personas.md) |
+| UX-SITEMAP-03 | v0.3 | [Source](../../ux/sitemap.md) |
+| UX-FLOW-AI-03 | v0.4 | [Source](../../ux/flows/ai-qa-flow.md) |
+| UX-FLOW-BOARD-01 | v0.4 | [Source](../../ux/flows/board-flow.md) |
+| UX-FLOW-DOCS-02 | v0.3 | [Source](../../ux/flows/docs-flow.md) |
+| DGM-ARCH-01 | v0.3 | [Source](architecture/service-composition.mmd) |
+| DGM-SITE-01 | v0.3 | [Source](sitemap/application-sitemap.mmd) |
+| DGM-FLOW-01 | v0.4 | [Source](flowchart/ai-qa-flow.mmd) |
+| DGM-FLOW-02 | v0.4 | [Source](flowchart/board-flow.mmd) |
+| DGM-FLOW-03 | v0.4 | [Source](flowchart/docs-flow.mmd) |
+| DGM-FLOW-04 | v0.4 | [Source](flowchart/permission-read-flow.mmd) |
+| DGM-FLOW-05 | v0.1 | [Source](flowchart/permission-ai-checkpoints.mmd) |
+| DGM-JOURNEY-01 | v0.2 | [Source](user-journey/core-user-journeys.mmd) |

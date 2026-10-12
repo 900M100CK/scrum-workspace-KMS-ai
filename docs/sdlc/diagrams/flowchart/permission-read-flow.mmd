@@ -1,10 +1,10 @@
-%% DGM-FLOW-04 v0.3 Draft - 12 October 2026
+%% DGM-FLOW-04 v0.4 Draft - 12 October 2026
+%% Origin: docs/ux/permission-matrix.md v0.3
 %% Sources: PRD-01 v0.4; UC-02 v0.2; SAD-03 v0.5; Proposed ADR-0001 v0.2 / ADR-0006 v0.1; OpenAPI v0.1.0
 %% Trace: FR-01, FR-03-FR-04, FR-14, FR-19-FR-21, FR-28-FR-29, FR-39, FR-46, FR-55, FR-59, FR-61, FR-68; SC-05, SC-06
-%% UX / server responsibilities are labelled. API keys are relative to /api. Policy and runtime evidence remain unapproved.
+%% Scope: source/work reads; AIFlow enters DGM-FLOW-05 Start. Citation checkpoint 4 returns here; all checks repeat. Policy and runtime evidence remain unapproved.
 flowchart TD
-    Unable["Generic unable-to-deliver state: no answer, no source reason; user may ask again"]
-    Start["Protected read or AI request"]
+    Start["Protected source / work read; exact citation entry from DGM-FLOW-05"]
     Session{"Valid authenticated session?"}
     Login["401: sign-in"]
     Member{"Workspace confirms current project membership?"}
@@ -20,17 +20,7 @@ flowchart TD
     Allowed["Knowledge checks exact version, passage and availability inside protected-read handoff guard"]
     View["Return exact permitted source; historical labels; no substitution"]
     Unavailable["Specific Citation unavailable only with surviving-identity permission; otherwise generic 404; API mapping open"]
-    QRead["1. Authorised retrieval: project-shared OR restricted with grant; current membership; Current-only default; no Draft"]
-    PreModel["2. Guarded current access + Knowledge validity through provider transport handoff"]
-    Buffer["Generate outside guard; buffer all output; validate exact evidence identities"]
-    PreAnswer["3. Guarded session/access/validity of entire evidence set through response transport handoff"]
-    Valid{"All evidence still permitted and valid?"}
-    Answer["Deliver answer / conflict with verified citations"]
-    Withhold["Reject revoked provider input or withhold entire original draft; no protected content or source reason"]
-    Citation["4. Open citation: re-enter authenticated protected-read flow using exact locator"]
-    Insufficient["Insufficient evidence; no hidden-source or Draft explanation"]
-    Failure["Explicit AI failure; keyword/docs fallback only if Knowledge healthy; Workspace work if healthy"]
-    Boundary["Event: Revocation/removal commit shares handoff guard; restricted grants never revive on rejoin; already sent data cannot be recalled"]
+    AIFlow["DGM-FLOW-05 Start: authenticated AI request and all four checkpoints"]
     Start --> Session
     Session -->|No| Login
     Session -->|Yes| Member
@@ -53,22 +43,4 @@ flowchart TD
     Allowed -->|Available| View
     Allowed -->|Missing evidence| Unavailable
     Allowed -->|Check error| Authority
-    Type -->|AI Q&A| QRead
-    QRead -->|Insufficient| Insufficient
-    QRead -->|Sufficient| PreModel
-    QRead -->|Check failed| Authority
-    PreModel -->|Handoff permitted| Buffer
-    PreModel -->|Evidence revoked| Withhold
-    PreModel -->|Check failed| Authority
-    Buffer -->|Complete| PreAnswer
-    Buffer -->|Dependency failed| Failure
-    PreAnswer --> Valid
-    PreAnswer -->|Check failed| Authority
-    Valid -->|Yes| Answer
-    Valid -->|No| Withhold
-    Withhold -->|Retry chosen with budget and safe evidence; repeat all checks| QRead
-    Answer --> Citation
-    Citation --> Session
-    Boundary --> PreModel
-    Boundary --> PreAnswer
-    Withhold -->|No retry, budget exhausted or no safe evidence| Unable
+    Type -->|AI Q&A| AIFlow

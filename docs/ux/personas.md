@@ -1,117 +1,63 @@
-# Personas & User Roles (SACW)
+# Personas & User Responsibilities (SACW)
 
-**Artifact ID:** UX-PERSONAS-01  
-**Version/date:** 0.2 Draft · 9 October 2026  
-**Trace:** BRD BR-01–BR-15; PRD-01 (FR-01–FR-69, SC-01–SC-08); SAD-03; ADR-0001; ADR-0006  
-**Scope:** Scrum Workspace and AI Project KMS (Core MVP)
+**Artifact ID:** UX-PERSONAS-01\
+**Version/date:** 0.3 Draft · 12 October 2026\
+**Status:** Illustrative draft; no interviews or measured satisfaction.\
+**Source versions:** BRD English v1.0; PRD-01 v0.4; UC-02 v0.2; SAD-03 v0.5; Proposed ADR-0001 v0.2 / ADR-0006 v0.1.\
+**Trace:** BR-01–BR-15; FR-01–FR-69; SC-01–SC-08.\
+**Scope:** Core user goals and examples; Enhanced reports and Future Work remain outside these journeys.
 
----
+## 1. Responsibilities and access assumptions
 
-## 1. Persona Overview & Role Mapping
+Names and situations are synthetic examples. Scrum responsibilities describe user needs, not system permission enums. All personas need authenticated sessions and current project membership. Document access is project-shared or restricted with an explicit current read grant. Content-write, lifecycle, manage-access, audit-read and trace-read capabilities are separate scoped authorities; titles do not grant them automatically. Action-to-role mapping remains OD-02.
 
-The system enforces strict distinction between **Project Membership** and **Document-Level Permissions** (ADR-0001, FR-03, FR-04). Roles are defined at both Project Scope and Document Classification Scope.
+| Persona | Responsibility / goal | Illustrative capability assumption | Source / AI access |
+| --- | --- | --- | --- |
+| Sarah, Product Owner | Prioritise Backlog and find recorded rationale | Work editing; lifecycle/manage-access only if separately assigned | Only currently permitted sources, including restricted with grant |
+| Alex, Scrum Master | Follow blockers and facilitate Sprint lifecycle | Sprint/blocker actions only if assigned | Current Workspace state; permitted documents explain history |
+| David, Developer | Implement tasks and inspect exact source requirements | Task updates; content-write only for assigned documents | No Draft in retrieval/model context; direct Draft needs content-write and document checks |
+| Maya, stakeholder | Observe permitted work and supporting decisions | Read-only work; scoped inspection only if separately assigned | Restricted reads possible with grant; stakeholder status neither grants nor forbids them |
 
-| Persona / Role | System Role Name | Project Scope Authority | Document Authority | AI Q&A Capability Scope |
-|---|---|---|---|---|
-| **P1: Product Owner (PO)** | `PROJECT_ADMIN` / `PO` | Backlog CRUD, Sprint creation, Member management | Full CRUD on Docs, Classification manager (Public / Internal / Restricted) | Full project corpus including Restricted docs owned |
-| **P2: Scrum Master (SM)** | `SCRUM_MASTER` | Sprint lifecycle (Plan/Start/Complete), Board column & Blocker tracking | Read/Write Docs (Standard), Read Restricted (if granted) | Project corpus, Operational Sprint/Task state query |
-| **P3: Developer / Core Contributor** | `DEVELOPER` | Task status transitions, Work logging, Blocker flag | Read Docs, Create/Edit Technical Specs / Notes, Restricted (opt-in grant only) | Granted corpus + Active Sprint context with exact citations |
-| **P4: Stakeholder / External Auditor** | `STAKEHOLDER_VIEWER` | Read-only Board, Backlog view (no edits, no drag-drop) | Read Public & Internal Docs only (Restricted strictly withheld) | Read-only Q&A over authorized corpus; Restricted passages hidden with 404/no-disclosure |
+Membership and document-access management are separate. An administrator does not automatically read restricted content. Removal invalidates grants; rejoining needs fresh restricted grants. Audit/trace capabilities give no source content access (FR-56/FR-58).
 
----
+## 2. Illustrative profiles
 
-## 2. Detailed Persona Profiles
+### Sarah — Product Owner
 
-### Persona 1: Sarah — The Pragmatic Product Owner (PO)
-- **Archetype / Role:** Product Owner & Project Administrator (`PO` / `PROJECT_ADMIN`).
-- **Background:** Manages business priorities, feature roadmaps, and stakeholder alignment across multiple microservice components.
-- **Goals:**
-  - Maintain a groomed, prioritized backlog with clear acceptance criteria and linked technical docs.
-  - Ensure sensitive architectural or business decisions (e.g. vendor pricing, security audits) remain Restricted to authorized eyes only.
-  - Quick recall of historical trade-offs ("Why did we choose JWT over session cookies in Sprint 2?").
-- **Pain Points:**
-  - Context loss across Sprints when tasks reference decisions made months ago.
-  - Fear of accidental data leakage when team members or stakeholders ask AI questions.
-- **Key Tasks in SACW:**
-  - Create & groom Backlog items (Stories, Tasks, Bugs).
-  - Author and designate Document versions (`Draft` -> `Current` -> `Superseded`).
-  - Manage Project members and document access grants.
-  - Query AI for historical rationale with verified citations.
+Sarah wants ordered Backlog items with clear acceptance criteria and linked documents. Her hypothesised difficulty is remembering recorded rationale across Sprints. An example question is **“What rationale was recorded for the authentication approach?”** It assumes no chosen authentication technology. The answer must use permitted recorded evidence or state insufficient evidence; application stack choices remain Proposed.
 
----
+In the journey Sarah creates a Story, publishes a permitted immutable Draft as Current and observes the former Current as Superseded. Classification changes and revocation require separately assigned manage-access authority. These are human UI mutations, never runtime AI actions (SC-05/SC-06).
 
-### Persona 2: Alex — The Agile Scrum Master (SM)
-- **Archetype / Role:** Scrum Master (`SCRUM_MASTER`).
-- **Background:** Facilitates Scrum ceremonies (Daily Standup, Planning, Review, Retrospective) and shields the team from blockers.
-- **Goals:**
-  - Monitor Sprint health, identify blocked tasks (`is_blocked == true`), and track resolution blockers.
-  - Ensure only 1 Active Sprint runs at a time per project (PRD FR-07, FR-42).
-  - Search past retrospectives and blocker patterns to resolve team impediments.
-- **Pain Points:**
-  - Standups get bogged down trying to remember how previous blockers were unblocked.
-  - Tool friction when updating task states during quick team check-ins.
-  - System outages breaking team workflow.
-- **Key Tasks in SACW:**
-  - Start / Complete Sprints.
-  - Filter board by blockers and inspect blocker rationale.
-  - Use operational queries in AI ("What tasks are currently blocked and what were their flagged reasons?").
-  - Seamless fallback to manual Board view when AI or indexing service is unavailable (FR-33, FR-69).
+### Alex — Scrum Master
 
----
+Alex wants to distinguish a historical plan from a confirmed blocker resolution. Blocked status derives from the latest ordered blocker event. Alex uses All / Blocked Only / My Tasks on authorised cards, and starts/completes a Sprint only with the relevant capability. One Active Sprint remains the proposed PRD policy.
 
-### Persona 3: David — The Focused Developer (Dev)
-- **Archetype / Role:** Core Developer / Software Engineer (`DEVELOPER`).
-- **Background:** Implements user stories, writes code, reviews PRs, and authors technical documentation / ADR drafts.
-- **Goals:**
-  - Understand requirements and acceptance criteria quickly without switching across multiple disjointed tools.
-  - Drag tasks across board columns (`Todo` -> `In Progress` -> `In Review` -> `Done`) with optimistic UI feedback.
-  - Inspect exact citations in AI answers to verify architectural requirements directly at source passages.
-- **Pain Points:**
-  - AI "hallucinations" or vague answers that cost hours of debugging wrong assumptions.
-  - Being locked out of regular task workflows when AI services fail.
-  - Unclear whether a technical document is an active spec or an outdated draft.
-- **Key Tasks in SACW:**
-  - Move tasks on the Scrum Board; flag/unflag blockers with reason text.
-  - Create Markdown docs (e.g., technical drafts, meeting notes).
-  - Ask AI technical questions (e.g., "What is the token payload structure?") and click citation chips to open the exact version/passage in split-view.
+“Which tasks are currently blocked?” uses current Workspace records and an observation locator/time. During provider failure Alex can continue permitted work while Workspace is healthy. Keyword/docs additionally need Knowledge and current permission checks to be healthy (SC-03/SC-08).
 
----
+### David — Developer
 
-### Persona 4: Maya — The Executive Stakeholder / Auditor
-- **Archetype / Role:** Stakeholder / Read-only Auditor (`STAKEHOLDER_VIEWER`).
-- **Background:** High-level project observer, sponsor, or client representative requiring visibility into progress and compliance without editing rights.
-- **Goals:**
-  - View Sprint progress and release scope at a glance.
-  - Query the project knowledge base for high-level status and publicly documented decisions.
-- **Pain Points:**
-  - Overwhelmed by complex editing interfaces or accidentally editing board tickets.
-  - Accessing confidential internal notes or draft items that were not meant for client exposure.
-- **Key Tasks in SACW:**
-  - View read-only Scrum Board and Sprint backlog.
-  - Search documentation and ask AI general project questions.
-  - Receive safe responses where restricted documents return indistinguishable 404 / no metadata (FR-59, SC-06).
+David follows a task to applicable specifications and checks claims against exact immutable passages/versions. With state-change authority he moves work through **To Do → In Progress → Done** and flags/resolves blockers with the relevant capability. Failed/stale mutations show explicit errors/conflicts.
 
----
+A revision creates Draft, excluded from current/historical retrieval and model context. Direct Draft reading needs content-write and document checks. History labels Superseded/Archived. Citation opening renews access checks and never silently substitutes Current for missing evidence (SC-01/SC-02/SC-05).
 
-## 3. High-Level User Journeys (Core Scenarios Trace)
+### Maya — Stakeholder
 
-See the centralized diagram: [editable Draw.io](../sdlc/diagrams/user-journey/core-user-journeys.drawio) · [Mermaid source](../sdlc/diagrams/user-journey/core-user-journeys.mmd).
+Maya wants a readable Board and decision evidence without editing work. Read-only is an illustrative capability assignment, not a permanent persona restriction. Membership allows project-shared reads; restricted reads need explicit grants. Inaccessible protected resources expose the same generic 404 as unknown ones without hidden titles/counts/versions.
 
-Diagram ID: `DGM-JOURNEY-01`. Source content is preserved; see the [diagram review and open gaps](../sdlc/diagrams/README.md).
+Maya inspects audit events/traces only with separately scoped capabilities and still needs source permission for details. Unsupported questions receive insufficient evidence without explaining hidden sources (SC-06/SC-07).
 
----
+## 3. Journey diagram
 
-## 4. UI/UX Implications & Design Principles
+[DGM-JOURNEY-01 Draw.io](../sdlc/diagrams/user-journey/core-user-journeys.drawio) / [Mermaid](../sdlc/diagrams/user-journey/core-user-journeys.mmd) contains three illustrative sequences. Numeric scores are Mermaid display inputs, **not measured satisfaction, research results or evaluation evidence**. Title, actors and Draw.io steps carry that qualification. Capabilities are assumed only for the synthetic example.
 
-1. **Permission-Aware UI Visibility:**
-   - Controls that a persona cannot use (e.g., "Start Sprint" for Dev/Stakeholder, "Edit Classification" for Dev) must either be hidden or disabled with clear permission tooltips.
-   - For restricted entities, the UI must display indistinguishable "Not Found" rather than "Access Denied" to prevent metadata leakage (FR-59).
-2. **Citation-First AI UI:**
-   - AI answers must never be plain chat bubbles. Every claim displays an interactive **Citation Chip** `[DocName vX #P]`.
-   - Clicking a chip opens the source viewer pinned to the exact version and passage.
-   - If AI cannot locate verified sources, it displays an **Insufficient Evidence** card rather than speculative text.
-3. **Resilient Fallback (Human Work Continuity):**
-   - Work management (Backlog, Board, Docs) is decoupled from the AI assistant. If the AI pipeline errors or is pending indexing, the UI shows a non-blocking toast/banner and work continues seamlessly.
+## 4. UI implications and handoff
 
+Controls reflect current action capabilities; servers enforce requests. Citation chips use server-controlled exact locators and only permitted metadata. Buffer answers until the full evidence set passes guarded checks. If any source, including uncited context, is revoked, withhold the whole original draft; stripping a chip or sentence is insufficient.
 
-**v0.2 documentation change:** Moved the inline diagram to the Stage 7 diagram directory, retaining its labels and relationships. Added an editable Draw.io representation; no policy or product scope is changed. Diagram consistency gaps are recorded in the central index.
+Provider outage shows explicit failure and independent keyword access while dependencies are healthy. Knowledge outage makes docs/search unavailable; Workspace operations continue only while their own dependencies are healthy. Indexing-not-ready is distinct from provider outage and denial.
+
+**Assumptions/open decisions:** Personas/pain points await interviews (OD-01); action assignments OD-02; history OD-04; environment OD-06; identity OD-09. No policy or feature is approved.
+
+**Checklist:** Pass for responsibility/capability separation and illustrative-evidence labels; Gap for research, complete UI/UX workbook review, accessibility/usability evaluation and runtime tests. **Handoff:** Ready for scoped Stage 7/8/9 review; consolidated UX-06 entry is still missing.
+
+**v0.3 correction:** Removed administrator/viewer shortcuts, old classifications, authentication-choice assumption, four-column Board and unconditional outage-continuity claims; qualified journey scores/examples.

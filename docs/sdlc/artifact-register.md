@@ -1,6 +1,10 @@
 # SDLC artifact register
 
-## Reviewer follow-up — 12 October 2026
+## Current UX source and automation follow-up — 12 October 2026
+
+REG-00 v0.15 tracks UX permission/personas v0.3, UML-07 v0.8, journey v0.2 and the permission split (DGM-FLOW-04 v0.4 / DGM-FLOW-05 v0.1). The owner authorised these four documentation/tooling tasks. Existing Proposed ADR-0001/ADR-0006 retain the rationale; policy choices, contracts and PRD are unchanged. Runtime and independent review remain unrun. Verification results are recorded after execution below.
+
+## Historical: reviewer follow-up — 12 October 2026
 
 REG-00 v0.14 records UML-07 v0.7: DGM-SITE-01 and DGM-ARCH-01 v0.2 Draft, `docs/ux/sitemap.md` v0.3, and README version/trace reconciliation (SAD-03 v0.5, flow origin versions v0.3/v0.4/v0.3, historical section relabelled). Owner-supplied patch report on commit `d7ae887` plus this change: Mermaid grammar parse of all seven sources passed (mermaid 10.9.3); `.mmd` and `.drawio` node and edge sets compared for the four flowcharts, sitemap and architecture. Local application checks: `git apply --check` passed before application; context lint/check/test passed (9/9) on Node 22.23.0; XML parsed, edge sets matched and vertex rectangles did not overlap for sitemap (21 nodes/20 edges) and architecture (8 nodes/7 edges); `git diff --check` passed. Mermaid grammar parsing was not rerun locally. Not run: rendered layout/arrow routing, Node 24+ context checks, runtime or security tests. Splitting permission-read-flow remains open. Author/reviewer structural checks are not independent approval.
 
@@ -22,22 +26,24 @@ Checklist recovery follow-up, 11 October: the owner supplied the upstream reposi
 
 Remaining work: Stage 5 terminal withheld-answer and specific unavailable-citation response mapping; broader permission-matrix/persona/sitemap correction; full checklist review, rendered/accessible UX inspection, supported-Node context run and runtime permission/version/concurrency/provider tests. Stages 8/9 consume the scoped correction addendum without treating historical findings as independently closed.
 
+## Current register and handoffs
+
 **Artifact ID:** REG-00
-**Version/date:** 0.14 Draft · 12 October 2026
+**Version/date:** 0.15 Draft · 12 October 2026
 **Status:** Draft; Needs owner decision for PRD-01's affected handoffs.
 **Source versions:** [BRD stable entry](../BRD.md) → [English BRD v1.0](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md), [AGENTS.md v1.3](../../AGENTS.md), [workflow](../../agents/WORKFLOW.md), coordinator profile (unversioned), owner's PRD v0.1 review, [v0.3 patch list](../analyst/PRD_SRS_v0.3_patch.md), PRD-01 v0.4 and proposed ADR-0001 v0.2. Patch policy choices remain proposals tied to their OD. No accepted ADRs, interviews, pilot or runtime results were available.
 
 | Stage/ID | Path | Owner role | Version/status | Inputs/dependencies | Planned BR/SC coverage | Open decisions |
 | --- | --- | --- | --- | --- | --- | --- |
-| 0 / REG-00 | `docs/sdlc/artifact-register.md` | SDLC coordinator | 0.14 Draft | BRD v1.0, workflow, owner patch; 12 October flow follow-up | BR-01–BR-15; SC-01–SC-08 planned | OD-01–OD-12 |
+| 0 / REG-00 | `docs/sdlc/artifact-register.md` | SDLC coordinator | 0.15 Draft | BRD v1.0, workflow, owner patch; 12 October flow follow-up | BR-01–BR-15; SC-01–SC-08 planned | OD-01–OD-12 |
 | 1 / PRD-01 | `docs/sdlc/PRD_SRS.md` | PRD/SRS author | 0.4 Draft; Needs owner decision | BRD v1.0, AGENTS v1.3, owner review, v0.3 patch | BR-01–BR-15; SC-01–SC-08 mapped | OD-01–OD-12 |
 | Architecture policy / ADR-0001 | `docs/adr/0001-protected-resource-read-policy.md` | Architect role | 0.2 Proposed; Needs owner decision | BRD v1.0, PRD-01 v0.4, owner review | BR-01, BR-05, BR-08, BR-10, BR-12, BR-14; SC-05, SC-06 | OD-02, OD-04; enforcement design remains Stage 3 |
 | 2 / UC-02 | `docs/sdlc/use-cases.md`; `docs/sdlc/diagrams/use-case/use-case-diagram.drawio` | Use-case author | 0.2 Draft; Ready for downstream (Stage 3/4); Needs owner decision on OD-02–OD-04 before Stage 5 | PRD-01 v0.4; 26-point UML 2.0 checklist | BR-01–BR-14; SC-01–SC-08 | OD-02–OD-05, OD-08–OD-11 |
 | 3 / SAD-03 | `docs/architecture.md`; `docs/sdlc/SAD.md` entry; proposed `docs/adr/` | Architect | Canonical SAD-03 v0.5 Draft (4+1 View Model); SAD-03-ENTRY v0.4 Draft; Needs owner decision | BRD v1.0, PRD-01 v0.4, UC-02 v0.2, ADR-0001 Proposed | BR-01–BR-14; SC-01–SC-08 flows | OD-02–OD-04, OD-06, OD-08–OD-11 |
 | 4 / DATA-04 | `docs/sdlc/data-design.md` | Data designer | 0.1 Draft; logical only | PRD-01 v0.4, UC-02 v0.2, SAD-03 | BR-01–BR-14; SC-01, SC-03, SC-05–SC-06 | OD-02–OD-04, OD-08–OD-11 |
 | 5 / API-05 | `docs/sdlc/api-design.md`; `contracts/` | API designer | 0.1 Draft; interface policy pending | Stages 1–4, including PRD-01 v0.4 | BR-01–BR-14; SC-01–SC-08 | OD-02–OD-05, OD-08–OD-11 |
-| 6 / UX-06 | `docs/ux/` supporting sources; planned `docs/sdlc/ui-ux-spec.md` entry | UI/UX designer | Board v0.4, Docs/AI and sitemap v0.3 Draft; other sources v0.2; entry missing | Flow and sitemap corrections use PRD v0.4, UC v0.2, SAD v0.5, ADR-0001 v0.2/0006 v0.1 and OpenAPI v0.1.0 | BR-01–BR-14; SC-01–SC-08 planned; detailed trace remains open | OD-01–OD-06, OD-08–OD-11; permission-matrix/persona correction and full sitemap review remain open |
-| 7 / UML-07 | `docs/sdlc/diagrams/README.md`; five type folders; `docs/sdlc/diagrams/review.md` | Diagram author | UML-07 v0.7; four flowcharts v0.3 Draft; DGM-SITE-01 and DGM-ARCH-01 v0.2 Draft; DGM-REVIEW-01 v0.2 historical | Corrected flow source versions above; owner patch against 6854162; other diagrams retain recorded snapshots | BR-01–BR-14; SC-01–SC-08 as applicable | Rendered routing and wider semantic review remain open |
+| 6 / UX-06 | `docs/ux/` supporting sources; planned `docs/sdlc/ui-ux-spec.md` entry | UI/UX designer | Board/AI v0.4; Docs, sitemap, permission matrix and personas v0.3 Draft; entry missing | Flow and sitemap corrections use PRD v0.4, UC v0.2, SAD v0.5, ADR-0001 v0.2/0006 v0.1 and OpenAPI v0.1.0 | BR-01–BR-14; SC-01–SC-08 planned; detailed trace remains open | OD-01–OD-06, OD-08–OD-11; full UX semantic/accessibility review remains open |
+| 7 / UML-07 | `docs/sdlc/diagrams/README.md`; five type folders; `docs/sdlc/diagrams/review.md` | Diagram author | UML-07 v0.8; AI/Board/Docs and source reads v0.4; AI checkpoints v0.1; journey v0.2; sitemap/architecture v0.3 Draft; DGM-REVIEW-01 v0.2 historical | Corrected flow source versions above; owner patch against 6854162; other diagrams retain recorded snapshots | BR-01–BR-14; SC-01–SC-08 as applicable | Rendered routing and wider semantic review remain open |
 | 8 / TEST-08 | `docs/sdlc/test-plan.md`, `evaluation-cases.md`, `eval/` | Test/evaluation author | TEST-08 v0.2 Draft; EVAL-CASES-ENTRY v0.2; runtime unrun | BRD and available Stage 1–7 drafts; UX/diagram gaps remain | BR-01–BR-14 Must; BR-15 Should; SC-01–SC-08 planned, full scenario/exception matrix remains a gap | OD-01, OD-06–OD-07, OD-11 |
 | 9 / SPEC-REVIEW-01 (Stage alias REVIEW-09) | `docs/sdlc/spec-review.md` | Consistency reviewer | 0.4 Draft; scoped author correction addendum | Source versions and focused recheck limits are recorded in the review | BR-01–BR-15; SC-01–SC-08; full semantic coverage unproven | F-01–F-12 retained; scoped corrections pending re-review; no self-approval |
 
@@ -81,7 +87,7 @@ Stages 2–5 and Stage 8 have focused drafts. Stage 6 has existing supporting UX
 
 **Handoff:** Needs owner decision for PRD-01 and ADR-0001, including capacity/deferral plan OD-11. Independent journeys/measurements may be drafted under explicit assumptions; affected baselines await the listed policy choices. Update the register on revision/review and do not mark a planned stage complete from an upstream draft.
 
-## Five-month context pack — v0.4 update
+## Historical: five-month context pack — v0.4 update
 
 Owner direction on 8 October 2026: solo capstone, five months, retain minimal microservices and keep budgeting proportionate. [PLAN-01](../planning/five-month-plan.md) and [scope data](../planning/release-scope.json) propose 61 release Must, three Should, four Could and one Won't; original Core remains binding until OD-11 exact deferrals are recorded. [BACKLOG-01](../planning/backlog.md) and [13 specs](../../specs/README.md) assign every original Core FR once.
 
@@ -98,7 +104,7 @@ Affected downstream work: every Stage 2–9 uses PRD v0.4 plus the proposed rele
 
 Handoff: Needs owner decision for scope/policy/stack/store/provider; independently authorised context work is complete and reviewable. Do not infer accepted architecture or a finished five-month application from draft files.
 
-## Context verification evidence — 8 October 2026
+## Historical: context verification evidence — 8 October 2026
 
 The local Node context validator and Node built-in test runner completed: 69 FR/AC pairs, bidirectional BR trace, 61/3/4/1 proposed release tiers, two service contract files with 56 operation IDs, 13 specs, 25 reference cases and nine harness unit tests passed. D0a/D0b counts and P0 membership also passed. Required development-rule sections 4–12 were preserved verbatim when shortening the entry. BRD pointer and complete English edition were checked unchanged. The synthetic corpus is synthetic-0.2; JWT v1 text is retained and a new Current v2 explicitly records its rationale before pilot. No provider output or final answer expectation was changed to make a model run pass.
 
@@ -114,7 +120,7 @@ REG-00 v0.6 records [UML-07 v0.1](diagrams/README.md): eight editable diagrams a
 
 [DGM-REVIEW-01 v0.1](diagrams/review.md) records RV-01–RV-08. UML-07 inventory is v0.2. Current nine-file scan includes an extra root use-case copy; 8/9 pass strict structural checks, while the architecture WD/title overlap fails. Draw.io 32.3.0 is installed but cannot start because of an installation ACL/AppContainer error. Semantic corrections route to Stage 5/6 and layout/source issues to Stage 7. No rendered acceptance or independent Stage 9 completion is claimed; prior checks describe prior snapshots.
 
-## Focused documentation reconciliation — 10 October 2026
+## Historical: focused documentation reconciliation — 10 October 2026
 
 REG-00 v0.9 reconciles the previous header v0.7/table v0.8 mismatch. The v0.6 and v0.1/v0.2 review notes above describe historical snapshots, not current versions or repeated checks. Current links open the latest files; consult version history for old text.
 
@@ -128,7 +134,7 @@ Owner decisions remain open until explicitly recorded; elapsed time cannot promo
 
 These commands ran on installed Node v22.23.0, below the declared Node 24+ requirement; supported-version execution remains unverified. No clean clone, diagram validator/rendering, application/security tests or provider evaluation ran in this revision. Structural checks do not close semantic findings or establish business acceptance.
 
-## 4+1 Architectural View Model restructuring — 10 October 2026
+## Historical: 4+1 Architectural View Model restructuring — 10 October 2026
 
 REG-00 v0.10 records the formal restructuring of canonical architecture [SAD-03 v0.4](../architecture.md) and its SDLC entry [SAD-03-ENTRY v0.3](SAD.md) under Philippe Kruchten's 4+1 Architectural View Model:
 - **Logical View (§2):** Service decomposition (Workspace, Knowledge, Web UI, Provider Relay), strict database-per-service isolation, OpenAPI 3.1.1 schemas.
@@ -138,7 +144,7 @@ REG-00 v0.10 records the formal restructuring of canonical architecture [SAD-03 
 - **Scenarios View / +1 View (§6):** Core scenarios SC-01 through SC-08 unifying and validating the four structural views.
 - **Central Diagram Index ([UML-07 v0.4](diagrams/README.md)):** Added explicit mapping of all system Draw.io and Mermaid diagrams to the 4+1 views.
 
-## Current corrective review - 10 October 2026
+## Historical: corrective review - 10 October 2026
 
 REG-00 v0.11 records SAD-03 v0.5, SAD-03-ENTRY v0.4, SPEC-REVIEW-01 v0.3 and [ANL-REPORT-01 v1.2 Draft](../analyst/architecture_4_plus_1_restructuring_report.md). Earlier version references in dated revision sections are historical snapshots. The current architecture restores full protected handoff/lifecycle conditions, Current-only ordinary retrieval and claim-level insufficient evidence, and replaces grouped trace ranges with explicit PRD BR/FR rows and spec owners.
 
@@ -149,3 +155,27 @@ The working tree now contains a .gitmodules mapping whose URL matches the local 
 Current correction checks: context lint/check/test passed with 9/9 harness tests on Node v22.23.0. The five corrected documents passed 170 local-link checks and version checks; all 69 SAD FR rows match PRD wording and BR sources, with the 68 Core spec owners matching the spec index. `git diff --check` passed. Node 24+, clean clone/init, diagram rendering and runtime/provider tests remain unverified. This is scoped author verification, not approval of the full document set.
 
 Publication preparation found that the pinned upstream checklist commit uses flat root-level files, whereas grouped template paths and additions are uncommitted changes in the local nested repository. The parent commits preserve that gitlink; they do not publish the nested changes. The .gitmodules mapping alone cannot reproduce grouped references, and local harness success depends on those existing local files. Reconcile the template layout and references before claiming clean-clone reproducibility.
+
+## Current artifact versions
+
+This is the current lint inventory. Historical snapshots retain their original versions.
+
+| Artifact ID | Version | Canonical source |
+| --- | --- | --- |
+| UML-07 | v0.8 | [Source](diagrams/README.md) |
+| REG-00 | v0.15 | [Source](artifact-register.md) |
+| SAD-03 | v0.5 | [Source](../architecture.md) |
+| UX-PERM-MATRIX-02 | v0.3 | [Source](../ux/permission-matrix.md) |
+| UX-PERSONAS-01 | v0.3 | [Source](../ux/personas.md) |
+| UX-SITEMAP-03 | v0.3 | [Source](../ux/sitemap.md) |
+| UX-FLOW-AI-03 | v0.4 | [Source](../ux/flows/ai-qa-flow.md) |
+| UX-FLOW-BOARD-01 | v0.4 | [Source](../ux/flows/board-flow.md) |
+| UX-FLOW-DOCS-02 | v0.3 | [Source](../ux/flows/docs-flow.md) |
+| DGM-ARCH-01 | v0.3 | [Source](diagrams/architecture/service-composition.mmd) |
+| DGM-SITE-01 | v0.3 | [Source](diagrams/sitemap/application-sitemap.mmd) |
+| DGM-FLOW-01 | v0.4 | [Source](diagrams/flowchart/ai-qa-flow.mmd) |
+| DGM-FLOW-02 | v0.4 | [Source](diagrams/flowchart/board-flow.mmd) |
+| DGM-FLOW-03 | v0.4 | [Source](diagrams/flowchart/docs-flow.mmd) |
+| DGM-FLOW-04 | v0.4 | [Source](diagrams/flowchart/permission-read-flow.mmd) |
+| DGM-FLOW-05 | v0.1 | [Source](diagrams/flowchart/permission-ai-checkpoints.mmd) |
+| DGM-JOURNEY-01 | v0.2 | [Source](diagrams/user-journey/core-user-journeys.mmd) |

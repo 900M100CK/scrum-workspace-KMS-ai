@@ -1,7 +1,7 @@
 <mxfile host="drawio"><diagram id="DGM-FLOW-03" name="docs-flow"><mxGraphModel grid="1" page="1" pageWidth="3520" pageHeight="3060"><root>
 <mxCell id="0"/>
 <mxCell id="1" parent="0"/>
-<mxCell id="diagram-title" value="DGM-FLOW-03 v0.3 Draft | docs-flow | 12 October 2026 | PRD v0.4 / SAD v0.5; Proposed policies; rendering unverified" style="text;whiteSpace=wrap;html=0;fontSize=18;" vertex="1" parent="1"><mxGeometry x="60" y="20" width="3400" height="90" as="geometry"/></mxCell>
+<mxCell id="diagram-title" value="DGM-FLOW-03 v0.4 Draft | docs-flow | 12 October 2026 | PRD v0.4 / SAD v0.5; Proposed policies; rendering unverified" style="text;whiteSpace=wrap;html=0;fontSize=18;" vertex="1" parent="1"><mxGeometry x="60" y="20" width="3400" height="90" as="geometry"/></mxCell>
 <mxCell id="Start" value="Authenticated member opens document workspace" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" vertex="1" parent="1"><mxGeometry x="1550" y="140" width="360" height="170" as="geometry"/></mxCell>
 <mxCell id="Scope" value="Server scopes list: project-shared or restricted with current read grant; no hidden metadata" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" vertex="1" parent="1"><mxGeometry x="1550" y="400" width="360" height="170" as="geometry"/></mxCell>
 <mxCell id="Action" value="Choose operation" style="rhombus;fillColor=#fff2cc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" vertex="1" parent="1"><mxGeometry x="1550" y="660" width="360" height="170" as="geometry"/></mxCell>

@@ -1,0 +1,21 @@
+{
+  "artifacts": [
+    {"id":"UML-07","path":"docs/sdlc/diagrams/README.md"},
+    {"id":"REG-00","path":"docs/sdlc/artifact-register.md"},
+    {"id":"SAD-03","path":"docs/architecture.md"},
+    {"id":"UX-PERM-MATRIX-02","path":"docs/ux/permission-matrix.md"},
+    {"id":"UX-PERSONAS-01","path":"docs/ux/personas.md"},
+    {"id":"UX-SITEMAP-03","path":"docs/ux/sitemap.md"},
+    {"id":"UX-FLOW-AI-03","path":"docs/ux/flows/ai-qa-flow.md"},
+    {"id":"UX-FLOW-BOARD-01","path":"docs/ux/flows/board-flow.md"},
+    {"id":"UX-FLOW-DOCS-02","path":"docs/ux/flows/docs-flow.md"},
+    {"id":"DGM-ARCH-01","path":"docs/sdlc/diagrams/architecture/service-composition.mmd","drawio":"docs/sdlc/diagrams/architecture/service-composition.drawio","origin":"SAD-03"},
+    {"id":"DGM-SITE-01","path":"docs/sdlc/diagrams/sitemap/application-sitemap.mmd","drawio":"docs/sdlc/diagrams/sitemap/application-sitemap.drawio","origin":"UX-SITEMAP-03"},
+    {"id":"DGM-FLOW-01","path":"docs/sdlc/diagrams/flowchart/ai-qa-flow.mmd","drawio":"docs/sdlc/diagrams/flowchart/ai-qa-flow.drawio","origin":"UX-FLOW-AI-03"},
+    {"id":"DGM-FLOW-02","path":"docs/sdlc/diagrams/flowchart/board-flow.mmd","drawio":"docs/sdlc/diagrams/flowchart/board-flow.drawio","origin":"UX-FLOW-BOARD-01"},
+    {"id":"DGM-FLOW-03","path":"docs/sdlc/diagrams/flowchart/docs-flow.mmd","drawio":"docs/sdlc/diagrams/flowchart/docs-flow.drawio","origin":"UX-FLOW-DOCS-02"},
+    {"id":"DGM-FLOW-04","path":"docs/sdlc/diagrams/flowchart/permission-read-flow.mmd","drawio":"docs/sdlc/diagrams/flowchart/permission-read-flow.drawio","origin":"UX-PERM-MATRIX-02"},
+    {"id":"DGM-FLOW-05","path":"docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.mmd","drawio":"docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.drawio","origin":"UX-PERM-MATRIX-02"},
+    {"id":"DGM-JOURNEY-01","path":"docs/sdlc/diagrams/user-journey/core-user-journeys.mmd","drawio":"docs/sdlc/diagrams/user-journey/core-user-journeys.drawio","origin":"UX-PERSONAS-01"}
+  ]
+}
