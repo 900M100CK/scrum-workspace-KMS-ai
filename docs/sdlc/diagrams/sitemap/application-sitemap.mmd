@@ -1,22 +1,24 @@
+%% DGM-SITE-01 v0.2 Draft - 12 October 2026
+%% Sources: docs/ux/sitemap.md v0.3; PRD-01 v0.4; UC-02 v0.2 (UC-02, UC-06, UC-08, UC-09, UC-13); SAD-03 v0.5; Proposed ADR-0001 v0.2 / ADR-0006 v0.1; OpenAPI v0.1.0
+%% Browser routes need not equal HTTP API paths. Citation inspection carries the exact document/version/passage identity. Route names are proposals pending Stage 5/6 owner review.
 graph TD
     Root["SACW Web App"] --> Auth["/login (Authentication)"]
     Root --> Projects["/projects (Project Directory)"]
-    
-    Projects --> ProjContext["/p/:projectId (Project Scope)"]
-    
+    Root --> NotFound["Generic 404 (unknown or inaccessible; no title, count or version; shared by all protected routes)"]
+    Projects --> ProjContext["/p/:projectId (Project Scope; membership checked)"]
     ProjContext --> WorkNav["Work Navigation"]
     WorkNav --> Backlog["/backlog (Product Backlog & Sprint Planning)"]
-    WorkNav --> Board["/board (Active Sprint Board & Blockers)"]
-    
+    WorkNav --> Board["/board (Active Sprint Board, quick filters & Blockers)"]
     ProjContext --> KMSNav["Knowledge Navigation"]
-    KMSNav --> Docs["/docs (Document Explorer & Drafts)"]
+    KMSNav --> Docs["/docs (Document Explorer; Drafts for content-write only)"]
+    KMSNav --> Search["/search (Keyword search over permitted Current documents and tasks; AI-independent)"]
     Docs --> DocDetail["/docs/:docId (Version Viewer & Editor)"]
-    DocDetail --> DocHistory["/docs/:docId/history (Version History & Diffs)"]
-    
+    DocDetail --> DocHistory["/docs/:docId/history (Explicit Version History)"]
+    DocDetail --> DocAccess["Manage access panel on /docs/:docId (classification and read grants; manage-access capability)"]
     ProjContext --> AdminNav["Administration"]
-    AdminNav --> Members["/settings/members (Team & Grants)"]
+    AdminNav --> Members["/settings/members (Team membership and project roles)"]
     AdminNav --> ProjSettings["/settings/general (Project Details)"]
-    
+    AdminNav --> Audit["/audit (Scoped audit and execution-trace inspection; audit-read / trace-read capability)"]
     ProjContext --> GlobalAI["Global AI Assistant (Slide-over Drawer / Modal)"]
     GlobalAI --> QueryHistory["Query & Citation Session"]
-    GlobalAI --> CitationViewer["/p/:projectId/citation/:citationId (Passage Viewer)"]
+    GlobalAI --> CitationViewer["/citations/:documentId/:versionId/:passageId (Exact passage inspector; guarded protected read)"]

@@ -1,7 +1,7 @@
 # Information Architecture & Sitemap (SACW)
 
 **Artifact ID:** UX-SITEMAP-03  
-**Version/date:** 0.2 Draft · 9 October 2026  
+**Version/date:** 0.3 Draft · 12 October 2026\
 **Trace:** BRD BR-01–BR-15; PRD-01 (FR-01–FR-69, SC-01–SC-08); SAD-03; ADR-0001; ADR-0006  
 **Scope:** Information Architecture, Navigation Hierarchy, Screen Inventory, and Global AI Placement.
 
@@ -33,10 +33,12 @@ The interface uses a 3-tier navigation layout:
     - 📊 **Active Board** (`/p/:projectId/board`) — *Primary landing page if active sprint exists*
   - **Knowledge Base Section:**
     - 📚 **Documents** (`/p/:projectId/docs`)
-    - 🏷️ **Labels & Classifications** (Quick filters: `Public`, `Internal`, `Restricted`)
+    - 🔍 **Search** (`/p/:projectId/search`) — keyword search over permitted Current documents and tasks
+    - 🏷️ **Labels & Classifications** (Quick filters: `Project-shared`, `Restricted`; restricted items appear only with a current read grant)
   - **Settings Section (Role-dependent):**
-    - 👥 **Members & Access** (`/p/:projectId/settings/members`)
+    - 👥 **Members** (`/p/:projectId/settings/members`)
     - ⚙️ **Project Settings** (`/p/:projectId/settings/general`)
+    - 🧾 **Audit** (`/p/:projectId/audit`) — only with audit-read or trace-read capability
   - **System Health Status Footer:**
     - AI Service Indicator (`● AI Ready` / `▲ AI Offline (Fallback Mode)`).
 - **Main Content Area:**
@@ -50,17 +52,22 @@ The interface uses a 3-tier navigation layout:
 
 ## 3. Screen Inventory & Route Registry
 
-| Route Path | Screen Title | Primary Purpose | Authorized Roles | Fallback / Error State |
+| Route Path | Screen Title | Primary Purpose | Access basis | Fallback / Error State |
 |---|---|---|---|---|
-| `/login` | Sign In | Authenticate user session (FR-36) | Public / Unauth | Form validation error |
-| `/projects` | Project Directory | Select or create workspace projects (FR-02) | Authenticated Users | Empty project list card |
-| `/p/:projectId/board` | Active Scrum Board | Drag tasks, inspect columns, flag blockers (SC-01, SC-03) | `PO`, `SM`, `DEV`, `VIEWER` (read-only) | No Active Sprint empty state |
-| `/p/:projectId/backlog`| Product Backlog | Manage backlog items, plan Sprints (FR-05, FR-06) | `PO`, `SM`, `DEV`, `VIEWER` (read-only) | Empty backlog placeholder |
-| `/p/:projectId/docs` | Knowledge Explorer | Browse docs by category & classification (FR-10, FR-14) | `PO`, `SM`, `DEV`, `VIEWER` | Restricted docs hidden (404) |
-| `/p/:projectId/docs/:docId` | Document Viewer/Editor | View current version, edit unpublished drafts (FR-11, FR-47) | `PO`, `SM`, `DEV` (Restricted if granted) | 404 Not Found if unauthorized |
-| `/p/:projectId/docs/:docId/history` | Version History | Inspect historical superseded versions & diffs (SC-05) | `PO`, `SM`, `DEV`, `VIEWER` | Version superseded disclaimer |
-| `/p/:projectId/settings/members` | Member & Grants | Manage team roles and restricted doc access (FR-38, FR-39) | `PO` (Project Admin) | 404 Not Found for other roles |
-| `/p/:projectId/ai` (Drawer) | AI Q&A Assistant | Natural language query with exact citations (SC-02, SC-07) | All members (filtered by grant) | Insufficient Evidence / Outage Fallback |
+| `/login` | Sign In | Authenticate user session (FR-36) | Unauthenticated | Form validation error |
+| `/projects` | Project Directory | Select or create workspace projects (FR-02) | Authenticated user | Empty project list card |
+| `/p/:projectId/board` | Active Scrum Board | Move tasks, filter, flag/resolve blockers (SC-01, SC-03) | Project member; actions by current capability, read-only otherwise | No active Sprint empty state; generic 404 on membership loss |
+| `/p/:projectId/backlog` | Product Backlog | Manage backlog items, plan Sprints (FR-05, FR-06) | Project member; Sprint planning by capability | Empty backlog placeholder |
+| `/p/:projectId/docs` | Document Explorer | Browse project-shared and granted restricted documents (FR-10, FR-14) | Project member; restricted only with a current read grant | Inaccessible documents omitted; no hidden metadata |
+| `/p/:projectId/docs/:docId` | Document Viewer / Editor | View authorised version; revise and publish by capability; manage-access panel for access managers (FR-11, FR-47; UC-06, UC-07) | Project member plus document checks; Draft needs content-write | Generic 404 when unknown or inaccessible |
+| `/p/:projectId/docs/:docId/history` | Version History | Explicit history with Superseded/Archived labels (SC-05) | Same as document read | Generic 404 |
+| `/p/:projectId/search` | Keyword Search | AI-independent keyword search over permitted Current documents and tasks (UC-08; FR-18, FR-34) | Project member | No-match state; unavailable state when Knowledge is down |
+| `/p/:projectId/settings/members` | Team Membership | Manage membership and project roles (UC-02) | Membership-management capability | Generic 404 for other members |
+| `/p/:projectId/settings/general` | Project Settings | Project details | Settings capability | Generic 404 for other members |
+| `/p/:projectId/audit` | Audit & Trace Inspector | Scoped audit events and execution traces (UC-13; FR-56, FR-58) | Audit-read or trace-read capability only | Generic 404 outside scope or without capability |
+| `/p/:projectId/citations/:documentId/:versionId/:passageId` | Citation Passage Inspector | Exact excerpt and version with Current / Superseded / Archived label (UC-09) | Re-checked protected read | Generic 404; specific "Citation unavailable" only when the surviving identity is readable |
+| `/p/:projectId/ai` (Drawer) | AI Q&A Assistant | Buffered answers with exact citations (SC-02, SC-07) | Project member; evidence filtered by current access | Insufficient evidence; AI failure with keyword fallback |
+| any protected route | Generic Not Found | One response for unknown and inaccessible resources | Any | No title, count, version or excerpt |
 
 ---
 
@@ -77,9 +84,11 @@ The interface uses a 3-tier navigation layout:
 - **Floating Modal:** Quick query-and-dismiss for casual checks.
 
 ### 4.3 AI Service Status Awareness (FR-33, FR-69)
-- If the Knowledge/AI service is disconnected or degraded:
+- If only the AI provider path fails (FR-69, FR-34):
   - Top header displays an amber status pill: `▲ KMS Fallback: Keyword Search Only`.
-  - The AI prompt box is disabled with an explanatory note: *"AI service is temporarily unavailable. Standard document search and manual task board operations remain fully functional."*
+  - The AI prompt box is disabled with an explanatory note: *"AI service is temporarily unavailable. Keyword search and manual task board operations remain available while their own services are healthy; if the Knowledge service itself is unavailable, documents and keyword search are unavailable and Workspace board operations continue."*
 
 
 **v0.2 documentation change:** Moved the inline diagram to the Stage 7 diagram directory, retaining its labels and relationships. Added an editable Draw.io representation; no policy or product scope is changed. Diagram consistency gaps are recorded in the central index.
+
+**v0.3 correction:** Replaced Public/Internal/Restricted and PO/SM/DEV/VIEWER shortcuts with project-shared/restricted and capability-based access; added keyword search, audit/trace inspection, generic 404 and the exact-identity citation route; corrected AI-versus-Knowledge outage wording. Route names are proposals; no policy, API or product scope is decided here (OD-02–OD-04/OD-09 remain open).

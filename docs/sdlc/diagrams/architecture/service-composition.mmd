@@ -1,8 +1,11 @@
+%% DGM-ARCH-01 v0.2 Draft - 12 October 2026
+%% Sources: SAD-03 v0.5 (sections 3.3 and 5); Proposed ADR-0004 / ADR-0006. TB1-TB4 are the SAD trust boundaries; Legend is an annotation, not a runtime element.
 flowchart LR
     User[Member] --> UI[Web UI]
-    UI --> W[Workspace gateway and permission authority]
-    W --> WD[(Workspace owned data)]
-    W --> K[Knowledge service]
-    K --> KD[(Knowledge owned data and search)]
-    K --> W
-    W --> Provider[Configured embedding and generation provider]
+    UI -->|TB1 HTTPS| W[Workspace gateway and permission authority]
+    W -->|TB3 DB| WD[(Workspace owned data)]
+    W -->|TB2 internal HTTP| K[Knowledge service]
+    K -->|TB3 DB| KD[(Knowledge owned data and search)]
+    K -->|Policy checks internal| W
+    W -->|TB4 guarded relay| Provider[Configured embedding and generation provider]
+    Legend["Trust boundaries (SAD-03)<br/>TB1 Browser to gateway: HTTPS, same-origin, opaque session cookie plus CSRF<br/>TB2 Gateway to Knowledge: internal HTTP, service key plus validated actor context; Knowledge policy checks to Workspace fail closed (deny)<br/>TB3 Service to its own database: separate credentials, no cross-database writes<br/>TB4 Workspace to provider: HTTPS, guarded relay, server-held key<br/>Only Workspace is publicly exposed in the initial deployment"]
