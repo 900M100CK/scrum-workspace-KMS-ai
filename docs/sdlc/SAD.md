@@ -1,14 +1,14 @@
 # Architecture — stable SDLC entry
 
 **Artifact ID:** SAD-03-ENTRY
-**Version/date:** 0.4 Draft · 10 October 2026
+**Version/date:** 0.5 Draft · 13 October 2026
 **Status:** Draft for owner review; proposed policies/deferrals are not approved.
-**Inputs:** SAD-03 v0.5; PRD-01 v0.4; PLAN-01 v0.1.
+**Inputs:** SAD-03 v0.6; PRD-01 v0.4; PLAN-01 v0.1; ADR-0004 v0.2.
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 Read [the complete architecture](../architecture.md). It is the single design source; this entry preserves the workflow path without duplicating design.
 
-The canonical artifact is **SAD-03 v0.5**; this pointer is **SAD-03-ENTRY v0.4**. Stage 3 owns both under the [workflow](../../agents/WORKFLOW.md).
+The canonical artifact is **SAD-03 v0.6**; this pointer is **SAD-03-ENTRY v0.5**. Stage 3 owns both under the [workflow](../../agents/WORKFLOW.md). ADR-0004's owner-authorised storage foundation has executable migrations and database tests; application behavior and other policy decisions remain draft.
 
 ## 4+1 Architectural View Model Organization
 
@@ -24,4 +24,4 @@ The canonical architecture ([docs/architecture.md](../architecture.md)) is struc
 
 Status: Draft; Needs owner decision. Checklist: Pass for source link and 4+1 structure mapping; Gap for accepted policies and implementation evidence. Handoff: use the canonical architecture and its ADRs for data/API/UI design.
 
-**v0.4 change summary:** Points to SAD-03 v0.5 and its scoped review corrections; this entry makes no approval or implementation claim.
+**v0.5 change summary:** Points to SAD-03 v0.6 and distinguishes the implemented storage foundation from unimplemented application behavior and pending policies.

@@ -1,6 +1,6 @@
 # Scrum Workspace and AI Project KMS
 
-Solo capstone, target five months. This repository currently contains draft requirements/design/contracts, bounded feature specs, a directory scaffold and a dependency-free context harness. It does not yet run the application.
+Solo capstone, target five months. This repository contains draft requirements/design/contracts, bounded feature specs, a context harness and an implemented PostgreSQL storage foundation. It does not yet run the application.
 
 Start with [agent entry](AGENTS.md), [five-month MoSCoW plan](docs/planning/five-month-plan.md), [architecture](docs/architecture.md), [contracts](contracts/README.md) and [feature specs](specs/README.md). The [artifact register](docs/sdlc/artifact-register.md) records status and owner decisions.
 
@@ -27,7 +27,11 @@ For an existing clean checkout, run `git submodule update --init --recursive` fi
 
 The upstream checklist commit stores templates at its root. Uncommitted grouped directories in a developer's nested working tree are not CI inputs; see the [template guide](agents/template-guide.md).
 
-The application stack/store/provider ADRs are Proposed. Acceptance criteria and MoSCoW deferrals remain explicit drafts. Context checks are not API conformance, application security or retrieval evidence. See [evaluation plan](eval/README.md) for the 25 synthetic reference cases.
+ADR-0004's PostgreSQL/pgvector storage foundation is implemented by owner direction; application stack/provider choices remain Proposed. Acceptance criteria and MoSCoW deferrals remain explicit drafts. Context checks are not API conformance, application security or retrieval evidence. See [evaluation plan](eval/README.md) for the 25 synthetic reference cases.
+
+## Run the local database
+
+With Docker running, use `npm run db:init`, `npm run db:up`, then `npm run db:migrate`. The [storage runbook](infra/postgres/README.md) explains credentials, owned databases, reversible migrations and scope boundaries. `npm run db:test` runs real PostgreSQL integration tests in an isolated synthetic container. `npm run db:stop` preserves local data. These commands do not start application handlers or an AI provider.
 
 ## Reproduce documentation checks
 

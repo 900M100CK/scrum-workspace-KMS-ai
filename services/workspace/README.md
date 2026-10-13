@@ -1,6 +1,6 @@
 # Workspace service scaffold
 
-Status: directory/context scaffold only; no application handler or database has been implemented. Own auth/session/policy and Scrum operations under the [architecture](../../docs/architecture.md) and [Workspace contract](../../contracts/openapi/workspace.openapi.json). Read the root agent entry and chosen feature spec before code.
+Status: owned PostgreSQL migrations are implemented; no application handler or permission-authority implementation exists yet. See the [database runbook](../../infra/postgres/README.md). Own auth/session/policy and Scrum operations under the [architecture](../../docs/architecture.md) and [Workspace contract](../../contracts/openapi/workspace.openapi.json). Read the root agent entry and chosen feature spec before code.
 
 Domain modules: sessions, projects/memberships, backlog/tasks/blockers, Sprints, policy, gateway/guarded transport, observations and business audit. Only this service decides permissions. It writes only Workspace data; no Knowledge database import/write. Secrets are runtime inputs. Provider transport runs in a bounded lane distinct from ordinary work.
 

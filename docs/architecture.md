@@ -1,7 +1,7 @@
 # Architecture for the five-month capstone
 
 **Artifact ID:** SAD-03
-**Version/date:** 0.5 Draft · 10 October 2026\
+**Version/date:** 0.6 Draft · 13 October 2026\
 **Status:** Draft for owner review; organized into 4+1 views; proposed policies/deferrals are not approved.\
 **Inputs:** [BRD](BRD.md) v1.0; [PRD](sdlc/PRD_SRS.md) v0.4; [use cases](sdlc/use-cases.md) v0.2; [delivery plan](planning/five-month-plan.md) v0.1; AGENTS rules; owner confirmation to retain minimal microservices.
 **Author:** development agent acting sequentially; owner reviews business choices.
@@ -27,7 +27,7 @@ The design prioritizes four non-negotiable architectural drivers:
 | **D-1: Authorization Integrity** | Enforce project AND document access at named, testable boundaries. | Centralized permission authority; dual-scope filtering; guarded handoff; not-found-equivalent denied reads. No absolute security claim. |
 | **D-2: Evidence Fidelity & Exact Citations** | Cite exact immutable passages and report insufficient evidence; evaluate claim support separately from locator validity. | Stable evidence manifests; citation ID validation; whole-draft withholding upon revocation. No zero-hallucination guarantee. |
 | **D-3: Continuity during AI Outage** | Core work and permitted reads remain usable when AI fails and their own dependencies are healthy. | Explicit question failure and independent keyword search. No transparent automatic redirection is required. |
-| **D-4: Bounded Resource Footprint** | Keep deployment proportionate to one student's workstation and five-month plan. | Two proposed service processes and separate owned databases; stack/store/provider remain Proposed. Local storage does not imply local generation. |
+| **D-4: Bounded Resource Footprint** | Keep deployment proportionate to one student's workstation and five-month plan. | Two proposed service processes and implemented separate owned databases; application stack/provider remain Proposed. Local storage does not imply local generation. |
 
 ### 1.3 Architectural Decisions Summary
 All architectural decisions are tracked via Architecture Decision Records (ADRs):
@@ -37,11 +37,13 @@ All architectural decisions are tracked via Architecture Decision Records (ADRs)
 | Microservices Architecture | Mandate / Owner Direction | Enforces strict domain separation and distinct security boundaries between operational work and AI retrieval. |
 | Workspace & Knowledge Boundary | Proposed [ADR-0002](adr/0002-minimal-microservices.md) | Isolates high-frequency operational mutations from compute-heavy knowledge retrieval and indexing workloads. |
 | Student Tech Stack | Proposed [ADR-0003](adr/0003-student-stack.md) | Single language (Node.js/TypeScript candidate), shared conventions, dependency-free context harness, local execution. |
-| Relational Storage & pgvector | Proposed [ADR-0004](adr/0004-knowledge-store.md) | PostgreSQL hosting separate logical databases; relational integrity for Scrum; pgvector extension for dense retrieval. |
+| Relational Storage & pgvector | Owner-authorised storage foundation; [ADR-0004](adr/0004-knowledge-store.md) v0.2 | PostgreSQL 17.10 hosting separate owned databases; pgvector 0.8.2 exact discovery; real storage integration tests. Application enforcement remains unimplemented. |
 | Bounded AI Provider Pilot | Proposed [ADR-0005](adr/0005-ai-provider-pilot.md) | Single provider configuration, strict pilot budget (20–30 reference cases), synthetic fixtures, provider-independent abstraction. |
 | Protected Handoff Guard | Proposed [ADR-0006](adr/0006-permission-handoff-guard.md) | Serialize permission/lifecycle commits with final validation and protected handoffs at named server boundaries; correctness requires concurrency tests. |
 
-Open policy decisions OD-01 through OD-12 remain proposals awaiting owner validation.
+Open policy decisions remain subject to owner validation. The owner's 13 October request to implement ADR-0004 selects OD-12's storage portion only; application frameworks, providers and product policies are not accepted by this change.
+
+Storage implementation status: [runbook](../infra/postgres/README.md), owned service migrations, exact vector/English full-text SQL queries and database integration tests now exist. The remaining views describe proposed application behavior. In particular, trigram/fusion retrieval, HTTP permission checks and ADR-0006 transport guards are not implemented by the SQL foundation.
 
 ---
 
@@ -205,7 +207,7 @@ Authorized access manager               Workspace Handoff Guard                 
 
 ### 3.3 Boundary Timeouts, Retries and Failures
 
-All timeouts are finite startup-required configuration. The values below are **candidate defaults for pilot calibration**, not accepted specifications. Acceptance limits are selected during pilot evaluation, not universal PRD promises. Actual calibration requires installed stack versions and measured workload (ADR-0003, ADR-0004 remain Proposed).
+All timeouts are finite startup-required configuration. The values below are **candidate defaults for pilot calibration**, not accepted specifications. Acceptance limits are selected during pilot evaluation, not universal PRD promises. Actual calibration requires installed stack versions and measured workload; ADR-0003 remains Proposed, while ADR-0004's tested storage foundation supplies no application latency calibration.
 
 | Boundary | Auth Credential | Consistency | Timeout Config | Retry & Failure Policy |
 | --- | --- | --- | --- | --- |
@@ -315,7 +317,7 @@ The Physical View details the physical infrastructure, node allocation, network 
 |                        v                                 v                    |
 |  +-----------------------------+       +-----------------------------------+  |
 |  |    PostgreSQL Instance      |       | Knowledge Service Process (8001)  |  |
-|  |  (candidate: PostgreSQL 16) |       | - Document Store & Chunking       |  |
+|  |  (storage: PostgreSQL 17)   |       | - Document Store & Chunking       |  |
 |  |  +-----------------------+  |       | - Keyword (trgm) & Vector (pgvec) |  |
 |  |  | workspace_db (DB)     |  |       | - Evidence & Citation Resolution  |  |
 |  |  +-----------------------+  |       +-----------------+-----------------+  |
@@ -474,14 +476,14 @@ The following is an author check of design topics and remaining gaps. It is not 
 
 | View / Aspect | Quality Criteria | Design Status | Evaluation Evidence & Remaining Gaps |
 | --- | --- | --- | --- |
-| **Logical View** | Modularity, separation of concerns, data ownership | **Draft / Gap** | Workspace & Knowledge strict separation; database-per-service; zero runtime joins. Physical schema migrations unrun. |
+| **Logical View** | Modularity, separation of concerns, data ownership | **Draft / Gap** | Owned migrations and cross-database credential negatives executed under ADR-0004. Runtime application boundaries remain unimplemented. |
 | **Process View** | Concurrency safety, race-condition mitigation, timeouts | **Draft / Gap** | ADR-0006 handoff guard; buffered delivery; whole-draft withholding; explicit candidate timeouts. Requires concurrency tests under paused requests. |
 | **Development View** | Codebase maintainability, layer independence | **Draft / Gap** | Monorepo layout; domain isolated from adapters; context harness exists; execution evidence is recorded separately. Application handlers not yet implemented. |
 | **Physical View** | Deployment viability, trust boundary security | **Draft / Gap** | Single developer machine design; 4 distinct trust boundaries; per-service DB users. Sizing remains an unmeasured candidate estimate. |
 | **+1 Scenarios View** | End-to-end requirement validation | **Draft / Gap** | SC-01 through SC-08 described against PRD journeys; complete SC/EX assertion mapping and runtime execution remain open. |
 
 ### 7.3 Open Decisions and Handoff
-- **Pending Owner Decisions:** OD-01 through OD-12 remain open proposals awaiting business confirmation.
+- **Pending Owner Decisions:** Business policies and application stack/provider decisions remain open. OD-12's storage portion is selected and implemented under ADR-0004; this does not approve other proposals.
 - **Downstream Handoff:**
   - Stage 4 (Data Design): Implements physical schemas adhering to logical data ownership (§2.2).
   - Stage 5 (API Design): Finalizes OpenAPI specifications following boundary contracts (§2.3, §3.3).
@@ -492,3 +494,5 @@ The following is an author check of design topics and remaining gaps. It is not 
 ---
 
 **v0.5 corrective review:** Restores complete ADR-0006 handoff/lifecycle rules, Current-only default retrieval, nonempty-but-insufficient evidence behavior, and explicit AI failure. Replaces grouped FR ranges with exact PRD BR/FR responsibility rows; clarifies proposed topology and evidence limits. No business scope, accepted ADR or contract changes. Runtime enforcement, deployment, full SC/EX coverage and diagram semantics remain unverified.
+
+**v0.6 storage implementation:** Records owner-authorised ADR-0004, PostgreSQL 17/pgvector 0.8.2, owned migrations and storage tests. The two-service flow and HTTP contracts are unchanged, so no new application-flow diagram is introduced. Complete application and corpus evaluation evidence remains open.

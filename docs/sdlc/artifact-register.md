@@ -1,6 +1,14 @@
 # SDLC artifact register
 
-## Current UX source and automation follow-up — 12 October 2026
+## Current storage implementation — 13 October 2026
+
+REG-00 v0.16 records the owner's explicit request to implement ADR-0004. ADR-0004 v0.2 selects the PostgreSQL/pgvector storage foundation; SAD-03 v0.6 / SAD-03-ENTRY v0.5 and DATA-04 v0.2 reflect owned physical migrations. Scope includes local database infrastructure, service migrations, migration/test tooling, command wiring and supporting documentation. Shared API contracts, BRD and original Core requirements remain unchanged. OD-12's application-framework portion and other policy/provider decisions remain open; earlier statements that all storage decisions are Proposed are historical inputs.
+
+Real PostgreSQL 17.10 / pgvector 0.8.2 tests passed nine storage scenarios (10 results including the parent): isolation, migration repeat/reverse/drift, operational constraints, immutable evidence, dual-scope exact/keyword discovery, refreshed scope, replacement and stale-job/deletion handling. This is synthetic database evidence, not full application permission, concurrent transport or retrieval-quality evidence. No bounded SP is marked Done. The [storage runbook](../../infra/postgres/README.md) and [ADR-0004](../adr/0004-knowledge-store.md) record reproduction and verification limits. Stage 5/8 must now bind handlers and tests to these storage adapters; Stage 9 still needs independent review.
+
+Supported-version verification used portable Node 24.21.0 without replacing the host installation: context lint/check/test passed (9 tests), database tests passed (10 results), and documentation lint/test passed (7 tests). Initial docs checks failed on the changed SAD origin version; DGM-ARCH-01 v0.4 / UML-07 v0.9 and both version tables now match. Diagram nodes/edges/layout are unchanged. The digest-pinned local database was bootstrapped and migrated successfully. Full application security/provider tests, corpus evaluation, backup restore and rendered diagram review remain unrun.
+
+## Historical UX source and automation follow-up — 12 October 2026
 
 REG-00 v0.15 tracks UX permission/personas v0.3, UML-07 v0.8, journey v0.2 and the permission split (DGM-FLOW-04 v0.4 / DGM-FLOW-05 v0.1). The owner authorised these four documentation/tooling tasks. Existing Proposed ADR-0001/ADR-0006 retain the rationale; policy choices, contracts and PRD are unchanged. Runtime and independent review remain unrun. Verification results are recorded after execution below.
 
@@ -29,21 +37,21 @@ Remaining work: Stage 5 terminal withheld-answer and specific unavailable-citati
 ## Current register and handoffs
 
 **Artifact ID:** REG-00
-**Version/date:** 0.15 Draft · 12 October 2026
+**Version/date:** 0.16 Draft · 13 October 2026
 **Status:** Draft; Needs owner decision for PRD-01's affected handoffs.
 **Source versions:** [BRD stable entry](../BRD.md) → [English BRD v1.0](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md), [AGENTS.md v1.3](../../AGENTS.md), [workflow](../../agents/WORKFLOW.md), coordinator profile (unversioned), owner's PRD v0.1 review, [v0.3 patch list](../analyst/PRD_SRS_v0.3_patch.md), PRD-01 v0.4 and proposed ADR-0001 v0.2. Patch policy choices remain proposals tied to their OD. No accepted ADRs, interviews, pilot or runtime results were available.
 
 | Stage/ID | Path | Owner role | Version/status | Inputs/dependencies | Planned BR/SC coverage | Open decisions |
 | --- | --- | --- | --- | --- | --- | --- |
-| 0 / REG-00 | `docs/sdlc/artifact-register.md` | SDLC coordinator | 0.15 Draft | BRD v1.0, workflow, owner patch; 12 October flow follow-up | BR-01–BR-15; SC-01–SC-08 planned | OD-01–OD-12 |
+| 0 / REG-00 | `docs/sdlc/artifact-register.md` | SDLC coordinator | 0.16 Draft | BRD v1.0, workflow, owner patch; 13 October storage instruction | BR-01–BR-15; SC-01–SC-08 planned | OD-01–OD-12; OD-12 storage portion selected |
 | 1 / PRD-01 | `docs/sdlc/PRD_SRS.md` | PRD/SRS author | 0.4 Draft; Needs owner decision | BRD v1.0, AGENTS v1.3, owner review, v0.3 patch | BR-01–BR-15; SC-01–SC-08 mapped | OD-01–OD-12 |
 | Architecture policy / ADR-0001 | `docs/adr/0001-protected-resource-read-policy.md` | Architect role | 0.2 Proposed; Needs owner decision | BRD v1.0, PRD-01 v0.4, owner review | BR-01, BR-05, BR-08, BR-10, BR-12, BR-14; SC-05, SC-06 | OD-02, OD-04; enforcement design remains Stage 3 |
 | 2 / UC-02 | `docs/sdlc/use-cases.md`; `docs/sdlc/diagrams/use-case/use-case-diagram.drawio` | Use-case author | 0.2 Draft; Ready for downstream (Stage 3/4); Needs owner decision on OD-02–OD-04 before Stage 5 | PRD-01 v0.4; 26-point UML 2.0 checklist | BR-01–BR-14; SC-01–SC-08 | OD-02–OD-05, OD-08–OD-11 |
-| 3 / SAD-03 | `docs/architecture.md`; `docs/sdlc/SAD.md` entry; proposed `docs/adr/` | Architect | Canonical SAD-03 v0.5 Draft (4+1 View Model); SAD-03-ENTRY v0.4 Draft; Needs owner decision | BRD v1.0, PRD-01 v0.4, UC-02 v0.2, ADR-0001 Proposed | BR-01–BR-14; SC-01–SC-08 flows | OD-02–OD-04, OD-06, OD-08–OD-11 |
-| 4 / DATA-04 | `docs/sdlc/data-design.md` | Data designer | 0.1 Draft; logical only | PRD-01 v0.4, UC-02 v0.2, SAD-03 | BR-01–BR-14; SC-01, SC-03, SC-05–SC-06 | OD-02–OD-04, OD-08–OD-11 |
+| 3 / SAD-03 | `docs/architecture.md`; `docs/sdlc/SAD.md` entry; `docs/adr/` | Architect | Canonical SAD-03 v0.6 Draft; SAD-03-ENTRY v0.5; storage foundation implemented | BRD v1.0, PRD-01 v0.4, UC-02 v0.2, ADR-0004 v0.2 | BR-01–BR-14; SC-01–SC-08 flows | OD-02–OD-04, OD-06, OD-08–OD-11; application enforcement |
+| 4 / DATA-04 | `docs/sdlc/data-design.md`; owned service migrations | Data designer | 0.2 Draft; physical foundation and database tests implemented | PRD-01 v0.4, UC-02 v0.2, SAD-03 v0.6, owner ADR-0004 request | BR-01–BR-14; SC-01, SC-03, SC-05–SC-06 storage prerequisites | OD-02–OD-04, OD-08–OD-11; handlers/retention/restore |
 | 5 / API-05 | `docs/sdlc/api-design.md`; `contracts/` | API designer | 0.1 Draft; interface policy pending | Stages 1–4, including PRD-01 v0.4 | BR-01–BR-14; SC-01–SC-08 | OD-02–OD-05, OD-08–OD-11 |
 | 6 / UX-06 | `docs/ux/` supporting sources; planned `docs/sdlc/ui-ux-spec.md` entry | UI/UX designer | Board/AI v0.4; Docs, sitemap, permission matrix and personas v0.3 Draft; entry missing | Flow and sitemap corrections use PRD v0.4, UC v0.2, SAD v0.5, ADR-0001 v0.2/0006 v0.1 and OpenAPI v0.1.0 | BR-01–BR-14; SC-01–SC-08 planned; detailed trace remains open | OD-01–OD-06, OD-08–OD-11; full UX semantic/accessibility review remains open |
-| 7 / UML-07 | `docs/sdlc/diagrams/README.md`; five type folders; `docs/sdlc/diagrams/review.md` | Diagram author | UML-07 v0.8; AI/Board/Docs and source reads v0.4; AI checkpoints v0.1; journey v0.2; sitemap/architecture v0.3 Draft; DGM-REVIEW-01 v0.2 historical | Corrected flow source versions above; owner patch against 6854162; other diagrams retain recorded snapshots | BR-01–BR-14; SC-01–SC-08 as applicable | Rendered routing and wider semantic review remain open |
+| 7 / UML-07 | `docs/sdlc/diagrams/README.md`; five type folders; `docs/sdlc/diagrams/review.md` | Diagram author | UML-07 v0.9; AI/Board/Docs and source reads v0.4; AI checkpoints v0.1; journey v0.2; sitemap v0.3; architecture v0.4 Draft; DGM-REVIEW-01 v0.2 historical | SAD-03 v0.6 storage source reconciliation; other diagrams retain recorded snapshots | BR-01–BR-14; SC-01–SC-08 as applicable | Rendered routing and wider semantic review remain open |
 | 8 / TEST-08 | `docs/sdlc/test-plan.md`, `evaluation-cases.md`, `eval/` | Test/evaluation author | TEST-08 v0.2 Draft; EVAL-CASES-ENTRY v0.2; runtime unrun | BRD and available Stage 1–7 drafts; UX/diagram gaps remain | BR-01–BR-14 Must; BR-15 Should; SC-01–SC-08 planned, full scenario/exception matrix remains a gap | OD-01, OD-06–OD-07, OD-11 |
 | 9 / SPEC-REVIEW-01 (Stage alias REVIEW-09) | `docs/sdlc/spec-review.md` | Consistency reviewer | 0.4 Draft; scoped author correction addendum | Source versions and focused recheck limits are recorded in the review | BR-01–BR-15; SC-01–SC-08; full semantic coverage unproven | F-01–F-12 retained; scoped corrections pending re-review; no self-approval |
 
@@ -162,16 +170,16 @@ This is the current lint inventory. Historical snapshots retain their original v
 
 | Artifact ID | Version | Canonical source |
 | --- | --- | --- |
-| UML-07 | v0.8 | [Source](diagrams/README.md) |
-| REG-00 | v0.15 | [Source](artifact-register.md) |
-| SAD-03 | v0.5 | [Source](../architecture.md) |
+| UML-07 | v0.9 | [Source](diagrams/README.md) |
+| REG-00 | v0.16 | [Source](artifact-register.md) |
+| SAD-03 | v0.6 | [Source](../architecture.md) |
 | UX-PERM-MATRIX-02 | v0.3 | [Source](../ux/permission-matrix.md) |
 | UX-PERSONAS-01 | v0.3 | [Source](../ux/personas.md) |
 | UX-SITEMAP-03 | v0.3 | [Source](../ux/sitemap.md) |
 | UX-FLOW-AI-03 | v0.4 | [Source](../ux/flows/ai-qa-flow.md) |
 | UX-FLOW-BOARD-01 | v0.4 | [Source](../ux/flows/board-flow.md) |
 | UX-FLOW-DOCS-02 | v0.3 | [Source](../ux/flows/docs-flow.md) |
-| DGM-ARCH-01 | v0.3 | [Source](diagrams/architecture/service-composition.mmd) |
+| DGM-ARCH-01 | v0.4 | [Source](diagrams/architecture/service-composition.mmd) |
 | DGM-SITE-01 | v0.3 | [Source](diagrams/sitemap/application-sitemap.mmd) |
 | DGM-FLOW-01 | v0.4 | [Source](diagrams/flowchart/ai-qa-flow.mmd) |
 | DGM-FLOW-02 | v0.4 | [Source](diagrams/flowchart/board-flow.mmd) |

@@ -1,0 +1,2 @@
+# Docker entrypoint scripts must remain executable by the Linux shell on Windows checkouts.
+infra/postgres/*.sh text eol=lf

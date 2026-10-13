@@ -7,6 +7,12 @@
     "node": ">=24"
   },
   "scripts": {
+    "db:init": "node scripts/database.mjs init",
+    "db:up": "node scripts/database.mjs up",
+    "db:migrate": "node scripts/database.mjs migrate",
+    "db:rollback": "node scripts/database.mjs rollback",
+    "db:stop": "node scripts/database.mjs stop",
+    "db:test": "node --test tests/storage.test.mjs",
     "context:check": "node scripts/verify-context.mjs",
     "context:lint": "node --check scripts/verify-context.mjs && node --check tests/context.test.mjs",
     "context:test": "node --test tests/context.test.mjs",
@@ -14,7 +20,7 @@
     "docs:test": "node --test tests/docs.test.mjs",
     "docs:sync-permissions": "node scripts/sync-permission-diagrams.mjs"
   },
-  "description": "Dependency-free specification/contract harness; application services are not implemented.",
+  "description": "Specification/contract harness and PostgreSQL storage foundation; application handlers are not implemented.",
   "devDependencies": {
     "@xmldom/xmldom": "0.9.12",
     "elkjs": "0.12.0",
