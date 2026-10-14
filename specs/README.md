@@ -1,9 +1,9 @@
 # Feature specifications and execution rules
 
 **Artifact ID:** SPEC-INDEX  
-**Version/date:** 0.1 Draft · 8 October 2026  
-**Status:** Draft for owner review; proposed policies/deferrals are not approved.  
-**Inputs:** PRD-01 v0.4; [PLAN-01](../docs/planning/five-month-plan.md); [architecture](../docs/architecture.md); [contracts](../contracts/README.md).  
+**Version/date:** 0.2 Draft · 13 October 2026\
+**Status:** Draft for owner review; ADR-0007–ADR-0011 direction is owner-confirmed; application acceptance remains unproven.\
+**Inputs:** PRD-01 v0.5; [PLAN-01](../docs/planning/five-month-plan.md); [architecture](../docs/architecture.md); [contracts](../contracts/README.md).\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 Read AGENTS and full rules, then one spec/contract. All 13 specs are Draft/Unimplemented. Shared contracts have one editing owner at a time. No agents are spawned by this plan. Context checks are available; application tests are not wired yet.
@@ -16,7 +16,7 @@ Read AGENTS and full rules, then one spec/contract. All 13 specs are Draft/Unimp
 | [SP-04](004-update-task.md) | Update work state and record blockers | SP-03 | 1 |
 | [SP-05](005-sprint-lifecycle.md) | Plan, start and complete a basic Sprint | SP-04 | 2 |
 | [SP-06](006-document-access.md) | Create restricted knowledge and manage its access | SP-02, SP-11 | 2 |
-| [SP-07](007-version-publication.md) | Revise, publish and retire a knowledge version | SP-06 | 2 |
+| [SP-07](007-version-publication.md) | Revise and retire a knowledge version | SP-06 | 2 |
 | [SP-08](008-linked-keyword-search.md) | Find linked knowledge without AI | SP-06, SP-03 | 2 |
 | [SP-09](009-cited-question.md) | Answer a question with exact accessible evidence | SP-07, SP-08, SP-11 | 3 |
 | [SP-10](010-current-work-question.md) | Answer a current work-state question | SP-04, SP-09 | 3 |

@@ -1,9 +1,9 @@
 # Plan, start and complete a basic Sprint
 
 **Artifact ID:** SP-05  
-**Version/date:** 0.1 Draft · 8 October 2026  
-**Status:** Draft for owner review; proposed policies/deferrals are not approved.  
-**Inputs:** PRD-01 v0.4; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-05--plan-start-and-complete-a-basic-sprint); [contract pack](../contracts/README.md); PLAN-01 v0.1.  
+**Version/date:** 0.2 Draft · 13 October 2026\
+**Status:** Draft for owner review; ADR-0007–ADR-0011 direction is owner-confirmed; application acceptance remains unproven.\
+**Inputs:** PRD-01 v0.5; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-05--plan-start-and-complete-a-basic-sprint); [contract pack](../contracts/README.md); PLAN-01 v0.2.\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 2.  
@@ -26,7 +26,7 @@ Input: valid session, operation-specific fields, expected revision and scoped id
 2. An item cannot belong to two Planned/Active Sprints.
 3. Completion keeps completed work associated and returns unfinished work without marking it Done.
 
-Proposed optional five-month rows: FR-66 Could, FR-67 Could. Omission needs recorded OD-11 approval and altered Core gate.
+Owner-confirmed optional release rows (ADR-0010): FR-66 Could, FR-67 Could. ADR-0010 records the exact Core-gate exceptions; all other release Must ACs remain required.
 
 ## Allowed paths and Done
 
@@ -38,4 +38,8 @@ Done requires the matching PRD ACs exercised on real handlers/persisted state; r
 
 ## Assumptions/checklist/handoff
 
-Uses proposed OD-02–OD-04/OD-09/OD-12 and ADRs. Pass for goal/trace/input-output/edges/paths/Done; Gap for accepted policy/contract/stack and runtime tests. Handoff: Needs owner decision for affected baselines; authorised context work can proceed.
+Uses owner-confirmed ADR-0007–ADR-0011; remaining delegation/history, OD-09 identity and OD-12 framework details stay open. Pass for goal/trace/input-output/edges/paths/Done; Gap for accepted policy/contract/stack and runtime tests. Handoff: Needs owner decision for affected baselines; authorised context work can proceed.
+
+## Multiple-selection clarification - 14 October 2026
+
+ADR-0014 preserves multiple task selection and per-task results. The UI invokes allocateTask separately with a distinct stable key/payload per item and aggregates confirmed allocated/rejected outcomes. Unknown transport outcomes stay reconciling until the same-key outcome is resolved; never relabel a possible commit as failure or repeat the whole selection with fresh keys. Earlier successes remain committed. Recheck authority, lifecycle, expected revision and exclusive current allocation for each item; hide inaccessible task and competing-Sprint metadata. Test mixed valid/conflicting selection, lost response replay, permission change between items and reconnect. No batch endpoint or runtime evidence is claimed.

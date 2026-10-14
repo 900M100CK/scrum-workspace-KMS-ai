@@ -1,9 +1,9 @@
 # Logical data and lifecycle design
 
 **Artifact ID:** DATA-04  
-**Version/date:** 0.2 Draft · 13 October 2026
+**Version/date:** 0.3 Draft · 13 October 2026
 **Status:** Draft for owner review; proposed policies/deferrals are not approved.
-**Inputs:** PRD-01 v0.4; UC-02 v0.2; [SAD-03](../architecture.md) v0.6; [logical entities](../../contracts/data-model.json) v0.1; owner-authorised ADR-0004 implementation.
+**Inputs:** PRD-01 v0.5 and owner amendments; UC-02 v0.3; [SAD-03](../architecture.md) v0.7; [logical entities](../../contracts/data-model.json) v0.2; owner-authorised ADR-0004 implementation.
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 ## Ownership and relationships
@@ -36,8 +36,7 @@ Workspace also owns CapabilityGrant (grant_id, subject/project/resource/action/v
 | State/action | Result | Ordinary/history/context |
 | --- | --- | --- |
 | Create source | initial Current | Current permitted source eligible |
-| Revise | new immutable Draft | excluded everywhere; content-write-only direct viewing |
-| Publish Draft | replacement Current; old Current Superseded | current scope sees replacement; history deliberately sees old |
+| Revise | atomically insert new immutable Current; previous Current becomes Superseded; update pointer | current scope sees replacement; explicit history sees old; no separate publish operation |
 | Archive | Current/Superseded → Archived | ordinary excluded; permitted labelled history |
 | Delete | active access unavailable; tombstone retained per policy | no read/retrieval/new context; old citation never substitutes |
 
@@ -62,3 +61,19 @@ SQL functions filter the supplied project AND document scope. Exact discovery ma
 Checklist review uses the repository SQL/VectorDB prompts, `Database_Design_Checklist.xlsx` and `Checklist_Database Design Review.xlsx`. Pass: owned objects, relational keys, separation of immutable evidence, migration replay/rollback, configured vector shape and scoped-query negatives. Gap: empirical workload/growth, full foreign-key/query-plan tuning, final policy mapping, encryption/backup restore/retention, full application audit enforcement and concurrent transport tests. N/A: separate polyglot/NoSQL/graph infrastructure, sharding/partitioning/replication and ANN tuning; no measured need in this foundation. These are author checks, not independent approval.
 
 Handoff: storage is available for bounded handler implementation; preserve the remaining permission/lifecycle/retention decisions. SP-06/SP-07/SP-09, business ACs and the full data design are not declared complete by database tests.
+
+## Owner-confirmed policy follow-up — 13 October 2026
+
+ADR-0007–ADR-0011 govern the new target. Workspace allocates document identity and stores registered policy plus scoped initial capabilities and the restricted-author read grant in one transaction. `document_policy.permission_revision` is the logical ACL revision; `blocker_event.sequence` orders per-task history. No duplicate ACL revision or blocker table is added. Active registry means policy exists, not that content is readable. Knowledge content availability plus current Workspace permission are both required. Internal policy/state reads remain authenticated and scoped without reacquiring the guard; source/citation output remains guarded.
+
+Owned migration 002 pairs remove the product Draft/pending registration states without editing applied migration 001. Legacy Draft/pending rows abort upgrade pending explicit reconciliation. SQL rollback preserves evidence/policy rows; the all-migrations CLI rollback is still destructive. The 12-result database suite passed in an isolated synthetic container. Handlers, initial capability/grant transaction composition, guard races and orphan cleanup remain unimplemented. ADR-0013 resolves surviving identity entitlement using current membership and retained read policy. Physical retention remains unresolved.
+
+## Durable evidence and inspection follow-up — 14 October 2026
+
+ADR-0012 requires each mutation's audit event or durable pending audit delivery in the same owning-service transaction as business state. Audit sink delivery may be asynchronous/idempotent, but failure to store the local minimum prevents commit. AI run identity and exact evidence manifest must be durable before protected provider/answer handoffs; unavailable optional metrics are labelled, not fabricated. Existing tables/storage tests do not yet prove this transaction composition or failure boundary; adapter/schema-fit verification remains required before handlers.
+
+Scoped audit-read with current project membership permits event actor/action/entity identity/time without document-read. Protected title/content/before-after references remain redacted; use null for inaccessible references in the current AuditEvent contract. This bounded inspection entitlement cannot feed unrestricted retrieval/provider input or grant direct source/citation access. Trace-read alone does not inherit it. Store protected event payload separately from the response projection; exact physical projection/retention enforcement remains to be verified.
+
+## Schema fit review - 14 October 2026
+
+[DATA-FIT-01](data-policy-fit-review.md) records actual column/constraint/privilege evidence against current policies. Existing fields support completed allocation preservation and ADR-0017 atomic grant invalidation/unassignment, but no handlers prove them. Immutable per-handoff manifest/entity-kind, physical-purge locator tombstones and optional link soft-removal remain concrete schema/protocol design gaps. No applied migration was changed.

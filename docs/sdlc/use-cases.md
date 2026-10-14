@@ -1,14 +1,14 @@
 # Goal-level use cases for the five-month release
 
 **Artifact ID:** UC-02  
-**Version/date:** 0.2 Draft · 9 October 2026  
-**Status:** Draft for owner review; proposed policies/deferrals are not approved.  
-**Inputs:** BRD v1.0; [PRD-01](PRD_SRS.md) v0.4; [PLAN-01](../planning/five-month-plan.md); repository UC skill/prompt/checklist.  
+**Version/date:** 0.3 Draft · 14 October 2026
+**Status:** Owner-confirmed ADR-0007–ADR-0011 direction; remaining policy and application evidence gaps are explicit.
+**Inputs:** BRD v1.0; [PRD-01](PRD_SRS.md) v0.5; [PLAN-01](../planning/five-month-plan.md) v0.2; ADR-0007–ADR-0011; repository UC prompt/checklist.
 **Author:** development agent acting sequentially; owner reviews business choices.  
 **Changes v0.1 → v0.2:** Replaced boilerplate trigger/flow template with per-UC specific triggers, detailed numbered main success scenarios, separate alternate (Alt-*) and exception (EX-*) flows, and inline Business Rules. All FR/BR/SC traces, postconditions, relationship notes and handoff statements preserved unchanged.
 **Revision note (12 October 2026, version unchanged):** Corrected the UML relationship specification and `use-case-diagram.drawio` so UC-02, UC-03, UC-07 and UC-13 are associated with their scoped actors instead of Authorised Member; added the FR-35 trace note below. No UC flow, FR/BR/SC trace or postcondition changed.
 
-**Out-of-scope trace (FR-35 / BR-15, Should, P2):** No use case covers the basic Sprint report. PRD-01 keeps FR-35 as Enhanced and [PLAN-01](../planning/five-month-plan.md) lists it as Won't for this release. This is a proposed release overlay, not an approved deferral: the owner has not recorded it under OD-11, and original Core scope stays binding until then. A use case is added only if the owner brings FR-35 into scope.
+**Out-of-scope trace (FR-35 / BR-15, Should, P2):** No use case covers the basic Sprint report. PRD-01 keeps FR-35 as Enhanced and PLAN-01 lists it as Won't for this release under owner-confirmed ADR-0010. Sixty release Must requirements remain binding; optional FR traces below preserve requirements without adding them to that gate.
 
 Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised members/PO/content authors/Sprint managers and scoped inspectors. Identity and AI providers are supporting systems when applicable. Protected cases require a valid session and current resource authority. Sign-in is a separate goal (UC-01), not automatically included in every case; it is a precondition. Actor accountability grants no content access.
 
@@ -70,7 +70,7 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 1. **Project administrator** submits create-project request with project name and any required metadata.
 2. **System** validates requester holds create-project authority and name is non-empty.
 3. **System** persists a new project with a stable project ID, name, creator identity, and creation timestamp.
-4. **Project administrator** receives project ID and confirmation; creator is recorded but does not automatically gain restricted-document access (OD-02 pending).
+4. **Project administrator** receives project ID and confirmation; creator is recorded but does not automatically gain restricted-document access (ADR-0007).
 
 ### Main Success Scenario — Add member
 
@@ -88,7 +88,8 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 
 ### Alternate Flows
 
-- **Alt-1 (Step 1 — Add member):** User being added was previously removed and then re-added → System records new membership; project-shared access resumes; restricted-document grants from before removal are NOT restored (AC-39 / ASM-03, proposed OD-02).
+- **Alt-1 (Step 1 — Add member):** User being added was previously removed and then re-added → System records new membership; project-shared access resumes; restricted-document grants from before removal are NOT restored (AC-39 / ASM-03, ADR-0007).
+- **Alt-2 (FR-64 — Project metadata, optional):** Authorised project administrator edits name/description; system validates authority and expected revision, persists the descriptive change with audit, and preserves project identity and memberships. Refreshed reads show the new values; stale or unauthorised writes do not overwrite the project (AC-64, NFR-02; optional under ADR-0010).
 
 ### Exception Flows
 
@@ -152,13 +153,13 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 **Actor:** Authorised member.  
 **Supporting system:** None required outside product.  
 **Trace:** FR-09, FR-40, FR-43, FR-44; BR-03, BR-02, BR-06; SC-03, SC-04.  
-**Trigger:** Authorised member submits a board-state-change request (To Do → In Progress → Done), an assignee-set request, or a blocker-event request (Open or Resolved) with item ID and required fields.  
+**Trigger:** Authorised member submits a board-state-change request between To Do, In Progress and Done (including reopening Done), an assignee-set request, or a blocker-event request (Open or Resolved) with item ID and required fields.
 **Precondition:** Valid session; requester holds member capability within the project; target item exists and is within an accessible project.
 
 ### Main Success Scenario — Board state change
 
 1. **Member** submits board-state-change request with item ID, target state, and current revision token.
-2. **System** validates: session valid; member has access; current revision token matches the stored token (NFR-02); target transition is permitted (To Do → In Progress → Done).
+2. **System** validates: session valid; member has access; current revision token matches the stored token (NFR-02); target state is To Do, In Progress or Done. Direct changes and reopening Done are permitted under ADR-0008 v0.2.
 3. **System** applies the state change; updates the revision token.
 4. **System** records audit event: actor, board-state-change, item ID, before/after state, time (FR-31).
 5. **Member** receives updated state and new revision token. Another member sees the change after refresh (AC-09).
@@ -174,14 +175,14 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 
 1. **Member** submits a blocker-event request with item ID, event type (Open or Resolved), and description/outcome text.
 2. **System** validates: requester has member access; description is non-empty.
-3. **System** appends the event with actor, event type, description/outcome, and timestamp; does not overwrite prior events (FR-44).
-4. **System** derives current Blocked status from the **latest** event: Open → item is Blocked; Resolved → item is not Blocked (ASM-07, AC-44).
+3. **System** appends the event with actor, event type, description/outcome, timestamp and unique per-task committed sequence; does not overwrite prior events (FR-44).
+4. **System** derives current Blocked status from the event with the **highest committed per-task sequence**: Open → item is Blocked; Resolved → item is not Blocked; no events → not Blocked (ASM-07, AC-44). Timestamp or identifier ordering cannot override sequence.
 5. **System** records audit event (FR-31).
 6. **Member** receives the event record and the current derived Blocked status.
 
 ### Alternate Flows
 
-- **Alt-1 (Step 1 — Board state):** Member attempts a non-sequential transition (e.g., To Do → Done directly) — if the system enforces sequential states, it rejects the transition with a validation error. If the system allows it, Step 3 proceeds with the requested state; this policy is subject to OD-03.
+- **Alt-1 (Step 1 — Board state):** Member changes To Do directly to Done, or reopens Done as To Do/In Progress → System applies the same membership/revision checks and commits the requested state with audit. No intermediate state or Scrum Master approval is required. If the Done task belongs to a Completed Sprint, atomically return it to Product Backlog for later allocation while preserving the completed allocation history; the Sprint remains Completed.
 - **Alt-2 (Step 1 — Blocker):** Member records a Resolved event when no prior Open event exists → System records the Resolved event; derived Blocked status remains Not Blocked. No error; this is valid as a retrospective record.
 
 ### Exception Flows
@@ -222,11 +223,11 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 
 ### Main Success Scenario — Allocate backlog items
 
-1. **Sprint manager** submits add-to-sprint request with Sprint ID and a list of item IDs.
+1. **Sprint manager** selects multiple items and submits add-to-sprint in the UI. Under ADR-0014, the UI dispatches a separate `allocateTask` request for each item with its own operation key and expected revision, and aggregates the results.
 2. **System** validates: Sprint is in Planned or Active status; Sprint-manager capability confirmed.
 3. **System** checks each item: item belongs to the project; item is not already allocated to another Planned or Active Sprint (FR-07, AC-07).
 4. **System** allocates valid items to the Sprint; records audit event per allocation.
-5. **Sprint manager** receives per-item result: allocated or rejected with conflict reason.
+5. **Sprint manager** receives each confirmed result: allocated or rejected with a scoped reason. A lost response after possible commit is shown as unknown/reconciling, not failed; replay uses the same per-item key/payload. No hidden task or competing-Sprint metadata is exposed (ADR-0014).
 
 ### Main Success Scenario — Start Sprint
 
@@ -241,7 +242,7 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 1. **Sprint manager** submits complete-sprint request with Sprint ID.
 2. **System** validates: Sprint is Active; Sprint-manager capability confirmed.
 3. **System** transitions Sprint to Completed with completion timestamp.
-4. **System** moves unfinished items (not in Done state) back to the Product Backlog without marking them Done; items in Done state remain associated with the completed Sprint (AC-42, proposed OD-03).
+4. **System** moves unfinished items (not in Done state) back to the Product Backlog without marking them Done; items in Done state remain associated with the completed Sprint. This and Step 3 commit atomically (AC-42, ADR-0008).
 5. **System** records audit event: sprint-complete, actor, Sprint ID, done-item count, returned-item count, time (FR-31).
 6. **Sprint manager** receives Completed status, done-item count, and returned-item count.
 
@@ -262,7 +263,7 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 ### Business Rules
 
 - **BR-02 / ASM-02:** At most one Active Sprint per project at any time; an item cannot be allocated to two Planned/Active Sprints simultaneously (AC-07, AC-08).
-- **OD-03 (proposed):** Sprint completion policy — unfinished items return to Backlog, not auto-Done; completed work remains associated. No Scrum Master approval gate on start or complete.
+- **OD-03 (confirmed, ADR-0008):** Sprint completion returns unfinished items to Backlog without auto-Done and preserves completed work history. No Scrum Master approval gate on start or complete; Sprint completion and these allocation changes form one atomic operation.
 - **SC-03:** Current blocked items in Sprint are derived from latest operational observations, not historical document text.
 
 **Success postcondition:** Two concurrent start requests cannot create two Active Sprints in one project (AC-08).  
@@ -283,9 +284,9 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 
 1. **Author** submits create-document request with: English text/Markdown content, project ID, title, labels/owner metadata, and explicit classification (project-shared or restricted).
 2. **System** validates: author capability confirmed; classification field is present and has a valid value; project exists and author is a member.
-3. **System** persists the document with a stable document ID and creates an initial Current version with a stable version ID and content hash.
-4. **System** records audit event: document-create, actor, document ID, version ID, classification, time (FR-31).
-5. **Author** receives document ID, initial version ID, and Current status. The document's initial version is Current from creation (AC-10).
+3. **System** allocates the stable document identity and atomically registers its classification, initial author capabilities and explicit revocable author read grant for restricted content in the permission authority. The idempotency key is bound to the authenticated actor, project and request.
+4. **System** persists the initial immutable Current version using that registered identity after validating current create authority. Initial content, passages, hash and pointer commit together in the content-owning service. No separate registry-activation operation exists; policy registration alone does not mean content is available.
+5. **System** records committed creation/policy audit events with actor, document/version identity, classification and time (FR-31). **Author** receives confirmed document/version IDs and Current status only after content persistence succeeds; indexing readiness is reported separately (AC-10, AC-15).
 
 ### Main Success Scenario — Grant restricted read access
 
@@ -298,14 +299,14 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 ### Main Success Scenario — Revoke read access
 
 1. **Document access manager** submits revoke-read request with document ID and target user ID.
-2. **System** validates: manage-access capability confirmed; a grant exists for the target user and document.
+2. **System** validates manage-access capability and document scope. An already-absent grant is an idempotent success; it does not skip the authority check.
 3. **System** removes the grant. All subsequent reads, deliveries, searches, and citation openings by that user on this document are denied (FR-14, FR-28, FR-29, FR-55).
 4. **System** records audit event: revoke, actor, document ID, grantee, time (FR-31).
 5. **Document access manager** receives confirmation; repeating revocation has no adverse effect (AC-52).
 
 ### Alternate Flows
 
-- **Alt-1 (Step 1 — Import, FR-62):** Author submits import request with a supported English text/Markdown file → System validates file encoding and format; on success, proceeds as document create from Step 3. Unsupported formats fail before any partial publication (AC-62). *(P1)*
+- **Alt-1 (Step 1 — Import, FR-62):** Author submits supported English text/Markdown → System validates format/encoding, then follows create from Step 2, including membership, create authority and explicit classification. Unsupported input fails before content persistence (AC-62). *(P1, optional under ADR-0010)*
 - **Alt-2 (Step 1 — Reclassify, FR-50):** Access manager changes classification from project-shared to restricted → System validates manage-access capability; persists new classification; members without explicit grants can no longer read (AC-50). Subsequent restricted reads follow FR-59.
 - **Alt-3 (Step 1 — Metadata edit, FR-65):** Author submits metadata-edit request (owner/labels) → System validates; updates metadata; version content and citation locators remain intact (AC-65). *(P1)*
 
@@ -314,47 +315,43 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 - **EX-01 (Step 2 — Create):** Classification field is missing from the create request → System rejects with validation error; no document or version is created (FR-10, AC-10).
 - **EX-02 (Step 2 — Create):** Requester lacks author capability in the project → System returns forbidden; no document created.
 - **EX-03 (Step 2 — Grant):** Target user ID is not a current project member → System rejects with invalid-grantee error; no grant is recorded. Access manager does not receive information about why the user is not a member (FR-59-equivalent).
-- **EX-04 (Step 3 — Revoke):** Concurrent access check: another request reads the document between grant-removal and the next access validation → The subsequent read is denied at the next access check boundary (FR-14, FR-28). Already transmitted information cannot be recalled.
+- **EX-04 (Step 3 — Revoke):** A protected response races revocation → The shared guarded boundary orders the protected handoff and permission commit. After revocation succeeds, subsequent protected source/citation reads, provider submissions and answer handoffs cannot use the revoked grant. Already transmitted information cannot be recalled. Internal authenticated/scoped policy/state reads do not reacquire this guard (ADR-0011).
+- **EX-05 (Steps 3–4 — Create):** Policy registration or content persistence fails or has an unknown outcome → Return an explicit failed/pending result; never label an orphan policy as an accessible document. Reconcile/retry using the same scoped key; duplicates cannot create extra documents, versions or author grants. Do not delete a policy solely because one content read returned absent: delayed persistence must first be fenced or resolved.
+- **EX-06 (After create):** Author's explicit read grant is revoked or membership is removed → Authorship/content-write/manage-access do not bypass protected read checks. Rejoining does not revive the old read grant.
 
 ### Business Rules
 
 - **BR-04:** Author creates text/Markdown documents; initial classification (project-shared or restricted) is set at creation and cannot be omitted (FR-10, AC-10).
 - **BR-01 / BR-14:** Membership removal invalidates document-read grants; manage-access capability is separate from content-read access.
-- **OD-02 (open):** Who may hold manage-access capability and whether it implies content-read access is unresolved; tests must explicitly assign capabilities rather than treating Admin/Scrum Master as readers.
+- **OD-02 (partly resolved):** ADR-0007 gives the author initial scoped content-write/manage-access/lifecycle capabilities and a revocable restricted read grant. Manage-access does not imply read. Delegation of additional non-read capabilities remains open; test fixtures must assign them explicitly.
 
 **Success postcondition:** Omitting initial classification rejects creation; initial Current version is created only after access registration succeeds (AC-10).  
 **Failure postcondition:** No unauthorised output or write; safe partial state, if any, is labelled pending and retryable.
 
 ---
 
-## UC-07 — Revise, publish and retire a knowledge version
+<a id="uc-07--revise-publish-and-retire-a-knowledge-version"></a>
 
-**Purpose:** Keep immutable evidence and distinguish Draft, Current and historical sources.  
-**Actor:** Authorised content author/publisher/lifecycle manager (capabilities distinct; OD-04 pending).  
-**Supporting system:** None required outside product.  
-**Trace:** FR-11, FR-12, FR-13, FR-15, FR-19, FR-45, FR-47, FR-48, FR-61; BR-05, BR-14, BR-07, BR-12; SC-05, SC-06.  
-**Trigger:** Author submits a revise request on an existing document; OR publisher submits a designate-current request naming a Draft version as the replacement; OR lifecycle manager submits an archive or delete request.  
-**Precondition:** Valid session; requester holds the appropriate scoped capability (content-write for revise, publisher for designate-current, lifecycle-manager for archive/delete); target document accessible and not deleted.
+## UC-07 — Revise and retire a knowledge version
 
-### Main Success Scenario — Create revision (Draft)
+**Purpose:** Keep immutable evidence, make each successful revision Current immediately, and distinguish historical sources.
+**Actor:** Authorised content author or lifecycle manager; content-write, lifecycle and read capabilities are distinct.
+**Supporting system:** None required outside product.\
+**Trace:** FR-11, FR-12, FR-13, FR-15, FR-19, FR-47, FR-48, FR-61; BR-05, BR-14, BR-07, BR-12; SC-05, SC-06. FR-45 is Withdrawn; replacement/history assertions continue under AC-11.
+**Trigger:** Author submits a revision, or lifecycle manager submits archive/delete.
+**Precondition:** Valid session and project membership; requester holds the operation-specific document capability; target is not deleted. Any content returned also requires current read authority.
 
-1. **Author** submits revise request with document ID and new content.
-2. **System** validates: content-write authority on the document confirmed; document is not Archived or Deleted.
-3. **System** creates a new immutable version with distinct version ID, content, content hash, state Draft, and creation timestamp. The previously Current version remains Current (FR-11, AC-11).
-4. **System** records audit event: revision-create, actor, document ID, new version ID, state Draft, time (FR-31).
-5. **Author** receives new version ID and Draft status. Draft version is inaccessible to users without content-write authority; excluded from all retrieval and model context (FR-19, proposed OD-04).
+### Main Success Scenario — Create immediate Current revision
 
-### Main Success Scenario — Designate replacement as Current
+1. **Author** submits document ID, new content, expected aggregate revision and required idempotency key. The editor states that saving changes Current immediately.
+2. **System** validates current membership/content-write authority, document lifecycle and expected revision under the guarded lifecycle-write protocol.
+3. **System** atomically inserts a distinct immutable Current version and passages, supersedes the previous Current and updates the document pointer/revision. Prior bytes and citation locators remain unchanged (AC-11).
+4. **System** records the committed revision with actor, old/new version identities and time. Index/cache work follows the committed version and cannot revive obsolete content.
+5. **Author** receives confirmed version/lifecycle identity and independent indexing readiness, subject to response access. Ordinary retrieval admits only the new eligible Current; pending indexing never permits falling back to Superseded content as current. No Draft or publish step exists.
 
-1. **Publisher** submits designate-current request with document ID and Draft version ID.
-2. **System** validates: publisher authority confirmed; target version exists, is in Draft state, and belongs to the document.
-3. **System** transitions old Current version → Superseded; target Draft version → Current. Old version's citation locators and content remain intact and labelled Superseded (FR-45, AC-45).
-4. **System** records audit event: designate-current, actor, document ID, old version ID (now Superseded), new version ID (now Current), time (FR-31).
-5. **Publisher** receives Current status on new version; ordinary retrieval immediately uses only the new Current content (FR-19).
+### Main Success Scenario — Archive version
 
-### Main Success Scenario — Archive version or document
-
-1. **Lifecycle manager** submits archive request with document ID (and optional version ID).
+1. **Lifecycle manager** submits archive request with document ID, exact version ID, expected aggregate revision and required idempotency key.
 2. **System** validates: lifecycle-manager authority confirmed; target is a Current or Superseded version.
 3. **System** transitions target to Archived; excludes it from ordinary retrieval; permits historical access with Archived label (FR-13, AC-13).
 4. **System** records audit event: archive, actor, entity ID, time (FR-31).
@@ -362,26 +359,28 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 
 ### Alternate Flows
 
-- **Alt-1 (Step 1 — Revise):** Document is Archived when revision is submitted → System rejects revision request; no Draft is created; author receives archived-document error.
-- **Alt-2 (Step 2 — Designate-current):** No Draft version exists for the document → System rejects with no-draft-available error; no transition occurs.
+- **Alt-1 (Step 1 — Revise):** Document is Archived when revision is submitted → System rejects; no replacement is created. Error detail must respect current read entitlement.
+- **Alt-2 (Withdrawn):** The former no-Draft publication branch is removed by ADR-0009. Its ID is retained for historical trace only, not an executable requirement.
 - **Alt-3 (Step 1 — Delete, FR-48):** Lifecycle manager submits delete request → System removes document from active access; subsequent reads, retrieval, and answer support cannot expose it; stale work cannot revive it (AC-48). Physical storage retention is OD-04.
-- **Alt-4 (Step 1 — Historical retrieval, FR-47):** Member explicitly selects historical scope → System returns permitted historical results with version and status labels; Draft is excluded even from historical scope; ordinary scope remains current-only (AC-47). *(P1)*
+- **Alt-4 (Step 1 — Historical retrieval, FR-47):** Member explicitly selects historical scope → System returns permitted Superseded/Archived evidence with exact version/status labels; ordinary scope remains Current-only (AC-47). *(P1)*
 
 ### Exception Flows
 
 - **EX-01 (Step 2 — Revise):** Requester lacks content-write authority → System returns forbidden; no version created.
-- **EX-02 (Step 2 — Designate-current):** Target version ID is not in Draft state (e.g., already Current or Superseded) → System rejects; no transition occurs; current state is unchanged.
-- **EX-03 (Step 3 — Any):** Dependency fails mid-transition → System returns explicit failed/pending state (NFR-03); document and version states are not partially updated; operation is retryable.
-- **EX-04 (Citation on unavailable version, FR-61):** A user opens a citation pointing to a version that has been archived or deleted → System reports Unavailable for permitted identity, or FR-59-equivalent if access is denied; no newer excerpt is substituted (AC-61).
+- **EX-02 (Withdrawn):** The former invalid-Draft publication branch is withdrawn with FR-45; do not count it as current test coverage or reuse its ID.
+- **EX-03 (Step 3 — Any):** Dependency fails or the remote commit outcome is unknown → Return explicit failure/pending. A failed transaction leaves no partial pointer/version change; an unknown remote outcome blocks affected protected handoffs until authoritative reconciliation. Retry only with the same scoped key; never assume timeout means rollback.
+- **EX-04 (Citation on unavailable version, FR-61):** Exact evidence is deleted or no longer available → Return specific Unavailable only for a caller entitled to surviving identity, otherwise the same generic response as an unknown resource. Do not substitute another version. Archival alone does not make retained, authorised historical evidence unavailable.
+- **EX-05 (Step 2 — Revise):** Expected revision is stale → Return conflict without overwriting the current pointer or creating a replacement; refresh only permitted state before a new author decision.
+- **EX-06 (Retry after uncertain result):** The same scoped idempotency key and request are replayed → Reconcile the original result without adding another version. A reused key with different input is rejected.
 
 ### Business Rules
 
 - **BR-05:** Every revision creates a new immutable version; prior version content and citation locators are never overwritten.
-- **BR-07:** Ordinary retrieval uses Current versions only; Superseded and Archived are excluded from ordinary search; Draft is excluded from ALL retrieval and model context (FR-19, proposed OD-04).
+- **BR-07:** Ordinary retrieval uses permitted Current versions only; Superseded and Archived require deliberate labelled history. Product Draft does not exist (ADR-0009).
 - **BR-12:** Citation identity is document/version/passage; unavailable evidence is reported without substitution (FR-61).
-- **OD-04 (open):** Transition authority (who may publish or archive), allowed state transitions, and physical retention duration are unresolved.
+- **OD-04 (partly resolved):** Initial authority and immediate revision/retirement transitions are confirmed in ADR-0007/0009. ADR-0013 confirms current membership and retained document-read policy for unavailable identity inspection; audit capability and old citation possession are insufficient. Physical retention remains open.
 
-**Success postcondition:** Revision creates Draft; Draft is absent from keyword/semantic/history/context and readable only with content-write authority.  
+**Success postcondition:** Two successive revisions leave exactly one Current and preserve the first exact citation unchanged and labelled Superseded. No publish action is needed.
 **Failure postcondition:** No unauthorised output or write; safe partial state, if any, is labelled pending and retryable.
 
 ---
@@ -399,7 +398,7 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 
 1. **Member** submits keyword search request with query terms and project/document scope.
 2. **System** validates: session and project membership confirmed; access-check service is available (FR-20).
-3. **System** runs keyword match over Current permitted versions only (FR-18, FR-19); excludes Draft, Superseded, Archived, and documents the requester cannot access.
+3. **System** runs keyword match over Current permitted versions only (FR-18, FR-19); excludes Superseded, Archived and documents the requester cannot access. Product Draft does not exist.
 4. **System** returns ranked results; each result displays source title, version identity, and validity status (FR-63, AC-63).
 5. **Member** receives result list. Restricted-document matches are absent from the results without revealing their existence (FR-59).
 
@@ -416,6 +415,7 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 - **Alt-1 (Step 4 — Keyword):** Query returns zero permitted matches → System returns empty result set with success status; no restricted match is revealed (FR-59).
 - **Alt-2 (Step 1 — Remove relationship, FR-49):** Member submits remove-relationship request → System validates access; removes the relationship from both resource perspectives; both resources remain (AC-49). Audit event recorded. *(P1)*
 - **Alt-3 (Step 1 — Browse links, FR-17):** Member views related links on a task that includes a restricted target document → System conceals target title/ID/snippet and hidden-link count; accessible links display normally; guessed reads for the hidden target follow FR-59 (AC-17). *(P1)*
+- **Alt-5 (FR-70 - Task keyword search, optional Should):** Member selects Tasks and submits a nonempty keyword; Workspace checks current project membership, searches committed title/description, and returns only scoped task identities/content/state with cursor navigation. Empty matches succeed; blank query fails validation; denied/unknown project is generic. Task search continues during AI or Knowledge outage if Workspace dependencies are healthy (ADR-0016).
 - **Alt-4 (Step 1 — Readiness, FR-15):** Member views search readiness for a new or revised version → System returns pending/ready/failed status; pending or failed content is not labelled searchable (AC-15). *(P1)*
 
 ### Exception Flows
@@ -427,7 +427,7 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 ### Business Rules
 
 - **BR-06:** Only explicitly confirmed relationships are shown; no AI-inferred or auto-suggested links are surfaced as established (AC-16).
-- **BR-07:** Keyword retrieval operates on Current permitted versions only; Draft, Superseded, Archived are excluded from ordinary scope (FR-18, FR-19).
+- **BR-07:** Keyword retrieval operates on Current permitted versions only; Superseded and Archived are excluded from ordinary scope (FR-18, FR-19).
 - **BR-13 / SC-08:** Keyword search must remain available when generation or semantic retrieval fails (FR-34).
 
 **Success postcondition:** Link views conceal inaccessible target metadata and hidden counts (AC-17).  
@@ -448,7 +448,7 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 
 1. **Member** submits question (English string, max length per NFR) with project/document scope.
 2. **System** validates: session and project membership confirmed (FR-01, FR-03).
-3. **System** runs semantic passage retrieval (FR-53): generates query embedding; ranks passages from permitted Current versions only (FR-19); excludes Draft, Superseded, Archived, and documents the requester cannot read.
+3. **System** runs semantic passage retrieval (FR-53): generates query embedding; ranks passages from permitted Current versions only (FR-19); excludes Superseded, Archived and documents the requester cannot read.
 4. **System** validates current access for each candidate passage immediately before submission (FR-28, AC-28): removes any passage whose grant has since been revoked. Access-check failure at this boundary halts submission.
 5. **System** submits permitted evidence passages and the question to the AI model; model context contains only the permitted passages (FR-21, AC-21). Retrieved text cannot change the model's read-only authority (FR-30, AC-30).
 6. **Model** returns a candidate answer with references to retrieved passage identities.
@@ -463,12 +463,12 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 - **Alt-3a (Step 3):** Semantic retrieval returns zero permitted passages → System skips model call; returns "Insufficient evidence" immediately without generating any text (FR-23, AC-23). SC-07 journey is satisfied.
 - **Alt-5a (Step 5/6):** Two accessible passages explicitly disagree on a claim → Model returns both conflicting statements; System surfaces both source versions and the conflict without suppressing either or resolving it unilaterally (FR-54, AC-54).
 - **Alt-4a (Step 4):** All candidates are revoked during access validation; zero passages remain → System halts; returns "Insufficient evidence" rather than calling the model with empty context (FR-28 boundary).
-- **Alt-6a (Step 6/7):** Model output references a passage identity that was not in the retrieved set (invented citation) → System rejects that citation; delivers answer without the invalid citation; records validation failure in trace (FR-60, AC-60).
+- **Alt-6a (Step 6/7):** Model output references an identity that was not in the retrieved set (invented citation) → System withholds that draft and records validation failure. It may deliver only a new bounded attempt after checking its claims against permitted evidence, exact citation binding, current access and durable provenance again. Removing the invalid citation alone does not make the original draft deliverable. If no validated replacement can be delivered, return ADR-0013's generic AnswerWithheld response (FR-22, FR-60; owner-confirmed clarification).
 
 ### Exception Flows
 
 - **EX-01 (Step 4):** Access-check service is unavailable → System stops; returns access-check-failed error; no evidence submitted to model; no result delivered; run recorded with error (FR-20, AC-20).
-- **EX-02 (Step 8):** A cited source is revoked between retrieval and delivery → System withholds entire draft answer; records revocation event in trace; member receives "answer withheld — source access changed" message; no part of the original draft is delivered (FR-29, AC-29).
+- **EX-02 (Step 8):** A cited source is revoked between retrieval and delivery → System withholds entire draft answer; records revocation event in trace; member receives the generic "Unable to provide this answer" message without source identity, citation or detailed cause (ADR-0013); no part of the original draft is delivered (FR-29, AC-29).
 - **EX-03 (Step 5):** Retrieved content contains prompt-injection instructions to mutate work or reveal restricted sources → System makes no mutation; does not disclose any restricted source; model-context submission boundary is enforced (FR-30, AC-30).
 - **EX-04 (Step 3):** Embedding or semantic retrieval service fails → EX-AI-FAIL: System falls back to explicit failure state per UC-12 / FR-69; keyword search remains available (FR-34).
 - **EX-05 (Step 5):** AI generation service returns an error or times out → System returns explicit AI-failure response (FR-69) with failure category; no generated text delivered; run recorded with error.
@@ -542,14 +542,14 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 
 ### Main Success Scenario — Business audit event (FR-31)
 
-1. **System** detects a committed change in one of the audit catalogue domains (project/access, work, knowledge, relationships).
-2. **System** records an audit event immediately after commit: actor ID, action type, entity ID(s), event time, and before/after values (or protected references that do not expose restricted content).
+1. **System** prepares a change in an audit catalogue domain (project/access, work, knowledge, relationships).
+2. **System** persists the audit event or durable pending audit record in the same owning-service transaction as the business state: actor ID, action, entity ID(s), time and before/after values or protected references. Commit succeeds only with this minimum record; asynchronous sink delivery may follow.
 3. **System** assigns the event a stable event ID and marks it immutable; no subsequent update removes or modifies committed events.
 4. The event is available for scoped inspection by an Audit Inspector (UC-13; FR-56).
 
 ### Main Success Scenario — Answer execution trace (FR-32, FR-57)
 
-1. **System** begins an answer attempt (from UC-09 or UC-10) and opens a run record with a run ID.
+1. **System** begins an answer attempt (from UC-09 or UC-10), durably records its run ID and exact evidence/provenance manifest before sending protected provider input, and records the manifest for each protected answer handoff. Failure to persist mandatory records stops the corresponding handoff (ADR-0012).
 2. **System** appends each tool step, source IDs, model/configuration, duration, usage, and error/validation outcomes to the run record as they occur.
 3. On attempt completion (success or failure), **System** closes and persists the run record; correlation links the run ID to its business context.
 4. No private model reasoning is stored (NFR-05); run records contain only tool steps, source IDs, and outcomes.
@@ -561,8 +561,8 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 
 ### Exception Flows
 
-- **EX-01 (Step 2 — Audit event):** Audit write fails after the business operation commits → System records the business result as pending/partial; the audit gap is surfaced to monitoring without losing the committed business state; operation is not rolled back to prevent the audit write.
-- **EX-02 (Step 2 — Trace):** Trace write fails mid-attempt → System continues the answer attempt; marks the run record as incomplete/partial; does not fail the answer on trace failure alone.
+- **EX-01 (Step 2 — Audit event):** Minimum audit/pending-record persistence fails → Roll back the owning business transaction. If only later sink delivery fails, keep the committed result and durable pending record, report delivery failure and retry idempotently; do not falsely label the business mutation uncommitted.
+- **EX-02 (Step 2 — Trace):** Mandatory run/evidence persistence fails → Withhold protected provider/answer handoff and report explicit failure. Optional metric recording alone may fail without stopping an otherwise valid answer; mark the field/run diagnostics incomplete. Never treat missing evidence or an unknown permission check as an optional metric.
 
 ### Business Rules
 
@@ -602,7 +602,7 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 ### Alternate Flows
 
 - **Alt-1:** Member submits an AI question during AI failure → Exception flow EX-01 applies.
-- **Alt-2:** Member opens a previously-cited passage (citation read) during AI failure → Citation opens from document storage without AI; only document-level access controls apply (FR-55).
+- **Alt-2:** Member opens a previously-cited passage during AI failure → Citation opens from storage without AI, with session, project/document access, exact version validation and guarded protected handoff (FR-55, ADR-0011).
 
 ### Exception Flows
 
@@ -653,7 +653,7 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 ### Exception Flows
 
 - **EX-01 (Step 2 — Audit):** Inspector requests audit events for a project outside their scoped grant → System denies with FR-59-equivalent response; no metadata about the other project is disclosed.
-- **EX-02 (Step 3 — Audit):** Event's before/after fields reference a restricted document the inspector cannot read → System redacts those fields; the event record itself (actor/action/entity/time) is still returned if within the audit scope (AC-56).
+- **EX-02 (Step 3 — Audit):** Event references a restricted document the inspector cannot read → With current project membership and scoped audit-read, return the in-scope actor/action/entity identity/time, while redacting protected content/title/before-after fields. This explicit identity entitlement grants no direct document/citation/retrieval/AI access and is not inherited by trace-read alone (AC-56, ADR-0012).
 - **EX-03 (Step 4 — Trace):** Inspector attempts to read full document content via source IDs in the trace → System serves only document-level access if the inspector also has document-read permission; trace IDs alone confer no document-read authority (AC-58).
 
 ### Business Rules
@@ -675,9 +675,9 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 **System Boundary:** "Scrum Workspace + AI Project KMS"
 
 **Actors:**
-- Primary (left): User, Authorised Member, Project Administrator / Membership Manager, Product Owner, Sprint Manager, Content Author / Publisher, Lifecycle Manager, Document Access Manager, Audit / Execution Inspector
+- Primary (left): User, Authorised Member, Project Administrator / Membership Manager, Product Owner, Sprint Manager, Content Author, Lifecycle Manager, Document Access Manager, Audit / Execution Inspector
 - Secondary (right): Identity Provider, AI Model API (generation), Embedding Service
-- Actor generalisation: Authorised Member is a specialisation of User. Project Administrator / Membership Manager, Product Owner, Sprint Manager, Content Author / Publisher, Lifecycle Manager, Document Access Manager and Audit / Execution Inspector are scoped-capability specialisations of Authorised Member; use a solid hollow-triangle arrow. Because specialisations inherit the parent's associations, Authorised Member is associated only with use cases open to every authorised member (UC-04, UC-08, UC-09, UC-10, UC-12); capability-gated cases (UC-02, UC-03, UC-07, UC-13) are associated only with their scoped actors (BR-01, BR-02, BR-10).
+- Actor generalisation: Authorised Member is a specialisation of User. Project Administrator / Membership Manager, Product Owner, Sprint Manager, Content Author, Lifecycle Manager, Document Access Manager and Audit / Execution Inspector are scoped-capability specialisations of Authorised Member; use a solid hollow-triangle arrow. Because specialisations inherit the parent's associations, Authorised Member is associated only with use cases open to every authorised member (UC-04, UC-08, UC-09, UC-10, UC-12); capability-gated cases (UC-02, UC-03, UC-07, UC-13) are associated only with their scoped actors (BR-01, BR-02, BR-10).
 
 **Associations (solid lines, no arrowhead):**
 - User ↔ UC-01
@@ -685,7 +685,7 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 - Project Administrator / Membership Manager ↔ UC-02
 - Product Owner ↔ UC-03
 - Sprint Manager ↔ UC-05
-- Content Author / Publisher ↔ UC-06, UC-07
+- Content Author ↔ UC-06, UC-07
 - Lifecycle Manager ↔ UC-07
 - Document Access Manager ↔ UC-06
 - Audit / Execution Inspector ↔ UC-13
@@ -709,7 +709,7 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 
 **Generalisation:** N/A for use-case generalisation at this time; actor generalisation as noted above.
 
-**Editable diagram:** `docs/sdlc/diagrams/use-case/use-case-diagram.drawio` — created as part of v0.2; aligned to this actor/association list on 12 October 2026. Only an XML well-formedness and dangling-edge check was run (no Draw.io rendering or UML validator); diagram is a structural specification only.
+**Editable diagram:** `docs/sdlc/diagrams/use-case/use-case-diagram.drawio` — v0.3 correction removes the Publisher label and renames UC-07 to match immediate revision. Associations are unchanged from the 12 October actor correction. Full rendered/UML review remains pending; this is a structural specification only.
 
 ### Checklist result (26-point UML 2.0 Benchmark)
 
@@ -718,7 +718,7 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 | 1 · Use Case ID | Pass | UC-01–UC-13, Artifact UC-02 |
 | 2 · Use Case Name | Pass | Active verb phrases throughout |
 | 3 · Description/Purpose | Pass | One-to-two sentence Purpose per UC |
-| 4 · Version & Date | Pass | 0.2 Draft · 9 October 2026 |
+| 4 · Version & Date | Pass | 0.3 Draft · 14 October 2026 |
 | 5 · Author & Stakeholders | Pass | Development agent; owner reviews |
 | 6 · Status | Pass | Draft for owner review |
 | 7 · Primary Actor | Pass | Named per UC |
@@ -746,6 +746,16 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 
 ### Handoff
 
-Shared assumptions and open decisions (OD-02–OD-05, OD-08–OD-11) remain recorded in PRD-01 and are not duplicated here. Architecture may use these use cases with stated gaps; no complete-set approval is claimed. Stage 5 (api-design.md) will inherit the actor/trigger/flow detail to specify endpoint contracts. Stage 8 (test-plan.md) maps each named EX-* flow to a test case; the proposed matrix is in test-plan.md §UC exception-to-test matrix. FR-35/BR-15 has no UC pending the owner's OD-11 decision.
+The v0.3 correction applies ADR-0007–ADR-0011 and the direct board-transition/reopening clarification. UC-07 Alt-2/EX-02 remain explicitly Withdrawn for trace continuity; new UC-06 EX-05/06 and UC-07 EX-05/06 need Stage 8 mapping. The historical checklist above is not a fresh full-set sign-off. Use-case diagram actor/UC-07 labels are corrected; remaining downstream trace/checklist work stays open. No runtime behaviour is claimed from these flows.
 
-**Handoff state:** Ready for downstream (Stage 3 SAD, Stage 4 data-design). Needs owner decision on OD-02–OD-04 before Stage 5 contracts and Stage 8 test cases are finalised.
+**Handoff state:** Ready for downstream correction with explicit gaps. Additional non-read capability delegation, physical retention and fenced orphan cleanup remain open. ADR-0013 resolves unavailable citation entitlement and generic terminal withholding. FR-35 remains outside this release under ADR-0010; no new Must deferral is implied.
+
+### UC-09 partial-evidence clarification - 14 October 2026
+
+ADR-0015 extends UC-09 answer presentation: when some requested components have support and others do not, return partially_answered with the supported claims/citations and explicit missing request components. This is a main-flow outcome; zero supported components still follow Alt-3a/4a. Infrastructure failure and invalid/revoked drafts follow their existing failure/withholding rules.
+
+### UC-02 removal clarification - ADR-0017
+
+Removing a member invalidates all individually granted project capabilities and clears current task assignees in the same Workspace transaction as membership/read-grant changes and minimum audit. Revisions advance; historical actor/assignment references remain. Rejoin restores neither capabilities nor assignments. Failures roll back the complete transaction; unknown outcomes reconcile before retry. UC-04 assignment must recheck current membership under the same serialization boundary.
+
+ADR-0017 last-manager rule: reject removal of the final current member with effective membership-management authority until another current member has that authority. Check inside the serialized removal transaction, including concurrent removals/capability changes; no Admin/creator bypass or automatic successor. Rejection leaves all state unchanged.

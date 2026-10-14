@@ -1,9 +1,9 @@
 # Answer a question with exact accessible evidence
 
 **Artifact ID:** SP-09  
-**Version/date:** 0.1 Draft · 8 October 2026  
-**Status:** Draft for owner review; proposed policies/deferrals are not approved.  
-**Inputs:** PRD-01 v0.4; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-09--answer-a-question-with-exact-accessible-evidence); [contract pack](../contracts/README.md); PLAN-01 v0.1.  
+**Version/date:** 0.2 Draft · 13 October 2026\
+**Status:** Draft for owner review; ADR-0007–ADR-0011 direction is owner-confirmed; application acceptance remains unproven.\
+**Inputs:** PRD-01 v0.5; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-09--answer-a-question-with-exact-accessible-evidence); [contract pack](../contracts/README.md); PLAN-01 v0.2.\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 3.  
@@ -37,4 +37,12 @@ Done requires the matching PRD ACs exercised on real handlers/persisted state; r
 
 ## Assumptions/checklist/handoff
 
-Uses proposed OD-02–OD-04/OD-09/OD-12 and ADRs. Pass for goal/trace/input-output/edges/paths/Done; Gap for accepted policy/contract/stack and runtime tests. Handoff: Needs owner decision for affected baselines; authorised context work can proceed.
+Uses owner-confirmed ADR-0007–ADR-0011; remaining delegation/history, OD-09 identity and OD-12 framework details stay open. Pass for goal/trace/input-output/edges/paths/Done; Gap for accepted policy/contract/stack and runtime tests. Handoff: Needs owner decision for affected baselines; authorised context work can proceed.
+
+## Owner clarification - 14 October 2026
+
+Invented citation identities invalidate the original answer draft. A bounded replacement must recheck claim support, exact citation binding, current access and mandatory provenance before delivery; removing the invalid citation alone is insufficient. Failure to produce a validated replacement returns the generic AnswerWithheld response. Include a fixture where an invented citation accompanies an unsupported claim and assert that neither the original claim nor its fabricated locator is delivered.
+
+ADR-0013 binds this slice: surviving unavailable citation identity requires current membership and retained document-read policy, with exact locator verification and no content substitution; revoked/audit-only/unknown readers get generic 404. Terminal answer withholding uses fixed HTTP 503 AnswerWithheld without evidence or detailed cause. These are required runtime assertions, not passes from schema checks.
+
+ADR-0015 additionally requires partially_answered for supported cited components plus missing requested components. Test that the response has real support, no hidden-source hints and no salvaged invalid draft; all-missing remains insufficient_evidence.

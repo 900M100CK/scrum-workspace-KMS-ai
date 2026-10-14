@@ -1,9 +1,9 @@
 # Personas & User Responsibilities (SACW)
 
 **Artifact ID:** UX-PERSONAS-01\
-**Version/date:** 0.3 Draft · 12 October 2026\
+**Version/date:** 0.4 Draft · 14 October 2026\
 **Status:** Illustrative draft; no interviews or measured satisfaction.\
-**Source versions:** BRD English v1.0; PRD-01 v0.4; UC-02 v0.2; SAD-03 v0.5; Proposed ADR-0001 v0.2 / ADR-0006 v0.1.\
+**Source versions:** BRD English v1.0; PRD-01 v0.5; UC-02 v0.3; SAD-03 v0.7; ADR-0007–ADR-0011.\
 **Trace:** BR-01–BR-15; FR-01–FR-69; SC-01–SC-08.\
 **Scope:** Core user goals and examples; Enhanced reports and Future Work remain outside these journeys.
 
@@ -15,7 +15,7 @@ Names and situations are synthetic examples. Scrum responsibilities describe use
 | --- | --- | --- | --- |
 | Sarah, Product Owner | Prioritise Backlog and find recorded rationale | Work editing; lifecycle/manage-access only if separately assigned | Only currently permitted sources, including restricted with grant |
 | Alex, Scrum Master | Follow blockers and facilitate Sprint lifecycle | Sprint/blocker actions only if assigned | Current Workspace state; permitted documents explain history |
-| David, Developer | Implement tasks and inspect exact source requirements | Task updates; content-write only for assigned documents | No Draft in retrieval/model context; direct Draft needs content-write and document checks |
+| David, Developer | Implement tasks and inspect exact source requirements | Task updates; content-write only for assigned documents | Separate current read authority required; content-write does not bypass a revoked grant |
 | Maya, stakeholder | Observe permitted work and supporting decisions | Read-only work; scoped inspection only if separately assigned | Restricted reads possible with grant; stakeholder status neither grants nor forbids them |
 
 Membership and document-access management are separate. An administrator does not automatically read restricted content. Removal invalidates grants; rejoining needs fresh restricted grants. Audit/trace capabilities give no source content access (FR-56/FR-58).
@@ -26,19 +26,19 @@ Membership and document-access management are separate. An administrator does no
 
 Sarah wants ordered Backlog items with clear acceptance criteria and linked documents. Her hypothesised difficulty is remembering recorded rationale across Sprints. An example question is **“What rationale was recorded for the authentication approach?”** It assumes no chosen authentication technology. The answer must use permitted recorded evidence or state insufficient evidence; application stack choices remain Proposed.
 
-In the journey Sarah creates a Story, publishes a permitted immutable Draft as Current and observes the former Current as Superseded. Classification changes and revocation require separately assigned manage-access authority. These are human UI mutations, never runtime AI actions (SC-05/SC-06).
+In the journey Sarah creates a Story, saves a permitted immutable revision as Current and observes the former Current as Superseded. There is no publish step. Classification changes and revocation require scoped manage-access authority. These are human UI mutations, never runtime AI actions (SC-05/SC-06).
 
 ### Alex — Scrum Master
 
-Alex wants to distinguish a historical plan from a confirmed blocker resolution. Blocked status derives from the latest ordered blocker event. Alex uses All / Blocked Only / My Tasks on authorised cards, and starts/completes a Sprint only with the relevant capability. One Active Sprint remains the proposed PRD policy.
+Alex wants to distinguish a historical plan from a confirmed blocker resolution. Blocked status derives from the highest committed per-task event sequence. Alex uses All / Blocked Only / My Tasks on authorised cards, and starts/completes a Sprint only with the relevant capability. At most one Active Sprint is confirmed in ADR-0008.
 
 “Which tasks are currently blocked?” uses current Workspace records and an observation locator/time. During provider failure Alex can continue permitted work while Workspace is healthy. Keyword/docs additionally need Knowledge and current permission checks to be healthy (SC-03/SC-08).
 
 ### David — Developer
 
-David follows a task to applicable specifications and checks claims against exact immutable passages/versions. With state-change authority he moves work through **To Do → In Progress → Done** and flags/resolves blockers with the relevant capability. Failed/stale mutations show explicit errors/conflicts.
+David follows a task to applicable specifications and checks claims against exact immutable passages/versions. With state-change authority he moves directly between **To Do, In Progress and Done**, including reopening Done, and flags/resolves blockers with the relevant capability. Reopening a task from a Completed Sprint preserves its completion history and returns the task to Product Backlog. Failed/stale mutations show explicit errors/conflicts.
 
-A revision creates Draft, excluded from current/historical retrieval and model context. Direct Draft reading needs content-write and document checks. History labels Superseded/Archived. Citation opening renews access checks and never silently substitutes Current for missing evidence (SC-01/SC-02/SC-05).
+A successful revision atomically creates new Current and supersedes the old Current. History labels Superseded/Archived. Restricted authors receive an explicit revocable read grant at creation; later reads still require that grant. Citation opening renews access/version checks under the guard and never substitutes Current for missing evidence (SC-01/SC-02/SC-05).
 
 ### Maya — Stakeholder
 
@@ -58,6 +58,6 @@ Provider outage shows explicit failure and independent keyword access while depe
 
 **Assumptions/open decisions:** Personas/pain points await interviews (OD-01); action assignments OD-02; history OD-04; environment OD-06; identity OD-09. No policy or feature is approved.
 
-**Checklist:** Pass for responsibility/capability separation and illustrative-evidence labels; Gap for research, complete UI/UX workbook review, accessibility/usability evaluation and runtime tests. **Handoff:** Ready for scoped Stage 7/8/9 review; consolidated UX-06 entry is still missing.
+**Checklist:** Pass for responsibility/capability separation and illustrative-evidence labels. The [UX-06 entry](../sdlc/ui-ux-spec.md) records workbook dispositions; research, accessibility/usability evaluation and runtime tests remain gaps. **Handoff:** Ready for scoped Stage 7/8/9 review; no measured persona validation is claimed.
 
 **v0.3 correction:** Removed administrator/viewer shortcuts, old classifications, authentication-choice assumption, four-column Board and unconditional outage-continuity claims; qualified journey scores/examples.

@@ -25,7 +25,7 @@ Node 24 or later; no package install required for this dependency-free harness:
 - npm run context:check
 - npm run context:test
 
-These commands check context/contract structure and harness unit negatives, not application correctness. No application build/run/migrate command exists yet. Add real unit/consumer-provider/permission/failure tests per spec when handlers exist; a shape check is not permission evidence.
+These commands check context/contract structure and harness unit negatives, not application correctness. Database foundation commands (`db:init`, `db:up`, `db:migrate`, `db:rollback`, `db:test`, `db:stop`) exist; follow [the storage runbook](infra/postgres/README.md), including rollback/data-loss cautions. They do not run application handlers. No application build/run command exists yet. Add real unit/consumer-provider/permission/failure tests per spec when handlers exist; a shape check is not permission evidence.
 
 ## Working rules
 

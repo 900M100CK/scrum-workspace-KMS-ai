@@ -1,106 +1,75 @@
 # Minimum test and evidence plan
 
-**Artifact ID:** TEST-08  
-**Version/date:** 0.2 Draft · 10 October 2026\
-**Status:** Draft for owner review; proposed policies/deferrals are not approved.  
-**Inputs:** [PRD-01](PRD_SRS.md) v0.4; [architecture](../architecture.md); DATA-04/API-05 drafts; [specs](../../specs/README.md); [evaluation](../../eval/README.md).  
-**Author:** development agent acting sequentially; owner reviews business choices.
+**Artifact ID:** TEST-08
+**Version/date:** 0.3 Draft - 14 October 2026
+**Status:** Planned application assertions; owner-confirmed policy direction, no release acceptance.
+**Inputs:** [PRD-01](PRD_SRS.md) v0.5; [UC-02](use-cases.md) v0.3; [SAD-03](../architecture.md) v0.7; DATA-04 v0.3; API-05 v0.4; ADR-0007 through ADR-0012; current UX/diagrams; [specs](../../specs/README.md); [evaluation](../../eval/README.md).
+**Author:** Development agent acting sequentially; no independent review claimed.
 
-## Scope, environment and responsibilities
+## Scope, levels and environment
 
-One student implements and verifies; the owner validates policy and criteria. This author self-check is not independent review. Current runnable checks are context reference/contract-shape validation and its negative unit cases using Node built-ins. Application/domain tests, real consumer/provider contract tests, database migrations, UI flows and retrieval/generation evaluation are **not run and not implemented**. UI/UML stages remain draft gaps rather than assumed complete inputs.
+One student implements and verifies; the owner resolves policy and evaluates criteria. The release gate contains 60 Must requirements under ADR-0010. FR-45 is Withdrawn, not renumbered; FR-35 remains Enhanced/Won't. Seven named original Core exceptions remain optional for this release, without reducing the other Musts. No automatic additional cut is permitted.
 
-Future runtime fixture is synthetic-0.2, two owned databases, one active permission gateway, Knowledge process and a controllable provider adapter. Record actual stack/provider/hardware/corpus/load before performance results. No real protected data is sent to new external services. Do not log model reasoning, raw secrets or an unrestricted knowledge copy.
+Runnable context/contract-definition and diagram checks exist. Real PostgreSQL storage migrations and synthetic database tests also exist: the latest recorded database run passed 12 results (11 scenarios plus parent). These verify storage prerequisites, not full feature ACs, application authentication/permission, transport concurrency or provider quality. Application handlers, end-to-end UI tests and model evaluation remain unimplemented/unrun. Five guard tests are TODO declarations, not passes.
+
+Use unit tests for domain transitions and evidence binding; owning-database integration tests for transactions/constraints; consumer-provider tests for service identity, authority and failure semantics; system/UI tests for complete user actions, refresh/resync and accessible interaction; manual evaluation for claim support and usability. Do not infer one level's result from another.
+
+Target test environment: two isolated owned databases, Workspace permission gateway, Knowledge process and controllable provider/transport adapters. Record actual stack/provider/model/hardware/load and corpus hashes before results. Never test against a production or personal-data volume. Runtime/provider choices and measured capacity remain open. Node context tooling uses Node 24 or later; no private reasoning, secrets or unrestricted source copies go into logs.
 
 ## Required gates
 
-| Test ID | Trigger and assertion | Requirement / slice |
+Each gate below is a required test design for its traced scope. All application results are Not run. The [coverage matrix](test-coverage.md) supplies exact SC/UC assertions and identifies contract/protocol gaps; an FR ID alone is not evidence.
+
+| ID | Trigger and observable assertion | Primary trace / slice |
 | --- | --- | --- |
-| TC-01 | Valid login establishes session; invalid, expired and signed-out session cannot read work/source data | FR-01, FR-36, FR-37, FR-68 / SP-01 |
-| TC-02 | Outside-project and unknown target reads share response; current project member still cannot read restricted document without grant | FR-03, FR-04, FR-59 / SP-02, SP-06 |
-| TC-03 | Grant → permitted read/search → revoke → repeat content/question/citation; remove/rejoin does not revive old grant | FR-38, FR-39, FR-50–FR-52, FR-14, FR-55 / SP-06 |
-| TC-04 | Pause inside/around guarded context and delivery handoff; commit revocation; original answer is wholly withheld. Timeout/restart/abort cannot resume the handoff | FR-28, FR-29 / SP-09; ADR-0006 |
-| TC-05 | Revision creates Draft excluded from current/history/context; publish replaces Current without editing old evidence; direct citations remain exact and labelled | FR-11, FR-12, FR-19, FR-45, FR-47, FR-60 / SP-07 |
-| TC-06 | Old/duplicate index job arrives after publication/deletion; obsolete content is not revived. Old citation reports unavailable without substitution | FR-15, FR-48, FR-61 / SP-07 |
-| TC-07 | Stale edit cannot overwrite; duplicate key same payload resumes safely, changed payload conflicts. Concurrent starts/allocations preserve fixed Sprint invariants | FR-07, FR-08, FR-09, FR-42 / SP-04, SP-05 |
-| TC-08 | Old document says blocked, operational latest event says resolved; response uses fresh operational entity/time/revision | FR-25, FR-26, FR-44 / SP-10 |
-| TC-09 | Model invents citation; reference conflict or missing decision; malicious retrieved instruction requests mutation/disclosure | FR-22–FR-24, FR-30, FR-54, FR-60 / SP-09 |
-| TC-10 | Force generation/embedding connection, timeout and usage budget failure; board/Sprint/document/keyword path still works; question error contains no generated answer | FR-33, FR-34, FR-69 / SP-12 |
-| TC-11 | Read audit/trace as scoped/non-scoped inspector and after source revocation; no unpermitted metadata or private reasoning is shown | FR-27, FR-31, FR-32, FR-56–FR-58 / SP-11, SP-13 |
-| TC-12 | Keyword and semantic runs use equivalent corpus/access; claim/passage/version scoring is separate from link existence | NFR-07–NFR-09 / SP-12 |
+| TC-01 | Valid login creates a session; wrong/locked credentials are generic; expired/signed-out sessions expose nothing; repeated expired sign-out is idempotent | FR-01, FR-36, FR-37, FR-68 / SP-01 |
+| TC-02 | Pair outside-project, missing and no-grant reads; status/body/schema match with no hidden metadata; project membership alone cannot read restricted content | FR-03, FR-04, FR-59 / SP-02, SP-06 |
+| TC-03 | Grant then revoke; repeat source/search/question/citation. Remove/rejoin does not revive grants. Revoked author's write/manage authority gives no read bypass | FR-14, FR-38, FR-39, FR-50-FR-52, FR-55 / SP-06 |
+| TC-04 | Pause before/during protected source/citation/provider/answer handoffs; race revocation and lifecycle writes; preserve guarded ordering, whole-answer withholding and fail-closed unknown outcomes. Abort/restart cannot resume old handoff | FR-14, FR-28, FR-29, FR-55 / SP-09; ADR-0011 |
+| TC-05 | Save two immediate revisions; exactly one Current, old bytes/passages unchanged and labelled historical, no Draft/publish. Failed transaction cannot partially swap version/pointer; ordinary retrieval never presents superseded evidence as Current | FR-11, FR-12, FR-19, FR-47, FR-60 / SP-07 |
+| TC-06 | Duplicate/out-of-order indexing after revision/archive/delete cannot revive obsolete content. Exact retained Archived citation still opens with access; missing/deleted evidence never substitutes another version; unavailable identity uses ADR-0013 current-read policy and exact locator only | FR-13, FR-15, FR-48, FR-61 / SP-07 |
+| TC-07 | Stale edits conflict; same scoped key/input resumes one outcome, changed input conflicts; concurrent Sprint starts/allocations preserve one Active Sprint and exclusive current allocation | FR-07, FR-08, FR-09, FR-42 / SP-04, SP-05 |
+| TC-08 | Highest committed blocker sequence determines current state; no event means unblocked, distinct repeated Open appends history, same-key replay does not duplicate. Current operational links/revisions/time override stale documents; denied/unknown observations never leak or imply a complete result | FR-25, FR-26, FR-44 / SP-10 |
+| TC-09 | Missing or related-but-insufficient evidence yields insufficient evidence; unresolved contradictions remain explicit; fabricated locators withhold the original draft, and only a new attempt checked for claim support/citation/access/provenance may deliver; malicious retrieved instructions cannot mutate/disclose | FR-22-FR-24, FR-30, FR-54, FR-60 / SP-09 |
+| TC-10 | Inject generation/embedding connection failure, timeout and budget exhaustion independently; question fails without generated content while healthy work/Sprint/docs/keyword paths succeed | FR-33, FR-34, FR-69 / SP-12 |
+| TC-11 | Scoped audit may expose actor/action/entity/time under ADR-0012 but redacts protected title/content/payload. Non-scoped/other-project requests reveal nothing. Audit/trace IDs grant no source/citation/AI read; revoke inspector capability and repeat | FR-27, FR-56, FR-58, FR-59 / SP-13 |
+| TC-12 | Score exact citations and claim support separately; eligible top-five and multi-source completeness have declared denominators; compare keyword only on matched corpus/access. Freeze rubric before pilot and thresholds before formal runs | NFR-07-NFR-09 / SP-12 |
+| TC-13 | Deny missing create-project/backlog-author/content-write/manage-access capability; reject invalid item type, dates, classification, assignee, grantee and inaccessible relationship endpoints without persistence or existence leak | FR-02, FR-05, FR-06, FR-10, FR-16, FR-38, FR-43, FR-51, FR-66 / SP-02-SP-08 |
+| TC-14 | Fail storage/authority at each check/commit and lose responses after possible commit: no partial membership/Sprint/version change; unknown outcome reconciles before retry; independent dependency failures reported honestly | FR-20, FR-28, FR-39, FR-44; NFR-03 / SP-02, SP-04-SP-09, SP-12 |
+| TC-15 | Workspace allocates identity/policy/capabilities/revocable author grant before Knowledge Current persistence; same-key retries create no duplicate identity/version/grant. Policy-only orphan is unreadable. Cleanup versus delayed persist remains a protocol gate | FR-10, FR-14, FR-51, FR-52 / SP-06 |
+| TC-16 | Direct To Do-to-Done and Done-to-To Do/In Progress succeed with authority/revision. Reopening from Completed Sprint atomically returns task to Backlog, retains completed allocation history and leaves Sprint Completed; race against completion/allocation | FR-09, FR-42 / SP-04, SP-05; ADR-0008 |
+| TC-17 | Create explicit links between permitted endpoints; navigate both directions; hide inaccessible target metadata/counts; optional remove leaves resources intact; AI suggestions alone create no links | FR-16, FR-17, FR-49 / SP-08 |
+| TC-18 | Every catalogue mutation commits audit/pending delivery atomically; minimum-record failure rolls back, sink failure retains replay. Mandatory run/evidence persistence precedes provider/answer handoff; optional metric gaps are labelled, never fabricated | FR-31, FR-32, FR-57 / SP-11; ADR-0012 |
+| TC-19 | Authorised item creation yields server ID/type/To Do; content edit and Backlog ordering persist with audit and refresh/resync; no unauthorised writes | FR-05, FR-40, FR-41 / SP-03, SP-04 |
+| TC-20 | Create readable classified text/Markdown with owner and immutable identity; readiness pending/ready/failed is separate from Current. Optional import/metadata changes validate format/authority and preserve evidence | FR-10, FR-15, FR-62, FR-65 / SP-06, SP-07 |
+| TC-21 | Planned-to-Active-to-Completed only; completion atomically returns unfinished work without Done and retains completed allocation history. Starting Completed or completing Planned is rejected; retries follow idempotency | FR-06-FR-08, FR-42, FR-66, FR-67 / SP-05 |
+| TC-22 | Exercise permitted/denied/empty/conflict/unavailable UI, keyboard alternatives and focus/feedback for board/editor/citation/inspection; server denial remains effective when controls are bypassed | Current UX sources; relevant FR/ACs / apps/web |
+| TC-23 | Exact-term and paraphrase fixtures separately exercise keyword and semantic retrieval; check authorised Current candidates, explicit labelled history, matching result metadata, successful empty results and fail-closed authority failure; keyword survives AI failure | FR-18-FR-20, FR-47, FR-53, FR-63 / SP-08, SP-09 |
+| TC-24 | Authorised project creation and membership add persist identity/creator/membership; shared access resumes but restricted grants do not revive. Optional project name/description edit preserves identity/membership, rejects stale/unauthorised writes | FR-02, FR-38, FR-64 / SP-02 |
+| TC-25 | Optional task title/description match, no match, blank input, cross-project/unknown equivalence, revoked membership between pages, refreshed edits, AI and Knowledge outage | FR-70 / SP-08; ADR-0016 |
 
-Tests record actor, source/corpus version, pause/commit/handoff boundary, observed result and failure. Schema validity alone does not satisfy TC-02–TC-11. Capture audit from the first mutation even if inspection UI is delivered later.
+TC-22 is an interaction-verification plan, not a claim of standards compliance or a new accessibility certification requirement. Optional requirements in a gate are tested if delivered; they are not silently promoted into the 60-Must release gate.
 
-## UC exception-to-test matrix (proposed)
+## Coverage and execution order
 
-Maps each of the 44 named EX-* flows in [use-cases.md](use-cases.md) to a gate. *Covered*: the existing TC text states the assertion. *Partial*: the TC covers the boundary but not this exact assertion; extend it. *Gap*: no current TC asserts it. Result: 17 Covered, 7 Partial, 20 Gap. This is a design-time mapping, not executed coverage, and it does not close F-08 in [spec-review.md](spec-review.md) until the Partial/Gap rows have written assertions.
+Read [TEST-COVERAGE-01](test-coverage.md): all eight SCs and BR-01-BR-14 have named gates. The UC matrix retains 48 named EX identities: 47 active and one Withdrawn. Most assertions are specified; orphan cleanup remains a protocol gap; ADR-0013 specifies terminal/unavailable wire assertions. [VERIFY-01](requirement-verification.md) adds every FR/AC, named alternate branch and NFR observation, with definition/input gaps retained. Inventory completeness is not implementation or runtime coverage.
 
-Proposed new gates (not approved; owner to accept or merge into existing TCs):
+Run in dependency order: identity/project authority; work and document creation; immediate revision and exact reads; retrieval/citation/AI transport; inspection/provenance; failures and controlled evaluation. Begin audit capture with the first mutation. For every test record actor/capability scope, snapshot/configuration, request/key/revision, controlled pause/commit/handoff boundary, persisted state and observed response/transport. Do not store private reasoning or unnecessary source content.
 
-| Test ID | Trigger and assertion | Requirement / slice |
-| --- | --- | --- |
-| TC-13 | Capability denial and input validation: actor lacks create-project/PO/author/content-write capability, or sends an invalid type, date range, classification, assignee or grantee; response is forbidden/validation/not-found-equivalent, nothing persisted, no user or resource existence leaked | FR-02, FR-05, FR-06, FR-10, FR-16, FR-17, FR-38, FR-43, FR-45, FR-51, FR-66 / SP-02–SP-08 |
-| TC-14 | Dependency failure at commit or check time (storage, access-check, audit/trace write): fail closed or explicit pending/retryable state, no partial membership/Sprint/version swap, failures reported independently | FR-20, FR-28, FR-31, FR-32, FR-39, FR-44, FR-57, NFR-03 / SP-02, SP-04, SP-05, SP-07–SP-09, SP-11, SP-12 |
+## Research and safety regression
 
-Extend TC-08 with duplicate-Open-blocker and partial-access task-scope cases (UC-04 EX-04, UC-10 EX-01).
+Use [25 research cases](../../eval/research-cases.json) with their separate research corpus (8 document / 8 state / 9 combined), and [25 safety regressions](../../eval/reference-cases.json) on synthetic-0.3 plus declared mutations. EVAL-05 checks unsaved form text is not ingested; EVAL-21 applies two immediate revisions. Historical synthetic-0.2 and pre-correction definitions are retained as unexecuted snapshots, not current input. A definition materializer is not a handler or permission test.
 
-| UC | EX | Condition | Status | Test | Needed assertion / note |
-| --- | --- | --- | --- | --- | --- |
-| UC-01 | EX-01 | Invalid credentials / locked account | Covered | TC-01 | Add: response is generic (no account enumeration). |
-| UC-01 | EX-02 | Expired session on protected request | Covered | TC-01 | FR-68. |
-| UC-01 | EX-03 | Sign-out with expired/invalidated token | Partial | TC-01 | TC-01 covers signed-out sessions; add idempotent sign-out with expired token. |
-| UC-02 | EX-01 | Requester lacks create-project authority | Gap | TC-13 | FR-02; no write persisted. |
-| UC-02 | EX-02 | Add member: target user does not exist | Partial | TC-13 | TC-02 covers reads only; add FR-38 not-found-equivalent response. |
-| UC-02 | EX-03 | Dependency fails during member removal commit | Gap | TC-14 | Pending/retryable; grants never left half-revoked (FR-39). |
-| UC-03 | EX-01 | Unsupported item type | Gap | TC-13 | FR-05 has no current TC. |
-| UC-03 | EX-02 | Requester lacks PO/author capability | Gap | TC-13 | BR-02: Scrum Master accountability alone is insufficient. |
-| UC-03 | EX-03 | Stale revision token on edit | Covered | TC-07 | Stale edit cannot overwrite. |
-| UC-04 | EX-01 | Stale revision token on board move | Covered | TC-07 | FR-09. |
-| UC-04 | EX-02 | Assignee is not a project member | Gap | TC-13 | FR-43 has no current TC. |
-| UC-04 | EX-03 | Dependency fails during state update | Gap | TC-14 | Explicit failed/pending state. |
-| UC-04 | EX-04 | Duplicate Open blocker event | Gap | TC-08 (extend) | Event appended, status stays Blocked, history kept (FR-44). |
-| UC-05 | EX-01 | Start Sprint while another is Active | Covered | TC-07 | Concurrent starts preserve single-Active invariant. |
-| UC-05 | EX-02 | Start date after end date / missing | Gap | TC-13 | FR-06/FR-66 validation. |
-| UC-05 | EX-03 | Start a Completed Sprint | Partial | TC-07 | Add explicit Completed-is-terminal assertion. |
-| UC-05 | EX-04 | Dependency fails during Sprint completion | Gap | TC-14 | No partial completion state. |
-| UC-05 | EX-05 | Complete a Sprint that is not Active | Partial | TC-07 | FR-42 listed; add Planned/Completed rejection cases. |
-| UC-06 | EX-01 | Create without classification | Gap | TC-13 | AC-10. |
-| UC-06 | EX-02 | Requester lacks author capability | Gap | TC-13 | FR-10. |
-| UC-06 | EX-03 | Grantee is not a project member | Gap | TC-13 | TC-03 covers valid grant/revoke only (FR-51). |
-| UC-06 | EX-04 | Read races with revocation | Covered | TC-03, TC-04 | Denied at next access-check boundary (FR-14). |
-| UC-07 | EX-01 | Requester lacks content-write authority | Gap | TC-13 | No Draft created. |
-| UC-07 | EX-02 | Designate a non-Draft version as Current | Partial | TC-05 | Add rejection assertion (FR-45). |
-| UC-07 | EX-03 | Dependency fails mid publish transition | Gap | TC-14 | TC-06 covers stale index jobs, not storage failure. |
-| UC-07 | EX-04 | Open citation on unavailable version | Covered | TC-06 | FR-61. |
-| UC-08 | EX-01 | Access-check service fails during search | Gap | TC-14 | Fail closed (FR-20). |
-| UC-08 | EX-02 | Relationship endpoints inaccessible | Partial | TC-13 | TC-02 covers reads; add FR-16/FR-17 create case. |
-| UC-08 | EX-03 | Stale index contains revoked/archived version | Covered | TC-03, TC-06 | Revoke then repeat search; obsolete content not revived. |
-| UC-09 | EX-01 | Access-check service down before model input | Gap | TC-14 | TC-04 covers handoff pauses, not outage (FR-28). |
-| UC-09 | EX-02 | Source revoked between retrieval and delivery | Covered | TC-04 | Whole draft withheld (ADR-0006). |
-| UC-09 | EX-03 | Prompt injection in retrieved text | Covered | TC-09 | FR-30. |
-| UC-09 | EX-04 | Embedding/semantic retrieval fails | Covered | TC-10 | FR-69; keyword path works. |
-| UC-09 | EX-05 | Generation error or timeout | Covered | TC-10 | No generated answer in error. |
-| UC-10 | EX-01 | Partial access failure on in-scope tasks | Gap | TC-08 (extend) | Only accessible tasks returned (FR-26). |
-| UC-10 | EX-02 | AI provider fails during synthesis | Covered | TC-10 | Operational data intact. |
-| UC-11 | EX-01 | Audit write fails after business commit | Gap | TC-14 | Gap alerted; result pending/partial (FR-31). |
-| UC-11 | EX-02 | Trace write fails mid-attempt | Gap | TC-14 | Answer proceeds; trace marked partial (FR-32/FR-57). |
-| UC-12 | EX-01 | Question submitted during AI outage | Covered | TC-10 | AC-69. |
-| UC-12 | EX-02 | Partial AI degradation (embed vs generation) | Covered | TC-10 | Either failure halts Q&A; keyword works. |
-| UC-12 | EX-03 | Work/document storage fails while AI down | Gap | TC-14 | Independent failure reporting (NFR-03). |
-| UC-13 | EX-01 | Inspector queries out-of-scope project | Covered | TC-11 | FR-59 indistinguishable response. |
-| UC-13 | EX-02 | Audit event references restricted document | Covered | TC-11 | Redacted payload, metadata preserved. |
-| UC-13 | EX-03 | Document read attempted via trace IDs | Partial | TC-11 | Add: trace/source ID grants no document read. |
+Questions/reference claims/split/rubric freeze before pilot; pilot selects thresholds/margins, frozen before formal evaluation. C0/C1/C2 use matched settings and snapshot within each suite/scenario. Keep negative results; repeated attempts do not enlarge the independent question count. H3 uses operation-specific entitlements: authorised audit identity is permitted, content remains separately protected. This does not expand AI evidence access. A measured manual baseline is required before time-saving claims; no provider run or superiority result exists.
 
-## Trace, exit and resumption
+## Exit, suspension and deliverables
 
-The optional `user-stories.md` is intentionally omitted for this draft. PRD-01 numbered FR/AC pairs and UC-02 journeys provide the requirements and flow inputs for this plan; this does not waive any BR, SC or acceptance criterion. The register records this documentation choice as N/A. The UC exception-to-test matrix above is a proposal with open Partial/Gap rows, and the SC-to-test matrix remains an explicit Stage 8 gap; FR references alone do not demonstrate that every scenario or exception has an adequate assertion.
+Required evidence is a per-test result with reproducible configuration, relevant logs/redaction, persisted-state assertions, consumer/provider or UI evidence as appropriate, and unresolved defects. Known unauthorised disclosure, version substitution, fabricated failure answers or incorrect state overwrites suspend release. Resume only after correction and the affected regression pass. Do not lower expected answers/thresholds to clear failure. Month 5 retains final regression/report/demo; exact calendar dates depend on confirmed schedule/capacity.
 
-Each of the 68 original Core FRs is assigned to a feature spec with its matching PRD AC; the proposed release overlay assigns 61 Must and seven optional original Core FRs. FR-35 stays Enhanced. The [scope data](../planning/release-scope.json) is the trace source; no claim of executed complete coverage is made.
+Deliver: complete FR/AC/SC/UC trace, executable tests, reviewed fixtures/rubric, result/defect records, run configuration and limitations. Current matrices are definition evidence only. Missing full positive/alternate-flow trace, runtime handlers, provider choices, pilot thresholds, visual/accessibility checks and the orphan cleanup protocol row remain gaps.
 
-About 20–30 questions are defined in eval; the current 25-case set has separate pilot/final labels, exact locators, access/scenario and manual rubric. Apply scenario mutations and version the corpus before each run. Freeze pilot-derived numeric targets before final cases; keep failed results. Local/cloud comparison and time-savings claims require their stated baselines, not fabricated output or an LLM-only judge.
+The optional user-stories file stays N/A because PRD FR/AC and UC journeys supply those inputs. [The v0.2 test plan](test-plan-v0.2-history.md) is a historical unexecuted-plan snapshot, preserving the old 17/7/20 mapping; it is not the current gate or current test count. Checklist: scope/levels/owners/assertions/environment/exit are written; full workbook compliance, runtime verification and independent approval are not claimed.
 
-Suspend release on any known unauthorised access, version substitution, fabricated failure answer or incorrect state overwrite; resume after the relevant regression passes. Do not lower expected answers/thresholds to clear a failure. Original Core completion stays binding until the owner records exact OD-11 deferrals and altered gate. Month 5 reserves final regression/report/demo.
+ADR-0017 extends TC-03/13/14/18/19: remove all individually granted capability families and clear task assignees atomically, preserve historical attribution, race removal against assignment/grant issuance, inject audit failure and verify rollback, then rejoin and prove neither grant nor assignment revival. These assertions apply to FR-38/39/43 and do not add a release requirement.
 
-Checklist: Pass for source/scope/risk order/case trace/fixtures/exit/resumption/evidence needs. Gap for accepted policies, actual runtime tests, full UI/UML inputs and pilot criteria. Handoff: reviewable plan; application release unproven.
-
-**v0.2 change summary:** Records the intentional optional-story omission and the remaining SC/exception mapping gap. Existing test definitions and runtime execution status are unchanged. **12 October 2026 revision (version unchanged):** adds the proposed UC exception-to-test matrix and proposed gates TC-13/TC-14.
+ADR-0017 last-manager rule: reject removal of the final current member with effective membership-management authority until another current member has that authority. Check inside the serialized removal transaction, including concurrent removals/capability changes; no Admin/creator bypass or automatic successor. Rejection leaves all state unchanged.

@@ -1,20 +1,20 @@
-# Revise, publish and retire a knowledge version
+# Revise and retire a knowledge version
 
 **Artifact ID:** SP-07  
-**Version/date:** 0.1 Draft · 8 October 2026  
-**Status:** Draft for owner review; proposed policies/deferrals are not approved.  
-**Inputs:** PRD-01 v0.4; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-07--revise-publish-and-retire-a-knowledge-version); [contract pack](../contracts/README.md); PLAN-01 v0.1.  
+**Version/date:** 0.2 Draft · 13 October 2026\
+**Status:** Owner-confirmed lifecycle direction; handlers and full acceptance unimplemented.\
+**Inputs:** PRD-01 v0.5; ADR-0009/0011; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-07--revise-and-retire-a-knowledge-version); [contract pack](../contracts/README.md); PLAN-01.
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 2.  
 **Dependencies:** SP-06.   
-**Trace:** FR-11, FR-12, FR-13, FR-15, FR-19, FR-45, FR-47, FR-48, FR-61; BR-05, BR-14, BR-07, BR-12; SC-05, SC-06.
+**Trace:** FR-11, FR-12, FR-13, FR-15, FR-19, FR-47, FR-48, FR-61; BR-05, BR-14, BR-07, BR-12; SC-05, SC-06. FR-45 is Withdrawn; its replacement/immutable-history assertions are now AC-11. The filename is retained for link continuity, not a publication feature.
 
 ## Goal and contract
 
-Keep immutable evidence and distinguish Draft, Current and historical sources.
+Keep immutable evidence, make authorised revisions Current immediately, and distinguish labelled historical sources.
 
-Use knowledge service contract in contracts/openapi/. Operation IDs: reviseDocument, publishVersion, archiveVersion, deleteDocument, getVersion, getReadiness. Server identity/permission is never asserted in client fields. SP-11 captures records inside every producing operation.
+Use knowledge service contract in contracts/openapi/. Operation IDs: reviseDocument, archiveVersion, deleteDocument, getVersion, getReadiness. Server identity/permission is never asserted in client fields. SP-11 captures records inside every producing operation. Immediate revision is a guarded lifecycle mutation; a remote timeout with unknown outcome blocks affected protected handoffs pending reconciliation (ADR-0011).
 
 ## Input/output and edges
 
@@ -22,8 +22,8 @@ Input: valid session, operation-specific fields, expected revision and scoped id
 
 ## Acceptance
 
-1. Revision creates Draft; Draft is absent from keyword/semantic/history/context and readable only with content-write authority.
-2. Publishing makes replacement Current and previous Current Superseded without changing old passages.
+1. Authorised revision atomically creates new Current, supersedes previous Current and updates the document pointer; a stale request or failed transaction cannot partially replace evidence.
+2. Revise twice and open the first exact citation: its immutable passage is unchanged and labelled Superseded. Ordinary retrieval returns only the newest eligible Current. No separate publish operation or product Draft is accepted.
 3. Archive/deletion and duplicate/out-of-order jobs cannot revive obsolete content; old citation never substitutes a version.
 
 ## Allowed paths and Done
@@ -36,4 +36,8 @@ Done requires the matching PRD ACs exercised on real handlers/persisted state; r
 
 ## Assumptions/checklist/handoff
 
-Uses proposed OD-02–OD-04/OD-09/OD-12 and ADRs. Pass for goal/trace/input-output/edges/paths/Done; Gap for accepted policy/contract/stack and runtime tests. Handoff: Needs owner decision for affected baselines; authorised context work can proceed.
+Uses owner-confirmed ADR-0007–ADR-0011 and remaining OD-04/OD-09/OD-12 details. Migration 002 storage tests pass, but do not implement handlers or prove transport permission enforcement. Pass for lifecycle/trace/input-output/paths; Gap for full contract integration, retention/identity entitlement and runtime tests. Handoff: implement the reconciled slice; do not mark it Done from SQL tests.
+
+## Owner clarification - 14 October 2026
+
+ADR-0013 binds this slice: surviving unavailable citation identity requires current membership and retained document-read policy, with exact locator verification and no content substitution; revoked/audit-only/unknown readers get generic 404. Terminal answer withholding uses fixed HTTP 503 AnswerWithheld without evidence or detailed cause. These are required runtime assertions, not passes from schema checks.

@@ -1,5 +1,7 @@
 # Minimal business service boundaries
 
+**13 October amendment:** [ADR-0011](0011-document-creation-and-guard-scope.md) replaces pending/activation creation with Workspace-first policy registration and clarifies guard-exempt internal reads. Original proposal text below is retained; the owner-confirmed amendment governs that changed direction.
+
 **Artifact ID:** ADR-0002  
 **Version/date:** 0.1 Draft · 8 October 2026  
 **Status:** Draft for owner review; proposed policies/deferrals are not approved.  

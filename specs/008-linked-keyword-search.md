@@ -1,14 +1,14 @@
 # Find linked knowledge without AI
 
 **Artifact ID:** SP-08  
-**Version/date:** 0.1 Draft · 8 October 2026  
-**Status:** Draft for owner review; proposed policies/deferrals are not approved.  
-**Inputs:** PRD-01 v0.4; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-08--find-linked-knowledge-without-ai); [contract pack](../contracts/README.md); PLAN-01 v0.1.  
+**Version/date:** 0.2 Draft · 13 October 2026\
+**Status:** Draft for owner review; ADR-0007–ADR-0011 direction is owner-confirmed; application acceptance remains unproven.\
+**Inputs:** PRD-01 v0.5; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-08--find-linked-knowledge-without-ai); [contract pack](../contracts/README.md); PLAN-01 v0.2.\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 2.  
 **Dependencies:** SP-06, SP-03.   
-**Trace:** FR-16, FR-17, FR-18, FR-20, FR-34, FR-49, FR-59, FR-63; BR-06, BR-10, BR-07, BR-13, BR-01; SC-01, SC-04, SC-08.
+**Trace:** FR-16, FR-17, FR-18, FR-20, FR-34, FR-49, FR-59, FR-63, FR-70; BR-06, BR-10, BR-07, BR-13, BR-01; SC-01, SC-04, SC-08.
 
 ## Goal and contract
 
@@ -26,11 +26,11 @@ Input: valid session, operation-specific fields, expected revision and scoped id
 2. Keyword search filters project AND document scope before returning results.
 3. Unknown and inaccessible reads use the same not-found-equivalent response; model/embedding outage leaves keyword search usable.
 
-Proposed optional five-month rows: FR-49 Should. Omission needs recorded OD-11 approval and altered Core gate.
+Owner-confirmed optional release rows (ADR-0010): FR-49 Should. ADR-0010 records the exact Core-gate exceptions; all other release Must ACs remain required.
 
 ## Allowed paths and Done
 
-Touch only: services/knowledge/**, apps/web/**, tests/knowledge/**. Shared contracts/rules are read dependencies; changing them requires a recorded change and dependent-spec update. No other-service database writes.
+Touch only: services/knowledge/**, services/workspace/**, apps/web/**, tests/knowledge/**, tests/workspace/**. Shared contracts/rules are read dependencies; changing them requires a recorded change and dependent-spec update. No other-service database writes.
 
 Current commands: npm run context:check and npm run context:test validate context/contracts only.
 
@@ -38,4 +38,8 @@ Done requires the matching PRD ACs exercised on real handlers/persisted state; r
 
 ## Assumptions/checklist/handoff
 
-Uses proposed OD-02–OD-04/OD-09/OD-12 and ADRs. Pass for goal/trace/input-output/edges/paths/Done; Gap for accepted policy/contract/stack and runtime tests. Handoff: Needs owner decision for affected baselines; authorised context work can proceed.
+Uses owner-confirmed ADR-0007–ADR-0011; remaining delegation/history, OD-09 identity and OD-12 framework details stay open. Pass for goal/trace/input-output/edges/paths/Done; Gap for accepted policy/contract/stack and runtime tests. Handoff: Needs owner decision for affected baselines; authorised context work can proceed.
+
+## Owner-added task search - ADR-0016
+
+FR-70 Should follows the 60 Must. Workspace searchTasks searches committed task titles/descriptions in the current project; Knowledge keywordSearch remains document-scoped. Test title/description match, no match, invalid blank query, cross-project denial, revoked membership between pages and AI/Knowledge outages. Show task and document results/failures separately. This adds Workspace-owned paths for the optional slice, not cross-service writes.

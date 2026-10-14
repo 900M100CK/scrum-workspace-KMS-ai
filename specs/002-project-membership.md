@@ -1,9 +1,9 @@
 # Create a project and manage membership
 
 **Artifact ID:** SP-02  
-**Version/date:** 0.1 Draft · 8 October 2026  
-**Status:** Draft for owner review; proposed policies/deferrals are not approved.  
-**Inputs:** PRD-01 v0.4; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-02--create-a-project-and-manage-membership); [contract pack](../contracts/README.md); PLAN-01 v0.1.  
+**Version/date:** 0.2 Draft · 13 October 2026\
+**Status:** Draft for owner review; ADR-0007–ADR-0011 direction is owner-confirmed; application acceptance remains unproven.\
+**Inputs:** PRD-01 v0.5; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-02--create-a-project-and-manage-membership); [contract pack](../contracts/README.md); PLAN-01 v0.2.\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 1.  
@@ -26,7 +26,7 @@ Input: valid session, operation-specific fields, expected revision and scoped id
 2. Removal denies project and document access; rejoining restores no restricted grant.
 3. Only authorised membership changes create audit events.
 
-Proposed optional five-month rows: FR-64 Could. Omission needs recorded OD-11 approval and altered Core gate.
+Owner-confirmed optional release rows (ADR-0010): FR-64 Could. ADR-0010 records the exact Core-gate exceptions; all other release Must ACs remain required.
 
 ## Allowed paths and Done
 
@@ -38,4 +38,8 @@ Done requires the matching PRD ACs exercised on real handlers/persisted state; r
 
 ## Assumptions/checklist/handoff
 
-Uses proposed OD-02–OD-04/OD-09/OD-12 and ADRs. Pass for goal/trace/input-output/edges/paths/Done; Gap for accepted policy/contract/stack and runtime tests. Handoff: Needs owner decision for affected baselines; authorised context work can proceed.
+Uses owner-confirmed ADR-0007–ADR-0011; remaining delegation/history, OD-09 identity and OD-12 framework details stay open. Pass for goal/trace/input-output/edges/paths/Done; Gap for accepted policy/contract/stack and runtime tests. Handoff: Needs owner decision for affected baselines; authorised context work can proceed.
+
+ADR-0017 acceptance: remove a member with document/work/Sprint/audit/trace capabilities and assigned tasks; atomically invalidate all grants, unassign tasks with revision changes and durable audit, preserve history, and prove rejoin restores nothing. Race new grant/assignment and inject local audit failure; no partial removal is allowed.
+
+ADR-0017 last-manager rule: reject removal of the final current member with effective membership-management authority until another current member has that authority. Check inside the serialized removal transaction, including concurrent removals/capability changes; no Admin/creator bypass or automatic successor. Rejection leaves all state unchanged.

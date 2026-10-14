@@ -1,13 +1,13 @@
 # Reference evaluation cases — SDLC entry
 
 **Artifact ID:** EVAL-CASES-ENTRY  
-**Version/date:** 0.2 Draft · 10 October 2026\
-**Status:** Draft for owner review; proposed policies/deferrals are not approved.  
-**Inputs:** [EVAL-01](../../eval/README.md) v0.1; TEST-08 v0.2; PRD-01 v0.4.\
+**Version/date:** 0.3 Draft · 14 October 2026\
+**Status:** Owner-confirmed research/lifecycle direction; definitions not executed.
+**Inputs:** [EVAL-01](../../eval/README.md) v0.2; TEST-08 v0.3; PRD-01 v0.5; ADR-0009/0012.
 **Author:** development agent acting sequentially; owner reviews business choices.
 
-Canonical case definitions are [eval/reference-cases.json](../../eval/reference-cases.json), with [synthetic corpus](../../eval/fixtures/corpus.json). There are 25 cases (12 pilot, 13 final); no execution results are recorded. Read the rubric/configuration requirements in the evaluation README.
+Canonical research definitions are [25 RQ cases](../../eval/research-cases.json) with [research corpus](../../eval/fixtures/research-corpus.json): 8 document / 8 state / 9 combined, per-configuration references and 12 pilot / 13 final draft split. Preserve the separate [25 safety EVAL cases](../../eval/reference-cases.json) on [synthetic-0.3](../../eval/fixtures/corpus.json) plus declared mutations. Never mix suite snapshots. No execution results are recorded; see the evaluation README for freeze/scoring rules and remaining gaps.
 
 Checklist: Pass for canonical links/count/access/source fields; Gap for ingestion/pilot/final run. Handoff: SP-12 consumes these definitions after runtime contracts exist.
 
-**v0.2 change summary:** Synchronizes the TEST-08 documentation input after its optional-story and trace-gap clarification. Corpus, reference questions and expected results are unchanged; no evaluation was executed.
+**v0.3 change summary:** Adds the adopted research suite and reconciled safety lifecycle. EVAL-05/21 changes are recorded with historical snapshots; no model result or frozen criterion was changed. H3 respects the explicit scoped-audit identity entitlement while continuing to protect content.

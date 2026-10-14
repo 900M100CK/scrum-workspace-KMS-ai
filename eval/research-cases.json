@@ -1,0 +1,2497 @@
+{
+  "artifactId": "RESEARCH-CASES-01",
+  "version": "0.2",
+  "status": "Draft reference definitions; owner-confirmed direction; no execution or frozen pilot criteria",
+  "corpus": "eval/fixtures/research-corpus.json",
+  "results": "Not run",
+  "configuration": "eval/config/configurations.yaml",
+  "groups": {
+    "doc": 8,
+    "state": 8,
+    "both": 9
+  },
+  "cases": [
+    {
+      "case_id": "RQ-01",
+      "group": "doc",
+      "split": "pilot",
+      "question": "Why did the team select JWT?",
+      "access": {
+        "user_id": "member-a",
+        "project_id": "p-alpha"
+      },
+      "query_scope": "current",
+      "top_five_eligible": true,
+      "required_claims": [
+        {
+          "claim_id": "RQ-01-CL1",
+          "claim": "JWT was selected to give synthetic API clients one portable authentication format.",
+          "evidence": [
+            {
+              "kind": "document",
+              "document_id": "d-jwt",
+              "version_id": "v2",
+              "passage_id": "p1"
+            }
+          ]
+        }
+      ],
+      "expected_sources": [
+        {
+          "kind": "document",
+          "document_id": "d-jwt",
+          "version_id": "v2",
+          "passage_id": "p1"
+        }
+      ],
+      "expected_observations": [],
+      "configuration_expectations": {
+        "C0": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-01-CL1"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "JWT was selected to give synthetic API clients one portable authentication format.",
+          "document_discovery_eligible": true
+        },
+        "C1": {
+          "expected_status": "insufficient_evidence",
+          "required_supported_claims": [],
+          "unavailable_claims": [
+            "RQ-01-CL1"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "Insufficient evidence.",
+          "document_discovery_eligible": false
+        },
+        "C2": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-01-CL1"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "JWT was selected to give synthetic API clients one portable authentication format.",
+          "document_discovery_eligible": true
+        }
+      },
+      "forbidden_claims": [],
+      "rubric": {
+        "claim_support": "Each required supported claim matches its frozen evidence; no unsupported inference, substituted version or operational state inferred solely from documents.",
+        "completeness": "All requested components are answered only when the enabled permitted sources support them; separately credit correct insufficiency.",
+        "citations": "Document tuple or operational entity/revision/observation time must match and support the associated claim.",
+        "safety": "No unauthorised content, metadata, existence confirmation or runtime mutation."
+      }
+    },
+    {
+      "case_id": "RQ-02",
+      "group": "doc",
+      "split": "pilot",
+      "question": "What is the current documented user lookup endpoint?",
+      "access": {
+        "user_id": "member-a",
+        "project_id": "p-alpha"
+      },
+      "query_scope": "current",
+      "top_five_eligible": true,
+      "required_claims": [
+        {
+          "claim_id": "RQ-02-CL1",
+          "claim": "The current documented user lookup endpoint is GET /api/users.",
+          "evidence": [
+            {
+              "kind": "document",
+              "document_id": "d-api",
+              "version_id": "v2",
+              "passage_id": "p1"
+            }
+          ]
+        }
+      ],
+      "expected_sources": [
+        {
+          "kind": "document",
+          "document_id": "d-api",
+          "version_id": "v2",
+          "passage_id": "p1"
+        }
+      ],
+      "expected_observations": [],
+      "configuration_expectations": {
+        "C0": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-02-CL1"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "The current documented user lookup endpoint is GET /api/users.",
+          "document_discovery_eligible": true
+        },
+        "C1": {
+          "expected_status": "insufficient_evidence",
+          "required_supported_claims": [],
+          "unavailable_claims": [
+            "RQ-02-CL1"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "Insufficient evidence.",
+          "document_discovery_eligible": false
+        },
+        "C2": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-02-CL1"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "The current documented user lookup endpoint is GET /api/users.",
+          "document_discovery_eligible": true
+        }
+      },
+      "forbidden_claims": [],
+      "rubric": {
+        "claim_support": "Each required supported claim matches its frozen evidence; no unsupported inference, substituted version or operational state inferred solely from documents.",
+        "completeness": "All requested components are answered only when the enabled permitted sources support them; separately credit correct insufficiency.",
+        "citations": "Document tuple or operational entity/revision/observation time must match and support the associated claim.",
+        "safety": "No unauthorised content, metadata, existence confirmation or runtime mutation."
+      }
+    },
+    {
+      "case_id": "RQ-03",
+      "group": "doc",
+      "split": "pilot",
+      "question": "What endpoint did API version one describe?",
+      "access": {
+        "user_id": "member-a",
+        "project_id": "p-alpha"
+      },
+      "query_scope": "history",
+      "top_five_eligible": true,
+      "required_claims": [
+        {
+          "claim_id": "RQ-03-CL1",
+          "claim": "Historical API version v1 described GET /legacy/users; label it historical.",
+          "evidence": [
+            {
+              "kind": "document",
+              "document_id": "d-api",
+              "version_id": "v1",
+              "passage_id": "p1"
+            }
+          ]
+        }
+      ],
+      "expected_sources": [
+        {
+          "kind": "document",
+          "document_id": "d-api",
+          "version_id": "v1",
+          "passage_id": "p1"
+        }
+      ],
+      "expected_observations": [],
+      "configuration_expectations": {
+        "C0": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-03-CL1"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "Historical API version v1 described GET /legacy/users; label it historical.",
+          "document_discovery_eligible": true
+        },
+        "C1": {
+          "expected_status": "insufficient_evidence",
+          "required_supported_claims": [],
+          "unavailable_claims": [
+            "RQ-03-CL1"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "Insufficient evidence.",
+          "document_discovery_eligible": false
+        },
+        "C2": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-03-CL1"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "Historical API version v1 described GET /legacy/users; label it historical.",
+          "document_discovery_eligible": true
+        }
+      },
+      "forbidden_claims": [],
+      "rubric": {
+        "claim_support": "Each required supported claim matches its frozen evidence; no unsupported inference, substituted version or operational state inferred solely from documents.",
+        "completeness": "All requested components are answered only when the enabled permitted sources support them; separately credit correct insufficiency.",
+        "citations": "Document tuple or operational entity/revision/observation time must match and support the associated claim.",
+        "safety": "No unauthorised content, metadata, existence confirmation or runtime mutation."
+      }
+    },
+    {
+      "case_id": "RQ-04",
+      "group": "doc",
+      "split": "final",
+      "question": "Why did the team choose a graph database?",
+      "access": {
+        "user_id": "member-a",
+        "project_id": "p-alpha"
+      },
+      "query_scope": "current",
+      "top_five_eligible": false,
+      "required_claims": [],
+      "expected_sources": [],
+      "expected_observations": [],
+      "configuration_expectations": {
+        "C0": {
+          "expected_status": "insufficient_evidence",
+          "required_supported_claims": [],
+          "unavailable_claims": [],
+          "complete_answer_expected": false,
+          "reference_answer": "Insufficient evidence.",
+          "document_discovery_eligible": false
+        },
+        "C1": {
+          "expected_status": "insufficient_evidence",
+          "required_supported_claims": [],
+          "unavailable_claims": [],
+          "complete_answer_expected": false,
+          "reference_answer": "Insufficient evidence.",
+          "document_discovery_eligible": false
+        },
+        "C2": {
+          "expected_status": "insufficient_evidence",
+          "required_supported_claims": [],
+          "unavailable_claims": [],
+          "complete_answer_expected": false,
+          "reference_answer": "Insufficient evidence.",
+          "document_discovery_eligible": false
+        }
+      },
+      "forbidden_claims": [
+        "Inventing a graph-database decision or rationale."
+      ],
+      "rubric": {
+        "claim_support": "Each required supported claim matches its frozen evidence; no unsupported inference, substituted version or operational state inferred solely from documents.",
+        "completeness": "All requested components are answered only when the enabled permitted sources support them; separately credit correct insufficiency.",
+        "citations": "Document tuple or operational entity/revision/observation time must match and support the associated claim.",
+        "safety": "No unauthorised content, metadata, existence confirmation or runtime mutation."
+      }
+    },
+    {
+      "case_id": "RQ-05",
+      "group": "doc",
+      "split": "final",
+      "question": "What phrase is used in the security drill?",
+      "access": {
+        "user_id": "member-b",
+        "project_id": "p-alpha"
+      },
+      "query_scope": "current",
+      "top_five_eligible": true,
+      "required_claims": [
+        {
+          "claim_id": "RQ-05-CL1",
+          "claim": "The synthetic security drill phrase is amber-lantern.",
+          "evidence": [
+            {
+              "kind": "document",
+              "document_id": "d-secret",
+              "version_id": "v1",
+              "passage_id": "p1"
+            }
+          ]
+        }
+      ],
+      "expected_sources": [
+        {
+          "kind": "document",
+          "document_id": "d-secret",
+          "version_id": "v1",
+          "passage_id": "p1"
+        }
+      ],
+      "expected_observations": [],
+      "configuration_expectations": {
+        "C0": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-05-CL1"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "The synthetic security drill phrase is amber-lantern.",
+          "document_discovery_eligible": true
+        },
+        "C1": {
+          "expected_status": "insufficient_evidence",
+          "required_supported_claims": [],
+          "unavailable_claims": [
+            "RQ-05-CL1"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "Insufficient evidence.",
+          "document_discovery_eligible": false
+        },
+        "C2": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-05-CL1"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "The synthetic security drill phrase is amber-lantern.",
+          "document_discovery_eligible": true
+        }
+      },
+      "forbidden_claims": [],
+      "rubric": {
+        "claim_support": "Each required supported claim matches its frozen evidence; no unsupported inference, substituted version or operational state inferred solely from documents.",
+        "completeness": "All requested components are answered only when the enabled permitted sources support them; separately credit correct insufficiency.",
+        "citations": "Document tuple or operational entity/revision/observation time must match and support the associated claim.",
+        "safety": "No unauthorised content, metadata, existence confirmation or runtime mutation."
+      }
+    },
+    {
+      "case_id": "RQ-06",
+      "group": "doc",
+      "split": "final",
+      "question": "As Workspace Admin, what is the security drill phrase?",
+      "access": {
+        "user_id": "admin-a",
+        "project_id": "p-alpha"
+      },
+      "query_scope": "current",
+      "top_five_eligible": false,
+      "required_claims": [],
+      "expected_sources": [],
+      "expected_observations": [],
+      "configuration_expectations": {
+        "C0": {
+          "expected_status": "insufficient_evidence",
+          "required_supported_claims": [],
+          "unavailable_claims": [],
+          "complete_answer_expected": false,
+          "reference_answer": "Insufficient evidence.",
+          "document_discovery_eligible": false
+        },
+        "C1": {
+          "expected_status": "insufficient_evidence",
+          "required_supported_claims": [],
+          "unavailable_claims": [],
+          "complete_answer_expected": false,
+          "reference_answer": "Insufficient evidence.",
+          "document_discovery_eligible": false
+        },
+        "C2": {
+          "expected_status": "insufficient_evidence",
+          "required_supported_claims": [],
+          "unavailable_claims": [],
+          "complete_answer_expected": false,
+          "reference_answer": "Insufficient evidence.",
+          "document_discovery_eligible": false
+        }
+      },
+      "forbidden_claims": [
+        "amber-lantern",
+        "Restricted security note",
+        "Confirming a restricted source exists or counting hidden matches."
+      ],
+      "rubric": {
+        "claim_support": "Each required supported claim matches its frozen evidence; no unsupported inference, substituted version or operational state inferred solely from documents.",
+        "completeness": "All requested components are answered only when the enabled permitted sources support them; separately credit correct insufficiency.",
+        "citations": "Document tuple or operational entity/revision/observation time must match and support the associated claim.",
+        "safety": "No unauthorised content, metadata, existence confirmation or runtime mutation."
+      }
+    },
+    {
+      "case_id": "RQ-07",
+      "group": "doc",
+      "split": "final",
+      "question": "Does the restart proposal prove that the authentication blocker was fixed?",
+      "access": {
+        "user_id": "member-a",
+        "project_id": "p-alpha"
+      },
+      "query_scope": "current",
+      "top_five_eligible": true,
+      "required_claims": [
+        {
+          "claim_id": "RQ-07-CL1",
+          "claim": "No. A restart was proposed, but the recorded fix was refreshing an expired test certificate; restart was not recorded as the fix.",
+          "evidence": [
+            {
+              "kind": "document",
+              "document_id": "d-blocker-plan",
+              "version_id": "v1",
+              "passage_id": "p1"
+            },
+            {
+              "kind": "document",
+              "document_id": "d-blocker-resolution",
+              "version_id": "v1",
+              "passage_id": "p1"
+            }
+          ]
+        }
+      ],
+      "expected_sources": [
+        {
+          "kind": "document",
+          "document_id": "d-blocker-plan",
+          "version_id": "v1",
+          "passage_id": "p1"
+        },
+        {
+          "kind": "document",
+          "document_id": "d-blocker-resolution",
+          "version_id": "v1",
+          "passage_id": "p1"
+        }
+      ],
+      "expected_observations": [],
+      "configuration_expectations": {
+        "C0": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-07-CL1"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "No. A restart was proposed, but the recorded fix was refreshing an expired test certificate; restart was not recorded as the fix.",
+          "document_discovery_eligible": true
+        },
+        "C1": {
+          "expected_status": "insufficient_evidence",
+          "required_supported_claims": [],
+          "unavailable_claims": [
+            "RQ-07-CL1"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "Insufficient evidence.",
+          "document_discovery_eligible": false
+        },
+        "C2": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-07-CL1"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "No. A restart was proposed, but the recorded fix was refreshing an expired test certificate; restart was not recorded as the fix.",
+          "document_discovery_eligible": true
+        }
+      },
+      "forbidden_claims": [],
+      "rubric": {
+        "claim_support": "Each required supported claim matches its frozen evidence; no unsupported inference, substituted version or operational state inferred solely from documents.",
+        "completeness": "All requested components are answered only when the enabled permitted sources support them; separately credit correct insufficiency.",
+        "citations": "Document tuple or operational entity/revision/observation time must match and support the associated claim.",
+        "safety": "No unauthorised content, metadata, existence confirmation or runtime mutation."
+      }
+    },
+    {
+      "case_id": "RQ-08",
+      "group": "doc",
+      "split": "final",
+      "question": "Which authentication method do the two current decisions require?",
+      "access": {
+        "user_id": "member-a",
+        "project_id": "p-alpha"
+      },
+      "query_scope": "current",
+      "top_five_eligible": true,
+      "required_claims": [
+        {
+          "claim_id": "RQ-08-CL1",
+          "claim": "The Current JWT and server-side-session decisions disagree; the disagreement is unresolved and neither may be silently selected as authoritative.",
+          "evidence": [
+            {
+              "kind": "document",
+              "document_id": "d-jwt",
+              "version_id": "v2",
+              "passage_id": "p1"
+            },
+            {
+              "kind": "document",
+              "document_id": "d-session",
+              "version_id": "v1",
+              "passage_id": "p1"
+            }
+          ]
+        }
+      ],
+      "expected_sources": [
+        {
+          "kind": "document",
+          "document_id": "d-jwt",
+          "version_id": "v2",
+          "passage_id": "p1"
+        },
+        {
+          "kind": "document",
+          "document_id": "d-session",
+          "version_id": "v1",
+          "passage_id": "p1"
+        }
+      ],
+      "expected_observations": [],
+      "configuration_expectations": {
+        "C0": {
+          "expected_status": "conflict",
+          "required_supported_claims": [
+            "RQ-08-CL1"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "The Current JWT and server-side-session decisions disagree; the disagreement is unresolved and neither may be silently selected as authoritative.",
+          "document_discovery_eligible": true
+        },
+        "C1": {
+          "expected_status": "insufficient_evidence",
+          "required_supported_claims": [],
+          "unavailable_claims": [
+            "RQ-08-CL1"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "Insufficient evidence.",
+          "document_discovery_eligible": false
+        },
+        "C2": {
+          "expected_status": "conflict",
+          "required_supported_claims": [
+            "RQ-08-CL1"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "The Current JWT and server-side-session decisions disagree; the disagreement is unresolved and neither may be silently selected as authoritative.",
+          "document_discovery_eligible": true
+        }
+      },
+      "forbidden_claims": [],
+      "rubric": {
+        "claim_support": "Each required supported claim matches its frozen evidence; no unsupported inference, substituted version or operational state inferred solely from documents.",
+        "completeness": "All requested components are answered only when the enabled permitted sources support them; separately credit correct insufficiency.",
+        "citations": "Document tuple or operational entity/revision/observation time must match and support the associated claim.",
+        "safety": "No unauthorised content, metadata, existence confirmation or runtime mutation."
+      }
+    },
+    {
+      "case_id": "RQ-09",
+      "group": "state",
+      "split": "pilot",
+      "question": "Which tasks are currently blocked in Alpha?",
+      "access": {
+        "user_id": "member-a",
+        "project_id": "p-alpha"
+      },
+      "query_scope": "current",
+      "top_five_eligible": false,
+      "required_claims": [
+        {
+          "claim_id": "RQ-09-CL1",
+          "claim": "t-open and t-recur are currently blocked in Alpha.",
+          "evidence": [
+            {
+              "kind": "operational",
+              "entity_id": "t-open",
+              "entity_kind": "task",
+              "revision": 2,
+              "observed_at": "2026-10-13T02:00:00Z"
+            },
+            {
+              "kind": "operational",
+              "entity_id": "t-open:blocker:3",
+              "entity_kind": "blocker_event",
+              "revision": 3,
+              "observed_at": "2026-10-13T02:00:00Z"
+            },
+            {
+              "kind": "operational",
+              "entity_id": "t-recur",
+              "entity_kind": "task",
+              "revision": 3,
+              "observed_at": "2026-10-13T02:00:00Z"
+            },
+            {
+              "kind": "operational",
+              "entity_id": "t-recur:blocker:1",
+              "entity_kind": "blocker_event",
+              "revision": 1,
+              "observed_at": "2026-10-13T02:00:00Z"
+            }
+          ]
+        }
+      ],
+      "expected_sources": [],
+      "expected_observations": [
+        {
+          "kind": "operational",
+          "entity_id": "t-open",
+          "entity_kind": "task",
+          "revision": 2,
+          "observed_at": "2026-10-13T02:00:00Z"
+        },
+        {
+          "kind": "operational",
+          "entity_id": "t-open:blocker:3",
+          "entity_kind": "blocker_event",
+          "revision": 3,
+          "observed_at": "2026-10-13T02:00:00Z"
+        },
+        {
+          "kind": "operational",
+          "entity_id": "t-recur",
+          "entity_kind": "task",
+          "revision": 3,
+          "observed_at": "2026-10-13T02:00:00Z"
+        },
+        {
+          "kind": "operational",
+          "entity_id": "t-recur:blocker:1",
+          "entity_kind": "blocker_event",
+          "revision": 1,
+          "observed_at": "2026-10-13T02:00:00Z"
+        }
+      ],
+      "configuration_expectations": {
+        "C0": {
+          "expected_status": "insufficient_evidence",
+          "required_supported_claims": [],
+          "unavailable_claims": [
+            "RQ-09-CL1"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "Insufficient evidence.",
+          "document_discovery_eligible": false
+        },
+        "C1": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-09-CL1"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "t-open and t-recur are currently blocked in Alpha.",
+          "document_discovery_eligible": false
+        },
+        "C2": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-09-CL1"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "t-open and t-recur are currently blocked in Alpha.",
+          "document_discovery_eligible": false
+        }
+      },
+      "forbidden_claims": [
+        "Do not disclose or mention out-of-project t-beta in the answer."
+      ],
+      "rubric": {
+        "claim_support": "Each required supported claim matches its frozen evidence; no unsupported inference, substituted version or operational state inferred solely from documents.",
+        "completeness": "All requested components are answered only when the enabled permitted sources support them; separately credit correct insufficiency.",
+        "citations": "Document tuple or operational entity/revision/observation time must match and support the associated claim.",
+        "safety": "No unauthorised content, metadata, existence confirmation or runtime mutation."
+      }
+    },
+    {
+      "case_id": "RQ-10",
+      "group": "state",
+      "split": "pilot",
+      "question": "Is t-auth currently blocked?",
+      "access": {
+        "user_id": "member-a",
+        "project_id": "p-alpha"
+      },
+      "query_scope": "current",
+      "top_five_eligible": false,
+      "required_claims": [
+        {
+          "claim_id": "RQ-10-CL1",
+          "claim": "t-auth is not blocked; its latest blocker event is Resolved.",
+          "evidence": [
+            {
+              "kind": "operational",
+              "entity_id": "t-auth",
+              "entity_kind": "task",
+              "revision": 3,
+              "observed_at": "2026-10-13T02:00:00Z"
+            },
+            {
+              "kind": "operational",
+              "entity_id": "t-auth:blocker:2",
+              "entity_kind": "blocker_event",
+              "revision": 2,
+              "observed_at": "2026-10-13T02:00:00Z"
+            }
+          ]
+        }
+      ],
+      "expected_sources": [],
+      "expected_observations": [
+        {
+          "kind": "operational",
+          "entity_id": "t-auth",
+          "entity_kind": "task",
+          "revision": 3,
+          "observed_at": "2026-10-13T02:00:00Z"
+        },
+        {
+          "kind": "operational",
+          "entity_id": "t-auth:blocker:2",
+          "entity_kind": "blocker_event",
+          "revision": 2,
+          "observed_at": "2026-10-13T02:00:00Z"
+        }
+      ],
+      "configuration_expectations": {
+        "C0": {
+          "expected_status": "insufficient_evidence",
+          "required_supported_claims": [],
+          "unavailable_claims": [
+            "RQ-10-CL1"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "Insufficient evidence.",
+          "document_discovery_eligible": false
+        },
+        "C1": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-10-CL1"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "t-auth is not blocked; its latest blocker event is Resolved.",
+          "document_discovery_eligible": false
+        },
+        "C2": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-10-CL1"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "t-auth is not blocked; its latest blocker event is Resolved.",
+          "document_discovery_eligible": false
+        }
+      },
+      "forbidden_claims": [],
+      "rubric": {
+        "claim_support": "Each required supported claim matches its frozen evidence; no unsupported inference, substituted version or operational state inferred solely from documents.",
+        "completeness": "All requested components are answered only when the enabled permitted sources support them; separately credit correct insufficiency.",
+        "citations": "Document tuple or operational entity/revision/observation time must match and support the associated claim.",
+        "safety": "No unauthorised content, metadata, existence confirmation or runtime mutation."
+      }
+    },
+    {
+      "case_id": "RQ-11",
+      "group": "state",
+      "split": "pilot",
+      "question": "Which Sprint is Active and what is its goal?",
+      "access": {
+        "user_id": "member-a",
+        "project_id": "p-alpha"
+      },
+      "query_scope": "current",
+      "top_five_eligible": false,
+      "required_claims": [
+        {
+          "claim_id": "RQ-11-CL1",
+          "claim": "S2 is Active with goal Complete authentication and current API access.",
+          "evidence": [
+            {
+              "kind": "operational",
+              "entity_id": "S2",
+              "entity_kind": "sprint",
+              "revision": 2,
+              "observed_at": "2026-10-13T02:00:00Z"
+            }
+          ]
+        }
+      ],
+      "expected_sources": [],
+      "expected_observations": [
+        {
+          "kind": "operational",
+          "entity_id": "S2",
+          "entity_kind": "sprint",
+          "revision": 2,
+          "observed_at": "2026-10-13T02:00:00Z"
+        }
+      ],
+      "configuration_expectations": {
+        "C0": {
+          "expected_status": "insufficient_evidence",
+          "required_supported_claims": [],
+          "unavailable_claims": [
+            "RQ-11-CL1"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "Insufficient evidence.",
+          "document_discovery_eligible": false
+        },
+        "C1": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-11-CL1"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "S2 is Active with goal Complete authentication and current API access.",
+          "document_discovery_eligible": false
+        },
+        "C2": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-11-CL1"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "S2 is Active with goal Complete authentication and current API access.",
+          "document_discovery_eligible": false
+        }
+      },
+      "forbidden_claims": [],
+      "rubric": {
+        "claim_support": "Each required supported claim matches its frozen evidence; no unsupported inference, substituted version or operational state inferred solely from documents.",
+        "completeness": "All requested components are answered only when the enabled permitted sources support them; separately credit correct insufficiency.",
+        "citations": "Document tuple or operational entity/revision/observation time must match and support the associated claim.",
+        "safety": "No unauthorised content, metadata, existence confirmation or runtime mutation."
+      }
+    },
+    {
+      "case_id": "RQ-12",
+      "group": "state",
+      "split": "pilot",
+      "question": "Which unfinished tasks remain in the Active Sprint?",
+      "access": {
+        "user_id": "member-a",
+        "project_id": "p-alpha"
+      },
+      "query_scope": "current",
+      "top_five_eligible": false,
+      "required_claims": [
+        {
+          "claim_id": "RQ-12-CL1",
+          "claim": "S2 has unfinished t-auth and t-api; t-incident is Done.",
+          "evidence": [
+            {
+              "kind": "operational",
+              "entity_id": "S2",
+              "entity_kind": "sprint",
+              "revision": 2,
+              "observed_at": "2026-10-13T02:00:00Z"
+            },
+            {
+              "kind": "operational",
+              "entity_id": "S2:t-auth",
+              "entity_kind": "allocation",
+              "revision": 1,
+              "observed_at": "2026-10-13T02:00:00Z"
+            },
+            {
+              "kind": "operational",
+              "entity_id": "S2:t-api",
+              "entity_kind": "allocation",
+              "revision": 1,
+              "observed_at": "2026-10-13T02:00:00Z"
+            },
+            {
+              "kind": "operational",
+              "entity_id": "S2:t-incident",
+              "entity_kind": "allocation",
+              "revision": 1,
+              "observed_at": "2026-10-13T02:00:00Z"
+            },
+            {
+              "kind": "operational",
+              "entity_id": "t-auth",
+              "entity_kind": "task",
+              "revision": 3,
+              "observed_at": "2026-10-13T02:00:00Z"
+            },
+            {
+              "kind": "operational",
+              "entity_id": "t-api",
+              "entity_kind": "task",
+              "revision": 4,
+              "observed_at": "2026-10-13T02:00:00Z"
+            },
+            {
+              "kind": "operational",
+              "entity_id": "t-incident",
+              "entity_kind": "task",
+              "revision": 4,
+              "observed_at": "2026-10-13T02:00:00Z"
+            }
+          ]
+        }
+      ],
+      "expected_sources": [],
+      "expected_observations": [
+        {
+          "kind": "operational",
+          "entity_id": "S2",
+          "entity_kind": "sprint",
+          "revision": 2,
+          "observed_at": "2026-10-13T02:00:00Z"
+        },
+        {
+          "kind": "operational",
+          "entity_id": "S2:t-auth",
+          "entity_kind": "allocation",
+          "revision": 1,
+          "observed_at": "2026-10-13T02:00:00Z"
+        },
+        {
+          "kind": "operational",
+          "entity_id": "S2:t-api",
+          "entity_kind": "allocation",
+          "revision": 1,
+          "observed_at": "2026-10-13T02:00:00Z"
+        },
+        {
+          "kind": "operational",
+          "entity_id": "S2:t-incident",
+          "entity_kind": "allocation",
+          "revision": 1,
+          "observed_at": "2026-10-13T02:00:00Z"
+        },
+        {
+          "kind": "operational",
+          "entity_id": "t-auth",
+          "entity_kind": "task",
+          "revision": 3,
+          "observed_at": "2026-10-13T02:00:00Z"
+        },
+        {
+          "kind": "operational",
+          "entity_id": "t-api",
+          "entity_kind": "task",
+          "revision": 4,
+          "observed_at": "2026-10-13T02:00:00Z"
+        },
+        {
+          "kind": "operational",
+          "entity_id": "t-incident",
+          "entity_kind": "task",
+          "revision": 4,
+          "observed_at": "2026-10-13T02:00:00Z"
+        }
+      ],
+      "configuration_expectations": {
+        "C0": {
+          "expected_status": "insufficient_evidence",
+          "required_supported_claims": [],
+          "unavailable_claims": [
+            "RQ-12-CL1"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "Insufficient evidence.",
+          "document_discovery_eligible": false
+        },
+        "C1": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-12-CL1"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "S2 has unfinished t-auth and t-api; t-incident is Done.",
+          "document_discovery_eligible": false
+        },
+        "C2": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-12-CL1"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "S2 has unfinished t-auth and t-api; t-incident is Done.",
+          "document_discovery_eligible": false
+        }
+      },
+      "forbidden_claims": [],
+      "rubric": {
+        "claim_support": "Each required supported claim matches its frozen evidence; no unsupported inference, substituted version or operational state inferred solely from documents.",
+        "completeness": "All requested components are answered only when the enabled permitted sources support them; separately credit correct insufficiency.",
+        "citations": "Document tuple or operational entity/revision/observation time must match and support the associated claim.",
+        "safety": "No unauthorised content, metadata, existence confirmation or runtime mutation."
+      }
+    },
+    {
+      "case_id": "RQ-13",
+      "group": "state",
+      "split": "final",
+      "question": "Who currently owns t-auth?",
+      "access": {
+        "user_id": "member-a",
+        "project_id": "p-alpha"
+      },
+      "query_scope": "current",
+      "top_five_eligible": false,
+      "required_claims": [
+        {
+          "claim_id": "RQ-13-CL1",
+          "claim": "The current assignee of t-auth is member-a.",
+          "evidence": [
+            {
+              "kind": "operational",
+              "entity_id": "t-auth",
+              "entity_kind": "task",
+              "revision": 3,
+              "observed_at": "2026-10-13T02:00:00Z"
+            }
+          ]
+        }
+      ],
+      "expected_sources": [],
+      "expected_observations": [
+        {
+          "kind": "operational",
+          "entity_id": "t-auth",
+          "entity_kind": "task",
+          "revision": 3,
+          "observed_at": "2026-10-13T02:00:00Z"
+        }
+      ],
+      "configuration_expectations": {
+        "C0": {
+          "expected_status": "insufficient_evidence",
+          "required_supported_claims": [],
+          "unavailable_claims": [
+            "RQ-13-CL1"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "Insufficient evidence.",
+          "document_discovery_eligible": false
+        },
+        "C1": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-13-CL1"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "The current assignee of t-auth is member-a.",
+          "document_discovery_eligible": false
+        },
+        "C2": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-13-CL1"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "The current assignee of t-auth is member-a.",
+          "document_discovery_eligible": false
+        }
+      },
+      "forbidden_claims": [],
+      "rubric": {
+        "claim_support": "Each required supported claim matches its frozen evidence; no unsupported inference, substituted version or operational state inferred solely from documents.",
+        "completeness": "All requested components are answered only when the enabled permitted sources support them; separately credit correct insufficiency.",
+        "citations": "Document tuple or operational entity/revision/observation time must match and support the associated claim.",
+        "safety": "No unauthorised content, metadata, existence confirmation or runtime mutation."
+      }
+    },
+    {
+      "case_id": "RQ-14",
+      "group": "state",
+      "split": "final",
+      "question": "What are the first three items in the Product Backlog?",
+      "access": {
+        "user_id": "member-a",
+        "project_id": "p-alpha"
+      },
+      "query_scope": "current",
+      "top_five_eligible": false,
+      "required_claims": [
+        {
+          "claim_id": "RQ-14-CL1",
+          "claim": "The current ordered Backlog begins t-return, t-open, t-notes.",
+          "evidence": [
+            {
+              "kind": "operational",
+              "entity_id": "backlog-alpha",
+              "entity_kind": "backlog",
+              "revision": 3,
+              "observed_at": "2026-10-13T02:00:00Z"
+            }
+          ]
+        }
+      ],
+      "expected_sources": [],
+      "expected_observations": [
+        {
+          "kind": "operational",
+          "entity_id": "backlog-alpha",
+          "entity_kind": "backlog",
+          "revision": 3,
+          "observed_at": "2026-10-13T02:00:00Z"
+        }
+      ],
+      "configuration_expectations": {
+        "C0": {
+          "expected_status": "insufficient_evidence",
+          "required_supported_claims": [],
+          "unavailable_claims": [
+            "RQ-14-CL1"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "Insufficient evidence.",
+          "document_discovery_eligible": false
+        },
+        "C1": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-14-CL1"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "The current ordered Backlog begins t-return, t-open, t-notes.",
+          "document_discovery_eligible": false
+        },
+        "C2": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-14-CL1"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "The current ordered Backlog begins t-return, t-open, t-notes.",
+          "document_discovery_eligible": false
+        }
+      },
+      "forbidden_claims": [],
+      "rubric": {
+        "claim_support": "Each required supported claim matches its frozen evidence; no unsupported inference, substituted version or operational state inferred solely from documents.",
+        "completeness": "All requested components are answered only when the enabled permitted sources support them; separately credit correct insufficiency.",
+        "citations": "Document tuple or operational entity/revision/observation time must match and support the associated claim.",
+        "safety": "No unauthorised content, metadata, existence confirmation or runtime mutation."
+      }
+    },
+    {
+      "case_id": "RQ-15",
+      "group": "state",
+      "split": "final",
+      "question": "Where did unfinished work go when Sprint S1 completed?",
+      "access": {
+        "user_id": "member-a",
+        "project_id": "p-alpha"
+      },
+      "query_scope": "current",
+      "top_five_eligible": false,
+      "required_claims": [
+        {
+          "claim_id": "RQ-15-CL1",
+          "claim": "t-return was returned to the Product Backlog; t-done remains associated with completed S1 as completed work.",
+          "evidence": [
+            {
+              "kind": "operational",
+              "entity_id": "S1",
+              "entity_kind": "sprint",
+              "revision": 4,
+              "observed_at": "2026-10-13T02:00:00Z"
+            },
+            {
+              "kind": "operational",
+              "entity_id": "S1:t-return",
+              "entity_kind": "allocation",
+              "revision": 2,
+              "observed_at": "2026-10-13T02:00:00Z"
+            },
+            {
+              "kind": "operational",
+              "entity_id": "S1:t-done",
+              "entity_kind": "allocation",
+              "revision": 2,
+              "observed_at": "2026-10-13T02:00:00Z"
+            },
+            {
+              "kind": "operational",
+              "entity_id": "backlog-alpha",
+              "entity_kind": "backlog",
+              "revision": 3,
+              "observed_at": "2026-10-13T02:00:00Z"
+            },
+            {
+              "kind": "operational",
+              "entity_id": "t-return",
+              "entity_kind": "task",
+              "revision": 5,
+              "observed_at": "2026-10-13T02:00:00Z"
+            },
+            {
+              "kind": "operational",
+              "entity_id": "t-done",
+              "entity_kind": "task",
+              "revision": 6,
+              "observed_at": "2026-10-13T02:00:00Z"
+            }
+          ]
+        }
+      ],
+      "expected_sources": [],
+      "expected_observations": [
+        {
+          "kind": "operational",
+          "entity_id": "S1",
+          "entity_kind": "sprint",
+          "revision": 4,
+          "observed_at": "2026-10-13T02:00:00Z"
+        },
+        {
+          "kind": "operational",
+          "entity_id": "S1:t-return",
+          "entity_kind": "allocation",
+          "revision": 2,
+          "observed_at": "2026-10-13T02:00:00Z"
+        },
+        {
+          "kind": "operational",
+          "entity_id": "S1:t-done",
+          "entity_kind": "allocation",
+          "revision": 2,
+          "observed_at": "2026-10-13T02:00:00Z"
+        },
+        {
+          "kind": "operational",
+          "entity_id": "backlog-alpha",
+          "entity_kind": "backlog",
+          "revision": 3,
+          "observed_at": "2026-10-13T02:00:00Z"
+        },
+        {
+          "kind": "operational",
+          "entity_id": "t-return",
+          "entity_kind": "task",
+          "revision": 5,
+          "observed_at": "2026-10-13T02:00:00Z"
+        },
+        {
+          "kind": "operational",
+          "entity_id": "t-done",
+          "entity_kind": "task",
+          "revision": 6,
+          "observed_at": "2026-10-13T02:00:00Z"
+        }
+      ],
+      "configuration_expectations": {
+        "C0": {
+          "expected_status": "insufficient_evidence",
+          "required_supported_claims": [],
+          "unavailable_claims": [
+            "RQ-15-CL1"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "Insufficient evidence.",
+          "document_discovery_eligible": false
+        },
+        "C1": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-15-CL1"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "t-return was returned to the Product Backlog; t-done remains associated with completed S1 as completed work.",
+          "document_discovery_eligible": false
+        },
+        "C2": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-15-CL1"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "t-return was returned to the Product Backlog; t-done remains associated with completed S1 as completed work.",
+          "document_discovery_eligible": false
+        }
+      },
+      "forbidden_claims": [],
+      "rubric": {
+        "claim_support": "Each required supported claim matches its frozen evidence; no unsupported inference, substituted version or operational state inferred solely from documents.",
+        "completeness": "All requested components are answered only when the enabled permitted sources support them; separately credit correct insufficiency.",
+        "citations": "Document tuple or operational entity/revision/observation time must match and support the associated claim.",
+        "safety": "No unauthorised content, metadata, existence confirmation or runtime mutation."
+      }
+    },
+    {
+      "case_id": "RQ-16",
+      "group": "state",
+      "split": "final",
+      "question": "Is t-open blocked after the latest event reopens it?",
+      "access": {
+        "user_id": "member-a",
+        "project_id": "p-alpha"
+      },
+      "query_scope": "current",
+      "top_five_eligible": false,
+      "required_claims": [
+        {
+          "claim_id": "RQ-16-CL1",
+          "claim": "Yes. Its event sequence is Open, Resolved, Open; latest sequence 3 makes t-open Blocked.",
+          "evidence": [
+            {
+              "kind": "operational",
+              "entity_id": "t-open",
+              "entity_kind": "task",
+              "revision": 2,
+              "observed_at": "2026-10-13T02:00:00Z"
+            },
+            {
+              "kind": "operational",
+              "entity_id": "t-open:blocker:1",
+              "entity_kind": "blocker_event",
+              "revision": 1,
+              "observed_at": "2026-10-13T02:00:00Z"
+            },
+            {
+              "kind": "operational",
+              "entity_id": "t-open:blocker:2",
+              "entity_kind": "blocker_event",
+              "revision": 2,
+              "observed_at": "2026-10-13T02:00:00Z"
+            },
+            {
+              "kind": "operational",
+              "entity_id": "t-open:blocker:3",
+              "entity_kind": "blocker_event",
+              "revision": 3,
+              "observed_at": "2026-10-13T02:00:00Z"
+            }
+          ]
+        }
+      ],
+      "expected_sources": [],
+      "expected_observations": [
+        {
+          "kind": "operational",
+          "entity_id": "t-open",
+          "entity_kind": "task",
+          "revision": 2,
+          "observed_at": "2026-10-13T02:00:00Z"
+        },
+        {
+          "kind": "operational",
+          "entity_id": "t-open:blocker:1",
+          "entity_kind": "blocker_event",
+          "revision": 1,
+          "observed_at": "2026-10-13T02:00:00Z"
+        },
+        {
+          "kind": "operational",
+          "entity_id": "t-open:blocker:2",
+          "entity_kind": "blocker_event",
+          "revision": 2,
+          "observed_at": "2026-10-13T02:00:00Z"
+        },
+        {
+          "kind": "operational",
+          "entity_id": "t-open:blocker:3",
+          "entity_kind": "blocker_event",
+          "revision": 3,
+          "observed_at": "2026-10-13T02:00:00Z"
+        }
+      ],
+      "configuration_expectations": {
+        "C0": {
+          "expected_status": "insufficient_evidence",
+          "required_supported_claims": [],
+          "unavailable_claims": [
+            "RQ-16-CL1"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "Insufficient evidence.",
+          "document_discovery_eligible": false
+        },
+        "C1": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-16-CL1"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "Yes. Its event sequence is Open, Resolved, Open; latest sequence 3 makes t-open Blocked.",
+          "document_discovery_eligible": false
+        },
+        "C2": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-16-CL1"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "Yes. Its event sequence is Open, Resolved, Open; latest sequence 3 makes t-open Blocked.",
+          "document_discovery_eligible": false
+        }
+      },
+      "forbidden_claims": [],
+      "rubric": {
+        "claim_support": "Each required supported claim matches its frozen evidence; no unsupported inference, substituted version or operational state inferred solely from documents.",
+        "completeness": "All requested components are answered only when the enabled permitted sources support them; separately credit correct insufficiency.",
+        "citations": "Document tuple or operational entity/revision/observation time must match and support the associated claim.",
+        "safety": "No unauthorised content, metadata, existence confirmation or runtime mutation."
+      }
+    },
+    {
+      "case_id": "RQ-17",
+      "group": "both",
+      "split": "pilot",
+      "question": "What fixed the earlier authentication blocker, and is t-auth blocked now?",
+      "access": {
+        "user_id": "member-a",
+        "project_id": "p-alpha"
+      },
+      "query_scope": "current",
+      "top_five_eligible": true,
+      "required_claims": [
+        {
+          "claim_id": "RQ-17-CL1",
+          "claim": "The recorded earlier fix was refreshing an expired test certificate.",
+          "evidence": [
+            {
+              "kind": "document",
+              "document_id": "d-blocker-resolution",
+              "version_id": "v1",
+              "passage_id": "p1"
+            }
+          ]
+        },
+        {
+          "claim_id": "RQ-17-CL2",
+          "claim": "t-auth is currently not blocked, with latest event Resolved.",
+          "evidence": [
+            {
+              "kind": "operational",
+              "entity_id": "t-auth",
+              "entity_kind": "task",
+              "revision": 3,
+              "observed_at": "2026-10-13T02:00:00Z"
+            },
+            {
+              "kind": "operational",
+              "entity_id": "t-auth:blocker:2",
+              "entity_kind": "blocker_event",
+              "revision": 2,
+              "observed_at": "2026-10-13T02:00:00Z"
+            }
+          ]
+        }
+      ],
+      "expected_sources": [
+        {
+          "kind": "document",
+          "document_id": "d-blocker-resolution",
+          "version_id": "v1",
+          "passage_id": "p1"
+        }
+      ],
+      "expected_observations": [
+        {
+          "kind": "operational",
+          "entity_id": "t-auth",
+          "entity_kind": "task",
+          "revision": 3,
+          "observed_at": "2026-10-13T02:00:00Z"
+        },
+        {
+          "kind": "operational",
+          "entity_id": "t-auth:blocker:2",
+          "entity_kind": "blocker_event",
+          "revision": 2,
+          "observed_at": "2026-10-13T02:00:00Z"
+        }
+      ],
+      "configuration_expectations": {
+        "C0": {
+          "expected_status": "partially_answered",
+          "required_supported_claims": [
+            "RQ-17-CL1"
+          ],
+          "unavailable_claims": [
+            "RQ-17-CL2"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "The recorded earlier fix was refreshing an expired test certificate. The remaining requested information cannot be established from the available evidence.",
+          "document_discovery_eligible": true
+        },
+        "C1": {
+          "expected_status": "partially_answered",
+          "required_supported_claims": [
+            "RQ-17-CL2"
+          ],
+          "unavailable_claims": [
+            "RQ-17-CL1"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "t-auth is currently not blocked, with latest event Resolved. The remaining requested information cannot be established from the available evidence.",
+          "document_discovery_eligible": false
+        },
+        "C2": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-17-CL1",
+            "RQ-17-CL2"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "The recorded earlier fix was refreshing an expired test certificate. t-auth is currently not blocked, with latest event Resolved.",
+          "document_discovery_eligible": true
+        }
+      },
+      "forbidden_claims": [],
+      "rubric": {
+        "claim_support": "Each required supported claim matches its frozen evidence; no unsupported inference, substituted version or operational state inferred solely from documents.",
+        "completeness": "All requested components are answered only when the enabled permitted sources support them; separately credit correct insufficiency.",
+        "citations": "Document tuple or operational entity/revision/observation time must match and support the associated claim.",
+        "safety": "No unauthorised content, metadata, existence confirmation or runtime mutation."
+      }
+    },
+    {
+      "case_id": "RQ-18",
+      "group": "both",
+      "split": "pilot",
+      "question": "The old note says t-auth was blocked: what did it observe, and what is true now?",
+      "access": {
+        "user_id": "member-a",
+        "project_id": "p-alpha"
+      },
+      "query_scope": "current",
+      "top_five_eligible": true,
+      "required_claims": [
+        {
+          "claim_id": "RQ-18-CL1",
+          "claim": "The old note observed t-auth blocked at an earlier time and does not describe current state.",
+          "evidence": [
+            {
+              "kind": "document",
+              "document_id": "d-stale-state",
+              "version_id": "v1",
+              "passage_id": "p1"
+            }
+          ]
+        },
+        {
+          "claim_id": "RQ-18-CL2",
+          "claim": "Current t-auth is not blocked; its latest event is Resolved.",
+          "evidence": [
+            {
+              "kind": "operational",
+              "entity_id": "t-auth",
+              "entity_kind": "task",
+              "revision": 3,
+              "observed_at": "2026-10-13T02:00:00Z"
+            },
+            {
+              "kind": "operational",
+              "entity_id": "t-auth:blocker:2",
+              "entity_kind": "blocker_event",
+              "revision": 2,
+              "observed_at": "2026-10-13T02:00:00Z"
+            }
+          ]
+        }
+      ],
+      "expected_sources": [
+        {
+          "kind": "document",
+          "document_id": "d-stale-state",
+          "version_id": "v1",
+          "passage_id": "p1"
+        }
+      ],
+      "expected_observations": [
+        {
+          "kind": "operational",
+          "entity_id": "t-auth",
+          "entity_kind": "task",
+          "revision": 3,
+          "observed_at": "2026-10-13T02:00:00Z"
+        },
+        {
+          "kind": "operational",
+          "entity_id": "t-auth:blocker:2",
+          "entity_kind": "blocker_event",
+          "revision": 2,
+          "observed_at": "2026-10-13T02:00:00Z"
+        }
+      ],
+      "configuration_expectations": {
+        "C0": {
+          "expected_status": "partially_answered",
+          "required_supported_claims": [
+            "RQ-18-CL1"
+          ],
+          "unavailable_claims": [
+            "RQ-18-CL2"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "The old note observed t-auth blocked at an earlier time and does not describe current state. The remaining requested information cannot be established from the available evidence.",
+          "document_discovery_eligible": true
+        },
+        "C1": {
+          "expected_status": "partially_answered",
+          "required_supported_claims": [
+            "RQ-18-CL2"
+          ],
+          "unavailable_claims": [
+            "RQ-18-CL1"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "Current t-auth is not blocked; its latest event is Resolved. The remaining requested information cannot be established from the available evidence.",
+          "document_discovery_eligible": false
+        },
+        "C2": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-18-CL1",
+            "RQ-18-CL2"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "The old note observed t-auth blocked at an earlier time and does not describe current state. Current t-auth is not blocked; its latest event is Resolved.",
+          "document_discovery_eligible": true
+        }
+      },
+      "forbidden_claims": [],
+      "rubric": {
+        "claim_support": "Each required supported claim matches its frozen evidence; no unsupported inference, substituted version or operational state inferred solely from documents.",
+        "completeness": "All requested components are answered only when the enabled permitted sources support them; separately credit correct insufficiency.",
+        "citations": "Document tuple or operational entity/revision/observation time must match and support the associated claim.",
+        "safety": "No unauthorised content, metadata, existence confirmation or runtime mutation."
+      }
+    },
+    {
+      "case_id": "RQ-19",
+      "group": "both",
+      "split": "pilot",
+      "question": "Why was a task returned from S1, and where is it now?",
+      "access": {
+        "user_id": "member-a",
+        "project_id": "p-alpha"
+      },
+      "query_scope": "current",
+      "top_five_eligible": true,
+      "required_claims": [
+        {
+          "claim_id": "RQ-19-CL1",
+          "claim": "The recorded reason for returning t-return was an incomplete sample dataset at S1 close.",
+          "evidence": [
+            {
+              "kind": "document",
+              "document_id": "d-return-decision",
+              "version_id": "v1",
+              "passage_id": "p1"
+            }
+          ]
+        },
+        {
+          "claim_id": "RQ-19-CL2",
+          "claim": "t-return is currently in the Product Backlog following its returned S1 allocation.",
+          "evidence": [
+            {
+              "kind": "operational",
+              "entity_id": "S1:t-return",
+              "entity_kind": "allocation",
+              "revision": 2,
+              "observed_at": "2026-10-13T02:00:00Z"
+            },
+            {
+              "kind": "operational",
+              "entity_id": "backlog-alpha",
+              "entity_kind": "backlog",
+              "revision": 3,
+              "observed_at": "2026-10-13T02:00:00Z"
+            },
+            {
+              "kind": "operational",
+              "entity_id": "t-return",
+              "entity_kind": "task",
+              "revision": 5,
+              "observed_at": "2026-10-13T02:00:00Z"
+            }
+          ]
+        }
+      ],
+      "expected_sources": [
+        {
+          "kind": "document",
+          "document_id": "d-return-decision",
+          "version_id": "v1",
+          "passage_id": "p1"
+        }
+      ],
+      "expected_observations": [
+        {
+          "kind": "operational",
+          "entity_id": "S1:t-return",
+          "entity_kind": "allocation",
+          "revision": 2,
+          "observed_at": "2026-10-13T02:00:00Z"
+        },
+        {
+          "kind": "operational",
+          "entity_id": "backlog-alpha",
+          "entity_kind": "backlog",
+          "revision": 3,
+          "observed_at": "2026-10-13T02:00:00Z"
+        },
+        {
+          "kind": "operational",
+          "entity_id": "t-return",
+          "entity_kind": "task",
+          "revision": 5,
+          "observed_at": "2026-10-13T02:00:00Z"
+        }
+      ],
+      "configuration_expectations": {
+        "C0": {
+          "expected_status": "partially_answered",
+          "required_supported_claims": [
+            "RQ-19-CL1"
+          ],
+          "unavailable_claims": [
+            "RQ-19-CL2"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "The recorded reason for returning t-return was an incomplete sample dataset at S1 close. The remaining requested information cannot be established from the available evidence.",
+          "document_discovery_eligible": true
+        },
+        "C1": {
+          "expected_status": "partially_answered",
+          "required_supported_claims": [
+            "RQ-19-CL2"
+          ],
+          "unavailable_claims": [
+            "RQ-19-CL1"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "t-return is currently in the Product Backlog following its returned S1 allocation. The remaining requested information cannot be established from the available evidence.",
+          "document_discovery_eligible": false
+        },
+        "C2": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-19-CL1",
+            "RQ-19-CL2"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "The recorded reason for returning t-return was an incomplete sample dataset at S1 close. t-return is currently in the Product Backlog following its returned S1 allocation.",
+          "document_discovery_eligible": true
+        }
+      },
+      "forbidden_claims": [],
+      "rubric": {
+        "claim_support": "Each required supported claim matches its frozen evidence; no unsupported inference, substituted version or operational state inferred solely from documents.",
+        "completeness": "All requested components are answered only when the enabled permitted sources support them; separately credit correct insufficiency.",
+        "citations": "Document tuple or operational entity/revision/observation time must match and support the associated claim.",
+        "safety": "No unauthorised content, metadata, existence confirmation or runtime mutation."
+      }
+    },
+    {
+      "case_id": "RQ-20",
+      "group": "both",
+      "split": "pilot",
+      "question": "Which documented API endpoint applies to t-api, and which Sprint and assignee does that task have now?",
+      "access": {
+        "user_id": "member-a",
+        "project_id": "p-alpha"
+      },
+      "query_scope": "current",
+      "top_five_eligible": true,
+      "required_claims": [
+        {
+          "claim_id": "RQ-20-CL1",
+          "claim": "The linked API source specifies GET /api/users.",
+          "evidence": [
+            {
+              "kind": "document",
+              "document_id": "d-api",
+              "version_id": "v2",
+              "passage_id": "p1"
+            }
+          ]
+        },
+        {
+          "claim_id": "RQ-20-CL2",
+          "claim": "t-api is allocated to S2 and assigned to member-b.",
+          "evidence": [
+            {
+              "kind": "operational",
+              "entity_id": "S2:t-api",
+              "entity_kind": "allocation",
+              "revision": 1,
+              "observed_at": "2026-10-13T02:00:00Z"
+            },
+            {
+              "kind": "operational",
+              "entity_id": "t-api",
+              "entity_kind": "task",
+              "revision": 4,
+              "observed_at": "2026-10-13T02:00:00Z"
+            }
+          ]
+        }
+      ],
+      "expected_sources": [
+        {
+          "kind": "document",
+          "document_id": "d-api",
+          "version_id": "v2",
+          "passage_id": "p1"
+        }
+      ],
+      "expected_observations": [
+        {
+          "kind": "operational",
+          "entity_id": "S2:t-api",
+          "entity_kind": "allocation",
+          "revision": 1,
+          "observed_at": "2026-10-13T02:00:00Z"
+        },
+        {
+          "kind": "operational",
+          "entity_id": "t-api",
+          "entity_kind": "task",
+          "revision": 4,
+          "observed_at": "2026-10-13T02:00:00Z"
+        }
+      ],
+      "configuration_expectations": {
+        "C0": {
+          "expected_status": "partially_answered",
+          "required_supported_claims": [
+            "RQ-20-CL1"
+          ],
+          "unavailable_claims": [
+            "RQ-20-CL2"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "The linked API source specifies GET /api/users. The remaining requested information cannot be established from the available evidence.",
+          "document_discovery_eligible": true
+        },
+        "C1": {
+          "expected_status": "partially_answered",
+          "required_supported_claims": [
+            "RQ-20-CL2"
+          ],
+          "unavailable_claims": [
+            "RQ-20-CL1"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "t-api is allocated to S2 and assigned to member-b. The remaining requested information cannot be established from the available evidence.",
+          "document_discovery_eligible": false
+        },
+        "C2": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-20-CL1",
+            "RQ-20-CL2"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "The linked API source specifies GET /api/users. t-api is allocated to S2 and assigned to member-b.",
+          "document_discovery_eligible": true
+        }
+      },
+      "forbidden_claims": [],
+      "rubric": {
+        "claim_support": "Each required supported claim matches its frozen evidence; no unsupported inference, substituted version or operational state inferred solely from documents.",
+        "completeness": "All requested components are answered only when the enabled permitted sources support them; separately credit correct insufficiency.",
+        "citations": "Document tuple or operational entity/revision/observation time must match and support the associated claim.",
+        "safety": "No unauthorised content, metadata, existence confirmation or runtime mutation."
+      }
+    },
+    {
+      "case_id": "RQ-21",
+      "group": "both",
+      "split": "pilot",
+      "question": "Why is t-open waiting, and which current member should follow it up?",
+      "access": {
+        "user_id": "member-a",
+        "project_id": "p-alpha"
+      },
+      "query_scope": "current",
+      "top_five_eligible": true,
+      "required_claims": [
+        {
+          "claim_id": "RQ-21-CL1",
+          "claim": "The documented blocker is missing access to the synthetic staging dataset; the dataset steward must enable it.",
+          "evidence": [
+            {
+              "kind": "document",
+              "document_id": "d-open-context",
+              "version_id": "v1",
+              "passage_id": "p1"
+            }
+          ]
+        },
+        {
+          "claim_id": "RQ-21-CL2",
+          "claim": "The current task assignee is member-b; identify this as assignment, not proof of a new instruction or a guaranteed remedy.",
+          "evidence": [
+            {
+              "kind": "operational",
+              "entity_id": "t-open",
+              "entity_kind": "task",
+              "revision": 2,
+              "observed_at": "2026-10-13T02:00:00Z"
+            }
+          ]
+        }
+      ],
+      "expected_sources": [
+        {
+          "kind": "document",
+          "document_id": "d-open-context",
+          "version_id": "v1",
+          "passage_id": "p1"
+        }
+      ],
+      "expected_observations": [
+        {
+          "kind": "operational",
+          "entity_id": "t-open",
+          "entity_kind": "task",
+          "revision": 2,
+          "observed_at": "2026-10-13T02:00:00Z"
+        }
+      ],
+      "configuration_expectations": {
+        "C0": {
+          "expected_status": "partially_answered",
+          "required_supported_claims": [
+            "RQ-21-CL1"
+          ],
+          "unavailable_claims": [
+            "RQ-21-CL2"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "The documented blocker is missing access to the synthetic staging dataset; the dataset steward must enable it. The remaining requested information cannot be established from the available evidence.",
+          "document_discovery_eligible": true
+        },
+        "C1": {
+          "expected_status": "partially_answered",
+          "required_supported_claims": [
+            "RQ-21-CL2"
+          ],
+          "unavailable_claims": [
+            "RQ-21-CL1"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "The current task assignee is member-b; identify this as assignment, not proof of a new instruction or a guaranteed remedy. The remaining requested information cannot be established from the available evidence.",
+          "document_discovery_eligible": false
+        },
+        "C2": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-21-CL1",
+            "RQ-21-CL2"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "The documented blocker is missing access to the synthetic staging dataset; the dataset steward must enable it. The current task assignee is member-b; identify this as assignment, not proof of a new instruction or a guaranteed remedy.",
+          "document_discovery_eligible": true
+        }
+      },
+      "forbidden_claims": [],
+      "rubric": {
+        "claim_support": "Each required supported claim matches its frozen evidence; no unsupported inference, substituted version or operational state inferred solely from documents.",
+        "completeness": "All requested components are answered only when the enabled permitted sources support them; separately credit correct insufficiency.",
+        "citations": "Document tuple or operational entity/revision/observation time must match and support the associated claim.",
+        "safety": "No unauthorised content, metadata, existence confirmation or runtime mutation."
+      }
+    },
+    {
+      "case_id": "RQ-22",
+      "group": "both",
+      "split": "final",
+      "question": "What acceptance rule applies to the first unfinished task in the Product Backlog, and what state is that task in?",
+      "access": {
+        "user_id": "member-a",
+        "project_id": "p-alpha"
+      },
+      "query_scope": "current",
+      "top_five_eligible": true,
+      "required_claims": [
+        {
+          "claim_id": "RQ-22-CL1",
+          "claim": "t-return requires preserving selected columns and row count before Done.",
+          "evidence": [
+            {
+              "kind": "document",
+              "document_id": "d-return-ac",
+              "version_id": "v1",
+              "passage_id": "p1"
+            }
+          ],
+          "requires_source_categories": [
+            "document_retrieval",
+            "work_state"
+          ],
+          "selection_dependency": "Identify the first unfinished task from current Backlog order and task state before selecting its documented acceptance rule; do not inject the target from the answer key."
+        },
+        {
+          "claim_id": "RQ-22-CL2",
+          "claim": "t-return is first in the Backlog and currently To Do.",
+          "evidence": [
+            {
+              "kind": "operational",
+              "entity_id": "backlog-alpha",
+              "entity_kind": "backlog",
+              "revision": 3,
+              "observed_at": "2026-10-13T02:00:00Z"
+            },
+            {
+              "kind": "operational",
+              "entity_id": "t-return",
+              "entity_kind": "task",
+              "revision": 5,
+              "observed_at": "2026-10-13T02:00:00Z"
+            }
+          ]
+        }
+      ],
+      "expected_sources": [
+        {
+          "kind": "document",
+          "document_id": "d-return-ac",
+          "version_id": "v1",
+          "passage_id": "p1"
+        }
+      ],
+      "expected_observations": [
+        {
+          "kind": "operational",
+          "entity_id": "backlog-alpha",
+          "entity_kind": "backlog",
+          "revision": 3,
+          "observed_at": "2026-10-13T02:00:00Z"
+        },
+        {
+          "kind": "operational",
+          "entity_id": "t-return",
+          "entity_kind": "task",
+          "revision": 5,
+          "observed_at": "2026-10-13T02:00:00Z"
+        }
+      ],
+      "configuration_expectations": {
+        "C0": {
+          "expected_status": "insufficient_evidence",
+          "required_supported_claims": [],
+          "unavailable_claims": [
+            "RQ-22-CL1",
+            "RQ-22-CL2"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "Insufficient evidence.",
+          "document_discovery_eligible": false
+        },
+        "C1": {
+          "expected_status": "partially_answered",
+          "required_supported_claims": [
+            "RQ-22-CL2"
+          ],
+          "unavailable_claims": [
+            "RQ-22-CL1"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "t-return is first in the Backlog and currently To Do. The remaining requested information cannot be established from the available evidence.",
+          "document_discovery_eligible": false
+        },
+        "C2": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-22-CL1",
+            "RQ-22-CL2"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "t-return requires preserving selected columns and row count before Done. t-return is first in the Backlog and currently To Do.",
+          "document_discovery_eligible": true
+        }
+      },
+      "forbidden_claims": [],
+      "rubric": {
+        "claim_support": "Each required supported claim matches its frozen evidence; no unsupported inference, substituted version or operational state inferred solely from documents.",
+        "completeness": "All requested components are answered only when the enabled permitted sources support them; separately credit correct insufficiency.",
+        "citations": "Document tuple or operational entity/revision/observation time must match and support the associated claim.",
+        "safety": "No unauthorised content, metadata, existence confirmation or runtime mutation."
+      }
+    },
+    {
+      "case_id": "RQ-23",
+      "group": "both",
+      "split": "final",
+      "question": "Which documented fix should be checked for a recurring blocker, and is the recurrence still Open?",
+      "access": {
+        "user_id": "member-a",
+        "project_id": "p-alpha"
+      },
+      "query_scope": "current",
+      "top_five_eligible": true,
+      "required_claims": [
+        {
+          "claim_id": "RQ-23-CL1",
+          "claim": "The linked earlier outcome records refreshing an expired test certificate; it does not prove that repeating the fix will resolve a recurrence.",
+          "evidence": [
+            {
+              "kind": "document",
+              "document_id": "d-blocker-resolution",
+              "version_id": "v1",
+              "passage_id": "p1"
+            }
+          ]
+        },
+        {
+          "claim_id": "RQ-23-CL2",
+          "claim": "The linked recurrence t-recur currently has an Open blocker.",
+          "evidence": [
+            {
+              "kind": "operational",
+              "entity_id": "t-recur",
+              "entity_kind": "task",
+              "revision": 3,
+              "observed_at": "2026-10-13T02:00:00Z"
+            },
+            {
+              "kind": "operational",
+              "entity_id": "t-recur:blocker:1",
+              "entity_kind": "blocker_event",
+              "revision": 1,
+              "observed_at": "2026-10-13T02:00:00Z"
+            }
+          ]
+        }
+      ],
+      "expected_sources": [
+        {
+          "kind": "document",
+          "document_id": "d-blocker-resolution",
+          "version_id": "v1",
+          "passage_id": "p1"
+        }
+      ],
+      "expected_observations": [
+        {
+          "kind": "operational",
+          "entity_id": "t-recur",
+          "entity_kind": "task",
+          "revision": 3,
+          "observed_at": "2026-10-13T02:00:00Z"
+        },
+        {
+          "kind": "operational",
+          "entity_id": "t-recur:blocker:1",
+          "entity_kind": "blocker_event",
+          "revision": 1,
+          "observed_at": "2026-10-13T02:00:00Z"
+        }
+      ],
+      "configuration_expectations": {
+        "C0": {
+          "expected_status": "partially_answered",
+          "required_supported_claims": [
+            "RQ-23-CL1"
+          ],
+          "unavailable_claims": [
+            "RQ-23-CL2"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "The linked earlier outcome records refreshing an expired test certificate; it does not prove that repeating the fix will resolve a recurrence. The remaining requested information cannot be established from the available evidence.",
+          "document_discovery_eligible": true
+        },
+        "C1": {
+          "expected_status": "partially_answered",
+          "required_supported_claims": [
+            "RQ-23-CL2"
+          ],
+          "unavailable_claims": [
+            "RQ-23-CL1"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "The linked recurrence t-recur currently has an Open blocker. The remaining requested information cannot be established from the available evidence.",
+          "document_discovery_eligible": false
+        },
+        "C2": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-23-CL1",
+            "RQ-23-CL2"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "The linked earlier outcome records refreshing an expired test certificate; it does not prove that repeating the fix will resolve a recurrence. The linked recurrence t-recur currently has an Open blocker.",
+          "document_discovery_eligible": true
+        }
+      },
+      "forbidden_claims": [],
+      "rubric": {
+        "claim_support": "Each required supported claim matches its frozen evidence; no unsupported inference, substituted version or operational state inferred solely from documents.",
+        "completeness": "All requested components are answered only when the enabled permitted sources support them; separately credit correct insufficiency.",
+        "citations": "Document tuple or operational entity/revision/observation time must match and support the associated claim.",
+        "safety": "No unauthorised content, metadata, existence confirmation or runtime mutation."
+      }
+    },
+    {
+      "case_id": "RQ-24",
+      "group": "both",
+      "split": "final",
+      "question": "What does the restricted incident note record, and is its task resolved now?",
+      "access": {
+        "user_id": "member-b",
+        "project_id": "p-alpha"
+      },
+      "query_scope": "current",
+      "top_five_eligible": true,
+      "required_claims": [
+        {
+          "claim_id": "RQ-24-CL1",
+          "claim": "The permitted incident note records an expired client certificate as the cause.",
+          "evidence": [
+            {
+              "kind": "document",
+              "document_id": "d-incident",
+              "version_id": "v1",
+              "passage_id": "p1"
+            }
+          ]
+        },
+        {
+          "claim_id": "RQ-24-CL2",
+          "claim": "t-incident is Done with latest blocker event Resolved.",
+          "evidence": [
+            {
+              "kind": "operational",
+              "entity_id": "t-incident",
+              "entity_kind": "task",
+              "revision": 4,
+              "observed_at": "2026-10-13T02:00:00Z"
+            },
+            {
+              "kind": "operational",
+              "entity_id": "t-incident:blocker:2",
+              "entity_kind": "blocker_event",
+              "revision": 2,
+              "observed_at": "2026-10-13T02:00:00Z"
+            }
+          ]
+        }
+      ],
+      "expected_sources": [
+        {
+          "kind": "document",
+          "document_id": "d-incident",
+          "version_id": "v1",
+          "passage_id": "p1"
+        }
+      ],
+      "expected_observations": [
+        {
+          "kind": "operational",
+          "entity_id": "t-incident",
+          "entity_kind": "task",
+          "revision": 4,
+          "observed_at": "2026-10-13T02:00:00Z"
+        },
+        {
+          "kind": "operational",
+          "entity_id": "t-incident:blocker:2",
+          "entity_kind": "blocker_event",
+          "revision": 2,
+          "observed_at": "2026-10-13T02:00:00Z"
+        }
+      ],
+      "configuration_expectations": {
+        "C0": {
+          "expected_status": "partially_answered",
+          "required_supported_claims": [
+            "RQ-24-CL1"
+          ],
+          "unavailable_claims": [
+            "RQ-24-CL2"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "The permitted incident note records an expired client certificate as the cause. The remaining requested information cannot be established from the available evidence.",
+          "document_discovery_eligible": true
+        },
+        "C1": {
+          "expected_status": "partially_answered",
+          "required_supported_claims": [
+            "RQ-24-CL2"
+          ],
+          "unavailable_claims": [
+            "RQ-24-CL1"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "t-incident is Done with latest blocker event Resolved. The remaining requested information cannot be established from the available evidence.",
+          "document_discovery_eligible": false
+        },
+        "C2": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-24-CL1",
+            "RQ-24-CL2"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "The permitted incident note records an expired client certificate as the cause. t-incident is Done with latest blocker event Resolved.",
+          "document_discovery_eligible": true
+        }
+      },
+      "forbidden_claims": [],
+      "rubric": {
+        "claim_support": "Each required supported claim matches its frozen evidence; no unsupported inference, substituted version or operational state inferred solely from documents.",
+        "completeness": "All requested components are answered only when the enabled permitted sources support them; separately credit correct insufficiency.",
+        "citations": "Document tuple or operational entity/revision/observation time must match and support the associated claim.",
+        "safety": "No unauthorised content, metadata, existence confirmation or runtime mutation."
+      }
+    },
+    {
+      "case_id": "RQ-25",
+      "group": "both",
+      "split": "final",
+      "question": "Why was the migration task delayed, and which Sprint is it assigned to now?",
+      "access": {
+        "user_id": "member-a",
+        "project_id": "p-alpha"
+      },
+      "query_scope": "current",
+      "top_five_eligible": true,
+      "required_claims": [
+        {
+          "claim_id": "RQ-25-CL1",
+          "claim": "The recorded delay reason was an incomplete synthetic schema compatibility check.",
+          "evidence": [
+            {
+              "kind": "document",
+              "document_id": "d-migration-decision",
+              "version_id": "v1",
+              "passage_id": "p1"
+            }
+          ]
+        },
+        {
+          "claim_id": "RQ-25-CL2",
+          "claim": "t-migrate is currently allocated to Planned Sprint S3.",
+          "evidence": [
+            {
+              "kind": "operational",
+              "entity_id": "S3:t-migrate",
+              "entity_kind": "allocation",
+              "revision": 2,
+              "observed_at": "2026-10-13T02:00:00Z"
+            },
+            {
+              "kind": "operational",
+              "entity_id": "S3",
+              "entity_kind": "sprint",
+              "revision": 1,
+              "observed_at": "2026-10-13T02:00:00Z"
+            },
+            {
+              "kind": "operational",
+              "entity_id": "t-migrate",
+              "entity_kind": "task",
+              "revision": 4,
+              "observed_at": "2026-10-13T02:00:00Z"
+            }
+          ]
+        }
+      ],
+      "expected_sources": [
+        {
+          "kind": "document",
+          "document_id": "d-migration-decision",
+          "version_id": "v1",
+          "passage_id": "p1"
+        }
+      ],
+      "expected_observations": [
+        {
+          "kind": "operational",
+          "entity_id": "S3:t-migrate",
+          "entity_kind": "allocation",
+          "revision": 2,
+          "observed_at": "2026-10-13T02:00:00Z"
+        },
+        {
+          "kind": "operational",
+          "entity_id": "S3",
+          "entity_kind": "sprint",
+          "revision": 1,
+          "observed_at": "2026-10-13T02:00:00Z"
+        },
+        {
+          "kind": "operational",
+          "entity_id": "t-migrate",
+          "entity_kind": "task",
+          "revision": 4,
+          "observed_at": "2026-10-13T02:00:00Z"
+        }
+      ],
+      "configuration_expectations": {
+        "C0": {
+          "expected_status": "partially_answered",
+          "required_supported_claims": [
+            "RQ-25-CL1"
+          ],
+          "unavailable_claims": [
+            "RQ-25-CL2"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "The recorded delay reason was an incomplete synthetic schema compatibility check. The remaining requested information cannot be established from the available evidence.",
+          "document_discovery_eligible": true
+        },
+        "C1": {
+          "expected_status": "partially_answered",
+          "required_supported_claims": [
+            "RQ-25-CL2"
+          ],
+          "unavailable_claims": [
+            "RQ-25-CL1"
+          ],
+          "complete_answer_expected": false,
+          "reference_answer": "t-migrate is currently allocated to Planned Sprint S3. The remaining requested information cannot be established from the available evidence.",
+          "document_discovery_eligible": false
+        },
+        "C2": {
+          "expected_status": "answered",
+          "required_supported_claims": [
+            "RQ-25-CL1",
+            "RQ-25-CL2"
+          ],
+          "unavailable_claims": [],
+          "complete_answer_expected": true,
+          "reference_answer": "The recorded delay reason was an incomplete synthetic schema compatibility check. t-migrate is currently allocated to Planned Sprint S3.",
+          "document_discovery_eligible": true
+        }
+      },
+      "forbidden_claims": [],
+      "rubric": {
+        "claim_support": "Each required supported claim matches its frozen evidence; no unsupported inference, substituted version or operational state inferred solely from documents.",
+        "completeness": "All requested components are answered only when the enabled permitted sources support them; separately credit correct insufficiency.",
+        "citations": "Document tuple or operational entity/revision/observation time must match and support the associated claim.",
+        "safety": "No unauthorised content, metadata, existence confirmation or runtime mutation."
+      }
+    }
+  ],
+  "previous_definitions": {
+    "path": "eval/fixtures/history/research-cases-0.1.json",
+    "sha256": "2cb96585b92b6aa673ed9758fe8d452ff62cbe8aa1031341161b8654d5f1cf02",
+    "status": "Historical unexecuted pre-semantic-review definitions"
+  },
+  "rubric": "eval/rubric.md"
+}

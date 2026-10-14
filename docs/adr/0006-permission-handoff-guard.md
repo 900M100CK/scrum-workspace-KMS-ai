@@ -1,5 +1,7 @@
 # Serialise current permission checks with protected handoff
 
+**13 October clarification:** [ADR-0011](0011-document-creation-and-guard-scope.md) records owner-confirmed guard coverage for protected source/citation/AI handoffs and non-recursive internal policy/state reads. [ADR-0009](0009-versions-without-draft.md) makes content revision immediately Current, so revision is a guarded lifecycle mutation instead of a separate publication step. Unknown remote-write reconciliation and the transport boundary below remain binding design constraints.
+
 **Artifact ID:** ADR-0006  
 **Version/date:** 0.1 Draft · 8 October 2026  
 **Status:** Draft for owner review; proposed policies/deferrals are not approved.  

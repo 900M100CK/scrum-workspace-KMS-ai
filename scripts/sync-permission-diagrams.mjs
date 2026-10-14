@@ -42,11 +42,11 @@ for (const name of ['permission-read-flow', 'permission-ai-checkpoints']) {
   const positions = new Map(layout.children.map(n => [n.id, n]));
   const mainPath = name === 'permission-ai-checkpoints'
     ? ['Start', 'Session', 'Member', 'QRead', 'PreModel', 'Buffer', 'PreAnswer', 'Valid', 'Answer', 'Citation', 'SourceFlow']
-    : ['Start', 'Session', 'Member', 'Type', 'Doc', 'Draft', 'Classification', 'Grant', 'Allowed', 'View'];
+    : ['Start', 'Session', 'Member', 'Type', 'Doc', 'Classification', 'Grant', 'Allowed', 'View'];
   mainPath.slice(1).forEach((id, i) => assert(positions.get(id).y > positions.get(mainPath[i]).y, 'Layout reversed main path at ' + id));
   const meta = layout;
   const cells = ['<mxCell id="0"/>', '<mxCell id="1" parent="0"/>'];
-  const title = `${header[1]} · ${name} · v${header[2]} Draft\nSources: UX-PERM-MATRIX-02 v0.3, PRD-01 v0.4, SAD-03 v0.5, Proposed ADR-0001/0006; server handoff boundary, not runtime evidence`;
+  const title = `${header[1]} · ${name} · v${header[2]} Draft\nSources: UX-PERM-MATRIX-02 v0.4, PRD-01 v0.5, SAD-03 v0.7, ADR-0007/0009/0011; server handoff boundary, not runtime evidence`;
   cells.push(`<mxCell id="diagram-title" value="${escape(title)}" vertex="1" parent="1" style="text;html=1;whiteSpace=wrap;fontSize=18;fontStyle=1;align=left;"><mxGeometry x="60" y="20" width="${meta.width - 120}" height="100" as="geometry"/></mxCell>`);
   for (const n of graph.nodes) {
     const p = positions.get(n.id);

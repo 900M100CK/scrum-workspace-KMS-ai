@@ -1,5 +1,7 @@
 # ADR-0001 — Protected resource disclosure, read boundaries and Draft visibility
 
+**13 October amendment:** [ADR-0007](0007-document-access-model.md) records the owner's access direction and initial restricted-author grant. [ADR-0009](0009-versions-without-draft.md) supersedes the Draft/publication proposal below. The original proposal is retained for history; it is not the current target lifecycle. Disclosure and whole-answer withholding safeguards remain.
+
 **Version/date:** 0.2 · 8 October 2026  
 **Status:** Proposed; needs owner review under PRD OD-02/OD-04.  
 **Inputs:** BRD English v1.0 via [stable entry](../BRD.md), AGENTS.md v1.2, [PRD-01 v0.3](../sdlc/PRD_SRS.md), owner's review of PRD v0.1 and [v0.3 patch list](../analyst/PRD_SRS_v0.3_patch.md), applied on 8 October 2026. Applying proposed policies does not approve them.  

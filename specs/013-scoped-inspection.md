@@ -1,9 +1,9 @@
 # Inspect scoped audit and answer evidence
 
 **Artifact ID:** SP-13  
-**Version/date:** 0.1 Draft · 8 October 2026  
-**Status:** Draft for owner review; proposed policies/deferrals are not approved.  
-**Inputs:** PRD-01 v0.4; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-13--inspect-scoped-audit-and-answer-evidence); [contract pack](../contracts/README.md); PLAN-01 v0.1.  
+**Version/date:** 0.2 Draft · 13 October 2026\
+**Status:** Draft for owner review; ADR-0007–ADR-0011 direction is owner-confirmed; application acceptance remains unproven.\
+**Inputs:** PRD-01 v0.5; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-13--inspect-scoped-audit-and-answer-evidence); [contract pack](../contracts/README.md); PLAN-01 v0.2.\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 4.  
@@ -23,10 +23,10 @@ Input: valid session, operation-specific fields, expected revision and scoped id
 ## Acceptance
 
 1. Audit/trace capability is scoped and gives no blanket document content access.
-2. After source revocation, re-open inspection with no revoked excerpt/metadata.
+2. After source revocation, no protected excerpt/title/payload is shown. An inspector retaining current project membership and scoped audit-read may still see in-scope actor/action/entity identity/time under ADR-0012; trace-read alone does not inherit this entitlement. The same actor must still fail direct source/citation/retrieval/AI access without a read grant. Revoke the audit capability and verify the event/identity also becomes inaccessible.
 3. Bounded summary exposes actual query, permitted source/version/passage ranks and validation outcomes without private reasoning.
 
-Proposed optional five-month rows: FR-27 Should. Omission needs recorded OD-11 approval and altered Core gate.
+Owner-confirmed optional release rows (ADR-0010): FR-27 Should. ADR-0010 records the exact Core-gate exceptions; all other release Must ACs remain required.
 
 ## Allowed paths and Done
 
@@ -38,4 +38,4 @@ Done requires the matching PRD ACs exercised on real handlers/persisted state; r
 
 ## Assumptions/checklist/handoff
 
-Uses proposed OD-02–OD-04/OD-09/OD-12 and ADRs. Pass for goal/trace/input-output/edges/paths/Done; Gap for accepted policy/contract/stack and runtime tests. Handoff: Needs owner decision for affected baselines; authorised context work can proceed.
+Uses owner-confirmed ADR-0007–ADR-0011; remaining delegation/history, OD-09 identity and OD-12 framework details stay open. Pass for goal/trace/input-output/edges/paths/Done; Gap for accepted policy/contract/stack and runtime tests. Handoff: Needs owner decision for affected baselines; authorised context work can proceed.

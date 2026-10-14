@@ -1,6 +1,6 @@
 {
   "status": "Synthetic authorised fixture only",
-  "corpus_version": "synthetic-0.2",
+  "corpus_version": "synthetic-0.3",
   "projects": [
     "p-alpha",
     "p-beta"
@@ -102,16 +102,6 @@
             {
               "passage_id": "p1",
               "content": "The current user lookup endpoint is GET /api/users. Validation errors use validation_failed."
-            }
-          ]
-        },
-        {
-          "version_id": "v3",
-          "state": "draft",
-          "passages": [
-            {
-              "passage_id": "p1",
-              "content": "Unpublished proposal: change user lookup to GET /next/users."
             }
           ]
         }
@@ -285,5 +275,10 @@
         "status": "open"
       }
     ]
+  },
+  "previous_snapshot": {
+    "path": "eval/fixtures/history/synthetic-0.2.json",
+    "sha256": "52173259ae3ac863126ff30a7f4acf41efbed5d2e27bde23f2e62f91ae221560",
+    "status": "Historical unexecuted fixture with removed Draft policy; do not ingest into current runs"
   }
 }

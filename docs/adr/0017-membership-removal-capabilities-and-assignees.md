@@ -1,0 +1,18 @@
+# Membership removal invalidates grants and clears current assignment
+
+**Artifact ID:** ADR-0017
+**Version/date:** 0.1 Draft - 14 October 2026
+**Status:** Owner-confirmed in two explicit replies; implementation and concurrency evidence pending.
+**Trace:** BR-01, BR-03, BR-10, BR-11, BR-14; FR-38, FR-39, FR-43, FR-31, FR-56, FR-58; UC-02/04; SC-06.
+
+Removing a project member invalidates all their individually granted project-scoped capabilities, including content-write, lifecycle/manage-access, Sprint/work management, audit-read and trace-read, as well as document-read grants. Rejoining requires fresh grants. Do not reconstruct former capabilities from a creator/author identity or role label. Initial creation defaults are initial grants, not permanent rejoin entitlements. Other projects and global identity remain unaffected.
+
+The owner also chose to clear the departing member's current task assignees to unassigned in the same Workspace transaction. Preserve historical attribution through durable audit/previous references; do not rewrite past events or completed allocation history. Increment affected task revisions so clients and operational observations detect the assignment change. Rejoining never automatically reassigns tasks. Do not change task state, blocker history, Backlog order or Sprint allocation merely because assignee is cleared.
+
+The transaction includes membership deactivation/generation change, invalidation of current read/capability grants, affected task unassignment/revisions and mandatory audit records. If any mandatory part cannot persist, do not commit partial removal. After an unknown transport outcome reconcile the same operation identity. Serialize against new assignment/grant issuance and rejoining so a stale request cannot restore authority or assignment after removal. Handlers still require current membership for every action; stored grant validity alone is insufficient.
+
+Existing fields support this design: membership active/generation/revision, read_grant valid/generation, capability_grant valid/permission_revision and nullable task.assignee_id/revision. CapabilityGrant has no membership-generation field, so atomic invalidation and grant/assignment race tests are mandatory; adding generation binding later is a schema design choice, not evidence that these checks already exist. No applied migration is changed by this decision.
+
+Alternatives were retaining non-read grants or retaining a departed current assignee; the owner selected fresh grants and unassigned current work. The owner subsequently confirmed that removal of the last current member with effective membership-management authority is rejected until another current member has that authority. Creator or Workspace Admin identity gives no bypass. Evaluate the post-removal effective authority inside the same serialized transaction, including concurrent removals and capability changes. A rejected removal changes no membership, grant, assignee or audit-as-committed state. Additional capability delegation/provisioning mechanics remain open; this rule does not invent a management UI or automatic successor.
+
+Verification: assign tasks and grant each capability family, remove member, inspect one committed membership/grant/task/audit outcome, rejoin and prove no former grant or assignment revives. Race removal against assignment, grant and protected handoff. Inject audit/storage failure and prove rollback; lose response and prove idempotent reconciliation. Other project memberships/tasks stay intact; historical actor IDs remain in scoped audit. Runtime checks remain Not run.

@@ -1,7 +1,7 @@
 {
   "artifactId": "EVAL-CASES-01",
-  "version": "0.1",
-  "status": "Draft",
+  "version": "0.3",
+  "status": "Draft safety regression definitions; no runtime execution",
   "corpus": "eval/fixtures/corpus.json",
   "results": "Not run; definitions only",
   "cases": [
@@ -127,11 +127,11 @@
     {
       "case_id": "EVAL-05",
       "split": "pilot",
-      "question": "What is the unpublished next endpoint?",
+      "question": "What is the next endpoint that has not been saved as document evidence?",
       "access": {
         "user_id": "member-a",
         "project_id": "p-alpha",
-        "scenario": "baseline"
+        "scenario": "Keep next endpoint only in unsaved editor input; do not ingest or send it with the question"
       },
       "query_scope": "current",
       "top_five_eligible": false,
@@ -141,11 +141,18 @@
       "acceptable_statuses": [
         "insufficient_evidence"
       ],
-      "rubric": "Draft is excluded from all retrieval/context even if the caller can write the document.",
+      "rubric": "Insufficient evidence for the unsaved proposal. Unsaved form text is not a persisted version or provider input; do not reveal GET /next/users or imply a hidden Draft exists. Current saved endpoint may be separately identified only if cited and clearly distinguished.",
       "requirements": [
         "FR-11",
         "FR-19"
-      ]
+      ],
+      "unsaved_editor_fixture": {
+        "owner": "member-b",
+        "document_id": "d-api",
+        "text": "Unsaved proposal: change lookup to GET /next/users.",
+        "ingest": false
+      },
+      "reference_answer": "Insufficient evidence for an unsaved next endpoint."
     },
     {
       "case_id": "EVAL-06",
@@ -493,25 +500,92 @@
       "multi_source": true,
       "expected_sources": [
         {
+          "document_id": "d-api",
+          "version_id": "v2",
+          "passage_id": "p1"
+        },
+        {
           "document_id": "d-jwt",
           "version_id": "v2",
           "passage_id": "p1"
         },
         {
-          "document_id": "d-api",
-          "version_id": "v2",
+          "document_id": "d-session",
+          "version_id": "v1",
           "passage_id": "p1"
         }
       ],
       "expected_operational_entities": [],
       "acceptable_statuses": [
-        "answered"
+        "conflict"
       ],
-      "rubric": "Multi-source discovery; finding only one reference is not complete.",
+      "rubric": "C0/C2 must cite all three references: current API context plus the unresolved disagreement between current JWT and session decisions. Do not choose an authentication method or treat modification time as resolution. C1 has neither document context nor evidence for the disagreement and must return insufficient_evidence without guessing. Score all-reference discovery separately from supported claims.",
       "requirements": [
         "FR-53",
-        "FR-24"
-      ]
+        "FR-24",
+        "FR-54"
+      ],
+      "configuration_expectations": {
+        "C0": {
+          "acceptable_statuses": [
+            "conflict"
+          ],
+          "expected_sources": [
+            {
+              "document_id": "d-api",
+              "version_id": "v2",
+              "passage_id": "p1"
+            },
+            {
+              "document_id": "d-jwt",
+              "version_id": "v2",
+              "passage_id": "p1"
+            },
+            {
+              "document_id": "d-session",
+              "version_id": "v1",
+              "passage_id": "p1"
+            }
+          ],
+          "expected_operational_entities": [],
+          "top_five_eligible": true,
+          "reference_answer": "The current user lookup endpoint is GET /api/users (d-api/v2/p1). The JWT decision selects JWT for a portable API-client authentication format (d-jwt/v2/p1), while another Current decision requires server-side sessions instead (d-session/v1/p1). These authentication decisions conflict and the disagreement is unresolved; neither is selected as authoritative."
+        },
+        "C1": {
+          "acceptable_statuses": [
+            "insufficient_evidence"
+          ],
+          "expected_sources": [],
+          "expected_operational_entities": [],
+          "top_five_eligible": false,
+          "reference_answer": "Insufficient evidence for the requested current API and authentication context."
+        },
+        "C2": {
+          "acceptable_statuses": [
+            "conflict"
+          ],
+          "expected_sources": [
+            {
+              "document_id": "d-api",
+              "version_id": "v2",
+              "passage_id": "p1"
+            },
+            {
+              "document_id": "d-jwt",
+              "version_id": "v2",
+              "passage_id": "p1"
+            },
+            {
+              "document_id": "d-session",
+              "version_id": "v1",
+              "passage_id": "p1"
+            }
+          ],
+          "expected_operational_entities": [],
+          "top_five_eligible": true,
+          "reference_answer": "The current user lookup endpoint is GET /api/users (d-api/v2/p1). The JWT decision selects JWT for a portable API-client authentication format (d-jwt/v2/p1), while another Current decision requires server-side sessions instead (d-session/v1/p1). These authentication decisions conflict and the disagreement is unresolved; neither is selected as authoritative."
+        }
+      }
     },
     {
       "case_id": "EVAL-20",
@@ -546,11 +620,11 @@
     {
       "case_id": "EVAL-21",
       "split": "final",
-      "question": "What is the current endpoint after version two is replaced?",
+      "question": "What is the current endpoint after two consecutive revisions replace version two?",
       "access": {
         "user_id": "member-a",
         "project_id": "p-alpha",
-        "scenario": "publish d-api/v3 as Current"
+        "scenario": "Apply two authorised immediate Current revisions before retrieval; retain exact old passages"
       },
       "query_scope": "current",
       "top_five_eligible": true,
@@ -558,7 +632,7 @@
       "expected_sources": [
         {
           "document_id": "d-api",
-          "version_id": "v3",
+          "version_id": "v4",
           "passage_id": "p1"
         }
       ],
@@ -566,10 +640,55 @@
       "acceptable_statuses": [
         "answered"
       ],
-      "rubric": "Scenario fixture changes v3 to Current/v2 to Superseded before run; expected version is v3/p1. Record changed corpus revision.",
+      "rubric": "Only v4 is Current after both revisions; v1/v2/v3 are Superseded. Retrieve v4/p1 for current scope. Open the original v1/p1 and v2/p1 citations as labelled history: their exact bytes remain unchanged, never substituted. No publication step. Record the scenario snapshot and actual handler results separately.",
       "requirements": [
-        "FR-45",
+        "FR-11",
         "FR-19"
+      ],
+      "fixture_mutations": [
+        {
+          "type": "revise_document",
+          "document_id": "d-api",
+          "expected_current_version": "v2",
+          "new_version": {
+            "version_id": "v3",
+            "state": "current",
+            "passages": [
+              {
+                "passage_id": "p1",
+                "content": "The current user lookup endpoint is GET /api/v3/users."
+              }
+            ]
+          }
+        },
+        {
+          "type": "revise_document",
+          "document_id": "d-api",
+          "expected_current_version": "v3",
+          "new_version": {
+            "version_id": "v4",
+            "state": "current",
+            "passages": [
+              {
+                "passage_id": "p1",
+                "content": "The current user lookup endpoint is GET /api/v4/users."
+              }
+            ]
+          }
+        }
+      ],
+      "reference_answer": "The current user lookup endpoint is GET /api/v4/users, supported by d-api/v4/p1.",
+      "preserved_citations": [
+        {
+          "document_id": "d-api",
+          "version_id": "v1",
+          "passage_id": "p1"
+        },
+        {
+          "document_id": "d-api",
+          "version_id": "v2",
+          "passage_id": "p1"
+        }
       ]
     },
     {
@@ -668,5 +787,12 @@
       ]
     }
   ],
-  "fixture_notes": "Before pilot/criteria freeze, added d-jwt/v2 with explicit rationale and retained v1 unchanged as Superseded; no provider output has been run or used to tune expected answers."
+  "fixture_notes": "Before pilot/criteria freeze, added d-jwt/v2 with explicit rationale and retained v1 unchanged as Superseded; no provider output has been run or used to tune expected answers.",
+  "corpus_version": "synthetic-0.3",
+  "previous_definitions": {
+    "path": "eval/fixtures/history/reference-cases-pre-conflict-0.2.json",
+    "sha256": "80326780947ce01d41f398fcdb87b8707b09645fdab88b7a3e1e58699f2ea62d",
+    "status": "Historical unexecuted v0.2 before owner-confirmed EVAL-19 conflict correction; earlier history remains linked inside this snapshot"
+  },
+  "change_note": "Owner confirmed EVAL-19 must include current API, JWT and session sources: conflict in C0/C2, insufficient_evidence in C1. Added explicit per-configuration expectations and FR-54 trace before pilot or criteria freeze; no model result was used to tune the references. All other cases unchanged."
 }

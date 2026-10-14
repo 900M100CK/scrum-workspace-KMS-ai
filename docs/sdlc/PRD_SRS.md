@@ -1,12 +1,14 @@
 # Scrum Workspace and AI Project KMS — PRD/SRS
 
 **Artifact ID:** PRD-01  
-**Version/date:** 0.4 Draft · 8 October 2026  
+**Version/date:** 0.5 Draft · 13 October 2026\
 **Status:** Draft for owner validation; no requirements baseline is approved by this revision.  
-**Handoff:** Needs owner decision on OD-02–OD-04 and OD-11 before the affected use cases, designs and delivery plan are baselined. Independent drafting may continue with recorded assumptions.  
+**Handoff:** Applies owner-confirmed ADR-0007–ADR-0011. Downstream reconciliation and remaining policy choices are pending; this document is not application acceptance.\
 **Sources:** [BRD stable entry](../BRD.md) → [complete English BRD v1.0](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md); [AGENTS.md v1.3](../../AGENTS.md); [workflow](../../agents/WORKFLOW.md); [PRD author profile](../../agents/01-prd-srs.md); [PRD prompt](../../SDLC-Prompt-Checklist/PRD_prompt.md); [PRD checklist](../../SDLC-Prompt-Checklist/PRD_IEEE_29148_Checklist.xlsx), repository edition; [v0.2 → v0.3 patch list](../analyst/PRD_SRS_v0.3_patch.md), unversioned input applied on 8 October 2026. Owner review and this patch guide the revision; proposed policy choices remain tied to their OD and are not approved by applying the patch. No interviews, pilot measurements, implementation results or accepted ADRs were available.
 
 ## 1. Purpose, scope and delivery order
+
+This revision applies [document access](../adr/0007-document-access-model.md), [Sprint policy](../adr/0008-fixed-sprint-lifecycle.md), [immediate Current revisions](../adr/0009-versions-without-draft.md), [release exceptions](../adr/0010-release-scope-and-capacity.md) and [creation/guard scope](../adr/0011-document-creation-and-guard-scope.md). The earlier source list above describes the v0.4 input snapshot. The owner confirmed direction in the current session; no owner commit, independent approval or complete application verification is claimed.
 
 The web workspace connects Project, Backlog, Sprint, board and blocker work with documents, recorded decisions and manual relationships. Members search permitted knowledge and ask a read-only AI assistant for answers with evidence. User benefit remains a hypothesis pending evaluation.
 
@@ -16,7 +18,7 @@ The application owns sign-in/session handling, authorisation, business operation
 
 Default query/content/evaluation language is **English only** (ASM-01). Core supports plain text and Markdown creation/import. No multilingual quality commitment or PDF/OCR completion condition is introduced. The draft Core answer view handles one question and source inspection; creating saved answers, persistent conversations or a separate preview feature is not required (ASM-04/OD-10). Audit/trace/provenance records remain required. Later persistence needs explicit scope and access requirements.
 
-All FRs except FR-35 remain **Must/Core**. P0 is the first complete safe flow; P1 is remaining Core work after that flow; P2 is Should/Enhanced. These are delivery priorities, not changes to BRD priority. P1 Must requirements still belong to the Core release gate. The owner changed the target to **five months with one student developer** and retained minimal microservices. Weekly capacity and implementation throughput remain unmeasured; [PLAN-01](../planning/five-month-plan.md) allocates the final month to regression, evaluation, report and demo.
+Original business priorities remain Must/Core except FR-35 (Should/Enhanced); FR-45 is Withdrawn under ADR-0009. P0/P1/P2 describe delivery order. ADR-0010 authorises exactly seven original Core FR/AC exceptions for this release: FR-27, FR-49, FR-62 and FR-64–FR-67. The other 60 active requirements are release Must. The owner retains one student developer and minimal microservices, with submission in April 2027 and an intended effort of at least eight hours per working day. Kickoff, exact submission date, working days per week and measured throughput remain unknown. The five-month plan remains relative, with its final month reserved for verification and submission work; feasibility is unproven.
 
 | Increment | Deliverable and exit evidence |
 | --- | --- |
@@ -28,7 +30,7 @@ All FRs except FR-35 remain **Must/Core**. P0 is the first complete safe flow; P
 
 D0a requires FR-01–FR-05, FR-09, FR-10, FR-14, FR-18, FR-20, FR-31, FR-36–FR-38, FR-40, FR-50–FR-52, FR-59, FR-63, FR-68 (21 FRs). D0b requires FR-21–FR-24, FR-28–FR-30, FR-32–FR-34, FR-46, FR-53–FR-55, FR-57, FR-60, FR-69 (17 FRs). FR-33's Sprint checks complete in D1. FR-14 is exercised for content/search reads in D0a and for answer delivery in D0b. Minimal capture and citation excerpt opening (FR-46) are P0; extended human retrieval inspection (FR-27) is P1.
 
-If capacity falls short, the owner may consider deferring in this order (proposed, OD-11). BRD priorities do not change and each deferral needs explicit owner approval and a recorded effect on the Core gate:
+The already optional items are listed below in their earlier proposed deferral order. ADR-0010 now records their exact release-gate effects. If capacity falls short, stop optional work and revisit schedule/capacity with the owner; retain 60 Must. This list does not authorise further Must cuts:
 
 1. FR-35 (already P2).
 2. FR-64, FR-65, FR-66, FR-67 (edit conveniences).
@@ -38,7 +40,7 @@ If capacity falls short, the owner may consider deferring in this order (propose
 
 ### Five-month release overlay
 
-[PLAN-01](../planning/five-month-plan.md) derives a proposed MoSCoW release from BRD pain points/problem: 61 Must, three Should (FR-27, FR-49, FR-62), four Could (FR-64–FR-67), and FR-35 Won't this release. This release priority is separate from original BRD Must/Core and P0/P1 delivery order. Omission of the seven original Core Musts is not yet approved: OD-11 must record exact deferrals and changed Core acceptance before claiming release completeness. Permission, version, exact citation, current-state and fallback/evaluation gates remain Must. No BRD baseline is edited.
+[PLAN-01](../planning/five-month-plan.md) and ADR-0010 define 60 Must, three Should (FR-27, FR-49, FR-62), four Could (FR-64–FR-67), and FR-35 Won't this release, plus the retained Withdrawn FR-45 record. Omission of those seven original Core FR/ACs is an owner-confirmed release exception. Text/Markdown creation remains required; file import is optional. Creation-time project/document/Sprint fields and fixed Sprint completion remain required despite optional editing operations. Permission, version, exact citation, current-state and fallback/evaluation gates remain Must. Original BRD priorities are not rewritten.
 
 Walking skeleton comes first in Month 1; D0a knowledge/access completes in Month 2, D0b evidence-backed AI in Month 3. Source inspection/evaluation follow in Month 4; Month 5 has no planned new feature. See the [slice backlog](../planning/backlog.md) and [bounded specs](../../specs/README.md) for implementation paths, contracts and Done evidence.
 
@@ -52,18 +54,18 @@ Walking skeleton comes first in Month 1; D0a knowledge/access completes in Month
 | Viewer/stakeholder | Reads permitted resources; no mutation entitlement by default. |
 | Workspace Admin | Manages permitted project/membership/access settings; administration grants no blanket restricted-content access. |
 | Content owner | Named maintenance responsibility, not an automatic access entitlement. |
-| Document access manager | Existing authenticated human with scoped manage-access capability for a document; may change its classification after creation and grant/revoke without automatically receiving content-read access. Initial classification follows FR-10, proposed under OD-02. |
+| Document access manager | Existing authenticated human with scoped manage-access capability for a document; may change its classification after creation and grant/revoke without automatically receiving content-read access. Initial classification follows FR-10 and ADR-0007. |
 | Audit inspector | Existing authenticated human with scoped audit-read capability; uses FR-56 within that scope. |
 | Execution inspector | Existing authenticated human with scoped trace-read capability; uses FR-58; source details require separate source access. |
 | Runtime AI assistant | Reads only in the requester's permitted scope; no mutation capabilities. |
 
 The three inspection/access capabilities are not additional universal Scrum roles. An existing user may hold several capabilities. Who grants these capabilities and their assignment to roles remain OD-02/OD-08. Undefined actions deny by default. Test fixtures explicitly assign capabilities rather than treating every Admin or Scrum Master as a content reader.
 
-Other action-holder terms in §4 are scoped capabilities of the actors above: project administrator (create/edit project), membership manager (add/remove members), Sprint manager (manage Sprint lifecycle/allocation), author (create/import/edit knowledge), publisher (make a version current) and lifecycle manager (archive/delete). They do not introduce additional global roles. OD-02/OD-04 define their assignment and delegation; no capability implies another by its name.
+Other action-holder terms in §4 are scoped capabilities: project administrator, membership manager, Sprint manager, author (create/import/revise knowledge), and lifecycle manager (archive/delete). There is no separate publisher capability in this release. ADR-0007 defines initial document capabilities; additional delegation remains explicit and default-deny. No capability implies another by its name.
 
-Draft document classification: **project-shared** permits current project members to read; **restricted** requires both current membership and an explicit read grant. Content-write, lifecycle and manage-access authorities are separate from read access. This is ASM-03, pending OD-02. Removing a member invalidates that member's document-read grants in the project. Re-adding the member restores project-shared access only; restricted documents require new explicit grants. The author may choose the initial classification under FR-10; subsequent classification changes require FR-50. Grant invalidation and creation-time classification are proposed OD-02 policy choices.
+Document classification under ADR-0007: **project-shared** permits current project members to read; **restricted** additionally requires an explicit read grant. Creation grants the restricted author an explicit, revocable read grant; authorship is never a read bypass. Content-write, lifecycle and manage-access authorities remain separate. Removing membership invalidates document-read grants; rejoining restores project-shared access only. The author chooses initial classification under FR-10; later changes require FR-50. Initial author capabilities follow ADR-0007; further non-read delegation/provisioning remains to be specified.
 
-A document has stable identity; each immutable version and passage has its own locator. Current means applicable to ordinary retrieval; Superseded and Archived mean noncurrent. Draft means a revision not yet designated Current; it is excluded from ordinary retrieval, historical retrieval and model context, and is readable only by users with content-write access to the document. This Draft policy is proposed under OD-04; document/project permissions still apply. Citation identity is document/version/passage or operational entity plus observation time/version. Audit records business changes, trace records execution, provenance identifies evidence. No private model reasoning is collected.
+A document has stable identity; each immutable version and passage has its own locator. Creation and revision become Current immediately; revision supersedes the previous Current in the same operation (ADR-0009). Superseded and Archived are noncurrent and explicitly labelled in historical access. No unpublished product Draft state exists. Citation identity is document/version/passage or operational entity plus observation time/version. Audit records business changes, trace records execution, provenance identifies evidence. No private model reasoning is collected.
 
 ## 3. Representative journeys
 
@@ -73,7 +75,7 @@ A document has stable identity; each immutable version and passage has its own l
 | SC-02 | Ask why JWT was chosen; inspect recorded rationale and exact version. | FR-21–FR-24, FR-46, FR-53, FR-60 |
 | SC-03 | Ask for blocked tasks using operational state and permitted task links. | FR-25, FR-26, FR-44 |
 | SC-04 | Find prior blocker handling; distinguish a plan from a recorded outcome. | FR-18, FR-24, FR-44, FR-53, FR-63 |
-| SC-05 | Replace an API version; current retrieval uses the replacement and history labels the old version. | FR-11, FR-12, FR-19, FR-45, FR-47 |
+| SC-05 | Revise an API version; current retrieval uses the replacement and history labels the old version. | FR-11, FR-12, FR-19, FR-47 |
 | SC-06 | Classify, grant, revoke/remove membership, then repeat retrieval, answer delivery and citation reads without disclosure. | FR-03, FR-04, FR-14, FR-28, FR-29, FR-39, FR-50–FR-52, FR-55, FR-59 |
 | SC-07 | An unrecorded decision receives Insufficient evidence. | FR-23 |
 | SC-08 | AI failure leaves work operations, document reading and keyword search usable; questions return an explicit failure. | FR-33, FR-34, FR-69 |
@@ -104,8 +106,8 @@ Each FR states one operation or outcome. Fields of one record/event are its data
 | FR-07 | P0 / BR-02 | An authorised Sprint manager shall be able to add an item to a Sprint Backlog. | AC-07: Given an unallocated item, when added, then it appears in the Sprint; an item already allocated to a Planned or Active Sprint cannot be added to a second Sprint. |
 | FR-67 | P1 / BR-02 | An authorised Sprint manager shall be able to remove an item from a Sprint Backlog. | AC-67: Given an allocated item, when removed, then it returns to Product Backlog without deletion or implicit completion. |
 | FR-08 | P0 / BR-02 | An authorised Sprint manager shall be able to start a planned Sprint under the fixed Core lifecycle. | AC-08: Given a planned Sprint with dates/goal, when started, then it becomes Active with start time; starting a completed Sprint is rejected. Starting a Sprint while another Sprint in the same project is Active is rejected. |
-| FR-42 | P0 / BR-02 | An authorised Sprint manager shall be able to complete an active Sprint under the fixed Core policy. | AC-42: Given Done and unfinished items, when completed, then the Sprint becomes Completed with completion time, unfinished items return to Backlog without becoming Done, and completed work remains associated with the Sprint. This is a proposed OD-03 policy. |
-| FR-09 | P0 / BR-03 | An authorised member shall be able to change a work item's basic board state. | AC-09: Given permitted To Do → In Progress → Done changes, when committed, then another member sees them after refresh/resync; no automatic Scrum Master approval. |
+| FR-42 | P0 / BR-02 | An authorised Sprint manager shall be able to complete an active Sprint under the fixed Core policy. | AC-42: Given Done and unfinished items, when completed, then the Sprint becomes Completed with completion time, unfinished items return to Backlog without becoming Done, and completed work remains associated with the Sprint. This follows owner-confirmed ADR-0008. |
+| FR-09 | P0 / BR-03 | An authorised member shall be able to change a work item directly between To Do, In Progress and Done, including reopening Done. | AC-09: Given current membership and the expected revision, when any change between the three states is committed (including To Do → Done and Done → To Do/In Progress), then another member sees it after refresh/resync; a stale revision is rejected and no automatic Scrum Master approval is required. Reopening Done from a Completed Sprint atomically returns the task to Product Backlog while preserving completed allocation history and leaving the Sprint Completed. |
 | FR-43 | P0 / BR-03 | An authorised member shall be able to set a work item's assignee. | AC-43: Given a current member or unassigned value, when saved, then that value persists; a nonmember assignment is rejected. |
 | FR-44 | P0 / BR-03, BR-06 | An authorised member shall be able to record a blocker event on a work item. | AC-44: Given an Open or Resolved event with description/outcome, when saved, then actor/time/history persist; an Open plan is not presented as a completed resolution. Given Open followed by Resolved, the item is not Blocked; given Resolved followed by Open, it is. |
 
@@ -116,12 +118,12 @@ Each FR states one operation or outcome. Fields of one record/event are its data
 | FR-50 | P0 / BR-01, BR-10 | A document access manager shall be able to set its access classification. | AC-50: Given a project-shared document, when made restricted, then a member without a grant cannot read it; returning to project-shared allows current members only. Without manage-access capability the change is denied. |
 | FR-51 | P0 / BR-01, BR-10 | A document access manager shall be able to grant document-read access to a current member. | AC-51: Given a restricted document and member without access, when granted, then read/search/citation access succeeds; another restricted document remains denied. |
 | FR-52 | P0 / BR-01, BR-10, BR-14 | A document access manager shall be able to revoke a document-read grant. | AC-52: Given an effective grant, when revocation commits, then subsequent reads/delivery follow FR-14, FR-28, FR-29 and FR-55; repeated revocation does not restore access. |
-| FR-10 | P0 / BR-04 | An authorised author shall be able to create a text/Markdown document or recorded decision. | AC-10: Given content/project/labels/owner/explicit classification, when saved, then stable document and initial version exist; the author may set project-shared or restricted for a document they create; omitting classification rejects creation. Changing classification later requires FR-50. The initial version is created Current. |
+| FR-10 | P0 / BR-04 | An authorised author shall be able to create a text/Markdown document or recorded decision. | AC-10: Given content/project/labels/owner/explicit classification, when saved, then stable document and initial version exist; the author may set project-shared or restricted for a document they create; omitting classification rejects creation. Changing classification later requires FR-50. The initial version is created Current. A restricted author receives an explicit revocable read grant; authorship does not bypass later revocation. |
 | FR-62 | P1 / BR-04 | An authorised author shall be able to import text/Markdown content as a document. | AC-62: Given a supported English file, when imported, then content has owner/classification; unsupported formats fail without partial publication. Size/encoding limits are OD-06. |
 | FR-65 | P1 / BR-04 | An authorised author shall be able to update document organisational metadata. | AC-65: Given a permitted owner/label edit, when saved, then metadata changes while version content and citation locators remain intact. |
-| FR-11 | P0 / BR-05 | A content revision shall create a distinct immutable document version. | AC-11: Given a cited version, when revised, then its content/locators remain unchanged and the new version has a distinct identity and state Draft until FR-45 designates it Current. |
-| FR-45 | P0 / BR-05 | An authorised publisher shall be able to designate a replacement version as current. | AC-45: Given a Current version and a Draft replacement, when replacement commits, then old is Superseded and replacement Current; ordinary retrieval does not use old text as current. Authority/transitions are OD-04. |
-| FR-12 | P0 / BR-05 | Viewed sources shall display version identity and validity status. | AC-12: Given Current, Draft, Superseded and Archived fixtures, when opened with the required access, then version/status match; Draft is labelled unpublished, and Superseded/Archived are labelled historical. A reader without content-write access cannot open Draft. |
+| FR-11 | P0 / BR-05 | A content revision shall create a distinct immutable document version designated Current and mark the previous Current Superseded in the same operation. | AC-11: Given a cited version, when revised, then its content and locators are unchanged, the new version has a distinct identity and state Current, and the cited version is Superseded and still opens by its exact citation. |
+| FR-45 | Withdrawn / BR-05 | Withdrawn by ADR-0009 (13 October 2026). ID retained for continuity; not reused. | AC-45: Withdrawn; atomic replacement and immutable-history assertions continue under AC-11. |
+| FR-12 | P0 / BR-05 | Viewed sources shall display version identity and validity status. | AC-12: Given Current, Superseded and Archived fixtures, when opened with the required access, then version and status match; Superseded and Archived are labelled historical. |
 | FR-13 | P0 / BR-14 | An authorised lifecycle manager shall be able to archive a document/version. | AC-13: Given Current or Superseded content, when archive commits, then it becomes Archived and is excluded from ordinary retrieval; permitted historical access is labelled Archived. Physical retention duration is not needed to test this behavior. |
 | FR-48 | P0 / BR-14 | An authorised lifecycle manager shall be able to delete a document from active access. | AC-48: Given live content, when deletion commits, then reading/retrieval/new answer support cannot expose it and stale work cannot revive it. Physical storage retention is separate OD-04 policy. |
 | FR-14 | P0 / BR-10, BR-14 | Revoked/deleted sources shall not be exposed by subsequent protected reads or answer delivery. | AC-14: Given a FR-51 grant, when FR-52 or FR-48 commits before a renewed read/delivery check, then search/content/answer/citation results omit protected content. |
@@ -138,10 +140,11 @@ Each FR states one operation or outcome. Fields of one record/event are its data
 | FR-18 | P0 / BR-07 | The system shall provide keyword retrieval over permitted current English knowledge. | AC-18: Given an exact-term query with permitted/restricted matches, when searched, then eligible permitted matches return and restricted matches do not. |
 | FR-53 | P0 / BR-07, BR-08 | The system shall provide semantic passage retrieval for English natural-language questions over permitted current knowledge. | AC-53: Given a pilot paraphrase fixture whose reference passage lacks the query's main terms, when semantic retrieval runs separately from generation, then the ranked results include that permitted passage, exclude candidates the requester cannot access and record source IDs. |
 | FR-63 | P0 / BR-07 | Displayed retrieval results shall identify their permitted source, version and validity. | AC-63: Given a result, when displayed, then title/identity/version/status match its source record and inaccessible metadata are absent. |
-| FR-19 | P0 / BR-05, BR-07 | Ordinary retrieval shall exclude Draft, Superseded and Archived versions from current results. | AC-19: Given current/noncurrent versions, when keyword/semantic retrieval runs in ordinary scope, then only Current eligible versions are candidates; Draft, Superseded and Archived versions are not; modification time alone does not establish source authority. |
-| FR-47 | P1 / BR-05, BR-07 | The system shall provide deliberately selected historical retrieval with version labels. | AC-47: Given historical scope explicitly selected, when retrieved, then permitted historical results show version/status and exclude Draft; ordinary scope remains current-only. |
+| FR-19 | P0 / BR-05, BR-07 | Ordinary retrieval shall exclude Superseded and Archived versions from current results. | AC-19: Given current/noncurrent versions, when keyword/semantic retrieval runs in ordinary scope, then only Current eligible versions are candidates; Superseded and Archived versions are not; modification time alone does not establish source authority. |
+| FR-47 | P1 / BR-05, BR-07 | The system shall provide deliberately selected historical retrieval with version labels. | AC-47: Given historical scope explicitly selected, when retrieved, then permitted historical results show version/status; ordinary scope remains current-only. |
 | FR-20 | P0 / BR-07, BR-10 | Retrieval shall deny when required access checks are unknown or fail. | AC-20: Given an access-check failure, when keyword/semantic retrieval runs, then an explicit error returns no protected results and no unrestricted retry. |
 | FR-59 | P0 / BR-01, BR-10 | Protected read surfaces shall conceal resource existence from unauthorised requesters. Where the interface is HTTP, the response is 404. | AC-59: Given an inaccessible ID and unknown ID under the same session, when each is read, then both return the same not-found-equivalent status, body and schema and no distinguishing title/ID/owner/version/snippet. UI messages match; search/relationship results expose no hidden counts. |
+| FR-70 | P1 / BR-01, BR-07, BR-13 | A current project member should be able to search task titles and descriptions by keyword without AI. | AC-70: Given matching tasks in the current and another project, when a current member searches a nonempty keyword, then only current-project title/description matches return with task identity and state; no-match is empty, missing membership denies without disclosure, and healthy Workspace search still works during AI or Knowledge outage. Owner-added Should under ADR-0016, after 60 Must. |
 
 ### 4.4 Evidence-backed AI and current state
 
@@ -166,10 +169,10 @@ Each FR states one operation or outcome. Fields of one record/event are its data
 
 | ID | Delivery / source | Requirement | Acceptance criterion |
 | --- | --- | --- | --- |
-| FR-31 | P0 / BR-11 | Each significant committed change shall create a business audit event. | AC-31: Given one committed change of each type in the audit catalogue below, when its event is read within FR-56 scope, then actor, action, entity, time and before/after values (or protected references) are present; a failed change produces no committed event. |
-| FR-56 | P1 / BR-10, BR-11 | An audit inspector shall be able to read audit events within granted scope. | AC-56: Given scoped audit-read, when inspected, then only permitted fields show; another project's event and details lacking document access are denied/redacted. |
+| FR-31 | P0 / BR-11 | Each significant committed change shall durably record its business audit event or pending audit delivery in the same owning-service transaction. | AC-31: Given one committed change of each catalogue type, when read within FR-56 scope, then actor/action/entity/time and permitted before/after values or protected references exist. Failure to persist the minimum audit record prevents business commit; sink failure retains a replayable record without losing committed state. A failed change produces no committed event (ADR-0012). |
+| FR-56 | P1 / BR-10, BR-11 | An audit inspector shall be able to read audit events within granted scope. | AC-56: Given current project membership and scoped audit-read, when inspected, then in-scope actor/action/entity identity/time may show even without document-read; protected content/title/before-after fields remain redacted unless separately readable. Another project's events are omitted. Audit identity grants no source/citation/retrieval/AI access (ADR-0012). |
 | FR-32 | P0 / BR-12 | Each answer attempt shall correlate with execution trace and source provenance. | AC-32: Given success/failure, when fixture records are examined, then its run ID links attempt/trace/exact evidence identities; correlation alone proves no answer correctness. |
-| FR-57 | P0 / BR-12 | Each answer attempt shall have an execution record. | AC-57: Given success/failure, when recorded, then query/tool steps, source IDs, model/configuration, duration, usage, errors and validation outcomes exist; unavailable fields are marked, and no private reasoning is stored. |
+| FR-57 | P0 / BR-12 | Each answer attempt shall have an execution record with durable minimum provenance before protected provider/answer handoff. | AC-57: Given success/failure, when recorded, then run ID and exact evidence manifest are durable before protected content is sent; failure to store that minimum withholds the corresponding handoff. Query/tool steps, model/configuration, duration, usage, errors and validation outcomes are recorded; unavailable optional metrics are marked, never fabricated. No private reasoning is stored (ADR-0012). |
 | FR-58 | P1 / BR-10, BR-12 | An execution inspector shall be able to read execution records within granted scope. | AC-58: Given scoped trace-read, when inspected, then permitted fields show; without capability access is denied and source details require separate source permission. |
 | FR-33 | P0 / BR-13 | Core work operations and permitted document reading shall remain available during AI failure. | AC-33: Given healthy identity/work/document dependencies and each injected AI failure mode in {connection failure, timeout, exhausted AI usage budget (ASM-08)}, when a user creates/edits a Backlog item, changes board state, starts or completes a Sprint, or opens a document, then the operation succeeds and a fresh read confirms the result. |
 | FR-69 | P0 / BR-13 | An AI question shall return an explicit failure state, not generated content, when the AI dependency fails. | AC-69: Given each failure mode in AC-33, when a question is asked, then the response names the failure category, contains no generated answer, and the run is recorded with the error. |
@@ -181,7 +184,7 @@ Audit catalogue for FR-31:
 | --- | --- |
 | Project and access | project create/edit, member add/remove, classification change, grant, revoke |
 | Work | Backlog create/edit/reorder, Sprint create/edit/start/complete, allocation add/remove, board state, assignee, blocker event |
-| Knowledge | document create/import, revision, designate Current, metadata edit, archive, delete |
+| Knowledge | document create/import, immediate Current revision with supersession, metadata edit, archive, delete |
 | Relationships | relationship create/remove |
 
 ### 4.6 Enhanced / Should
@@ -192,9 +195,9 @@ Audit catalogue for FR-31:
 
 ## 5. Observable access and validity rules
 
-Access changes affect subsequent protected reads, model-context submission, answer delivery and citation opening. At the context-submission boundary revoked sources cannot be submitted. If a source in the answer's evidence set is revoked before delivery, the entire original draft is withheld; only a new answer generated solely from permitted evidence may be delivered. This does not assume that citations identify every sentence's dependency on context. Already transmitted information cannot be recalled; concurrency guarantees name the tested boundaries. Failed access checks deny. Inaccessible/unknown resources share FR-59's public response. Membership removal invalidates document-read grants; rejoining requires new grants for restricted content (proposed, OD-02).
+Access changes affect subsequent protected reads, model-context submission, answer delivery and citation opening. At the context-submission boundary revoked sources cannot be submitted. If a source in the answer's evidence set is revoked before delivery, the entire original draft is withheld; only a new answer generated solely from permitted evidence may be delivered. This does not assume that citations identify every sentence's dependency on context. Already transmitted information cannot be recalled; concurrency guarantees name the tested boundaries. Failed access checks deny. Inaccessible/unknown resources share FR-59's public response. Membership removal invalidates document-read grants; rejoining requires new grants for restricted content (ADR-0007).
 
-Ordinary retrieval uses applicable Current versions; deliberate history is labelled. A revised version remains Draft until publication and is excluded from all retrieval and model context; direct Draft access requires content-write permission (proposed, OD-04). Citations preserve exact version identity and report unavailable evidence without substitution. Archive/delete effects on active access are testable independently of physical retention; surviving historical record access remains OD-04.
+Ordinary retrieval uses applicable Current versions; deliberate history is labelled. A revision becomes Current immediately and the previous Current becomes Superseded in the same operation. Citations preserve exact version identity and report unavailable evidence without substitution. Archive/delete effects on active access are testable independently of physical retention; ADR-0013 permits surviving unavailable citation identity only after current membership and retained document-read policy checks; unknown/denied identity remains generic. ADR-0011 applies the protected handoff boundary to source/citation reads as well as AI output.
 
 SAD/ADRs define service ownership, authoritative permission queries, concurrency enforcement, index/cache invalidation, retries and out-of-order processing under AGENTS.md. These mechanisms are not duplicated here. [ADR-0001](../adr/0001-protected-resource-read-policy.md) records the proposed disclosure/read-boundary policy without selecting implementation.
 
@@ -218,13 +221,13 @@ Logical external interfaces: identity verification, embeddings and generation. P
 
 Functional tests cover every AC and SC-01–SC-08. Prioritise cross-project access; document classification/grant/revoke; membership removal; prior-result reuse after revocation; direct citations; concurrent revocation before context/delivery; replacement; history; failed/retried/out-of-order indexing; stale results; deletion; stale work state; prompt injection; provider failure; logout/expiry. Tests name enforcement boundaries and retain failed results.
 
-For revocation cases, pause before context submission and before answer delivery, commit the change and resume; also test prior-result reuse at §5 boundaries. Membership removal/re-addition must not revive old grants. Include Draft read denial for read-only users and Draft exclusion from current/historical retrieval and model input; publish it and verify Current/Superseded behavior. For FR-59 compare not-found-equivalent response status/body/schema and UI fields; HTTP uses 404. These response checks do not establish absolute timing or side-channel security. Exercise all AC-33 failure modes, derive Blocked from the latest event, and verify one Active Sprint and exclusive Planned/Active allocation under the proposed OD-03 policy.
+For revocation cases, pause before context submission and before answer delivery, commit the change and resume; also test prior-result reuse at §5 boundaries. Membership removal/re-addition must not revive old grants. Revise a document twice; verify the first version is Superseded and opens by exact citation, and ordinary retrieval returns only the latest. Revoke the author read grant and verify that authorship does not bypass read checks. For FR-59 compare not-found-equivalent response status/body/schema and UI fields; HTTP uses 404. These response checks do not establish absolute timing or side-channel security. Exercise all AC-33 failure modes, derive Blocked from the latest event, and verify one Active Sprint and exclusive Planned/Active allocation under ADR-0008.
 
 Answer scoring splits responses into substantive claims. A reviewer checks each Fact against its cited passage. For Synthesis, check all contributing passages and that the inference adds no unsupported decision/outcome. Uncertain/Insufficient evidence must not read as recorded fact. Unsupported claims, wrong versions and fabricated citations count as failures; a link alone earns no evidence credit. Supplementary LLM judging cannot replace manual evidence checks. AC-24 uses a bounded fixture; aggregate thresholds remain post-pilot decisions.
 
 Use about 20–30 English reference questions and mark top-five-discovery-eligible/multi-source cases. Separate retrieval from generation and tuning from final cases where feasible. Record model/provider version, embedding/retrieval settings, corpus version, hardware/load, negative results and small-sample limits. Compare keyword/semantic retrieval before improvement claims; measure manual searcher/helper time before time-saving claims.
 
-D0a and D0b are demonstrations, not Core completion. **Core release requires every P0/P1 Must and SC-01–SC-08 verified, no known unauthorised-access defects remaining open, usable AI fallback and evaluation against criteria frozen before the final run.** Owner policy choices precede acceptance of affected baselines. The proposed OD-11 deferral list does not remove any Must requirement from this gate; each approved deferral must record its effect on the Core gate. Do not change expected answers/thresholds to make results pass. This document records no executed application tests.
+D0a and D0b are demonstrations, not Core completion. **This release requires all 60 release Must ACs and applicable SC-01–SC-08 outcomes verified, no known unauthorised-access defects remaining open, usable AI fallback and evaluation against criteria frozen before the final run.** ADR-0010 exempts AC-27, AC-49, AC-62 and AC-64–AC-67 if omitted; FR-45 is withdrawn under ADR-0009. Original BRD priorities remain unchanged. Unresolved policy details still precede acceptance of affected behaviour. Do not change expected answers/thresholds to make results pass. This document records no executed application tests.
 
 ## 8. Traceability and ID continuity
 
@@ -232,19 +235,19 @@ FR rows include their BRs; ACs share FR numbers. NFR source traces are in §6 an
 
 | BR / priority | Functional requirements |
 | --- | --- |
-| BR-01 Must | FR-01, FR-02, FR-03, FR-04, FR-36, FR-37, FR-38, FR-39, FR-50, FR-51, FR-52, FR-59, FR-64, FR-68 |
+| BR-01 Must | FR-01, FR-02, FR-03, FR-04, FR-36, FR-37, FR-38, FR-39, FR-50, FR-51, FR-52, FR-59, FR-64, FR-68, FR-70 |
 | BR-02 Must | FR-05, FR-06, FR-07, FR-08, FR-40, FR-41, FR-42, FR-66, FR-67 |
 | BR-03 Must | FR-09, FR-43, FR-44 |
 | BR-04 Must | FR-10, FR-62, FR-65 |
-| BR-05 Must | FR-11, FR-12, FR-15, FR-19, FR-45, FR-47, FR-61 |
+| BR-05 Must | FR-11, FR-12, FR-15, FR-19, FR-47, FR-61 |
 | BR-06 Must | FR-16, FR-17, FR-44, FR-49 |
-| BR-07 Must | FR-18, FR-19, FR-20, FR-34, FR-47, FR-53, FR-63 |
+| BR-07 Must | FR-18, FR-19, FR-20, FR-34, FR-47, FR-53, FR-63, FR-70 |
 | BR-08 Must | FR-21, FR-22, FR-23, FR-24, FR-28, FR-30, FR-46, FR-53, FR-54, FR-60 |
 | BR-09 Must | FR-25, FR-26 |
 | BR-10 Must | FR-01, FR-03, FR-04, FR-14, FR-17, FR-20, FR-21, FR-26, FR-28, FR-29, FR-30, FR-37, FR-39, FR-50, FR-51, FR-52, FR-55, FR-56, FR-58, FR-59, FR-68 |
 | BR-11 Must | FR-31, FR-56 |
 | BR-12 Must | FR-27, FR-32, FR-46, FR-55, FR-57, FR-58, FR-60, FR-61 |
-| BR-13 Must | FR-33, FR-34, FR-69 |
+| BR-13 Must | FR-33, FR-34, FR-69, FR-70 |
 | BR-14 Must | FR-13, FR-14, FR-15, FR-39, FR-48, FR-52, FR-61 |
 | BR-15 Should | FR-35 (P2/Enhanced) |
 
@@ -272,15 +275,15 @@ Other added operations fill authentication/session, document policy, non-disclos
 | ID | Assumption / source | Validation |
 | --- | --- | --- |
 | ASM-01 | English-only query/content/evaluation as requested in owner review; text/Markdown Core. | Pilot fit OD-05; broader languages/formats need a later decision. |
-| ASM-02 | To Do/In Progress/Done board; Planned → Active → Completed Sprint; unfinished items return to Backlog, completed work remains linked, no implicit completion. At most one Sprint per project is Active; an item cannot be allocated to two Planned/Active Sprints. | Confirm fixed policy OD-03; no configurable workflow engine. |
-| ASM-03 | Project-shared/restricted document classes; explicit restricted read grants plus current membership. Membership removal invalidates grants; rejoining does not restore them. The creator sets initial classification; later changes require manage-access authority. | Confirm model/delegation and these proposed rules under OD-02. |
+| ASM-02 | To Do/In Progress/Done board; Planned → Active → Completed Sprint; unfinished items return to Backlog, completed work remains linked, no implicit completion. At most one Sprint per project is Active; an item cannot be allocated to two Planned/Active Sprints. | Owner-confirmed ADR-0008; no configurable workflow engine. |
+| ASM-03 | Project-shared/restricted document classes; explicit restricted read grants plus current membership. Membership removal invalidates grants; rejoining does not restore them. The creator sets initial classification; later changes require manage-access authority. | Owner-confirmed initial access model in ADR-0007, including a revocable initial author read grant; additional non-read delegation remains open. |
 | ASM-04 | Single-question Core answer view; no saved answers/persistent conversation/separate previews. | Scope boundary OD-10; trace/provenance retention is separate. |
 | ASM-05 | Pre-provisioned accounts for D0a/D0b; sign-in/session behavior remains application scope. | Mechanism/provisioning/expiry OD-09. |
-| ASM-06 | Owner-directed solo capstone with a five-month target; pilot content still needs named ownership. Weekly available hours, machine and actual throughput are unmeasured. | Calendar/capacity OD-01 and proposed release cuts OD-11; calibrate in the first two weeks. |
-| ASM-07 | A work item is Blocked when its most recent blocker event is Open; a later Resolved event ends the block. | Confirm OD-03. |
+| ASM-06 | Owner-directed solo capstone with a five-month target; pilot content still needs named ownership. Weekly available hours, machine and actual throughput are unmeasured. | ADR-0010 retains 60 Must and exact exceptions. April 2027 submission and at least eight hours per working day are owner directions; kickoff, working days/week and measured throughput remain OD-01. |
+| ASM-07 | A work item is Blocked when its most recent blocker event is Open; a later Resolved event ends the block. | Owner-confirmed ADR-0008; latest committed per-task sequence is authoritative. |
 | ASM-08 | AI budget is an operator-configured usage limit (calls or tokens per period) whose exhaustion produces an explicit AI-unavailable state. | Limits and scope are OD-06. |
 
-Pain points lack interview validation. No vendor/framework/store/service boundary is adopted. LM Studio/Agno remain candidates. Fixtures must be synthetic/authorised and secrets runtime-supplied. AGENTS.md directs minimal microservices while BRD §12.3 leaves architecture to design; record this difference in SAD without rewriting the BRD.
+Pain points lack interview validation. PostgreSQL/pgvector storage is selected and tested under ADR-0004; application framework/provider choices and enforcement remain separate. LM Studio/Agno remain candidates. Fixtures must be synthetic/authorised and secrets runtime-supplied. AGENTS.md directs minimal microservices while BRD §12.3 leaves architecture to design; record this difference in SAD without rewriting the BRD.
 
 ## 10. Checklist results and revision evidence
 
@@ -315,25 +318,45 @@ The repository checklist's question columns were used. Its pre-filled notes desc
 
 **v0.3 prior changes:** Invalidated grants on membership removal; withheld-answer rule for revocation before delivery; Draft version state; creation-time classification rule; one Active Sprint; blocker derivation; AI budget definition; D0 split into D0a/D0b; descoping order and OD-11; FR-33 split with new FR-69; FR-31 catalogue; interface-neutral FR-59; test instructions moved out of ACs. Policy proposals remain tied to their OD rather than approved by this revision. Follow-through consistency fixes label Draft unpublished, require a Draft replacement in FR-45 and permit restricted semantic candidates when the requester has access.
 
-**Documentation verification:** Checked 69 unique FR/AC Given/When/Then pairs, valid FR references, row-level/reverse BR map equality for BR-01–BR-15, all eight scenario rows, P0/P1/P2 labels and local links/anchors. Delivery counts are 55 P0, 13 P1 and one P2; D0a lists 21 P0 FRs and D0b lists 17 P0 FRs. Reviewed against the repository checklist questions and all v0.3 patch items. Build, lint, application/UAT, retrieval evaluation and security/failure tests were not run: no implementation or pilot exists. These checks establish document consistency only.
+**Historical v0.4 documentation verification:** Checked 69 unique FR/AC Given/When/Then pairs, valid FR references, row-level/reverse BR map equality for BR-01–BR-15, all eight scenario rows, P0/P1/P2 labels and local links/anchors. Delivery counts are 55 P0, 13 P1 and one P2; D0a lists 21 P0 FRs and D0b lists 17 P0 FRs. Reviewed against the repository checklist questions and all v0.3 patch items. Build, lint, application/UAT, retrieval evaluation and security/failure tests were not run: no implementation or pilot exists. These checks establish document consistency only.
 
 ## 11. Open decisions and handoff
 
 | ID | Decision / owner | Proposal and impact |
 | --- | --- | --- |
 | OD-01 | Pilot/personas/resources / owner | Solo developer and five-month target are owner directions; validate pilot users, actual weekly hours, machine and kickoff calendar. |
-| OD-02 | Action-to-role matrix and delegation / owner | ASM-03, scoped manage-access/inspect capabilities, default deny and FR-59 not-found-equivalent behavior (HTTP 404), proposed ADR-0001. Confirm grant invalidation on membership removal and creator-set initial classification versus restricted-only creation by default; materially affects use cases/SAD/data/API/UI. |
-| OD-03 | Fixed Sprint policy / owner | ASM-02/AC-42, one Active Sprint per project, exclusive Planned/Active item allocation and latest-event blocker derivation (ASM-07); no workflow configuration or implicit Scrum Master approval; affects work flows/data/API. |
-| OD-04 | Document transitions/authority/history/retention / owner | AC-13/AC-48 specify active behavior; physical retention, historical identity rights and transition authority unresolved; affects version/data design. Confirm state set Draft/Current/Superseded/Archived and allowed transitions, initial Current creation, Draft-on-revision and content-write-only Draft access. |
+| OD-02 | Action-to-role matrix and delegation / owner | Initial model confirmed by ADR-0007: project-shared/restricted, explicit creator classification, author read grant, revocation/rejoin and generic 404. Initial capability defaults are recorded; additional non-read delegation/provisioning and inspector delegation remain open. |
+| OD-03 | Fixed Sprint policy / owner | Closed by owner-confirmed ADR-0008: fixed Sprint lifecycle, one Active Sprint, exclusive allocation and highest-committed-sequence blocker derivation. |
+| OD-04 | Document transitions/authority/history/retention / owner | Lifecycle and initial authority confirmed by ADR-0007/0009: Current/Superseded/Archived, immediate atomic revision, no product Draft or publish operation. ADR-0013 confirms current-read entitlement for surviving unavailable citation identities. Physical retention remains open; retention duration is not a Core gate. |
 | OD-05 | Validate English/text/Markdown pilot assumption / owner | ASM-01 is draft default; no other language/format assumed. |
 | OD-06 | Deployment/provider/transfers/corpus/load/browser/accessibility / owner with architect | No unsupported vendor/sizing/numeric commitment. AI usage budget definition, limits and scope (ASM-08). Record embedding/generation choice as an ADR before D0b. |
 | OD-07 | Post-pilot thresholds/final cases / owner with evaluator | Freeze before final evaluation and keep negative results. |
 | OD-08 | Audit/trace delegation and retention / owner | Scoped inspectors; source permissions still apply; no unrestricted logs/private reasoning. |
 | OD-09 | Identity/session expiry/provisioning / owner with architect | Sign-in/out/expiry FRs explicit; D0a/D0b pre-provisioned accounts provisional. |
 | OD-10 | Core answer interaction / owner | ASM-04 omits saved/history/preview creation; adding them needs scope/access requirements. |
-| OD-11 | Five-month MoSCoW/capacity and exact deferrals / owner | PLAN-01 proposes seven original Core Musts as Should/Could and FR-35 outside the release. Estimate by vertical slice and first-two-week throughput; confirm exact omissions and altered Core gate. No deferral is approved by this draft. |
-| OD-12 | Student application stack and installed versions / owner with architect | ADR-0003/ADR-0004 propose TypeScript/React/Fastify and PostgreSQL/pgvector for two owned services. Context harness is separate and runnable now; app stack, physical DB migrations and provider are not installed/adopted. |
+| OD-11 | Five-month MoSCoW/capacity and exact deferrals / owner | Release exceptions confirmed by ADR-0010: 60 Must, 3 Should, 4 Could, 1 Won't; FR-45 withdrawn. Week-2 and Months-2/3 capacity gates retain 60 Must and escalate schedule/capacity, not automatic additional cuts. |
+| OD-12 | Student application stack and installed versions / owner with architect | ADR-0004 storage selected: PostgreSQL 17.10 / pgvector 0.8.2 and owned migrations implemented/tested. ADR-0003 application frameworks remain Proposed. Migration 002 tests do not prove handlers or concurrent handoffs. |
 
 **FR-35 Enhanced gap:** Report types/calculations require an Enhanced decision before its acceptance criterion can be instantiated; FR-35 remains outside the Core gate.
 
 **Handoff: Needs owner decision.** OD-02–OD-04 materially change affected next-stage artifacts; OD-08–OD-10 also precede acceptance of relevant contracts, and OD-11 needs owner input before baselining the five-month delivery/deferral plan; OD-12 precedes app stack/schema implementation. Stage 2 can draft independent journeys under explicit assumptions, but affected flows are not baseline-ready. Stage 3 defines enforcement/concurrency/failure/storage under AGENTS.md and reviews [ADR-0001](../adr/0001-protected-resource-read-policy.md). Stage 8 can prepare cases/measurements, then bind them to accepted policies. The register tracks downstream impacts; no planned artifact becomes complete from this revision.
+
+**v0.5 change record:** Applies confirmed access/Sprint/lifecycle/release direction, retains Withdrawn FR-45, and distinguishes storage evidence from application completion. Active counts are derived by the context validator; historical v0.4 counts above remain snapshots.
+
+### Owner clarification - 14 October 2026: invalid citations
+
+ADR-0013 and BA-D16 strengthen the FR-22/FR-60 delivery assertion: an invented citation withholds the original draft. A bounded replacement must recheck claim support, exact citation binding, current access and durable provenance; stripping the invalid locator alone cannot authorise delivery. If no validated replacement is available, return the fixed generic AnswerWithheld failure. This preserves the distinction between structural identity checks and actual claim support.
+
+### Owner clarification - 14 October 2026: partial evidence
+
+ADR-0015 permits a partially_answered response under FR-23/24: deliver only supported cited components and explicitly identify remaining requested components as lacking evidence, without hidden-source hints. Total lack of support remains insufficient_evidence. Whole-draft revocation/invalid-citation withholding still applies; partial content must come from a valid checked attempt.
+
+### Owner extension - 14 October 2026: task keyword search
+
+ADR-0016 adds FR-70 as Should after 60 Must. There are now 69 active FRs (54 P0, 14 P1, one P2) plus Withdrawn FR-45. The new optional behavior does not change the seven original-Core exceptions in ADR-0010 or promote optional work into the release gate.
+
+### Owner clarification - 14 October 2026: complete membership removal
+
+ADR-0017 extends AC-38/39/43: removal atomically deactivates membership, invalidates all individually granted project capabilities/read grants, clears current assignees on affected tasks, increments revisions and records mandatory audit. Historical attribution/state/allocation remain intact. Rejoin restores no former grants or assignments. Other projects are unaffected; race assignment/grant issuance against removal in verification.
+
+ADR-0017 last-manager rule: reject removal of the final current member with effective membership-management authority until another current member has that authority. Check inside the serialized removal transaction, including concurrent removals/capability changes; no Admin/creator bypass or automatic successor. Rejection leaves all state unchanged.

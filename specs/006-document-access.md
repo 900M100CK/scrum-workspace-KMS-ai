@@ -1,9 +1,9 @@
 # Create restricted knowledge and manage its access
 
 **Artifact ID:** SP-06  
-**Version/date:** 0.1 Draft · 8 October 2026  
-**Status:** Draft for owner review; proposed policies/deferrals are not approved.  
-**Inputs:** PRD-01 v0.4; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-06--create-restricted-knowledge-and-manage-its-access); [contract pack](../contracts/README.md); PLAN-01 v0.1.  
+**Version/date:** 0.2 Draft · 13 October 2026\
+**Status:** Draft for owner review; ADR-0007–ADR-0011 direction is owner-confirmed; application acceptance remains unproven.\
+**Inputs:** PRD-01 v0.5; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-06--create-restricted-knowledge-and-manage-its-access); [contract pack](../contracts/README.md); PLAN-01 v0.2.\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 2.  
@@ -14,7 +14,7 @@
 
 Store an owned English text/Markdown source with explicit, independently enforced document access.
 
-Use knowledge service contract in contracts/openapi/. Operation IDs: createDocument, getDocument, setClassification, grantDocumentRead, revokeDocumentRead, importDocument, editDocumentMetadata. Server identity/permission is never asserted in client fields. SP-11 captures records inside every producing operation.
+Use knowledge service contract in contracts/openapi/. Operation IDs: registerDocumentPolicy, persistDocument, createDocument, getDocument, setClassification, grantDocumentRead, revokeDocumentRead, importDocument, editDocumentMetadata. Server identity/permission is never asserted in client fields. SP-11 captures records inside every producing operation.
 
 ## Input/output and edges
 
@@ -22,11 +22,11 @@ Input: valid session, operation-specific fields, expected revision and scoped id
 
 ## Acceptance
 
-1. Omitting initial classification rejects creation; Current initial version is created only after access registration succeeds.
+1. Omitting classification rejects creation. Workspace allocates identity and commits policy/initial scoped capabilities plus a revocable restricted-author read grant before Knowledge creates initial Current. Same-key replay creates no duplicate identity/version/grant. No activation step; orphan policy reveals no content.
 2. Grant, search/read, revoke and repeat reads end-to-end; Admin status alone grants no source read.
 3. Access-authority failure denies protected content; unsupported import is rejected.
 
-Proposed optional five-month rows: FR-62 Should, FR-65 Could. Omission needs recorded OD-11 approval and altered Core gate.
+Owner-confirmed optional release rows (ADR-0010): FR-62 Should, FR-65 Could. ADR-0010 records the exact Core-gate exceptions; all other release Must ACs remain required.
 
 ## Allowed paths and Done
 
@@ -38,4 +38,4 @@ Done requires the matching PRD ACs exercised on real handlers/persisted state; r
 
 ## Assumptions/checklist/handoff
 
-Uses proposed OD-02–OD-04/OD-09/OD-12 and ADRs. Pass for goal/trace/input-output/edges/paths/Done; Gap for accepted policy/contract/stack and runtime tests. Handoff: Needs owner decision for affected baselines; authorised context work can proceed.
+Uses owner-confirmed ADR-0007–ADR-0011; remaining delegation/history, OD-09 identity and OD-12 framework details stay open. Pass for goal/trace/input-output/edges/paths/Done; Gap for accepted policy/contract/stack and runtime tests. Handoff: Needs owner decision for affected baselines; authorised context work can proceed.

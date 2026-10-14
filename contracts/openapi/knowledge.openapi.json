@@ -2,7 +2,7 @@
   "openapi": "3.1.1",
   "info": {
     "title": "Knowledge service public facade through Workspace gateway",
-    "version": "0.1.0",
+    "version": "0.2.2",
     "description": "Draft contract; policy/stack decisions remain proposed. Schema validation proves shape only."
   },
   "x-status": "Draft",
@@ -24,7 +24,7 @@
         "x-requirements": [
           "FR-10"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. Gateway first allocates identity and commits policy in Workspace, then persists initial Current content in Knowledge under the same actor/operation/key and payload identity. Replays do not duplicate identity, version or grants. No ACL activation. A pending response is an uncertain operation, never document read readiness.",
         "parameters": [
           {
             "name": "Idempotency-Key",
@@ -49,7 +49,7 @@
             }
           },
           "202": {
-            "description": "Pending own-data/ACL registration; not a completed accessible document",
+            "description": "Creation outcome pending reconciliation; retry the same idempotency key and payload. Policy may exist without content; no successful document read is implied.",
             "content": {
               "application/json": {
                 "schema": {
@@ -243,7 +243,7 @@
         "x-requirements": [
           "FR-62"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. Gateway first allocates identity and commits policy in Workspace, then persists initial Current content in Knowledge under the same actor/operation/key and payload identity. Replays do not duplicate identity, version or grants. No ACL activation. A pending response is an uncertain operation, never document read readiness.",
         "parameters": [
           {
             "name": "Idempotency-Key",
@@ -418,7 +418,7 @@
         "x-requirements": [
           "FR-11"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. Require content-write and expected Document revision. Under the lifecycle guard, atomically supersede the previous Current, insert a new immutable Current version and update the pointer. Preserve all old exact locators; no separate publish step.",
         "parameters": [
           {
             "name": "document_id",
@@ -551,107 +551,6 @@
           },
           "503": {
             "$ref": "#/components/responses/Unavailable"
-          }
-        },
-        "x-release-priority": "Must"
-      }
-    },
-    "/knowledge/documents/{document_id}/versions/{version_id}/publish": {
-      "post": {
-        "operationId": "publishVersion",
-        "x-requirements": [
-          "FR-45"
-        ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. expected_revision is the Document aggregate revision guarding its Current pointer; not the immutable version locator. Confirm the Draft belongs to that document and reject a stale publication after newer source changes.",
-        "parameters": [
-          {
-            "name": "document_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "minLength": 1
-            }
-          },
-          {
-            "name": "version_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "minLength": 1
-            }
-          },
-          {
-            "name": "Idempotency-Key",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "minLength": 1
-            },
-            "description": "Actor/operation scoped; replay rechecks access; different payload conflicts."
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Confirmed result",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Version"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid input",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthenticated"
-          },
-          "403": {
-            "description": "Known readable resource but insufficient action authority",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "409": {
-            "description": "Stale state or idempotency conflict",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "503": {
-            "$ref": "#/components/responses/Unavailable"
-          }
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ExpectedRevision"
-              }
-            }
           }
         },
         "x-release-priority": "Must"
@@ -1200,7 +1099,7 @@
           "FR-57",
           "FR-69"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. ADR-0013: withheld answers use the fixed AnswerWithheld body; never expose access-change reasons or any part of the original evidence-dependent draft. An invented citation invalidates the original draft; only a new bounded attempt that rechecks claim support, exact citation binding, access and mandatory provenance may be delivered. Otherwise return AnswerWithheld.",
         "parameters": [],
         "responses": {
           "200": {
@@ -1250,7 +1149,7 @@
             }
           },
           "503": {
-            "$ref": "#/components/responses/Unavailable"
+            "$ref": "#/components/responses/QuestionUnavailable"
           }
         },
         "requestBody": {
@@ -1275,7 +1174,7 @@
           "FR-60",
           "FR-61"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "ADR-0013: check current membership and authoritative retained document-read policy under the protected handoff guard. Return exact readable Passage, or verified surviving UnavailableCitation identity without content. Unknown locator or denied identity gets identical generic 404; authority/dependency failure gets 503. Audit-read and prior possession are not read grants. Never substitute a newer version or put unavailable identity into AI context.",
         "parameters": [
           {
             "name": "document_id",
@@ -1311,7 +1210,14 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Passage"
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/Passage"
+                    },
+                    {
+                      "$ref": "#/components/schemas/UnavailableCitation"
+                    }
+                  ]
                 }
               }
             }
@@ -1424,7 +1330,7 @@
           "FR-32",
           "FR-57"
         ],
-        "description": "Internal authenticated service only; Workspace validates actor/session/current project and document scope. Not a browser-callable endpoint.",
+        "description": "Internal authenticated service only; Workspace validates actor/session/current project and document scope. Not a browser-callable endpoint. ADR-0013: withheld answers use the fixed AnswerWithheld body; never expose access-change reasons or any part of the original evidence-dependent draft. An invented citation invalidates the original draft; only a new bounded attempt that rechecks claim support, exact citation binding, access and mandatory provenance may be delivered. Otherwise return AnswerWithheld.",
         "parameters": [
           {
             "name": "Idempotency-Key",
@@ -1485,7 +1391,7 @@
             }
           },
           "503": {
-            "$ref": "#/components/responses/Unavailable"
+            "$ref": "#/components/responses/QuestionUnavailable"
           }
         },
         "security": [
@@ -1505,6 +1411,106 @@
           }
         },
         "x-release-priority": "Must"
+      }
+    },
+    "/internal/documents/{document_id}": {
+      "put": {
+        "operationId": "persistDocument",
+        "x-requirements": [
+          "FR-10",
+          "FR-04",
+          "FR-31"
+        ],
+        "description": "Internal Workspace-to-Knowledge transport only. document_id was allocated by Workspace for this authenticated actor/operation/idempotency key. Verify current create authority and registered policy against Workspace; never infer it from a caller-selected ID. Atomically persist initial Current, passages, audit and idempotency receipt. Replay after authority recheck returns the same version; changed payload conflicts. An uncertain response is reconciled under the same identity, never by allocating another ID.",
+        "parameters": [
+          {
+            "name": "document_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Actor/operation scoped; replay rechecks access; different payload conflicts."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Document"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "description": "Known readable resource but insufficient action authority",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PersistDocument"
+              }
+            }
+          }
+        },
+        "x-release-priority": "Must",
+        "security": [
+          {
+            "serviceKey": [],
+            "actorSession": []
+          }
+        ]
       }
     }
   },
@@ -2114,10 +2120,10 @@
           },
           "registry_state": {
             "enum": [
-              "pending",
               "active",
               "unavailable"
-            ]
+            ],
+            "description": "Registered policy or retired policy; active is not proof of Knowledge content availability."
           }
         },
         "required": [
@@ -2286,13 +2292,15 @@
             "type": [
               "string",
               "null"
-            ]
+            ],
+            "description": "Protected reference; null when current source-read permission is absent. Audit identity entitlement alone cannot disclose this payload."
           },
           "after_ref": {
             "type": [
               "string",
               "null"
-            ]
+            ],
+            "description": "Protected reference; null when current source-read permission is absent. Audit identity entitlement alone cannot disclose this payload."
           },
           "correlation_id": {
             "type": "string",
@@ -2308,7 +2316,8 @@
           "before_ref",
           "after_ref",
           "correlation_id"
-        ]
+        ],
+        "description": "ADR-0012: current project membership and scoped audit-read permit in-scope actor/action/entity identity/time even without document-read. Protected title/content/before-after references require separate current read authority and are otherwise null/redacted. Audit IDs grant no source/citation/retrieval/AI access; trace-read alone does not inherit this entitlement."
       },
       "ProjectList": {
         "type": "object",
@@ -2549,7 +2558,6 @@
           },
           "state": {
             "enum": [
-              "draft",
               "current",
               "superseded",
               "archived"
@@ -3219,6 +3227,9 @@
           },
           {
             "$ref": "#/components/schemas/Conflict"
+          },
+          {
+            "$ref": "#/components/schemas/PartiallyAnswered"
           }
         ]
       },
@@ -3281,6 +3292,150 @@
           "operational_entity_ids",
           "source_revision"
         ]
+      },
+      "PersistDocument": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "project_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "document",
+              "decision"
+            ]
+          },
+          "content": {
+            "type": "string",
+            "minLength": 1
+          },
+          "content_format": {
+            "enum": [
+              "text",
+              "markdown"
+            ]
+          },
+          "content_owner_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "labels": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "project_id",
+          "title",
+          "kind",
+          "content",
+          "content_format",
+          "content_owner_id"
+        ],
+        "description": "Content payload from Workspace after registration; classification and grants remain Workspace-owned. Actor/session comes from authenticated service context, not these fields."
+      },
+      "UnavailableCitation": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "const": "unavailable"
+          },
+          "document_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "passage_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "message": {
+            "const": "Cited content unavailable"
+          }
+        },
+        "required": [
+          "state",
+          "document_id",
+          "version_id",
+          "passage_id",
+          "message"
+        ],
+        "description": "ADR-0013: verified surviving exact identity only after current membership and retained document-read policy checks; never source content or generation evidence."
+      },
+      "AnswerWithheld": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "const": "answer_withheld"
+          },
+          "message": {
+            "const": "Unable to provide this answer"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "description": "ADR-0013: no source, citation, run ID, generated text or detailed cause. Full evidence-set withholding; inspect causes only through authorised trace access."
+      },
+      "PartiallyAnswered": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "const": "partially_answered"
+          },
+          "run_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "claims": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Claim"
+            },
+            "minItems": 1
+          },
+          "citations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Citation"
+            },
+            "minItems": 1
+          },
+          "missing_components": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Requested components that lack evidence; use only request-visible terms. Never reveal hidden source identity, grant or existence."
+          }
+        },
+        "required": [
+          "status",
+          "run_id",
+          "claims",
+          "citations",
+          "missing_components"
+        ],
+        "description": "ADR-0015: supported cited components plus explicit missing requested components. Every claim must pass support and current-access checks. Never salvage an invalid or revoked original draft by truncation."
       }
     },
     "securitySchemes": {
@@ -3331,6 +3486,23 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "QuestionUnavailable": {
+        "description": "Explicit dependency failure or nondisclosing terminal withholding. No generated answer.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/Error"
+                },
+                {
+                  "$ref": "#/components/schemas/AnswerWithheld"
+                }
+              ]
             }
           }
         }

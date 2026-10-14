@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { randomBytes, randomUUID } from 'node:crypto';
 import { resolve } from 'node:path';
+import { readFileSync } from 'node:fs';
 import { docker, image, migrate, root, sql, waitReady } from '../scripts/database.mjs';
 
 const id = number => `00000000-0000-4000-8000-${number.toString(16).padStart(12, '0')}`;
@@ -40,7 +41,7 @@ test('ADR-0004 real PostgreSQL storage boundary', { timeout: 300000 }, async t =
       for (const service of ['workspace', 'knowledge']) {
         migrate(container, service);
         migrate(container, service);
-        assert.equal(sql(container, service, 'SELECT count(*) FROM _migrations.applied;').stdout.trim(), '1');
+        assert.equal(sql(container, service, 'SELECT count(*) FROM _migrations.applied;').stdout.trim(), '2');
       }
       sql(container, 'knowledge', "UPDATE _migrations.applied SET checksum = 'modified';");
       assert.throws(() => migrate(container, 'knowledge'), /checksum mismatch/);
@@ -104,10 +105,10 @@ test('ADR-0004 real PostgreSQL storage boundary', { timeout: 300000 }, async t =
       }
       seed += `
         INSERT INTO knowledge.document(document_id, project_id, kind, title, owner_id)
-          VALUES (${q(14)}, ${q(1)}, 'document', 'Synthetic draft', ${q(3)});
+          VALUES (${q(14)}, ${q(1)}, 'document', 'Synthetic historical source', ${q(3)});
         INSERT INTO knowledge.document_version(document_id, version_id, state, immutable_content)
-          VALUES (${q(14)}, ${q(24)}, 'draft', 'JWT unpublished evidence');
-        INSERT INTO knowledge.passage VALUES (${q(14)}, ${q(24)}, ${q(34)}, 'paragraph:1', 'JWT unpublished evidence');
+          VALUES (${q(14)}, ${q(24)}, 'superseded', 'JWT historical evidence');
+        INSERT INTO knowledge.passage VALUES (${q(14)}, ${q(24)}, ${q(34)}, 'paragraph:1', 'JWT historical evidence');
         UPDATE knowledge.document_version SET state='archived', revision=2 WHERE document_id=${q(15)};
         UPDATE knowledge.document SET current_version_id=NULL, revision=2 WHERE document_id=${q(15)};
         UPDATE knowledge.document SET unavailable=true, revision=2 WHERE document_id=${q(16)};
@@ -147,13 +148,12 @@ test('ADR-0004 real PostgreSQL storage boundary', { timeout: 300000 }, async t =
       // Actual Workspace grant/revoke and transport guards are not implemented here.
     });
 
-    await t.test('publication preserves old evidence, excludes stale vectors, and allows keyword fallback', () => {
+    await t.test('immediate revision preserves old evidence, excludes stale vectors, and allows keyword fallback', () => {
       run('knowledge', `BEGIN;
-        INSERT INTO knowledge.document_version(document_id, version_id, state, immutable_content)
-          VALUES (${q(11)}, ${q(121)}, 'draft', 'JWT replacement evidence');
-        INSERT INTO knowledge.passage VALUES (${q(11)}, ${q(121)}, ${q(131)}, 'paragraph:1', 'JWT replacement evidence');
         UPDATE knowledge.document_version SET state='superseded', revision=2 WHERE document_id=${q(11)} AND version_id=${q(21)};
-        UPDATE knowledge.document_version SET state='current', revision=2 WHERE document_id=${q(11)} AND version_id=${q(121)};
+        INSERT INTO knowledge.document_version(document_id, version_id, state, immutable_content)
+          VALUES (${q(11)}, ${q(121)}, 'current', 'JWT replacement evidence');
+        INSERT INTO knowledge.passage VALUES (${q(11)}, ${q(121)}, ${q(131)}, 'paragraph:1', 'JWT replacement evidence');
         UPDATE knowledge.document SET current_version_id=${q(121)}, revision=2, processing_generation=2 WHERE document_id=${q(11)};
         COMMIT;`);
       assert.equal(value(exact()), '');
@@ -170,12 +170,70 @@ test('ADR-0004 real PostgreSQL storage boundary', { timeout: 300000 }, async t =
       rejects(`INSERT INTO knowledge.search_job VALUES (${q(152)}, ${q(11)}, ${q(121)}, ${q(41)}, 2, 2, 'pending', false);`, '23505');
     });
 
+    await t.test('second revision is atomic and old exact locators remain unchanged without Draft', () => {
+      rejects(`INSERT INTO knowledge.document_version(document_id, version_id, state, immutable_content)
+        VALUES (${q(11)}, ${q(221)}, 'draft', 'Unpublished');`, '23514');
+      rejects(`BEGIN;
+        UPDATE knowledge.document_version SET state='superseded', revision=2 WHERE document_id=${q(11)} AND version_id=${q(121)};
+        INSERT INTO knowledge.document_version(document_id, version_id, state, immutable_content)
+          VALUES (${q(11)}, ${q(221)}, 'current', 'JWT second revision');
+        COMMIT;`, '23514');
+      assert.equal(value(`SELECT current_version_id FROM knowledge.document WHERE document_id=${q(11)};`), id(121));
+      run('knowledge', `BEGIN;
+        UPDATE knowledge.document_version SET state='superseded', revision=2 WHERE document_id=${q(11)} AND version_id=${q(121)};
+        INSERT INTO knowledge.document_version(document_id, version_id, state, immutable_content)
+          VALUES (${q(11)}, ${q(221)}, 'current', 'JWT second revision');
+        INSERT INTO knowledge.passage VALUES (${q(11)}, ${q(221)}, ${q(231)}, 'paragraph:1', 'JWT second revision');
+        UPDATE knowledge.document SET current_version_id=${q(221)}, revision=3, processing_generation=3 WHERE document_id=${q(11)};
+        COMMIT;`);
+      assert.equal(value(`SELECT version_id FROM knowledge.keyword_search(${q(1)}, ARRAY[${q(11)}]::uuid[], 'JWT', 5);`), id(221));
+      assert.equal(value(`SELECT state FROM knowledge.document_version WHERE document_id=${q(11)} AND version_id=${q(21)};`), 'superseded');
+      assert.equal(value(`SELECT immutable_excerpt FROM knowledge.passage WHERE document_id=${q(11)} AND version_id=${q(21)} AND passage_id=${q(31)};`), 'JWT synthetic evidence');
+      assert.equal(value(`SELECT immutable_excerpt FROM knowledge.passage WHERE document_id=${q(11)} AND version_id=${q(121)} AND passage_id=${q(131)};`), 'JWT replacement evidence');
+      rejects(`UPDATE knowledge.document_version SET state='current', revision=3 WHERE document_id=${q(11)} AND version_id=${q(121)};`, '23514');
+    });
+
     await t.test('committed deletion excludes stale rows and cannot be undone by old jobs', () => {
-      run('knowledge', `UPDATE knowledge.document SET unavailable=true, revision=3 WHERE document_id=${q(11)};`);
+      run('knowledge', `UPDATE knowledge.document SET unavailable=true, revision=4 WHERE document_id=${q(11)};`);
       assert.equal(value(exact()), '');
       assert.equal(value(`SELECT * FROM knowledge.keyword_search(${q(1)}, ARRAY[${q(11)}]::uuid[], 'JWT', 5);`), '');
       rejects(`UPDATE knowledge.search_job SET readiness='ready' WHERE job_id=${q(151)};`, '23514');
-      rejects(`UPDATE knowledge.document SET unavailable=false, revision=4 WHERE document_id=${q(11)};`, '23514');
+      rejects(`UPDATE knowledge.document SET unavailable=false, revision=5 WHERE document_id=${q(11)};`, '23514');
+    });
+
+    await t.test('policy upgrades preserve data on rollback and reject unreconciled legacy rows', () => {
+      const rollbackPolicy = (service, migration) => {
+        const down = readFileSync(resolve(root, `services/${service}/migrations/${migration}.down.sql`), 'utf8');
+        sql(container, service, `BEGIN; SET LOCAL ROLE ${service}_owner; ${down}
+          DELETE FROM _migrations.applied WHERE id='${migration}'; COMMIT;`);
+      };
+      const previous = value(`SELECT immutable_excerpt FROM knowledge.passage WHERE passage_id=${q(31)};`);
+      rollbackPolicy('knowledge', '002-current-revisions');
+      assert.equal(value(`SELECT immutable_excerpt FROM knowledge.passage WHERE passage_id=${q(31)};`), previous);
+      run('knowledge', `INSERT INTO knowledge.document_version(document_id, version_id, state, immutable_content)
+        VALUES (${q(12)}, ${q(301)}, 'draft', 'Legacy unpublished evidence');`);
+      assert.throws(() => migrate(container, 'knowledge'), /reconciliation of existing Draft/);
+      assert.equal(value(`SELECT state || ':' || immutable_content FROM knowledge.document_version WHERE version_id=${q(301)};`), 'draft:Legacy unpublished evidence');
+      assert.equal(sql(container, 'knowledge', 'SELECT count(*) FROM _migrations.applied;').stdout.trim(), '1');
+      // Only discard the synthetic legacy row created by this test, as schema owner.
+      sql(container, 'knowledge', `SET ROLE knowledge_owner; DELETE FROM knowledge.document_version WHERE version_id=${q(301)};`);
+      migrate(container, 'knowledge');
+      migrate(container, 'knowledge');
+      assert.equal(value(`SELECT immutable_excerpt FROM knowledge.passage WHERE passage_id=${q(31)};`), previous);
+
+      run('workspace', `INSERT INTO workspace.document_policy(document_id, project_id, classification)
+        VALUES (${q(401)}, ${q(1)}, 'restricted');`);
+      assert.equal(value(`SELECT registry_state FROM workspace.document_policy WHERE document_id=${q(401)};`, 'workspace'), 'active');
+      rejects(`UPDATE workspace.document_policy SET registry_state='pending' WHERE document_id=${q(401)};`, '23514', 'workspace');
+      rollbackPolicy('workspace', '002-registered-policy');
+      assert.equal(value(`SELECT registry_state FROM workspace.document_policy WHERE document_id=${q(401)};`, 'workspace'), 'active');
+      run('workspace', `UPDATE workspace.document_policy SET registry_state='pending' WHERE document_id=${q(401)};`);
+      assert.throws(() => migrate(container, 'workspace'), /reconciliation of pending/);
+      assert.equal(value(`SELECT registry_state FROM workspace.document_policy WHERE document_id=${q(401)};`, 'workspace'), 'pending');
+      assert.equal(sql(container, 'workspace', 'SELECT count(*) FROM _migrations.applied;').stdout.trim(), '1');
+      run('workspace', `UPDATE workspace.document_policy SET registry_state='active' WHERE document_id=${q(401)};`);
+      migrate(container, 'workspace');
+      migrate(container, 'workspace');
     });
 
     await t.test('reverse and forward migrations execute on the isolated synthetic database', () => {

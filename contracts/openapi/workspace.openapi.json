@@ -2,7 +2,7 @@
   "openapi": "3.1.1",
   "info": {
     "title": "Workspace service public facade and internal policy",
-    "version": "0.1.0",
+    "version": "0.2.1",
     "description": "Draft contract; policy/stack decisions remain proposed. Schema validation proves shape only."
   },
   "x-status": "Draft",
@@ -529,7 +529,7 @@
         "x-requirements": [
           "FR-39"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. ADR-0017: atomically deactivate membership, invalidate all individually granted project capabilities and read grants, clear affected current task assignees with revision changes, and persist minimum audit. Preserve historical attribution and unrelated projects. Rejoin restores no old grant/assignment; serialize against grant and assignment writes. Unknown commit outcome reconciles the same operation. Reject removal of the last effective current membership manager with state_conflict before any changes; serialize the post-removal authority check with concurrent removals/capability changes. No creator/Admin bypass or automatic successor.",
         "parameters": [
           {
             "name": "project_id",
@@ -896,7 +896,7 @@
         "x-requirements": [
           "FR-09"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "Authorised members may change directly between todo, in_progress and done, including reopening done. Enforce authenticated project authority, expected revision and scoped idempotency. Reopening a Done task from a Completed Sprint atomically returns it to Product Backlog while preserving completed allocation history and leaving that Sprint Completed (ADR-0008 v0.2). Record audit; no automatic Scrum Master approval.",
         "parameters": [
           {
             "name": "task_id",
@@ -988,7 +988,7 @@
         "x-requirements": [
           "FR-43"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. ADR-0017: require current assignee membership and serialize with removal; a departed assignee cannot be restored by a stale write.",
         "parameters": [
           {
             "name": "task_id",
@@ -1440,7 +1440,7 @@
         "x-requirements": [
           "FR-07"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. ADR-0014: the UI may select multiple tasks and invoke this operation separately for each, with its own idempotency key and expected revision. Confirmed successes remain committed if another item rejects. Unknown transport outcomes reconcile with the same item key/payload; never blindly retry the full selection with fresh keys. Recheck current authority/lifecycle per item; no hidden task or competing-Sprint details in rejection.",
         "parameters": [
           {
             "name": "sprint_id",
@@ -2197,7 +2197,7 @@
           "FR-28",
           "FR-55"
         ],
-        "description": "Internal only: identity resolved from Workspace-validated opaque session; returns authoritative scoped decisions, never guessed rules.",
+        "description": "Internal only: identity resolved from Workspace-validated opaque session; returns authoritative scoped decisions, never guessed rules. ADR-0011: read-only committed observation, never reacquire the project guard; service authentication and actor/resource scope still apply.",
         "parameters": [],
         "responses": {
           "200": {
@@ -2266,7 +2266,8 @@
             }
           }
         },
-        "x-release-priority": "Must"
+        "x-release-priority": "Must",
+        "x-guard-mode": "read-committed-no-reacquire"
       }
     },
     "/projects/{project_id}/observations/blocked-tasks": {
@@ -2319,7 +2320,7 @@
           "FR-31",
           "FR-56"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "Require current project membership and scoped audit-read; return only in-scope events. ADR-0012 permits actor/action/entity identity/time, while protected before/after content or references remain redacted without separate read authority. No source access follows from returned IDs.",
         "parameters": [
           {
             "name": "project_id",
@@ -2371,7 +2372,7 @@
           "FR-10",
           "FR-50"
         ],
-        "description": "Internal authenticated service only; Workspace validates actor/session/current project and document scope. Not a browser-callable endpoint.",
+        "description": "Internal service/actor authenticated call to Workspace authority; allocate document identity and commit policy plus initial scoped capabilities and restricted-author read grant atomically. Same-key replay returns the same identity only after current authority checks; changed payload conflicts. No activation step. Policy alone reveals no content.",
         "parameters": [
           {
             "name": "Idempotency-Key",
@@ -2447,104 +2448,6 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/RegisterDocument"
-              }
-            }
-          }
-        },
-        "x-release-priority": "Must"
-      }
-    },
-    "/internal/document-registry/{document_id}/activate": {
-      "post": {
-        "operationId": "activateDocumentPolicy",
-        "x-requirements": [
-          "FR-10"
-        ],
-        "description": "Internal authenticated service only; Workspace validates actor/session/current project and document scope. Not a browser-callable endpoint.",
-        "parameters": [
-          {
-            "name": "document_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "minLength": 1
-            }
-          },
-          {
-            "name": "Idempotency-Key",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "minLength": 1
-            },
-            "description": "Actor/operation scoped; replay rechecks access; different payload conflicts."
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Confirmed result",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Policy"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid input",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthenticated"
-          },
-          "403": {
-            "description": "Known readable resource but insufficient action authority",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "409": {
-            "description": "Stale state or idempotency conflict",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "503": {
-            "$ref": "#/components/responses/Unavailable"
-          }
-        },
-        "security": [
-          {
-            "serviceKey": [],
-            "actorSession": []
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ExpectedRevision"
               }
             }
           }
@@ -2748,7 +2651,7 @@
           "FR-25",
           "FR-26"
         ],
-        "description": "Internal authenticated service only; Workspace validates actor/session/current project and document scope. Not a browser-callable endpoint.",
+        "description": "Internal authenticated service only; Workspace validates actor/session/current project and document scope. Not a browser-callable endpoint. ADR-0011: read-only committed observation, never reacquire the project guard; service authentication and actor/resource scope still apply.",
         "parameters": [],
         "responses": {
           "200": {
@@ -2817,7 +2720,80 @@
             }
           }
         },
-        "x-release-priority": "Must"
+        "x-release-priority": "Must",
+        "x-guard-mode": "read-committed-no-reacquire"
+      }
+    },
+    "/projects/{project_id}/tasks/search": {
+      "get": {
+        "operationId": "searchTasks",
+        "x-requirements": [
+          "FR-03",
+          "FR-59",
+          "FR-70"
+        ],
+        "description": "ADR-0016 optional task search, after the 60 Must. Workspace reads committed task title/description under current project membership; no AI or Knowledge dependency. Match literal case-insensitive substring after trimming q; reject blank query. Return only current-project matches, deterministic task_id order and opaque project/query-bound cursor; recheck access for every page. Unknown/inaccessible project is generic 404. Cursor grants no authority; do not expose hidden counts.",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Literal title/description substring; trim whitespace and reject empty. No query operators."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Confirmed result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid or blank query/cursor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "x-release-priority": "Should"
       }
     }
   },
@@ -3427,10 +3403,10 @@
           },
           "registry_state": {
             "enum": [
-              "pending",
               "active",
               "unavailable"
-            ]
+            ],
+            "description": "Registered policy or retired policy; active is not proof of Knowledge content availability."
           }
         },
         "required": [
@@ -3609,13 +3585,15 @@
             "type": [
               "string",
               "null"
-            ]
+            ],
+            "description": "Protected reference; null when current source-read permission is absent. Audit identity entitlement alone cannot disclose this payload."
           },
           "after_ref": {
             "type": [
               "string",
               "null"
-            ]
+            ],
+            "description": "Protected reference; null when current source-read permission is absent. Audit identity entitlement alone cannot disclose this payload."
           },
           "correlation_id": {
             "type": "string",
@@ -3631,7 +3609,8 @@
           "before_ref",
           "after_ref",
           "correlation_id"
-        ]
+        ],
+        "description": "ADR-0012: current project membership and scoped audit-read permit in-scope actor/action/entity identity/time even without document-read. Protected title/content/before-after references require separate current read authority and are otherwise null/redacted. Audit IDs grant no source/citation/retrieval/AI access; trace-read alone does not inherit this entitlement."
       },
       "ProjectList": {
         "type": "object",
@@ -3703,10 +3682,6 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "document_id": {
-            "type": "string",
-            "minLength": 1
-          },
           "project_id": {
             "type": "string",
             "minLength": 1
@@ -3723,11 +3698,11 @@
           }
         },
         "required": [
-          "document_id",
           "project_id",
           "classification",
           "content_owner_id"
-        ]
+        ],
+        "description": "Workspace allocates document_id and binds it to the authenticated actor, operation, idempotency key and original payload. Initial scoped capabilities and restricted-author read grant commit with policy."
       },
       "ContextPassage": {
         "type": "object",

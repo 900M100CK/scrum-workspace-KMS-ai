@@ -1,0 +1,41 @@
+# Proposed research configuration, not an executed run or provider selection.
+# Sources: research-question-and-advisor-note.md; BA-D06/BA-D07.
+status: proposed_addendum_pending_owner_and_advisor_confirmation
+research_set_direction: owner_confirmed_8_doc_8_state_9_both
+suites:
+  research:
+    cases: eval/research-cases.json
+    corpus: eval/fixtures/research-corpus.json
+  safety_regression:
+    cases: eval/reference-cases.json
+    corpus: eval/fixtures/corpus.json
+    readiness: draft_definitions_with_two_immediate_revision_scenario_no_runtime_run
+configurations:
+  - id: C0
+    sources: [document_retrieval]
+  - id: C1
+    sources: [work_state]
+  - id: C2
+    sources: [document_retrieval, work_state]
+shared:
+  provider: "<frozen provider id>"
+  model_version: "<frozen version>"
+  data_snapshot: "<hash per suite and scenario; identical across C0/C1/C2>"
+  prompt_version: "<frozen prompt version>"
+  max_output_tokens: null # Same limit across configurations; select and freeze.
+  permission_pipeline: same_authenticated_scope_and_evidence_revalidation
+  repeats_per_question: null # Same count for C0/C1/C2; record every attempt.
+freeze:
+  questions_reference_claims_and_rubric: before_pilot
+  numeric_thresholds_and_margins: after_pilot_before_formal_evaluation
+metrics:
+  document_discovery: top_five_on_eligible_document_questions_only
+  document_citation: exact_document_version_passage_and_claim_support
+  operational_citation: entity_revision_observation_time_and_claim_support
+  correctness: fixed_claim_rubric_and_complete_answer_score
+  leakage: zero_known_disclosure_defects_in_all_configurations
+  latency: median_and_p95_end_to_end_with_declared_load
+
+rubric: eval/rubric.md
+reference_version: "0.2"
+input_isolation: no_reference_answers_claim_ids_or_expected_locators_in_runtime_prompts

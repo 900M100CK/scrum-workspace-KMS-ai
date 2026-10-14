@@ -1,6 +1,6 @@
 {
   "artifactId": "DATA-04",
-  "version": "0.1",
+  "version": "0.2",
   "status": "Draft",
   "storageDecision": "ADR-0004 Proposed; logical model only, no applied migrations",
   "entities": [
@@ -295,8 +295,10 @@
     "At most one Active Sprint per project; a task has at most one Planned/Active allocation",
     "Task blocked state derives from highest committed blocker sequence",
     "Version/passage evidence is immutable",
-    "Draft excluded from all retrieval/model input",
+    "Product versions are Current/Superseded/Archived; revision atomically supersedes old Current and inserts new Current",
     "Old jobs cannot revive unavailable/tombstoned content",
-    "No answer cache or permission-decision cache in MVP"
+    "No answer cache or permission-decision cache in MVP",
+    "Workspace allocates document identity; registered policy is not content availability",
+    "Restricted creation adds a revocable author read grant; authorship never bypasses current access"
   ]
 }

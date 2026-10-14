@@ -1,6 +1,6 @@
 {
   "artifactId": "SPEC-INDEX",
-  "version": "0.1",
+  "version": "0.2",
   "status": "Draft",
   "slices": [
     {
@@ -146,14 +146,16 @@
         "grantDocumentRead",
         "revokeDocumentRead",
         "importDocument",
-        "editDocumentMetadata"
+        "editDocumentMetadata",
+        "registerDocumentPolicy",
+        "persistDocument"
       ],
       "status": "Unimplemented"
     },
     {
       "id": "SP-07",
       "file": "007-version-publication.md",
-      "goal": "Keep immutable evidence and distinguish Draft, Current and historical sources.",
+      "goal": "Revise immutable evidence directly to Current and preserve labelled history and exact citations.",
       "month": 2,
       "dependencies": [
         "SP-06"
@@ -165,20 +167,21 @@
         "FR-13",
         "FR-15",
         "FR-19",
-        "FR-45",
         "FR-47",
         "FR-48",
         "FR-61"
       ],
       "operationIds": [
         "reviseDocument",
-        "publishVersion",
         "archiveVersion",
         "deleteDocument",
         "getVersion",
         "getReadiness"
       ],
-      "status": "Unimplemented"
+      "status": "Unimplemented",
+      "withdrawnRequirements": [
+        "FR-45"
+      ]
     },
     {
       "id": "SP-08",
@@ -189,7 +192,7 @@
         "SP-06",
         "SP-03"
       ],
-      "service": "knowledge",
+      "service": "knowledge + workspace",
       "requirements": [
         "FR-16",
         "FR-17",
@@ -198,13 +201,15 @@
         "FR-34",
         "FR-49",
         "FR-59",
-        "FR-63"
+        "FR-63",
+        "FR-70"
       ],
       "operationIds": [
         "createLink",
         "listLinks",
         "removeLink",
-        "keywordSearch"
+        "keywordSearch",
+        "searchTasks"
       ],
       "status": "Unimplemented"
     },

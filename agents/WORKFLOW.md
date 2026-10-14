@@ -44,7 +44,7 @@ Stages 4–7 can be revisited as interfaces mature. Do not call a downstream doc
 
 ## Checks and invocation
 
-- Run `npm run context:lint`, `npm run context:check`, and `npm run context:test` for the dependency-free Node context harness. These check selected references, requirement/contract structure and harness negatives; they do not establish full document consistency, checklist availability on a fresh clone, SC coverage, runtime correctness or approval. No application build/run/migration commands exist yet.
+- Run `npm run context:lint`, `npm run context:check`, and `npm run context:test` for the dependency-free Node context harness. These check selected references, requirement/contract structure and harness negatives; they do not establish full document consistency, checklist availability on a fresh clone, SC coverage, runtime correctness or approval. Database migration/storage-test commands now exist under [the storage runbook](../infra/postgres/README.md); no application build/run command exists yet.
 - Inspect changed Markdown with `Get-Content -LiteralPath '<path>'`; search trace IDs with `rg -n 'BR-[0-9]{2}|SC-[0-9]{2}' <path>`; verify local links and named checklist files exist.
 - Separately reconcile current artifact versions/statuses with the register and review inputs. Distinguish current checks from historical snapshots; mark a finding resolved only with its specific evidence. A missing literal SC ID is not proof of missing coverage when a documented FR/UC mapping exists; Stage 8 still needs an explicit scenario-to-test matrix and recorded gaps.
 - For substantive changes to permissions, versions, citations, data, or service boundaries, follow the main rule's ADR and reporting requirements. Report checks run, gaps, and checks not run.

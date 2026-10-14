@@ -1,6 +1,6 @@
-%% Origin: docs/ux/flows/ai-qa-flow.md v0.4
-%% DGM-FLOW-01 v0.4 Draft - 12 October 2026
-%% Sources: PRD-01 v0.4; UC-02 v0.2; SAD-03 v0.5; Proposed ADR-0001 v0.2 / ADR-0006 v0.1; OpenAPI v0.1.0
+%% Origin: docs/ux/flows/ai-qa-flow.md v0.5
+%% DGM-FLOW-01 v0.6 Draft - 14 October 2026
+%% Sources: PRD-01 v0.5; UC-02 v0.3; SAD-03 v0.7; ADR-0007/0009/0011/0012/0013/0015/0016/0017; Workspace OpenAPI v0.2.1; Knowledge OpenAPI v0.2.2
 %% Trace: FR-18-FR-30, FR-33-FR-34, FR-46, FR-53-FR-55, FR-59-FR-61, FR-69; SC-02, SC-03, SC-05-SC-08
 %% UX / server responsibilities are labelled. API keys are relative to /api. Policy and runtime evidence remain unapproved.
 flowchart TD
@@ -8,25 +8,25 @@ flowchart TD
     Start["User submits POST /knowledge/questions using application session"]
     Read["1. Workspace checks session and current project/document scope; Knowledge retrieves permitted evidence"]
     Scope["Current-only by default; explicit labelled history; no Draft; operational facts from current observations"]
-    Enough{"Evidence supports requested claim?"}
+    Enough{"At least one requested component has supporting evidence?"}
     Insufficient["Insufficient evidence; no hints about hidden sources; capability-aware Create action"]
-    Provider["2. Guarded current access + Knowledge validity check through provider-input transport handoff"]
+    Provider["2. Guarded current access + validity; persist run ID and exact evidence before provider-input handoff"]
     Generate["Wait outside guard; buffer whole answer; no browser token streaming"]
-    Validate["Validate server-assigned exact citations and supported claims; surface accessible conflicts"]
+    Validate["Validate exact server citations and claim support; invented citation invalidates entire draft"]
     Delivery["3. Guarded recheck of entire evidence set including uncited context, session and validity"]
-    Safe{"All evidence remains permitted and valid?"}
-    Withhold["Withhold entire original draft; no answer content or source reason"]
+    Safe{"Claims, exact citations, full evidence access and validity all pass?"}
+    Withhold["Withhold entire invalid/unsafe draft; generic answer_withheld; no content, citations or source reason"]
     Retry["Bounded new attempt with remaining permitted evidence; repeat all checks"]
-    Answer["Guard held through answer response handoff completion or abort; render confirmed answer/conflict"]
+    Answer["Persist minimum delivery evidence; guard through response handoff; render answered / partially_answered / conflict"]
     Click["User opens exact citation"]
     Citation["4. GET /knowledge/citations/{document_id}/{version_id}/{passage_id}; guarded current protected read"]
     Inspect["Exact excerpt and version; label Current / Superseded / Archived; no substitution"]
-    Unavailable["Specific Citation unavailable only if surviving identity is readable; OD-04 / API mapping open"]
+    Unavailable["200 unavailable: verified exact locator + current membership and retained read policy; no excerpt or substitution"]
     Denied["401 sign-in or identical generic 404 for unknown/denied; withhold protected data"]
     Authority["Authority failure: fail closed; generic service error; no cached/unrestricted fallback"]
     AIError["AI dependency error/timeout/budget: explicit failure, no generated answer"]
     Fallback["Keyword search and document/work UI when own dependencies healthy"]
-    KnowledgeError["Knowledge service/storage outage: documents and keyword search unavailable; Workspace work may continue"]
+    KnowledgeError["Knowledge outage: documents/document search unavailable; Workspace work and optional task search may continue"]
     Start --> Read
     Read -->|Permitted| Scope
     Read -->|Unauthenticated / denied| Denied
@@ -42,7 +42,7 @@ flowchart TD
     Validate --> Delivery
     Delivery --> Safe
     Safe -->|Yes| Answer
-    Safe -->|Revoked / invalid| Withhold
+    Safe -->|Invalid claims/citations or revoked evidence| Withhold
     Delivery -->|Check failed| Authority
     Withhold -->|Retry chosen with budget and safe evidence| Retry
     Retry --> Read
@@ -59,3 +59,5 @@ flowchart TD
     Withhold -->|No retry, budget exhausted or no safe evidence| Unable
     Provider -->|Evidence revoked: no retry, budget exhausted or no safe evidence| Unable
 %% Change: current origin metadata registered for docs:lint; graph semantics retained.
+
+%% Amendment: owner-confirmed partial answers, unavailable identity and membership rules; rendered review pending.
