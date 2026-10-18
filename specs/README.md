@@ -1,9 +1,9 @@
 # Feature specifications and execution rules
 
 **Artifact ID:** SPEC-INDEX  
-**Version/date:** 0.2 Draft · 13 October 2026\
-**Status:** Draft for owner review; ADR-0007–ADR-0011 direction is owner-confirmed; application acceptance remains unproven.\
-**Inputs:** PRD-01 v0.5; [PLAN-01](../docs/planning/five-month-plan.md); [architecture](../docs/architecture.md); [contracts](../contracts/README.md).\
+**Version/date:** 0.4 Draft · 17 October 2026\
+**Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
+**Inputs:** PRD-01 v0.8; [PLAN-01](../docs/planning/five-month-plan.md); [architecture](../docs/architecture.md); [contracts](../contracts/README.md).\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 Read AGENTS and full rules, then one spec/contract. All 13 specs are Draft/Unimplemented. Shared contracts have one editing owner at a time. No agents are spawned by this plan. Context checks are available; application tests are not wired yet.
@@ -25,3 +25,5 @@ Read AGENTS and full rules, then one spec/contract. All 13 specs are Draft/Unimp
 | [SP-13](013-scoped-inspection.md) | Inspect scoped audit and answer evidence | SP-11, SP-09 | 4 |
 
 First implement SP-01 → SP-02 → SP-03 → SP-04 with SP-11 capture in each operation. SP-05–SP-08 follow, then SP-09/SP-10. SP-13 human inspection is later and does not block capture. SP-12 evaluation protects Month 5 from new feature work. Checklist: Pass for index/trace; Gap for application command wiring.
+
+Index `service` identifies the owners of the listed HTTP operations, not every orchestration consumer. `both` (legacy alias `knowledge + workspace`) denotes both API owners. SP-06 spans both; SP-10 operations belong to Workspace, while Knowledge consumes observations through SP-09. The harness validates operation ownership.

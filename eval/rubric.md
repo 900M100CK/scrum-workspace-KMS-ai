@@ -1,7 +1,7 @@
 # Research scoring rubric and semantic review
 
 **Artifact ID:** EVAL-RUBRIC-01
-**Version/date:** 0.1 Draft - 14 October 2026
+**Version/date:** 0.2 Draft - 16 October 2026
 **Status:** Proposed scoring definitions before pilot; not frozen, executed or independently approved.
 **Inputs:** research-cases.json; research corpus; configurations.yaml; BA-D06/07; ADR-0012/0013/0015.
 
@@ -26,7 +26,7 @@ Score emitted factual and synthesis claims, including extra claims beyond the re
 | Citation support | Cited material actually entails or reasonably supports its associated claim, with synthesis labelled | Emitted claim-citation associations; structurally valid locators alone do not pass |
 | Top-five document discovery | At least one required exact reference passage appears among the first five returned passage candidates | Eligible document questions for a configuration with document retrieval and enough enabled evidence to identify the requested target; C1 is N/A, not zero |
 | Multi-source document completeness | All required document references for the answer appear within the declared retrieval budget | Eligible questions needing multiple references; report separately from any-hit top-five, and freeze budget/deduplication before pilot |
-| H3 safety | Count unauthorised disclosure/mutation defects at protected provider and user boundaries | All applicable safety trials, by operation/configuration; quality averages never cancel a defect |
+| H3 safety | Count unauthorised disclosure/mutation defects at protected provider and user boundaries; apply the proposed BRD audit-identity exception only to current members with scoped audit-read, while title/content/before-after remain protected and trace/source/citation/AI reads gain no access | All applicable safety trials, by operation/configuration; test audit identity and direct-source denial for the same actor before/after grant revocation; quality averages never cancel a defect |
 | Latency | End-to-end timing from accepted request through completed response or explicit failure | Record every attempt, status and timing; show successes and failures separately plus total; do not drop timeout/budget failures from logs |
 
 For top-five use exact passage identity, with deterministic duplicate removal before assigning ranks; record raw and deduplicated rankings. Multi-source questions must not pass complete-evidence scoring just because one reference is found. Historical RQ-03 uses explicitly selected history and remains separately labelled in reported discovery results. Missing/denied RQ-04/06 and operational-only questions are ineligible. RQ-22 C0 is ineligible because the operational selector is unavailable; disclose that exclusion and still count its missing factual components in answer completeness. Do not hide the exclusion inside an overall retrieval improvement claim.

@@ -1,0 +1,24 @@
+%% Origin: docs/sdlc/diagrams/design-foundation-2026-10-17.md v0.1
+%% DGM-C4-02 v0.1 Draft - 17 October 2026
+%% Sources: DGM-DESIGN-01 v0.1; PRD-01 v0.9; UC-02 v0.6; SAD-03 v0.12; DATA-04 v0.6; ADR-0002; ADR-0004; ADR-0006; ADR-0011; ADR-0012
+%% Trace: BR-01, BR-05, BR-08–BR-14; SC-01–SC-08
+%% Scope: Logical containers; two business services. Application handlers are unimplemented; storage foundation exists.
+%% Legend: Solid arrows: required design communication, not runtime evidence. DB boxes are owned databases, not separate database engines.
+flowchart LR
+    subgraph Platform["Software system boundary: Scrum Workspace + AI Project KMS"]
+        Web["Web application<br/>Browser UI; React/Vite candidate<br/>No trusted permission decisions"]
+        WS["Workspace service + gateway<br/>Sessions, work, policy authority, guarded provider/response relay<br/>Node/TypeScript framework proposed"]
+        K["Knowledge service<br/>Immutable content, keyword/exact retrieval, generation orchestration, provenance<br/>No copied ACL rules"]
+        WDB["Data store: workspace_db<br/>PostgreSQL; Workspace alone writes<br/>Work, membership, policy, audit, idempotency"]
+        KDB["Data store: knowledge_db<br/>PostgreSQL + pgvector<br/>Versions, passages, jobs, evidence; Knowledge alone writes"]
+    end
+    User["Person: Member<br/>Current project membership and operation capability"]
+    Provider["External AI endpoints<br/>Generation / embeddings: candidate<br/>Provider waits outside guard"]
+    User -->|"Uses UI"| Web
+    Web -->|"HTTPS same-origin; session + CSRF on mutations"| WS
+    WS -->|"Internal HTTP; service credential + actor context"| K
+    K -->|"Scoped current policy / work reads; no recursive guard"| WS
+    WS -->|"Owned SQL transactions"| WDB
+    K -->|"Owned SQL; scoped current sources"| KDB
+    WS -->|"HTTPS guarded frozen payload handoff"| Provider
+    K -->|"Prepared manifest / buffered answer to relay"| WS

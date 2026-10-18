@@ -1,8 +1,8 @@
 # Functional and alternate-flow verification design
 
 **Artifact ID:** VERIFY-01
-**Version/date:** 0.1 Draft - 14 October 2026
-**Inputs:** PRD-01 v0.5 including dated owner clarifications; UC-02 v0.3; TEST-08 v0.3; ADR-0007 through ADR-0013; release-scope v0.2.
+**Version/date:** 0.3 Draft - 16 October 2026
+**Inputs:** PRD-01 v0.9; UC-02 v0.6; TEST-08 v0.5; ADR-0007 through ADR-0017; release-scope v0.2.
 **Status:** Analyst review of required observations; application execution Not run. No independent approval.
 **Trace:** BR-01 through BR-15; SC-01 through SC-08 through TEST-COVERAGE-01.
 
@@ -24,7 +24,7 @@ For every applicable mutation add authority denial, stale revision, replay, owni
 | FR-06 / AC-06 | UC-05 create | TC-13, TC-21 | Valid dates and goal create Planned Sprint; reversed dates fail before persistence. Defined. |
 | FR-07 / AC-07 | UC-05 allocate / Alt-1 | TC-07, TC-21 | Each selected item has its own allocation result; conflicting item does not undo valid allocations; exclusive current allocation survives races. ADR-0014 specifies separate keyed allocateTask calls aggregated by UI; lost outcomes reconcile per task. |
 | FR-08 / AC-08 | UC-05 start | TC-07, TC-21 | Planned starts with timestamp; Completed and second concurrent Active reject without state change. Defined. |
-| FR-09 / AC-09 | UC-04 main / Alt-1 | TC-07, TC-16 | All directed moves among three states, another member refresh, stale conflict; reopen Completed-Sprint Done task into Backlog preserving completed history. Defined; physical history mapping pending. |
+| FR-09 / AC-09 | UC-04 main / Alt-1 | TC-07, TC-16 | All directed moves among three states, another member refresh, stale conflict; reopen Completed-Sprint Done task into Backlog as To Do, including an In Progress request, preserving completed history. Defined; physical history mapping pending. |
 | FR-10 / AC-10 | UC-06 create | TC-13, TC-15, TC-20 | Text/Markdown decision has owner/labels/explicit classification and stable initial Current; missing classification rejects. Restricted author receives revocable grant. Orphan cleanup protocol gap retained. |
 | FR-11 / AC-11 | UC-07 revise | TC-05 | Two revisions preserve old bytes/locators, atomically swap Current and label old citations Superseded. Defined. |
 | FR-12 / AC-12 | UC-07; UC-09 citation | TC-05, TC-06 | Exact source view matches stored version and Current/Superseded/Archived status; historical label visible. Defined. |
@@ -38,27 +38,27 @@ For every applicable mutation add authority denial, stale revision, replay, owni
 | FR-20 / AC-20 | UC-08/09 EX access failure | TC-14, TC-23 | Fail authority independently for keyword and semantic discovery; explicit failure, no protected result or unrestricted retry. Defined. |
 | FR-21 / AC-21 | UC-09 main | TC-04, TC-09 | Capture actual provider input under mixed grants; only authorised evidence IDs/content cross submission boundary. Defined. |
 | FR-22 / AC-22 | UC-09 Alt-6a | TC-09 | Invented ID/URL invalidates original draft; only a newly checked replacement may deliver, otherwise generic withholding. Defined by BA-D16. |
-| FR-23 / AC-23 | UC-09 Alt-3a/4a | TC-09 | Empty and related-but-insufficient evidence yield insufficient evidence without invented rationale or hints about hidden sources. Defined. |
-| FR-24 / AC-24 | UC-09 presentation | TC-09, TC-22 | Distinguish Fact, two-source Synthesis and Uncertain/Insufficient; required supporting citations visible. Defined. |
+| FR-23 / AC-23 | UC-09 Alt-3a/4a | TC-09 | No supported components yield `insufficient_evidence`; some supported plus missing components yield `partially_answered` with cited support and `missing_components`, without hidden-source hints. Defined. |
+| FR-24 / AC-24 | UC-09 presentation | TC-09, TC-22 | Distinguish Fact, two-source Synthesis and Uncertain/Insufficient; `partially_answered` visibly cites support and lists missing components. Defined. |
 | FR-25 / AC-25 | UC-10 main / Alt-2 | TC-08 | Resolved current operation overrides stale blocked text with exact entity/revision/observation time. Defined. |
 | FR-26 / AC-26 | UC-10 main | TC-02, TC-08 | Two-project operational fixture returns only readable entities/links and no hidden counts. Defined. |
 | FR-27 / AC-27 | UC-13 Alt-1 | TC-11 | Optional bounded summary includes actual query/mode/ranks/permitted locators/observation/validation; absent steps Not performed. Defined if delivered. |
-| FR-28 / AC-28 | UC-09 submission | TC-04 | Pause after retrieval, revoke then resume; revoked IDs/content never reach provider; authority failure stops submission. Defined. |
-| FR-29 / AC-29 | UC-09 delivery; source reads | TC-04 | Revoke cited and uncited evidence before delivery; original draft never escapes, including replay. New attempt repeats checks. Defined. |
+| FR-28 / AC-28 | UC-09 submission | TC-04, TC-26 | Pause after retrieval, revoke then resume; revoked IDs/content never reach provider; authority failure stops submission. Defined. |
+| FR-29 / AC-29 | UC-09 delivery; source reads | TC-04, TC-26 | Revoke cited and uncited evidence before delivery; original draft never escapes, including replay. New attempt repeats checks. Defined. |
 | FR-30 / AC-30 | UC-09 hostile evidence | TC-09 | Retrieved mutation/disclosure instruction causes no mutation attempt or protected disclosure; inspect adapter calls, not just answer text. Defined. |
 | FR-31 / AC-31 | UC-11 business | TC-18 | Every catalogue operation has atomic durable minimum audit; failure rolls back, sink failure retains replayable event; failed writes never appear committed. Defined. |
-| FR-32 / AC-32 | UC-11 answer | TC-18 | Successful and failed attempts correlate run, trace and exact provenance without treating correlation as correctness. Defined. |
+| FR-32 / AC-32 | UC-11 answer | TC-18, TC-26 | Successful and failed attempts correlate run, trace and exact provenance without treating correlation as correctness. Defined. |
 | FR-33 / AC-33 | UC-12 main | TC-10 | For connection/timeout/budget failures, create/edit/board/start/complete/document read succeed independently and fresh reads confirm. Defined. |
 | FR-34 / AC-34 | UC-12 keyword | TC-10, TC-23 | Each failed AI dependency leaves same permitted exact-term source findable/openable without calling that dependency. Defined. |
 | FR-35 / AC-35 | No Core report UC | None | Enhanced/Wont; report definition unresolved and outside release. No invented report result or gate. |
 | FR-36 / AC-36 | UC-01 sign-in | TC-01 | Valid selected identity outcome creates session; invalid outcome does not. Identity mechanism remains OD-09. |
 | FR-37 / AC-37 | UC-01 sign-out | TC-01 | Old session is unusable after sign-out; repeated sign-out cannot renew it. Defined. |
-| FR-38 / AC-38 | UC-02 add / Alt-1 | TC-03, TC-24 | New membership enables project-shared access, not restricted grant; re-add does not restore old grants. Defined. |
-| FR-39 / AC-39 | UC-02 remove | TC-03, TC-14 | Removal denies project/work/document/search/citation and invalidates grants atomically; rejoin does not revive. Defined. |
+| FR-38 / AC-38 | UC-02 add / Alt-1 | TC-03, TC-24 | New membership enables project-shared access, not restricted grant; re-add restores no old individual capability, grant or assignment. Defined. |
+| FR-39 / AC-39 | UC-02 remove | TC-03, TC-14 | Removal atomically invalidates every individually granted capability/read grant, clears current assignees, bumps task revisions and persists minimum audit; history survives, rejoin restores none, and last-manager removal rejects. Defined. |
 | FR-40 / AC-40 | UC-03 Alt-1 | TC-07, TC-19 | Authorised edit visible after refresh; stale edit preserves newer content. Defined. |
 | FR-41 / AC-41 | UC-03 Alt-2 | TC-07, TC-19 | Move third item before first; read relative order and unchanged content, with stale/replay checks. Defined. |
-| FR-42 / AC-42 | UC-05 complete | TC-16, TC-21 | One atomic Completed/time plus unfinished return; Done association preserved, no implicit completion. Defined. |
-| FR-43 / AC-43 | UC-04 assignee | TC-13, TC-19 | Current member and unassigned persist; nonmember rejected without changing prior assignee. Defined. |
+| FR-42 / AC-42 | UC-05 complete | TC-16, TC-21 | One atomic Completed/time plus unfinished To Do return, task revisions and audit; Done association preserved; rollback and same-key replay verified. Defined. |
+| FR-43 / AC-43 | UC-04 assignee | TC-13, TC-19 | Current member and unassigned persist; nonmember rejected; removal races assignment under serialization, clears current assignment and bumps revision while preserving history. Defined. |
 | FR-44 / AC-44 | UC-04 blocker / Alt-2 | TC-08 | Actor/time/history persist; Open-Resolved and Resolved-Open give correct latest status; no Open plan mistaken for outcome. Defined. |
 | FR-45 / AC-45 | UC-07 withdrawn branch | None | Withdrawn under ADR-0009; immutable replacement assertions remain AC-11. |
 | FR-46 / AC-46 | UC-09 open citation | TC-05, TC-06 | Exact permitted passage/document/version matches saved citation; no silent redirect to newer version. Defined. |
@@ -72,7 +72,7 @@ For every applicable mutation add authority denial, stale revision, replay, owni
 | FR-54 / AC-54 | UC-09 Alt-5a | TC-09 | Two disagreeing accessible passages retain both statements/versions without invented resolution. Defined. |
 | FR-55 / AC-55 | UC-09 citation; UC-12 Alt-2 | TC-03, TC-04 | Reopen formerly permitted citation after revoke: no metadata/excerpt and generic 404, including cache. Defined. |
 | FR-56 / AC-56 | UC-13 audit | TC-11 | In-scope audit identity allowed without source-read; protected fields redacted; other-project events absent; no content entitlement inferred. Defined. |
-| FR-57 / AC-57 | UC-11 answer | TC-18 | Durable run/exact evidence precedes provider and answer handoffs; mandatory failure sends no protected bytes; optional metrics explicitly missing. Defined. |
+| FR-57 / AC-57 | UC-11 answer; UC-09 handoffs | TC-18, TC-26 | Complete immutable manifest durable outside guard; guarded exact evidence/revision/payload matching, zero-byte abort on mismatch, fresh per-handoff retry and no resume/replay after abort/restart. Prepared is not proof of delivery. Handler/storage evidence Not run. |
 | FR-58 / AC-58 | UC-13 trace | TC-11 | Scoped trace capability and separate source entitlement control fields; capability revocation denies; audit identity exception not inherited. Defined. |
 | FR-59 / AC-59 | All protected read UCs | TC-02, TC-11, TC-22 | Compare missing/denied status/body/schema/UI; hidden title/ID/owner/version/snippet/count absent. Audit exception uses operation-specific scope. Defined. |
 | FR-60 / AC-60 | UC-09 validation | TC-09 | Wrong document/version/passage rejected; original invalid-citation draft withheld, claim support checked separately. Defined. |

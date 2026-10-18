@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import ELK from 'elkjs/lib/elk.bundled.js';
 import assert from 'node:assert/strict';
 import { parseMermaid } from './verify-docs.mjs';
+import { syncMetadata } from './docs-metadata.mjs';
 
 // Regenerate only the two explicitly split permission diagrams. Other diagrams
 // retain their manual geometry. Review actual renders after regeneration.
@@ -46,7 +47,9 @@ for (const name of ['permission-read-flow', 'permission-ai-checkpoints']) {
   mainPath.slice(1).forEach((id, i) => assert(positions.get(id).y > positions.get(mainPath[i]).y, 'Layout reversed main path at ' + id));
   const meta = layout;
   const cells = ['<mxCell id="0"/>', '<mxCell id="1" parent="0"/>'];
-  const title = `${header[1]} · ${name} · v${header[2]} Draft\nSources: UX-PERM-MATRIX-02 v0.4, PRD-01 v0.5, SAD-03 v0.7, ADR-0007/0009/0011; server handoff boundary, not runtime evidence`;
+  const sources = text.match(/^%% Sources: (.+)$/m)?.[1];
+  assert(sources, 'Missing current source metadata in ' + name);
+  const title = `${header[1]} · ${name} · v${header[2]} Draft\nSources: ${sources}; server handoff boundary, not runtime evidence`;
   cells.push(`<mxCell id="diagram-title" value="${escape(title)}" vertex="1" parent="1" style="text;html=1;whiteSpace=wrap;fontSize=18;fontStyle=1;align=left;"><mxGeometry x="60" y="20" width="${meta.width - 120}" height="100" as="geometry"/></mxCell>`);
   for (const n of graph.nodes) {
     const p = positions.get(n.id);
@@ -68,3 +71,4 @@ for (const name of ['permission-read-flow', 'permission-ai-checkpoints']) {
   await writeFile(path + '.drawio', `<?xml version="1.0" encoding="UTF-8"?>\n<mxfile host="drawio"><diagram id="${header[1]}" name="${name}"><mxGraphModel grid="1" page="0" pageWidth="${Math.ceil(meta.width)}" pageHeight="${Math.ceil(meta.height)}"><root>\n${cells.join('\n')}\n</root></mxGraphModel></diagram></mxfile>\n`);
   console.log(`${name}: ${graph.nodes.length} nodes, ${graph.edges.length} edges`);
 }
+await syncMetadata(root);

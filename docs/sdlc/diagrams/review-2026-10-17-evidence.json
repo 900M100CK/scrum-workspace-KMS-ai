@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-17",
+  "status": "Author review; no independent or runtime acceptance",
+  "exports": [
+    {
+      "source": "docs/sdlc/diagrams/use-case/use-case-diagram.drawio",
+      "source_sha256": "48b7d545c3af2369b088063eaf94c986cb83e1c8b6ec6ba4cd3b2188bff865f2",
+      "export": ".tmp/review-diagrams/2026-10-17/use-case.png",
+      "export_sha256": "f6942a794a8b73f1468051952503c5b4265fbf5fd393d1c5a8c8920ed2257831",
+      "export_exit_code": 0
+    },
+    {
+      "source": "docs/sdlc/diagrams/flowchart/docs-flow.drawio",
+      "source_sha256": "dbbe881f7596c476e8d350be7e28b59513b9351ee50cff4ad2c341c7a0ea0d8e",
+      "export": ".tmp/review-diagrams/2026-10-17/docs-flow.png",
+      "export_sha256": "07bf24e1827ce02f0120ba598ead23ca4ef8cf2c667c34c25b71200a7f42b9b5",
+      "export_exit_code": 0
+    },
+    {
+      "source": "docs/sdlc/diagrams/flowchart/permission-read-flow.drawio",
+      "source_sha256": "8f3a3a9dc86708588a8b1560f060ca67343d6ce8f7f7b2a1685dcdd71f6ed9aa",
+      "export": ".tmp/review-diagrams/2026-10-17/read-flow.png",
+      "export_sha256": "a600c1798a23a5d5b70f26fec38c361796250fed6d7ff2967b6b9e4b6f34b847",
+      "export_exit_code": 0
+    },
+    {
+      "source": "docs/sdlc/diagrams/sitemap/application-sitemap.drawio",
+      "source_sha256": "e8708949beb3596e9e7263ca5c8338229877649e187abd84c75176543c99be47",
+      "export": ".tmp/review-diagrams/2026-10-17/sitemap.png",
+      "export_sha256": "09212b8bee7722fdd8c9139610ff7267d9f90c1aea501e33494b51f4780b6866",
+      "export_exit_code": 0
+    }
+  ]
+}

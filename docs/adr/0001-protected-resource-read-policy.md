@@ -2,8 +2,8 @@
 
 **13 October amendment:** [ADR-0007](0007-document-access-model.md) records the owner's access direction and initial restricted-author grant. [ADR-0009](0009-versions-without-draft.md) supersedes the Draft/publication proposal below. The original proposal is retained for history; it is not the current target lifecycle. Disclosure and whole-answer withholding safeguards remain.
 
-**Version/date:** 0.2 · 8 October 2026  
-**Status:** Proposed; needs owner review under PRD OD-02/OD-04.  
+**Version/date:** 0.3 · 16 October 2026
+**Status:** Superseded in part by ADR-0007 and ADR-0009; remaining disclosure safeguards are Proposed under OD-02/OD-04.
 **Inputs:** BRD English v1.0 via [stable entry](../BRD.md), AGENTS.md v1.2, [PRD-01 v0.3](../sdlc/PRD_SRS.md), owner's review of PRD v0.1 and [v0.3 patch list](../analyst/PRD_SRS_v0.3_patch.md), applied on 8 October 2026. Applying proposed policies does not approve them.  
 **Related requirements:** BR-01, BR-05, BR-08, BR-10, BR-12, BR-14; FR-04, FR-10–FR-12, FR-14, FR-17, FR-19, FR-28, FR-29, FR-38, FR-39, FR-45, FR-47, FR-50–FR-52, FR-55, FR-59, FR-61; SC-05, SC-06.
 

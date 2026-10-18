@@ -1,9 +1,10 @@
 # Unavailable citation identity and withheld answer responses
 
 **Artifact ID:** ADR-0013
-**Version/date:** 0.1 Draft - 14 October 2026
+**Version/date:** 0.2 Draft - 16 October 2026
 **Status:** Owner-confirmed business direction in two explicit session replies; wire mapping is a draft design, not runtime evidence.
-**Inputs:** ADR-0007/0009/0011/0012; PRD-01 v0.5; UC-02 v0.3.
+**Owner confirmation source:** [BA-D14/BA-D15/BA-D16](../analyst/business-review-2026-10-13.md); source records direction, not implementation evidence.
+**Inputs:** ADR-0007/0009/0011/0012; PRD-01 v0.6; UC-02 v0.4.
 **Trace:** FR-14, FR-29, FR-46, FR-55, FR-59, FR-61; SC-06.
 
 ## Decision

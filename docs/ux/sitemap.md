@@ -1,8 +1,8 @@
 # Information Architecture & Sitemap (SACW)
 
 **Artifact ID:** UX-SITEMAP-03  
-**Version/date:** 0.4 Draft · 14 October 2026\
-**Trace:** BRD BR-01–BR-15; PRD-01 (FR-01–FR-69, SC-01–SC-08); SAD-03; ADR-0001; ADR-0006  
+**Version/date:** 0.5 Draft · 17 October 2026\
+**Trace:** BRD BR-01–BR-15; PRD-01 (FR-01–FR-70; FR-45 withdrawn, SC-01–SC-08); SAD-03; ADR-0001; ADR-0006
 **Scope:** Information Architecture, Navigation Hierarchy, Screen Inventory, and Global AI Placement.
 
 ---
@@ -61,7 +61,7 @@ The interface uses a 3-tier navigation layout:
 | `/p/:projectId/docs` | Document Explorer | Browse project-shared and granted restricted documents (FR-10, FR-14) | Project member; restricted only with a current read grant | Inaccessible documents omitted; no hidden metadata |
 | `/p/:projectId/docs/:docId` | Document Viewer / Editor | View authorised version; save immediate Current revision with content-write; independent manage-access entry for access managers (FR-11, FR-47; UC-06, UC-07) | Current project membership plus document read checks; write/manage capabilities do not grant read | Generic 404 when unknown or inaccessible |
 | `/p/:projectId/docs/:docId/history` | Version History | Explicit history with Superseded/Archived labels (SC-05) | Same as document read | Generic 404 |
-| `/p/:projectId/search` | Keyword Search | AI-independent keyword search over permitted Current documents and tasks (UC-08; FR-18, FR-34) | Project member | No-match state; unavailable state when Knowledge is down |
+| `/p/:projectId/search` | Keyword Search | AI-independent keyword search over permitted Current documents and tasks (UC-08; FR-18, FR-34) | Project member | Separate groups: document search unavailable when Knowledge is down; FR-70 Should task search remains available while Workspace is healthy |
 | `/p/:projectId/settings/members` | Team Membership | Manage membership and project roles (UC-02) | Membership-management capability | Generic 404 for other members |
 | `/p/:projectId/settings/general` | Project Settings | Project details | Settings capability | Generic 404 for other members |
 | `/p/:projectId/audit` | Audit & Trace Inspector | Scoped audit events and execution traces (UC-13; FR-56, FR-58) | Audit-read or trace-read capability only | Generic 404 outside scope or without capability |
@@ -86,7 +86,7 @@ The interface uses a 3-tier navigation layout:
 ### 4.3 AI Service Status Awareness (FR-33, FR-69)
 - If only the AI provider path fails (FR-69, FR-34):
   - Top header displays an amber status pill: `▲ KMS Fallback: Keyword Search Only`.
-  - The AI prompt box is disabled with an explanatory note: *"AI service is temporarily unavailable. Keyword search and manual task board operations remain available while their own services are healthy; if the Knowledge service itself is unavailable, documents and keyword search are unavailable and Workspace board operations continue."*
+  - The AI prompt box is disabled with an explanatory note: *"AI service is temporarily unavailable. Keyword search and manual task board operations remain available while their own services are healthy; if Knowledge is unavailable, documents and document search are unavailable; healthy Workspace board operations and optional task keyword search continue."*
 
 
 **v0.2 documentation change:** Moved the inline diagram to the Stage 7 diagram directory, retaining its labels and relationships. Added an editable Draw.io representation; no policy or product scope is changed. Diagram consistency gaps are recorded in the central index.
@@ -94,3 +94,7 @@ The interface uses a 3-tier navigation layout:
 **v0.3 correction:** Replaced Public/Internal/Restricted and PO/SM/DEV/VIEWER shortcuts with project-shared/restricted and capability-based access; added keyword search, audit/trace inspection, generic 404 and the exact-identity citation route; corrected AI-versus-Knowledge outage wording. Route names are proposals; no policy, API or product scope is decided here (OD-02–OD-04/OD-09 remain open).
 
 **Owner scope clarification - ADR-0016:** Task keyword search is explicitly added as FR-70 Should after 60 Must. Search presents separate Tasks and Documents result groups. Workspace task title/description search remains usable during Knowledge/AI outage when its own dependencies are healthy; document failure must not hide healthy task results. It does not imply a single cross-service query or merged relevance ranking.
+
+## Independent document action entry — 17 October 2026
+
+Proposed browser routes `/p/:projectId/docs/:docId/manage` and `/p/:projectId/docs/:docId/actions` accept a known identity and validate scoped manage-access or content-write/lifecycle authority independently of the readable explorer/viewer. They expose no content or hidden metadata without the relevant permission. Prefill/history/readiness still require content-read. These are UI routes, not new HTTP operations; ADR-0007 and UC-06/07 govern the existing operations. Sources: PRD-01 v0.9; UC-02 v0.6; SAD-03 v0.11; UX-PERM-MATRIX-02 v0.6.

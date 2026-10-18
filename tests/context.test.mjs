@@ -1,13 +1,24 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { parseRequirements, validateApi, validateScope, verifyContext } from '../scripts/verify-context.mjs';
+import { parseRequirements, validateApi, validateScope, validateSpecOwnership, verifyContext } from '../scripts/verify-context.mjs';
 import { validateResearchDefinitions } from '../scripts/verify-research.mjs';
 import { regressionFixture } from '../scripts/verify-regression.mjs';
 const root = new URL('../', import.meta.url);
 const readJson = async path => JSON.parse(await readFile(new URL(path, root), 'utf8'));
 const prd = await readFile(new URL('docs/sdlc/PRD_SRS.md', root), 'utf8');
 const requirements = parseRequirements(prd);
+
+test('spec owner cannot contradict the actual operation contract', async () => {
+  const apis = { workspace: await readJson('contracts/openapi/workspace.openapi.json'), knowledge: await readJson('contracts/openapi/knowledge.openapi.json') };
+  const { slices } = await readJson('specs/index.json');
+  validateSpecOwnership(slices, apis);
+  for (const id of ['SP-06', 'SP-10']) {
+    const broken = structuredClone(slices);
+    broken.find(s => s.id === id).service = 'knowledge';
+    assert.throws(() => validateSpecOwnership(broken, apis), /ownership mismatch/);
+  }
+});
 
 test('partial answer must contain cited supported content and missing components', async () => {
   const api = await readJson('contracts/openapi/knowledge.openapi.json');

@@ -1,0 +1,50 @@
+%% Origin: docs/sdlc/diagrams/design-foundation-2026-10-17.md v0.1
+%% DGM-SEQ-01 v0.1 Draft - 17 October 2026
+%% Sources: DGM-DESIGN-01 v0.1; PRD-01 v0.9; UC-02 v0.6; SAD-03 v0.12; DATA-04 v0.6; ADR-0006; ADR-0011; ADR-0012; ADR-0013; ADR-0017
+%% Trace: FR-14, FR-28–FR-29, FR-39, FR-55, FR-57, FR-59, FR-67; SC-05–SC-07; TC-26
+%% Scope: One provider-input OR answer-delivery attempt; repeat with a fresh manifest per purpose. Handlers and additive manifest storage are pending.
+%% Legend: Solid: call; dashed: return. Guard is Workspace-owned; durable preparation and remote outcome writes occur outside it.
+sequenceDiagram
+    participant K as Knowledge orchestration
+    participant KD as Knowledge owned store
+    participant W as Workspace authority / relay
+    participant WD as Workspace owned store
+    participant T as Protected destination<br/>provider OR browser
+    Note over K,T: Prepare exact frozen payload and ALL evidence, including uncited context. For delivery: buffer draft and validate exact server citations, support evaluation is separate from locator validation.
+    K->>KD: Commit immutable complete HandoffManifest: fresh handoff ID, purpose, actor/project, evidence/revisions and digests
+    alt Preparation not durably acknowledged
+    KD-->>K: Failed or unknown preparation
+    Note over K,T: STOP: send zero protected bytes. Reconcile the same preparation identity/digest outside any guard, no send on an unknown write.
+    else Complete manifest durably acknowledged
+    KD-->>K: Complete manifest and digest
+    K->>W: Request exact protected handoff with manifest + frozen payload
+    W->>WD: Durably claim handoff ID once, bound to actor and manifest digest
+    alt Existing / unknown claim or claim storage failure
+    WD-->>W: No fresh claimant
+    Note over K,T: STOP: no send, consumed/unresolved identities cannot expire into replay. Restart/abort fences the old claimant.
+    else Fresh claim durably acknowledged
+    WD-->>W: Exclusive fresh claimant
+    W->>W: Acquire applicable project/session guard
+    W->>W: In-process current session, membership and document authority check
+    W->>K: Authenticated scoped final evidence/version/availability validation, no recursive guard
+    K-->>W: Exact current evidence revisions and complete manifest binding
+    Note over K,T: Final check includes operational entity kind/ID/revision/time and payload digest. No cached grant or changed payload may pass. Concurrent revocation waits if this handoff already holds the same guard.
+    alt Denied / changed evidence, digest mismatch, unknown authority or lifecycle outcome
+    W->>W: Zero protected bytes, withhold entire original draft, release guard
+    Note over K,T: Outside guard: only eligible pre-send failures may start a bounded fresh preparation. Revoked-answer replacement requires new generation/support checks, exhausted budget yields generic failure.
+    else Exact, permitted, complete match
+    W->>T: Hand off frozen bytes while guard remains held
+    alt Transport completion known
+    T-->>W: Transport completed (not proof of downstream rendering)
+    W->>W: Release guard after completion
+    else Timeout / crash / unknown transport
+    W->>W: Confirm abort and fence attempt, or retain unknown/quarantine affected handoffs until reconciled
+    Note over K,T: No automatic replay and no automatic fresh-identity resend after unknown transport. An aborted claimant cannot resume. Exactly-once external delivery is not promised.
+    end
+    end
+    W->>WD: Retain claim and known/aborted/unknown relay outcome, never recycle identity
+    W->>K: Report correlated outcome outside guard when communication is available
+    K->>KD: Append HandoffOutcome, never mutate prepared manifest
+    Note over K,T: Revocation commits under the same guard after prior handoff completion/confirmed abort, then acknowledges success. Unknown remote lifecycle writes block affected handoffs. Already sent bytes cannot be recalled, a crash can leave outcome reconciliation pending.
+    end
+    end

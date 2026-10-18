@@ -1,9 +1,9 @@
 # API design — contract entry
 
 **Artifact ID:** API-05  
-**Version/date:** 0.4 Draft · 14 October 2026\
+**Version/date:** 0.6 Draft · 16 October 2026\
 **Status:** ADR-0007–ADR-0013 directions are owner-confirmed; transport implementation and independent review remain pending.
-**Inputs:** PRD-01 v0.5; UC-02 v0.3; SAD-03 v0.7; DATA-04 v0.3; [contract pack](../../contracts/README.md) v0.3.\
+**Inputs:** PRD-01 v0.9; UC-02 v0.6; SAD-03 v0.12; DATA-04 v0.6; [contract pack](../../contracts/README.md) v0.4; ADR-0007–ADR-0017.\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 The canonical payload/routes are the two OpenAPI files linked by the contract pack. Public consumers are the web UI; internal consumers are Workspace/Knowledge. Every operation has x-requirements, authenticated scope, resource parameters, explicit responses and mutation concurrency semantics. Context validation checks shape/trace only.
@@ -14,7 +14,7 @@ Read current records by stable identity; keyword/semantic queries use cursor/sco
 
 Under [ADR-0012](../adr/0012-audit-visibility-and-durable-evidence.md), a mutation success response requires the business state and minimum audit event or durable pending audit record to commit in the same owning-service transaction. A failure to persist that record rolls back the mutation. Failure of later audit sink delivery does not change the committed result; delivery is retried idempotently. A transport timeout is an unknown outcome to reconcile using the same operation identity, not proof of rollback or permission to repeat the mutation with a new key.
 
-Before protected provider input or answer delivery, the owning AI operation must durably persist its run ID and the exact evidence manifest for that handoff. Persistence failure withholds that handoff and returns an explicit failure, without generated content, source details or invented evidence. Optional metric loss is labelled incomplete and does not substitute for mandatory provenance. These rules require producing-handler and persistence-failure tests; OpenAPI schema checks cannot prove them. Knowledge OpenAPI v0.2.1 and ADR-0013 specify HTTP 503 AnswerWithheld and the authorised exact UnavailableCitation result. These mappings remain untested at a live handler.
+Before protected provider input or answer delivery, the owning AI operation must persist its run ID and a complete immutable per-handoff manifest outside the guard. After durable acknowledgement, acquire the guard and match full evidence, recorded revisions and frozen payload. Mismatch aborts without bytes; release the guard before a bounded new manifest/attempt. No remote manifest write occurs under the guard. Persistence failure withholds that handoff and returns an explicit failure, without generated content, source details or invented evidence. Optional metric loss is labelled incomplete and does not substitute for mandatory provenance. These rules require producing-handler and persistence-failure tests; OpenAPI schema checks cannot prove them. Knowledge OpenAPI v0.2.3 and ADR-0013 specify HTTP 503 AnswerWithheld and the authorised exact UnavailableCitation result. These mappings remain untested at a live handler.
 
 Checklist: Pass for recorded consumers, ownership, interfaces and requirement trace; Gap for live consumer/provider tests and retained-policy/tombstone implementation. Handoff: Ready for downstream drafting with these explicit gaps; unresolved business choices must be clarified before dependent implementation.
 

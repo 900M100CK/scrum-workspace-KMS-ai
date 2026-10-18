@@ -1,6 +1,6 @@
-%% Origin: docs/ux/sitemap.md v0.4
-%% DGM-SITE-01 v0.4 Draft - 14 October 2026
-%% Sources: docs/ux/sitemap.md v0.4; PRD-01 v0.5; UC-02 v0.3 (UC-02, UC-06, UC-08, UC-09, UC-13); SAD-03 v0.7; ADR-0007/0009/0011; OpenAPI v0.2.0
+%% Origin: docs/ux/sitemap.md v0.5
+%% DGM-SITE-01 v0.6 Draft - 17 October 2026
+%% Sources: UX-SITEMAP-03 v0.5; PRD-01 v0.9; UC-02 v0.6; SAD-03 v0.12; ADR-0007; ADR-0009; ADR-0011; ADR-0013; ADR-0016; ADR-0017
 %% Browser routes need not equal HTTP API paths. Citation inspection carries the exact document/version/passage identity. Route names are proposals pending Stage 5/6 owner review.
 graph TD
     Root["SACW Web App"] --> Auth["/login (Authentication)"]
@@ -11,11 +11,12 @@ graph TD
     WorkNav --> Backlog["/backlog (Product Backlog & Sprint Planning)"]
     WorkNav --> Board["/board (Active Sprint Board, quick filters & Blockers)"]
     ProjContext --> KMSNav["Knowledge Navigation"]
-    KMSNav --> Docs["/docs (Document Explorer; Drafts for content-write only)"]
-    KMSNav --> Search["/search (Keyword search over permitted Current documents and tasks; AI-independent)"]
+    KMSNav --> Docs["/docs (Document Explorer; permitted Current documents; explicit labelled history)"]
+    KMSNav --> Search["/search (Documents: permitted Current keyword search; Tasks: FR-70 Should, Workspace survives Knowledge outage)"]
     Docs --> DocDetail["/docs/:docId (Version Viewer & Editor)"]
     DocDetail --> DocHistory["/docs/:docId/history (Explicit Version History)"]
-    DocDetail --> DocAccess["Manage access panel on /docs/:docId (classification and read grants; manage-access capability)"]
+    KMSNav --> DocAccess["/docs/:docId/manage (known identity; manage-access capability; no content-read prerequisite)"]
+    KMSNav --> DocActions["/docs/:docId/actions (known identity; content-write or lifecycle capability; no content prefill without read)"]
     ProjContext --> AdminNav["Administration"]
     AdminNav --> Members["/settings/members (Team membership and project roles)"]
     AdminNav --> ProjSettings["/settings/general (Project Details)"]

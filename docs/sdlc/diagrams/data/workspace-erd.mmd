@@ -1,0 +1,103 @@
+%% Origin: docs/sdlc/diagrams/design-foundation-2026-10-17.md v0.1
+%% DGM-DATA-01 v0.1 Draft - 17 October 2026
+%% Sources: DGM-DESIGN-01 v0.1; PRD-01 v0.9; UC-02 v0.6; SAD-03 v0.12; DATA-04 v0.6; ADR-0004; ADR-0007; ADR-0008; ADR-0011; ADR-0012; ADR-0017
+%% Trace: BR-01–BR-03, BR-06, BR-10–BR-12; SC-03/04/06
+%% Scope: Applied migrations 001 + 002; selected identity/state columns. Tables exist; handlers and transactional policy enforcement are pending.
+%% Legend: Relationship label names FK columns; ||--o{ means parent 1 to child 0..many. User IDs are opaque; no User table or cross-store FK. Session/idempotency have no project FK.
+erDiagram
+    project {
+        uuid project_id PK
+        text name
+        bigint revision
+    }
+    membership {
+        uuid project_id PK,FK
+        uuid user_id PK
+        boolean active
+        bigint membership_generation
+        text role
+    }
+    session {
+        uuid session_id PK
+        uuid user_id
+        boolean revoked
+        timestamptz expires_at
+        bigint revision
+    }
+    sprint {
+        uuid sprint_id PK
+        uuid project_id FK
+        text state "planned active completed"
+        bigint revision
+    }
+    task {
+        uuid task_id PK
+        uuid project_id FK
+        uuid assignee_id FK "nullable composite membership FK"
+        text state "todo in_progress done"
+        numeric backlog_position
+        bigint revision
+    }
+    sprint_allocation {
+        uuid sprint_id PK,FK
+        uuid task_id PK,FK
+        uuid project_id FK
+        text allocation_state "allocated completed returned"
+        bigint revision
+    }
+    blocker_event {
+        uuid event_id PK
+        uuid task_id FK
+        bigint sequence "unique per task"
+        text status "open resolved"
+    }
+    document_policy {
+        uuid document_id PK
+        uuid project_id FK
+        text classification
+        text registry_state "active unavailable after 002"
+        bigint permission_revision
+    }
+    read_grant {
+        uuid document_id PK,FK
+        uuid user_id PK,FK
+        bigint grant_generation PK
+        uuid project_id FK
+        bigint membership_generation
+        boolean valid
+    }
+    capability_grant {
+        uuid grant_id PK
+        uuid project_id FK
+        uuid subject_id
+        uuid resource_id
+        text action
+        boolean valid
+    }
+    business_audit {
+        uuid event_id PK
+        uuid project_id FK
+        uuid actor_id
+        uuid entity_id
+        uuid correlation_id
+    }
+    idempotency_record {
+        uuid actor_id PK
+        text operation PK
+        text idempotency_key PK
+        text payload_hash
+        text state
+        timestamptz expires_at
+    }
+    project ||--o{ membership : "project_id"
+    project ||--o{ sprint : "project_id"
+    project ||--o{ task : "project_id"
+    membership o|--o{ task : "project_id + nullable assignee_id"
+    sprint ||--o{ sprint_allocation : "project_id + sprint_id"
+    task ||--o{ sprint_allocation : "project_id + task_id"
+    task ||--o{ blocker_event : "task_id"
+    project ||--o{ document_policy : "project_id"
+    document_policy ||--o{ read_grant : "project_id + document_id"
+    membership ||--o{ read_grant : "project_id + user_id"
+    project ||--o{ capability_grant : "project_id"
+    project ||--o{ business_audit : "project_id"

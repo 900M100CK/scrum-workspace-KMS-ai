@@ -1,8 +1,9 @@
 # Membership removal invalidates grants and clears current assignment
 
 **Artifact ID:** ADR-0017
-**Version/date:** 0.1 Draft - 14 October 2026
+**Version/date:** 0.2 Draft - 16 October 2026
 **Status:** Owner-confirmed in two explicit replies; implementation and concurrency evidence pending.
+**Owner confirmation source:** [BA-D21/BA-D22/BA-D23](../analyst/business-review-2026-10-13.md); source records direction, not implementation evidence.
 **Trace:** BR-01, BR-03, BR-10, BR-11, BR-14; FR-38, FR-39, FR-43, FR-31, FR-56, FR-58; UC-02/04; SC-06.
 
 Removing a project member invalidates all their individually granted project-scoped capabilities, including content-write, lifecycle/manage-access, Sprint/work management, audit-read and trace-read, as well as document-read grants. Rejoining requires fresh grants. Do not reconstruct former capabilities from a creator/author identity or role label. Initial creation defaults are initial grants, not permanent rejoin entitlements. Other projects and global identity remain unaffected.

@@ -1,7 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { fileURLToPath } from 'node:url';
-import { parseMermaid, parseDrawio, compareGraphs, checkVersionTable, checkCurrentReferences, verifyDocs } from '../scripts/verify-docs.mjs';
+import { readFile } from 'node:fs/promises';
+import { parseMermaid, parseDrawio, compareGraphs, checkVersionTable, checkCurrentReferences, checkUnselectedSearchTerms, checkInputHeader, checkSourceAdrs, checkOperationRefs, verifyDocs } from '../scripts/verify-docs.mjs';
+import { adrIds, loadManifest, generatedOutputs } from '../scripts/docs-metadata.mjs';
 
 const xml = `<mxfile><diagram><mxGraphModel><root>
 <mxCell id="0"/><mxCell id="1" parent="0"/>
@@ -11,6 +13,75 @@ const xml = `<mxfile><diagram><mxGraphModel><root>
 
 test('all registered docs and diagram pairs pass', async () => {
   await verifyDocs(fileURLToPath(new URL('../', import.meta.url)));
+});
+
+test('unselected retrieval mechanisms need explicit status in current text', () => {
+  checkUnselectedSearchTerms('Trigram and Reciprocal Rank Fusion (RRF) remain unselected.', 'candidate.md');
+  checkUnselectedSearchTerms('pg_trgm is not adopted.', 'candidate.md');
+  assert.throws(() => checkUnselectedSearchTerms('pg_trgm is a candidate.', 'candidate.md'), /presented as current/);
+  assert.throws(() => checkUnselectedSearchTerms('Use trigram keyword and fusion ranking.', 'current.md'), /current.md:1/);
+  assert.throws(() => checkUnselectedSearchTerms('CREATE EXTENSION pg_trgm; -- unselected', 'services/knowledge/migrations/003-search.up.sql'), /migration.*:1/);
+});
+
+test('Draw.io status belongs to its own label, not an unrelated cell on the same XML line', () => {
+  const bad = '<mxfile><mxCell value="Fusion remains unselected"/><mxCell value="Current trigram path"/></mxfile>';
+  assert.throws(() => checkUnselectedSearchTerms(bad, 'diagram.drawio'), /presented as current/);
+  checkUnselectedSearchTerms(bad.replace('Current trigram path', 'Trigram is not adopted'), 'diagram.drawio');
+});
+
+test('Sources contains every body ADR, including shorthand and ranges, not just the highest ID', () => {
+  assert.deepEqual(adrIds('ADR-0007/0009/0011; ADR-0013–ADR-0015'), ['ADR-0007', 'ADR-0009', 'ADR-0011', 'ADR-0013', 'ADR-0014', 'ADR-0015']);
+  checkSourceAdrs('%% Sources: ADR-0013–ADR-0017\nA[ADR-0015]', 'example.mmd');
+  assert.throws(() => checkSourceAdrs('%% Sources: ADR-0017\nA[ADR-0013]', 'example.mmd'), /omit body ADRs.*ADR-0013/);
+  assert.throws(() => checkSourceAdrs('**Sources:** ADR-0017\nADR-0015 applies.', 'example.md'), /omit body ADRs/);
+});
+
+test('manifest version/ADR changes propagate to all generated inventories and both diagram headers', async () => {
+  const root = fileURLToPath(new URL('../', import.meta.url));
+  const manifest = await loadManifest(root);
+  const changed = structuredClone(manifest);
+  const site = changed.artifacts.find(a => a.id === 'DGM-SITE-01');
+  site.version = '0.999'; site.adrs.unshift('ADR-0001');
+  const outputs = await generatedOutputs(root, changed);
+  for (const path of [site.path, site.drawio, 'docs/sdlc/diagrams/sitemap/README.md', 'docs/sdlc/diagrams/README.md', 'docs/sdlc/artifact-register.md']) {
+    assert(outputs.get(path).includes('v0.999'), 'Missing propagated version: ' + path);
+  }
+  assert(outputs.get(site.path).includes('ADR-0001'));
+  assert(outputs.get(site.drawio).includes('ADR-0001'));
+});
+
+test('AI checkpoint sources retain the unavailable, partial-answer and member-removal decisions', async () => {
+  const manifest = await loadManifest(fileURLToPath(new URL('../', import.meta.url)));
+  const checkpoint = manifest.artifacts.find(a => a.id === 'DGM-FLOW-05');
+  for (const required of ['ADR-0013', 'ADR-0015', 'ADR-0017']) assert(checkpoint.adrs.includes(required), 'Missing checkpoint decision: ' + required);
+});
+
+test('use-case associations are undirected; generalization/include retain direction and native UML style', async () => {
+  const source = await readFile(new URL('../docs/sdlc/diagrams/use-case/use-case-diagram.mmd', import.meta.url), 'utf8');
+  const native = await readFile(new URL('../docs/sdlc/diagrams/use-case/use-case-diagram.drawio', import.meta.url), 'utf8');
+  const graph = await parseMermaid(source, { kind: 'use-case' });
+  compareGraphs(graph, parseDrawio(native, { kind: 'use-case' }));
+  const swap = (text, id) => text.replace(new RegExp('<mxCell\\b[^>]*id="' + id + '"[^>]*>'), tag => tag.replace(/source="([^"]+)"/, 'source="__swap__$1"').replace(/target="([^"]+)"/, (_, target) => 'target="' + tag.match(/source="([^"]+)"/)[1] + '"').replace(/source="__swap__[^"]+"/, 'source="' + tag.match(/target="([^"]+)"/)[1] + '"'));
+  compareGraphs(graph, parseDrawio(swap(native, 'assoc-user-uc01'), { kind: 'use-case' }));
+  assert.throws(() => compareGraphs(graph, parseDrawio(swap(native, 'gen-user'), { kind: 'use-case' })), /relation kind\/direction/);
+  assert.throws(() => parseDrawio(native.replace('endArrow=open;dashed=1', 'endArrow=open;dashed=0'), { kind: 'use-case' }), /Include relation/);
+  assert.throws(() => parseDrawio(native.replace('endArrow=block;endFill=0', 'endArrow=block;endFill=1'), { kind: 'use-case' }), /hollow triangle/);
+});
+
+test('operation references fail on facade path/ID or actual node label drift', () => {
+  const graph = { nodes: [{ id: 'Start', label: 'POST /knowledge/questions' }] };
+  const refs = [{ service: 'knowledge', method: 'POST', path: '/knowledge/questions', id: 'askQuestion', node: 'Start', label: 'POST /knowledge/questions' }];
+  const contracts = new Map([['knowledge', { paths: { '/knowledge/questions': { post: { operationId: 'askQuestion' } } } }]]);
+  checkOperationRefs(graph, refs, contracts);
+  assert.throws(() => checkOperationRefs(graph, [{ ...refs[0], path: '/api/v1/ai/query' }], contracts), /Operation ID\/path drift/);
+  assert.throws(() => checkOperationRefs({ nodes: [{ id: 'Start', label: 'POST /old/query' }] }, refs, contracts), /Operation label drift/);
+});
+
+test('input headers name the latest cited ADR and current input versions', () => {
+  const versions = new Map([['SAD-03', '0.9']]);
+  checkInputHeader('**Inputs:** SAD-03 v0.9; ADR-0007–ADR-0017.\nADR-0015 applies.', versions, 'fixture');
+  assert.throws(() => checkInputHeader('**Inputs:** SAD-03 v0.9; ADR-0007–ADR-0012.\nADR-0017 applies.', versions, 'fixture'), /behind body/);
+  assert.throws(() => checkInputHeader('**Inputs:** SAD-03 v0.8; ADR-0007–ADR-0017.\nADR-0017 applies.', versions, 'fixture'), /Input version drift/);
 });
 test('real Mermaid parser rejects invalid syntax', async () => {
   await assert.rejects(parseMermaid('flowchart TD\n A[Unclosed --> B'));
@@ -44,4 +115,33 @@ test('current prose references cannot disagree with headers while historical sna
   const text = '## Current\nEXAMPLE-01 v0.3\n## Historical: earlier run\nEXAMPLE-01 v0.1\n';
   checkCurrentReferences(text, versions, 'fixture');
   assert.throws(() => checkCurrentReferences(text.replace('v0.3', 'v0.2'), versions, 'fixture'), /drift/);
+});
+
+import { loadDesignModels, verifyDesignContent } from '../scripts/design-diagrams.mjs';
+
+test('design pairs reject reversed sequence handoffs and changed native multiplicities', async () => {
+  const root = fileURLToPath(new URL('../', import.meta.url));
+  const models = await loadDesignModels(root);
+  const sequence = models.find(d => d.id === 'DGM-SEQ-01');
+  const source = await readFile(new URL('../'+sequence.path+'.mmd', import.meta.url), 'utf8');
+  const native = await readFile(new URL('../'+sequence.path+'.drawio', import.meta.url), 'utf8');
+  const reversed = source.replace('K->>KD:', 'KD->>K:');
+  assert.notEqual(reversed, source);
+  await assert.rejects(verifyDesignContent(sequence, reversed, native, async () => {}), /Mermaid drift/);
+  const erd = models.find(d => d.id === 'DGM-DATA-01');
+  const erSource = await readFile(new URL('../'+erd.path+'.mmd', import.meta.url), 'utf8');
+  const erNative = await readFile(new URL('../'+erd.path+'.drawio', import.meta.url), 'utf8');
+  const altered = erNative.replace('endArrow=ERzeroToMany', 'endArrow=ERmandOne');
+  assert.notEqual(altered, erNative);
+  await assert.rejects(verifyDesignContent(erd, erSource, altered, async () => {}), /native semantic\/route drift/);
+});
+
+test('physical diagram entity inventory matches owned CREATE TABLE definitions', async () => {
+  const root = fileURLToPath(new URL('../', import.meta.url));
+  const models = await loadDesignModels(root);
+  for (const [id, service] of [['DGM-DATA-01','workspace'],['DGM-DATA-02','knowledge']]) {
+    const ddl = await readFile(new URL('../services/'+service+'/migrations/001-store.up.sql', import.meta.url),'utf8');
+    const tables = [...ddl.matchAll(/CREATE TABLE\s+(\w+)/gi)].map(m=>m[1]).sort();
+    assert.deepEqual(models.find(d=>d.id===id).nodes.map(n=>n.id).sort(), tables);
+  }
 });

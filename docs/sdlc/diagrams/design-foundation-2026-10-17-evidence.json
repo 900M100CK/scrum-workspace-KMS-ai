@@ -1,0 +1,367 @@
+{
+  "status": "Author checks; no independent or runtime acceptance",
+  "date": "2026-10-17",
+  "render": "draw.io.exe -x -f png --width 2000 (no embedded XML); local only",
+  "diagrams": [
+    {
+      "id": "DGM-ARCH-01",
+      "version": "0.9",
+      "files": [
+        {
+          "path": "docs/sdlc/diagrams/architecture/service-composition.mmd",
+          "sha256": "2f48618b38779d64e17b00223f39c12918586a0e2fca9a335555b28b40daca8d"
+        },
+        {
+          "path": "docs/sdlc/diagrams/architecture/service-composition.drawio",
+          "sha256": "43d34da44501969dd0796e9a922ce91c2db4f3718721f7f173d1c17427391d78"
+        },
+        {
+          "path": "docs/sdlc/diagrams/previews/DGM-ARCH-01.png",
+          "sha256": "44de9e1f8221365ae46c8cefcb16975e7171f99c364afbac8831fe254639a666"
+        }
+      ]
+    },
+    {
+      "id": "DGM-SITE-01",
+      "version": "0.6",
+      "files": [
+        {
+          "path": "docs/sdlc/diagrams/sitemap/application-sitemap.mmd",
+          "sha256": "afeabcfc73e89cb02660f6aac8f3ce32258003ab03fa57bde436eea0a0922f16"
+        },
+        {
+          "path": "docs/sdlc/diagrams/sitemap/application-sitemap.drawio",
+          "sha256": "19cd877bd59bb539948cff86459f1271d6977a27acb3db4ebc6f77aba0090cd6"
+        },
+        {
+          "path": "docs/sdlc/diagrams/previews/DGM-SITE-01.png",
+          "sha256": "fe89f6ebd97ecb5a427361851ead8f9f69cf5e5be0b53eacbeeb7d2505ded7dd"
+        }
+      ]
+    },
+    {
+      "id": "DGM-FLOW-01",
+      "version": "0.9",
+      "files": [
+        {
+          "path": "docs/sdlc/diagrams/flowchart/ai-qa-flow.mmd",
+          "sha256": "9766915cbb1fbf5879aafbd60b930e01084e2bfda0f27186ef9206287875b2b9"
+        },
+        {
+          "path": "docs/sdlc/diagrams/flowchart/ai-qa-flow.drawio",
+          "sha256": "9379c1447bc1d77613ba344a94b06ed028eeb497fca165d201ea2a579c8209d4"
+        },
+        {
+          "path": "docs/sdlc/diagrams/previews/DGM-FLOW-01.png",
+          "sha256": "4c1808053cd26f8f52f894d7566349f339e0e71859de49efe4d7bdb4219e558b"
+        }
+      ]
+    },
+    {
+      "id": "DGM-FLOW-02",
+      "version": "0.7",
+      "files": [
+        {
+          "path": "docs/sdlc/diagrams/flowchart/board-flow.mmd",
+          "sha256": "cdd50c442a350778ec8979bd52a9b2d852b60ded3987da6ce730142cbf78c6ee"
+        },
+        {
+          "path": "docs/sdlc/diagrams/flowchart/board-flow.drawio",
+          "sha256": "7c5a4315097e5474d02c227bfa37a0a37eac62afcc6ba223d1f3a5d7aa1e766f"
+        },
+        {
+          "path": "docs/sdlc/diagrams/previews/DGM-FLOW-02.png",
+          "sha256": "55ffbcbda6a1f515d7307a75f5fdafcc3556eb07d4b684aa26a99042764647f7"
+        }
+      ]
+    },
+    {
+      "id": "DGM-FLOW-03",
+      "version": "0.8",
+      "files": [
+        {
+          "path": "docs/sdlc/diagrams/flowchart/docs-flow.mmd",
+          "sha256": "1d0da6e09f03247c9c64b422418c1f34dbbc3eda2146af7309105e119dbb07d6"
+        },
+        {
+          "path": "docs/sdlc/diagrams/flowchart/docs-flow.drawio",
+          "sha256": "3dc84bf5f6b198064b1393e5e35ec1f40dfd2ada85ecce864742de84ba8d2e2e"
+        },
+        {
+          "path": "docs/sdlc/diagrams/previews/DGM-FLOW-03.png",
+          "sha256": "1e3427d155ba8f48fcd76e43a663fafe96a299160d4b8704d6490b3a64635f29"
+        }
+      ]
+    },
+    {
+      "id": "DGM-FLOW-04",
+      "version": "0.9",
+      "files": [
+        {
+          "path": "docs/sdlc/diagrams/flowchart/permission-read-flow.mmd",
+          "sha256": "c44b39768413eaaf2733cb4afa7f5985a0464560abc5ee3c3208c7edcbc9df9e"
+        },
+        {
+          "path": "docs/sdlc/diagrams/flowchart/permission-read-flow.drawio",
+          "sha256": "8b4ab7a52df075b3a372004335545bce352c1ca2d9264a13417f4e4cb21c82a0"
+        },
+        {
+          "path": "docs/sdlc/diagrams/previews/DGM-FLOW-04.png",
+          "sha256": "e64069b50e517c87e2e80a87f6b0e0e33ec1166cc9603b14798253d9ad7b9f49"
+        }
+      ]
+    },
+    {
+      "id": "DGM-FLOW-05",
+      "version": "0.4",
+      "files": [
+        {
+          "path": "docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.mmd",
+          "sha256": "97cf17bad778528639c3ac04a9fb013c5c5ccad46e4add053a0c8fb0ecc0906e"
+        },
+        {
+          "path": "docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.drawio",
+          "sha256": "676949a4b9cfdf12dc09a52d2e53bbb1deaf21441212e8208e3ad0b95f4128e0"
+        },
+        {
+          "path": "docs/sdlc/diagrams/previews/DGM-FLOW-05.png",
+          "sha256": "dac8424d48dda316001049ab3e035144799a4eb289c13ad07b27dd77e41b33d7"
+        }
+      ]
+    },
+    {
+      "id": "DGM-JOURNEY-01",
+      "version": "0.4",
+      "files": [
+        {
+          "path": "docs/sdlc/diagrams/user-journey/core-user-journeys.mmd",
+          "sha256": "32c2668cb7a62fed0c3a196f9dd70a41642e1725510c1594c3720b816255369e"
+        },
+        {
+          "path": "docs/sdlc/diagrams/user-journey/core-user-journeys.drawio",
+          "sha256": "f589865207cf5d5884684ecda9a90560a45947cd320d315bd894d2ed29d35b7d"
+        },
+        {
+          "path": "docs/sdlc/diagrams/previews/DGM-JOURNEY-01.png",
+          "sha256": "7ae935e9b9c4d5ec18d6ddebf14b56904bfccea5ad9488ebd7b2fd6e5d6a5552"
+        }
+      ]
+    },
+    {
+      "id": "DGM-UC-01",
+      "version": "0.5",
+      "files": [
+        {
+          "path": "docs/sdlc/diagrams/use-case/use-case-diagram.mmd",
+          "sha256": "ac26b265417b25e245d3ebdbcfba274e95aa49b53570b448ccccdcedc643a53f"
+        },
+        {
+          "path": "docs/sdlc/diagrams/use-case/use-case-diagram.drawio",
+          "sha256": "61ca6e5d6d4adb2dd4e5b2e1b2718d37c606bf1f8f15ca3ac4cdb05f7b679ac1"
+        },
+        {
+          "path": "docs/sdlc/diagrams/previews/DGM-UC-01.png",
+          "sha256": "e2c35c262a2d87abfc33f797df8f02d75c53ca6a48746da01370cdcb0aad6fee"
+        }
+      ]
+    },
+    {
+      "id": "DGM-C4-01",
+      "version": "0.1",
+      "files": [
+        {
+          "path": "docs/sdlc/diagrams/c4/system-context.mmd",
+          "sha256": "21ba98fd337072f0bc2c7920c374135046607d9051384393f287e8a976e0bd62"
+        },
+        {
+          "path": "docs/sdlc/diagrams/c4/system-context.drawio",
+          "sha256": "b4d6b9383bfbb1505d49abbc9649e2aa2f219b2a925d814f93e64f174ac64bb4"
+        },
+        {
+          "path": "docs/sdlc/diagrams/previews/DGM-C4-01.png",
+          "sha256": "5a6265ebc4404039f3cf94ae1c99a59eae7d918a4c2aabc610ff9e5f6d7022a5"
+        }
+      ]
+    },
+    {
+      "id": "DGM-C4-02",
+      "version": "0.1",
+      "files": [
+        {
+          "path": "docs/sdlc/diagrams/c4/containers.mmd",
+          "sha256": "392b7a43afac8170e2fa3c9089701b2e3c01d9353fc31f395e370d4f05ed1eb1"
+        },
+        {
+          "path": "docs/sdlc/diagrams/c4/containers.drawio",
+          "sha256": "959a1eaf5ef726b8f9a13003fe6461a8b3d932ab4e5145be0de749890cff77bc"
+        },
+        {
+          "path": "docs/sdlc/diagrams/previews/DGM-C4-02.png",
+          "sha256": "9b0264509f9676a16be59acda2fd7639dcd7a8df17271e859405404e8184ad93"
+        }
+      ]
+    },
+    {
+      "id": "DGM-SEQ-01",
+      "version": "0.1",
+      "files": [
+        {
+          "path": "docs/sdlc/diagrams/sequence/protected-handoff.mmd",
+          "sha256": "5e4a99c2a6406461c4aa0d2d64a8227011cba3c5d84b14878d44c38f72e03cc2"
+        },
+        {
+          "path": "docs/sdlc/diagrams/sequence/protected-handoff.drawio",
+          "sha256": "4891c71593f3999b51f0b9ed14f65a9e5e32e73624bb2b75e2780374b91adcf2"
+        },
+        {
+          "path": "docs/sdlc/diagrams/previews/DGM-SEQ-01.png",
+          "sha256": "e49fb6ebde2ff47a6bed703c5897aed7025cf8ecedacd04e991a7740331f3ec8"
+        }
+      ]
+    },
+    {
+      "id": "DGM-SEQ-02",
+      "version": "0.1",
+      "files": [
+        {
+          "path": "docs/sdlc/diagrams/sequence/document-creation.mmd",
+          "sha256": "04e0b7382a67826c6289e3dfd14e67f02cb2bd3c36e07ce09194d3277b32f418"
+        },
+        {
+          "path": "docs/sdlc/diagrams/sequence/document-creation.drawio",
+          "sha256": "16817ee5b8f14602b566553c2c094ee2ae573b81380744ef0625b0067625d609"
+        },
+        {
+          "path": "docs/sdlc/diagrams/previews/DGM-SEQ-02.png",
+          "sha256": "d02b769ed127f9b0295ee608645570f8a758903557e0aa9fd04378ac5c4a379a"
+        }
+      ]
+    },
+    {
+      "id": "DGM-STATE-01",
+      "version": "0.1",
+      "files": [
+        {
+          "path": "docs/sdlc/diagrams/state/document-and-readiness.mmd",
+          "sha256": "94e9bf598b45c60bbf5f0091bad0162e64262d4aec31a8f24b15361ed19bdab6"
+        },
+        {
+          "path": "docs/sdlc/diagrams/state/document-and-readiness.drawio",
+          "sha256": "1aaaddf055bd2c00f4767ca695bf9dc48fa13f0797008d9c2c9bedf18c7bcdcf"
+        },
+        {
+          "path": "docs/sdlc/diagrams/previews/DGM-STATE-01.png",
+          "sha256": "4041d02c0e2f8bf70d780cf17ed42216c8956f82d4b09fb377e18732a5a35656"
+        }
+      ]
+    },
+    {
+      "id": "DGM-STATE-02",
+      "version": "0.1",
+      "files": [
+        {
+          "path": "docs/sdlc/diagrams/state/sprint-task-allocation.mmd",
+          "sha256": "01d60f55f82658e1aafe6f19506a3e1a2ac00b25c2d63135c0aefa92034c6718"
+        },
+        {
+          "path": "docs/sdlc/diagrams/state/sprint-task-allocation.drawio",
+          "sha256": "daf7fe79424c4029f42fa616aaa1edcc8b8579b9b1a878961f2ca69bcd32f701"
+        },
+        {
+          "path": "docs/sdlc/diagrams/previews/DGM-STATE-02.png",
+          "sha256": "7441ccf5c6baf4f6fcc0501fd5a73257bd85b0f5676c26a41af2fdeb26a46606"
+        }
+      ]
+    },
+    {
+      "id": "DGM-DATA-01",
+      "version": "0.1",
+      "files": [
+        {
+          "path": "docs/sdlc/diagrams/data/workspace-erd.mmd",
+          "sha256": "43e87414bb163b4aa5e3a89262204898db1e844270c7fc0cdc3e710e88f148ec"
+        },
+        {
+          "path": "docs/sdlc/diagrams/data/workspace-erd.drawio",
+          "sha256": "2677445aff5de28551b4772b581ccd87c016a8a5aca75cc81f57d1b5a4db4863"
+        },
+        {
+          "path": "docs/sdlc/diagrams/previews/DGM-DATA-01.png",
+          "sha256": "0f1f92de3e3ec57688a2d72a5575ee5e1c5ad548a54ba7fd043a8097a8b3a1d0"
+        }
+      ]
+    },
+    {
+      "id": "DGM-DATA-02",
+      "version": "0.1",
+      "files": [
+        {
+          "path": "docs/sdlc/diagrams/data/knowledge-erd.mmd",
+          "sha256": "8ab9846bdb243f29d2ba50acee3e0be6c7a6863b45801c4cf53b5638e28ba237"
+        },
+        {
+          "path": "docs/sdlc/diagrams/data/knowledge-erd.drawio",
+          "sha256": "c4cee392c031165cd8ea036312c7fb93b8fadc81d71d6d4d68e6c2b32cad93e7"
+        },
+        {
+          "path": "docs/sdlc/diagrams/previews/DGM-DATA-02.png",
+          "sha256": "01b7aece9e23369a371635e1efc55cff3d21973c869cb58db074a87d5a8b32d0"
+        }
+      ]
+    },
+    {
+      "id": "DGM-DATA-03",
+      "version": "0.1",
+      "files": [
+        {
+          "path": "docs/sdlc/diagrams/data/handoff-logical-model.mmd",
+          "sha256": "a456a0e87943756f3f1d7b4a3845facf2aa2f8807412cdc06750643a8a684e95"
+        },
+        {
+          "path": "docs/sdlc/diagrams/data/handoff-logical-model.drawio",
+          "sha256": "7b6825d5659616ed6384a9051e2cef3c2716f178b823cfcb57b9c310fb628e01"
+        },
+        {
+          "path": "docs/sdlc/diagrams/previews/DGM-DATA-03.png",
+          "sha256": "3bbdf2f92ea14eb4290dda3e8754e0ef2b40bb26d3e2be666fafda9f270eeec3"
+        }
+      ]
+    },
+    {
+      "id": "DGM-DEPLOY-01",
+      "version": "0.1",
+      "files": [
+        {
+          "path": "docs/sdlc/diagrams/deployment/local-development.mmd",
+          "sha256": "ae30a6d1481f057ad58a2f8b2957ca89c4a29f4d457ea1ddfce0e34b43cb755b"
+        },
+        {
+          "path": "docs/sdlc/diagrams/deployment/local-development.drawio",
+          "sha256": "141a2a7ea5744aa5a2936a6a31c00cb5ff7f7cdf235d049ef73e19a28ff47f17"
+        },
+        {
+          "path": "docs/sdlc/diagrams/previews/DGM-DEPLOY-01.png",
+          "sha256": "e7aa33e8fa73b77e2c7ce120dfe089563b80f82a9fc5a930bbb241cc054c7673"
+        }
+      ]
+    },
+    {
+      "id": "DGM-DEV-01",
+      "version": "0.1",
+      "files": [
+        {
+          "path": "docs/sdlc/diagrams/development/package-ownership.mmd",
+          "sha256": "466fa75808dd4a89056e4fcae77db14fc4de89c6afcc5c0b8fb5526a641b52a3"
+        },
+        {
+          "path": "docs/sdlc/diagrams/development/package-ownership.drawio",
+          "sha256": "6854c9cd41aadabdd2116c77c27c4a8490e5b99ec2574d1657d1095d1dff14e4"
+        },
+        {
+          "path": "docs/sdlc/diagrams/previews/DGM-DEV-01.png",
+          "sha256": "f453681e9141fae7ffda314736f32fe87deb446ef2bca9e84ba32030fa77f529"
+        }
+      ]
+    }
+  ]
+}

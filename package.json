@@ -18,7 +18,8 @@
     "context:test": "node --test tests/context.test.mjs",
     "docs:lint": "node scripts/verify-docs.mjs",
     "docs:test": "node --test tests/docs.test.mjs",
-    "docs:sync-permissions": "node scripts/sync-permission-diagrams.mjs"
+    "docs:sync-permissions": "node scripts/sync-permission-diagrams.mjs",
+    "docs:sync-metadata": "node scripts/docs-metadata.mjs"
   },
   "description": "Specification/contract harness and PostgreSQL storage foundation; application handlers are not implemented.",
   "devDependencies": {

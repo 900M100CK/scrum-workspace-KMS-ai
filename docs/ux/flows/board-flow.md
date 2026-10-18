@@ -1,9 +1,9 @@
 # User Flow: Scrum Board & Task Management
 
 **Artifact ID:** UX-FLOW-BOARD-01\
-**Version/date:** 0.5 Draft · 14 October 2026\
+**Version/date:** 0.6 Draft · 16 October 2026\
 **Status:** Owner-confirmed policy direction; UI/diagram/runtime evidence pending.\
-**Sources:** PRD-01 v0.5; UC-02 v0.3 (UC-04/UC-05); SAD-03 v0.7; Workspace OpenAPI v0.2.0; ADR-0007/0008 v0.2/0011.\
+**Sources:** PRD-01 v0.7; UC-02 v0.5 (UC-04/UC-05); SAD-03 v0.10; Workspace OpenAPI v0.2.2; ADR-0007/0008 v0.3/0011; OWNER-Q-01.\
 **Trace:** BR-01–BR-03, BR-06, BR-10, BR-11, BR-13; FR-03, FR-08, FR-09, FR-17, FR-31, FR-33, FR-39, FR-42–FR-44, FR-59, FR-68; SC-01, SC-03, SC-04, SC-06, SC-08.
 
 ## 1. Main flow
@@ -12,7 +12,7 @@ Revalidate session and current project membership before loading board data. At 
 
 Render Core columns **To Do, In Progress, Done**. Only users with the relevant current action capability can mutate tasks; Viewer/stakeholder is read-only by default. Drag or keyboard state selection performs an optimistic move, then sends `POST /tasks/{task_id}/state` with expected revision and required idempotency key. The server validates membership, action capability, revision and state rules again.
 
-Allow direct moves between any two columns, including To Do → Done and Done → To Do/In Progress. No intermediate move or Scrum Master approval is required. Reopening a Done task from a Completed Sprint returns it to Product Backlog for later allocation and preserves that Sprint's completed history; show the current location after confirmation and leave the Sprint Completed.
+Allow direct moves between any two columns, including To Do → Done and Done → To Do/In Progress. No intermediate move or Scrum Master approval is required. Reopening a Done task from a Completed Sprint returns it to Product Backlog as To Do for later allocation (normalising an In Progress reopen request) and preserves that Sprint's completed history; show the current location after confirmation and leave the Sprint Completed.
 
 Keep the existing quick filters **All / Blocked Only / My Tasks** over the already authorised board cards. Blocked Only uses confirmed blocker state; My Tasks compares assignee with the authenticated requester. No match shows an empty filtered result with an option to clear filters. Filters do not add workflow states, expand permissions or replace server checks. AC-09 and ASM-02 retain the three Core columns; PRD v0.4 does not require removing these display filters.
 
@@ -48,3 +48,5 @@ DGM-FLOW-02: [Mermaid](../../sdlc/diagrams/flowchart/board-flow.mmd) · [Draw.io
 ADR-0014 preserves multiple task selection and per-task results. The UI invokes allocateTask separately with a distinct stable key/payload per item and aggregates confirmed allocated/rejected outcomes. Unknown transport outcomes stay reconciling until the same-key outcome is resolved; never relabel a possible commit as failure or repeat the whole selection with fresh keys. Earlier successes remain committed. Recheck authority, lifecycle, expected revision and exclusive current allocation for each item; hide inaccessible task and competing-Sprint metadata. Test mixed valid/conflicting selection, lost response replay, permission change between items and reconnect. No batch endpoint or runtime evidence is claimed.
 
 ADR-0017: after membership removal, refreshed tasks show Unassigned with new revision; task state, blocker and Sprint history stay intact. Rejoin does not restore previous assignment. Pending assignment requests cannot reassign a departed member.
+
+Sprint completion returns unfinished tasks to Backlog as To Do and keeps Done tasks Done. Optional allocation removal also resets unfinished tasks to To Do. Show the confirmed state/location after success; stale or failed operations reconcile before retry (ADR-0008 / OWNER-Q-01).

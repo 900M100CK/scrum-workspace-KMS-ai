@@ -9,3 +9,4 @@ dist/
 
 # Local repository metadata backups; never publish.
 /.local-backups/
+/docs/.codex/config.toml

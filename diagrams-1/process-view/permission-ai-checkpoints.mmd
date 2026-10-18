@@ -1,0 +1,49 @@
+%% Origin: docs/ux/permission-matrix.md v0.6
+%% DGM-FLOW-05 v0.4 Draft - 17 October 2026
+%% Sources: UX-PERM-MATRIX-02 v0.6; PRD-01 v0.9; UC-02 v0.6; SAD-03 v0.12; ADR-0006; ADR-0007; ADR-0009; ADR-0011; ADR-0012; ADR-0013; ADR-0015; ADR-0017
+%% Trace: FR-01, FR-03-FR-04, FR-14, FR-19-FR-21, FR-28-FR-29, FR-39, FR-46, FR-55, FR-59, FR-61, FR-68; SC-05, SC-06
+%% Scope: four AI checkpoints; SourceFlow returns to DGM-FLOW-04 Start, repeating session/project/document checks. Authority and transport boundaries remain Proposed; no runtime evidence.
+flowchart TD
+    Start["AI request: authenticated entry from DGM-FLOW-04 or direct question"]
+    Session{"Valid authenticated session?"}
+    Login["401: sign-in"]
+    Member{"Workspace confirms current project membership?"}
+    NotFound["Generic 404: same unknown/inaccessible body; no title, count, version or excerpt"]
+    Authority["Authority or mandatory persistence failed: deny handoff; generic service error"]
+    QRead["1. Authorised retrieval: project-shared OR restricted with grant; current membership; Current-only default; no Draft"]
+    PreModel["2. Persist input manifest outside guard; then guarded access/evidence/revision/payload match through provider handoff"]
+    Buffer["Generate outside guard; buffer all output; validate exact evidence identities"]
+    PreAnswer["3. Fresh manifest durable outside guard; guarded entire evidence/revision/payload match through answer handoff"]
+    Valid{"Entire evidence permitted, valid and bound to the complete immutable manifest and frozen payload?"}
+    Answer["Guard through handoff; deliver answered / partially_answered / conflict with verified citations"]
+    Withhold["Abort revoked/stale handoff; zero bytes; release guard; withhold whole original draft; no source reason"]
+    Citation["4. Open citation: re-enter authenticated protected-read flow using exact locator"]
+    SourceFlow["DGM-FLOW-04 Start: repeat session, membership, document and guarded exact-version/passage checks"]
+    Insufficient["Insufficient evidence; no hidden-source or Draft explanation"]
+    Failure["Explicit AI failure; keyword/docs fallback only if Knowledge healthy; Workspace work if healthy"]
+    Unable["Generic unable-to-deliver state: no answer, no source reason; user may ask again"]
+    Boundary["Event: Revocation/removal commit shares handoff guard; restricted grants never revive on rejoin; already sent data cannot be recalled"]
+    Start --> Session
+    Session -->|No| Login
+    Session -->|Yes| Member
+    Member -->|No| NotFound
+    Member -->|Unknown / failed| Authority
+    Member -->|Yes| QRead
+    QRead -->|Insufficient| Insufficient
+    QRead -->|Sufficient| PreModel
+    QRead -->|Check failed| Authority
+    PreModel -->|Handoff permitted| Buffer
+    PreModel -->|Evidence revoked| Withhold
+    PreModel -->|Check failed| Authority
+    Buffer -->|Complete| PreAnswer
+    Buffer -->|Dependency failed| Failure
+    PreAnswer --> Valid
+    PreAnswer -->|Check failed| Authority
+    Valid -->|Yes| Answer
+    Valid -->|No| Withhold
+    Withhold -->|Retry with budget and safe evidence| QRead
+    Withhold -->|No retry or exhausted| Unable
+    Answer --> Citation
+    Citation --> SourceFlow
+    Boundary --> PreModel
+    Boundary --> PreAnswer

@@ -1,0 +1,1902 @@
+{
+  "schemaVersion": 1,
+  "status": "Draft design projections; application enforcement unproven",
+  "diagrams": [
+    {
+      "id": "DGM-C4-01",
+      "path": "docs/sdlc/diagrams/c4/system-context",
+      "title": "C4 Level 1 — system context",
+      "notation": "flowchart",
+      "trace": "BR-01–BR-14; SC-01–SC-08",
+      "scope": "Software system boundary; external integrations are candidates, not deployed facts.",
+      "legend": "Blue: system/person. Yellow: conditional external system. AI reads only; human mutations require capability.",
+      "adrs": [
+        "ADR-0002",
+        "ADR-0005",
+        "ADR-0007",
+        "ADR-0011",
+        "ADR-0012"
+      ],
+      "width": 1900,
+      "height": 950,
+      "nodes": [
+        {
+          "id": "Member",
+          "label": "Person: Project member\nPO / developer / Scrum Master / viewer\nCapabilities and source read rights are separate",
+          "x": 40,
+          "y": 260,
+          "w": 370,
+          "h": 170
+        },
+        {
+          "id": "System",
+          "label": "Software system: Scrum Workspace + AI Project KMS\nScrum work, immutable knowledge, scoped retrieval, exact citations and audit",
+          "x": 650,
+          "y": 260,
+          "w": 480,
+          "h": 190
+        },
+        {
+          "id": "Gen",
+          "label": "External software system: Generation provider\nCandidate cloud or local provider; not selected",
+          "x": 1450,
+          "y": 260,
+          "w": 370,
+          "h": 150,
+          "color": "#fff2cc"
+        },
+        {
+          "id": "Embed",
+          "label": "External software system: Embedding provider\nCandidate model/service; not selected",
+          "x": 1450,
+          "y": 570,
+          "w": 370,
+          "h": 150,
+          "color": "#fff2cc"
+        },
+        {
+          "id": "Identity",
+          "label": "External software system: Identity provider\nOnly if external identity is selected; local identity remains an alternative",
+          "x": 40,
+          "y": 570,
+          "w": 370,
+          "h": 160,
+          "color": "#fff2cc"
+        }
+      ],
+      "edges": [
+        {
+          "from": "Member",
+          "to": "System",
+          "label": "Uses permitted work, knowledge and inspection",
+          "pins": "exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;"
+        },
+        {
+          "from": "System",
+          "to": "Gen",
+          "label": "Sends guarded permitted evidence; receives draft",
+          "pins": "exitX=1;exitY=0.3;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;"
+        },
+        {
+          "from": "System",
+          "to": "Embed",
+          "label": "Embeds permitted text / query; receives vectors",
+          "pins": "exitX=1;exitY=0.8;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;",
+          "points": [
+            {
+              "x": 1290,
+              "y": 412
+            },
+            {
+              "x": 1290,
+              "y": 645
+            }
+          ]
+        },
+        {
+          "from": "System",
+          "to": "Identity",
+          "label": "Conditional identity integration",
+          "pins": "exitX=0.2;exitY=1;entryX=1;entryY=0.5;exitPerimeter=0;entryPerimeter=0;",
+          "points": [
+            {
+              "x": 746,
+              "y": 650
+            }
+          ],
+          "labelOffset": {
+            "x": 0,
+            "y": -40
+          }
+        }
+      ]
+    },
+    {
+      "id": "DGM-C4-02",
+      "path": "docs/sdlc/diagrams/c4/containers",
+      "title": "C4 Level 2 — applications and owned stores",
+      "notation": "flowchart",
+      "trace": "BR-01, BR-05, BR-08–BR-14; SC-01–SC-08",
+      "scope": "Logical containers; two business services. Application handlers are unimplemented; storage foundation exists.",
+      "legend": "Solid arrows: required design communication, not runtime evidence. DB boxes are owned databases, not separate database engines.",
+      "adrs": [
+        "ADR-0002",
+        "ADR-0004",
+        "ADR-0006",
+        "ADR-0011",
+        "ADR-0012"
+      ],
+      "width": 2240,
+      "height": 1320,
+      "groups": [
+        {
+          "id": "Platform",
+          "label": "Software system boundary: Scrum Workspace + AI Project KMS",
+          "x": 480,
+          "y": 220,
+          "w": 1190,
+          "h": 950
+        }
+      ],
+      "nodes": [
+        {
+          "id": "User",
+          "label": "Person: Member\nCurrent project membership and operation capability",
+          "x": 35,
+          "y": 280,
+          "w": 320,
+          "h": 135
+        },
+        {
+          "id": "Web",
+          "label": "Web application\nBrowser UI; React/Vite candidate\nNo trusted permission decisions",
+          "x": 550,
+          "y": 290,
+          "w": 410,
+          "h": 135,
+          "group": "Platform"
+        },
+        {
+          "id": "WS",
+          "label": "Workspace service + gateway\nSessions, work, policy authority, guarded provider/response relay\nNode/TypeScript framework proposed",
+          "x": 550,
+          "y": 580,
+          "w": 410,
+          "h": 170,
+          "group": "Platform"
+        },
+        {
+          "id": "K",
+          "label": "Knowledge service\nImmutable content, keyword/exact retrieval, generation orchestration, provenance\nNo copied ACL rules",
+          "x": 1160,
+          "y": 580,
+          "w": 410,
+          "h": 170,
+          "group": "Platform"
+        },
+        {
+          "id": "WDB",
+          "label": "Data store: workspace_db\nPostgreSQL; Workspace alone writes\nWork, membership, policy, audit, idempotency",
+          "x": 550,
+          "y": 940,
+          "w": 410,
+          "h": 160,
+          "color": "#d5e8d4",
+          "group": "Platform"
+        },
+        {
+          "id": "KDB",
+          "label": "Data store: knowledge_db\nPostgreSQL + pgvector\nVersions, passages, jobs, evidence; Knowledge alone writes",
+          "x": 1160,
+          "y": 940,
+          "w": 410,
+          "h": 160,
+          "color": "#d5e8d4",
+          "group": "Platform"
+        },
+        {
+          "id": "Provider",
+          "label": "External AI endpoints\nGeneration / embeddings: candidate\nProvider waits outside guard",
+          "x": 1810,
+          "y": 580,
+          "w": 380,
+          "h": 170,
+          "color": "#fff2cc"
+        }
+      ],
+      "edges": [
+        {
+          "from": "User",
+          "to": "Web",
+          "label": "Uses UI"
+        },
+        {
+          "from": "Web",
+          "to": "WS",
+          "label": "HTTPS same-origin; session + CSRF on mutations"
+        },
+        {
+          "from": "WS",
+          "to": "K",
+          "label": "Internal HTTP; service credential + actor context",
+          "pins": "exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;"
+        },
+        {
+          "from": "K",
+          "to": "WS",
+          "label": "Scoped current policy / work reads; no recursive guard",
+          "points": [
+            {
+              "x": 1262.5,
+              "y": 520
+            },
+            {
+              "x": 1020,
+              "y": 520
+            },
+            {
+              "x": 1020,
+              "y": 605.5
+            }
+          ],
+          "pins": "exitX=0.25;exitY=0;entryX=1;entryY=0.15;exitPerimeter=0;entryPerimeter=0;",
+          "labelOffset": {
+            "x": 120,
+            "y": -25
+          }
+        },
+        {
+          "from": "WS",
+          "to": "WDB",
+          "label": "Owned SQL transactions",
+          "pins": "exitX=0.2;exitY=1;entryX=0.2;entryY=0;exitPerimeter=0;entryPerimeter=0;"
+        },
+        {
+          "from": "K",
+          "to": "KDB",
+          "label": "Owned SQL; scoped current sources",
+          "pins": "exitX=0.8;exitY=1;entryX=0.8;entryY=0;exitPerimeter=0;entryPerimeter=0;"
+        },
+        {
+          "from": "WS",
+          "to": "Provider",
+          "label": "HTTPS guarded frozen payload handoff",
+          "points": [
+            {
+              "x": 878,
+              "y": 480
+            },
+            {
+              "x": 2000,
+              "y": 480
+            }
+          ],
+          "pins": "exitX=0.8;exitY=0;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;"
+        },
+        {
+          "from": "K",
+          "to": "WS",
+          "label": "Prepared manifest / buffered answer to relay",
+          "points": [
+            {
+              "x": 1365,
+              "y": 810
+            },
+            {
+              "x": 755,
+              "y": 810
+            }
+          ],
+          "pins": "exitX=0.5;exitY=1;entryX=0.5;entryY=1;exitPerimeter=0;entryPerimeter=0;",
+          "labelOffset": {
+            "x": 0,
+            "y": -15
+          }
+        }
+      ]
+    },
+    {
+      "id": "DGM-SEQ-01",
+      "path": "docs/sdlc/diagrams/sequence/protected-handoff",
+      "title": "Protected handoff, one-use claim and revocation",
+      "notation": "sequence",
+      "trace": "FR-14, FR-28–FR-29, FR-39, FR-55, FR-57, FR-59, FR-67; SC-05–SC-07; TC-26",
+      "scope": "One provider-input OR answer-delivery attempt; repeat with a fresh manifest per purpose. Handlers and additive manifest storage are pending.",
+      "legend": "Solid: call; dashed: return. Guard is Workspace-owned; durable preparation and remote outcome writes occur outside it.",
+      "adrs": [
+        "ADR-0006",
+        "ADR-0011",
+        "ADR-0012",
+        "ADR-0013",
+        "ADR-0017"
+      ],
+      "participants": [
+        {
+          "id": "K",
+          "label": "Knowledge orchestration"
+        },
+        {
+          "id": "KD",
+          "label": "Knowledge owned store"
+        },
+        {
+          "id": "W",
+          "label": "Workspace authority / relay"
+        },
+        {
+          "id": "WD",
+          "label": "Workspace owned store"
+        },
+        {
+          "id": "T",
+          "label": "Protected destination\nprovider OR browser"
+        }
+      ],
+      "steps": [
+        {
+          "type": "note",
+          "label": "Prepare exact frozen payload and ALL evidence, including uncited context. For delivery: buffer draft and validate exact server citations; support evaluation is separate from locator validation."
+        },
+        {
+          "from": "K",
+          "to": "KD",
+          "label": "Commit immutable complete HandoffManifest: fresh handoff ID, purpose, actor/project, evidence/revisions and digests"
+        },
+        {
+          "type": "alt",
+          "label": "Preparation not durably acknowledged"
+        },
+        {
+          "type": "return",
+          "from": "KD",
+          "to": "K",
+          "label": "Failed or unknown preparation"
+        },
+        {
+          "type": "note",
+          "label": "STOP: send zero protected bytes. Reconcile the same preparation identity/digest outside any guard; no send on an unknown write."
+        },
+        {
+          "type": "else",
+          "label": "Complete manifest durably acknowledged"
+        },
+        {
+          "type": "return",
+          "from": "KD",
+          "to": "K",
+          "label": "Complete manifest and digest"
+        },
+        {
+          "from": "K",
+          "to": "W",
+          "label": "Request exact protected handoff with manifest + frozen payload"
+        },
+        {
+          "from": "W",
+          "to": "WD",
+          "label": "Durably claim handoff ID once, bound to actor and manifest digest"
+        },
+        {
+          "type": "alt",
+          "label": "Existing / unknown claim or claim storage failure"
+        },
+        {
+          "type": "return",
+          "from": "WD",
+          "to": "W",
+          "label": "No fresh claimant"
+        },
+        {
+          "type": "note",
+          "label": "STOP: no send; consumed/unresolved identities cannot expire into replay. Restart/abort fences the old claimant."
+        },
+        {
+          "type": "else",
+          "label": "Fresh claim durably acknowledged"
+        },
+        {
+          "type": "return",
+          "from": "WD",
+          "to": "W",
+          "label": "Exclusive fresh claimant"
+        },
+        {
+          "from": "W",
+          "to": "W",
+          "label": "Acquire applicable project/session guard"
+        },
+        {
+          "from": "W",
+          "to": "W",
+          "label": "In-process current session, membership and document authority check"
+        },
+        {
+          "from": "W",
+          "to": "K",
+          "label": "Authenticated scoped final evidence/version/availability validation; no recursive guard"
+        },
+        {
+          "type": "return",
+          "from": "K",
+          "to": "W",
+          "label": "Exact current evidence revisions and complete manifest binding"
+        },
+        {
+          "type": "note",
+          "label": "Final check includes operational entity kind/ID/revision/time and payload digest. No cached grant or changed payload may pass. Concurrent revocation waits if this handoff already holds the same guard."
+        },
+        {
+          "type": "alt",
+          "label": "Denied / changed evidence, digest mismatch, unknown authority or lifecycle outcome"
+        },
+        {
+          "from": "W",
+          "to": "W",
+          "label": "Zero protected bytes; withhold entire original draft; release guard"
+        },
+        {
+          "type": "note",
+          "label": "Outside guard: only eligible pre-send failures may start a bounded fresh preparation. Revoked-answer replacement requires new generation/support checks; exhausted budget yields generic failure."
+        },
+        {
+          "type": "else",
+          "label": "Exact, permitted, complete match"
+        },
+        {
+          "from": "W",
+          "to": "T",
+          "label": "Hand off frozen bytes while guard remains held"
+        },
+        {
+          "type": "alt",
+          "label": "Transport completion known"
+        },
+        {
+          "type": "return",
+          "from": "T",
+          "to": "W",
+          "label": "Transport completed (not proof of downstream rendering)"
+        },
+        {
+          "from": "W",
+          "to": "W",
+          "label": "Release guard after completion"
+        },
+        {
+          "type": "else",
+          "label": "Timeout / crash / unknown transport"
+        },
+        {
+          "from": "W",
+          "to": "W",
+          "label": "Confirm abort and fence attempt, or retain unknown/quarantine affected handoffs until reconciled"
+        },
+        {
+          "type": "note",
+          "label": "No automatic replay and no automatic fresh-identity resend after unknown transport. An aborted claimant cannot resume. Exactly-once external delivery is not promised."
+        },
+        {
+          "type": "end"
+        },
+        {
+          "type": "end"
+        },
+        {
+          "from": "W",
+          "to": "WD",
+          "label": "Retain claim and known/aborted/unknown relay outcome; never recycle identity"
+        },
+        {
+          "from": "W",
+          "to": "K",
+          "label": "Report correlated outcome outside guard when communication is available"
+        },
+        {
+          "from": "K",
+          "to": "KD",
+          "label": "Append HandoffOutcome; never mutate prepared manifest"
+        },
+        {
+          "type": "note",
+          "label": "Revocation commits under the same guard after prior handoff completion/confirmed abort, then acknowledges success. Unknown remote lifecycle writes block affected handoffs. Already sent bytes cannot be recalled; a crash can leave outcome reconciliation pending."
+        },
+        {
+          "type": "end"
+        },
+        {
+          "type": "end"
+        }
+      ]
+    },
+    {
+      "id": "DGM-SEQ-02",
+      "path": "docs/sdlc/diagrams/sequence/document-creation",
+      "title": "Workspace-first document creation and uncertain outcomes",
+      "notation": "sequence",
+      "trace": "FR-10, FR-14, FR-31, FR-50–FR-52, FR-59; UC-06; SC-06; SP-06",
+      "scope": "Cross-service protocol using existing operation identities. No distributed transaction, activation endpoint or orphan-age deletion.",
+      "legend": "Each service commits only its own database. Same actor/key/payload binds one stable document identity. Handler implementation pending.",
+      "adrs": [
+        "ADR-0007",
+        "ADR-0009",
+        "ADR-0011",
+        "ADR-0012",
+        "ADR-0017"
+      ],
+      "participants": [
+        {
+          "id": "U",
+          "label": "Authenticated author / UI"
+        },
+        {
+          "id": "W",
+          "label": "Workspace gateway / policy"
+        },
+        {
+          "id": "WD",
+          "label": "Workspace owned store"
+        },
+        {
+          "id": "K",
+          "label": "Knowledge service"
+        },
+        {
+          "id": "KD",
+          "label": "Knowledge owned store"
+        }
+      ],
+      "steps": [
+        {
+          "from": "U",
+          "to": "W",
+          "label": "Create document: title, content, explicit classification and Idempotency-Key"
+        },
+        {
+          "from": "W",
+          "to": "W",
+          "label": "Validate session, membership, create capability and request"
+        },
+        {
+          "type": "alt",
+          "label": "Invalid request / denied authority / unknown authority"
+        },
+        {
+          "type": "return",
+          "from": "W",
+          "to": "U",
+          "label": "Validation or non-disclosing denial/failure; no new content"
+        },
+        {
+          "type": "else",
+          "label": "Authorised request"
+        },
+        {
+          "from": "W",
+          "to": "WD",
+          "label": "Owned transaction: bind actor/key/payload to allocated document ID; register policy, initial capabilities/read grant and audit"
+        },
+        {
+          "type": "alt",
+          "label": "Workspace transaction cannot durably commit"
+        },
+        {
+          "type": "return",
+          "from": "WD",
+          "to": "W",
+          "label": "Rollback / uncertain result"
+        },
+        {
+          "type": "return",
+          "from": "W",
+          "to": "U",
+          "label": "Explicit failure or pending outcome; reconcile same identity before retry"
+        },
+        {
+          "type": "else",
+          "label": "Workspace transaction confirmed or same-key replay resolved"
+        },
+        {
+          "type": "return",
+          "from": "WD",
+          "to": "W",
+          "label": "Stable ID and original policy result; changed payload conflicts"
+        },
+        {
+          "from": "W",
+          "to": "K",
+          "label": "Authenticated persistDocument with bound ID, actor context and operation identity"
+        },
+        {
+          "from": "K",
+          "to": "KD",
+          "label": "Owned transaction: idempotency + immutable initial Current/passages + minimum audit"
+        },
+        {
+          "type": "alt",
+          "label": "Knowledge persistence confirmed"
+        },
+        {
+          "type": "return",
+          "from": "KD",
+          "to": "K",
+          "label": "Commit / exact same-key result"
+        },
+        {
+          "type": "return",
+          "from": "K",
+          "to": "W",
+          "label": "Confirmed document identity"
+        },
+        {
+          "from": "W",
+          "to": "W",
+          "label": "Final protected response check under guard; expose only currently authorised response fields"
+        },
+        {
+          "type": "return",
+          "from": "W",
+          "to": "U",
+          "label": "201 only for confirmed result and permitted response; readiness separate"
+        },
+        {
+          "type": "else",
+          "label": "Timeout / lost acknowledgement / uncertain remote commit"
+        },
+        {
+          "type": "return",
+          "from": "W",
+          "to": "U",
+          "label": "202 pending creation; no claim of completed content or indexing"
+        },
+        {
+          "type": "note",
+          "label": "A timeout is not cancellation. Retain registered policy; public reads reveal no content if content is absent or access denied."
+        },
+        {
+          "from": "U",
+          "to": "W",
+          "label": "Retry the SAME scoped key and unchanged payload"
+        },
+        {
+          "from": "W",
+          "to": "WD",
+          "label": "Resolve original binding; do not allocate another ID or restore revoked grants"
+        },
+        {
+          "type": "return",
+          "from": "WD",
+          "to": "W",
+          "label": "Original ID / pending identity"
+        },
+        {
+          "from": "W",
+          "to": "K",
+          "label": "Reconcile or retry same persistence identity and immutable payload"
+        },
+        {
+          "type": "return",
+          "from": "K",
+          "to": "W",
+          "label": "Confirmed original result or still unknown"
+        },
+        {
+          "type": "return",
+          "from": "W",
+          "to": "U",
+          "label": "Confirmed authorised response or pending; no duplicate version/grant"
+        },
+        {
+          "type": "note",
+          "label": "Safe default: retain inaccessible orphan policy. Cleanup needs durable cancellation/fencing proving delayed persistence cannot commit. This protocol is an explicit design gap, not an age-based sweep."
+        },
+        {
+          "type": "end"
+        },
+        {
+          "type": "end"
+        },
+        {
+          "type": "end"
+        },
+        {
+          "type": "note",
+          "label": "No Workspace activation step. Unknown remote lifecycle-write outcomes block affected protected handoffs until reconciliation. Indexing can fail independently; committed permitted keyword content does not depend on embeddings."
+        }
+      ]
+    },
+    {
+      "id": "DGM-STATE-01",
+      "path": "docs/sdlc/diagrams/state/document-and-readiness",
+      "title": "Version lifecycle and independent processing states",
+      "notation": "state",
+      "trace": "FR-11–FR-15, FR-19, FR-47–FR-48, FR-61; UC-07/08; SC-05/06",
+      "scope": "Three separate state domains: a version, a search job, and document availability. No combined product Draft state.",
+      "legend": "Revision creates a NEW Current identity; the old instance becomes Superseded. Guards, expected revision, idempotency and local audit are prerequisites, not shown as lifecycle states.",
+      "adrs": [
+        "ADR-0007",
+        "ADR-0009",
+        "ADR-0011",
+        "ADR-0013"
+      ],
+      "width": 1800,
+      "height": 1250,
+      "nodes": [
+        {
+          "id": "Current",
+          "label": "Version: Current",
+          "x": 100,
+          "y": 300,
+          "w": 360,
+          "h": 135
+        },
+        {
+          "id": "Superseded",
+          "label": "Version: Superseded\nImmutable historical bytes",
+          "x": 700,
+          "y": 300,
+          "w": 360,
+          "h": 135
+        },
+        {
+          "id": "Archived",
+          "label": "Version: Archived\nOnly explicit history if readable",
+          "x": 1300,
+          "y": 300,
+          "w": 360,
+          "h": 135
+        },
+        {
+          "id": "Pending",
+          "label": "Job: pending\nNew attempt uses a fresh job/generation",
+          "x": 100,
+          "y": 650,
+          "w": 360,
+          "h": 135
+        },
+        {
+          "id": "Ready",
+          "label": "Job: ready\nExact version/revision/generation match",
+          "x": 700,
+          "y": 650,
+          "w": 360,
+          "h": 135
+        },
+        {
+          "id": "Failed",
+          "label": "Job: failed\nSemantic unavailable; keyword independent",
+          "x": 1300,
+          "y": 650,
+          "w": 360,
+          "h": 135
+        },
+        {
+          "id": "Available",
+          "label": "Document: available\nCurrent pointer may be null after archive",
+          "x": 100,
+          "y": 1000,
+          "w": 360,
+          "h": 135
+        },
+        {
+          "id": "Unavailable",
+          "label": "Document: unavailable\nMonotonic logical deletion; no revival\nPhysical purge/retention undecided",
+          "x": 700,
+          "y": 1000,
+          "w": 450,
+          "h": 150
+        }
+      ],
+      "edges": [
+        {
+          "from": "Current",
+          "to": "Superseded",
+          "label": "revise: same transaction installs a NEW Current"
+        },
+        {
+          "from": "Current",
+          "to": "Archived",
+          "label": "archive Current; clear current pointer",
+          "points": [
+            {
+              "x": 280,
+              "y": 240
+            },
+            {
+              "x": 1480,
+              "y": 240
+            }
+          ]
+        },
+        {
+          "from": "Superseded",
+          "to": "Archived",
+          "label": "archive historical version"
+        },
+        {
+          "from": "Pending",
+          "to": "Ready",
+          "label": "matching job succeeds"
+        },
+        {
+          "from": "Pending",
+          "to": "Failed",
+          "label": "processing fails",
+          "points": [
+            {
+              "x": 280,
+              "y": 590
+            },
+            {
+              "x": 1480,
+              "y": 590
+            }
+          ]
+        },
+        {
+          "from": "Failed",
+          "to": "Pending",
+          "label": "retry same job identity while still valid",
+          "points": [
+            {
+              "x": 1480,
+              "y": 850
+            },
+            {
+              "x": 280,
+              "y": 850
+            }
+          ]
+        },
+        {
+          "from": "Available",
+          "to": "Unavailable",
+          "label": "authorised delete; invalidate jobs and protected reads"
+        }
+      ]
+    },
+    {
+      "id": "DGM-STATE-02",
+      "path": "docs/sdlc/diagrams/state/sprint-task-allocation",
+      "title": "Sprint, task, allocation and blocker state projections",
+      "notation": "state",
+      "trace": "FR-07–FR-09, FR-42, FR-44, FR-64; UC-04/05; SC-03/04",
+      "scope": "Independent state domains coordinated by one Workspace transaction for completion/reopen. No Sprint reopening.",
+      "legend": "One Active Sprint per project; at most one live allocation per task. Completed allocation history and blocker events are preserved. Capability + expected revision + idempotency + audit required.",
+      "adrs": [
+        "ADR-0008",
+        "ADR-0012",
+        "ADR-0014"
+      ],
+      "width": 1900,
+      "height": 1620,
+      "nodes": [
+        {
+          "id": "Planned",
+          "label": "Sprint: Planned",
+          "x": 100,
+          "y": 300,
+          "w": 360,
+          "h": 135
+        },
+        {
+          "id": "Active",
+          "label": "Sprint: Active",
+          "x": 750,
+          "y": 300,
+          "w": 360,
+          "h": 135
+        },
+        {
+          "id": "Completed",
+          "label": "Sprint: Completed",
+          "x": 1400,
+          "y": 300,
+          "w": 360,
+          "h": 135
+        },
+        {
+          "id": "Todo",
+          "label": "Task: To Do",
+          "x": 100,
+          "y": 660,
+          "w": 360,
+          "h": 135
+        },
+        {
+          "id": "Progress",
+          "label": "Task: In Progress",
+          "x": 750,
+          "y": 660,
+          "w": 360,
+          "h": 135
+        },
+        {
+          "id": "Done",
+          "label": "Task: Done",
+          "x": 1400,
+          "y": 660,
+          "w": 360,
+          "h": 135
+        },
+        {
+          "id": "Allocated",
+          "label": "Allocation: allocated",
+          "x": 100,
+          "y": 1020,
+          "w": 360,
+          "h": 135
+        },
+        {
+          "id": "Returned",
+          "label": "Allocation: returned\nTask in Backlog / To Do",
+          "x": 750,
+          "y": 1020,
+          "w": 360,
+          "h": 135
+        },
+        {
+          "id": "Kept",
+          "label": "Allocation: completed\nHistorical completion retained",
+          "x": 1400,
+          "y": 1020,
+          "w": 360,
+          "h": 135
+        },
+        {
+          "id": "Unblocked",
+          "label": "Derived blocker: not Blocked\nNo event or latest event Resolved",
+          "x": 100,
+          "y": 1380,
+          "w": 360,
+          "h": 135
+        },
+        {
+          "id": "Blocked",
+          "label": "Derived blocker: Blocked\nLatest committed sequence is Open",
+          "x": 750,
+          "y": 1380,
+          "w": 360,
+          "h": 135
+        }
+      ],
+      "edges": [
+        {
+          "from": "Planned",
+          "to": "Active",
+          "label": "start; reject second Active"
+        },
+        {
+          "from": "Active",
+          "to": "Completed",
+          "label": "complete; atomically settle allocations"
+        },
+        {
+          "from": "Todo",
+          "to": "Progress",
+          "label": "authorised direct transition"
+        },
+        {
+          "from": "Progress",
+          "to": "Done",
+          "label": "authorised direct transition"
+        },
+        {
+          "from": "Todo",
+          "to": "Done",
+          "label": "direct transition allowed",
+          "points": [
+            {
+              "x": 280,
+              "y": 590
+            },
+            {
+              "x": 1580,
+              "y": 590
+            }
+          ]
+        },
+        {
+          "from": "Progress",
+          "to": "Todo",
+          "label": "direct transition",
+          "points": [
+            {
+              "x": 930,
+              "y": 850
+            },
+            {
+              "x": 280,
+              "y": 850
+            }
+          ]
+        },
+        {
+          "from": "Done",
+          "to": "Progress",
+          "label": "reopen only outside Completed-Sprint special case",
+          "points": [
+            {
+              "x": 1580,
+              "y": 870
+            },
+            {
+              "x": 930,
+              "y": 870
+            }
+          ]
+        },
+        {
+          "from": "Done",
+          "to": "Todo",
+          "label": "reopen; Completed Sprint forces Backlog / To Do",
+          "points": [
+            {
+              "x": 1580,
+              "y": 910
+            },
+            {
+              "x": 280,
+              "y": 910
+            }
+          ]
+        },
+        {
+          "from": "Allocated",
+          "to": "Returned",
+          "label": "completion of unfinished task; optional removal resets unfinished"
+        },
+        {
+          "from": "Allocated",
+          "to": "Kept",
+          "label": "completion of Done task",
+          "points": [
+            {
+              "x": 280,
+              "y": 960
+            },
+            {
+              "x": 1580,
+              "y": 960
+            }
+          ]
+        },
+        {
+          "from": "Unblocked",
+          "to": "Blocked",
+          "label": "append Open with next sequence"
+        },
+        {
+          "from": "Blocked",
+          "to": "Unblocked",
+          "label": "append Resolved; never infer resolution from Sprint completion",
+          "points": [
+            {
+              "x": 930,
+              "y": 1580
+            },
+            {
+              "x": 280,
+              "y": 1580
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "DGM-DATA-01",
+      "path": "docs/sdlc/diagrams/data/workspace-erd",
+      "title": "Workspace physical ERD — owned schema",
+      "notation": "erd",
+      "trace": "BR-01–BR-03, BR-06, BR-10–BR-12; SC-03/04/06",
+      "scope": "Applied migrations 001 + 002; selected identity/state columns. Tables exist; handlers and transactional policy enforcement are pending.",
+      "legend": "Relationship label names FK columns; ||--o{ means parent 1 to child 0..many. User IDs are opaque; no User table or cross-store FK. Session/idempotency have no project FK.",
+      "adrs": [
+        "ADR-0004",
+        "ADR-0007",
+        "ADR-0008",
+        "ADR-0011",
+        "ADR-0012",
+        "ADR-0017"
+      ],
+      "nodes": [
+        {
+          "id": "project",
+          "fields": [
+            "uuid project_id PK",
+            "text name",
+            "bigint revision"
+          ]
+        },
+        {
+          "id": "membership",
+          "fields": [
+            "uuid project_id PK,FK",
+            "uuid user_id PK",
+            "boolean active",
+            "bigint membership_generation",
+            "text role"
+          ]
+        },
+        {
+          "id": "session",
+          "fields": [
+            "uuid session_id PK",
+            "uuid user_id",
+            "boolean revoked",
+            "timestamptz expires_at",
+            "bigint revision"
+          ]
+        },
+        {
+          "id": "sprint",
+          "fields": [
+            "uuid sprint_id PK",
+            "uuid project_id FK",
+            "text state \"planned active completed\"",
+            "bigint revision"
+          ]
+        },
+        {
+          "id": "task",
+          "fields": [
+            "uuid task_id PK",
+            "uuid project_id FK",
+            "uuid assignee_id FK \"nullable composite membership FK\"",
+            "text state \"todo in_progress done\"",
+            "numeric backlog_position",
+            "bigint revision"
+          ]
+        },
+        {
+          "id": "sprint_allocation",
+          "fields": [
+            "uuid sprint_id PK,FK",
+            "uuid task_id PK,FK",
+            "uuid project_id FK",
+            "text allocation_state \"allocated completed returned\"",
+            "bigint revision"
+          ]
+        },
+        {
+          "id": "blocker_event",
+          "fields": [
+            "uuid event_id PK",
+            "uuid task_id FK",
+            "bigint sequence \"unique per task\"",
+            "text status \"open resolved\""
+          ]
+        },
+        {
+          "id": "document_policy",
+          "fields": [
+            "uuid document_id PK",
+            "uuid project_id FK",
+            "text classification",
+            "text registry_state \"active unavailable after 002\"",
+            "bigint permission_revision"
+          ]
+        },
+        {
+          "id": "read_grant",
+          "fields": [
+            "uuid document_id PK,FK",
+            "uuid user_id PK,FK",
+            "bigint grant_generation PK",
+            "uuid project_id FK",
+            "bigint membership_generation",
+            "boolean valid"
+          ]
+        },
+        {
+          "id": "capability_grant",
+          "fields": [
+            "uuid grant_id PK",
+            "uuid project_id FK",
+            "uuid subject_id",
+            "uuid resource_id",
+            "text action",
+            "boolean valid"
+          ]
+        },
+        {
+          "id": "business_audit",
+          "fields": [
+            "uuid event_id PK",
+            "uuid project_id FK",
+            "uuid actor_id",
+            "uuid entity_id",
+            "uuid correlation_id"
+          ]
+        },
+        {
+          "id": "idempotency_record",
+          "fields": [
+            "uuid actor_id PK",
+            "text operation PK",
+            "text idempotency_key PK",
+            "text payload_hash",
+            "text state",
+            "timestamptz expires_at"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "project",
+          "to": "membership",
+          "label": "project_id"
+        },
+        {
+          "from": "project",
+          "to": "sprint",
+          "label": "project_id"
+        },
+        {
+          "from": "project",
+          "to": "task",
+          "label": "project_id"
+        },
+        {
+          "from": "membership",
+          "to": "task",
+          "label": "project_id + nullable assignee_id",
+          "card": "o|--o{"
+        },
+        {
+          "from": "sprint",
+          "to": "sprint_allocation",
+          "label": "project_id + sprint_id"
+        },
+        {
+          "from": "task",
+          "to": "sprint_allocation",
+          "label": "project_id + task_id"
+        },
+        {
+          "from": "task",
+          "to": "blocker_event",
+          "label": "task_id"
+        },
+        {
+          "from": "project",
+          "to": "document_policy",
+          "label": "project_id"
+        },
+        {
+          "from": "document_policy",
+          "to": "read_grant",
+          "label": "project_id + document_id"
+        },
+        {
+          "from": "membership",
+          "to": "read_grant",
+          "label": "project_id + user_id"
+        },
+        {
+          "from": "project",
+          "to": "capability_grant",
+          "label": "project_id"
+        },
+        {
+          "from": "project",
+          "to": "business_audit",
+          "label": "project_id"
+        }
+      ]
+    },
+    {
+      "id": "DGM-DATA-02",
+      "path": "docs/sdlc/diagrams/data/knowledge-erd",
+      "title": "Knowledge physical ERD — owned schema",
+      "notation": "erd",
+      "trace": "BR-04–BR-05, BR-08–BR-12, BR-14; SC-01/02/05/06/07",
+      "scope": "Applied migrations 001 + 002; selected identity/state columns. Immutable source bytes; mutable lifecycle state is constrained.",
+      "legend": "No ACL table or cross-store FK. Embedding dimensions/configuration are not fixed. Operational provenance entity_kind and handoff entities remain additive gaps, shown separately.",
+      "adrs": [
+        "ADR-0004",
+        "ADR-0009",
+        "ADR-0011",
+        "ADR-0012",
+        "ADR-0013"
+      ],
+      "nodes": [
+        {
+          "id": "document",
+          "fields": [
+            "uuid document_id PK",
+            "uuid project_id \"opaque Workspace reference\"",
+            "uuid current_version_id FK \"nullable composite pointer\"",
+            "bigint revision",
+            "bigint processing_generation",
+            "boolean unavailable"
+          ]
+        },
+        {
+          "id": "document_version",
+          "fields": [
+            "uuid document_id PK,FK",
+            "uuid version_id PK",
+            "text state \"current superseded archived after 002\"",
+            "text immutable_content"
+          ]
+        },
+        {
+          "id": "passage",
+          "fields": [
+            "uuid document_id PK,FK",
+            "uuid version_id PK,FK",
+            "uuid passage_id PK",
+            "text immutable_excerpt",
+            "text locator"
+          ]
+        },
+        {
+          "id": "embedding_configuration",
+          "fields": [
+            "uuid configuration_id PK",
+            "text model_version",
+            "int dimensions",
+            "text distance_metric"
+          ]
+        },
+        {
+          "id": "search_job",
+          "fields": [
+            "uuid job_id PK",
+            "uuid document_id FK",
+            "uuid version_id FK",
+            "uuid configuration_id FK",
+            "bigint aggregate_revision",
+            "bigint processing_generation",
+            "text readiness",
+            "boolean tombstone"
+          ]
+        },
+        {
+          "id": "passage_embedding",
+          "fields": [
+            "uuid document_id PK,FK",
+            "uuid version_id PK,FK",
+            "uuid passage_id PK,FK",
+            "uuid configuration_id PK,FK",
+            "uuid job_id FK",
+            "int dimensions FK",
+            "vector embedding"
+          ]
+        },
+        {
+          "id": "execution",
+          "fields": [
+            "uuid run_id PK",
+            "uuid actor_id",
+            "uuid project_id",
+            "uuid configuration_id FK \"nullable\""
+          ]
+        },
+        {
+          "id": "provenance",
+          "fields": [
+            "uuid run_id PK,FK",
+            "text source_id PK",
+            "uuid document_id FK \"nullable exact tuple\"",
+            "uuid version_id FK",
+            "uuid passage_id FK",
+            "uuid entity_id \"operational alternative\"",
+            "bigint observation_revision",
+            "timestamptz observed_at"
+          ]
+        },
+        {
+          "id": "link",
+          "fields": [
+            "uuid link_id PK",
+            "uuid project_id",
+            "text from_kind",
+            "uuid from_id",
+            "text to_kind",
+            "uuid to_id",
+            "text relation"
+          ]
+        },
+        {
+          "id": "business_audit",
+          "fields": [
+            "uuid event_id PK",
+            "uuid actor_id",
+            "uuid project_id",
+            "uuid entity_id",
+            "uuid correlation_id"
+          ]
+        },
+        {
+          "id": "idempotency_record",
+          "fields": [
+            "uuid actor_id PK",
+            "text operation PK",
+            "text idempotency_key PK",
+            "text state",
+            "text payload_hash",
+            "timestamptz expires_at"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "document",
+          "to": "document_version",
+          "label": "document_id"
+        },
+        {
+          "from": "document_version",
+          "to": "document",
+          "label": "document_id + current_version_id; deferred",
+          "card": "o|--o|"
+        },
+        {
+          "from": "document_version",
+          "to": "passage",
+          "label": "document_id + version_id"
+        },
+        {
+          "from": "document_version",
+          "to": "search_job",
+          "label": "document_id + version_id"
+        },
+        {
+          "from": "embedding_configuration",
+          "to": "search_job",
+          "label": "configuration_id"
+        },
+        {
+          "from": "passage",
+          "to": "passage_embedding",
+          "label": "document_id + version_id + passage_id"
+        },
+        {
+          "from": "embedding_configuration",
+          "to": "passage_embedding",
+          "label": "configuration_id + dimensions"
+        },
+        {
+          "from": "search_job",
+          "to": "passage_embedding",
+          "label": "job_id + document/version/configuration"
+        },
+        {
+          "from": "embedding_configuration",
+          "to": "execution",
+          "label": "nullable configuration_id",
+          "card": "o|--o{"
+        },
+        {
+          "from": "execution",
+          "to": "provenance",
+          "label": "run_id"
+        },
+        {
+          "from": "passage",
+          "to": "provenance",
+          "label": "nullable exact tuple MATCH FULL",
+          "card": "o|--o{"
+        }
+      ]
+    },
+    {
+      "id": "DGM-DATA-03",
+      "path": "docs/sdlc/diagrams/data/handoff-logical-model",
+      "title": "Logical evidence additions — NOT applied schema",
+      "notation": "erd",
+      "trace": "FR-57, FR-59, FR-67; BR-08–BR-12, BR-14; TC-26",
+      "scope": "Logical model additions and service-owned claim correlation. Dashed associations are logical, NOT database foreign keys.",
+      "legend": "HandoffManifest/Outcome need additive migration. Workspace claim maps to existing idempotency_record, not a new chosen table. Physical-purge locator tombstone design remains open.",
+      "adrs": [
+        "ADR-0011",
+        "ADR-0012",
+        "ADR-0013"
+      ],
+      "nodes": [
+        {
+          "id": "Execution",
+          "fields": [
+            "uuid run_id PK",
+            "uuid actor_id",
+            "uuid project_id"
+          ]
+        },
+        {
+          "id": "HandoffManifest",
+          "fields": [
+            "uuid handoff_id PK",
+            "uuid run_id",
+            "uuid attempt_id",
+            "text purpose",
+            "uuid actor_id",
+            "uuid project_id",
+            "text access_context_ref",
+            "json evidence_set",
+            "json revision_refs",
+            "text payload_digest",
+            "text manifest_digest",
+            "boolean complete"
+          ]
+        },
+        {
+          "id": "HandoffOutcome",
+          "fields": [
+            "uuid outcome_id PK",
+            "uuid handoff_id",
+            "text status \"prepared completed aborted unknown\"",
+            "timestamptz observed_at",
+            "text enforcement_ref"
+          ]
+        },
+        {
+          "id": "WorkspaceClaim",
+          "fields": [
+            "uuid actor_id PK",
+            "text operation PK \"protected_handoff\"",
+            "text idempotency_key PK \"handoff_id\"",
+            "text payload_hash \"manifest_digest binding\"",
+            "text state \"existing schema; protocol pending\""
+          ]
+        },
+        {
+          "id": "Provenance",
+          "fields": [
+            "uuid run_id PK",
+            "text source_id PK",
+            "text entity_kind \"additive gap\"",
+            "uuid entity_id",
+            "bigint observation_revision",
+            "timestamptz observed_at"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "Execution",
+          "to": "HandoffManifest",
+          "label": "Knowledge owns immutable complete evidence",
+          "card": "||..o{"
+        },
+        {
+          "from": "HandoffManifest",
+          "to": "HandoffOutcome",
+          "label": "append-only observations; prepared proves no send",
+          "card": "||..o{"
+        },
+        {
+          "from": "HandoffManifest",
+          "to": "WorkspaceClaim",
+          "label": "contract ID/digest correlation only; no cross-store FK",
+          "card": "||..o|"
+        },
+        {
+          "from": "Execution",
+          "to": "Provenance",
+          "label": "exact document tuple OR operational kind/ID/revision/time",
+          "card": "||..o{"
+        }
+      ]
+    },
+    {
+      "id": "DGM-DEPLOY-01",
+      "path": "docs/sdlc/diagrams/deployment/local-development",
+      "title": "Local development deployment — configured and proposed",
+      "notation": "flowchart",
+      "trace": "NFR-01–NFR-05; BR-10, BR-14; SC-06/08",
+      "scope": "Configuration view, not a live-process inventory. Compose currently defines only PostgreSQL; application processes are proposed.",
+      "legend": "Green: configured storage. Blue: proposed application. Yellow: candidate external endpoint. Local DB TLS/backup/production secrets are not configured.",
+      "adrs": [
+        "ADR-0002",
+        "ADR-0003",
+        "ADR-0004",
+        "ADR-0006",
+        "ADR-0011"
+      ],
+      "width": 2300,
+      "height": 1500,
+      "groups": [
+        {
+          "id": "Host",
+          "label": "Developer workstation — local development; hardware sizing unmeasured",
+          "x": 25,
+          "y": 230,
+          "w": 1670,
+          "h": 1200
+        }
+      ],
+      "nodes": [
+        {
+          "id": "Browser",
+          "label": "Browser / web UI\nProposed application\nNo trusted DB or policy access",
+          "x": 65,
+          "y": 360,
+          "w": 320,
+          "h": 135,
+          "group": "Host"
+        },
+        {
+          "id": "Workspace",
+          "label": "One active Workspace process\nProposed port 8000 / HTTPS same-origin\nGateway, policy authority, guarded relay",
+          "x": 555,
+          "y": 360,
+          "w": 410,
+          "h": 160,
+          "group": "Host"
+        },
+        {
+          "id": "Knowledge",
+          "label": "Knowledge process\nProposed port 8001 / loopback internal HTTP\nService credential + authenticated actor",
+          "x": 1190,
+          "y": 360,
+          "w": 410,
+          "h": 160,
+          "group": "Host"
+        },
+        {
+          "id": "Postgres",
+          "label": "Docker Compose: postgres\nConfigured pgvector 0.8.2 / PostgreSQL 17\nPinned image digest in compose.yaml\nTested patch 17.10; not upgraded here",
+          "x": 900,
+          "y": 730,
+          "w": 550,
+          "h": 185,
+          "color": "#d5e8d4",
+          "group": "Host"
+        },
+        {
+          "id": "WorkspaceDB",
+          "label": "workspace_db / workspace_app\nOwned schema; separate non-login owner",
+          "x": 160,
+          "y": 1000,
+          "w": 470,
+          "h": 135,
+          "color": "#d5e8d4",
+          "group": "Host"
+        },
+        {
+          "id": "KnowledgeDB",
+          "label": "knowledge_db / knowledge_app\nOwned schema + pgvector only here",
+          "x": 1100,
+          "y": 1060,
+          "w": 470,
+          "h": 135,
+          "color": "#d5e8d4",
+          "group": "Host"
+        },
+        {
+          "id": "AI",
+          "label": "Provider endpoint — candidate\nHTTPS if external; local placement unselected\nNo provider is started by Compose",
+          "x": 1810,
+          "y": 350,
+          "w": 430,
+          "h": 175,
+          "color": "#fff2cc"
+        },
+        {
+          "id": "Volume",
+          "label": "Named volume: postgres-data\nPersists across db:stop\nBootstrap scripts mounted read-only",
+          "x": 100,
+          "y": 1200,
+          "w": 500,
+          "h": 150,
+          "color": "#d5e8d4",
+          "group": "Host"
+        }
+      ],
+      "edges": [
+        {
+          "from": "Browser",
+          "to": "Workspace",
+          "label": "TB1: HTTPS; session / CSRF"
+        },
+        {
+          "from": "Workspace",
+          "to": "Knowledge",
+          "label": "TB2: internal authenticated scoped requests"
+        },
+        {
+          "from": "Workspace",
+          "to": "Postgres",
+          "label": "TB3: 127.0.0.1:55432 default → container 5432",
+          "points": [
+            {
+              "x": 760,
+              "y": 650
+            },
+            {
+              "x": 1175,
+              "y": 650
+            }
+          ]
+        },
+        {
+          "from": "Knowledge",
+          "to": "Postgres",
+          "label": "TB3: same engine, separate database/login"
+        },
+        {
+          "from": "Postgres",
+          "to": "WorkspaceDB",
+          "label": "hosts; no cross-store runtime access"
+        },
+        {
+          "from": "Postgres",
+          "to": "KnowledgeDB",
+          "label": "hosts"
+        },
+        {
+          "from": "Workspace",
+          "to": "AI",
+          "label": "TB4: guarded provider handoff",
+          "points": [
+            {
+              "x": 760,
+              "y": 270
+            },
+            {
+              "x": 2025,
+              "y": 270
+            }
+          ]
+        },
+        {
+          "from": "Postgres",
+          "to": "Volume",
+          "label": "/var/lib/postgresql/data",
+          "pins": "exitX=0.2;exitY=1;entryX=1;entryY=0.5;exitPerimeter=0;entryPerimeter=0;",
+          "points": [
+            {
+              "x": 1010,
+              "y": 1275
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "DGM-DEV-01",
+      "path": "docs/sdlc/diagrams/development/package-ownership",
+      "title": "Development view — package ownership and adapter boundaries",
+      "notation": "flowchart",
+      "trace": "BR-01–BR-14; SC-01–SC-08",
+      "scope": "Repository ownership; packages below service roots are responsibilities, not a claim that handlers already exist.",
+      "legend": "Two business services. Domain logic depends on interfaces, not UI/provider SDKs. No shared permission implementation or cross-database repositories.",
+      "adrs": [
+        "ADR-0002",
+        "ADR-0003",
+        "ADR-0004",
+        "ADR-0011",
+        "ADR-0012"
+      ],
+      "width": 1950,
+      "height": 1120,
+      "nodes": [
+        {
+          "id": "Web",
+          "label": "apps/web/\nUI candidate: React + Vite\nConsumes public facade; no authority",
+          "x": 60,
+          "y": 290,
+          "w": 400,
+          "h": 135
+        },
+        {
+          "id": "Contracts",
+          "label": "contracts/\nHTTP/event/data definitions\nShared shape, not copied policy rules",
+          "x": 740,
+          "y": 290,
+          "w": 430,
+          "h": 135
+        },
+        {
+          "id": "Workspace",
+          "label": "services/workspace/\nSessions, membership, Scrum, policy, gateway\nOwn adapters + domain + local audit",
+          "x": 60,
+          "y": 650,
+          "w": 480,
+          "h": 185
+        },
+        {
+          "id": "Knowledge",
+          "label": "services/knowledge/\nDocuments, retrieval, evidence and provenance\nOwn adapters + domain + local audit",
+          "x": 1340,
+          "y": 650,
+          "w": 500,
+          "h": 185
+        },
+        {
+          "id": "Checks",
+          "label": "scripts/ + tests/ + eval/\nExisting context/storage harness\nFuture handler/contract/race tests",
+          "x": 1340,
+          "y": 290,
+          "w": 500,
+          "h": 135
+        },
+        {
+          "id": "Infra",
+          "label": "infra/postgres/\nCompose/bootstrap + migration runner\nSeparate store credentials",
+          "x": 700,
+          "y": 950,
+          "w": 480,
+          "h": 135
+        }
+      ],
+      "edges": [
+        {
+          "from": "Web",
+          "to": "Contracts",
+          "label": "public request/response shape"
+        },
+        {
+          "from": "Workspace",
+          "to": "Contracts",
+          "label": "owns Workspace API; consumes Knowledge API",
+          "pins": "exitX=0.5;exitY=0;entryX=0.2;entryY=1;exitPerimeter=0;entryPerimeter=0;",
+          "points": [
+            {
+              "x": 300,
+              "y": 530
+            },
+            {
+              "x": 826,
+              "y": 530
+            }
+          ],
+          "labelOffset": {
+            "x": -50,
+            "y": -25
+          }
+        },
+        {
+          "from": "Knowledge",
+          "to": "Contracts",
+          "label": "owns Knowledge API; consumes current policy/state",
+          "pins": "exitX=0.5;exitY=0;entryX=0.8;entryY=1;exitPerimeter=0;entryPerimeter=0;",
+          "points": [
+            {
+              "x": 1590,
+              "y": 530
+            },
+            {
+              "x": 1084,
+              "y": 530
+            }
+          ],
+          "labelOffset": {
+            "x": 50,
+            "y": -25
+          }
+        },
+        {
+          "from": "Checks",
+          "to": "Contracts",
+          "label": "contract/context validation"
+        },
+        {
+          "from": "Workspace",
+          "to": "Infra",
+          "label": "owned migrations only",
+          "pins": "exitX=0.5;exitY=1;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;",
+          "points": [
+            {
+              "x": 300,
+              "y": 1017.5
+            }
+          ]
+        },
+        {
+          "from": "Knowledge",
+          "to": "Infra",
+          "label": "owned migrations only",
+          "pins": "exitX=0.5;exitY=1;entryX=1;entryY=0.5;exitPerimeter=0;entryPerimeter=0;",
+          "points": [
+            {
+              "x": 1590,
+              "y": 1017.5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

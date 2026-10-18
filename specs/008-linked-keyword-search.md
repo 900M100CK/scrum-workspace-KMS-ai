@@ -1,9 +1,9 @@
 # Find linked knowledge without AI
 
 **Artifact ID:** SP-08  
-**Version/date:** 0.2 Draft · 13 October 2026\
-**Status:** Draft for owner review; ADR-0007–ADR-0011 direction is owner-confirmed; application acceptance remains unproven.\
-**Inputs:** PRD-01 v0.5; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-08--find-linked-knowledge-without-ai); [contract pack](../contracts/README.md); PLAN-01 v0.2.\
+**Version/date:** 0.3 Draft · 17 October 2026\
+**Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
+**Inputs:** PRD-01 v0.8; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-08--find-linked-knowledge-without-ai); [contract pack](../contracts/README.md); PLAN-01 v0.3.\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 2.  
@@ -14,7 +14,7 @@
 
 Address scattered context with explicit links and an AI-independent keyword path.
 
-Use knowledge service contract in contracts/openapi/. Operation IDs: createLink, listLinks, removeLink, keywordSearch. Server identity/permission is never asserted in client fields. SP-11 captures records inside every producing operation.
+Use knowledge service contract in contracts/openapi/. Operation IDs: createLink, listLinks, removeLink, keywordSearch in Knowledge; optional searchTasks in Workspace. Server identity/permission is never asserted in client fields. SP-11 captures records inside every producing operation.
 
 ## Input/output and edges
 
@@ -38,8 +38,10 @@ Done requires the matching PRD ACs exercised on real handlers/persisted state; r
 
 ## Assumptions/checklist/handoff
 
-Uses owner-confirmed ADR-0007–ADR-0011; remaining delegation/history, OD-09 identity and OD-12 framework details stay open. Pass for goal/trace/input-output/edges/paths/Done; Gap for accepted policy/contract/stack and runtime tests. Handoff: Needs owner decision for affected baselines; authorised context work can proceed.
+Uses the applicable owner-confirmed directions through ADR-0017 and OWNER-Q-01. Additional delegation, physical retention, OD-09 identity and OD-12 framework details stay open. Pass for goal/trace/input-output/edges/paths/Done; Gap for accepted policy/contract/stack and runtime tests. Handoff: proceed under confirmed directions; resolve only remaining decisions relevant to implementation. No settled policy requires repeat approval.
 
 ## Owner-added task search - ADR-0016
 
 FR-70 Should follows the 60 Must. Workspace searchTasks searches committed task titles/descriptions in the current project; Knowledge keywordSearch remains document-scoped. Test title/description match, no match, invalid blank query, cross-project denial, revoked membership between pages and AI/Knowledge outages. Show task and document results/failures separately. This adds Workspace-owned paths for the optional slice, not cross-service writes.
+
+**17 October input reconciliation:** FR-16/17/18/20/34/49/59/63/70: Knowledge document search and optional Workspace task search have distinct contracts and failures. Reviewed against the current requirement rows and operation ownership. This is specification review, not implementation or full AC coverage evidence.

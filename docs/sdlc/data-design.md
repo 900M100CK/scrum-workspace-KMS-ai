@@ -1,9 +1,9 @@
 # Logical data and lifecycle design
 
 **Artifact ID:** DATA-04  
-**Version/date:** 0.3 Draft · 13 October 2026
+**Version/date:** 0.6 Draft · 16 October 2026
 **Status:** Draft for owner review; proposed policies/deferrals are not approved.
-**Inputs:** PRD-01 v0.5 and owner amendments; UC-02 v0.3; [SAD-03](../architecture.md) v0.7; [logical entities](../../contracts/data-model.json) v0.2; owner-authorised ADR-0004 implementation.
+**Inputs:** PRD-01 v0.9; UC-02 v0.6; [SAD-03](../architecture.md) v0.9; [logical entities](../../contracts/data-model.json) v0.3; owner-authorised ADR-0004 implementation; ADR-0007–ADR-0017.
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 ## Ownership and relationships
@@ -56,7 +56,7 @@ Physical mapping: UUID identities; bigint revisions/generations/sequences; date 
 
 Embedding configuration and passage embeddings extend the logical search representation without changing HTTP contracts. Configurations carry model/version, dimensions and metric; jobs carry document revision and processing generation. `Execution.source_ids` is normalised into Provenance rows, rather than a duplicated list. Project IDs on allocations/grants enforce same-project references inside Workspace. User/project/work references in Knowledge are opaque service references, not cross-database foreign keys. Labels remain an array; bounded execution metadata uses JSONB. No document content is copied into audit or error fields by this migration.
 
-SQL functions filter the supplied project AND document scope. Exact discovery materialises eligible rows and does not install ANN indexes. English full-text GIN supports the independent keyword baseline. Permission authority and guarded delivery remain Workspace application work. Table access is for trusted service credentials; this foundation does not expose an end-user SQL interface. No answer or permission-decision cache is introduced.
+SQL functions filter the supplied project AND document scope. Exact discovery materialises eligible rows and does not install ANN indexes. PostgreSQL English full-text search (GIN) — independent keyword path — supports the C0 evaluation baseline. It uses English stemming, does not match word fragments or reliably correct typos, and is appropriate only for the current English-only synthetic corpus. Vietnamese content would need a new language/search decision; no keyword-quality or improvement claim follows from the index. Trigram and fusion remain unselected. FR-70 task title/description search is a separate Workspace literal substring path under ADR-0016; a pg_trgm index is not selected without measured need. Permission authority and guarded delivery remain Workspace application work. Table access is for trusted service credentials; this foundation does not expose an end-user SQL interface. No answer or permission-decision cache is introduced.
 
 Checklist review uses the repository SQL/VectorDB prompts, `Database_Design_Checklist.xlsx` and `Checklist_Database Design Review.xlsx`. Pass: owned objects, relational keys, separation of immutable evidence, migration replay/rollback, configured vector shape and scoped-query negatives. Gap: empirical workload/growth, full foreign-key/query-plan tuning, final policy mapping, encryption/backup restore/retention, full application audit enforcement and concurrent transport tests. N/A: separate polyglot/NoSQL/graph infrastructure, sharding/partitioning/replication and ANN tuning; no measured need in this foundation. These are author checks, not independent approval.
 
@@ -76,4 +76,18 @@ Scoped audit-read with current project membership permits event actor/action/ent
 
 ## Schema fit review - 14 October 2026
 
-[DATA-FIT-01](data-policy-fit-review.md) records actual column/constraint/privilege evidence against current policies. Existing fields support completed allocation preservation and ADR-0017 atomic grant invalidation/unassignment, but no handlers prove them. Immutable per-handoff manifest/entity-kind, physical-purge locator tombstones and optional link soft-removal remain concrete schema/protocol design gaps. No applied migration was changed.
+[DATA-FIT-01](data-policy-fit-review.md) records actual column/constraint/privilege evidence against current policies. Existing fields support completed allocation preservation and ADR-0017 atomic grant invalidation/unassignment, but no handlers prove them. The immutable per-handoff manifest and entity-kind design is specified below; additive storage and guard enforcement remain unimplemented. Physical-purge locator tombstones and optional link soft-removal remain design gaps. No applied migration was changed.
+
+## v0.4 search-path clarification - 16 October 2026
+
+The C0 baseline uses independent PostgreSQL English full-text search (GIN) over the current English-only synthetic corpus. Word fragments, typos and Vietnamese content need a separate search decision; no measured quality is claimed. FR-70 remains a distinct Workspace task substring search. Applied migrations are unchanged.
+
+## Per-handoff manifest and Backlog return design — 16 October 2026
+
+ADR-0008 / OWNER-Q-01: returning unfinished work sets task state to To Do atomically with allocation return, Backlog placement, revision and audit. Completed-Sprint reopening also returns To Do, preserving completed allocation history; blocker/assignment history is retained. No applied migration implements this transaction.
+
+ADR-0012: Knowledge owns immutable `HandoffManifest` records. Required fields: `handoff_id` primary key; `run_id`; `attempt_id`; `purpose` (`provider_input` or `answer_delivery`); authenticated `actor_id`, `project_id` and `access_context_ref`; exact complete `evidence_set` including uncited context; policy/lifecycle/observation revision references; `payload_digest`; `manifest_digest`; `prepared_at`. Evidence entries contain document/version/passage or operational entity kind/ID/revision/observed time. Insert all entries and the completeness marker in one owning transaction; rows cannot be updated. Store provenance identities/digests, not raw protected content or private reasoning.
+
+Freeze the payload and obtain durable acknowledgement before acquiring the guard. Inside the guard, match current full-evidence scope, source validity, recorded revisions and payload/manifest digests. A mismatch aborts with zero bytes and releases the guard; retries prepare a fresh immutable `handoff_id` outside it. Revoked/invalid evidence requires a new validated answer attempt, never trimming the original. Guard scope remains final validation through completed/aborted transport. Remote persistence and retry waits stay outside it.
+
+`HandoffOutcome` is append-only and references `handoff_id`; distinguish prepared from completed/aborted/unknown. Prepared alone proves no send. Before acquiring the guard, Workspace durably claims the ID once using its existing owned idempotency record (`protected_handoff`, actor, handoff ID and manifest digest); only a fresh successful claimant may continue. Existing/unknown claims never authorise sending, unresolved/consumed identities cannot expire into replay, and abort/restart fences the old claimant. Unknown transport outcomes cannot trigger automatic fresh-identity resend. Logical entities are in contracts/data-model.json; additive manifest migrations, immutable/one-use enforcement and TC-26 are implementation gaps.

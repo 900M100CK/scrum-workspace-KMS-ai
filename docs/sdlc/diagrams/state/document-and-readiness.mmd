@@ -1,0 +1,23 @@
+%% Origin: docs/sdlc/diagrams/design-foundation-2026-10-17.md v0.1
+%% DGM-STATE-01 v0.1 Draft - 17 October 2026
+%% Sources: DGM-DESIGN-01 v0.1; PRD-01 v0.9; UC-02 v0.6; SAD-03 v0.12; DATA-04 v0.6; ADR-0007; ADR-0009; ADR-0011; ADR-0013
+%% Trace: FR-11–FR-15, FR-19, FR-47–FR-48, FR-61; UC-07/08; SC-05/06
+%% Scope: Three separate state domains: a version, a search job, and document availability. No combined product Draft state.
+%% Legend: Revision creates a NEW Current identity; the old instance becomes Superseded. Guards, expected revision, idempotency and local audit are prerequisites, not shown as lifecycle states.
+stateDiagram-v2
+    direction LR
+    state "Version: Current" as Current
+    state "Version: Superseded<br/>Immutable historical bytes" as Superseded
+    state "Version: Archived<br/>Only explicit history if readable" as Archived
+    state "Job: pending<br/>New attempt uses a fresh job/generation" as Pending
+    state "Job: ready<br/>Exact version/revision/generation match" as Ready
+    state "Job: failed<br/>Semantic unavailable; keyword independent" as Failed
+    state "Document: available<br/>Current pointer may be null after archive" as Available
+    state "Document: unavailable<br/>Monotonic logical deletion; no revival<br/>Physical purge/retention undecided" as Unavailable
+    Current --> Superseded: revise: same transaction installs a NEW Current
+    Current --> Archived: archive Current; clear current pointer
+    Superseded --> Archived: archive historical version
+    Pending --> Ready: matching job succeeds
+    Pending --> Failed: processing fails
+    Failed --> Pending: retry same job identity while still valid
+    Available --> Unavailable: authorised delete; invalidate jobs and protected reads

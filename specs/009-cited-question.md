@@ -1,9 +1,9 @@
 # Answer a question with exact accessible evidence
 
 **Artifact ID:** SP-09  
-**Version/date:** 0.2 Draft · 13 October 2026\
-**Status:** Draft for owner review; ADR-0007–ADR-0011 direction is owner-confirmed; application acceptance remains unproven.\
-**Inputs:** PRD-01 v0.5; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-09--answer-a-question-with-exact-accessible-evidence); [contract pack](../contracts/README.md); PLAN-01 v0.2.\
+**Version/date:** 0.4 Draft · 17 October 2026\
+**Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
+**Inputs:** PRD-01 v0.8; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-09--answer-a-question-with-exact-accessible-evidence); [contract pack](../contracts/README.md); PLAN-01 v0.3.\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 3.  
@@ -37,7 +37,7 @@ Done requires the matching PRD ACs exercised on real handlers/persisted state; r
 
 ## Assumptions/checklist/handoff
 
-Uses owner-confirmed ADR-0007–ADR-0011; remaining delegation/history, OD-09 identity and OD-12 framework details stay open. Pass for goal/trace/input-output/edges/paths/Done; Gap for accepted policy/contract/stack and runtime tests. Handoff: Needs owner decision for affected baselines; authorised context work can proceed.
+Uses the applicable owner-confirmed directions through ADR-0017 and OWNER-Q-01. Additional delegation, physical retention, OD-09 identity and OD-12 framework details stay open. Pass for goal/trace/input-output/edges/paths/Done; Gap for accepted policy/contract/stack and runtime tests. Handoff: proceed under confirmed directions; resolve only remaining decisions relevant to implementation. No settled policy requires repeat approval.
 
 ## Owner clarification - 14 October 2026
 
@@ -46,3 +46,7 @@ Invented citation identities invalidate the original answer draft. A bounded rep
 ADR-0013 binds this slice: surviving unavailable citation identity requires current membership and retained document-read policy, with exact locator verification and no content substitution; revoked/audit-only/unknown readers get generic 404. Terminal answer withholding uses fixed HTTP 503 AnswerWithheld without evidence or detailed cause. These are required runtime assertions, not passes from schema checks.
 
 ADR-0015 additionally requires partially_answered for supported cited components plus missing requested components. Test that the response has real support, no hidden-source hints and no salvaged invalid draft; all-missing remains insufficient_evidence.
+
+ADR-0012 / OWNER-Q-01 handoff assertion (TC-26): persist a complete immutable per-handoff manifest outside the guard, await durable acknowledgement, acquire the guard and match the frozen payload, entire evidence set and recorded revisions. Any mismatch sends zero bytes and releases the guard before a bounded fresh manifest/attempt. Fail persistence and race revocation/version/observation changes; test consumed-identity replay and crash/restart without resuming an old send. Guard remains held through valid transport completion/abort. Schema/handler tests are Not run.
+
+**17 October input reconciliation:** FR-21/22/23/24/28/29/30/46/53/54/55/60/69: partial answers, original-draft withholding and manifest-before-guard assertions remain binding. Reviewed against the current requirement rows and operation ownership. This is specification review, not implementation or full AC coverage evidence.

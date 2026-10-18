@@ -1,9 +1,9 @@
 # Verify fallback and evaluate the evidence pipeline
 
 **Artifact ID:** SP-12  
-**Version/date:** 0.2 Draft · 13 October 2026\
-**Status:** Draft for owner review; ADR-0007–ADR-0011 direction is owner-confirmed; application acceptance remains unproven.\
-**Inputs:** PRD-01 v0.5; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-12--continue-work-during-ai-failure); [contract pack](../contracts/README.md); PLAN-01 v0.2.\
+**Version/date:** 0.3 Draft · 17 October 2026\
+**Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
+**Inputs:** PRD-01 v0.8; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-12--continue-work-during-ai-failure); [contract pack](../contracts/README.md); PLAN-01 v0.3.\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 4.  
@@ -23,7 +23,7 @@ Input: valid session, operation-specific fields, expected revision and scoped id
 ## Acceptance
 
 1. In every AC-33 failure mode, independent work/document operations succeed under healthy own dependencies.
-2. Record about 20–30 reference questions, source/version/access and claim rubric; separate retrieval and generation.
+2. Maintain the separate 25-case research (8 document / 8 state / 9 combined) and 25-case safety suites, with source/version/access and claim rubrics; separate retrieval and generation.
 3. Freeze post-pilot criteria before final run and keep negative results; no speed/quality improvement claim without matched baseline.
 
 ## Allowed paths and Done
@@ -36,4 +36,6 @@ Done requires the matching PRD ACs exercised on real handlers/persisted state; r
 
 ## Assumptions/checklist/handoff
 
-Uses owner-confirmed ADR-0007–ADR-0011; remaining delegation/history, OD-09 identity and OD-12 framework details stay open. Pass for goal/trace/input-output/edges/paths/Done; Gap for accepted policy/contract/stack and runtime tests. Handoff: Needs owner decision for affected baselines; authorised context work can proceed.
+Uses the applicable owner-confirmed directions through ADR-0017 and OWNER-Q-01. Additional delegation, physical retention, OD-09 identity and OD-12 framework details stay open. Pass for goal/trace/input-output/edges/paths/Done; Gap for accepted policy/contract/stack and runtime tests. Handoff: proceed under confirmed directions; resolve only remaining decisions relevant to implementation. No settled policy requires repeat approval.
+
+**17 October input reconciliation:** FR-33 and the evaluation definitions: retain separate 25-case research and 25-case safety suites with unrun results. Reviewed against the current requirement rows and operation ownership. This is specification review, not implementation or full AC coverage evidence.

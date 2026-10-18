@@ -1,14 +1,14 @@
 # User experience specification and source inventory
 
 **Artifact ID:** UX-06
-**Version/date:** 0.1 Draft - 14 October 2026
+**Version/date:** 0.3 Draft - 16 October 2026
 **Status:** Consolidated design requirements; no rendered application, usability study or accessibility certification.
-**Inputs:** PRD-01 v0.5 and owner amendments; UC-02 v0.3; SAD-03 v0.7; Workspace/Knowledge contract drafts; ADR-0007 through ADR-0015; Stage 6 profile and local UI/UX and Blueprint checklists.
+**Inputs:** PRD-01 v0.9; UC-02 v0.6; SAD-03 v0.12; Workspace/Knowledge contract drafts; ADR-0007 through ADR-0017; Stage 6 profile and local UI/UX and Blueprint checklists.
 **Trace:** BR-01 through BR-14; SC-01 through SC-08. Enhanced reports and Future Work remain outside these journeys.
 
 ## Sources and authority
 
-This is the Stage 6 entry and inventory. Detailed flows remain in [personas](../ux/personas.md) v0.4, [sitemap](../ux/sitemap.md) v0.4, [permission matrix](../ux/permission-matrix.md) v0.4, [board](../ux/flows/board-flow.md) v0.5, [documents](../ux/flows/docs-flow.md) v0.4 and [AI](../ux/flows/ai-qa-flow.md) v0.5, including dated owner amendments. [Diagrams](diagrams/README.md) are editable design sources; structural checks are not visual verification.
+This is the Stage 6 entry and inventory. Detailed flows remain in [personas](../ux/personas.md) v0.4, [sitemap](../ux/sitemap.md) v0.4, [permission matrix](../ux/permission-matrix.md) v0.5, [board](../ux/flows/board-flow.md) v0.6, [documents](../ux/flows/docs-flow.md) v0.4 and [AI](../ux/flows/ai-qa-flow.md) v0.6, including OWNER-Q-01's To Do return and manifest-before-guard directions. [Diagrams](diagrams/README.md) are editable design sources; structural checks are not visual verification.
 
 Personas are illustrative, not interviewed users. Roles express responsibilities; current scoped capabilities determine actions. Workspace owns identity, project membership, work and permission decisions; Knowledge owns immutable sources and AI evidence. Neither client controls nor a known URL grant authority. No account provisioning, saved conversation, AI write, report or additional service is added by this entry.
 

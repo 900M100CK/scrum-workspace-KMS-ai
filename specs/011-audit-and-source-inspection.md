@@ -1,9 +1,9 @@
 # Capture business audit and answer provenance
 
 **Artifact ID:** SP-11  
-**Version/date:** 0.2 Draft · 13 October 2026\
-**Status:** Draft for owner review; ADR-0007–ADR-0011 direction is owner-confirmed; application acceptance remains unproven.\
-**Inputs:** PRD-01 v0.5; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-11--capture-business-audit-and-answer-provenance); [contract pack](../contracts/README.md); PLAN-01 v0.2.\
+**Version/date:** 0.4 Draft · 17 October 2026\
+**Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
+**Inputs:** PRD-01 v0.8; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-11--capture-business-audit-and-answer-provenance); [contract pack](../contracts/README.md); PLAN-01 v0.3.\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 1 mutation capture; Month 3 answer receipts.  
@@ -38,4 +38,8 @@ Done requires the matching PRD ACs exercised on real handlers/persisted state; r
 
 ## Assumptions/checklist/handoff
 
-Uses owner-confirmed ADR-0007–ADR-0011; remaining delegation/history, OD-09 identity and OD-12 framework details stay open. Pass for goal/trace/input-output/edges/paths/Done; Gap for accepted policy/contract/stack and runtime tests. Handoff: Needs owner decision for affected baselines; authorised context work can proceed.
+Uses the applicable owner-confirmed directions through ADR-0017 and OWNER-Q-01. Additional delegation, physical retention, OD-09 identity and OD-12 framework details stay open. Pass for goal/trace/input-output/edges/paths/Done; Gap for accepted policy/contract/stack and runtime tests. Handoff: proceed under confirmed directions; resolve only remaining decisions relevant to implementation. No settled policy requires repeat approval.
+
+ADR-0012 / OWNER-Q-01 handoff assertion (TC-26): persist a complete immutable per-handoff manifest outside the guard, await durable acknowledgement, acquire the guard and match the frozen payload, entire evidence set and recorded revisions. Any mismatch sends zero bytes and releases the guard before a bounded fresh manifest/attempt. Fail persistence and race revocation/version/observation changes; test consumed-identity replay and crash/restart without resuming an old send. Guard remains held through valid transport completion/abort. Schema/handler tests are Not run.
+
+**17 October input reconciliation:** FR-31/32/57 and ADR-0012: atomic minimum audit and immutable pre-handoff evidence remain required. Reviewed against the current requirement rows and operation ownership. This is specification review, not implementation or full AC coverage evidence.

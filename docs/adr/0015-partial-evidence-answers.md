@@ -1,8 +1,9 @@
 # Partial answers with cited supported components
 
 **Artifact ID:** ADR-0015
-**Version/date:** 0.1 Draft - 14 October 2026
+**Version/date:** 0.2 Draft - 16 October 2026
 **Status:** Owner-confirmed partial-answer behavior and research question clarification; implementation and evaluation pending.
+**Owner confirmation source:** [BA-D18/BA-D19](../analyst/business-review-2026-10-13.md); source records direction, not implementation evidence.
 **Inputs:** PRD-01 FR-23/24/29/60; ADR-0013; research cases v0.1 semantic review.
 **Trace:** BR-08, BR-09, BR-10, BR-12; FR-21-FR-26, FR-29, FR-55, FR-60; H1/H2.
 

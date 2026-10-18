@@ -2,7 +2,7 @@
   "openapi": "3.1.1",
   "info": {
     "title": "Workspace service public facade and internal policy",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "description": "Draft contract; policy/stack decisions remain proposed. Schema validation proves shape only."
   },
   "x-status": "Draft",
@@ -896,7 +896,7 @@
         "x-requirements": [
           "FR-09"
         ],
-        "description": "Authorised members may change directly between todo, in_progress and done, including reopening done. Enforce authenticated project authority, expected revision and scoped idempotency. Reopening a Done task from a Completed Sprint atomically returns it to Product Backlog while preserving completed allocation history and leaving that Sprint Completed (ADR-0008 v0.2). Record audit; no automatic Scrum Master approval.",
+        "description": "Authorised members may change directly between todo, in_progress and done, including reopening done. Enforce authenticated project authority, expected revision and scoped idempotency. Reopening a Done task from a Completed Sprint atomically returns it to Product Backlog as To Do (normalising a requested In Progress target) while preserving completed allocation history and leaving that Sprint Completed (ADR-0008 v0.3). Record audit; no automatic Scrum Master approval.",
         "parameters": [
           {
             "name": "task_id",
@@ -1532,7 +1532,7 @@
         "x-requirements": [
           "FR-67"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. ADR-0008 v0.3: unfinished tasks returned to Product Backlog become To Do; commit allocation return, task revision and minimum audit atomically, preserve Done/completed history, and reconcile same-key replay.",
         "parameters": [
           {
             "name": "sprint_id",
@@ -1725,7 +1725,7 @@
         "x-requirements": [
           "FR-42"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. ADR-0008 v0.3: unfinished tasks returned to Product Backlog become To Do; commit allocation return, task revision and minimum audit atomically, preserve Done/completed history, and reconcile same-key replay.",
         "parameters": [
           {
             "name": "sprint_id",

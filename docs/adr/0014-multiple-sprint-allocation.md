@@ -1,9 +1,10 @@
 # Multiple task selection with per-task allocation outcomes
 
 **Artifact ID:** ADR-0014
-**Version/date:** 0.1 Draft - 14 October 2026
+**Version/date:** 0.2 Draft - 16 October 2026
 **Status:** Owner-confirmed multi-selection and per-task result behavior; transport design draft, handlers unimplemented.
-**Inputs:** PRD-01 v0.5 FR-07/AC-07; UC-05 allocation and Alt-1; Workspace OpenAPI v0.2.0 allocateTask.
+**Owner confirmation source:** [BA-D17](../analyst/business-review-2026-10-13.md); source records direction, not implementation evidence.
+**Inputs:** PRD-01 v0.6 FR-07/AC-07; UC-02 v0.4 UC-05 allocation and Alt-1; Workspace OpenAPI v0.2.1 allocateTask.
 **Trace:** BR-02; FR-07, FR-31; NFR-02, NFR-03.
 
 ## Decision and transport design

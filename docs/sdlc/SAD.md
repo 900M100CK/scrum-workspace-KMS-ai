@@ -1,20 +1,20 @@
 # Architecture — stable SDLC entry
 
 **Artifact ID:** SAD-03-ENTRY
-**Version/date:** 0.6 Draft · 13 October 2026
-**Status:** Draft for owner review; proposed policies/deferrals are not approved.
-**Inputs:** SAD-03 v0.7; PRD-01 v0.5; PLAN-01 v0.1; ADR-0004 v0.2.
+**Version/date:** 0.11 Draft · 17 October 2026
+**Status:** Draft; recorded owner-confirmed directions apply, while remaining choices and runtime acceptance are open.
+**Inputs:** SAD-03 v0.12; PRD-01 v0.9; PLAN-01 v0.3; ADR-0004 v0.2; ADR-0007–ADR-0017.
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 Read [the complete architecture](../architecture.md). It is the single design source; this entry preserves the workflow path without duplicating design.
 
-The canonical artifact is **SAD-03 v0.7**; this pointer is **SAD-03-ENTRY v0.6**. Stage 3 owns both under the [workflow](../../agents/WORKFLOW.md). ADR-0004's owner-authorised storage foundation has executable migrations and database tests; application behavior and other policy decisions remain draft.
+The canonical artifact is **SAD-03 v0.12**; this pointer is **SAD-03-ENTRY v0.11**. Stage 3 owns both under the [workflow](../../agents/WORKFLOW.md). ADR-0004's owner-authorised storage foundation has executable migrations and database tests; application implementation and the explicitly listed remaining decisions are still pending.
 
 ## 4+1 Architectural View Model Organization
 
 The canonical architecture ([docs/architecture.md](../architecture.md)) is structured according to Philippe Kruchten's 4+1 Architectural View Model:
 
-1. **Context, Drivers & Decisions (§1):** System scope, business drivers (Authorization Integrity, Evidence Fidelity, AI Outage Fallback, Bounded Footprint), and decision log (ADR-0001–ADR-0006).
+1. **Context, Drivers & Decisions (§1):** System scope, business drivers (Authorization Integrity, Evidence Fidelity, AI Outage Fallback, Bounded Footprint), and decision log (ADR-0001–ADR-0017).
 2. **Logical View (§2):** Decomposition into Workspace Service, Knowledge Service, Web UI, and Provider Relay; strict Database-per-Service isolation; OpenAPI 3.1.1 schemas and security invariants.
 3. **Process View (§3):** Concurrency model; ADR-0006 Protected Handoff Guard; five dynamic runtime workflows; boundary timeouts and retry budgets; explicit AI failure and independent keyword search.
 4. **Development View (§4):** Monorepo structure (`services/`, `apps/`, `contracts/`, `specs/`, `eval/`); domain-layer isolation; Node context harness standards.
@@ -22,8 +22,12 @@ The canonical architecture ([docs/architecture.md](../architecture.md)) is struc
 6. **Scenarios View / +1 View (§6):** Core architectural scenarios SC-01 through SC-08 linking requirements to the four structural views; execution remains unverified.
 7. **Traceability & Review (§7):** Per-FR BR sources and implementation responsibilities, scenario references and explicit trace gaps; author checklist; open decision log.
 
-Status: Draft; Needs owner decision. Checklist: Pass for source link and 4+1 structure mapping; Gap for accepted policies and implementation evidence. Handoff: use the canonical architecture and its ADRs for data/API/UI design.
+Status: Draft; Ready for downstream with explicit gaps. Checklist: Pass for source link and 4+1 structure mapping; Gap for remaining decisions and implementation evidence. Handoff: use the canonical architecture and its ADRs for data/API/UI design.
 
 **v0.5 change summary:** Points to SAD-03 v0.7 and distinguishes the implemented storage foundation from unimplemented application behavior and pending policies.
 
 **v0.6 change:** Follows SAD-03 v0.7 and ADR-0007–ADR-0011; remaining policy and application evidence gaps are explicit in the canonical source.
+
+**v0.7 change:** Points to SAD-03 v0.8, which separates the English full-text keyword baseline from pgvector AI discovery. Prior change summaries above are historical.
+
+The [diagram foundation](diagrams/design-foundation-2026-10-17.md) uses C4 Context/Container as the structural entry and maps the same diagrams to the 4+1 narrative above. Deployment distinguishes configured storage from proposed application processes.

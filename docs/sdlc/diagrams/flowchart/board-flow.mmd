@@ -1,6 +1,6 @@
-%% Origin: docs/ux/flows/board-flow.md v0.5
-%% DGM-FLOW-02 v0.5 Draft - 14 October 2026
-%% Sources: PRD-01 v0.5; UC-02 v0.3; SAD-03 v0.7; ADR-0007/0008 v0.2/0011; OpenAPI v0.2.0
+%% Origin: docs/ux/flows/board-flow.md v0.6
+%% DGM-FLOW-02 v0.7 Draft - 17 October 2026
+%% Sources: UX-FLOW-BOARD-01 v0.6; PRD-01 v0.9; UC-02 v0.6; SAD-03 v0.12; ADR-0007; ADR-0008; ADR-0011; ADR-0017
 %% Trace: FR-03, FR-08-FR-09, FR-17, FR-31, FR-33, FR-39, FR-42-FR-44, FR-59, FR-68; SC-01, SC-03, SC-04, SC-06, SC-08
 %% UX / server responsibilities are labelled. API keys are relative to /api. Policy and runtime evidence remain unapproved.
 flowchart TD
@@ -15,7 +15,7 @@ flowchart TD
     Move["Direct move between any columns, including reopen Done; POST /tasks/{task_id}/state"]
     Block["Flag or resolve: POST /tasks/{task_id}/blockers; status open or resolved; description, optional outcome"]
     Server["Server validates session, membership, capability, input, expected revision and idempotency"]
-    Saved["Confirmed state; reopened completed-Sprint task returns to Backlog, Sprint history retained; blockers use committed sequence"]
+    Saved["Confirmed state; reopened completed-Sprint task returns to Backlog as To Do; Sprint history retained; blockers use committed sequence"]
     Conflict["409: rollback optimistic display; fetch latest permitted state"]
     Failure["400: correct input; network/503: rollback, reconcile before retry; never claim saved"]
     Loss["401: sign-in; membership loss: clear protected board and generic 404; cancel pending UI"]

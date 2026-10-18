@@ -2,7 +2,7 @@
   "openapi": "3.1.1",
   "info": {
     "title": "Knowledge service public facade through Workspace gateway",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "description": "Draft contract; policy/stack decisions remain proposed. Schema validation proves shape only."
   },
   "x-status": "Draft",
@@ -1099,7 +1099,7 @@
           "FR-57",
           "FR-69"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. ADR-0013: withheld answers use the fixed AnswerWithheld body; never expose access-change reasons or any part of the original evidence-dependent draft. An invented citation invalidates the original draft; only a new bounded attempt that rechecks claim support, exact citation binding, access and mandatory provenance may be delivered. Otherwise return AnswerWithheld.",
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. ADR-0013: withheld answers use the fixed AnswerWithheld body; never expose access-change reasons or any part of the original evidence-dependent draft. An invented citation invalidates the original draft; only a new bounded attempt that rechecks claim support, exact citation binding, access and mandatory provenance may be delivered. Otherwise return AnswerWithheld. ADR-0012 v0.3: complete immutable manifest durable outside guard before each provider/answer handoff; guarded exact payload/evidence/revision matching, zero-byte abort on mismatch, fresh preparation only after guard release. Failed/unknown persistence authorises no send; aborted/consumed handoff IDs cannot resume or replay.",
         "parameters": [],
         "responses": {
           "200": {
@@ -1330,7 +1330,7 @@
           "FR-32",
           "FR-57"
         ],
-        "description": "Internal authenticated service only; Workspace validates actor/session/current project and document scope. Not a browser-callable endpoint. ADR-0013: withheld answers use the fixed AnswerWithheld body; never expose access-change reasons or any part of the original evidence-dependent draft. An invented citation invalidates the original draft; only a new bounded attempt that rechecks claim support, exact citation binding, access and mandatory provenance may be delivered. Otherwise return AnswerWithheld.",
+        "description": "Internal authenticated service only; Workspace validates actor/session/current project and document scope. Not a browser-callable endpoint. ADR-0013: withheld answers use the fixed AnswerWithheld body; never expose access-change reasons or any part of the original evidence-dependent draft. An invented citation invalidates the original draft; only a new bounded attempt that rechecks claim support, exact citation binding, access and mandatory provenance may be delivered. Otherwise return AnswerWithheld. ADR-0012 v0.3: complete immutable manifest durable outside guard before each provider/answer handoff; guarded exact payload/evidence/revision matching, zero-byte abort on mismatch, fresh preparation only after guard release. Failed/unknown persistence authorises no send; aborted/consumed handoff IDs cannot resume or replay.",
         "parameters": [
           {
             "name": "Idempotency-Key",

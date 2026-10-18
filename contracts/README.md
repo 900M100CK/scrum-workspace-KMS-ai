@@ -1,9 +1,9 @@
 # Contract-first interface pack
 
 **Artifact ID:** CONTRACT-01  
-**Version/date:** 0.3 Draft · 14 October 2026\
+**Version/date:** 0.4 Draft · 16 October 2026\
 **Status:** Draft for owner review; ADR-0007–ADR-0011 direction is owner-confirmed; remaining protocol/policy gaps and handler evidence are pending.\
-**Inputs:** PRD-01 v0.5; [architecture](../docs/architecture.md); [data design](../docs/sdlc/data-design.md); PLAN-01 v0.1.\
+**Inputs:** PRD-01 v0.7; [architecture](../docs/architecture.md); [data design](../docs/sdlc/data-design.md); PLAN-01 v0.2.\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 ## Status and ownership
@@ -22,9 +22,12 @@ These are draft HTTP/JSON contracts for review before application code. The owne
 - Workspace allocates ID and commits policy/initial grants, then calls persistDocument in Knowledge; no activation step. 202 describes an uncertain creation outcome requiring same-key reconciliation, never content/search readiness. An ACL without content remains unreadable.
 - Events carry IDs/revisions, no content/grants. Authenticate producer and handle duplicates/out-of-order state; events are invalidation hints, never the permission authority. No broker is required; transport is an implementation choice.
 - Question result states answered/partially_answered/insufficient_evidence/conflict are separate from dependency failures. Error response names failure category and has no generated answer. No model endpoint or provider config is a caller-controlled URL.
+- OWNER-Q-01 / ADR-0008: returned unfinished work and Completed-Sprint reopening become To Do atomically with allocation, task revision and minimum audit; preserve completed history. ADR-0012: complete immutable manifests and one-use Workspace relay claims are durable before guard acquisition; guarded evidence/revision/payload matching precedes any bytes. A mismatch aborts and releases the guard before a bounded fresh preparation. An unknown transport outcome never authorises automatic resend.
 
 Context checks validate references, operation/spec trace and expected non-disclosure schemas. Real consumer/provider tests must later exercise session expiry, current access, revocation, stale state and provider failures on real handlers. No generated API or runtime feature has been implemented.
 
 Checklist: Pass for draft owner/shape/error/trace baseline; Gap for accepted auth/protocol policies, full OpenAPI meta-schema validation and real consumer/provider tests. Handoff: Needs owner decision; do not call this accepted wire compatibility.
 
 **v0.2 change:** See [contract changelog](CHANGELOG.md). Internal persistence carries a Workspace-allocated path ID and authenticated actor/service context; public creation accepts no caller-selected identity. Initial author grants remain revocable.
+
+**v0.4 change:** OWNER-Q-01 directions appear in Workspace OpenAPI v0.2.2 / Knowledge v0.2.3 operation descriptions. Logical model v0.3 specifies immutable HandoffManifest/HandoffOutcome and operational entity_kind; physical manifest storage and handlers are not implemented.

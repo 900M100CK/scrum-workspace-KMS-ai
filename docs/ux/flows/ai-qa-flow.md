@@ -1,9 +1,9 @@
 # User Flow: AI Q&A, Citations & Fallback
 
 **Artifact ID:** UX-FLOW-AI-03\
-**Version/date:** 0.5 Draft · 14 October 2026\
+**Version/date:** 0.6 Draft · 16 October 2026\
 **Status:** Owner-confirmed policy direction; runtime and full UX review pending.\
-**Sources:** PRD-01 v0.5; UC-02 v0.3 (UC-09/UC-10/UC-12); SAD-03 v0.7; ADR-0007/0009/0011; OpenAPI v0.2.0.\
+**Sources:** PRD-01 v0.7; UC-02 v0.5 (UC-09/UC-10/UC-12); SAD-03 v0.10; ADR-0007/0009/0011; Workspace OpenAPI v0.2.2 / Knowledge v0.2.3.\
 **Trace:** BR-07–BR-10, BR-12–BR-14; FR-18–FR-30, FR-32–FR-34, FR-46, FR-53–FR-55, FR-59–FR-61, FR-69; SC-02, SC-03, SC-05–SC-08.
 
 ## 1. Request and protected handoffs
@@ -11,9 +11,9 @@
 Use the authenticated application session, not client-asserted user identity or an assumed JWT. Submit `POST /knowledge/questions` with project selector, question and explicit current/historical scope. All paths here are OpenAPI keys relative to `/api`.
 
 1. Workspace checks current session and membership; Knowledge retrieves only authorised project AND document scope. Project-shared sources need no explicit grant; restricted sources do, including the author's revocable grant. Unknown authority denies. Default retrieval is Current-only; deliberate history is labelled. Revisions become Current immediately; no product Draft exists.
-2. Before provider input, Workspace revalidates current scope while Knowledge validates versions/availability, under the ADR-0006 guard through provider transport handoff completion/abort.
+2. Persist the frozen payload's complete immutable manifest outside the guard. After durable acknowledgement, Workspace revalidates current scope while Knowledge validates evidence/revisions/availability and exact payload binding, under the guard through provider transport handoff completion/abort. A mismatch sends no bytes and releases the guard before a bounded fresh manifest/attempt.
 3. Generation waits outside the guard. Buffer all output. A loading indicator exposes no answer tokens, source titles, snippets or hidden counts.
-4. Validate citation identities assigned from server evidence records. Before answer delivery, revalidate the **entire evidence set, including uncited model context**, session, permissions and validity under the guard through response transport handoff.
+4. Validate citation identities assigned from server evidence records. Before answer delivery, persist a fresh complete manifest outside the guard, then revalidate exact manifest/payload binding and the **entire evidence set, including uncited model context**, session, permissions and validity under the guard through response transport handoff.
 5. If any evidence was revoked, withhold the entire original draft. Optionally regenerate as a new bounded attempt solely from remaining permitted evidence and repeat both handoff checks. Never remove only a citation/sentence and release the old text.
 6. Opening a citation performs a new protected read with current checks; previous delivery grants no lasting authority.
 

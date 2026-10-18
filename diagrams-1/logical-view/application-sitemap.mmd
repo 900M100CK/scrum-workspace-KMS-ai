@@ -1,0 +1,27 @@
+%% Origin: docs/ux/sitemap.md v0.5
+%% DGM-SITE-01 v0.6 Draft - 17 October 2026
+%% Sources: UX-SITEMAP-03 v0.5; PRD-01 v0.9; UC-02 v0.6; SAD-03 v0.12; ADR-0007; ADR-0009; ADR-0011; ADR-0013; ADR-0016; ADR-0017
+%% Browser routes need not equal HTTP API paths. Citation inspection carries the exact document/version/passage identity. Route names are proposals pending Stage 5/6 owner review.
+graph TD
+    Root["SACW Web App"] --> Auth["/login (Authentication)"]
+    Root --> Projects["/projects (Project Directory)"]
+    Root --> NotFound["Generic 404 (unknown or inaccessible; no title, count or version; shared by all protected routes)"]
+    Projects --> ProjContext["/p/:projectId (Project Scope; membership checked)"]
+    ProjContext --> WorkNav["Work Navigation"]
+    WorkNav --> Backlog["/backlog (Product Backlog & Sprint Planning)"]
+    WorkNav --> Board["/board (Active Sprint Board, quick filters & Blockers)"]
+    ProjContext --> KMSNav["Knowledge Navigation"]
+    KMSNav --> Docs["/docs (Document Explorer; permitted Current documents; explicit labelled history)"]
+    KMSNav --> Search["/search (Documents: permitted Current keyword search; Tasks: FR-70 Should, Workspace survives Knowledge outage)"]
+    Docs --> DocDetail["/docs/:docId (Version Viewer & Editor)"]
+    DocDetail --> DocHistory["/docs/:docId/history (Explicit Version History)"]
+    KMSNav --> DocAccess["/docs/:docId/manage (known identity; manage-access capability; no content-read prerequisite)"]
+    KMSNav --> DocActions["/docs/:docId/actions (known identity; content-write or lifecycle capability; no content prefill without read)"]
+    ProjContext --> AdminNav["Administration"]
+    AdminNav --> Members["/settings/members (Team membership and project roles)"]
+    AdminNav --> ProjSettings["/settings/general (Project Details)"]
+    AdminNav --> Audit["/audit (Scoped audit and execution-trace inspection; audit-read / trace-read capability)"]
+    ProjContext --> GlobalAI["Global AI Assistant (Slide-over Drawer / Modal)"]
+    GlobalAI --> QueryHistory["Query & Citation Session"]
+    GlobalAI --> CitationViewer["/citations/:documentId/:versionId/:passageId (Exact passage inspector; guarded protected read)"]
+%% Change: current origin metadata registered for docs:lint; graph semantics retained.

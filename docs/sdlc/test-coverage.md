@@ -1,8 +1,8 @@
 # Scenario and exception verification matrix
 
 **Artifact ID:** TEST-COVERAGE-01
-**Version/date:** 0.1 Draft · 14 October 2026
-**Inputs:** PRD-01 v0.5; UC-02 v0.3; TEST-08 v0.3; ADR-0007–ADR-0012.
+**Version/date:** 0.3 Draft · 16 October 2026
+**Inputs:** PRD-01 v0.9; UC-02 v0.6; TEST-08 v0.5; ADR-0007–ADR-0017.
 **Status:** Planned assertions, not executed application coverage or independent approval.
 
 ## Evidence rules
@@ -18,7 +18,7 @@
 | SC-03 | Query blocked work after ordered Open/Resolved events; compare fresh operational IDs/revisions/time, exclude out-of-project tasks and stale document claims | TC-08 | Not run |
 | SC-04 | Find past blocker plan and recorded resolution via history/links; keep plan distinct from confirmed outcome; exact citations remain labelled | TC-08, TC-09, TC-17 | Not run |
 | SC-05 | Save two immediate revisions; exactly one Current, old passages unchanged; current retrieval cannot return old content as current; exact old citation opens labelled history | TC-05, TC-06 | Storage prerequisites tested; handlers not run |
-| SC-06 | Cross-project, no-grant, revoked-author, removed/rejoined member and direct citation attempts deny protected content; scoped audit identity follows ADR-0012 without granting content access | TC-02–TC-04, TC-11, TC-15 | Storage scope prerequisites tested; handlers not run |
+| SC-06 | Cross-project, no-grant, revoked-author, removed/rejoined member and direct citation attempts deny protected content; scoped audit identity follows ADR-0012 without granting content access | TC-02–TC-04, TC-11, TC-15, TC-26 | Storage scope prerequisites tested; handlers not run |
 | SC-07 | Ask an unrecorded decision with empty and related-but-insufficient evidence; explicit insufficient evidence, no fabricated rationale or hints about hidden sources | TC-09, TC-12 | Not run |
 | SC-08 | Inject provider connection failure, timeout and exhausted budget; question fails without generated answer; healthy work/Sprint/docs/keyword paths still succeed | TC-10, TC-14 | Not run |
 
@@ -26,25 +26,25 @@
 
 | Requirement | Gates and key assertion | Evidence status |
 | --- | --- | --- |
-| BR-01 | TC-01–TC-03, TC-13: authenticated project membership and scoped actions | Application not run |
+| BR-01 | TC-01–TC-03, TC-13, TC-24: authenticated project membership and scoped actions | Application not run |
 | BR-02 | TC-07, TC-19, TC-21: ordered Backlog, fixed Sprint allocation/completion, no implicit Done | Application not run |
 | BR-03 | TC-07, TC-08, TC-16: direct state moves, assignee validation, ordered blocker history and resync | Application not run |
 | BR-04 | TC-13, TC-15, TC-20: classified owned text/Markdown, immutable initial content, supported organisation | Application not run |
 | BR-05 | TC-05/06: immediate revision, exact immutable historical evidence and retirement | Database prerequisites only |
 | BR-06 | TC-17: explicit links, readable endpoints, no hidden relationship metadata | Application not run |
-| BR-07 | TC-06, TC-12: current authorised keyword/semantic discovery and matched baseline if claiming improvement | Application not run |
+| BR-07 | TC-06, TC-12, TC-23, TC-25: current authorised keyword/semantic discovery and matched baseline if claiming improvement | Application not run |
 | BR-08 | TC-09, TC-12: supported cited answers, missing evidence and conflicts | Application not run |
 | BR-09 | TC-08: current operational truth with entity/revision/time | Application not run |
 | BR-10 | TC-02–TC-04, TC-11: project/document/inspection scopes and protected handoff | Application not run |
 | BR-11 | TC-18: durable audit accompanies each committed catalogue mutation | Application not run |
-| BR-12 | TC-11, TC-18: mandatory provenance and scoped source/trace inspection | Application not run |
-| BR-13 | TC-10, TC-14: dependency-specific failure and surviving independent paths | Application not run |
+| BR-12 | TC-11, TC-18, TC-26: mandatory provenance and scoped source/trace inspection | Application not run |
+| BR-13 | TC-10, TC-14, TC-25: dependency-specific failure and surviving independent paths | Application not run |
 | BR-14 | TC-03, TC-06, TC-15: removal, revocation, archive/delete and no stale revival | Database prerequisites only |
 | BR-15 | FR-35 remains Enhanced/Won't under ADR-0010; no fabricated report gate | Outside this release |
 
 ## UC exception matrix
 
-48 named identities: 47 active and one Withdrawn. All active application results are **Not run**. Required assertions are below; this mapping does not claim full positive/alternate-flow or FR/AC coverage by itself.
+49 named identities: 48 active and one Withdrawn. All active application results are **Not run**. Required assertions are below; this mapping does not claim full positive/alternate-flow or FR/AC coverage by itself.
 
 | UC / EX | Gate | Definition status | Observable assertion |
 | --- | --- | --- | --- |
@@ -54,6 +54,7 @@
 | UC-02 / EX-01 | TC-13 | Specified | Missing project-create capability denies without creating a project. |
 | UC-02 / EX-02 | TC-13 | Specified | Unknown user add request reveals no account existence and creates no membership. |
 | UC-02 / EX-03 | TC-14 | Specified | Failure cannot leave membership removed with old grants usable; retry reconciles one committed outcome. |
+| UC-02 / EX-04 | TC-13, TC-14 | Specified | Last-manager removal is rejected with no mutation; racing removals of the last two managers result in exactly one rejection, preserving an effective manager. |
 | UC-03 / EX-01 | TC-13 | Specified | Unsupported item type fails validation without a persisted item. |
 | UC-03 / EX-02 | TC-13 | Specified | Missing backlog-author authority denies; Scrum title alone cannot create. |
 | UC-03 / EX-03 | TC-07 | Specified | Stale edit conflicts and preserves newer content/revision. |
@@ -64,7 +65,7 @@
 | UC-05 / EX-01 | TC-07 | Specified | Concurrent starts yield at most one Active Sprint; rejected start remains Planned. |
 | UC-05 / EX-02 | TC-13 | Specified | Missing/reversed dates reject without changing lifecycle. |
 | UC-05 / EX-03 | TC-21 | Specified | Starting Completed Sprint is rejected; historical completion remains. |
-| UC-05 / EX-04 | TC-14 | Specified | Completion failure cannot commit only Sprint state or only allocation returns. |
+| UC-05 / EX-04 | TC-14 | Specified | Completion failure cannot commit only Sprint state, allocation returns, To Do resets, revisions or audit; rollback preserves all prior state. |
 | UC-05 / EX-05 | TC-21 | Specified | Completing Planned/already Completed is rejected; identical request replay follows the recorded idempotent outcome. |
 | UC-06 / EX-01 | TC-13 | Specified | Missing classification creates neither policy/content nor version. |
 | UC-06 / EX-02 | TC-13 | Specified | Missing create authority persists no document or author grant. |

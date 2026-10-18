@@ -1,31 +1,31 @@
-%% Origin: docs/ux/flows/ai-qa-flow.md v0.5
-%% DGM-FLOW-01 v0.6 Draft - 14 October 2026
-%% Sources: PRD-01 v0.5; UC-02 v0.3; SAD-03 v0.7; ADR-0007/0009/0011/0012/0013/0015/0016/0017; Workspace OpenAPI v0.2.1; Knowledge OpenAPI v0.2.2
+%% Origin: docs/ux/flows/ai-qa-flow.md v0.6
+%% DGM-FLOW-01 v0.9 Draft - 17 October 2026
+%% Sources: UX-FLOW-AI-03 v0.6; PRD-01 v0.9; UC-02 v0.6; SAD-03 v0.12; ADR-0004; ADR-0006; ADR-0007; ADR-0009; ADR-0011; ADR-0012; ADR-0013; ADR-0015; ADR-0016; ADR-0017
 %% Trace: FR-18-FR-30, FR-33-FR-34, FR-46, FR-53-FR-55, FR-59-FR-61, FR-69; SC-02, SC-03, SC-05-SC-08
 %% UX / server responsibilities are labelled. API keys are relative to /api. Policy and runtime evidence remain unapproved.
 flowchart TD
     Unable["Generic unable-to-deliver state: no answer, no source reason; user may ask again"]
     Start["User submits POST /knowledge/questions using application session"]
-    Read["1. Workspace checks session and current project/document scope; Knowledge retrieves permitted evidence"]
+    Read["1. AI path: Workspace checks session and project/document scope; Knowledge uses scoped pgvector exact discovery"]
     Scope["Current-only by default; explicit labelled history; no Draft; operational facts from current observations"]
     Enough{"At least one requested component has supporting evidence?"}
     Insufficient["Insufficient evidence; no hints about hidden sources; capability-aware Create action"]
-    Provider["2. Guarded current access + validity; persist run ID and exact evidence before provider-input handoff"]
+    Provider["2. Persist immutable input manifest outside guard; then guarded evidence/revision/payload match before sending"]
     Generate["Wait outside guard; buffer whole answer; no browser token streaming"]
     Validate["Validate exact server citations and claim support; invented citation invalidates entire draft"]
-    Delivery["3. Guarded recheck of entire evidence set including uncited context, session and validity"]
-    Safe{"Claims, exact citations, full evidence access and validity all pass?"}
-    Withhold["Withhold entire invalid/unsafe draft; generic answer_withheld; no content, citations or source reason"]
-    Retry["Bounded new attempt with remaining permitted evidence; repeat all checks"]
-    Answer["Persist minimum delivery evidence; guard through response handoff; render answered / partially_answered / conflict"]
+    Delivery["3. Persist fresh delivery manifest outside guard; then guarded full-evidence/revision/payload match"]
+    Safe{"Claims, exact citations, full evidence and immutable manifest/payload binding all pass?"}
+    Withhold["Withhold entire unsafe/stale draft; zero bytes; release guard; generic answer_withheld; no source reason"]
+    Retry["Bounded new attempt outside guard; fresh immutable handoff ID and manifest; repeat all checks"]
+    Answer["Guard remains held through response completion/abort; render answered / partially_answered / conflict"]
     Click["User opens exact citation"]
     Citation["4. GET /knowledge/citations/{document_id}/{version_id}/{passage_id}; guarded current protected read"]
     Inspect["Exact excerpt and version; label Current / Superseded / Archived; no substitution"]
     Unavailable["200 unavailable: verified exact locator + current membership and retained read policy; no excerpt or substitution"]
     Denied["401 sign-in or identical generic 404 for unknown/denied; withhold protected data"]
-    Authority["Authority failure: fail closed; generic service error; no cached/unrestricted fallback"]
+    Authority["Authority or mandatory persistence failed: no handoff; generic error; no unrestricted retry"]
     AIError["AI dependency error/timeout/budget: explicit failure, no generated answer"]
-    Fallback["Keyword search and document/work UI when own dependencies healthy"]
+    Fallback["PostgreSQL English full-text search (GIN) — independent keyword path; document/work UI when own dependencies healthy"]
     KnowledgeError["Knowledge outage: documents/document search unavailable; Workspace work and optional task search may continue"]
     Start --> Read
     Read -->|Permitted| Scope
@@ -52,12 +52,12 @@ flowchart TD
     Citation -->|Readable identity; evidence unavailable| Unavailable
     Citation -->|Unknown / inaccessible| Denied
     Citation -->|Check failed| Authority
-    AIError --> Fallback
+    AIError -->|Offer separate search; user chooses| Fallback
     Read -->|Knowledge unavailable| KnowledgeError
     Citation -->|Knowledge unavailable| KnowledgeError
     Fallback -->|Keyword dependency unavailable| KnowledgeError
     Withhold -->|No retry, budget exhausted or no safe evidence| Unable
     Provider -->|Evidence revoked: no retry, budget exhausted or no safe evidence| Unable
-%% Change: current origin metadata registered for docs:lint; graph semantics retained.
+%% Change: AI semantic discovery and independent keyword baseline are distinct; graph topology retained.
 
-%% Amendment: owner-confirmed partial answers, unavailable identity and membership rules; rendered review pending.
+%% Amendment: owner-confirmed partial answers, unavailable identity and membership rules; overview inspected, print-scale readability pending.

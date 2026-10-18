@@ -1,9 +1,9 @@
 # Five-month delivery plan and MoSCoW
 
 **Artifact ID:** PLAN-01  
-**Version/date:** 0.2 Draft · 13 October 2026\
+**Version/date:** 0.3 Draft · 17 October 2026\
 **Status:** Draft for owner review; ADR-0007–ADR-0011 direction is owner-confirmed; application acceptance remains unproven.\
-**Inputs:** BRD v1.0 via [stable entry](../BRD.md); [PRD-01 v0.5](../sdlc/PRD_SRS.md); owner direction: solo, five months, minimal microservices; [scope data](release-scope.json).\
+**Inputs:** BRD v1.0 via [stable entry](../BRD.md); [PRD-01 v0.7](../sdlc/PRD_SRS.md); owner direction: solo, five months, minimal microservices; [scope data](release-scope.json).\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 ## Problem and prioritisation rule
@@ -21,7 +21,7 @@ The problem is finding applicable project knowledge across disconnected work and
 
 Access protection (BO-05), AI fallback and tests are release constraints, not optional features ranked by visible UI value. A feature is Must for this release if removing it breaks an authorised work-to-evidence flow, validity, citation inspection or verifiable fallback. Should improves that flow but has a documented alternative; Could adds editing convenience. Won't is outside this five-month release.
 
-The 60 Must rows are atomic requirements, not 61 modules. Implement through the 13 vertical slices below. ADR-0010 confirms seven original Core FR/AC exceptions as Should/Could. All remaining 60 release Musts and applicable SC outcomes remain binding; FR-45 is Withdrawn. FR-35 remains BRD Should/Enhanced and is outside this release proposal. No priority is rewritten in BRD.
+The 60 Must rows are atomic requirements, planned through the 13 vertical slices below. ADR-0010 confirms seven original Core FR/AC exceptions as Should/Could. All remaining 60 release Musts and applicable SC outcomes remain binding; FR-45 is Withdrawn. FR-35 remains BRD Should/Enhanced and is outside this release proposal. No priority is rewritten in BRD.
 
 ## Calendar and exit gates
 
@@ -37,14 +37,14 @@ Use five relative months, approximately 20 planned working weeks plus whatever c
 
 Reserve Month 5 for verification and submission, not new capabilities. If Month 1 has no walking skeleton, stop optional work and revisit estimates/OD-11 immediately. If the chosen provider fails the Month 3 pilot, keep keyword fallback and assess one permitted replacement; do not add an agent framework or an extra service to hide the failure.
 
-## Proposed MoSCoW coverage
+## Release MoSCoW coverage
 
-Counts: **Must 60, Should 3, Could 4, Won't 1**. Original BRD priority and P0/P1 implementation ordering remain distinct fields in scope data.
+Counts: **Must 60, Should 4, Could 4, Won't 1**. Original BRD priority and P0/P1 implementation ordering remain distinct fields in scope data.
 
 | Release tier | FRs | Reason / alternative |
 | --- | --- | --- |
 | Must | All other Core FRs, including permission, versions, links, keyword/semantic retrieval, citations, current state, audit and fallback | Minimum coherent response to PP-01–PP-06 with trust and verification |
-| Should | FR-27, FR-49, FR-62 | Bounded retrieval summary after exact citation/full scoped trace; relationship removal after basic linking; file import after text creation/paste |
+| Should | FR-27, FR-49, FR-62, FR-70 | Bounded retrieval summary after exact citation/full scoped trace; relationship removal after basic linking; file import after text creation/paste; optional Workspace task search after Must delivery |
 | Could | FR-64, FR-65, FR-66, FR-67 | Project/knowledge/planned-Sprint/allocation editing conveniences; create-time fields and fixed completion remain |
 | Won't this release | FR-35 and BRD Enhanced/Future capabilities | Reports, complex import, rich maps/integrations, meeting AI, forecasting, automatic graphs and multi-agent runtime |
 
@@ -119,12 +119,13 @@ Counts: **Must 60, Should 3, Could 4, Won't 1**. Original BRD priority and P0/P1
 | FR-67 | Must/Core | Could | PP-02 | SP-05 |
 | FR-68 | Must/Core | Must | PP-01 | SP-01 |
 | FR-69 | Must/Core | Must | PP-01, PP-04 | SP-09 |
+| FR-70 | Owner-added optional scope (ADR-0016) | Should | PP-01, PP-02 | SP-08 |
 
 ## Resources and agent execution
 
 One human owns product decisions, integration and review. No parallel development agents are started by this plan. When later authorised, agents consume one spec and its allowed paths; shared contracts have one editing owner at a time. Never claim independent review of the same agent's own work.
 
-Use two business services, one web UI and one local development environment. Proposed stack is one application language (TypeScript), React UI, Fastify services and PostgreSQL with a pgvector candidate. The stack/store/provider choices stay Proposed in ADRs until chosen and exercised. Account provisioning may be manual for the demo; no enterprise identity scope is added.
+Use two business services, one web UI and one local development environment. TypeScript, React and Fastify remain application candidates. PostgreSQL/pgvector storage is selected with historical integration evidence under ADR-0004; framework/provider choices remain Proposed. Account provisioning may be manual for the demo; no enterprise identity scope is added.
 
 The owner asked to keep budgeting proportionate to a student project. Currency, period, machine and runtime/API allowance were not confirmed; no numeric spend forecast is made. Development-assistant subscriptions and application runtime costs are separate entries. Begin with synthetic fixtures and a single provider configuration; do not send real data to a new external provider.
 
@@ -132,11 +133,11 @@ The owner asked to keep budgeting proportionate to a student project. Currency, 
 
 OD-11 must record any actual deferral and the exact affected Core gate/ACs. OD-02–OD-04 cover access/lifecycle/Sprint policies, OD-06 provider/environment, OD-09 identity and OD-12 stack selection. Use the architecture and contracts as drafts until these are resolved. Permission enforcement mechanics remain subject to implementation tests.
 
-Checklist: Pass for PP/problem trace, 68 active FRs classified once plus retained Withdrawn FR-45, business-vs-delivery priority distinction, sequential milestones and protected evaluation time. Gap for empirical weekly capacity, accepted deferrals, chosen stack/provider and runtime evidence. Handoff: Needs owner decision for scope and technical baselines; independent documentation and the context harness can proceed.
+Checklist: Pass for PP/problem trace, 69 active FRs classified once plus retained Withdrawn FR-45, business-vs-delivery priority distinction, sequential milestones and protected evaluation time. Gap for measured weekly capacity, framework/provider choices and runtime evidence. ADR-0010 already confirms the seven Core exceptions; no new deferral is proposed here. Handoff: proceed under confirmed policy; remaining technical and calendar choices still need resolution.
 
 ## Confirmed capacity and release-gate follow-up
 
-ADR-0010 fixes 60 Must / 3 Should / 4 Could / 1 Won't active requirements. Exact exceptions are AC-27, AC-49, AC-62, AC-64–AC-67; FR-45 is withdrawn, not delivered. Submission is April 2027 and intended effort is at least eight hours per working day. Kickoff, exact submission date and working days/week remain unknown; no measured velocity is claimed.
+ADR-0010 originally fixed 60 Must / 3 Should / 4 Could / 1 Won't active requirements; ADR-0016 adds one Should, giving the current 60 / 4 / 4 / 1 totals. Exact exceptions are AC-27, AC-49, AC-62, AC-64–AC-67; FR-45 is withdrawn, not delivered. Submission is April 2027 and intended effort is at least eight hours per working day. Kickoff, exact submission date and working days/week remain unknown; no measured velocity is claimed.
 
 At Week 2 and the ends of Months 2/3, record completed Must ACs and slices, remaining work and working weeks before Month 5. In a 20-week relative plan the end-of-Week-2 feature window is about 14 weeks, not a fixed 17. Retain 60 Must if capacity falls short and revisit schedule/capacity with the owner; dropping already optional work is not another reduction of Must. Month 5 stays verification/report/demo. Storage is selected under ADR-0004; framework/provider decisions remain separate. Earlier proposed-cut/resource text above is superseded by this explicit owner-confirmed follow-up.
 

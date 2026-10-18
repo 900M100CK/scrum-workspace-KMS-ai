@@ -1,9 +1,9 @@
 # Permission Matrix by Screen & Action
 
 **Artifact ID:** UX-PERM-MATRIX-02\
-**Version/date:** 0.4 Draft · 14 October 2026\
+**Version/date:** 0.6 Draft · 17 October 2026\
 **Status:** Owner-confirmed initial access/lifecycle/guard direction; additional delegation and retention rights remain open.\
-**Source versions:** BRD English v1.0; PRD-01 v0.5; UC-02 v0.3; SAD-03 v0.7; ADR-0007–ADR-0011; OpenAPI v0.2.0.\
+**Source versions:** BRD English v1.0; PRD-01 v0.9; UC-02 v0.6; SAD-03 v0.11; ADR-0007–ADR-0011; Workspace OpenAPI v0.2.2 / Knowledge v0.2.3.\
 **Trace:** BR-01, BR-05, BR-08, BR-10, BR-12, BR-14; FR-01–FR-04, FR-09–FR-14, FR-19–FR-21, FR-28–FR-29, FR-38–FR-39, FR-46–FR-48, FR-50–FR-52, FR-55–FR-59, FR-61, FR-68; SC-05, SC-06.\
 **Scope:** UI visibility and action states derived from current server-authorised capabilities. Capability descriptions are design terms, not new API enums or an accepted role mapping.
 
@@ -23,13 +23,13 @@ Unauthenticated requests require sign-in. Authenticated protected reads of unkno
 | Membership / project settings | Current project access plus operation-specific membership-management/settings capability | Hide management controls; protected route uses generic 404 | FR-38–FR-39, FR-64 |
 | Backlog / Sprint / task reads | Current project membership | Generic 404 after membership loss | FR-03, FR-05–FR-09 |
 | Create, edit or order work items | Current membership plus operation-specific work capability | Read-only permitted items; no enabled mutation control | FR-05, FR-40–FR-41, FR-43 |
-| Plan, start or complete Sprint | Current membership plus operation-specific Sprint capability | Hide lifecycle controls; no automatic Scrum Master approval | FR-06–FR-08, FR-42, FR-44 |
+| Plan, start or complete Sprint | Current membership plus operation-specific Sprint capability | Hide lifecycle controls; no automatic Scrum Master approval | FR-06–FR-08, FR-42 |
 | Move card / change task state | Membership plus state-change capability; server checks expected revision | Read-only card / status badge; conflict on stale mutation | FR-09; AC-09 |
-| Flag / resolve blocker | Membership plus blocker capability | Disable mutation controls on readable tasks; blocker state derives from ordered events | FR-09, FR-43 |
+| Flag / resolve blocker | Membership plus blocker capability | Disable mutation controls on readable tasks; blocker state derives from ordered events | FR-44; AC-44 |
 | Board filters | Membership; filter authorised cards only | All / Blocked Only / My Tasks available on readable Board | AC-09; ASM-02 |
 | Manual document links | Work action capability plus applicable source checks | Only permitted target metadata; unreadable target reveals no title | FR-16–FR-17, FR-59 |
 
-Board uses **To Do, In Progress, Done**, allowing direct changes and reopening Done. Reopening work from a Completed Sprint returns it to Product Backlog while retaining Sprint completion history (ADR-0008 v0.2). Additional capability delegation remains open; this table does not grant permissions to Scrum titles.
+Board uses **To Do, In Progress, Done**, allowing direct changes and reopening Done. Reopening work from a Completed Sprint returns it to Product Backlog as To Do while retaining Sprint completion history (ADR-0008 v0.3). Additional capability delegation remains open; this table does not grant permissions to Scrum titles.
 
 ## 3. Documents, lifecycle and access management
 
@@ -50,11 +50,11 @@ Revision atomically creates a new immutable Current, makes the former Current Su
 | Boundary / operation | Required checks and behaviour | Trace |
 | --- | --- | --- |
 | 1. Retrieval | Filter project AND document scope before ranking/context; ordinary Current-only; no Draft; authority failure denies | FR-19–FR-21, FR-28 |
-| 2. Provider input | Workspace guard rechecks current access and Knowledge validity through provider-input transport completion/abort | FR-28; ADR-0006 |
+| 2. Provider input | Persist complete immutable manifest outside guard; then guarded current access, evidence/revisions and exact payload matching through transport completion/abort; mismatch aborts with zero bytes and retries outside guard | FR-28; ADR-0006 |
 | Generation | Wait outside guard; buffer all output; bind server-issued citations to exact locators; assess claim support separately | FR-22–FR-26, FR-55 |
-| 3. Answer delivery | Recheck session, access and validity for entire evidence set, including uncited context, through response handoff | FR-14, FR-29; ADR-0006 |
+| 3. Answer delivery | Fresh complete manifest durable outside guard; guarded exact payload/evidence/revision matching, including uncited context, through response handoff; mismatch releases guard before bounded fresh preparation | FR-14, FR-29; ADR-0006 |
 | Revoked evidence | Reject provider input or withhold whole original draft; never repair disclosure by stripping chips or sentences | FR-28–FR-29 |
-| Optional regeneration | New bounded attempt with remaining permitted evidence only; repeat all checks; stop without original answer if budget/safe evidence absent | FR-29; Stage 5 terminal mapping open |
+| Optional regeneration | New bounded attempt with remaining permitted evidence only; repeat all checks; stop without original answer if budget/safe evidence absent | FR-29; ADR-0013 terminal mapping specified; runtime verification pending |
 | 4. Citation opening | Re-enter source-read diagram with exact document/version/passage identity; never redirect to a newer version | FR-46, FR-55, FR-61 |
 | Audit inspection | Current membership plus scoped audit-read permits in-scope actor/action/entity/time; redact protected title/content/before-after unless separately readable. IDs grant no source/citation/AI read | FR-56; ADR-0012 |
 | Trace inspection | Scoped trace-read; separate source permission for protected details; does not inherit the audit identity entitlement; no private reasoning | FR-58; ADR-0012 |
@@ -66,7 +66,7 @@ Revocation/removal commits share the protected handoff guard for source/citation
 
 Source reads: [DGM-FLOW-04 Draw.io](../sdlc/diagrams/flowchart/permission-read-flow.drawio) / [Mermaid](../sdlc/diagrams/flowchart/permission-read-flow.mmd). AI checkpoints: [DGM-FLOW-05 Draw.io](../sdlc/diagrams/flowchart/permission-ai-checkpoints.drawio) / [Mermaid](../sdlc/diagrams/flowchart/permission-ai-checkpoints.mmd). Citation opening returns to DGM-FLOW-04; the connector grants no access.
 
-**Assumptions/open decisions:** Additional capability delegation, physical retention and OD-09 sessions remain open. ADR-0013 and Knowledge OpenAPI v0.2.1 define unavailable-citation and terminal withheld-answer mappings; runtime verification remains pending. ADR-0007/0009/0011 supersede the corresponding old proposals. No runtime proof follows from diagram alignment.
+**Assumptions/open decisions:** Additional capability delegation, physical retention and OD-09 sessions remain open. ADR-0013 and Knowledge OpenAPI v0.2.3 define unavailable-citation and terminal withheld-answer mappings; runtime verification remains pending. ADR-0007/0009/0011 supersede the corresponding old proposals. No runtime proof follows from diagram alignment.
 
 **Checklist:** Pass for scoped capability descriptions, two classifications, immutable-version and four-checkpoint trace; Gap for complete UI/UX workbook review, accessibility/usability checks, owner policy acceptance and runtime/concurrency tests. UML activity conformance is N/A for these UX flowcharts. **Handoff:** Ready for scoped Stage 5/7/8/9 review; author correction is not independent approval.
 

@@ -1,0 +1,96 @@
+# Diagram foundation and design handoff
+
+**Artifact ID:** DGM-DESIGN-01
+**Version/date:** 0.1 Draft · 17 October 2026
+**Status:** Author design/review; no independent approval or runtime acceptance.
+**Inputs:** BRD English v1.0; PRD-01 v0.9; UC-02 v0.6; SAD-03 v0.12; DATA-04 v0.6; DATA-FIT-01 v0.3; Workspace OpenAPI v0.2.2 / Knowledge v0.2.3; migrations 001+002 of each store; infra/postgres/compose.yaml; ADR-0002–ADR-0017; PLAN-01 v0.3; specs SP-04–SP-11.
+**Trace:** BR-01–BR-14; SC-01–SC-08; no release-scope change.
+**Owner role:** Sequential documentation author and reviewer.
+**Handoff:** Ready for downstream design use with stated gaps; diagram-first design package; implementation remains separate and must resolve the explicit protocol/retention/stack gaps below.
+
+## Documentation decision and source authority
+
+The owner requested completion of diagrams before implementation. This package supplies C4 Context/Container, sequence diagrams, state projections, per-store physical ERDs, a logical evidence model, a local development deployment view and a development ownership view. Existing use cases, journeys, sitemap, workflow diagrams and the scenario-to-test matrix remain relevant.
+
+C4 is the structural entry, with [4+1 coverage](#41-coverage) across the same figures. This is a documentation organization choice, not adoption of new services, providers or frameworks. C4 Code and speculative component internals are N/A until handlers justify them. The [previous recommendation/correction report](review-2026-10-17.md) remains dated evidence of the earlier nine-pair set.
+
+Machine-readable authoring definitions are in [design-models.json](design-models.json). Run `node scripts/design-diagrams.mjs` from the repository root to regenerate the eleven new editable Mermaid/Draw.io pairs, then `npm run docs:lint`. The verifier parses actual Mermaid syntax and compares both representations, including native routes, to the authored definitions. Change definitions first; manual native edits must be incorporated there before regenerating. This is consistency checking, not a proof that the authored model is correct.
+
+## Reading order and semantic checklist
+
+| ID / links | Question answered | Upstream source and author checks |
+| --- | --- | --- |
+| DGM-C4-01 [Mermaid](c4/system-context.mmd) / [Draw.io](c4/system-context.drawio) | Who uses the system and which external systems can interact? | SAD §1; UC actors; conditional identity and provider choice; no autonomous mutation |
+| DGM-C4-02 [Mermaid](c4/containers.mmd) / [Draw.io](c4/containers.drawio) | What applications/stores own each responsibility? | SAD §2; ADR-0002/0004/0011; Workspace policy/relay, Knowledge evidence, two owned DBs, independent keyword path |
+| DGM-SEQ-01 [Mermaid](sequence/protected-handoff.mmd) / [Draw.io](sequence/protected-handoff.drawio) | What orders durable evidence, claim, guard, send and revocation? | ADR-0011/0012/0013; DATA-04; TC-26; full evidence/digests, no replay after unknown transport, no remote manifest write under guard |
+| DGM-SEQ-02 [Mermaid](sequence/document-creation.mmd) / [Draw.io](sequence/document-creation.drawio) | What happens when only one creation transaction is confirmed? | ADR-0007/0011/0012; UC-06; SP-06; same-key ID/payload, no activation, no unsafe orphan deletion |
+| DGM-STATE-01 [Mermaid](state/document-and-readiness.mmd) / [Draw.io](state/document-and-readiness.drawio) | Which lifecycle and readiness states are independent? | ADR-0009; AC-11/15/47/48; migration 002; revision creates a different Current identity; invalid jobs cannot revive content |
+| DGM-STATE-02 [Mermaid](state/sprint-task-allocation.mmd) / [Draw.io](state/sprint-task-allocation.drawio) | How do Sprint, Task, allocation and blocker state interact? | ADR-0008/0014; UC-04/05; SC-03/04; no Sprint reopening, Done history retained, unfinished/reopened Backlog returns To Do |
+| DGM-DATA-01 [Mermaid](data/workspace-erd.mmd) / [Draw.io](data/workspace-erd.drawio) | What relations physically exist in Workspace? | Workspace migrations 001+002; selected columns; composite FKs; no inferred User table; active membership/capability checks remain handlers |
+| DGM-DATA-02 [Mermaid](data/knowledge-erd.mmd) / [Draw.io](data/knowledge-erd.drawio) | What relations physically exist in Knowledge? | Knowledge migrations 001+002; exact tuple, deferred pointer, configurable dimensions; no ACL or cross-store FK |
+| DGM-DATA-03 [Mermaid](data/handoff-logical-model.mmd) / [Draw.io](data/handoff-logical-model.drawio) | What evidence additions are still logical rather than applied? | DATA-04, logical model v0.3, DATA-FIT-01; manifests/outcomes and operational entity_kind need migrations; WorkspaceClaim maps existing idempotency_record |
+| DGM-DEPLOY-01 [Mermaid](deployment/local-development.mmd) / [Draw.io](deployment/local-development.drawio) | What is configured locally versus only proposed? | Compose and runbook; default host loopback 55432 to container 5432; two DBs in one engine; application ports 8000/8001 are proposed |
+| DGM-DEV-01 [Mermaid](development/package-ownership.mmd) / [Draw.io](development/package-ownership.drawio) | Where should code and contract ownership live? | SAD §4; AGENTS; service roots, UI/contracts/adapters, no copied policy logic; modules are responsibilities, not implemented handlers |
+
+### Important interpretation constraints
+
+- State diagrams are partial state-domain projections, not a complete UI workflow. No transition means no operation is inferred. Initial creation yields a new Current version; a revision does not mutate old content back to Current. A fresh indexing attempt creates a new job/generation, while same-job retry preserves identity. Replacement/retirement makes old jobs ineligible rather than silently resetting them.
+- Sprint completion is one owning transaction: state, task revision, allocation return/retention and minimum audit. Reopening a completed-Sprint Done task preserves the completed allocation and leaves the Sprint Completed; current task returns Backlog/To Do. Blocker events are unaffected. Reallocation is another operation, not a Completed-to-Active transition.
+- ERDs show selected fields and actual FK constraints, not every column/index/trigger. The nullable task assignee FK does not enforce active membership. The physical provenance exact-tuple FK is optional because an operational observation is an alternative. Entity kinds/IDs in links are logical references, not declared FKs. Cardinality describes storage relationships, not permission.
+- Logical HandoffManifest/Outcome associations are not migrated FKs. WorkspaceClaim is a protocol projection over Workspace's existing idempotency record. Expiry must never recycle an unresolved/consumed handoff. Neither a prepared record nor a claim proves delivery. An unknown outcome requires reconciliation, not automatic replay.
+- Creation 201 requires a confirmed persistence outcome and a currently permitted response. Changed payload under the same key conflicts; failed/unknown authority never exposes content. 202 does not mean content exists, indexing completed or grants can be restored. An idempotent replay cannot restore a revoked author grant.
+- Deployment shows checked configuration files, not proof of running containers. No production topology, TLS setup, backup schedule or numeric availability target is invented. Only one active permission authority is assumed by the current guard proposal; multi-replica deployment needs a new concurrency design.
+
+## 4+1 coverage
+
+| View | Canonical figures/evidence | Coverage limit |
+| --- | --- | --- |
+| Logical | C4-01/02, DATA-01/02/03; SAD §2 | Logical additions explicitly distinguished from applied schema |
+| Process | SEQ-01/02, STATE-01/02, existing FLOW-01–05; SAD §3 | Runtime concurrency/permission evidence absent |
+| Development | DEV-01; SAD §4; specs/README.md | Domain and adapter implementations not claimed |
+| Physical | DEPLOY-01; SAD §5; infra/postgres/compose.yaml | Local configuration only; app processes proposed |
+| +1 Scenarios | Existing UC-01, journey and source UC-01–UC-13; matrix below | Design trace is not a passed scenario |
+
+| Scenario | Design path | Existing test gates |
+| --- | --- | --- |
+| SC-01 linked knowledge | SITE-01, FLOW-04, DATA-01/02, C4-02 | TC-02/17 |
+| SC-02 cited rationale | FLOW-01/05, SEQ-01, DATA-02/03 | TC-09/12/18 |
+| SC-03 current blocked work | FLOW-02, STATE-02, DATA-01, SEQ-01 operational evidence | TC-08 |
+| SC-04 past resolution | FLOW-01, STATE-02, DATA-01/02, JOURNEY-01 | TC-08/09/17 |
+| SC-05 replacement/history | FLOW-03/04, STATE-01, DATA-02, SEQ-01 | TC-05/06 |
+| SC-06 access/revocation | SEQ-01/02, FLOW-04/05, DATA-01/03, C4-02 | TC-02–04/11/15/26 |
+| SC-07 missing evidence | FLOW-01/05, SEQ-01, C4-02 | TC-09/12 |
+| SC-08 AI outage | FLOW-01/02, C4-02, DEPLOY-01, STATE-01 | TC-10/14 |
+
+Use [test-coverage.md](../test-coverage.md) for authoritative gate assertions and evidence status. No new pass is inferred from this table.
+
+## Explicit design gaps before dependent implementation
+
+1. Transport abort/fencing/restart adapter and TC-26 must establish the guard boundary. Unknown transport cannot authorize automatic resend; unknown lifecycle writes block affected handoffs. Numeric timeouts and a production multi-replica protocol are not selected here.
+2. Orphan cleanup requires durable cancellation/fencing before delayed Knowledge persistence can be ruled out. Safe behavior now is retaining unreadable policy for reconciliation.
+3. Additive manifest/outcome and operational entity_kind migrations are absent; idempotency lifetime/one-use semantics need real tests.
+4. Physical purge/retention and surviving locator tombstones remain undecided. Logical unavailability with retained identity must honor current policy; this package does not invent a retention duration or purge schema.
+5. Identity/session implementation, capability provisioning and proposed framework/provider choices must be resolved for the relevant slice. Labelled candidate boxes do not select them.
+
+These gaps existed upstream. Drawing them makes the limits explicit; it does not silently resolve them or block unrelated documentation work.
+
+## Verification and visual review
+
+Author checks completed on 17 October 2026 using Node 24.21.0 and the owner-invoked drawio-skill. All 20 registered pairs have locally exported [draft previews](previews/README.md), with exact source/output [SHA-256 evidence](design-foundation-2026-10-17-evidence.json). The eleven new views were inspected after rendering; targeted repairs wrapped/offset labels, separated C4/package routes, exposed sequence arrows, spaced fragment labels and placed the configured volume inside the local host boundary. No diagram is represented as independently approved.
+
+| Check | Result | Limit |
+| --- | --- | --- |
+| `context:lint`, `context:check` | Pass; 69 active requirements, 60 Must, 2 services, 56 operations, 13 specs | Contract/context structure only |
+| `context:test` | Pass: 32 tests | No application enforcement evidence |
+| `docs:lint` | Pass: 20 pairs, 35 registered artifacts, 301 native vertices and 330 edges | Counts include annotations/lifelines; not complete repo semantic coverage |
+| `docs:test` | Pass: 17 tests | Includes reversed-sequence and altered-cardinality negatives, plus physical table inventory against DDL |
+| drawio-skill `validate.py --json` on all 20 native sources | 0 errors; 135 warnings retained in [validation findings](drawio-validation-2026-10-17.json) | 74 edge-crossing warnings and 61 intentional sequence frame/note/branch overlaps; not a clean strict-mode pass |
+| Skill SQL extraction + direct migration review | 12 Workspace / 11 Knowledge entities match; physical FK relations checked against SQL | Extractor reports duplicate/composite candidates and omits the ALTER-added current pointer; curated SQL review remains necessary |
+| Native PNG export and author overview inspection | All 20 exported and inspected; semantic notation and source links retained | Dense flows/ERDs and long sequences need native zoom; one-page print usability is not accepted |
+| Applicable diagram checklist | Pass for documented scope/identity/ownership, transition and message ordering; Gap for independent visual/runtime acceptance | C4 uses labelled native boxes; no C4 Code/component projection is inferred |
+
+The existing registered generator remains the editable source workflow so stable IDs, metadata and paired verification are preserved; the skill supplied XML/notation checks, SQL extraction and render review. No user style preset was found. Native ER edges now use crow-foot cardinalities; logical associations are dashed. C4/deployment groups contain their child cells. Sequence frame overlap warnings represent deliberate nested visual fragments, not overlapping activities; those fragments remain independent editable cells. The skill's two-round visual repair limit was observed. Remaining line crossings in overview flows/use cases and Knowledge ERD are documented rather than claimed eliminated. C4-02's policy label remains close to the provider route; practical publication layout is a separate review item.
+
+RV-09's specific through-node problem in the prior use-case/document flow is corrected as recorded in DGM-REVIEW-03 and reconfirmed in current overview exports; this does not close every crossing or establish print-scale acceptance. All new substantive diagrams are available for downstream design use with these explicit limits. Formal UML class compliance is N/A to the ERDs, and full UML deployment compliance is N/A to the configuration-oriented deployment view. Sequence lifelines/order/alt branches and state transitions are reviewed against their applicable checklist concerns; no standards certification is claimed.
+
+No application implementation, dependency/provider upgrade, database migration, deployment or runtime acceptance is included. No commits or parallel agents.

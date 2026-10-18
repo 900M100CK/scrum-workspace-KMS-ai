@@ -1,0 +1,1075 @@
+[
+  {
+    "id": "DGM-ARCH-01",
+    "errors": 0,
+    "warnings": 0,
+    "findings": []
+  },
+  {
+    "id": "DGM-SITE-01",
+    "errors": 0,
+    "warnings": 0,
+    "findings": []
+  },
+  {
+    "id": "DGM-FLOW-01",
+    "errors": 0,
+    "warnings": 15,
+    "findings": [
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-3,edge-23",
+        "message": "edges 'edge-3' and 'edge-23' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-3,edge-26",
+        "message": "edges 'edge-3' and 'edge-26' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-3,edge-29",
+        "message": "edges 'edge-3' and 'edge-29' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-3,edge-30",
+        "message": "edges 'edge-3' and 'edge-30' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-6,edge-29",
+        "message": "edges 'edge-6' and 'edge-29' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-8,edge-29",
+        "message": "edges 'edge-8' and 'edge-29' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-9,edge-23",
+        "message": "edges 'edge-9' and 'edge-23' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-9,edge-26",
+        "message": "edges 'edge-9' and 'edge-26' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-15,edge-28",
+        "message": "edges 'edge-15' and 'edge-28' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-16,edge-23",
+        "message": "edges 'edge-16' and 'edge-23' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-16,edge-26",
+        "message": "edges 'edge-16' and 'edge-26' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-21,edge-28",
+        "message": "edges 'edge-21' and 'edge-28' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-22,edge-28",
+        "message": "edges 'edge-22' and 'edge-28' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-23,edge-26",
+        "message": "edges 'edge-23' and 'edge-26' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-24,edge-26",
+        "message": "edges 'edge-24' and 'edge-26' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      }
+    ]
+  },
+  {
+    "id": "DGM-FLOW-02",
+    "errors": 0,
+    "warnings": 1,
+    "findings": [
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-4,edge-filters-action",
+        "message": "edges 'edge-4' and 'edge-filters-action' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      }
+    ]
+  },
+  {
+    "id": "DGM-FLOW-03",
+    "errors": 0,
+    "warnings": 14,
+    "findings": [
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-4,edge-12",
+        "message": "edges 'edge-4' and 'edge-12' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-7,edge-15",
+        "message": "edges 'edge-7' and 'edge-15' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-7,edge-34",
+        "message": "edges 'edge-7' and 'edge-34' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-11,edge-14",
+        "message": "edges 'edge-11' and 'edge-14' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-11,edge-20",
+        "message": "edges 'edge-11' and 'edge-20' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-12,edge-20",
+        "message": "edges 'edge-12' and 'edge-20' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-15,edge-20",
+        "message": "edges 'edge-15' and 'edge-20' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-15,edge-34",
+        "message": "edges 'edge-15' and 'edge-34' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-17,edge-23",
+        "message": "edges 'edge-17' and 'edge-23' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-17,edge-31",
+        "message": "edges 'edge-17' and 'edge-31' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-20,edge-34",
+        "message": "edges 'edge-20' and 'edge-34' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-22,edge-33",
+        "message": "edges 'edge-22' and 'edge-33' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-23,edge-26",
+        "message": "edges 'edge-23' and 'edge-26' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-29,edge-33",
+        "message": "edges 'edge-29' and 'edge-33' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      }
+    ]
+  },
+  {
+    "id": "DGM-FLOW-04",
+    "errors": 0,
+    "warnings": 0,
+    "findings": []
+  },
+  {
+    "id": "DGM-FLOW-05",
+    "errors": 0,
+    "warnings": 3,
+    "findings": [
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-7,edge-18",
+        "message": "edges 'edge-7' and 'edge-18' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-8,edge-18",
+        "message": "edges 'edge-8' and 'edge-18' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "edge-18,edge-22",
+        "message": "edges 'edge-18' and 'edge-22' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      }
+    ]
+  },
+  {
+    "id": "DGM-JOURNEY-01",
+    "errors": 0,
+    "warnings": 0,
+    "findings": []
+  },
+  {
+    "id": "DGM-UC-01",
+    "errors": 0,
+    "warnings": 40,
+    "findings": [
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc02-uc11,association-uc09-actor-ai",
+        "message": "edges 'include-uc02-uc11' and 'association-uc09-actor-ai' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc02-uc11,association-uc10-actor-ai",
+        "message": "edges 'include-uc02-uc11' and 'association-uc10-actor-ai' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc02-uc11,association-uc12-actor-ai",
+        "message": "edges 'include-uc02-uc11' and 'association-uc12-actor-ai' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc02-uc11,association-uc09-actor-embed",
+        "message": "edges 'include-uc02-uc11' and 'association-uc09-actor-embed' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc02-uc11,association-uc12-actor-embed",
+        "message": "edges 'include-uc02-uc11' and 'association-uc12-actor-embed' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc03-uc11,association-uc09-actor-ai",
+        "message": "edges 'include-uc03-uc11' and 'association-uc09-actor-ai' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc03-uc11,association-uc10-actor-ai",
+        "message": "edges 'include-uc03-uc11' and 'association-uc10-actor-ai' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc03-uc11,association-uc12-actor-ai",
+        "message": "edges 'include-uc03-uc11' and 'association-uc12-actor-ai' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc03-uc11,association-uc09-actor-embed",
+        "message": "edges 'include-uc03-uc11' and 'association-uc09-actor-embed' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc03-uc11,association-uc12-actor-embed",
+        "message": "edges 'include-uc03-uc11' and 'association-uc12-actor-embed' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc04-uc11,association-uc09-actor-ai",
+        "message": "edges 'include-uc04-uc11' and 'association-uc09-actor-ai' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc04-uc11,association-uc10-actor-ai",
+        "message": "edges 'include-uc04-uc11' and 'association-uc10-actor-ai' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc04-uc11,association-uc12-actor-ai",
+        "message": "edges 'include-uc04-uc11' and 'association-uc12-actor-ai' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc04-uc11,association-uc09-actor-embed",
+        "message": "edges 'include-uc04-uc11' and 'association-uc09-actor-embed' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc04-uc11,association-uc12-actor-embed",
+        "message": "edges 'include-uc04-uc11' and 'association-uc12-actor-embed' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc05-uc11,association-uc09-actor-ai",
+        "message": "edges 'include-uc05-uc11' and 'association-uc09-actor-ai' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc05-uc11,association-uc10-actor-ai",
+        "message": "edges 'include-uc05-uc11' and 'association-uc10-actor-ai' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc05-uc11,association-uc12-actor-ai",
+        "message": "edges 'include-uc05-uc11' and 'association-uc12-actor-ai' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc05-uc11,association-uc09-actor-embed",
+        "message": "edges 'include-uc05-uc11' and 'association-uc09-actor-embed' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc05-uc11,association-uc12-actor-embed",
+        "message": "edges 'include-uc05-uc11' and 'association-uc12-actor-embed' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc06-uc11,association-uc09-actor-ai",
+        "message": "edges 'include-uc06-uc11' and 'association-uc09-actor-ai' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc06-uc11,association-uc10-actor-ai",
+        "message": "edges 'include-uc06-uc11' and 'association-uc10-actor-ai' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc06-uc11,association-uc12-actor-ai",
+        "message": "edges 'include-uc06-uc11' and 'association-uc12-actor-ai' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc06-uc11,association-uc09-actor-embed",
+        "message": "edges 'include-uc06-uc11' and 'association-uc09-actor-embed' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc06-uc11,association-uc12-actor-embed",
+        "message": "edges 'include-uc06-uc11' and 'association-uc12-actor-embed' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc07-uc11,association-uc09-actor-ai",
+        "message": "edges 'include-uc07-uc11' and 'association-uc09-actor-ai' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc07-uc11,association-uc10-actor-ai",
+        "message": "edges 'include-uc07-uc11' and 'association-uc10-actor-ai' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc07-uc11,association-uc12-actor-ai",
+        "message": "edges 'include-uc07-uc11' and 'association-uc12-actor-ai' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc07-uc11,association-uc09-actor-embed",
+        "message": "edges 'include-uc07-uc11' and 'association-uc09-actor-embed' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc07-uc11,association-uc12-actor-embed",
+        "message": "edges 'include-uc07-uc11' and 'association-uc12-actor-embed' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc09-uc11,association-uc10-actor-ai",
+        "message": "edges 'include-uc09-uc11' and 'association-uc10-actor-ai' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc09-uc11,association-uc12-actor-ai",
+        "message": "edges 'include-uc09-uc11' and 'association-uc12-actor-ai' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc09-uc11,association-uc12-actor-embed",
+        "message": "edges 'include-uc09-uc11' and 'association-uc12-actor-embed' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc10-uc11,association-uc12-actor-ai",
+        "message": "edges 'include-uc10-uc11' and 'association-uc12-actor-ai' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "include-uc10-uc11,association-uc12-actor-embed",
+        "message": "edges 'include-uc10-uc11' and 'association-uc12-actor-embed' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "association-actor-access-mgr-uc06,association-actor-author-uc07",
+        "message": "edges 'association-actor-access-mgr-uc06' and 'association-actor-author-uc07' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "association-actor-member-uc09,association-actor-member-uc10",
+        "message": "edges 'association-actor-member-uc09' and 'association-actor-member-uc10' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "association-uc09-actor-ai,association-uc09-actor-embed",
+        "message": "edges 'association-uc09-actor-ai' and 'association-uc09-actor-embed' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "association-uc10-actor-ai,association-uc09-actor-embed",
+        "message": "edges 'association-uc10-actor-ai' and 'association-uc09-actor-embed' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      },
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "association-uc12-actor-ai,association-uc09-actor-embed",
+        "message": "edges 'association-uc12-actor-ai' and 'association-uc09-actor-embed' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      }
+    ]
+  },
+  {
+    "id": "DGM-C4-01",
+    "errors": 0,
+    "warnings": 0,
+    "findings": []
+  },
+  {
+    "id": "DGM-C4-02",
+    "errors": 0,
+    "warnings": 0,
+    "findings": []
+  },
+  {
+    "id": "DGM-SEQ-01",
+    "errors": 0,
+    "warnings": 40,
+    "findings": [
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-2,frame-9",
+        "message": "vertices 'frame-2' and 'frame-9' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-2,frame-19",
+        "message": "vertices 'frame-2' and 'frame-19' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-2,frame-24",
+        "message": "vertices 'frame-2' and 'frame-24' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-2,branch-2",
+        "message": "vertices 'frame-2' and 'branch-2' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-2,note-4",
+        "message": "vertices 'frame-2' and 'note-4' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-2,branch-5",
+        "message": "vertices 'frame-2' and 'branch-5' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-2,branch-9",
+        "message": "vertices 'frame-2' and 'branch-9' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-2,note-11",
+        "message": "vertices 'frame-2' and 'note-11' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-2,branch-12",
+        "message": "vertices 'frame-2' and 'branch-12' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-2,note-18",
+        "message": "vertices 'frame-2' and 'note-18' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-2,branch-19",
+        "message": "vertices 'frame-2' and 'branch-19' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-2,note-21",
+        "message": "vertices 'frame-2' and 'note-21' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-2,branch-22",
+        "message": "vertices 'frame-2' and 'branch-22' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-2,branch-24",
+        "message": "vertices 'frame-2' and 'branch-24' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-2,branch-27",
+        "message": "vertices 'frame-2' and 'branch-27' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-2,note-29",
+        "message": "vertices 'frame-2' and 'note-29' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-2,note-33",
+        "message": "vertices 'frame-2' and 'note-33' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-9,frame-19",
+        "message": "vertices 'frame-9' and 'frame-19' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-9,frame-24",
+        "message": "vertices 'frame-9' and 'frame-24' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-9,branch-9",
+        "message": "vertices 'frame-9' and 'branch-9' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-9,note-11",
+        "message": "vertices 'frame-9' and 'note-11' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-9,branch-12",
+        "message": "vertices 'frame-9' and 'branch-12' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-9,note-18",
+        "message": "vertices 'frame-9' and 'note-18' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-9,branch-19",
+        "message": "vertices 'frame-9' and 'branch-19' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-9,note-21",
+        "message": "vertices 'frame-9' and 'note-21' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-9,branch-22",
+        "message": "vertices 'frame-9' and 'branch-22' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-9,branch-24",
+        "message": "vertices 'frame-9' and 'branch-24' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-9,branch-27",
+        "message": "vertices 'frame-9' and 'branch-27' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-9,note-29",
+        "message": "vertices 'frame-9' and 'note-29' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-9,note-33",
+        "message": "vertices 'frame-9' and 'note-33' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-19,frame-24",
+        "message": "vertices 'frame-19' and 'frame-24' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-19,branch-19",
+        "message": "vertices 'frame-19' and 'branch-19' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-19,note-21",
+        "message": "vertices 'frame-19' and 'note-21' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-19,branch-22",
+        "message": "vertices 'frame-19' and 'branch-22' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-19,branch-24",
+        "message": "vertices 'frame-19' and 'branch-24' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-19,branch-27",
+        "message": "vertices 'frame-19' and 'branch-27' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-19,note-29",
+        "message": "vertices 'frame-19' and 'note-29' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-24,branch-24",
+        "message": "vertices 'frame-24' and 'branch-24' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-24,branch-27",
+        "message": "vertices 'frame-24' and 'branch-27' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-24,note-29",
+        "message": "vertices 'frame-24' and 'note-29' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      }
+    ]
+  },
+  {
+    "id": "DGM-SEQ-02",
+    "errors": 0,
+    "warnings": 21,
+    "findings": [
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-2,frame-6",
+        "message": "vertices 'frame-2' and 'frame-6' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-2,frame-13",
+        "message": "vertices 'frame-2' and 'frame-13' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-2,branch-2",
+        "message": "vertices 'frame-2' and 'branch-2' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-2,branch-4",
+        "message": "vertices 'frame-2' and 'branch-4' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-2,branch-6",
+        "message": "vertices 'frame-2' and 'branch-6' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-2,branch-9",
+        "message": "vertices 'frame-2' and 'branch-9' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-2,branch-13",
+        "message": "vertices 'frame-2' and 'branch-13' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-2,branch-18",
+        "message": "vertices 'frame-2' and 'branch-18' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-2,note-20",
+        "message": "vertices 'frame-2' and 'note-20' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-2,note-27",
+        "message": "vertices 'frame-2' and 'note-27' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-6,frame-13",
+        "message": "vertices 'frame-6' and 'frame-13' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-6,branch-6",
+        "message": "vertices 'frame-6' and 'branch-6' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-6,branch-9",
+        "message": "vertices 'frame-6' and 'branch-9' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-6,branch-13",
+        "message": "vertices 'frame-6' and 'branch-13' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-6,branch-18",
+        "message": "vertices 'frame-6' and 'branch-18' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-6,note-20",
+        "message": "vertices 'frame-6' and 'note-20' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-6,note-27",
+        "message": "vertices 'frame-6' and 'note-27' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-13,branch-13",
+        "message": "vertices 'frame-13' and 'branch-13' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-13,branch-18",
+        "message": "vertices 'frame-13' and 'branch-18' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-13,note-20",
+        "message": "vertices 'frame-13' and 'note-20' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      },
+      {
+        "code": "W-OVERLAP",
+        "severity": "warning",
+        "subject": "frame-13,note-27",
+        "message": "vertices 'frame-13' and 'note-27' overlap",
+        "fix": "move the siblings apart or nest one inside the other"
+      }
+    ]
+  },
+  {
+    "id": "DGM-STATE-01",
+    "errors": 0,
+    "warnings": 0,
+    "findings": []
+  },
+  {
+    "id": "DGM-STATE-02",
+    "errors": 0,
+    "warnings": 0,
+    "findings": []
+  },
+  {
+    "id": "DGM-DATA-01",
+    "errors": 0,
+    "warnings": 0,
+    "findings": []
+  },
+  {
+    "id": "DGM-DATA-02",
+    "errors": 0,
+    "warnings": 1,
+    "findings": [
+      {
+        "code": "W-EDGE-CROSS",
+        "severity": "warning",
+        "subject": "e6,e10",
+        "message": "edges 'e6' and 'e10' cross",
+        "fix": "add waypoints to one edge or reroute it so the paths do not cross"
+      }
+    ]
+  },
+  {
+    "id": "DGM-DATA-03",
+    "errors": 0,
+    "warnings": 0,
+    "findings": []
+  },
+  {
+    "id": "DGM-DEPLOY-01",
+    "errors": 0,
+    "warnings": 0,
+    "findings": []
+  },
+  {
+    "id": "DGM-DEV-01",
+    "errors": 0,
+    "warnings": 0,
+    "findings": []
+  }
+]

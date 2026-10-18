@@ -1,8 +1,9 @@
 # Optional project-scoped task keyword search
 
 **Artifact ID:** ADR-0016
-**Version/date:** 0.1 Draft - 14 October 2026
+**Version/date:** 0.2 Draft - 16 October 2026
 **Status:** Owner-confirmed scope and Should priority; implementation unimplemented.
+**Owner confirmation source:** [BA-D20](../analyst/business-review-2026-10-13.md); source records direction, not implementation evidence.
 **Trace:** FR-70; BR-01, BR-07, BR-13; UC-08; SP-08.
 
 The owner explicitly requested keyword search of task titles/descriptions in the current project and selected Should after the existing 60 Must. This is an added requirement, not a deferral of an original Core requirement. Preserve FR-45 as Withdrawn and assign FR-70 without renumbering. Active FR count becomes 69; release priorities become 60 Must, 4 Should, 4 Could and 1 Wont.

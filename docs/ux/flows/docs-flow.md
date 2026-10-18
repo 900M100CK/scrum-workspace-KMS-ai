@@ -1,9 +1,9 @@
 # User Flow: Knowledge Management (Docs & Versions)
 
 **Artifact ID:** UX-FLOW-DOCS-02\
-**Version/date:** 0.4 Draft · 14 October 2026\
+**Version/date:** 0.5 Draft · 17 October 2026\
 **Status:** Owner-confirmed policy direction; UI, diagram and runtime verification pending.\
-**Sources:** PRD-01 v0.5; UC-02 v0.3 (UC-06/UC-07); SAD-03 v0.7; ADR-0007/0009/0011; Knowledge/Workspace OpenAPI v0.2.0.\
+**Sources:** PRD-01 v0.9; UC-02 v0.6 (UC-06/UC-07); SAD-03 v0.11; ADR-0007/0009/0011/0013/0017; Workspace OpenAPI v0.2.2 / Knowledge v0.2.3.\
 **Trace:** BR-01, BR-04, BR-05, BR-07, BR-08, BR-10, BR-11, BR-12, BR-14; FR-04, FR-10–FR-15, FR-19, FR-31, FR-39, FR-46–FR-48, FR-50–FR-52, FR-55, FR-59, FR-61; SC-05, SC-06. FR-45 is Withdrawn, with replacement/history assertions under AC-11.
 
 ## 1. Creation and immutable revisions
@@ -19,7 +19,7 @@ Creation first registers a Workspace-allocated identity, policy, author capabili
 | Situation | Behaviour and presentation |
 | --- | --- |
 | Save revision | Require content-write; send expected aggregate revision and scoped idempotency key. Show “Saving” while waiting; this is an operation state, not a version lifecycle. |
-| Confirmed revision | Knowledge atomically creates replacement Current, makes previous Current Superseded and updates the pointer. Update badges only after confirmation. Independently display readiness: `pending` = “Indexing”, `ready` = “Search ready”, `failed` = “Indexing failed”. Current does not promise immediate searchability. |
+| Confirmed revision | Knowledge atomically creates replacement Current, makes previous Current Superseded and updates the pointer. Update badges only after confirmation. Independently display semantic readiness: `pending` = “Semantic indexing”, `ready` = “Semantic search ready”, `failed` = “Semantic indexing failed”. Keyword availability depends on committed, permitted, current passages and survives embedding failure; Current alone promises neither path is ready. |
 | Concurrent revision / stale write | On `409`, retain unsaved text, refresh only permitted state and require a fresh decision. Never overwrite a newer Current pointer silently. |
 | Save failure / unknown outcome | Show explicit failure/pending, reconcile authoritative state and avoid blind retries. Reuse the original key for the same request. Unknown remote lifecycle-write outcomes block affected protected handoffs until reconciliation under ADR-0011. |
 | Indexing failure | Retain confirmed lifecycle badge and show failed readiness. Background retry is idempotent and rejects obsolete/out-of-order work. No browser reindex endpoint is assumed. |
@@ -30,7 +30,7 @@ Revision/archive/deletion use the Workspace gateway guard but commit only in Kno
 
 ## 3. Access management and failures
 
-A scoped document access manager may change classification or grant/revoke without automatically reading content. Provide an access-management entry independently of the content viewer. Grant only to current members. Record audit events for committed mutations.
+A scoped document access manager may change classification or grant/revoke without automatically reading content. Provide access-management, content-write and lifecycle entries by known document identity independently of the read-filtered explorer and content viewer. Check the requested capability before exposing action metadata; do not add a readable-document listing bypass. Revision accepts new text; prefill, history, readiness and content-bearing responses require separate read permission. Return only operation-authorised metadata otherwise. Grant only to current members. Record audit events for committed mutations.
 
 After revocation/removal, subsequent protected reads, provider submissions, answer deliveries and citation opens recheck current authority. Membership removal invalidates restricted grants; rejoining restores project-shared access only. Revocation success follows the ADR-0006 guarded commit boundary; already transmitted data cannot be recalled.
 
@@ -57,4 +57,4 @@ DGM-FLOW-03: [Mermaid](../../sdlc/diagrams/flowchart/docs-flow.mmd) · [Draw.io]
 
 **Assumptions/open decisions:** Initial access/lifecycle direction is confirmed by ADR-0007/0009/0011. Additional capability delegation, physical retention and fenced orphan cleanup remain open. ADR-0013 resolves unavailable identity entitlement. This flow cannot resolve those policies implicitly; no polling endpoint is invented.
 
-**Checklist/handoff:** Pass for documented immediate revision, explicit author grant, separate readiness/denial branches and matching diagram structure; Gap for rendered/usability and runtime/concurrency tests. v0.4 and DGM-FLOW-03 v0.5 apply the confirmed lifecycle/creation decisions.
+**Checklist/handoff:** Pass for documented immediate revision, explicit author grant, separate readiness/denial branches and matching diagram structure; Gap for rendered/usability and runtime/concurrency tests. v0.5 and DGM-FLOW-03 v0.8 clarify independent action entry and separate semantic readiness.

@@ -1,12 +1,12 @@
-%% Origin: docs/ux/flows/docs-flow.md v0.4
-%% DGM-FLOW-03 v0.6 Draft - 14 October 2026
-%% Sources: PRD-01 v0.5; UC-02 v0.3; SAD-03 v0.7; ADR-0007/0009/0011/0012/0013/0015/0016/0017; Workspace OpenAPI v0.2.1; Knowledge OpenAPI v0.2.2
+%% Origin: docs/ux/flows/docs-flow.md v0.5
+%% DGM-FLOW-03 v0.8 Draft - 17 October 2026
+%% Sources: UX-FLOW-DOCS-02 v0.5; PRD-01 v0.9; UC-02 v0.6; SAD-03 v0.12; ADR-0007; ADR-0009; ADR-0011; ADR-0012; ADR-0013; ADR-0017
 %% Trace: FR-04, FR-10-FR-15, FR-19, FR-39, FR-46-FR-52, FR-59, FR-61; SC-05, SC-06
 %% Owner-confirmed direction; UI and runtime evidence pending. API keys are relative to /api.
 flowchart TD
     Start["Authenticated member opens document workspace"]
-    Scope["Server scopes list: project-shared or restricted with current read grant; no hidden metadata"]
     Action{"Choose operation"}
+    Scope["Server scopes list: project-shared or restricted with current read grant; no hidden metadata"]
     Create["Create capability; explicit project-shared or restricted; POST /knowledge/documents"]
     Register["Workspace allocates identity, policy and author capabilities/read grant; Knowledge persists initial Current; no activation step"]
     Pending["202: creation pending; no completed accessible document"]
@@ -14,22 +14,23 @@ flowchart TD
     Read["GET /knowledge/documents/{document_id}; shared protected-read checks"]
     Denied["401 sign-in; generic 404 unknown/denied; 503 unknown authority"]
     View["Show authorised version and validity"]
-    Revise["Content-write check; edit unsaved form; POST /knowledge/documents/{document_id}/versions"]
+    Revise["Content-write check; submit new text; prefill only with separate read permission; POST /knowledge/documents/{document_id}/versions"]
     Saving["Saving UI; expected_revision and Idempotency-Key; guarded atomic Knowledge commit"]
-    Saved["201 confirmed: new immutable Current, previous Superseded, pointer updated; exact old citations unchanged"]
+    Saved["201 confirmed: new immutable Current, previous Superseded; response metadata only as authorised; old citations unchanged"]
     Conflict["409: refresh permitted aggregate; require fresh user decision"]
     Failure["Failure or uncertain result: reconcile; no blind retry; unknown lifecycle outcome blocks handoffs"]
     Ready["GET /knowledge/documents/{document_id}/versions/{version_id}/readiness"]
-    Index["pending: Indexing; ready: Search ready; failed: Indexing failed; lifecycle separate"]
+    Index["Semantic readiness: pending / ready / failed; keyword availability separate; lifecycle separate"]
     History["Explicit history / exact citation: recheck permission; label Superseded or Archived; never substitute"]
-    Manage["Scoped manage-access; independent of content read"]
+    Manage["Known identity + scoped manage-access; independent of content read"]
     Policy["POST /documents/{document_id}/classification or /read-grants; DELETE /documents/{document_id}/read-grants/{user_id}"]
     Revoke["Guarded commit + audit; invalidate access/cache scope; recheck all protected handoffs"]
     Removal["Membership removal: block last manager; atomically revoke all individual grants, clear assignees and audit; rejoin restores neither"]
     Retire["Lifecycle capability + confirmation; POST /knowledge/documents/{document_id}/versions/{version_id}/archive or DELETE /knowledge/documents/{document_id}"]
     Retired["Archive excludes ordinary retrieval; delete stops active access; stale jobs cannot revive; exact citation rules apply"]
-    Start --> Scope
-    Scope --> Action
+    Start --> Action
+    Action -->|Browse readable documents| Scope
+    Scope -->|Select readable target| Read
     Action -->|Create| Create
     Create --> Register
     Create -->|Rejected| Denied
@@ -39,13 +40,13 @@ flowchart TD
     Action -->|Open| Read
     Read -->|Failed check| Denied
     Read -->|Permitted| View
-    View -->|Revise| Revise
+    Action -->|Revise by known identity; no content-read prerequisite| Revise
     Revise --> Saving
     Saving -->|Rejected| Denied
     Saving -->|201| Saved
     Saving -->|409| Conflict
     Saving -->|503 or lost response| Failure
-    Saved --> Ready
+    Saved -->|Only if separately readable| Ready
     Ready -->|200| Index
     Ready -->|Check failed| Denied
     View -->|History / citation| History
@@ -56,7 +57,7 @@ flowchart TD
     Policy -->|409| Conflict
     Policy -->|Error| Failure
     Removal --> Revoke
-    View -->|Archive / delete| Retire
+    Action -->|Archive / delete by known identity| Retire
     Retire -->|Confirmed| Retired
     Retire -->|409| Conflict
     Retire -->|Unknown / error| Failure

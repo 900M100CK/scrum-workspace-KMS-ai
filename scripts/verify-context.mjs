@@ -126,6 +126,24 @@ export function validateApi(api, requirements) {
   return ids;
 }
 
+export function validateSpecOwnership(slices, apisByOwner) {
+  const owners = new Map();
+  for (const [owner, api] of Object.entries(apisByOwner)) {
+    for (const item of Object.values(api.paths)) for (const operation of Object.values(item)) {
+      if (operation?.operationId) owners.set(operation.operationId, owner);
+    }
+  }
+  for (const spec of slices) {
+    const declared = ['both', 'knowledge + workspace'].includes(spec.service)
+      ? ['knowledge', 'workspace'] : [spec.service];
+    assert(declared.every(owner => owner in apisByOwner), 'Unknown spec service: ' + spec.id);
+    for (const id of spec.operationIds) {
+      assert(owners.has(id), 'Spec operation missing: ' + id);
+      assert(declared.includes(owners.get(id)), `Spec operation ownership mismatch: ${spec.id} ${id} belongs to ${owners.get(id)}`);
+    }
+  }
+}
+
 export async function verifyContext(root = fileURLToPath(new URL('../', import.meta.url))) {
   const read = path => readFile(resolve(root, path), 'utf8');
   const json = async path => JSON.parse(await read(path));
@@ -137,6 +155,7 @@ export async function verifyContext(root = fileURLToPath(new URL('../', import.m
   const operationIds = new Set();
   for (const api of apis) for (const id of validateApi(api, requirements)) { assert(!operationIds.has(id), 'Operation ID reused across services'); operationIds.add(id); }
   const specIndex = await json('specs/index.json');
+  validateSpecOwnership(specIndex.slices, { workspace: apis[0], knowledge: apis[1] });
   const assigned = new Set();
   for (const spec of specIndex.slices) {
     await access(resolve(root, 'specs', spec.file));

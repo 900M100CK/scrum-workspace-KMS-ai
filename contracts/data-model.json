@@ -1,8 +1,8 @@
 {
   "artifactId": "DATA-04",
-  "version": "0.2",
+  "version": "0.3",
   "status": "Draft",
-  "storageDecision": "ADR-0004 Proposed; logical model only, no applied migrations",
+  "storageDecision": "ADR-0004 storage foundation implemented; logical additions under ADR-0012 are not applied migrations",
   "entities": [
     {
       "name": "Project",
@@ -235,6 +235,7 @@
         "document_id",
         "version_id",
         "passage_id",
+        "entity_kind",
         "entity_id",
         "observation_revision",
         "observed_at"
@@ -286,6 +287,42 @@
         "valid",
         "permission_revision"
       ]
+    },
+    {
+      "name": "HandoffManifest",
+      "owner": "knowledge",
+      "key": [
+        "handoff_id"
+      ],
+      "immutable": true,
+      "fields": [
+        "run_id",
+        "attempt_id",
+        "purpose",
+        "actor_id",
+        "project_id",
+        "access_context_ref",
+        "evidence_set",
+        "revision_refs",
+        "payload_digest",
+        "manifest_digest",
+        "prepared_at",
+        "complete"
+      ]
+    },
+    {
+      "name": "HandoffOutcome",
+      "owner": "knowledge",
+      "key": [
+        "outcome_id"
+      ],
+      "immutable": true,
+      "fields": [
+        "handoff_id",
+        "status",
+        "observed_at",
+        "enforcement_ref"
+      ]
     }
   ],
   "invariants": [
@@ -299,6 +336,9 @@
     "Old jobs cannot revive unavailable/tombstoned content",
     "No answer cache or permission-decision cache in MVP",
     "Workspace allocates document identity; registered policy is not content availability",
-    "Restricted creation adds a revocable author read grant; authorship never bypasses current access"
+    "Restricted creation adds a revocable author read grant; authorship never bypasses current access",
+    "Unfinished Backlog returns become To Do atomically with allocation, task revision and audit; completed allocation history is immutable",
+    "Complete immutable handoff manifests commit outside guard; guarded exact evidence/revision/payload matching precedes any send",
+    "A mismatch sends zero bytes and releases guard before a fresh bounded preparation; prepared records prove no send; consumed handoff IDs cannot be reused"
   ]
 }

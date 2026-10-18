@@ -1,0 +1,19 @@
+flowchart TD
+    subgraph Host["Developer Workstation (Single Node)"]
+        Browser["Web Browser (https://localhost:8000)"]
+        WS["Workspace Process (Port 8000)"]
+        KN["Knowledge Process (Loopback Port 8001)"]
+        
+        subgraph Postgres["PostgreSQL 17.10 (Port 5432)"]
+            WS_DB[("workspace_db<br/>(workspace_user)")]
+            KN_DB[("knowledge_db<br/>(knowledge_user)")]
+        end
+
+        ExtAI["External AI Provider (Outbound HTTPS / Ollama)"]
+    end
+
+    Browser -->|"TB1: HTTPS Same-Origin (Opaque Session)"| WS
+    WS -->|"TB2: Loopback HTTP (Service Key + Actor)"| KN
+    WS -->|"TB3: TCP/Socket (workspace_user)"| WS_DB
+    KN -->|"TB3: TCP/Socket (knowledge_user)"| KN_DB
+    WS -->|"TB4: Guarded Outbound HTTPS"| ExtAI

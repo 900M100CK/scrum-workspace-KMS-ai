@@ -1,9 +1,9 @@
 # Revise and retire a knowledge version
 
 **Artifact ID:** SP-07  
-**Version/date:** 0.2 Draft · 13 October 2026\
+**Version/date:** 0.3 Draft · 17 October 2026\
 **Status:** Owner-confirmed lifecycle direction; handlers and full acceptance unimplemented.\
-**Inputs:** PRD-01 v0.5; ADR-0009/0011; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-07--revise-and-retire-a-knowledge-version); [contract pack](../contracts/README.md); PLAN-01.
+**Inputs:** PRD-01 v0.8; ADR-0009/0011; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-07--revise-and-retire-a-knowledge-version); [contract pack](../contracts/README.md); PLAN-01.
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 2.  
@@ -41,3 +41,5 @@ Uses owner-confirmed ADR-0007–ADR-0011 and remaining OD-04/OD-09/OD-12 details
 ## Owner clarification - 14 October 2026
 
 ADR-0013 binds this slice: surviving unavailable citation identity requires current membership and retained document-read policy, with exact locator verification and no content substitution; revoked/audit-only/unknown readers get generic 404. Terminal answer withholding uses fixed HTTP 503 AnswerWithheld without evidence or detailed cause. These are required runtime assertions, not passes from schema checks.
+
+**17 October input reconciliation:** FR-11/12/13/15/19/47/48/61 and ADR-0009/0013: immediate Current revisions and exact unavailable citation entitlement are retained. Reviewed against the current requirement rows and operation ownership. This is specification review, not implementation or full AC coverage evidence.

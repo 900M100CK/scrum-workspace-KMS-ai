@@ -1,0 +1,85 @@
+%% Origin: docs/sdlc/use-cases.md v0.6
+%% DGM-UC-01 v0.5 Draft - 17 October 2026
+%% Sources: UC-02 v0.6; PRD-01 v0.9; SAD-03 v0.12; ADR-0007; ADR-0008; ADR-0009; ADR-0010; ADR-0011; ADR-0012; ADR-0013; ADR-0014; ADR-0015; ADR-0016; ADR-0017
+%% System boundary, 13 use cases, primary actors with specialization hierarchy, supporting systems, and audit <<include>> relationships.
+flowchart LR
+    subgraph PrimaryActors["Primary Actors"]
+        actor_user["User"]
+        actor_member["Authorised Member"]
+        actor_proj_admin["Project Admin /<br/>Membership Manager"]
+        actor_po["Product Owner"]
+        actor_work["Work Operator (operation-specific capability)"]
+        actor_sprint_mgr["Sprint Manager"]
+        actor_author["Content Author"]
+        actor_access_mgr["Document Access Manager"]
+        actor_lifecycle["Lifecycle Manager"]
+        actor_inspector["Audit / Execution Inspector"]
+    end
+
+    subgraph Boundary["System: Scrum Workspace + AI Project KMS"]
+        uc01(["UC-01: Establish and end a session"])
+        uc02(["UC-02: Create project & manage membership"])
+        uc03(["UC-03: Create a task in the backlog"])
+        uc04(["UC-04: Update work state & blockers"])
+        uc05(["UC-05: Plan, start & complete a Sprint"])
+        uc06(["UC-06: Create restricted knowledge & manage access"])
+        uc07(["UC-07: Revise & retire a knowledge version"])
+        uc08(["UC-08: Find linked knowledge without AI"])
+        uc09(["UC-09: Answer a question with exact evidence"])
+        uc10(["UC-10: Answer a current work-state question"])
+        uc11(["UC-11: Capture business audit & answer provenance"])
+        uc12(["UC-12: Continue work during AI failure"])
+        uc13(["UC-13: Inspect scoped audit & answer evidence"])
+
+        uc02 -.->|"«include»"| uc11
+        uc03 -.->|"«include»"| uc11
+        uc04 -.->|"«include»"| uc11
+        uc05 -.->|"«include»"| uc11
+        uc06 -.->|"«include»"| uc11
+        uc07 -.->|"«include»"| uc11
+        uc09 -.->|"«include»"| uc11
+        uc10 -.->|"«include»"| uc11
+    end
+
+    subgraph SupportingSystems["Supporting Systems"]
+        actor_identity["Identity Provider (if external identity is selected)"]
+        actor_ai["AI Model API<br/>(Generation)"]
+        actor_embed["Embedding Service"]
+    end
+
+    actor_member -->|specializes| actor_user
+    actor_proj_admin -->|specializes| actor_member
+    actor_po -->|specializes| actor_member
+    actor_work -->|specializes| actor_member
+    actor_sprint_mgr -->|specializes| actor_member
+    actor_author -->|specializes| actor_member
+    actor_access_mgr -->|specializes| actor_member
+    actor_lifecycle -->|specializes| actor_member
+    actor_inspector -->|specializes| actor_member
+
+    actor_user --- uc01
+    actor_proj_admin --- uc02
+    actor_po --- uc03
+    actor_work --- uc04
+    actor_sprint_mgr --- uc05
+    actor_author --- uc06
+    actor_access_mgr --- uc06
+    actor_author --- uc07
+    actor_lifecycle --- uc07
+    actor_member --- uc08
+    actor_member --- uc09
+    actor_member --- uc10
+    actor_member --- uc12
+    actor_inspector --- uc13
+
+    uc01 --- actor_identity
+    uc09 --- actor_ai
+    uc10 --- actor_ai
+    uc12 --- actor_ai
+    uc09 --- actor_embed
+    uc12 --- actor_embed
+
+    style uc11 fill:#f8cecc,stroke:#b85450,stroke-width:1.5px
+    style actor_identity fill:#fff2cc,stroke:#d6b656,stroke-width:1.5px
+    style actor_ai fill:#fff2cc,stroke:#d6b656,stroke-width:1.5px
+    style actor_embed fill:#fff2cc,stroke:#d6b656,stroke-width:1.5px

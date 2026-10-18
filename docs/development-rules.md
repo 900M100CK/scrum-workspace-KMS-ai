@@ -1,6 +1,6 @@
 # AGENTS.md — Scrum Workspace and AI Project KMS
 
-Version 1.3 · 8 Oct 2026
+Version 1.4 · 17 Oct 2026
 Applies to **development agents**. It does not define the permissions of the application's runtime AI assistant (see §7).
 
 ## 1. Authority
@@ -27,10 +27,10 @@ Rules:
 
 ## 3. Stack and commands
 
-Application stack is proposed, not adopted. The Node context harness exists independently; its actual commands are in root `AGENTS.md` and `package.json`. Add application commands only after installation and verification:
+Application frameworks/providers remain proposed. PostgreSQL/pgvector storage is selected and implemented under ADR-0004; storage tests do not prove application enforcement. The Node context harness exists independently; its actual commands are in root `AGENTS.md` and `package.json`. Add application commands only after installation and verification:
 
-- Languages / frameworks:
-- Install / run / test / lint / migrate:
+- Runtime: Node 24+ for the harness and storage runner; application frameworks remain Proposed.
+- Context checks: `npm run context:lint`, `context:check`, `context:test` (dependency-free). Documentation checks: `npm ci`, then `npm run docs:lint` and `docs:test`. Storage commands and rollback cautions: [storage runbook](../infra/postgres/README.md). No application build/run command exists.
 - Repo layout: root `AGENTS.md` is the concise entry and points to this full development-rules document. `docs/BRD.md` links full editions in `docs/baseline/`; `docs/sdlc/` contains requirements/register and stage entries; `docs/architecture.md` is the design source; `docs/planning/` contains the five-month MoSCoW plan; `contracts/`, `specs/`, `services/`, `apps/web/` and `eval/` contain the contract/context scaffold. `agents/` and `SDLC-Prompt-Checklist/` retain their workflow roles/templates. Paths in this document are workspace-relative.
 
 Verify uncertain API details against the installed version or official docs.

@@ -1,0 +1,106 @@
+{
+  "title": "Central Diagram Register - diagrams-1",
+  "version": "1.2",
+  "date": "17 October 2026",
+  "diagrams": [
+    {
+      "id": "DGM-UC-01",
+      "name": "use-case-diagram",
+      "category": "use-case",
+      "path": "diagrams-1/use-case/use-case-diagram.drawio",
+      "mmd": "diagrams-1/use-case/use-case-diagram.mmd"
+    },
+    {
+      "id": "DGM-ARCH-01",
+      "name": "service-composition",
+      "category": "logical-view",
+      "path": "diagrams-1/logical-view/service-composition.drawio",
+      "mmd": "diagrams-1/logical-view/service-composition.mmd"
+    },
+    {
+      "id": "DGM-SITE-01",
+      "name": "application-sitemap",
+      "category": "logical-view",
+      "path": "diagrams-1/logical-view/application-sitemap.drawio",
+      "mmd": "diagrams-1/logical-view/application-sitemap.mmd"
+    },
+    {
+      "id": "DGM-DOMAIN-01",
+      "name": "domain-model",
+      "category": "logical-view",
+      "path": "diagrams-1/logical-view/domain-model.drawio",
+      "mmd": "diagrams-1/logical-view/domain-model.mmd"
+    },
+    {
+      "id": "DGM-FLOW-01",
+      "name": "ai-qa-flow",
+      "category": "process-view",
+      "path": "diagrams-1/process-view/ai-qa-flow.drawio",
+      "mmd": "diagrams-1/process-view/ai-qa-flow.mmd"
+    },
+    {
+      "id": "DGM-FLOW-02",
+      "name": "board-flow",
+      "category": "process-view",
+      "path": "diagrams-1/process-view/board-flow.drawio",
+      "mmd": "diagrams-1/process-view/board-flow.mmd"
+    },
+    {
+      "id": "DGM-FLOW-03",
+      "name": "docs-flow",
+      "category": "process-view",
+      "path": "diagrams-1/process-view/docs-flow.drawio",
+      "mmd": "diagrams-1/process-view/docs-flow.mmd"
+    },
+    {
+      "id": "DGM-FLOW-04",
+      "name": "permission-read-flow",
+      "category": "process-view",
+      "path": "diagrams-1/process-view/permission-read-flow.drawio",
+      "mmd": "diagrams-1/process-view/permission-read-flow.mmd"
+    },
+    {
+      "id": "DGM-FLOW-05",
+      "name": "permission-ai-checkpoints",
+      "category": "process-view",
+      "path": "diagrams-1/process-view/permission-ai-checkpoints.drawio",
+      "mmd": "diagrams-1/process-view/permission-ai-checkpoints.mmd"
+    },
+    {
+      "id": "DGM-DEV-01",
+      "name": "package-layering",
+      "category": "development-view",
+      "path": "diagrams-1/development-view/package-layering.drawio",
+      "mmd": "diagrams-1/development-view/package-layering.mmd"
+    },
+    {
+      "id": "DGM-PHYS-01",
+      "name": "deployment-topology",
+      "category": "physical-view",
+      "path": "diagrams-1/physical-view/deployment-topology.drawio",
+      "mmd": "diagrams-1/physical-view/deployment-topology.mmd"
+    },
+    {
+      "id": "DGM-SCEN-01",
+      "name": "core-scenarios-mapping",
+      "category": "scenarios-view",
+      "path": "diagrams-1/scenarios-view/core-scenarios-mapping.drawio",
+      "mmd": "diagrams-1/scenarios-view/core-scenarios-mapping.mmd"
+    },
+    {
+      "id": "DGM-JOURNEY-01",
+      "name": "core-user-journeys",
+      "category": "scenarios-view",
+      "path": "diagrams-1/scenarios-view/core-user-journeys.drawio",
+      "mmd": "diagrams-1/scenarios-view/core-user-journeys.mmd"
+    },
+    {
+      "id": "DGM-SDLC-01",
+      "name": "sdlc-process-flow",
+      "category": "sdlc",
+      "path": "diagrams-1/sdlc/sdlc-process-flow.drawio",
+      "mmd": "diagrams-1/sdlc/sdlc-process-flow.mmd"
+    }
+  ],
+  "status": "Alternative unverified; shared diagrams are canonical snapshots"
+}

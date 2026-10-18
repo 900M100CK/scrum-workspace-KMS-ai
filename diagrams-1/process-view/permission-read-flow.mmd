@@ -1,0 +1,43 @@
+%% Origin: docs/ux/permission-matrix.md v0.6
+%% DGM-FLOW-04 v0.9 Draft - 17 October 2026
+%% Sources: UX-PERM-MATRIX-02 v0.6; PRD-01 v0.9; UC-02 v0.6; SAD-03 v0.12; ADR-0006; ADR-0007; ADR-0009; ADR-0011; ADR-0012; ADR-0013; ADR-0017
+%% Trace: FR-01, FR-03-FR-04, FR-14, FR-19-FR-21, FR-28-FR-29, FR-39, FR-46, FR-55, FR-59, FR-61, FR-68; SC-05, SC-06
+%% Scope: source/work reads; AIFlow enters DGM-FLOW-05 Start. Citation checkpoint 4 returns here; all checks repeat. Policy and runtime evidence remain unapproved.
+flowchart TD
+    Start["Protected source / work read; exact citation entry from DGM-FLOW-05"]
+    Session{"Valid authenticated session?"}
+    Login["401: sign-in"]
+    Member{"Workspace confirms current project membership?"}
+    NotFound["Generic 404: same unknown/inaccessible body; no title, count, version or excerpt"]
+    Authority["Unknown / failed authority: deny output, generic service error"]
+    Type{"Resource / operation?"}
+    Work["Task / board: permitted read; controls depend on separate action capabilities"]
+    Doc["Document / version / exact citation: current authoritative checks"]
+    Classification{"Classification?"}
+    Grant{"Restricted: current explicit read grant?"}
+    Allowed["Recheck current access and exact version, passage and availability inside protected-read handoff guard"]
+    View["Return exact permitted source; historical labels; no substitution"]
+    Unavailable["Exact citation only: 200 unavailable for verified locator and current retained-policy reader; otherwise generic 404; no excerpt"]
+    AIFlow["DGM-FLOW-05 Start: authenticated AI request and all four checkpoints"]
+    Start --> Session
+    Session -->|No| Login
+    Session -->|Yes| Member
+    Member -->|No| NotFound
+    Member -->|Unknown / failed| Authority
+    Member -->|Yes| Type
+    Type -->|Task / board| Work
+    Type -->|Source / citation| Doc
+    Doc --> Classification
+    Classification -->|project-shared| Allowed
+    Classification -->|restricted| Grant
+    Classification -->|Unknown| Authority
+    Grant -->|Yes| Allowed
+    Grant -->|No| NotFound
+    Grant -->|Check error| Authority
+    Allowed -->|Still authorised and available| View
+    Allowed -->|Denied / revoked at final check| NotFound
+    Allowed -->|Missing evidence| Unavailable
+    Allowed -->|Check error| Authority
+    Type -->|AI Q&A| AIFlow
+
+%% Amendment: owner-confirmed partial answers, unavailable identity and membership rules; rendered review pending.
