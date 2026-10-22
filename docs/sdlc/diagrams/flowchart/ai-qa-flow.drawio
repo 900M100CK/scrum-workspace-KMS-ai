@@ -1,186 +1,173 @@
 <mxfile host="65bd71144e">
     <diagram id="DGM-FLOW-01" name="ai-qa-flow">
-        <mxGraphModel dx="1413" dy="1426" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1840" pageHeight="3580" math="0" shadow="0">
+        <mxGraphModel dx="1413" dy="1426" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="4446" pageHeight="4478" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="diagram-title" parent="1" style="text;whiteSpace=wrap;html=0;fontSize=18;" value="DGM-FLOW-01 v0.12 Draft | AI answers, exact citations and fallback | 18 October 2026 | Sources: UX-FLOW-AI-03 v0.8; PRD-01 v0.9; UC-02 v0.7; SAD-03 v0.15; ADR-0004; ADR-0006; ADR-0007; ADR-0009; ADR-0011; ADR-0012; ADR-0013; ADR-0015; ADR-0016; ADR-0017" vertex="1">
-                    <mxGeometry height="90" width="1720" x="60" y="20" as="geometry"/>
+                <mxCell id="diagram-title" parent="1" style="text;whiteSpace=wrap;html=1;fontSize=20;" value="DGM-FLOW-01 v0.13 Draft | AI answers, exact citations and fallback | 22 October 2026 | Sources: UX-FLOW-AI-03 v0.8; PRD-01 v0.9; UC-02 v0.7; SAD-03 v0.15; ADR-0004; ADR-0006; ADR-0007; ADR-0009; ADR-0011; ADR-0012; ADR-0013; ADR-0015; ADR-0016; ADR-0017" vertex="1">
+                    <mxGeometry height="100" width="4285.5" x="80" y="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="Start" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" value="User submits POST /knowledge/questions using application session" vertex="1">
-                    <mxGeometry height="170" width="360" x="710" y="140" as="geometry"/>
+                <mxCell id="Start" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=1;fontSize=16;spacing=14;" value="User submits POST /knowledge/questions using application session" vertex="1">
+                    <mxGeometry height="120" width="440" x="3134" y="160" as="geometry"/>
                 </mxCell>
-                <mxCell id="Read" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" value="1. Workspace checks session and current project/document scope; Knowledge retrieves permitted evidence" vertex="1">
-                    <mxGeometry height="170" width="360" x="710" y="400" as="geometry"/>
+                <mxCell id="Read" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=1;fontSize=16;spacing=14;" value="1. AI path: Workspace checks session and project/document scope; Knowledge uses scoped pgvector exact discovery" vertex="1">
+                    <mxGeometry height="120" width="440" x="3134" y="380" as="geometry"/>
                 </mxCell>
-                <mxCell id="Scope" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" value="Current-only by default; explicit labelled history; no Draft; operational facts from current observations" vertex="1">
-                    <mxGeometry height="170" width="360" x="80" y="660" as="geometry"/>
+                <mxCell id="Scope" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=1;fontSize=16;spacing=14;" value="Current-only by default; explicit labelled history; no Draft; operational facts from current observations" vertex="1">
+                    <mxGeometry height="120" width="440" x="3134" y="724" as="geometry"/>
                 </mxCell>
-                <mxCell id="Enough" parent="1" style="rhombus;fillColor=#fff2cc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" value="Evidence supports requested claim?" vertex="1">
-                    <mxGeometry height="170" width="360" x="500" y="1020" as="geometry"/>
+                <mxCell id="Enough" parent="1" style="rhombus;fillColor=#fff2cc;whiteSpace=wrap;html=1;fontSize=16;spacing=14;" value="At least one requested component has supporting evidence?" vertex="1">
+                    <mxGeometry height="250" width="440" x="3134" y="944" as="geometry"/>
                 </mxCell>
-                <mxCell id="Insufficient" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" value="Insufficient evidence; no hints about hidden sources; capability-aware Create action" vertex="1">
-                    <mxGeometry height="170" width="360" x="100" y="1030" as="geometry"/>
+                <mxCell id="Insufficient" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=1;fontSize=16;spacing=14;" value="Insufficient evidence; no hints about hidden sources; capability-aware Create action" vertex="1">
+                    <mxGeometry height="120" width="440" x="3674" y="1418" as="geometry"/>
                 </mxCell>
-                <mxCell id="Provider" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" value="2. Guarded current access + Knowledge validity check through provider-input transport handoff" vertex="1">
-                    <mxGeometry height="170" width="360" x="920" y="1180" as="geometry"/>
+                <mxCell id="Provider" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=1;fontSize=16;spacing=14;" value="2. Persist immutable input manifest outside guard; then guarded evidence/revision/payload match before sending" vertex="1">
+                    <mxGeometry height="120" width="440" x="3134" y="1418" as="geometry"/>
                 </mxCell>
-                <mxCell id="Generate" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" value="Wait outside guard; buffer whole answer; no browser token streaming" vertex="1">
-                    <mxGeometry height="170" width="360" x="500" y="1460" as="geometry"/>
+                <mxCell id="Generate" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=1;fontSize=16;spacing=14;" value="Wait outside guard; buffer whole answer; no browser token streaming" vertex="1">
+                    <mxGeometry height="120" width="440" x="3134" y="1762" as="geometry"/>
                 </mxCell>
-                <mxCell id="Validate" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" value="Validate server-assigned exact citations and supported claims; surface accessible conflicts" vertex="1">
-                    <mxGeometry height="170" width="360" x="500" y="1700" as="geometry"/>
+                <mxCell id="Validate" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=1;fontSize=16;spacing=14;" value="Validate exact server citations and claim support; invented citation invalidates entire draft" vertex="1">
+                    <mxGeometry height="120" width="440" x="3134" y="2106" as="geometry"/>
                 </mxCell>
-                <mxCell id="Delivery" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" value="3. Guarded recheck of entire evidence set including uncited context, session and validity" vertex="1">
-                    <mxGeometry height="170" width="360" x="500" y="1960" as="geometry"/>
+                <mxCell id="Delivery" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=1;fontSize=16;spacing=14;" value="3. Persist fresh delivery manifest outside guard; then guarded full-evidence/revision/payload match" vertex="1">
+                    <mxGeometry height="120" width="440" x="3134" y="2326" as="geometry"/>
                 </mxCell>
-                <mxCell id="Safe" parent="1" style="rhombus;fillColor=#fff2cc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" value="All evidence remains permitted and valid?" vertex="1">
-                    <mxGeometry height="170" width="360" x="590" y="2260" as="geometry"/>
+                <mxCell id="Safe" parent="1" style="rhombus;fillColor=#fff2cc;whiteSpace=wrap;html=1;fontSize=16;spacing=14;" value="Claims, exact citations, full evidence and immutable manifest/payload binding all pass?" vertex="1">
+                    <mxGeometry height="250" width="440" x="3134" y="2546" as="geometry"/>
                 </mxCell>
-                <mxCell id="Withhold" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" value="Withhold entire original draft; no answer content or source reason" vertex="1">
-                    <mxGeometry height="170" width="360" x="500" y="2480" as="geometry"/>
+                <mxCell id="Withhold" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=1;fontSize=16;spacing=14;" value="Withhold entire unsafe/stale draft; zero bytes; release guard; generic answer_withheld; no source reason" vertex="1">
+                    <mxGeometry height="120" width="440" x="2482" y="3020" as="geometry"/>
                 </mxCell>
-                <mxCell id="Retry" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" value="Bounded new attempt with remaining permitted evidence; repeat all checks" vertex="1">
-                    <mxGeometry height="170" width="360" x="920" y="1440" as="geometry"/>
+                <mxCell id="Retry" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=1;fontSize=16;spacing=14;" value="Bounded new attempt outside guard; fresh immutable handoff ID and manifest; repeat all checks" vertex="1">
+                    <mxGeometry height="120" width="440" x="1880" y="3460" as="geometry"/>
                 </mxCell>
-                <mxCell id="Answer" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" value="Guard held through answer response handoff completion or abort; render confirmed answer/conflict" vertex="1">
-                    <mxGeometry height="170" width="360" x="920" y="2480" as="geometry"/>
+                <mxCell id="Answer" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=1;fontSize=16;spacing=14;" value="Guard remains held through response completion/abort; render answered / partially_answered / conflict" vertex="1">
+                    <mxGeometry height="120" width="440" x="3134" y="3020" as="geometry"/>
                 </mxCell>
-                <mxCell id="Click" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" value="User opens exact citation" vertex="1">
-                    <mxGeometry height="170" width="360" x="920" y="2770" as="geometry"/>
+                <mxCell id="Click" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=1;fontSize=16;spacing=14;" value="User opens exact citation" vertex="1">
+                    <mxGeometry height="120" width="440" x="3134" y="3240" as="geometry"/>
                 </mxCell>
-                <mxCell id="Citation" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" value="4. GET /knowledge/citations/{document_id}/{version_id}/{passage_id}; guarded current protected read" vertex="1">
-                    <mxGeometry height="170" width="360" x="700" y="3020" as="geometry"/>
+                <mxCell id="Citation" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=1;fontSize=16;spacing=14;" value="4. GET /knowledge/citations/{document_id}/{version_id}/{passage_id}; guarded current protected read" vertex="1">
+                    <mxGeometry height="120" width="597" x="3055" y="3934" as="geometry"/>
                 </mxCell>
-                <mxCell id="Inspect" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" value="Exact excerpt and version; label Current / Superseded / Archived; no substitution" vertex="1">
-                    <mxGeometry height="170" width="360" x="500" y="3260" as="geometry"/>
+                <mxCell id="Inspect" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=1;fontSize=16;spacing=14;" value="Exact excerpt and version; label Current / Superseded / Archived; no substitution" vertex="1">
+                    <mxGeometry height="120" width="440" x="3134" y="4278" as="geometry"/>
                 </mxCell>
-                <mxCell id="Unavailable" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" value="Specific Citation unavailable only if surviving identity is readable; OD-04 / API mapping open" vertex="1">
-                    <mxGeometry height="170" width="360" x="970" y="3260" as="geometry"/>
+                <mxCell id="Unavailable" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=1;fontSize=16;spacing=14;" value="200 unavailable: verified exact locator + current membership and retained read policy; no excerpt or substitution" vertex="1">
+                    <mxGeometry height="120" width="440" x="2594" y="4278" as="geometry"/>
                 </mxCell>
-                <mxCell id="Denied" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" value="401 sign-in or identical generic 404 for unknown/denied; withhold protected data" vertex="1">
-                    <mxGeometry height="170" width="360" x="500" y="660" as="geometry"/>
+                <mxCell id="Denied" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=1;fontSize=16;spacing=14;" value="401 sign-in or identical generic 404 for unknown/denied; withhold protected data" vertex="1">
+                    <mxGeometry height="120" width="440" x="974" y="4278" as="geometry"/>
                 </mxCell>
-                <mxCell id="Authority" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" value="Authority failure: fail closed; generic service error; no cached/unrestricted fallback" vertex="1">
-                    <mxGeometry height="170" width="360" x="920" y="660" as="geometry"/>
+                <mxCell id="Authority" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=1;fontSize=16;spacing=14;" value="Authority or mandatory persistence failed: no handoff; generic error; no unrestricted retry" vertex="1">
+                    <mxGeometry height="120" width="440" x="2054" y="4278" as="geometry"/>
                 </mxCell>
-                <mxCell id="AIError" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" value="AI dependency error/timeout/budget: explicit failure, no generated answer" vertex="1">
-                    <mxGeometry height="170" width="360" x="920" y="1700" as="geometry"/>
+                <mxCell id="AIError" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=1;fontSize=16;spacing=14;" value="AI dependency error/timeout/budget: explicit failure, no generated answer" vertex="1">
+                    <mxGeometry height="120" width="440" x="1334" y="2589.3333333333335" as="geometry"/>
                 </mxCell>
-                <mxCell id="Fallback" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" value="Keyword search and document/work UI when own dependencies healthy" vertex="1">
-                    <mxGeometry height="170" width="360" x="920" y="1960" as="geometry"/>
+                <mxCell id="Fallback" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=1;fontSize=16;spacing=14;" value="PostgreSQL English full-text search (GIN) — independent keyword path; document/work UI when own dependencies healthy" vertex="1">
+                    <mxGeometry height="120" width="440" x="1296" y="3020" as="geometry"/>
                 </mxCell>
-                <mxCell id="KnowledgeError" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" value="Knowledge service/storage outage: documents and keyword search unavailable; Workspace work may continue" vertex="1">
-                    <mxGeometry height="170" width="360" x="1340" y="660" as="geometry"/>
+                <mxCell id="KnowledgeError" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=1;fontSize=16;spacing=14;" value="Knowledge outage: documents/document search unavailable; Workspace work and optional task search may continue" vertex="1">
+                    <mxGeometry height="120" width="440" x="434" y="4278" as="geometry"/>
                 </mxCell>
-                <mxCell id="edge-0" edge="1" parent="1" source="Start" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="Read" value="">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="edge-0" edge="1" parent="1" source="Start" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" target="Read" value="">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"/></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-1" edge="1" parent="1" source="Read" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="Scope" value="Permitted">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="edge-1" edge="1" parent="1" source="Read" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" target="Scope" value="Permitted">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"/><mxPoint as="offset" x="-36.25" y="0"/></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-2" edge="1" parent="1" source="Read" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="Denied" value="Unauthenticated / denied">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="edge-2" edge="1" parent="1" source="Read" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" target="Denied" value="Unauthenticated / denied">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="3354" y="510"/><mxPoint x="1310" y="510"/><mxPoint x="1310" y="2016"/><mxPoint x="529" y="2016"/><mxPoint x="529" y="4198"/><mxPoint x="1194" y="4198"/></Array><mxPoint as="offset" x="-799" y="150"/></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-3" edge="1" parent="1" source="Read" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="Authority" value="Unknown authority">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="edge-3" edge="1" parent="1" source="Read" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" target="Authority" value="Unknown authority">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="3354" y="510"/><mxPoint x="4235" y="510"/><mxPoint x="4235" y="4208"/><mxPoint x="2274" y="4208"/></Array><mxPoint as="offset" x="66.75" y="-763"/></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-4" edge="1" parent="1" source="Scope" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="Enough" value="">
-                    <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="260" y="910"/>
-                            <mxPoint x="890" y="910"/>
-                        </Array>
-                    </mxGeometry>
+                <mxCell id="edge-4" edge="1" parent="1" source="Scope" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" target="Enough" value="">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"/></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-5" edge="1" parent="1" source="Enough" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="Insufficient" value="No">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="edge-5" edge="1" parent="1" source="Enough" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" target="Insufficient" value="No">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="3354" y="1204"/><mxPoint x="3894" y="1204"/></Array><mxPoint as="offset" x="158.5" y="102"/></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-6" edge="1" parent="1" source="Enough" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="Provider" value="Yes">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="edge-6" edge="1" parent="1" source="Enough" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" target="Provider" value="Yes">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"/><mxPoint as="offset" x="-13.75" y="0"/></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-7" edge="1" parent="1" source="Provider" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="Generate" value="Handoff succeeds">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="edge-7" edge="1" parent="1" source="Provider" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" target="Generate" value="Handoff succeeds">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"/><mxPoint as="offset" x="-62" y="0"/></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-8" edge="1" parent="1" source="Provider" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="Retry" value="Evidence revoked: exclude; retry chosen with budget and safe evidence">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="edge-8" edge="1" parent="1" source="Provider" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" target="Retry" value="Evidence revoked: exclude; retry chosen with budget and safe evidence">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="3354" y="1548"/><mxPoint x="4194" y="1548"/><mxPoint x="4194" y="3370"/><mxPoint x="2100" y="3370"/></Array><mxPoint as="offset" x="-261.25" y="-740"/></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-9" edge="1" parent="1" source="Provider" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="Authority" value="Check failed">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="edge-9" edge="1" parent="1" source="Provider" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" target="Authority" value="Check failed">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="3354" y="1548"/><mxPoint x="1814" y="1548"/><mxPoint x="1814" y="3720"/><mxPoint x="1608" y="3720"/><mxPoint x="1608" y="3854"/><mxPoint x="1273" y="3854"/><mxPoint x="1273" y="4208"/><mxPoint x="2274" y="4208"/></Array><mxPoint as="offset" x="-47" y="-1"/></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-10" edge="1" parent="1" source="Generate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="Validate" value="Complete">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="edge-10" edge="1" parent="1" source="Generate" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" target="Validate" value="Complete">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"/><mxPoint as="offset" x="-32" y="0"/></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-11" edge="1" parent="1" source="Generate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="AIError" value="Dependency failed">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="edge-11" edge="1" parent="1" source="Generate" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" target="AIError" value="Dependency failed">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="3354" y="1892"/><mxPoint x="2506" y="1892"/><mxPoint x="2506" y="2456"/><mxPoint x="1554" y="2456"/></Array><mxPoint as="offset" x="-66.25" y="-121.66666666666697"/></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-12" edge="1" parent="1" source="Validate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="Delivery" value="">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="edge-12" edge="1" parent="1" source="Validate" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" target="Delivery" value="">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"/></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-13" edge="1" parent="1" source="Delivery" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="Safe" value="">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="edge-13" edge="1" parent="1" source="Delivery" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" target="Safe" value="">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"/></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-14" edge="1" parent="1" source="Safe" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="Answer" value="Yes">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="edge-14" edge="1" parent="1" source="Safe" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" target="Answer" value="Yes">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"/><mxPoint as="offset" x="-13.75" y="0"/></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-15" edge="1" parent="1" source="Safe" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="Withhold" value="Revoked / invalid">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="edge-15" edge="1" parent="1" source="Safe" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" target="Withhold" value="Invalid claims/citations or revoked evidence">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="3354" y="2806"/><mxPoint x="3304" y="2806"/><mxPoint x="3304" y="2930"/><mxPoint x="2702" y="2930"/></Array><mxPoint as="offset" x="87" y="-22"/></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-16" edge="1" parent="1" source="Delivery" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="Authority" value="Check failed">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="edge-16" edge="1" parent="1" source="Delivery" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" target="Authority" value="Check failed">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="3354" y="2466"/><mxPoint x="2360" y="2466"/><mxPoint x="2360" y="3720"/><mxPoint x="1608" y="3720"/><mxPoint x="1608" y="3854"/><mxPoint x="1273" y="3854"/><mxPoint x="1273" y="4208"/><mxPoint x="2274" y="4208"/></Array><mxPoint as="offset" x="142" y="-420"/></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-17" edge="1" parent="1" source="Withhold" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="Retry" value="Retry chosen with budget and safe evidence">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="edge-17" edge="1" parent="1" source="Withhold" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" target="Retry" value="Retry chosen with budget and safe evidence">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="2702" y="3370"/><mxPoint x="2100" y="3370"/></Array><mxPoint as="offset" x="71.5" y="-70"/></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-18" edge="1" parent="1" source="Retry" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="Read" value="">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="edge-18" edge="1" parent="1" source="Retry" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0;exitY=0.5;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;" target="Read" value="">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="105" y="3520"/><mxPoint x="105" y="440"/></Array></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-19" edge="1" parent="1" source="Answer" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="Click" value="">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="edge-19" edge="1" parent="1" source="Answer" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" target="Click" value="">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"/></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-20" edge="1" parent="1" source="Click" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="Citation" value="">
-                    <mxGeometry relative="1" as="geometry"/>
+                
+                <mxCell id="edge-21" edge="1" parent="1" source="Citation" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" target="Inspect" value="Accessible and available">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"/><mxPoint as="offset" x="-92" y="0"/></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-21" edge="1" parent="1" source="Citation" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="Inspect" value="Accessible and available">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="edge-22" edge="1" parent="1" source="Citation" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" target="Unavailable" value="Readable identity; evidence unavailable">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="3354" y="4064"/><mxPoint x="2830" y="4064"/><mxPoint x="2830" y="4218"/><mxPoint x="2814" y="4218"/></Array><mxPoint as="offset" x="-300.75" y="102"/></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-22" edge="1" parent="1" source="Citation" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="Unavailable" value="Readable identity; evidence unavailable">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="edge-23" edge="1" parent="1" source="Citation" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" target="Denied" value="Unknown / inaccessible">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="3354" y="4064"/><mxPoint x="2393" y="4064"/><mxPoint x="2393" y="4198"/><mxPoint x="1194" y="4198"/></Array><mxPoint as="offset" x="2.5" y="-32"/></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-23" edge="1" parent="1" source="Citation" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="Denied" value="Unknown / inaccessible">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="edge-24" edge="1" parent="1" source="Citation" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" target="Authority" value="Check failed">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="3354" y="4064"/><mxPoint x="2510" y="4064"/><mxPoint x="2510" y="4208"/><mxPoint x="2274" y="4208"/></Array><mxPoint as="offset" x="-249" y="102"/></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-24" edge="1" parent="1" source="Citation" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="Authority" value="Check failed">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="edge-25" edge="1" parent="1" source="AIError" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" target="Fallback" value="Offer separate search; user chooses">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1554" y="2930"/><mxPoint x="1516" y="2930"/></Array><mxPoint as="offset" x="-133.75" y="24.33333333333303"/></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-25" edge="1" parent="1" source="AIError" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="Fallback" value="">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="edge-26" edge="1" parent="1" source="Read" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" target="KnowledgeError" value="Knowledge unavailable">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="3354" y="510"/><mxPoint x="1310" y="510"/><mxPoint x="1310" y="2456"/><mxPoint x="1293" y="2456"/><mxPoint x="1293" y="2816"/><mxPoint x="1248" y="2816"/><mxPoint x="1248" y="4188"/><mxPoint x="654" y="4188"/></Array><mxPoint as="offset" x="-81.25" y="471"/></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-26" edge="1" parent="1" source="Read" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="KnowledgeError" value="Knowledge unavailable">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="edge-27" edge="1" parent="1" source="Citation" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" target="KnowledgeError" value="Knowledge unavailable">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="3354" y="4064"/><mxPoint x="2201" y="4064"/><mxPoint x="2201" y="4188"/><mxPoint x="654" y="4188"/></Array><mxPoint as="offset" x="93.75" y="-22"/></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-27" edge="1" parent="1" source="Citation" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="KnowledgeError" value="Knowledge unavailable">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="edge-28" edge="1" parent="1" source="Fallback" target="KnowledgeError" style="edgeStyle=none;rounded=0;html=1;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontSize=14;labelBackgroundColor=#ffffff;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" value="Keyword dependency unavailable">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1516" y="3844"/><mxPoint x="1248" y="3844"/><mxPoint x="1248" y="4188"/><mxPoint x="654" y="4188"/></Array><mxPoint as="offset" x="153.5" y="-50"/></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-28" edge="1" parent="1" source="Fallback" target="KnowledgeError" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" value="Keyword dependency unavailable">
-                    <mxGeometry relative="1" x="0.0326" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="1630" y="2045"/>
-                        </Array>
-                        <mxPoint x="1330" y="2045" as="sourcePoint"/>
-                        <mxPoint x="1630" y="830" as="targetPoint"/>
-                    </mxGeometry>
+                <mxCell id="Unable" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=1;fontSize=16;spacing=14;" value="Generic unable-to-deliver state: no answer, no source reason; user may ask again" vertex="1">
+                    <mxGeometry height="120" width="440" x="1855" y="1762" as="geometry"/>
                 </mxCell>
-                <mxCell id="Unable" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=0;fontSize=13;spacing=10;" value="Generic unable-to-deliver state: no answer, no source reason; user may ask again" vertex="1">
-                    <mxGeometry height="170" width="360" x="60" y="2260" as="geometry"/>
+                <mxCell id="edge-withhold-unable" edge="1" parent="1" source="Withhold" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" target="Unable" value="No retry, budget exhausted or no safe evidence">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="2702" y="3150"/><mxPoint x="2335" y="3150"/><mxPoint x="2335" y="1672"/><mxPoint x="2075" y="1672"/></Array><mxPoint as="offset" x="-174.5" y="-38.5"/></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-withhold-unable" edge="1" parent="1" source="Withhold" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="Unable" value="No retry, budget exhausted or no safe evidence">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="edge-provider-unable" edge="1" parent="1" source="Provider" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" target="Unable" value="Evidence revoked: no retry, budget exhausted or no safe evidence">
+                    <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="3354" y="1548"/><mxPoint x="2337" y="1548"/><mxPoint x="2337" y="1672"/><mxPoint x="2075" y="1672"/></Array><mxPoint as="offset" x="-517.5" y="102"/></mxGeometry>
                 </mxCell>
-                <mxCell id="edge-provider-unable" edge="1" parent="1" source="Provider" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;" target="Unable" value="Evidence revoked: no retry, budget exhausted or no safe evidence">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-            </root>
+            <mxCell id="CitationKind" vertex="1" parent="1" style="rhombus;fillColor=#fff2cc;whiteSpace=wrap;html=1;fontSize=16;spacing=14;" value="Server citation kind?"><mxGeometry as="geometry" x="3134" y="3460" width="440" height="250"/></mxCell><mxCell id="Operational" vertex="1" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=1;fontSize=16;spacing=14;" value="Fresh scoped getProject / getSprint / getTask; never a document locator or historical snapshot endpoint"><mxGeometry as="geometry" x="1514" y="3934" width="440" height="120"/></mxCell><mxCell id="OperationalView" vertex="1" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=1;fontSize=16;spacing=14;" value="Original citation present: historical locator; absent on reload: observation unavailable. Label fresh current read separately"><mxGeometry as="geometry" x="1514" y="4278" width="440" height="120"/></mxCell><mxCell id="NewQuestion" vertex="1" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=1;fontSize=16;spacing=14;" value="Deliberate new user request with renewed scope; no automatic replay; stale health badge does not block editor"><mxGeometry as="geometry" x="630" y="2106" width="440" height="120"/></mxCell><mxCell id="UnknownRequest" vertex="1" parent="1" style="rounded=1;fillColor=#dae8fc;whiteSpace=wrap;html=1;fontSize=16;spacing=14;" value="Lost browser response: unknown prior outcome; no automatic resend; explicit new question cannot bypass server quarantine"><mxGeometry as="geometry" x="570" y="2589.3333333333335" width="440" height="120"/></mxCell><mxCell id="ai-Click-CitationKind" edge="1" parent="1" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" source="Click" target="CitationKind" value=""><mxGeometry relative="1" as="geometry"><Array as="points"/></mxGeometry></mxCell><mxCell id="ai-CitationKind-Citation" edge="1" parent="1" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" source="CitationKind" target="Citation" value="Document"><mxGeometry relative="1" as="geometry"><Array as="points"/><mxPoint as="offset" x="-32" y="0"/></mxGeometry></mxCell><mxCell id="ai-CitationKind-Operational" edge="1" parent="1" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" source="CitationKind" target="Operational" value="Operational"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="3354" y="3730"/><mxPoint x="1734" y="3730"/></Array><mxPoint as="offset" x="-761.75" y="92"/></mxGeometry></mxCell><mxCell id="ai-Operational-OperationalView" edge="1" parent="1" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" source="Operational" target="OperationalView" value="Readable exact current entity"><mxGeometry relative="1" as="geometry"><Array as="points"/><mxPoint as="offset" x="-111.25" y="0"/></mxGeometry></mxCell><mxCell id="ai-Operational-Denied" edge="1" parent="1" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" source="Operational" target="Denied" value="Unknown or inaccessible"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1734" y="4064"/><mxPoint x="1489" y="4064"/><mxPoint x="1489" y="4198"/><mxPoint x="1194" y="4198"/></Array><mxPoint as="offset" x="-88.75" y="-25"/></mxGeometry></mxCell><mxCell id="ai-Operational-Authority" edge="1" parent="1" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" source="Operational" target="Authority" value="Authority or Workspace unavailable"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1734" y="4064"/><mxPoint x="2016" y="4064"/><mxPoint x="2016" y="4208"/><mxPoint x="2274" y="4208"/></Array><mxPoint as="offset" x="-129.5" y="12"/></mxGeometry></mxCell><mxCell id="ai-AIError-NewQuestion" edge="1" parent="1" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" source="AIError" target="NewQuestion" value="User chooses Try again"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1554" y="2826"/><mxPoint x="1050" y="2826"/><mxPoint x="1050" y="2456"/><mxPoint x="957" y="2456"/><mxPoint x="957" y="2236"/><mxPoint x="1110" y="2236"/><mxPoint x="1110" y="2026"/><mxPoint x="850" y="2026"/></Array><mxPoint as="offset" x="-164.83333333333326" y="-70"/></mxGeometry></mxCell><mxCell id="ai-Unable-NewQuestion" edge="1" parent="1" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" source="Unable" target="NewQuestion" value="User chooses new question"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="2075" y="2026"/><mxPoint x="850" y="2026"/></Array><mxPoint as="offset" x="484.25" y="-32"/></mxGeometry></mxCell><mxCell id="ai-NewQuestion-Start" edge="1" parent="1" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0;exitY=0.5;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;" source="NewQuestion" target="Start" value=""><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="80" y="2166"/><mxPoint x="80" y="220"/></Array></mxGeometry></mxCell><mxCell id="ai-Start-UnknownRequest" edge="1" parent="1" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" source="Start" target="UnknownRequest" value="Browser response lost"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="3354" y="290"/><mxPoint x="306" y="290"/><mxPoint x="306" y="2456"/><mxPoint x="790" y="2456"/></Array><mxPoint as="offset" x="-218.58333333333303" y="1188"/></mxGeometry></mxCell><mxCell id="ai-UnknownRequest-NewQuestion" edge="1" parent="1" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" source="UnknownRequest" target="NewQuestion" value="User explicitly submits a new question"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="790" y="2806"/><mxPoint x="1269" y="2806"/><mxPoint x="1269" y="2236"/><mxPoint x="1110" y="2236"/><mxPoint x="1110" y="2026"/><mxPoint x="850" y="2026"/></Array><mxPoint as="offset" x="-144.5" y="-68.33333333333303"/></mxGeometry></mxCell><mxCell id="ai-UnknownRequest-Fallback" edge="1" parent="1" style="edgeStyle=none;rounded=0;html=1;endArrow=block;fontSize=14;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;" source="UnknownRequest" target="Fallback" value="User chooses keyword search"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="790" y="2930"/><mxPoint x="1516" y="2930"/></Array><mxPoint as="offset" x="-401.41666666666674" y="-22"/></mxGeometry></mxCell></root>
         </mxGraphModel>
     </diagram>
 </mxfile>

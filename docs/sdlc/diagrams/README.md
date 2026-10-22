@@ -1,7 +1,7 @@
 # Central diagram index
 
 **Artifact ID:** UML-07
-**Version/date:** 0.18 Draft · 18 October 2026
+**Version/date:** 0.19 Draft · 22 October 2026
 **Status:** Draft; Ready for downstream inventory use; C4 primary views with a 4+1 coverage crosswalk are recommended; see the 17 October report for corrections and remaining design/implementation gates.
 **Source versions:** BRD English v1.0; PRD-01 v0.9; UC-02 v0.7; SAD-03 v0.15; UX Docs v0.7 / sitemap v0.9 / personas v0.4 / matrix v0.10 / Board v0.9 / AI v0.8; ADR-0004 v0.2; ADR-0007–ADR-0017; Proposed ADR-0018–ADR-0023; PLAN-01 v0.3.
 
@@ -80,7 +80,7 @@ The system diagram inventory aligns with Philippe Kruchten's 4+1 Architectural V
 | --- | --- | --- | --- | --- |
 | **Logical View** | DGM-ARCH-01 | [Draw.io](architecture/service-composition.drawio) / [Mermaid](architecture/service-composition.mmd) | Service boundaries, component responsibilities, data ownership | [docs/architecture.md](../../architecture.md) §2; BR-01–BR-14; SC-01–SC-08 |
 | **Logical View** | DGM-SITE-01 | [Draw.io](sitemap/application-sitemap.drawio) / [Mermaid](sitemap/application-sitemap.mmd) | Client screen structure, navigation hierarchy, information layout | [docs/ux/sitemap.md](../../ux/sitemap.md) v0.4; SAD-03 §2.1 |
-| **Process View** | DGM-FLOW-01 | [Draw.io](flowchart/ai-qa-flow.drawio) / [Mermaid](flowchart/ai-qa-flow.mmd) | Runtime AI Q&A flow, citation validation, guarded transport fallback | [docs/ux/flows/ai-qa-flow.md](../../ux/flows/ai-qa-flow.md) v0.7; SAD-03 §3.1, §3.2 (Flow 4) |
+| **Process View** | DGM-FLOW-01 | [Draw.io](flowchart/ai-qa-flow.drawio) / [Mermaid](flowchart/ai-qa-flow.mmd) | Runtime AI Q&A flow, citation validation, guarded transport fallback | [docs/ux/flows/ai-qa-flow.md](../../ux/flows/ai-qa-flow.md) v0.8; SAD-03 §3.1, §3.2 (Flow 4) |
 | **Process View** | DGM-FLOW-02 | [Draw.io](flowchart/board-flow.drawio) / [Mermaid](flowchart/board-flow.mmd) | Scrum board mutations, optimistic revisions, blocker events | [docs/ux/flows/board-flow.md](../../ux/flows/board-flow.md) v0.8; SAD-03 §3.2 (Flow 1) |
 | **Process View** | DGM-FLOW-03 | [Draw.io](flowchart/docs-flow.drawio) / [Mermaid](flowchart/docs-flow.mmd) | Document authoring, immutable versioning, Draft exclusion | [docs/ux/flows/docs-flow.md](../../ux/flows/docs-flow.md) v0.4; SAD-03 §3.2 (Flow 2) |
 | **Process View** | DGM-FLOW-04 | [Draw.io](flowchart/permission-read-flow.drawio) / [Mermaid](flowchart/permission-read-flow.mmd) | Authoritative scope resolution, access denial, generic 404 | [docs/ux/permission-matrix.md](../../ux/permission-matrix.md) v0.5; SAD-03 §3.1, §3.2 (Flow 3) |
@@ -168,8 +168,8 @@ Current filesystem inspection found eight Draw.io files in the five type folders
 <!-- BEGIN GENERATED:artifact-versions -->
 | Artifact ID | Version | Canonical source |
 | --- | --- | --- |
-| UML-07 | v0.18 | [Source](README.md) |
-| REG-00 | v0.50 | [Source](../artifact-register.md) |
+| UML-07 | v0.19 | [Source](README.md) |
+| REG-00 | v0.51 | [Source](../artifact-register.md) |
 | SAD-03 | v0.15 | [Source](../../architecture.md) |
 | UX-PERM-MATRIX-02 | v0.10 | [Source](../../ux/permission-matrix.md) |
 | UX-PERSONAS-01 | v0.4 | [Source](../../ux/personas.md) |
@@ -179,7 +179,7 @@ Current filesystem inspection found eight Draw.io files in the five type folders
 | UX-FLOW-DOCS-02 | v0.7 | [Source](../../ux/flows/docs-flow.md) |
 | DGM-ARCH-01 | v0.9 | [Source](architecture/service-composition.mmd) |
 | DGM-SITE-01 | v0.8 | [Source](sitemap/application-sitemap.mmd) |
-| DGM-FLOW-01 | v0.12 | [Source](flowchart/ai-qa-flow.mmd) |
+| DGM-FLOW-01 | v0.13 | [Source](flowchart/ai-qa-flow.mmd) |
 | DGM-FLOW-02 | v0.7 | [Source](flowchart/board-flow.mmd) |
 | DGM-FLOW-03 | v0.9 | [Source](flowchart/docs-flow.mmd) |
 | DGM-FLOW-04 | v0.9 | [Source](flowchart/permission-read-flow.mmd) |
@@ -208,3 +208,11 @@ Current filesystem inspection found eight Draw.io files in the five type folders
 ## 17 October correction handoff
 
 See [DGM-REVIEW-03](review-2026-10-17.md). Corrected flowcharts can be laid out with `node scripts/layout-reviewed-diagrams.mjs`; use cases with `node scripts/layout-use-case.mjs`. Both replace the targeted native geometry and require a fresh visual review after use. C4/sequence/state/ERD sources are now registered in the current inventory; their original 17 October foundation/review reports remain dated evidence. Code-level detail still awaits implemented handlers.
+
+## AI diagram reconciliation — 22 October 2026
+
+DGM-FLOW-01 v0.13 restores the native Draw.io page to the existing Mermaid graph: 28 semantic vertices and 42 directed labelled edges. It adds the missing document/operational citation choice, fresh operational reads, missing original observation, deliberate new-question and unknown-browser-outcome branches. The obsolete direct Click-to-document-only edge is replaced by the citation-kind decision. Existing semantic vertex IDs, matching edge IDs and visual styles are retained; the expanded graph is reflowed by the installed ELK layout engine. No requirement, endpoint or runtime behavior changes.
+
+Regenerate this page with `node scripts/sync-ai-diagram.mjs`, then run `npm run docs:sync-metadata` and the documentation checks. The script compares the complete node labels and directed labelled edge multiset before saving, so it cannot silently write a structurally incomplete conversion. Per-diagram dates in the manifest keep this correction from redating unrelated diagram sources.
+
+Inputs remain UX-FLOW-AI-03 v0.8, PRD-01 v0.9, UC-02 v0.7, SAD-03 v0.15 and the existing cited ADRs. Trace: BR-07–BR-10, BR-12–BR-14; SC-02/03/05–08; SP-09/10/12 design support only, with work-before-AI implementation order retained. Author checklist: exact graph parity and source-backed branching supplied; offline geometry validation and native PNG export/inspection performed. The final layout has no overlapping vertices or through-vertex routes in the validator, but 32 edge-crossing warnings and dense return/error routes remain. Inspect at readable zoom; no print-scale, usability, runtime or independent-review acceptance is claimed. Handoff: Ready for downstream design use with those visual and implementation limits; other RV-09 findings stay open.

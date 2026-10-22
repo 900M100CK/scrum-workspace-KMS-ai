@@ -42,12 +42,17 @@ test('manifest version/ADR changes propagate to all generated inventories and bo
   const changed = structuredClone(manifest);
   const site = changed.artifacts.find(a => a.id === 'DGM-SITE-01');
   site.version = '0.999'; site.adrs.unshift('ADR-0001');
+  site.date = '22 October 2026';
   const outputs = await generatedOutputs(root, changed);
   for (const path of [site.path, site.drawio, 'docs/sdlc/diagrams/sitemap/README.md', 'docs/sdlc/diagrams/README.md', 'docs/sdlc/artifact-register.md']) {
     assert(outputs.get(path).includes('v0.999'), 'Missing propagated version: ' + path);
   }
   assert(outputs.get(site.path).includes('ADR-0001'));
   assert(outputs.get(site.drawio).includes('ADR-0001'));
+  assert(outputs.get(site.path).includes('Draft - 22 October 2026'));
+  assert(outputs.get(site.drawio).includes('| 22 October 2026 |'));
+  const unchanged = changed.artifacts.find(a => a.id === 'DGM-ARCH-01');
+  assert(outputs.get(unchanged.path).includes('Draft - ' + manifest.date), 'A local date override must not redate unrelated diagrams');
 });
 
 test('AI checkpoint sources retain the unavailable, partial-answer and member-removal decisions', async () => {

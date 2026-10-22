@@ -1,6 +1,6 @@
 # Diagram previews
 
-Draft overview PNGs exported locally on 17 October 2026. Open the editable Draw.io source at readable zoom for dense flows, ERDs and long sequences. These previews are not implementation evidence.
+Draft overview PNGs exported locally on 17 October 2026, except DGM-FLOW-01 v0.13 refreshed on 22 October 2026 after its native source was reconciled with Mermaid. Open the editable Draw.io source at readable zoom for dense flows, ERDs and long sequences. These previews are not implementation evidence.
 
 | Diagram | Preview | Editable source |
 | --- | --- | --- |

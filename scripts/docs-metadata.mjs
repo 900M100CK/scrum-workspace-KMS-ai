@@ -69,11 +69,12 @@ export async function generatedOutputs(root, manifest) {
     let text = (await readFile(resolve(root, artifact.path), 'utf8')).replaceAll('\r\n', '\n');
     if (artifact.drawio) {
       const origin = byId.get(artifact.origin);
-      const header = [`%% Origin: ${origin.path} v${origin.version}`, `%% ${artifact.id} v${artifact.version} Draft - ${manifest.date}`, `%% Sources: ${sourceHeader(artifact, manifest)}`];
+      const date = artifact.date ?? manifest.date;
+      const header = [`%% Origin: ${origin.path} v${origin.version}`, `%% ${artifact.id} v${artifact.version} Draft - ${date}`, `%% Sources: ${sourceHeader(artifact, manifest)}`];
       text = text.replace(/^%% (?:Origin:|Sources:|DGM-\S+ v[\d.]+ Draft)[^\n]*\n?/gm, '');
       text = header.join('\n') + '\n' + text;
       const drawio = await readFile(resolve(root, artifact.drawio), 'utf8');
-      const title = `${artifact.id} v${artifact.version} Draft | ${artifact.purpose} | ${manifest.date} | Sources: ${sourceHeader(artifact, manifest)}`;
+      const title = `${artifact.id} v${artifact.version} Draft | ${artifact.purpose} | ${date} | Sources: ${sourceHeader(artifact, manifest)}`;
       const pattern = /(<mxCell\b[^>]*\bid="diagram-title"[^>]*\bvalue=")[^"]*(")/;
       assert(pattern.test(drawio), 'Missing native diagram title: ' + artifact.id);
       outputs.set(artifact.drawio, drawio.replace(pattern, (_, before, after) => before + xmlEscape(title) + after));
