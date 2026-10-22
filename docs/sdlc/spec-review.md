@@ -1,9 +1,9 @@
 # Specification consistency review
 
 **Artifact ID:** SPEC-REVIEW-01
-**Version/date:** 0.11 Draft - 18 October 2026
+**Version/date:** 0.29 Draft · 18 October 2026
 **Status:** Author review with dated evidence; not independent approval or application acceptance.
-**Inputs:** PRD-01 v0.9; UC-02 v0.6; SAD-03 v0.12; DATA-04 v0.6 and DATA-FIT-01 v0.3; Workspace API v0.2.2 / Knowledge v0.2.3; UX-06 v0.3; TEST-08 v0.5; VERIFY-01 v0.3; ADR-0007 through ADR-0017.
+**Inputs:** PRD-01 v0.9; UC-02 v0.7; SAD-03 v0.15; DATA-04 v0.11 and DATA-FIT-01 v0.5; Workspace API v0.2.8 / Knowledge v0.2.9; UX-06 v0.12; TEST-08 v0.20; VERIFY-01 v0.4; ADR-0007 through ADR-0017; Proposed ADR-0018; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
 
 The [v0.4 review](spec-review-v0.4-history.md) is preserved verbatim as historical evidence. Its old source versions, open findings and environment statements are not current conclusions. This review checked present text and diagram sources plus five targeted overview renders. Full print-scale readability, independent review and application behavior remain unverified.
 
@@ -100,3 +100,89 @@ UX-R01–UX-R06 remain open after targeted recheck. Existing collection-complete
 **Handoff:** Stage 3/4/5 resolves SYS-01 and SYS-02 alongside UX-R01/R02, then Stage 5/6/8 reconciles inspection, missing metrics, UX states and test assertions. All findings remain open; source/shape checks are not runtime proof.
 
 **Post-edit verification for the system review:** Metadata synchronization checked 66 outputs and updated only the register and diagram-index version tables. The first documentation lint rejected this report's old review-input version; the input now names the current review entry while preserving the earlier review section. Documentation lint then passed (20 pairs / 35 artifacts / 301 nodes / 330 edges), and metadata check reported zero drift across 66 outputs. No contract, diagram topology, migration or application code was changed.
+
+## First correction slice — 18 October 2026
+
+See [FIX-PLAN-01](handoffs/remediation-priorities-2026-10-18.md) for the ordered queue and [Proposed ADR-0018](../adr/0018-operational-read-projections.md) for design rationale. SYS-02's missing wire projections are addressed by Workspace v0.2.3: two public reads, current task location, ordered Backlog selection and completion counts. Status: draft contract correction supplied; cursor/transaction/permission and fresh-client runtime evidence still open. It is not a closed implementation finding. SYS-01/03/04/05 and UX-R01–UX-R06 remain open. No accepted ADR or product scope was changed.
+
+Affected sources: API-05 v0.7; CONTRACT-01 v0.5; SP-03 v0.4, SP-04/05 v0.5; Board flow v0.7; TEST-08 v0.6. The existing Board/state diagrams retain their business transitions; source metadata follows the revised Board flow, with no topology change. Existing storage relations describe allocation and blocker history, but an explicit persisted current-location discriminator remains an additive Stage 4 task under ADR-0018; historical completed rows cannot identify a task later reopened and marked Done in Backlog. Cursor implementation remains Proposed. No migration or application handler was added.
+
+## Remediation-priority recheck — 18 October 2026
+
+[FIX-PLAN-01 v0.2](handoffs/remediation-priorities-2026-10-18.md#priority-ordered-recheck--18-october-2026) reviews all six queue positions against Workspace/Knowledge v0.2.3 and the current dependent artifacts. SYS-02 has draft read projections, not closure: P1-R01 confirms the existing Stage 4 current-location gap; P1-R02 identifies the undefined Backlog reorder revision source and whole-list/subset semantics. Both need design closure before the affected handler handoff. Priorities 2–6 remain open; SYS-01 still blocks AI relay implementation regardless of queue order.
+
+Executed checks: context lint/check passed (58 operations, unchanged 69 active / 60 Must); context tests 33/33; documentation lint 20 pairs / 35 artifacts / 301 nodes / 330 edges; documentation tests 17/17. The queue records scope, evidence, owner and closure conditions. No application, migration, provider, rendering or full OpenAPI meta-schema verification was performed. This is sequential author review, not independent acceptance; no contract or policy was changed.
+
+## SYS-02 Stage 4/5 completion — 18 October 2026
+
+Proposed ADR-0018 now specifies explicit location invariants, migration 003 with revision-bound legacy reconciliation, and a dedicated Backlog generation. Workspace v0.2.4 binds complete-list reorder to TaskList.backlog_revision with full-page traversal, generic stale/set rejection and same-key receipt semantics. DATA-04/DATA-FIT-01, logical model, affected specs/Board/test plan and diagrams are reconciled. P1-R01/P1-R02 design corrections are supplied; application/cursor/permission/transactional audit acceptance remains open. Priority 2–6 and SYS-01's pre-AI gate remain open.
+
+**Verification:** Isolated synthetic storage tests passed 15/15 reported tests (14 scenarios plus parent); context/documentation tests passed 50/50. Context lint/check and documentation lint passed; documentation inventory is 20 pairs / 35 artifacts / 304 nodes / 336 edges. Metadata check passed for 66 outputs and Git whitespace check passed. Fresh exports of the Workspace ERD and Sprint/task/location state diagram were inspected at overview scale. Detailed evidence and unrun checks are recorded in [the priority 1 follow-up](handoffs/remediation-priorities-2026-10-18.md#priority-1-follow-up-correction--18-october-2026). No development database upgrade, application acceptance, independent approval, commit or deployment is claimed.
+
+## Priority 2 correction review — 18 October 2026
+
+[Proposed ADR-0019](../adr/0019-scoped-ui-discovery.md) addresses UX-R01/R02's missing discovery projections with six public reads and explicit scope, pagination, nondisclosure and concurrency-source rules. Readable content discovery remains distinct from known-ID policy/grant management. Membership roles stay descriptive; additional capability delegation remains open. Non-reading write/lifecycle preconditions and actual handler permission/cursor tests are not closed by this design. See the current [remediation queue](handoffs/remediation-priorities-2026-10-18.md#priority-2-correction--18-october-2026). SYS-01 and priorities 3–6 remain open. Sequential author review only; no independent acceptance.
+
+Checks passed: context lint/check (64 operations / 69 active / 60 Must / 13 specs), 51/51 context/documentation tests, documentation lint (20 pairs / 35 artifacts / 304 nodes / 336 edges), metadata check (66 outputs). These are selected contract and document checks; no live authorization, cursor, UI or migration execution was performed. Repository reads were used because Obsidian MCP was not exposed in this turn. Detailed limitations and handoff are in the queue.
+
+## Priority 2 verification recheck — 18 October 2026
+
+[FIX-PLAN-01 v0.5](handoffs/remediation-priorities-2026-10-18.md#priority-2-verification-recheck--18-october-2026) confirms six reads and reproduces 34 context plus 17 documentation tests, both lints/checks and zero metadata drift. Obsidian search was available in this subsequent run; earlier availability reports remain historical.
+
+Three Important findings remain: P2-R01 needs an unambiguous document/version locator for version action discovery; P2-R02 separates answer-reader summary access from full trace-read; P2-R03 records that the full API validator accepts injected actual internal/unknown action names despite the stated whitelist rule. The last finding was reproduced on in-memory copies without changing contracts; it is a guard gap, not a current internal-action exposure. Owners, scenarios and closure conditions are in the queue. UX-R01/R02 have supplied draft projections but are not fully resolved or runtime-accepted. SYS-01 remains the pre-AI-relay blocker; additional delegation and non-reading write preconditions remain open. No application, migration or policy change was made.
+
+## Priority 2 recheck corrections — 18 October 2026
+
+Workspace v0.2.6 / Knowledge v0.2.5 and Proposed ADR-0019 v0.2 correct P2-R01's full version locator and P2-R02's independent run entitlements. SP-07/SP-13, API/UI and test assertions are aligned. P2-R03 replaces selected-name denial with public operation membership derived from both contracts and negative tests for actual internal/unknown names. See the queue's latest correction section for execution evidence and remaining limits. This is sequential author correction, not independent acceptance or live access verification. SYS-01 continues to block AI relay.
+
+Executed checks passed: context lint/check (64 operations, 69 active requirements, 60 Must, 13 specs), context tests 36/36 and documentation tests 17/17 (53/53 total), documentation lint (20 pairs / 35 artifacts / 304 nodes / 336 edges). The actual internal/unknown catalogue probes now fail through validateApi with both current contracts. Version-scope and run-entitlement regressions check declarations only. Metadata synchronization changes source headers/inventories, with no diagram topology change or fresh rendering claim. No handler, permission/concurrency, database/migration, provider or application/UI acceptance is claimed; full limits remain in the queue.
+
+## SYS-01 design correction and task tracking — 18 October 2026
+
+Proposed ADR-0020, Workspace v0.2.7 / Knowledge v0.2.6 and logical model v0.5 bind both protected transport purposes to full immutable durable preparation and exact payload bytes, replacing partial answer evidence. Internal getHandoffManifest establishes a scoped receipt lookup outside guard; Workspace owns the one-use claim. SP-09/10/11, sequence/logical diagrams and TC-26 are reconciled. The active queue checklist separates completed author design from unimplemented storage/adapters/guard and live boundary evidence. SYS-01 remains a pre-AI-relay runtime blocker. This is sequential author work, not independent acceptance.
+
+## NEXT-03 / SYS-03 and SYS-04 design correction
+
+Proposed ADR-0021 and Knowledge v0.2.7 supply the promised query/step/exact-evidence inspection with source-to-step visible ranks, structured validation and honest missing timing/usage. Logical model v0.6, SP-11/13, inspection UX and TC-11/18 are reconciled. FR-58 remains Must; summary FR-27 stays Should with its independent entitlement. These are author design corrections plus declaration checks; producing capture/storage/query filtering/revocation/metric behavior remain unimplemented. SYS-01 runtime gate is unchanged; the queue checklist records NEXT-03 verification after execution.
+
+Executed checks passed: context lint/check (65 operations, 69 active requirements / 60 Must / 13 specs), context tests 38/38 and documentation tests 17/17 (55/55 total), documentation lint (20 pairs / 35 artifacts / 304 nodes / 338 edges), metadata check (66 outputs, no drift) and Git whitespace check. The queue records exact negatives and unrun checks. NEXT-03 is ticked for design/contract work only; no live metric, authority/redaction or capture/storage behavior is accepted. NEXT-04 remains the next unchecked task.
+
+## NEXT-04 design correction
+
+UX-R03/R04/R05 now branch citation inspectors by kind, separate historical operational observation from fresh current reads, specify deliberate new-request recovery and unknown-outcome handling, and name semantic_readiness separately from keyword availability. AI flow, sitemap, Knowledge v0.2.8, verification/UX/test sources are reconciled. No new endpoint, permission entitlement or runtime acceptance. The queue records checks before NEXT-04 is ticked.
+
+## NEXT-05 wording and inventory correction
+
+SYS-05 and UX-R06 have targeted author corrections in the canonical SAD and its entry, UX source paragraph, sitemap route table and manual register stage rows. The descriptive AddMember.role exception and operational citation identity are explicit; no caller authority or new role-management surface is introduced. Canonical sources/versions were read directly. Earlier source/review snapshots are preserved as history; structural checks alone do not prove full semantic or runtime consistency. NEXT-06/07 and the runtime/owner-policy gates remain open.
+
+## NEXT-06 independent command design correction
+
+Proposed ADR-0022, Workspace v0.2.8 / Knowledge v0.2.9 and logical model v0.7 supply opaque action-bound concurrency and minimal command receipts for non-reading writers/lifecycle managers. No current revision/content metadata is exposed by issuance, and content-bearing success objects are removed from revise/archive/metadata operations. UC-07, SP-06/07, API/UI and TC assertions are reconciled. This resolves the outstanding design dependency without deciding additional delegation; no storage/handler/permission acceptance is implied.
+
+## NEXT-07 bounded author audit
+
+The final design pass corrected an obsolete citation operation name to openCitation, added Proposed ADR-0022 to the canonical architecture summary, and reconciled current input/manual-register editions while preserving historical snapshots. A new linked-input-version regression detects stale aliases in current headers. Executable synthetic component-schema examples supplement the existing declaration checks; neither supplies complete OpenAPI or application acceptance. The bounded UI/UX handoff records screen bindings, denial/failure requirements, remaining owner decisions and real-runtime gates. Readiness is for drafting wireframes with explicit gaps, not owner approval or permission/provider acceptance.
+
+## NEXT-08 supplemental contract tooling review
+
+A pinned official document-structure schema plus a calibrated dynamic-reference specialization now checks both complete OpenAPI drafts locally. Named and inline Schema Objects are separately meta-validated/compiled; executable negatives supplement shape inspection. Raw Ajv use with the official dynamic schema produced false failures and was not used to diagnose project contract defects. The primary swagger-parser validator documents the same Ajv limitation; snapshot provenance, adaptation and unverified semantics are explicit. No operation, product policy, handler or runtime gate changed.
+
+## NEXT-09 item-by-item UX review
+
+UX-CHECK-01 records all 41 items in the two byte-verified pinned workbooks and eight source-based Core walkthroughs. UX-H09-01 found the missing original-context state on an operational citation route after reload/direct navigation. AI/UX/sitemap and TC-08 now distinguish absent historical context from a separately renewed current entity read. No historical endpoint, saved answer or permission change is introduced. Minor current Board/AI source headers are reconciled. Workbook rows remain Pending; visual/research/runtime gaps are explicit, not cleared by this author review.
+
+## NEXT-10 routing/authentication verifier gap
+
+API-V10-01 · Important test-coverage gap: the prior validator accepted four in-memory defects (an added empty internal security alternative, public security removal, extra path selector and duplicate selector). Existing contracts did not contain those defects. The dependency-free routing guard and five new full-validator test groups close this bounded gap, including all eight internal operations, legitimate inheritance/overrides and all HTTP methods. No runtime API exposure, permission closure or full OpenAPI conformance claim follows.
+
+## NEXT-11 byte-binding reference evidence
+
+HANDOFF-REF-01 makes selected ADR-0020 byte/evidence rules executable against synthetic inputs. It detects decoded duplicate JSON keys, invalid encoding, precision loss, normalization/serialization changes, omitted uncited operational evidence and mismatched citation locators beyond schema shape. Independent capture/receipt fixtures are not an authoritative store or permission decision. Provider wire mapping and all live preparation/claim/guard/transport tests remain missing; SYS-01 stays blocking. No migration/handler was added or SP marked Done.
+
+## NEXT-12 storage prerequisite implementation
+
+Proposed ADR-0023, logical model v0.8, Knowledge 003 and Workspace 004 supply immutable preparation/outcomes and permanent protected idempotency claim storage, with 26 real isolated SQL results. No accepted policy or HTTP schema changed. Physical ERDs and logical-gap labels are reconciled; command-token/inspection additions and all permission/guard/provider/handler evidence remain open. A stored fence/process or generated receipt alone proves neither current authority nor known durable acknowledgement. SYS-01 remains blocking.
+
+## NEXT-13 query-to-receipt integration
+
+HANDOFF-SQL-01 records a parameterized trusted-context query and seven optional SQL-to-byte-reference results. It prevents a likely encoding integration mistake (PostgreSQL base64 line wrapping) and rejects raw-byte reconstruction/precision loss while keeping consumed claim and readable receipt separate. The query accepts independently validated context, not user/model authority; real authenticated lookup/current scope/guard/provider implementations remain absent. Existing API operations, product policies and migrations are unchanged.

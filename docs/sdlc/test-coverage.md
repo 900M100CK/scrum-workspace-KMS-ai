@@ -2,7 +2,7 @@
 
 **Artifact ID:** TEST-COVERAGE-01
 **Version/date:** 0.3 Draft · 16 October 2026
-**Inputs:** PRD-01 v0.9; UC-02 v0.6; TEST-08 v0.5; ADR-0007–ADR-0017.
+**Inputs:** PRD-01 v0.9; UC-02 v0.7; TEST-08 v0.20; ADR-0007–ADR-0017.
 **Status:** Planned assertions, not executed application coverage or independent approval.
 
 ## Evidence rules

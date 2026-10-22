@@ -1,6 +1,6 @@
-# AGENTS.md — Scrum Workspace and AI Project KMS
+# Development rules
 
-Version 1.4 · 17 Oct 2026
+Version 1.5 · 18 Oct 2026
 Applies to **development agents**. It does not define the permissions of the application's runtime AI assistant (see §7).
 
 ## 1. Authority
@@ -30,7 +30,7 @@ Rules:
 Application frameworks/providers remain proposed. PostgreSQL/pgvector storage is selected and implemented under ADR-0004; storage tests do not prove application enforcement. The Node context harness exists independently; its actual commands are in root `AGENTS.md` and `package.json`. Add application commands only after installation and verification:
 
 - Runtime: Node 24+ for the harness and storage runner; application frameworks remain Proposed.
-- Context checks: `npm run context:lint`, `context:check`, `context:test` (dependency-free). Documentation checks: `npm ci`, then `npm run docs:lint` and `docs:test`. Storage commands and rollback cautions: [storage runbook](../infra/postgres/README.md). No application build/run command exists.
+- Context checks: `npm run context:lint`, `context:check`, `context:test` (dependency-free). Documentation checks: `npm ci`, then `npm run docs:lint` and `docs:test`. Contract checks: `npm run contracts:test` (after `npm ci`). Storage commands and rollback cautions: [storage runbook](../infra/postgres/README.md). No application build/run command exists.
 - Repo layout: root `AGENTS.md` is the concise entry and points to this full development-rules document. `docs/BRD.md` links full editions in `docs/baseline/`; `docs/sdlc/` contains requirements/register and stage entries; `docs/architecture.md` is the design source; `docs/planning/` contains the five-month MoSCoW plan; `contracts/`, `specs/`, `services/`, `apps/web/` and `eval/` contain the contract/context scaffold. `agents/` and `SDLC-Prompt-Checklist/` retain their workflow roles/templates. Paths in this document are workspace-relative.
 
 Verify uncertain API details against the installed version or official docs.
@@ -118,7 +118,7 @@ Required tests: replacement, historical query, failed/retried indexing, stale ca
 ## 11. Working conventions
 
 - **Language:** code, comments, commit messages and agent-facing docs in English. Reply to the owner in the language they write in.
-- **Workflow:** identify BR/SC refs and acceptance criteria → inspect code and conventions → for substantial work, state a short plan with assumptions and failure cases → make the smallest coherent change → run checks and inspect failures → report.
+- **Workflow:** run [agent-preflight-checklist.md](agent-preflight-checklist.md) → identify BR/SC refs and acceptance criteria → inspect code and conventions → for substantial work, state a short plan with assumptions and failure cases → make the smallest coherent change → run checks and inspect failures → run the checklist's §9 → report.
 - **Authorisation:** proceed with authorised, reversible work without repeated confirmation. Ask first before changing product scope or doing destructive operations not already authorised. Never delete user work, overwrite unrelated changes, or send real data to a new external service.
 - **Migrations:** make them reversible; never edit one that has already run.
 - **Branch / commit:** no convention is set yet. Preserve the active branch; commit only when asked, using the agent's own identity and a `Co-Authored-By` byline.
@@ -145,5 +145,7 @@ Files changed:
 **Critical** (permissions, versioning, citations, data model, service boundaries, provider integration) — Standard report, plus:
 - a short ADR (context, decision, alternatives, consequences, related requirements, evidence, status). Mark it "proposed" unless the owner reviewed it;
 - an owner-level explanation in plain language with code references: where permissions are enforced, why this design over an alternative, what happens when the model/index/cache/network fails, and what remains unproven.
+
+Report behaviours verified separately from structural/schema/SQL checks passed (see [checklist §1b](agent-preflight-checklist.md#1b-scope-control-check-before-adding-anything)).
 
 Always state checks that were **not** run. Update diagrams and docs when the real flow changes. No secrets, unrestricted source content or fabricated evidence in code, logs or reports.

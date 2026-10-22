@@ -1,9 +1,9 @@
 # Permission Matrix by Screen & Action
 
 **Artifact ID:** UX-PERM-MATRIX-02\
-**Version/date:** 0.6 Draft · 17 October 2026\
+**Version/date:** 0.10 Draft · 18 October 2026
 **Status:** Owner-confirmed initial access/lifecycle/guard direction; additional delegation and retention rights remain open.\
-**Source versions:** BRD English v1.0; PRD-01 v0.9; UC-02 v0.6; SAD-03 v0.11; ADR-0007–ADR-0011; Workspace OpenAPI v0.2.2 / Knowledge v0.2.3.\
+**Source versions:** BRD English v1.0; PRD-01 v0.9; UC-02 v0.7; SAD-03 v0.15; ADR-0007–ADR-0011; Workspace OpenAPI v0.2.8 / Knowledge v0.2.9\; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022
 **Trace:** BR-01, BR-05, BR-08, BR-10, BR-12, BR-14; FR-01–FR-04, FR-09–FR-14, FR-19–FR-21, FR-28–FR-29, FR-38–FR-39, FR-46–FR-48, FR-50–FR-52, FR-55–FR-59, FR-61, FR-68; SC-05, SC-06.\
 **Scope:** UI visibility and action states derived from current server-authorised capabilities. Capability descriptions are design terms, not new API enums or an accepted role mapping.
 
@@ -75,3 +75,21 @@ Source reads: [DGM-FLOW-04 Draw.io](../sdlc/diagrams/flowchart/permission-read-f
 ADR-0017 membership removal invalidates every individually granted project capability, not only read grants. Rejoin restores none from author/creator/role labels. Affected task assignees become Unassigned; audit preserves historical attribution without granting old users access.
 
 ADR-0017 last-manager rule: reject removal of the final current member with effective membership-management authority until another current member has that authority. Check inside the serialized removal transaction, including concurrent removals/capability changes; no Admin/creator bypass or automatic successor. Rejection leaves all state unchanged.
+
+## Priority 2 UI authority source
+
+Use Workspace getAllowedActions for the current global/project/exact resource scope; only returned operation names can enable corresponding controls. Do not infer action authority from Member.role, content ownership or creator identity. The snapshot does not guarantee resource-state/revision or last-manager preconditions; handlers remain authoritative. Refresh on navigation, focus/reconnect, mutations and permission invalidation; clear denied/expired scope and never reuse cached allow after an authority failure.
+
+listMembers supports minimal current-member selectors for project members; the management route remains membership-manage only. listDocuments/listVersions require document-read. getDocumentPolicy/listDocumentReadGrants require manage-access independently and expose no protected content metadata. Known-ID non-reading managers use the manage route, not a broadened explorer. All public reads go through the existing gateway; do not expose internal evaluateAccess. Proposed ADR-0019 supplies the response and pagination rules; additional non-read delegation is still open.
+
+## Priority 2 recheck action bindings
+
+Version controls call getAllowedActions with the complete project/document/version locator from the selected history row; do not use a bare version ID or resource_id. Require an exact echoed locator before using its advisory actions. Run controls independently use returned getRetrievalSummary and getTrace names: permitted answer readers do not need trace-read for FR-27, and summary authority never enables full trace. Optional summary is hidden when not implemented; FR-27 remains Should. Missing, stale or denied authority clears that control rather than borrowing another scope's rights. See Proposed ADR-0019 v0.2; runtime authority tests remain pending.
+
+## NEXT-03 inspection disclosure and telemetry
+
+Render query/step metadata, exact selected source locators and typed checks only from the renewed allowed projection. Source permission also governs query text and source-specific validation data; do not reconstruct hidden rows from ranks or old browser state. Trace and summary retain their independent run entitlements; audit-read grants no identity exception here. Display measured zero as a value; unavailable as “Not measured”; not_performed as “Not performed”. Never replace either state with zero or infer cause/hidden sources. Safe 503 is distinct from an empty permitted source list. See Proposed ADR-0021; UI/runtime tests are pending.
+
+## NEXT-06 independent command preconditions and receipts
+
+getDocumentCommandPrecondition is action-authorised, not document-read: current membership plus exact requested content-write/lifecycle command is required. Reader-only and manage-access-only do not suffice. It reveals only already-known selectors and an opaque token, never numeric revision/content/history/readiness. Revision/archive/optional metadata edit return only the operation-authorised minimal receipt; source reads are independent renewed checks. Token possession, descriptive role and receipt identity grant no access. Additional non-read delegation remains open; Proposed ADR-0022 and future TC-03/05/06/13/20 govern live verification.

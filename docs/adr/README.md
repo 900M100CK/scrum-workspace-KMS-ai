@@ -23,3 +23,15 @@ Updated 16 October 2026. Owner-confirmed direction is distinct from implemented 
 | [0017: membership removal and assignments](0017-membership-removal-capabilities-and-assignees.md) | Owner-confirmed individual-capability invalidation, atomic unassignment and last-manager protection; runtime checks pending. |
 
 The [business review](../analyst/business-review-2026-10-13.md) records the source conflicts and explicit owner clarifications. Older documents may still describe superseded proposals until the pending reconciliation is complete.
+
+[ADR-0018: operational read projections](0018-operational-read-projections.md) — v0.2 Proposed. Defines member-scoped Sprint associations, persisted current task location, blocker history, ordered paging, complete-list Backlog reorder and transactional completion counts for SYS-02. Migration 003 is verified in isolated storage tests; application verification remains pending. No new business permission or service.
+
+[ADR-0019: scoped UI discovery](0019-scoped-ui-discovery.md) — v0.3 Proposed. Minimal member/document/version lists, independent policy/grant reads and scoped action discovery for UX-R01/R02; delegation and runtime evidence remain open.
+
+[ADR-0020: manifest-bound AI transport](0020-manifest-bound-ai-transport.md) — v0.3 Proposed. Full immutable durable receipt, exact payload and mixed evidence for both purposes; additive storage and live TC-26 remain prerequisites.
+
+[ADR-0021: scoped inspection and missing metrics](0021-scoped-inspection-and-missing-metrics.md) — v0.1 Proposed. Query/steps, exact ranked evidence and measured/unavailable/not_performed telemetry; live inspection/capture tests remain pending.
+
+[ADR-0022: opaque document command preconditions](0022-opaque-document-command-preconditions.md) — v0.1 Proposed. Non-reading writers/lifecycle managers obtain opaque concurrency tokens and minimal receipts without content-read; token/handler verification remains pending.
+
+[ADR-0023: immutable handoff storage](0023-immutable-handoff-storage.md) — v0.2 Proposed. Knowledge 003 stores immutable exact manifests and outcomes; Workspace 004 reserves permanent protected idempotency claims and append-only outcomes. Isolated SQL tests supplied; development migration, handlers/guard/relay and active-process enforcement remain pending.

@@ -1,9 +1,9 @@
 # Create a task in the project backlog
 
 **Artifact ID:** SP-03  
-**Version/date:** 0.3 Draft · 17 October 2026\
+**Version/date:** 0.5 Draft · 18 October 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
-**Inputs:** PRD-01 v0.8; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-03--create-a-task-in-the-project-backlog); [contract pack](../contracts/README.md); PLAN-01 v0.3.\
+**Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-03--create-a-task-in-the-project-backlog); [contract pack](../contracts/README.md); PLAN-01 v0.3.\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 1.  
@@ -39,3 +39,11 @@ Done requires the matching PRD ACs exercised on real handlers/persisted state; r
 Uses the applicable owner-confirmed directions through ADR-0017 and OWNER-Q-01. Additional delegation, physical retention, OD-09 identity and OD-12 framework details stay open. Pass for goal/trace/input-output/edges/paths/Done; Gap for accepted policy/contract/stack and runtime tests. Handoff: proceed under confirmed directions; resolve only remaining decisions relevant to implementation. No settled policy requires repeat approval.
 
 **17 October input reconciliation:** FR-05: initial To Do, server identity, explicit type validation and project scope remain unchanged. Reviewed against the current requirement rows and operation ownership. This is specification review, not implementation or full AC coverage evidence.
+
+## Operational reconstruction correction — 18 October 2026
+
+listTasks now defines all versus Backlog scope, authoritative current work_location and numeric position ordering. Reload with a fresh client; do not retain allocation truth only in memory. See [ADR-0018](../docs/adr/0018-operational-read-projections.md). No application acceptance is claimed.
+
+## Placement persistence follow-up — 18 October 2026
+
+Use migration 003 / Proposed ADR-0018: create with Backlog marker and null Sprint reference; append after maximum Backlog position under project lock. Persist task, Backlog generation, audit and idempotent result atomically. Return work_location and provide TaskList.backlog_revision from the same read transaction. No runtime handler is claimed.

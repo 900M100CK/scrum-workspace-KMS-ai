@@ -1,0 +1,67 @@
+# Scoped UI discovery and permission projections
+
+**Artifact ID:** ADR-0019
+**Version/date:** 0.3 Proposed · 18 October 2026
+**Status:** Proposed implementation design under existing access rules; no new delegation policy or runtime acceptance.
+**Inputs:** PRD-01 v0.9; UC-02 v0.6; SAD-03 v0.12; DATA-04 v0.7; ADR-0007/0011/0013/0017/0018; UX-R01/UX-R02.; Proposed ADR-0022
+**Trace:** BR-01, BR-04, BR-05, BR-10, BR-14; FR-03/04/10/12/14/27/38/39/47/50/51/52/58/59; SC-01, SC-05, SC-06.
+
+## Context and decision
+
+The UI requires member selectors, a readable document explorer, explicit version history, policy/grant preconditions and current action authority. Known-ID content reads and keyword passage search do not provide those projections. Workspace remains the sole permission authority; Knowledge owns document/version records. Six public read operations are proposed in Workspace v0.2.6 and Knowledge v0.2.5. All are routed through the existing Workspace gateway; internal policy endpoints remain inaccessible to browsers.
+
+| Read | Consumer and authoritative fields | Access boundary |
+| --- | --- | --- |
+| listMembers | Current member user_id, descriptive role, membership revision; assignment/owner/grantee selectors and management list | Current project membership. No global users, emails, removed-member history or capability inventory. Team management controls still require membership-manage. |
+| listDocuments | Readable document metadata, classification, nullable Current pointer and Document revision | Current membership AND current document read. A non-reading access manager sees no explorer entry merely through manage-access. |
+| listVersions | Exact version IDs, state/time; current document_revision and Current pointer | Current document-read. History is deliberate; no content in list rows, no substitution on exact open. |
+| getDocumentPolicy | Identity, classification, registry_state, permission_revision | Membership AND document manage-access, independently of content-read. No title, owner, Current pointer, content or readiness. |
+| listDocumentReadGrants | Current explicit grantee IDs plus permission_revision | Same manage-access boundary. Current membership-generation grants only; no revoked grant history or inferred membership-wide grant rows. |
+| getAllowedActions | Current actor's allowed public operation names at an exact selected scope | Workspace evaluates existing authority; no new grants, delegation or role-to-permission mapping. Return no policy internals or reasons. |
+
+Adding a member uses a known registered account ID, as UC-02 already permits. This does not add a global directory, account provisioning or invitation flow. Member role is descriptive create-time data; there is no role editor or capability-delegation UI. Initial defaults and removal/rejoin behavior remain ADR-0007/0017. Member.revision must change across membership reincarnations so an old remove request cannot remove a rejoined membership.
+
+## Action discovery without a read bypass
+
+GET /access/allowed-actions takes resource_kind and scope selectors, never actor/role/permission assertions. Global scope omits both IDs; project scope supplies project_id only. Version scope supplies project_id + document_id + version_id and omits resource_id; its response echoes both version locator components and sets resource_id=null. Other resource kinds supply project_id and resource_id; document_id/version_id are forbidden outside version scope and are null in non-version responses. Version IDs need not be globally unique. Resolve and check the exact pair against its parent project, never a first matching version_id. The response echoes the resolved exact scope (null for inapplicable IDs). Extra/contradictory selectors are 400. IDs locate a target; possession confers no access.
+
+| Scope | Applicable operation examples and authority evaluation |
+| --- | --- |
+| global | createProject, listProjects, getSession, signOut against session/global authority; never project or document authority |
+| project | Membership list/add/remove, project edit, task/Sprint/document creation, Backlog reorder, project audit and project searches against the corresponding existing scoped grants. Project removeMember authority does not waive the selected member revision or last-manager check. |
+| task / sprint | Applicable task state/assignee/blocker or Sprint allocation/lifecycle operations, evaluated at the exact target; use readable current state/revision for business preconditions |
+| document / version | Applicable read, write, lifecycle and manage-access operations evaluated separately. A version uses the exact document_id/version_id pair and resolves through that parent document, with the same project binding. Manage-access permits policy/grant operations but does not imply getDocument/getVersion/listVersions. |
+| link | Link read/removal only within both endpoint visibility and applicable action authority |
+| run | Independently evaluate optional getRetrievalSummary for current permitted answer readers (FR-27) and getTrace for scoped trace-read (FR-58). Neither entitlement grants the other. Each retains separate source disclosure checks; audit-read grants neither. |
+
+Only operation names from the public contracts may appear. Not every name applies to every scope. Omit unsupported optional operations until implemented; response absence means the UI cannot enable that operation. Return read operations on a readable target without mutation authority. A caller with neither read nor independently scoped action authority receives the same generic 404 as an unknown target. For non-reading document managers/authors, reveal only the already-known identity and applicable action names; do not expose content metadata, additional version identities or content concurrency revision through this endpoint. A version response only echoes the exact already-supplied pair after its own scoped checks. Proposed ADR-0022 supplies the independent non-reading command precondition and minimal receipt; action discovery grants neither a token nor content-read. Handler/token verification remains pending.
+
+This is an authority snapshot, not a capability token or a promise that a mutation is currently valid. Resource state, expected revision, selected assignee/grantee, last-manager protection and other business constraints remain operation-time checks. Workspace may consult Knowledge for exact version/link/run ownership and existing permission-scoped checks using authenticated service context; it must not expose an internal endpoint or copy policy rules. Required Knowledge failure returns generic 503. Task/Sprint/project scope and policy/grant reads do not require Knowledge or AI. All action reads fail closed on unknown authority.
+
+## Paging, revisions and protected delivery
+
+List requests accept limit 1–100 (default 50) and an opaque authenticated cursor. Stable orders: members/grants by user_id; documents by document_id; versions by created_at descending then version_id ascending. Filter before pagination. No hidden totals, omitted-item markers or unrestricted scan offsets are exposed. A successful empty list is distinct from a dependency failure. Explorer includes readable nondeleted documents even when Current is null or indexing is pending/failed. History contains retained available revisions only; unavailable citation identity remains governed separately by ADR-0013.
+
+Each page is a committed projection. A cursor binds actor/session and membership generation, permission scope, resource/filter/order, and the visible dataset generation. Workspace authority invalidates on relevant membership/classification/grant/capability changes; Knowledge changes invalidate affected document/version projections. A digest over the canonical permitted projection is acceptable; a persisted generation is an implementation optimization, not a new database requirement. Changed/expired projection returns generic 409 without items, malformed/foreign cursor generic 400. On 409 discard accumulated pages and restart. Separate endpoints do not share a snapshot; policy/grant pages must have the same permission_revision before submission. Scope revocation takes precedence over stale-cursor details.
+
+getDocumentPolicy.permission_revision (also returned by grant pages) supplies Classification/ReadGrant.expected_revision and revokeDocumentRead X-Expected-Revision. Compare atomically against current policy; all classification/grant changes advance that revision. listMembers supplies the selected membership revision for removeMember. listVersions.document_revision and getDocument.revision supply document aggregate concurrency to readable users. No cursor or action snapshot is a write precondition. Reload after conflict; do not automatically resubmit with a fresh revision.
+
+Protected source metadata is checked under the existing ADR-0011 handoff boundary as well as query filtering. Workspace snapshots are assembled and revalidated against authority before response handoff; Knowledge projections require current Workspace decisions and guarded delivery. There is no claim that a cross-service read is one database transaction. Unknown authority or unsafe reconciliation yields 503 without partial data. Successful projections use Cache-Control: no-store. The browser clears protected cached rows/actions on scope changes, sign-out, detected revocation or denial; refresh on navigation, reconnect/focus, mutation completion and before enabling a newly requested action. Notifications only invalidate. Every actual request independently checks current authority; previously delivered bytes cannot be recalled.
+
+## Alternatives, consequences and verification
+
+Keyword search cannot replace browsing or history because it requires query text and returns passages. Role-derived UI authority would contradict scoped grants. Returning the full policy to every reader or using manage-access to populate the explorer would disclose unrelated metadata. A global capability administration surface would decide currently open delegation policy and is excluded.
+
+No storage migration, handler, provider integration or application permission evidence is added. Public operation additions require SP-02/06/07 ownership, API/UX inventories and TC-03/05/13/15/20/24 assertions. Test multi-page refresh, role-identical users with different grants, revoked author read with retained manage-access, policy/grant revision races, membership remove/rejoin, cross-project selectors, forged cursors, metadata nondisclosure and dependency outage. Harness negatives can detect missing contracts or widened response fields; they cannot prove those runtime behaviors.
+
+**Checklist:** Pass for interface ownership, resource authorization design, paging, concurrency-source mapping and error design; Gap for implementation, consumer/provider and paused-revocation tests. API workbook pagination/security/error/version rows were inspected; template statelessness/OAuth examples do not override the selected session design. No standards-conformance or independent approval claim.
+
+**Handoff:** Ready for bounded UI wireframes with these draft responses and failure states. Additional non-read delegation and runtime verification remain explicit gaps; command preconditions are specified separately by Proposed ADR-0022. SYS-01 continues to block AI relay.
+
+## P2 recheck protocol examples and limits
+
+Version example: GET /access/allowed-actions?resource_kind=version&project_id=P&document_id=A&version_id=v1 returns resource_kind=version, project_id=P, resource_id=null, document_id=A, version_id=v1 and only that target's allowed operations. For document B with the same version_id=v1, the request must use document_id=B and checks B's own authority. Well-formed unknown or mismatched project/document/version pairs use generic 404; missing components or an extra resource_id use 400. No global UUID assumption supplies the missing parent. Contract negatives detect omitted selector/binding declarations; actual dual-document access tests remain unrun.
+
+For GET /access/allowed-actions?resource_kind=run&project_id=P&resource_id=R, an answer reader without trace-read receives only getRetrievalSummary when FR-27 is implemented; an execution inspector without independent answer entitlement receives only getTrace; both entitlements yield both; neither yields generic 404. Each response has document_id=null and version_id=null. Revoke answer entitlement and remove its summary allow; independently held trace authority can survive. Recheck source visibility separately and never derive answer entitlement from trace/audit rights. These are consumer examples and pending handler scenarios, not measured permission outcomes.
+
+The catalogue harness derives public operation IDs from both current contracts, excludes /internal/ paths and service-only operations, and rejects all unknown/internal names through validateApi. The declared catalogue may intentionally be narrower than the public set. Required peer-contract context is explicit; missing context fails closed. This does not test which public operations apply to an actor or scope.

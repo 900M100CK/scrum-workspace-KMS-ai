@@ -1,9 +1,9 @@
 # User Flow: Scrum Board & Task Management
 
 **Artifact ID:** UX-FLOW-BOARD-01\
-**Version/date:** 0.6 Draft · 16 October 2026\
+**Version/date:** 0.9 Draft · 18 October 2026
 **Status:** Owner-confirmed policy direction; UI/diagram/runtime evidence pending.\
-**Sources:** PRD-01 v0.7; UC-02 v0.5 (UC-04/UC-05); SAD-03 v0.10; Workspace OpenAPI v0.2.2; ADR-0007/0008 v0.3/0011; OWNER-Q-01.\
+**Sources:** PRD-01 v0.9; UC-02 v0.7 (UC-04/UC-05); SAD-03 v0.15; Workspace OpenAPI v0.2.8; ADR-0007/0008 v0.3/0011; OWNER-Q-01.\
 **Trace:** BR-01–BR-03, BR-06, BR-10, BR-11, BR-13; FR-03, FR-08, FR-09, FR-17, FR-31, FR-33, FR-39, FR-42–FR-44, FR-59, FR-68; SC-01, SC-03, SC-04, SC-06, SC-08.
 
 ## 1. Main flow
@@ -50,3 +50,13 @@ ADR-0014 preserves multiple task selection and per-task results. The UI invokes 
 ADR-0017: after membership removal, refreshed tasks show Unassigned with new revision; task state, blocker and Sprint history stay intact. Rejoin does not restore previous assignment. Pending assignment requests cannot reassign a departed member.
 
 Sprint completion returns unfinished tasks to Backlog as To Do and keeps Done tasks Done. Optional allocation removal also resets unfinished tasks to To Do. Show the confirmed state/location after success; stale or failed operations reconcile before retry (ADR-0008 / OWNER-Q-01).
+
+## Refresh and reconstruction contract — 18 October 2026
+
+Workspace v0.2.3 supplies listTasks (all/backlog), listSprintItems and listBlockerEvents under Proposed ADR-0018. Render current location from Task.work_location, not cached moves or historic associations. Sprint rows distinguish allocated/completed/returned; a historical row includes current task data, not a completion-time snapshot. Blocker history uses event sequence and needs ordinary current work read authority, not audit-read.
+
+On first load/reconnect, obtain fresh authoritative pages. A 409 during pagination discards that list's accumulated pages and restarts; do not silently merge old and new pages. Membership loss clears the protected display. Independent lists are not a global atomic snapshot. Show completion counts only from confirmed SprintCompletion; an unknown mutation outcome still reconciles the original key. Test fresh-client reconstruction during AI outage, completion/reopening, reorder and access loss. These are specified UI behavior, not executed tests.
+
+## Backlog reorder across pages — 18 October 2026
+
+Workspace v0.2.4 requires a complete Backlog order. Before enabling reorder, load all location=backlog pages with one backlog_revision through next_cursor=null. A visible page or search result alone is insufficient. Drag/keyboard reorder changes the locally complete list; submit its full task_ids and the revision from those reads. A 409 discards stale pages and reloads; do not auto-reapply the old order or issue a new idempotency key for an unknown result. On confirmed receipt refresh current work; a replay receipt may describe an earlier commit. Empty Backlog has no items to reorder. Persisted current placement remains distinct from completed-history rows, including Done work reopened into Backlog.

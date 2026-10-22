@@ -1,9 +1,9 @@
 # Goal-level use cases for the five-month release
 
 **Artifact ID:** UC-02  
-**Version/date:** 0.6 Draft · 17 October 2026
+**Version/date:** 0.7 Draft · 18 October 2026
 **Status:** Owner-confirmed ADR-0007–ADR-0011 direction; remaining policy and application evidence gaps are explicit.
-**Inputs:** BRD v1.0; [PRD-01](PRD_SRS.md) v0.9; [PLAN-01](../planning/five-month-plan.md) v0.3; ADR-0007–ADR-0017; repository UC prompt/checklist.
+**Inputs:** BRD v1.0; [PRD-01](PRD_SRS.md) v0.9; [PLAN-01](../planning/five-month-plan.md) v0.3; ADR-0007–ADR-0017; repository UC prompt/checklist.; Proposed ADR-0022
 **Author:** development agent acting sequentially; owner reviews business choices.  
 **Changes v0.1 → v0.2:** Replaced boilerplate trigger/flow template with per-UC specific triggers, detailed numbered main success scenarios, separate alternate (Alt-*) and exception (EX-*) flows, and inline Business Rules. All FR/BR/SC traces, postconditions, relationship notes and handoff statements preserved unchanged.
 **Revision note (12 October 2026, version unchanged):** Corrected the UML relationship specification and `use-case-diagram.drawio` so UC-02, UC-03, UC-07 and UC-13 are associated with their scoped actors instead of Authorised Member; added the FR-35 trace note below. No UC flow, FR/BR/SC trace or postcondition changed.
@@ -344,11 +344,11 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 
 ### Main Success Scenario — Create immediate Current revision
 
-1. **Author** submits document ID, new content, expected aggregate revision and required idempotency key. The editor states that saving changes Current immediately.
+1. **Author** submits document ID, new content, exactly one already-known expected aggregate revision or action-bound opaque token, and required idempotency key. The editor states that saving changes Current immediately.
 2. **System** validates current membership/content-write authority, document lifecycle and expected revision under the guarded lifecycle-write protocol.
 3. **System** atomically inserts a distinct immutable Current version and passages, supersedes the previous Current and updates the document pointer/revision. Prior bytes and citation locators remain unchanged (AC-11).
 4. **System** records the committed revision with actor, old/new version identities and time. Index/cache work follows the committed version and cannot revive obsolete content.
-5. **Author** receives confirmed version/lifecycle identity and independent indexing readiness, subject to response access. Ordinary retrieval admits only the new eligible Current; pending indexing never permits falling back to Superseded content as current. No Draft or publish step exists.
+5. **Author** receives a minimal committed command receipt and its newly created version identity; protected content/lifecycle/readiness is fetched separately only with current read authority. Ordinary retrieval admits only the new eligible Current; pending indexing never permits falling back to Superseded content as current. No Draft or publish step exists.
 
 ### Main Success Scenario — Archive version
 

@@ -1,2 +1,4 @@
 # Docker entrypoint scripts must remain executable by the Linux shell on Windows checkouts.
 infra/postgres/*.sh text eol=lf
+# Preserve the downloaded schema bytes used by the provenance digest check.
+tests/fixtures/openapi31/schema-2022-10-07.json -text

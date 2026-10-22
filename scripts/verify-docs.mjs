@@ -236,6 +236,20 @@ export function checkInputHeader(text, versions, location) {
   }
 }
 
+export function versionedInputLinks(text) {
+  const header = text.split(/\r?\n/).find(line => /^\*\*(?:Inputs|Sources|Source versions):\*\*/.test(line));
+  if (!header) return [];
+  return [...header.matchAll(/\[[^\]]+\]\(([^)]+)\)\s+v(\d+\.\d+(?:\.\d+)?)/g)]
+    .filter(([, href]) => !/^[a-z]+:/i.test(href))
+    .map(([, href, version]) => ({href, version}));
+}
+
+export function checkLinkedInputVersions(text, versionsByLink, location) {
+  for (const {href, version} of versionedInputLinks(text)) {
+    if (versionsByLink.has(href)) assert.equal(version, versionsByLink.get(href), 'Linked input version drift in ' + location + ': ' + href);
+  }
+}
+
 async function checkSearchTerminology(root) {
   const locations = ['docs', 'contracts', 'specs', 'eval', 'services/workspace/migrations', 'services/knowledge/migrations'];
   for (const location of locations) {
@@ -263,7 +277,13 @@ export async function verifyDocs(root) {
     sourceTexts.set(artifact.id, text);
   }
   const inputVersions = new Map(versions);
-  const activeDocs = ['docs/architecture.md', ...((await readdir(resolve(root, 'docs/sdlc'))).filter(name => name.endsWith('.md') && !/history|CHANGELOG/i.test(name)).map(name => 'docs/sdlc/' + name))];
+  const activeDocs = ['docs/architecture.md', 'contracts/README.md',
+    ...(await walk(resolve(root, 'docs/sdlc')))
+      .map(path => relative(root, path).replaceAll('\\', '/'))
+      .filter(path => path.endsWith('.md') && !path.startsWith('docs/sdlc/diagrams/') && !/history|CHANGELOG/i.test(path)),
+    ...((await readdir(resolve(root, 'specs'))).filter(name => name.endsWith('.md')).map(name => 'specs/' + name)),
+    ...(await walk(resolve(root, 'docs/ux'))).filter(path => path.endsWith('.md')).map(path => relative(root, path).replaceAll('\\','/')),
+  ];
   const activeTexts = new Map();
   for (const path of activeDocs) {
     const source = await readFile(resolve(root, path), 'utf8');
@@ -273,6 +293,15 @@ export async function verifyDocs(root) {
   }
   for (const [path, source] of activeTexts) {
     checkInputHeader(source, inputVersions, path);
+    const versionsByLink = new Map();
+    for (const {href} of versionedInputLinks(source)) {
+      const target = resolve(root, dirname(path), href.split('#')[0]);
+      assert(!relative(root, target).startsWith('..'), 'Versioned input must remain inside workspace: ' + href);
+      const targetText = await readFile(target, 'utf8');
+      const version = targetText.match(/\*\*Version\/date:\*\*\s*(\d+\.\d+(?:\.\d+)?)/)?.[1];
+      if (version) versionsByLink.set(href, version);
+    }
+    checkLinkedInputVersions(source, versionsByLink, path);
   }
   const paired = manifest.artifacts.filter(a => a.drawio);
   const actualMmd = (await walk(resolve(root, 'docs/sdlc/diagrams'))).filter(p => p.endsWith('.mmd')).map(p => relative(root, p).replaceAll('\\', '/')).sort();

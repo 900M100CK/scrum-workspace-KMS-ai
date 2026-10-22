@@ -1,13 +1,211 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { parseRequirements, validateApi, validateScope, validateSpecOwnership, verifyContext } from '../scripts/verify-context.mjs';
+import { parseRequirements, validateApi as validateApiContract, validateScope, validateSpecOwnership, verifyContext } from '../scripts/verify-context.mjs';
 import { validateResearchDefinitions } from '../scripts/verify-research.mjs';
 import { regressionFixture } from '../scripts/verify-regression.mjs';
+import { validateApiRouting } from '../scripts/verify-api-routing.mjs';
 const root = new URL('../', import.meta.url);
 const readJson = async path => JSON.parse(await readFile(new URL(path, root), 'utf8'));
 const prd = await readFile(new URL('docs/sdlc/PRD_SRS.md', root), 'utf8');
 const requirements = parseRequirements(prd);
+const peerKnowledge = await readJson('contracts/openapi/knowledge.openapi.json');
+const peerWorkspace = await readJson('contracts/openapi/workspace.openapi.json');
+const validateApi = (api, rules) => validateApiContract(api, rules, api.components.schemas.AllowedActions ? [api, peerKnowledge] : [peerWorkspace, api]);
+
+test('every internal authentication alternative requires both service and actor context', () => {
+  for (const current of [peerWorkspace,peerKnowledge]) {
+    for (const [path,item] of Object.entries(current.paths).filter(([path])=>path.startsWith('/internal/'))) {
+      for (const [method,operation] of Object.entries(item).filter(([,op])=>op.operationId)) {
+        for (const alternative of [{},{serviceKey:[]},{actorSession:[]},{sessionCookie:[]}]) {
+          const broken=structuredClone(current);
+          broken.paths[path][method].security.push(alternative);
+          assert.throws(()=>validateApi(broken,requirements),/Internal authentication alternative/);
+        }
+      }
+    }
+  }
+});
+
+test('protected public operations cannot opt out of session authentication or name unknown schemes', () => {
+  for (const declaration of [[],[{}],[{serviceKey:[]}],[{sessionCookie:[]},{}]]) {
+    const broken=structuredClone(peerWorkspace);
+    broken.paths['/projects/{project_id}'].get.security=declaration;
+    assert.throws(()=>validateApi(broken,requirements),/Public authentication alternative/);
+  }
+  const unknown=structuredClone(peerWorkspace);
+  unknown.paths['/projects/{project_id}'].get.security=[{sessionCookie:[],nonexistent:[]}];
+  assert.throws(()=>validateApi(unknown,requirements),/Unknown security scheme/);
+  validateApi(peerWorkspace,requirements); // Explicitly unauthenticated signIn remains valid.
+});
+
+test('route templates reject extra, duplicate, missing and equivalent selectors', () => {
+  for (const [mutate,error] of [
+    [a=>a.paths['/projects/{project_id}'].get.parameters.push({name:'ghost',in:'path',required:true,schema:{type:'string'}}),/Extra path parameter/],
+    [a=>a.paths['/projects/{project_id}'].get.parameters.push(structuredClone(a.paths['/projects/{project_id}'].get.parameters[0])),/Duplicate parameter/],
+    [a=>a.paths['/projects/{project_id}'].get.parameters=[],/Missing path parameter/],
+    [a=>a.paths['/projects/{project_id}'].get.parameters[0].required=false,/must be required/],
+    [a=>a.paths['/projects/{other_id}']={},/Equivalent templated paths/],
+  ]) {
+    const broken=structuredClone(peerWorkspace);mutate(broken);
+    assert.throws(()=>validateApi(broken,requirements),error);
+  }
+});
+
+test('path parameters support inherited references and valid operation overrides', () => {
+  const api=structuredClone(peerWorkspace);
+  const item=api.paths['/projects/{project_id}'];
+  const parameter=item.get.parameters.find(p=>p.name==='project_id');
+  api.components.parameters={ProjectSelector:structuredClone(parameter)};
+  item.parameters=[{$ref:'#/components/parameters/ProjectSelector'}];
+  item.get.parameters=item.get.parameters.filter(p=>p.name!=='project_id');
+  // Sibling operation-level copies are valid overrides, not duplicates.
+  validateApi(api,requirements);
+  api.components.parameters.ProjectSelector={$ref:'#/components/parameters/ProjectSelector'};
+  assert.throws(()=>validateApiRouting(api),/Cyclic parameter reference/);
+});
+
+test('HEAD operations cannot bypass requirement trace validation', () => {
+  const api=structuredClone(peerWorkspace);
+  const head=structuredClone(api.paths['/projects/{project_id}'].get);
+  head.operationId='headProject';delete head['x-requirements'];
+  api.paths['/projects/{project_id}'].head=head;
+  assert.throws(()=>validateApi(api,requirements),/Missing requirement trace/);
+});
+
+test('independent document commands expose opaque preconditions and minimal receipts only', () => {
+  for (const [mutate, message] of [
+    [a => { delete a.paths['/knowledge/projects/{project_id}/documents/{document_id}/command-precondition'].get; }, /precondition read missing/],
+    [a => { a.components.schemas.DocumentCommandPrecondition.properties.revision = {type:'integer'}; }, /leaks content or revision/],
+    [a => { a.components.schemas.DocumentMutationReceipt.properties.content = {type:'string'}; }, /leaks content or revision/],
+    [a => { delete a.components.schemas.Revise.oneOf; }, /exactly one/],
+    [a => { a.paths['/knowledge/documents/{document_id}/versions'].post.responses['201'].content['application/json'].schema = {$ref:'#/components/schemas/Version'}; }, /return protected content/],
+    [a => { a.paths['/knowledge/documents/{document_id}'].delete.parameters = a.paths['/knowledge/documents/{document_id}'].delete.parameters.filter(p => p.name !== 'X-Document-Precondition'); }, /independent precondition/],
+  ]) {
+    const broken = structuredClone(peerKnowledge);
+    mutate(broken);
+    assert.throws(() => validateApi(broken, requirements), message);
+  }
+});
+
+test('readiness declarations cannot conflate semantic processing with keyword availability', () => {
+  for (const mutate of [
+    a => { a.components.schemas.Readiness.required = ['document_id','version_id']; },
+    a => { a.components.schemas.Readiness.properties.readiness = {enum:['ready']}; },
+    a => { a.components.schemas.Readiness.properties.keyword_available = {type:'boolean'}; },
+  ]) {
+    const broken = structuredClone(peerKnowledge);
+    mutate(broken);
+    assert.throws(() => validateApi(broken, requirements), /semantic path|keyword availability/);
+  }
+});
+
+test('inspection contracts preserve exact ranked evidence, actual steps and honest missing telemetry', () => {
+  validateApi(peerKnowledge, requirements);
+  for (const [mutate, message] of [
+    [a => { a.components.schemas.Trace.required = a.components.schemas.Trace.required.filter(x => x !== 'query'); }, /Inspection evidence/],
+    [a => { a.components.schemas.Trace.required = a.components.schemas.Trace.required.filter(x => x !== 'tool_steps'); }, /inspection steps/],
+    [a => { a.components.schemas.DocumentInspectionSource.required = ['source_id']; }, /document inspection binding/],
+    [a => { a.components.schemas.OperationalInspectionSource.required = ['source_id','entity_id']; }, /operational inspection binding/],
+    [a => { a.components.schemas.Trace.properties.duration = {type:'number',minimum:0}; }, /timing lacks availability/],
+    [a => { a.components.schemas.DurationMetric.oneOf[1].properties.value_ms = {const:0}; }, /must not contain a number/],
+    [a => { delete a.components.schemas.InspectionStep.allOf; }, /Unexecuted inspection step/],
+    [a => { a.components.schemas.InspectionQuery.oneOf[2].properties.text = {type:'string'}; }, /must not contain text/],
+    [a => { a.components.schemas.TokenUsageMetric.oneOf = a.components.schemas.TokenUsageMetric.oneOf.slice(0,1); }, /availability distinction/],
+    [a => { a.components.schemas.RetrievalSummary.properties.retrieval_steps.items.allOf[1].properties.stage.enum.push('generation'); }, /full execution stages/],
+    [a => { a.paths['/knowledge/runs/{run_id}/summary'].get['x-release-priority'] = 'Must'; }, /stay Should/],
+  ]) {
+    const broken = structuredClone(peerKnowledge);
+    mutate(broken);
+    assert.throws(() => validateApi(broken, requirements), message);
+  }
+});
+
+test('AI transport contracts require exact durable mixed-evidence handoff binding', async () => {
+  for (const [original, peer] of [[peerWorkspace, peerKnowledge], [peerKnowledge, peerWorkspace]]) {
+    for (const [mutate, message] of [
+      [a => { a.components.schemas.HandoffManifest.required = a.components.schemas.HandoffManifest.required.filter(x => x !== 'attempt_id'); }, /binding missing/],
+      [a => { a.components.schemas.HandoffManifest.properties.complete.const = false; }, /Incomplete manifest/],
+      [a => { a.components.schemas.OperationalHandoffEvidence.required = ['entity_id']; }, /Operational evidence binding/],
+      [a => { a.components.schemas.StoredHandoff.required = ['manifest']; }, /receipt missing/],
+      [a => { const n = a.components.schemas.AllowedActions ? 'ProviderInput' : 'InternalQuestionResult'; a.components.schemas[n].required = a.components.schemas[n].required.filter(x => x !== 'handoff'); }, /mandatory manifest/],
+      [a => { const n = a.components.schemas.AllowedActions ? 'ProviderHandoff' : 'AnswerHandoff'; a.components.schemas[n].allOf[1].properties.manifest.properties.purpose.const = 'wrong_purpose'; }, /Cross-purpose/],
+    ]) {
+      const broken = structuredClone(original);
+      mutate(broken);
+      assert.throws(() => validateApiContract(broken, requirements, [broken, peer]), message);
+    }
+  }
+});
+
+test('discovery contracts preserve minimal disclosure and read preconditions', async () => {
+  const workspace = await readJson('contracts/openapi/workspace.openapi.json');
+  const knowledge = await readJson('contracts/openapi/knowledge.openapi.json');
+  for (const [original, mutate, message] of [
+    [workspace, a => { delete a.paths['/documents/{document_id}/policy'].get; }, /Missing discovery read/],
+    [workspace, a => { a.components.schemas.AllowedActions.properties.title = {type:'string'}; }, /protected metadata/],
+    [workspace, a => { a.components.schemas.DocumentReadGrantList.required = ['items','next_cursor']; }, /policy precondition/],
+    [workspace, a => { a.components.schemas.AllowedActions.properties.allowed_operations.items.enum.push('evaluateAccess'); }, /not a public operation/],
+    [knowledge, a => { a.components.schemas.VersionSummary.properties.content = {type:'string'}; }, /expose content/],
+    [knowledge, a => { delete a.paths['/knowledge/documents/{document_id}/versions'].get.responses['409']; }, /page must reject/],
+    [knowledge, a => { a.components.schemas.VersionList.required = ['items']; }, /concurrency precondition/],
+  ]) {
+    const broken = structuredClone(original);
+    mutate(broken);
+    assert.throws(() => validateApi(broken, requirements), message);
+  }
+});
+
+test('UI action catalogue derives public operation membership from both current contracts', async () => {
+  const original = await readJson('contracts/openapi/workspace.openapi.json');
+  const knowledge = await readJson('contracts/openapi/knowledge.openapi.json');
+  validateApiContract(original, requirements, [original, knowledge]);
+  assert(original.components.schemas.AllowedActions.properties.allowed_operations.items.enum.includes('getRetrievalSummary'));
+  for (const id of ['guardProviderInput', 'retireDocumentPolicy', 'nonexistentOperation']) {
+    const broken = structuredClone(original);
+    broken.components.schemas.AllowedActions.properties.allowed_operations.items.enum.push(id);
+    assert.throws(() => validateApiContract(broken, requirements, [broken, knowledge]), /not a public operation/);
+  }
+  // Follow the peer contract rather than a frozen list or name pattern.
+  const renamed = structuredClone(knowledge);
+  renamed.paths['/knowledge/runs/{run_id}/summary'].get.operationId = 'renamedSummary';
+  assert.throws(() => validateApiContract(original, requirements, [original, renamed]), /not a public operation: getRetrievalSummary/);
+  const narrower = structuredClone(original);
+  narrower.components.schemas.AllowedActions.properties.allowed_operations.items.enum = ['getVersion'];
+  validateApiContract(narrower, requirements, [narrower, knowledge]);
+  assert.throws(() => validateApiContract(original, requirements), /both service contracts/);
+});
+
+test('action discovery retains exact version binding and independent summary authority', async () => {
+  const original = await readJson('contracts/openapi/workspace.openapi.json');
+  for (const [mutate, message] of [
+    [a => { a.paths['/access/allowed-actions'].get.parameters = a.paths['/access/allowed-actions'].get.parameters.filter(p => p.name !== 'document_id'); }, /exact locator/],
+    [a => { a.components.schemas.AllowedActions.allOf[0].then.properties.version_id.type = 'null'; }, /exact locator/],
+    [a => { a.paths['/access/allowed-actions'].get['x-run-action-entitlements'].getRetrievalSummary = 'scoped_trace_read'; }, /conflates summary/],
+  ]) {
+    const broken = structuredClone(original);
+    mutate(broken);
+    assert.throws(() => validateApi(broken, requirements), message);
+  }
+});
+
+test('fresh-client work contracts retain location, allocation history and blocker reads', async () => {
+  const original = await readJson('contracts/openapi/workspace.openapi.json');
+  validateApi(original, requirements);
+  for (const [mutate, message] of [
+    [api => { api.components.schemas.Task.required = api.components.schemas.Task.required.filter(x => x !== 'work_location'); }, /task location/],
+    [api => { delete api.paths['/sprints/{sprint_id}/items'].get; }, /Sprint membership/],
+    [api => { delete api.paths['/tasks/{task_id}/blockers'].get; }, /Blocker history/],
+    [api => { api.components.schemas.SprintItem.required = ['task']; }, /allocation history/],
+    [api => { delete api.paths['/projects/{project_id}/tasks'].get.responses['409']; }, /mix snapshots/],
+    [api => { api.components.schemas.TaskList.required = api.components.schemas.TaskList.required.filter(x => x !== 'backlog_revision'); }, /public read source/],
+    [api => { api.components.schemas.Reorder.properties.expected_revision = {type:'integer'}; }, /differs from public Backlog/],
+  ]) {
+    const broken = structuredClone(original);
+    mutate(broken);
+    assert.throws(() => validateApi(broken, requirements), message);
+  }
+});
 
 test('spec owner cannot contradict the actual operation contract', async () => {
   const apis = { workspace: await readJson('contracts/openapi/workspace.openapi.json'), knowledge: await readJson('contracts/openapi/knowledge.openapi.json') };

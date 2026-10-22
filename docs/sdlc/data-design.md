@@ -1,9 +1,9 @@
 # Logical data and lifecycle design
 
 **Artifact ID:** DATA-04  
-**Version/date:** 0.6 Draft · 16 October 2026
+**Version/date:** 0.11 Draft · 18 October 2026
 **Status:** Draft for owner review; proposed policies/deferrals are not approved.
-**Inputs:** PRD-01 v0.9; UC-02 v0.6; [SAD-03](../architecture.md) v0.9; [logical entities](../../contracts/data-model.json) v0.3; owner-authorised ADR-0004 implementation; ADR-0007–ADR-0017.
+**Inputs:** PRD-01 v0.9; UC-02 v0.7; [SAD-03](../architecture.md) v0.15; [logical entities](../../contracts/data-model.json) v0.8; owner-authorised ADR-0004 implementation; ADR-0007–ADR-0017.; Proposed ADR-0018.; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 ## Ownership and relationships
@@ -91,3 +91,51 @@ ADR-0012: Knowledge owns immutable `HandoffManifest` records. Required fields: `
 Freeze the payload and obtain durable acknowledgement before acquiring the guard. Inside the guard, match current full-evidence scope, source validity, recorded revisions and payload/manifest digests. A mismatch aborts with zero bytes and releases the guard; retries prepare a fresh immutable `handoff_id` outside it. Revoked/invalid evidence requires a new validated answer attempt, never trimming the original. Guard scope remains final validation through completed/aborted transport. Remote persistence and retry waits stay outside it.
 
 `HandoffOutcome` is append-only and references `handoff_id`; distinguish prepared from completed/aborted/unknown. Prepared alone proves no send. Before acquiring the guard, Workspace durably claims the ID once using its existing owned idempotency record (`protected_handoff`, actor, handoff ID and manifest digest); only a fresh successful claimant may continue. Existing/unknown claims never authorise sending, unresolved/consumed identities cannot expire into replay, and abort/restart fences the old claimant. Unknown transport outcomes cannot trigger automatic fresh-identity resend. Logical entities are in contracts/data-model.json; additive manifest migrations, immutable/one-use enforcement and TC-26 are implementation gaps.
+
+## Current work location and Backlog concurrency — 18 October 2026
+
+Proposed ADR-0018 is implemented structurally by Workspace migration 003. The logical model is v0.4. Project gains backlog_revision; Task gains location_kind and nullable location_sprint_id. The existing numeric backlog_position is used only for Backlog ordering. Same-project Sprint and (Sprint, Task) association references are deferred. Final checks also run on allocation and Sprint changes. No new entity/service or copied permission rule is introduced.
+
+| Current location | Required final persisted state |
+| --- | --- |
+| backlog | Null location_sprint_id; no live allocated association; To Do/In Progress/Done allowed. Historical completed/returned associations may remain. |
+| sprint | Same-project Planned/Active Sprint and matching allocated association; any task state allowed. |
+| completed | Same-project Completed Sprint, matching completed association and Done task; no live allocation. |
+
+| Mutation | Atomic placement/history/revision effect |
+| --- | --- |
+| Create | Backlog marker; append after current maximum position under project lock; initialise task revision; advance backlog_revision. |
+| Allocate | Require current Backlog task and eligible Sprint; create/update its non-completed allocation; set sprint marker/reference; bump task revision; advance backlog_revision. Never overwrite a completed association. |
+| Complete Sprint | In the same transaction set Sprint Completed; Done allocated tasks become completed marker/association; unfinished tasks become Backlog/To Do, returned association, null marker reference and append positions. Batch returns append in task-ID order. Bump affected task/allocation revisions and Backlog generation for entries. |
+| Reopen from completed | Set Backlog/To Do and clear current Sprint reference, append position, bump task revision/generation; keep the old completed association byte-for-byte. |
+| Done in Backlog | Change state/revision only; remain Backlog despite old completed associations. Later allocation to another Sprint changes current marker only. |
+| Optional allocation removal | Return to Backlog, clear reference, mark association returned; unfinished becomes To Do, Done stays Done; append and bump revisions. This remains FR-67 Could. |
+| Reorder | Full permutation of current Backlog, revision from listTasks.backlog_revision; only changed positions/task revisions are written, generation advances transactionally, no location/history changes. |
+
+All producing handlers must use current operation-specific authority, idempotency and minimum audit in the same transaction. Lock order: project before affected Sprint/task rows, then stable IDs; permission handoff ordering remains upstream policy. Trigger-maintained backlog_revision prevents unnoticed membership/order changes; it is not an access decision or a global cursor version. Task content/state-only changes leave it unchanged. Dataset cursors still invalidate on any projected-field change.
+
+Legacy rows with a live allocation map to that Sprint; with neither live nor completed history they map to Backlog. Rows with completed history and no live allocation require an explicit revision-bound reconciliation row; never guess from state, dates or maximum historical Sprint. Invalid/missing/stale reconciliation aborts migration transactionally. Migration 003's down refuses nonempty tasks; use reviewed forward recovery on valuable data. Applied 001/002 remain untouched.
+
+## Historical SYS-01 transport design before additive SQL
+
+This section supersedes the earlier draft field summary: revision_refs are represented by per-evidence document/operational bindings. Logical model v0.5 and Proposed ADR-0020 refine HandoffManifest: session/project generations, exact full discriminated evidence, payload length/digest, destination, exact manifest-byte reference/digest and durable receipt. The per-source document/operational entries carry revision bindings rather than one aggregate source revision. Workspace ProtectedHandoffClaim is a logical mapping to owned idempotency storage, with a durable claim fence and no expiry into send eligibility. Existing generic idempotency cleanup cannot reclaim protected identities. Knowledge records and evidence commit atomically, remain immutable and omit raw provider/source content; outcomes append separately.
+
+Required additive Knowledge storage and Workspace claim/fence enforcement are not implemented by migration 003. No migration is applied or added in this design slice. The selected final provider adapter must validate actual wire bytes against the semantic payload; no provider is selected. See ADR-0020 and TC-26 for prepared-versus-sent, unknown commit/transport and restart constraints.
+
+## NEXT-03 recorded inspection and optional metrics
+
+Logical model v0.6 adds actual query/step/availability fields to Execution and entity_revision to exact per-run Provenance. ExecutionStep has (run_id, step_id); StepSource has (run_id, step_id, source_id) and recorded_order so a source can appear in multiple steps without changing its per-run identity. Visible display_order/rank is derived densely after current disclosure filtering; never expose unrestricted original gaps or hidden totals. Mandatory source/query/step capture remains distinct from optional measured/unavailable/not_performed telemetry.
+
+Proposed ADR-0021 defines typed inspection and safe query/check disclosure. This is logical design, not a change to physical execution/provenance tables. Additive capture/retention/mapping and handlers remain pending; no migration is added/applied. DGM-DATA-03 reflects the logical extensions; the physical ERD still describes selected existing columns.
+
+## NEXT-06 opaque command precondition records
+
+Logical model v0.7 adds Knowledge-owned DocumentCommandPrecondition keyed by token hash, privately binding actor/session/project/document/action/version, document aggregate revision, policy-generation reference and state. It creates no read grant. Guarded commands compare/consume with state, audit and idempotency in one transaction; rollback preserves correct consumption state. Unknown/stale tokens always reject, so cleanup cannot turn them into newly issued valid tokens. This differs from nonreplayable AI handoff claims. Minimal command receipts contain no content/current metadata; their original created/supplied identity is operation-authorised acknowledgement. Proposed ADR-0022 defines issuance/unknown outcome/replay and cleanup; no physical migration is supplied/applied.
+
+## NEXT-12 physical handoff mapping
+
+Logical model v0.8 maps to Knowledge 003 handoff_manifest/handoff_outcome and Workspace 004 reserved idempotency claims/protected_handoff_outcome. Manifest JSON and exact bytes commit as one immutable row; generated digest and receipt cannot be caller-updated, and the owned execution FK binds run/actor/project. SQL checks metadata shapes/raw equality, duplicate source IDs and project consistency; actual captured-context completeness and current source authority remain handler checks. No raw payload/excerpt columns are introduced.
+
+Protected claim rows are consumed by existence, remain pending in the generic state column, expire at infinity and retain immutable fence/process. Only a fresh known committed insertion can proceed toward the guard; an uncommitted returned UUID is not send authority. Existing/unknown/aborted claims cannot resume or acquire a new fence. Outcome rows bind the exact claim and append without rewriting it. Active-process lifecycle/quarantine/current-scope enforcement still needs real adapters.
+
+New down scripts refuse nonempty protected records. Upgrade rejects legacy protected_handoff rows pending explicit reconciliation instead of assigning a guessed fence. Isolated runtime-role/transaction/concurrent-claim tests passed; no development migration was run. Inspection-step/provenance extensions and opaque command-precondition storage remain separate gaps; the physical ERDs show only implemented DDL.

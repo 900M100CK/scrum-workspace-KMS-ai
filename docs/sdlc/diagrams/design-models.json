@@ -308,7 +308,8 @@
         "ADR-0011",
         "ADR-0012",
         "ADR-0013",
-        "ADR-0017"
+        "ADR-0017",
+        "ADR-0020"
       ],
       "participants": [
         {
@@ -369,7 +370,18 @@
         {
           "from": "K",
           "to": "W",
-          "label": "Request exact protected handoff with manifest + frozen payload"
+          "label": "Request purpose-bound StoredHandoff + frozen final payload bytes"
+        },
+        {
+          "from": "W",
+          "to": "K",
+          "label": "Outside guard: authenticated getHandoffManifest by exact handoff ID"
+        },
+        {
+          "type": "return",
+          "from": "K",
+          "to": "W",
+          "label": "Exact committed manifest bytes/digest/receipt; unknown or mismatch sends zero bytes"
         },
         {
           "from": "W",
@@ -419,7 +431,7 @@
           "type": "return",
           "from": "K",
           "to": "W",
-          "label": "Exact current evidence revisions and complete manifest binding"
+          "label": "Match complete mixed document/operational evidence, current revisions and exact receipt/byte binding"
         },
         {
           "type": "note",
@@ -860,15 +872,16 @@
       "title": "Sprint, task, allocation and blocker state projections",
       "notation": "state",
       "trace": "FR-07–FR-09, FR-42, FR-44, FR-64; UC-04/05; SC-03/04",
-      "scope": "Independent state domains coordinated by one Workspace transaction for completion/reopen. No Sprint reopening.",
+      "scope": "Independent state domains coordinated by one Workspace transaction for completion/reopen. No Sprint reopening. Current location is persisted independently of completed allocation history.",
       "legend": "One Active Sprint per project; at most one live allocation per task. Completed allocation history and blocker events are preserved. Capability + expected revision + idempotency + audit required.",
       "adrs": [
         "ADR-0008",
         "ADR-0012",
-        "ADR-0014"
+        "ADR-0014",
+        "ADR-0018"
       ],
       "width": 1900,
-      "height": 1620,
+      "height": 2100,
       "nodes": [
         {
           "id": "Planned",
@@ -955,6 +968,30 @@
           "label": "Derived blocker: Blocked\nLatest committed sequence is Open",
           "x": 750,
           "y": 1380,
+          "w": 360,
+          "h": 135
+        },
+        {
+          "id": "LocationBacklog",
+          "label": "Current location: Backlog\nSprint reference null; any task state",
+          "x": 100,
+          "y": 1740,
+          "w": 360,
+          "h": 135
+        },
+        {
+          "id": "LocationSprint",
+          "label": "Current location: Sprint\nPlanned/Active + allocated association",
+          "x": 750,
+          "y": 1740,
+          "w": 360,
+          "h": 135
+        },
+        {
+          "id": "LocationCompleted",
+          "label": "Current location: Completed\nDone + completed association",
+          "x": 1400,
+          "y": 1740,
           "w": 360,
           "h": 135
         }
@@ -1079,6 +1116,46 @@
               "y": 1580
             }
           ]
+        },
+        {
+          "from": "LocationBacklog",
+          "to": "LocationSprint",
+          "label": "allocate; advance Backlog revision"
+        },
+        {
+          "from": "LocationSprint",
+          "to": "LocationCompleted",
+          "label": "complete Done work"
+        },
+        {
+          "from": "LocationSprint",
+          "to": "LocationBacklog",
+          "label": "return unfinished; To Do",
+          "points": [
+            {
+              "x": 930,
+              "y": 1920
+            },
+            {
+              "x": 280,
+              "y": 1920
+            }
+          ]
+        },
+        {
+          "from": "LocationCompleted",
+          "to": "LocationBacklog",
+          "label": "reopen To Do; retain completed association",
+          "points": [
+            {
+              "x": 1580,
+              "y": 2000
+            },
+            {
+              "x": 280,
+              "y": 2000
+            }
+          ]
         }
       ]
     },
@@ -1088,7 +1165,7 @@
       "title": "Workspace physical ERD — owned schema",
       "notation": "erd",
       "trace": "BR-01–BR-03, BR-06, BR-10–BR-12; SC-03/04/06",
-      "scope": "Applied migrations 001 + 002; selected identity/state columns. Tables exist; handlers and transactional policy enforcement are pending.",
+      "scope": "Schema through Workspace migration 004; development database upgrade not claimed. Selected columns; storage/service constraints are not end-user authority.",
       "legend": "Relationship label names FK columns; ||--o{ means parent 1 to child 0..many. User IDs are opaque; no User table or cross-store FK. Session/idempotency have no project FK.",
       "adrs": [
         "ADR-0004",
@@ -1096,7 +1173,9 @@
         "ADR-0008",
         "ADR-0011",
         "ADR-0012",
-        "ADR-0017"
+        "ADR-0017",
+        "ADR-0018",
+        "ADR-0023"
       ],
       "nodes": [
         {
@@ -1104,7 +1183,8 @@
           "fields": [
             "uuid project_id PK",
             "text name",
-            "bigint revision"
+            "bigint revision",
+            "bigint backlog_revision \"set and order generation\""
           ]
         },
         {
@@ -1144,7 +1224,9 @@
             "uuid assignee_id FK \"nullable composite membership FK\"",
             "text state \"todo in_progress done\"",
             "numeric backlog_position",
-            "bigint revision"
+            "bigint revision",
+            "text location_kind \"backlog sprint completed\"",
+            "uuid location_sprint_id FK \"nullable current pointer independent of history\""
           ]
         },
         {
@@ -1216,7 +1298,22 @@
             "text idempotency_key PK",
             "text payload_hash",
             "text state",
-            "timestamptz expires_at"
+            "timestamptz expires_at",
+            "uuid claim_fence \"protected only\"",
+            "uuid process_ref \"protected only\""
+          ]
+        },
+        {
+          "id": "protected_handoff_outcome",
+          "fields": [
+            "uuid outcome_id PK",
+            "uuid actor_id FK",
+            "text operation FK",
+            "text handoff_id FK",
+            "uuid claim_fence FK",
+            "text status",
+            "timestamptz observed_at",
+            "text enforcement_ref"
           ]
         }
       ],
@@ -1281,6 +1378,23 @@
           "from": "project",
           "to": "business_audit",
           "label": "project_id"
+        },
+        {
+          "from": "sprint",
+          "to": "task",
+          "label": "project_id + location_sprint_id (deferred)",
+          "card": "o|--o{"
+        },
+        {
+          "from": "sprint_allocation",
+          "to": "task",
+          "label": "location_sprint_id + task_id (deferred)",
+          "card": "o|--o|"
+        },
+        {
+          "from": "idempotency_record",
+          "to": "protected_handoff_outcome",
+          "label": "actor operation key fence; append-only"
         }
       ]
     },
@@ -1290,14 +1404,15 @@
       "title": "Knowledge physical ERD — owned schema",
       "notation": "erd",
       "trace": "BR-04–BR-05, BR-08–BR-12, BR-14; SC-01/02/05/06/07",
-      "scope": "Applied migrations 001 + 002; selected identity/state columns. Immutable source bytes; mutable lifecycle state is constrained.",
-      "legend": "No ACL table or cross-store FK. Embedding dimensions/configuration are not fixed. Operational provenance entity_kind and handoff entities remain additive gaps, shown separately.",
+      "scope": "Schema through Knowledge migration 003; development upgrade not claimed. Immutable manifest bytes and outcomes supplement the source foundation; no handler/guard acceptance.",
+      "legend": "No ACL or cross-store FK. Complete manifest/evidence JSON and exact bytes commit in one row. Current source authority and actual capture completeness require application checks.",
       "adrs": [
         "ADR-0004",
         "ADR-0009",
         "ADR-0011",
         "ADR-0012",
-        "ADR-0013"
+        "ADR-0013",
+        "ADR-0023"
       ],
       "nodes": [
         {
@@ -1418,6 +1533,29 @@
             "text payload_hash",
             "timestamptz expires_at"
           ]
+        },
+        {
+          "id": "handoff_manifest",
+          "fields": [
+            "text handoff_id PK",
+            "uuid run_id FK",
+            "uuid actor_id FK",
+            "uuid project_id FK",
+            "jsonb manifest \"full evidence\"",
+            "bytea manifest_bytes",
+            "text manifest_digest \"generated SHA256\"",
+            "uuid durable_commit_ref UK"
+          ]
+        },
+        {
+          "id": "handoff_outcome",
+          "fields": [
+            "uuid outcome_id PK",
+            "text handoff_id FK",
+            "text status",
+            "timestamptz observed_at",
+            "text enforcement_ref"
+          ]
         }
       ],
       "edges": [
@@ -1478,21 +1616,35 @@
           "to": "provenance",
           "label": "nullable exact tuple MATCH FULL",
           "card": "o|--o{"
+        },
+        {
+          "from": "execution",
+          "to": "handoff_manifest",
+          "label": "run actor project"
+        },
+        {
+          "from": "handoff_manifest",
+          "to": "handoff_outcome",
+          "label": "handoff_id; append-only"
         }
       ]
     },
     {
       "id": "DGM-DATA-03",
       "path": "docs/sdlc/diagrams/data/handoff-logical-model",
-      "title": "Logical evidence additions — NOT applied schema",
+      "title": "Logical evidence and command additions — NOT applied schema",
       "notation": "erd",
       "trace": "FR-57, FR-59, FR-67; BR-08–BR-12, BR-14; TC-26",
-      "scope": "Logical model additions and service-owned claim correlation. Dashed associations are logical, NOT database foreign keys.",
-      "legend": "HandoffManifest/Outcome need additive migration. Workspace claim maps to existing idempotency_record, not a new chosen table. Physical-purge locator tombstone design remains open.",
+      "scope": "Logical correlations and still-pending inspection/token additions. Dashed links are not cross-store FKs. Handoff preparation/claim storage now has additive migrations; handlers remain absent.",
+      "legend": "Knowledge 003 stores immutable manifests/outcomes; Workspace 004 reserves permanent idempotency claims and local outcomes. Inspection steps, command preconditions and physical-purge tombstones remain gaps.",
       "adrs": [
         "ADR-0011",
         "ADR-0012",
-        "ADR-0013"
+        "ADR-0013",
+        "ADR-0020",
+        "ADR-0021",
+        "ADR-0022",
+        "ADR-0023"
       ],
       "nodes": [
         {
@@ -1500,32 +1652,41 @@
           "fields": [
             "uuid run_id PK",
             "uuid actor_id",
-            "uuid project_id"
+            "uuid project_id",
+            "text actual_query \"mandatory scoped record\"",
+            "json step_refs \"ExecutionStep and StepSource logical mapping\"",
+            "text duration_availability",
+            "text usage_availability"
           ]
         },
         {
           "id": "HandoffManifest",
           "fields": [
-            "uuid handoff_id PK",
+            "text handoff_id PK",
             "uuid run_id",
-            "uuid attempt_id",
+            "text attempt_id",
             "text purpose",
             "uuid actor_id",
             "uuid project_id",
             "text access_context_ref",
             "json evidence_set",
-            "json revision_refs",
             "text payload_digest",
             "text manifest_digest",
-            "boolean complete"
+            "boolean complete",
+            "text session_generation",
+            "text project_permission_revision",
+            "bigint payload_length",
+            "text destination_ref",
+            "text manifest_bytes_ref",
+            "text durable_commit_ref"
           ]
         },
         {
           "id": "HandoffOutcome",
           "fields": [
             "uuid outcome_id PK",
-            "uuid handoff_id",
-            "text status \"prepared completed aborted unknown\"",
+            "text handoff_id",
+            "text status \"completed aborted unknown\"",
             "timestamptz observed_at",
             "text enforcement_ref"
           ]
@@ -1537,7 +1698,10 @@
             "text operation PK \"protected_handoff\"",
             "text idempotency_key PK \"handoff_id\"",
             "text payload_hash \"manifest_digest binding\"",
-            "text state \"existing schema; protocol pending\""
+            "text state \"pending means consumed\"",
+            "uuid claim_fence \"immutable\"",
+            "text outcome_ref \"derived from append-only outcomes\"",
+            "uuid process_ref \"active fence checks pending\""
           ]
         },
         {
@@ -1548,7 +1712,44 @@
             "text entity_kind \"additive gap\"",
             "uuid entity_id",
             "bigint observation_revision",
-            "timestamptz observed_at"
+            "timestamptz observed_at",
+            "bigint entity_revision \"operational source binding\""
+          ]
+        },
+        {
+          "id": "KnowledgeDocument",
+          "fields": [
+            "uuid document_id PK",
+            "uuid project_id",
+            "bigint revision \"private command comparison\""
+          ]
+        },
+        {
+          "id": "DocumentCommandPrecondition",
+          "fields": [
+            "text token_hash PK",
+            "uuid actor_ref",
+            "text session_generation",
+            "uuid project_id",
+            "uuid document_id",
+            "text target_action",
+            "uuid version_id \"known archive target or null\"",
+            "bigint document_revision \"not exposed\"",
+            "text policy_generation_ref",
+            "text state \"consume atomically with command\""
+          ]
+        },
+        {
+          "id": "WorkspaceOutcome",
+          "fields": [
+            "uuid outcome_id PK",
+            "uuid actor_id",
+            "text operation",
+            "text handoff_id",
+            "uuid claim_fence",
+            "text status",
+            "timestamptz observed_at",
+            "text enforcement_ref"
           ]
         }
       ],
@@ -1575,6 +1776,18 @@
           "from": "Execution",
           "to": "Provenance",
           "label": "exact document tuple OR operational kind/ID/revision/time",
+          "card": "||..o{"
+        },
+        {
+          "from": "KnowledgeDocument",
+          "to": "DocumentCommandPrecondition",
+          "label": "Knowledge-owned opaque action/revision binding; logical only",
+          "card": "||..o{"
+        },
+        {
+          "from": "WorkspaceClaim",
+          "to": "WorkspaceOutcome",
+          "label": "owned append-only outcomes; FK shown in physical ERD",
           "card": "||..o{"
         }
       ]

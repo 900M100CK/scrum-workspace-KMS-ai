@@ -5,3 +5,7 @@ Status: PostgreSQL storage migrations and scoped exact/keyword query functions a
 Never copy or independently interpret permission rules: obtain current scoped decisions from Workspace and filter project AND document before query/context. Own Knowledge data only. Generation is read-only and provider-independent. There is no persisted product Draft under ADR-0009; unsaved editor text never enters retrieval/context; citation IDs are assigned from retrieved records. Guarded delivery validates the full evidence set, including uncited context.
 
 Implement SP-06–SP-10 after the foundation; capture evidence from the first operation. Real build/test/run commands follow installed versions, not this README.
+
+Knowledge migration 003 additionally stores immutable exact handoff manifests and append-only outcomes under Proposed ADR-0023. Isolated SQL evidence is supplied; authenticated preparation lookup/capture and actual guarded provider/answer adapters remain unimplemented. A generated receipt before known commit acknowledgement authorizes no send.
+
+queries/get-handoff-manifest.sql supplies an internal exact-byte StoredHandoff projection with trusted-context selectors, verified by the optional contracts:storage:test command. It is not an HTTP handler or permission decision; its context must come from independently validated server state and final guard/source checks remain required.

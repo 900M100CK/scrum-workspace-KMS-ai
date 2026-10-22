@@ -2,7 +2,7 @@
   "openapi": "3.1.1",
   "info": {
     "title": "Knowledge service public facade through Workspace gateway",
-    "version": "0.2.3",
+    "version": "0.2.9",
     "description": "Draft contract; policy/stack decisions remain proposed. Schema validation proves shape only."
   },
   "x-status": "Draft",
@@ -158,7 +158,7 @@
         "x-requirements": [
           "FR-48"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. Proposed ADR-0022: current lifecycle authority is independent of read; exactly one numeric revision or opaque delete precondition header is required. Validate/consume atomically with deletion/audit/idempotency. Return 204 with no content. Generic 409 gives no current revision/state. Same-key replay after renewed action checks does not repeat deletion or require a consumed token; unknown commit is reconciled under the original key. A fresh precondition read is not evidence that an earlier write failed.",
         "parameters": [
           {
             "name": "document_id",
@@ -182,12 +182,23 @@
           {
             "name": "X-Expected-Revision",
             "in": "header",
-            "required": true,
+            "required": false,
             "schema": {
               "type": "integer",
               "minimum": 1
             },
-            "description": "Must match the current owned resource revision; stale request fails without mutation."
+            "description": "Supply exactly one of X-Expected-Revision (already-known aggregate revision) or X-Document-Precondition (opaque token for deleteDocument). Missing/both is 400."
+          },
+          {
+            "name": "X-Document-Precondition",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "pattern": "^pc_[A-Za-z0-9_-]{43}$",
+              "description": "Opaque 32-random-byte base64url precondition reference. Binds actor/session/project/document/action/optional version and private current aggregate revision/policy generation; conveys no read or action authority."
+            },
+            "description": "Opaque getDocumentCommandPrecondition token bound to deleteDocument; mutually exclusive with X-Expected-Revision."
           }
         ],
         "responses": {
@@ -326,7 +337,7 @@
         "x-requirements": [
           "FR-65"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. Proposed ADR-0022: accept exactly one numeric expected_revision already known to the caller or opaque precondition_token from getDocumentCommandPrecondition for this exact action/actor/session/project/document/optional version. Check operation authority and compare private current aggregate revision atomically, consume token on commit with audit/idempotency. Return only DocumentMutationReceipt even if content-read is absent; no content-bearing Version/Document response. Same-key replay rechecks authority and returns original receipt before testing a consumed token; changed payload conflicts. 409 has no current revision/lifecycle/hidden metadata; obtain a fresh precondition and require a fresh user decision. Unknown write outcome uses the same original key/payload until reconciled, never blind fresh-key retry.",
         "parameters": [
           {
             "name": "document_id",
@@ -350,11 +361,18 @@
         ],
         "responses": {
           "200": {
-            "description": "Confirmed result",
+            "description": "Committed minimal command receipt; separately renewed document read is required for any content",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Document"
+                  "$ref": "#/components/schemas/DocumentMutationReceipt"
+                }
+              }
+            },
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "const": "no-store"
                 }
               }
             }
@@ -418,7 +436,7 @@
         "x-requirements": [
           "FR-11"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. Require content-write and expected Document revision. Under the lifecycle guard, atomically supersede the previous Current, insert a new immutable Current version and update the pointer. Preserve all old exact locators; no separate publish step.",
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. Require content-write and expected Document revision. Under the lifecycle guard, atomically supersede the previous Current, insert a new immutable Current version and update the pointer. Preserve all old exact locators; no separate publish step. Proposed ADR-0022: accept exactly one numeric expected_revision already known to the caller or opaque precondition_token from getDocumentCommandPrecondition for this exact action/actor/session/project/document/optional version. Check operation authority and compare private current aggregate revision atomically, consume token on commit with audit/idempotency. Return only DocumentMutationReceipt even if content-read is absent; no content-bearing Version/Document response. Same-key replay rechecks authority and returns original receipt before testing a consumed token; changed payload conflicts. 409 has no current revision/lifecycle/hidden metadata; obtain a fresh precondition and require a fresh user decision. Unknown write outcome uses the same original key/payload until reconciled, never blind fresh-key retry.",
         "parameters": [
           {
             "name": "document_id",
@@ -442,11 +460,18 @@
         ],
         "responses": {
           "201": {
-            "description": "Created",
+            "description": "Committed minimal command receipt; separately renewed document read is required for any content",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Version"
+                  "$ref": "#/components/schemas/DocumentMutationReceipt"
+                }
+              }
+            },
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "const": "no-store"
                 }
               }
             }
@@ -502,6 +527,95 @@
           }
         },
         "x-release-priority": "Must"
+      },
+      "get": {
+        "operationId": "listVersions",
+        "x-requirements": [
+          "FR-12",
+          "FR-14",
+          "FR-47"
+        ],
+        "x-release-priority": "Must",
+        "description": "Require current membership and document-read on every page/handoff. Explicit labelled history returns retained available current/superseded/archived version metadata, not content/passages. Order created_at descending then version_id ascending. document_revision is the current Document aggregate revision, used by revise/archive/delete concurrency; never use version identity as revision. getVersion retrieves the selected exact locator; never substitute Current. Deleted/unreadable document gives generic 404; no retention or tombstone browsing entitlement is added. Omit physically unavailable versions without hidden counts. Lifecycle/pointer/retention changes invalidate pagination. Pages are committed, permission-filtered projections ordered as specified. An opaque authenticated cursor binds actor, current membership/permission generation, route, filters, order and the complete visible projection generation. Revalidate authority on every page and protected response handoff. Filter before pagination; expose no hidden counts, placeholders or skipped IDs. Malformed/foreign cursor: generic 400; changed/expired cursor: 409 state_conflict without items. Discard all accumulated pages and restart. No cross-endpoint snapshot is implied. Return Cache-Control: no-store. See Proposed ADR-0019.",
+        "parameters": [
+          {
+            "name": "document_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 50
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Current authorised projection",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VersionList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid selector or cursor; no resource metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Changed or expired projection; discard all pages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        }
       }
     },
     "/knowledge/documents/{document_id}/versions/{version_id}": {
@@ -562,7 +676,7 @@
         "x-requirements": [
           "FR-13"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. Proposed ADR-0022: accept exactly one numeric expected_revision already known to the caller or opaque precondition_token from getDocumentCommandPrecondition for this exact action/actor/session/project/document/optional version. Check operation authority and compare private current aggregate revision atomically, consume token on commit with audit/idempotency. Return only DocumentMutationReceipt even if content-read is absent; no content-bearing Version/Document response. Same-key replay rechecks authority and returns original receipt before testing a consumed token; changed payload conflicts. 409 has no current revision/lifecycle/hidden metadata; obtain a fresh precondition and require a fresh user decision. Unknown write outcome uses the same original key/payload until reconciled, never blind fresh-key retry.",
         "parameters": [
           {
             "name": "document_id",
@@ -595,11 +709,18 @@
         ],
         "responses": {
           "200": {
-            "description": "Confirmed result",
+            "description": "Committed minimal command receipt; separately renewed document read is required for any content",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Version"
+                  "$ref": "#/components/schemas/DocumentMutationReceipt"
+                }
+              }
+            },
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "const": "no-store"
                 }
               }
             }
@@ -649,7 +770,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ExpectedRevision"
+                "$ref": "#/components/schemas/DocumentCommandConcurrency"
               }
             }
           }
@@ -663,7 +784,7 @@
         "x-requirements": [
           "FR-15"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "Require current membership plus exact document-read and parent/version checks. Return semantic_readiness for the exact version only; pending/failed semantic processing does not disable permitted keyword search of committed Current passages. A ready result does not bypass validity, current scope or dependency checks. Keyword availability is observed from its own request, not inferred from this response or a Current badge. No-store; unknown/denied exact version uses generic 404 and authority/dependency failure 503.",
         "parameters": [
           {
             "name": "document_id",
@@ -691,6 +812,13 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Readiness"
+                }
+              }
+            },
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "const": "no-store"
                 }
               }
             }
@@ -1099,7 +1227,7 @@
           "FR-57",
           "FR-69"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. ADR-0013: withheld answers use the fixed AnswerWithheld body; never expose access-change reasons or any part of the original evidence-dependent draft. An invented citation invalidates the original draft; only a new bounded attempt that rechecks claim support, exact citation binding, access and mandatory provenance may be delivered. Otherwise return AnswerWithheld. ADR-0012 v0.3: complete immutable manifest durable outside guard before each provider/answer handoff; guarded exact payload/evidence/revision matching, zero-byte abort on mismatch, fresh preparation only after guard release. Failed/unknown persistence authorises no send; aborted/consumed handoff IDs cannot resume or replay.",
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. ADR-0013: withheld answers use the fixed AnswerWithheld body; never expose access-change reasons or any part of the original evidence-dependent draft. An invented citation invalidates the original draft; only a new bounded attempt that rechecks claim support, exact citation binding, access and mandatory provenance may be delivered. Otherwise return AnswerWithheld. ADR-0012 v0.3: complete immutable manifest durable outside guard before each provider/answer handoff; guarded exact payload/evidence/revision matching, zero-byte abort on mismatch, fresh preparation only after guard release. Failed/unknown persistence authorises no send; aborted/consumed handoff IDs cannot resume or replay. UI retry guidance: a terminal failure or withheld response has no deliverable original answer; a deliberate new question obtains fresh scope and fresh run/attempt preparation. A lost response is an unknown outcome, never automatic replay/resume of a handoff or automatic fresh-identity resend. An explicitly labelled new user request cannot bypass unresolved transport quarantine. A stale global provider-health badge never permanently disables new requests; actual request outcomes and current session/scope remain authoritative.",
         "parameters": [],
         "responses": {
           "200": {
@@ -1241,7 +1369,7 @@
         "x-requirements": [
           "FR-58"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "FR-58: current membership plus scoped trace-read for this exact run. Source details require separate current source permission; audit-only identity entitlement does not carry over. Permitted-answer-reader status alone does not grant trace access. Unknown/inaccessible runs share generic 404; failed authority denies protected output. Discovery at run scope evaluates this entitlement independently of getRetrievalSummary. Proposed ADR-0021: return the typed inspection projection with actual safely disclosable query/steps, exact permitted document/operational locators and bound visible ranks, explicit validation records and measured/unavailable/not_performed optional metrics. Resolve current authority before projection and protected handoff; omit denied source identities AND dependent query/validation fields without counts or rank gaps. Authority or missing mandatory provenance fails with generic 503, not empty success or a fabricated value. No-store; no private reasoning/raw tool payload/provider error text. Inspection is historical run evidence; source opening separately rechecks exact current access.",
         "parameters": [
           {
             "name": "run_id",
@@ -1260,6 +1388,13 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Trace"
+                }
+              }
+            },
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "const": "no-store"
                 }
               }
             }
@@ -1283,7 +1418,7 @@
         "x-requirements": [
           "FR-27"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "Optional FR-27 Should: current membership and current permitted-answer-reader entitlement for the exact run; trace-read is not required and does not itself grant answer-reader entitlement. Recheck current source access and omit denied source details under the existing protected handoff rules. Unknown/unrelated/revoked readers receive generic 404. Authority/dependency failure returns generic 503 without a cached summary. No private reasoning or unrestricted trace fields. Discovery at run scope evaluates this entitlement independently of getTrace. Proposed ADR-0021: return the typed inspection projection with actual safely disclosable query/steps, exact permitted document/operational locators and bound visible ranks, explicit validation records and measured/unavailable/not_performed optional metrics. Resolve current authority before projection and protected handoff; omit denied source identities AND dependent query/validation fields without counts or rank gaps. Authority or missing mandatory provenance fails with generic 503, not empty success or a fabricated value. No-store; no private reasoning/raw tool payload/provider error text. Inspection is historical run evidence; source opening separately rechecks exact current access.",
         "parameters": [
           {
             "name": "run_id",
@@ -1302,6 +1437,13 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/RetrievalSummary"
+                }
+              }
+            },
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "const": "no-store"
                 }
               }
             }
@@ -1330,7 +1472,7 @@
           "FR-32",
           "FR-57"
         ],
-        "description": "Internal authenticated service only; Workspace validates actor/session/current project and document scope. Not a browser-callable endpoint. ADR-0013: withheld answers use the fixed AnswerWithheld body; never expose access-change reasons or any part of the original evidence-dependent draft. An invented citation invalidates the original draft; only a new bounded attempt that rechecks claim support, exact citation binding, access and mandatory provenance may be delivered. Otherwise return AnswerWithheld. ADR-0012 v0.3: complete immutable manifest durable outside guard before each provider/answer handoff; guarded exact payload/evidence/revision matching, zero-byte abort on mismatch, fresh preparation only after guard release. Failed/unknown persistence authorises no send; aborted/consumed handoff IDs cannot resume or replay.",
+        "description": "Internal authenticated service only; Workspace validates actor/session/current project and document scope. Not a browser-callable endpoint. ADR-0013: withheld answers use the fixed AnswerWithheld body; never expose access-change reasons or any part of the original evidence-dependent draft. An invented citation invalidates the original draft; only a new bounded attempt that rechecks claim support, exact citation binding, access and mandatory provenance may be delivered. Otherwise return AnswerWithheld. ADR-0012 v0.3: complete immutable manifest durable outside guard before each provider/answer handoff; guarded exact payload/evidence/revision matching, zero-byte abort on mismatch, fresh preparation only after guard release. Failed/unknown persistence authorises no send; aborted/consumed handoff IDs cannot resume or replay. Return only the manifest-bound answer envelope after durable preparation; generic withheld/failure instead of any result if preparation is failed/unknown. Workspace owns the final one-use claim and guarded browser handoff.",
         "parameters": [
           {
             "name": "Idempotency-Key",
@@ -1511,6 +1653,281 @@
             "actorSession": []
           }
         ]
+      }
+    },
+    "/knowledge/projects/{project_id}/documents": {
+      "get": {
+        "operationId": "listDocuments",
+        "x-requirements": [
+          "FR-04",
+          "FR-10",
+          "FR-14"
+        ],
+        "x-release-priority": "Must",
+        "description": "Require current membership; return only existing nondeleted documents with current authoritative document-read access. Include readable documents with no Current version (current_version_id=null) so archived history remains reachable. Include pending/failed indexing documents; explorer does not depend on embeddings or AI. Minimal metadata only, no excerpts. Order document_id ascending. Optional kind/classification/label filters apply only within authorised results; labels use exact match. Classification is supplied by current Workspace policy, never trusted from an index copy. Workspace authority or Knowledge failure returns 503 without partial data; no empty success on error. Pages are committed, permission-filtered projections ordered as specified. An opaque authenticated cursor binds actor, current membership/permission generation, route, filters, order and the complete visible projection generation. Revalidate authority on every page and protected response handoff. Filter before pagination; expose no hidden counts, placeholders or skipped IDs. Malformed/foreign cursor: generic 400; changed/expired cursor: 409 state_conflict without items. Discard all accumulated pages and restart. No cross-endpoint snapshot is implied. Return Cache-Control: no-store. See Proposed ADR-0019.",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "kind",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "document",
+                "decision"
+              ]
+            }
+          },
+          {
+            "name": "classification",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "project_shared",
+                "restricted"
+              ]
+            }
+          },
+          {
+            "name": "label",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 50
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Current authorised projection",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid selector or cursor; no resource metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Changed or expired projection; discard all pages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        }
+      }
+    },
+    "/internal/handoffs/{handoff_id}": {
+      "get": {
+        "operationId": "getHandoffManifest",
+        "x-requirements": [
+          "FR-28",
+          "FR-29",
+          "FR-57"
+        ],
+        "x-release-priority": "Must",
+        "description": "Internal authenticated Workspace-to-Knowledge lookup only. Require service credential plus current actor/session/run/project scope; no browser routing and no reentrant guard. Return only an exact complete durably committed immutable manifest receipt, never raw content. Caller already knows handoff_id; unknown/denied uses generic 404, failed/unknown persistence or authority 503. Lookup and preparation persistence happen outside Workspace guard; final current evidence validation is separate. Manifest receipt grants no read or send authority. No retries or waits under guard.",
+        "security": [
+          {
+            "serviceKey": [],
+            "actorSession": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "handoff_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Verified immutable committed preparation record",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StoredHandoff"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        }
+      }
+    },
+    "/knowledge/projects/{project_id}/documents/{document_id}/command-precondition": {
+      "get": {
+        "operationId": "getDocumentCommandPrecondition",
+        "x-requirements": [
+          "FR-11",
+          "FR-13",
+          "FR-48",
+          "FR-65"
+        ],
+        "x-release-priority": "Must",
+        "description": "Current session/project membership plus the exact requested action capability is required, independently of content-read. Only known project/document identities; no listing/history/readiness/content bypass. target_action identifies an implemented existing command; optional metadata editing stays Could and unsupported action is generic 404. archiveVersion additionally requires the supplied exact version_id in this document; all other actions forbid version_id. Missing/extra selectors 400; unknown/denied/mismatched project/document/version 404; authority/storage failure 503 with no cached token. Return only known selector echoes and a fresh opaque token bound in Knowledge to private aggregate revision and current actor/session/policy/action scope. No current revision/state/pointer/grants/content in response. Issuance has no business side effect; no-store. Token possession grants no authority; mutation rechecks current action scope and consumes under local transaction. See Proposed ADR-0022.",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "document_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "target_action",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "reviseDocument",
+                "archiveVersion",
+                "deleteDocument",
+                "editDocumentMetadata"
+              ]
+            }
+          },
+          {
+            "name": "version_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Minimal opaque command precondition",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentCommandPrecondition"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid or contradictory action selectors",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        }
       }
     }
   },
@@ -2609,12 +3026,38 @@
           "expected_revision": {
             "type": "integer",
             "minimum": 1
+          },
+          "precondition_token": {
+            "type": "string",
+            "pattern": "^pc_[A-Za-z0-9_-]{43}$",
+            "description": "Opaque 32-random-byte base64url precondition reference. Binds actor/session/project/document/action/optional version and private current aggregate revision/policy generation; conveys no read or action authority."
           }
         },
         "required": [
           "content",
-          "content_format",
-          "expected_revision"
+          "content_format"
+        ],
+        "oneOf": [
+          {
+            "required": [
+              "expected_revision"
+            ],
+            "not": {
+              "required": [
+                "precondition_token"
+              ]
+            }
+          },
+          {
+            "required": [
+              "precondition_token"
+            ],
+            "not": {
+              "required": [
+                "expected_revision"
+              ]
+            }
+          }
         ]
       },
       "EditMetadata": {
@@ -2635,10 +3078,35 @@
           "expected_revision": {
             "type": "integer",
             "minimum": 1
+          },
+          "precondition_token": {
+            "type": "string",
+            "pattern": "^pc_[A-Za-z0-9_-]{43}$",
+            "description": "Opaque 32-random-byte base64url precondition reference. Binds actor/session/project/document/action/optional version and private current aggregate revision/policy generation; conveys no read or action authority."
           }
         },
-        "required": [
-          "expected_revision"
+        "required": [],
+        "oneOf": [
+          {
+            "required": [
+              "expected_revision"
+            ],
+            "not": {
+              "required": [
+                "precondition_token"
+              ]
+            }
+          },
+          {
+            "required": [
+              "precondition_token"
+            ],
+            "not": {
+              "required": [
+                "expected_revision"
+              ]
+            }
+          }
         ]
       },
       "Readiness": {
@@ -2653,18 +3121,19 @@
             "type": "string",
             "minLength": 1
           },
-          "readiness": {
+          "semantic_readiness": {
             "enum": [
               "pending",
               "ready",
               "failed"
-            ]
+            ],
+            "description": "Semantic embedding/index processing of this exact version only. Not permission, Current validity, keyword availability or a guarantee of an eligible retrieval result."
           }
         },
         "required": [
           "document_id",
           "version_id",
-          "readiness"
+          "semantic_readiness"
         ]
       },
       "PendingOperation": {
@@ -3091,11 +3560,28 @@
             "type": "string",
             "minLength": 1
           },
-          "source_ids": {
+          "query": {
+            "$ref": "#/components/schemas/InspectionQuery"
+          },
+          "retrieval_mode": {
+            "enum": [
+              "keyword",
+              "semantic",
+              "operational",
+              "mixed",
+              "not_performed"
+            ]
+          },
+          "tool_steps": {
             "type": "array",
             "items": {
-              "type": "string",
-              "minLength": 1
+              "$ref": "#/components/schemas/InspectionStep"
+            }
+          },
+          "ranked_sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InspectionSource"
             }
           },
           "model_configuration_id": {
@@ -3104,29 +3590,42 @@
               "null"
             ]
           },
-          "duration_ms": {
-            "type": "number",
-            "minimum": 0
+          "duration": {
+            "$ref": "#/components/schemas/DurationMetric"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/TokenUsageMetric"
           },
           "error_category": {
             "type": [
               "string",
               "null"
+            ],
+            "enum": [
+              null,
+              "dependency_unavailable",
+              "timeout",
+              "budget_exhausted",
+              "validation_failed",
+              "unknown_outcome"
             ]
           },
           "validation_outcomes": {
             "type": "array",
             "items": {
-              "type": "string",
-              "minLength": 1
+              "$ref": "#/components/schemas/InspectionValidation"
             }
           }
         },
         "required": [
           "run_id",
-          "source_ids",
+          "query",
+          "retrieval_mode",
+          "tool_steps",
+          "ranked_sources",
           "model_configuration_id",
-          "duration_ms",
+          "duration",
+          "usage",
           "error_category",
           "validation_outcomes"
         ]
@@ -3139,39 +3638,62 @@
             "type": "string",
             "minLength": 1
           },
+          "query": {
+            "$ref": "#/components/schemas/InspectionQuery"
+          },
           "retrieval_mode": {
             "enum": [
               "keyword",
               "semantic",
               "operational",
+              "mixed",
               "not_performed"
             ]
           },
-          "query": {
-            "type": "string"
-          },
-          "source_ids": {
+          "retrieval_steps": {
             "type": "array",
             "items": {
-              "type": "string",
-              "minLength": 1
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/InspectionStep"
+                },
+                {
+                  "properties": {
+                    "stage": {
+                      "enum": [
+                        "keyword",
+                        "semantic",
+                        "operational",
+                        "citation_validation"
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "ranked_sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InspectionSource"
             }
           },
           "validation_outcomes": {
             "type": "array",
             "items": {
-              "type": "string",
-              "minLength": 1
+              "$ref": "#/components/schemas/InspectionValidation"
             }
           }
         },
         "required": [
           "run_id",
-          "retrieval_mode",
           "query",
-          "source_ids",
+          "retrieval_mode",
+          "retrieval_steps",
+          "ranked_sources",
           "validation_outcomes"
-        ]
+        ],
+        "description": "Optional FR-27 bounded projection of this run's selected evidence and public step metadata, not candidate inventory, unrestricted tool logs or full trace. Include retrieval and citation_validation steps only. No generation/handoff timings or provider configuration; entitlement is permitted-answer-reader, independently of trace-read."
       },
       "SearchResult": {
         "type": "object",
@@ -3268,30 +3790,21 @@
           "result": {
             "$ref": "#/components/schemas/QuestionResult"
           },
-          "evidence_set": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EvidenceIdentity"
-            }
+          "handoff": {
+            "$ref": "#/components/schemas/AnswerHandoff"
           },
-          "operational_entity_ids": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "minLength": 1
-            }
-          },
-          "source_revision": {
-            "type": "integer",
-            "minimum": 1
+          "payload_bytes_base64": {
+            "type": "string",
+            "minLength": 1,
+            "contentEncoding": "base64"
           }
         },
         "required": [
           "result",
-          "evidence_set",
-          "operational_entity_ids",
-          "source_revision"
-        ]
+          "handoff",
+          "payload_bytes_base64"
+        ],
+        "description": "Internal buffered answer envelope. Exact decoded UTF-8 JSON bytes must parse equal to result and match manifest payload_digest/length. Full evidence and all revisions come from the immutable committed manifest, including uncited and operational context; legacy bare operational IDs/single source revision are forbidden. Workspace resolves committed record, matches actor/session/project/run/attempt/destination, makes one-use durable claim before guard and revalidates complete scope/current evidence through answer handoff. Only frozen result bytes cross the browser boundary; no manifest, receipt or internal envelope is public. Any rejected original draft is withheld as ADR-0013 requires."
       },
       "PersistDocument": {
         "type": "object",
@@ -3436,6 +3949,1006 @@
           "missing_components"
         ],
         "description": "ADR-0015: supported cited components plus explicit missing requested components. Every claim must pass support and current-access checks. Never salvage an invalid or revoked original draft by truncation."
+      },
+      "DocumentSummary": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "document_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "project_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "document",
+              "decision"
+            ]
+          },
+          "content_owner_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "labels": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "current_version_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "classification": {
+            "enum": [
+              "project_shared",
+              "restricted"
+            ]
+          }
+        },
+        "required": [
+          "document_id",
+          "project_id",
+          "title",
+          "kind",
+          "content_owner_id",
+          "labels",
+          "current_version_id",
+          "revision",
+          "classification"
+        ]
+      },
+      "DocumentList": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DocumentSummary"
+            }
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor"
+        ]
+      },
+      "VersionSummary": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "document_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "state": {
+            "enum": [
+              "current",
+              "superseded",
+              "archived"
+            ]
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "document_id",
+          "version_id",
+          "state",
+          "created_at"
+        ]
+      },
+      "VersionList": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VersionSummary"
+            }
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "document_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "document_revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "current_version_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor",
+          "document_id",
+          "document_revision",
+          "current_version_id"
+        ]
+      },
+      "DocumentHandoffEvidence": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "const": "document"
+          },
+          "source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "project_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "document_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "passage_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "permission_revision": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$"
+          },
+          "lifecycle_revision": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$"
+          },
+          "version_digest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "Lowercase SHA-256 over the exact specified bytes; no normalization or JSON reserialization."
+          },
+          "excerpt_digest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "Lowercase SHA-256 over the exact specified bytes; no normalization or JSON reserialization."
+          }
+        },
+        "required": [
+          "kind",
+          "source_id",
+          "project_id",
+          "document_id",
+          "version_id",
+          "passage_id",
+          "permission_revision",
+          "lifecycle_revision",
+          "version_digest",
+          "excerpt_digest"
+        ]
+      },
+      "OperationalHandoffEvidence": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "const": "operational"
+          },
+          "source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "project_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "entity_kind": {
+            "enum": [
+              "project",
+              "sprint",
+              "task"
+            ]
+          },
+          "entity_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "entity_revision": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$"
+          },
+          "observation_revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "entity_digest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "Lowercase SHA-256 over the exact specified bytes; no normalization or JSON reserialization."
+          }
+        },
+        "required": [
+          "kind",
+          "source_id",
+          "project_id",
+          "entity_kind",
+          "entity_id",
+          "entity_revision",
+          "observation_revision",
+          "observed_at",
+          "entity_digest"
+        ]
+      },
+      "HandoffEvidence": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/DocumentHandoffEvidence"
+          },
+          {
+            "$ref": "#/components/schemas/OperationalHandoffEvidence"
+          }
+        ]
+      },
+      "HandoffManifest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "handoff_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "run_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "attempt_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "purpose": {
+            "enum": [
+              "provider_input",
+              "answer_delivery"
+            ]
+          },
+          "actor_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "project_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "access_context_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "session_generation": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$"
+          },
+          "project_permission_revision": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$"
+          },
+          "evidence_set": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HandoffEvidence"
+            }
+          },
+          "payload_digest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "Lowercase SHA-256 over the exact specified bytes; no normalization or JSON reserialization."
+          },
+          "payload_length": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "destination_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "prepared_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "complete": {
+            "const": true
+          }
+        },
+        "required": [
+          "handoff_id",
+          "run_id",
+          "attempt_id",
+          "purpose",
+          "actor_id",
+          "project_id",
+          "access_context_ref",
+          "session_generation",
+          "project_permission_revision",
+          "evidence_set",
+          "payload_digest",
+          "payload_length",
+          "destination_ref",
+          "prepared_at",
+          "complete"
+        ]
+      },
+      "StoredHandoff": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "manifest": {
+            "$ref": "#/components/schemas/HandoffManifest"
+          },
+          "manifest_bytes_base64": {
+            "type": "string",
+            "minLength": 1,
+            "contentEncoding": "base64"
+          },
+          "manifest_digest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "Lowercase SHA-256 over the exact specified bytes; no normalization or JSON reserialization."
+          },
+          "durable_commit_ref": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "manifest",
+          "manifest_bytes_base64",
+          "manifest_digest",
+          "durable_commit_ref"
+        ],
+        "description": "Knowledge-owned immutable committed manifest receipt. Decode manifest_bytes_base64 as UTF-8 JSON equal to manifest; manifest_digest hashes those exact bytes. Resolve by authenticated getHandoffManifest and compare the entire stored record before claiming. A caller assertion, digest or complete=true is never evidence of persistence or current access."
+      },
+      "ProviderHandoff": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/StoredHandoff"
+          },
+          {
+            "properties": {
+              "manifest": {
+                "properties": {
+                  "purpose": {
+                    "const": "provider_input"
+                  }
+                },
+                "required": [
+                  "purpose"
+                ]
+              }
+            },
+            "required": [
+              "manifest"
+            ]
+          }
+        ]
+      },
+      "AnswerHandoff": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/StoredHandoff"
+          },
+          {
+            "properties": {
+              "manifest": {
+                "properties": {
+                  "purpose": {
+                    "const": "answer_delivery"
+                  }
+                },
+                "required": [
+                  "purpose"
+                ]
+              }
+            },
+            "required": [
+              "manifest"
+            ]
+          }
+        ]
+      },
+      "InspectionQuery": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "state": {
+                "const": "available"
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "state",
+              "text"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "state": {
+                "const": "not_performed"
+              }
+            },
+            "required": [
+              "state"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "state": {
+                "const": "unavailable"
+              }
+            },
+            "required": [
+              "state"
+            ]
+          }
+        ],
+        "description": "The actual recorded query, not a model-generated explanation. unavailable means current disclosure rules withhold query text; missing mandatory query persistence is an error, not an optional metric gap. not_performed only when the step never ran."
+      },
+      "DurationMetric": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "state": {
+                "const": "measured"
+              },
+              "value_ms": {
+                "type": "number",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "state",
+              "value_ms"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "state": {
+                "const": "unavailable"
+              }
+            },
+            "required": [
+              "state"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "state": {
+                "const": "not_performed"
+              }
+            },
+            "required": [
+              "state"
+            ]
+          }
+        ],
+        "description": "Measured zero is valid. Missing/failed optional timing is unavailable without a numeric value; an unexecuted activity is not_performed. Never fabricate zero."
+      },
+      "TokenUsageMetric": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "state": {
+                "const": "measured"
+              },
+              "value_tokens": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "state",
+              "value_tokens"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "state": {
+                "const": "unavailable"
+              }
+            },
+            "required": [
+              "state"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "state": {
+                "const": "not_performed"
+              }
+            },
+            "required": [
+              "state"
+            ]
+          }
+        ],
+        "description": "Recorded total token count for this run/step only. Missing/partial provider usage is unavailable, not a guessed sum; no token count for an unexecuted activity."
+      },
+      "InspectionStep": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "step_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "display_order": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "stage": {
+            "enum": [
+              "keyword",
+              "semantic",
+              "operational",
+              "generation",
+              "citation_validation",
+              "provider_handoff",
+              "answer_handoff"
+            ]
+          },
+          "status": {
+            "enum": [
+              "completed",
+              "failed",
+              "not_performed"
+            ]
+          },
+          "query": {
+            "$ref": "#/components/schemas/InspectionQuery"
+          },
+          "duration": {
+            "$ref": "#/components/schemas/DurationMetric"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/TokenUsageMetric"
+          },
+          "error_category": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              null,
+              "dependency_unavailable",
+              "timeout",
+              "budget_exhausted",
+              "validation_failed",
+              "unknown_outcome"
+            ]
+          }
+        },
+        "required": [
+          "step_id",
+          "display_order",
+          "stage",
+          "status",
+          "query",
+          "duration",
+          "usage",
+          "error_category"
+        ],
+        "description": "Recorded permitted step metadata only; no tool arguments/results, source text, provider reasoning, secrets or raw errors. Repeated attempts have distinct step_id. Dense display_order is assigned after current disclosure filtering. Non-query stages use query.not_performed.",
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "const": "not_performed"
+                }
+              },
+              "required": [
+                "status"
+              ]
+            },
+            "then": {
+              "properties": {
+                "query": {
+                  "properties": {
+                    "state": {
+                      "const": "not_performed"
+                    }
+                  }
+                },
+                "duration": {
+                  "properties": {
+                    "state": {
+                      "const": "not_performed"
+                    }
+                  }
+                },
+                "usage": {
+                  "properties": {
+                    "state": {
+                      "const": "not_performed"
+                    }
+                  }
+                },
+                "error_category": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "DocumentInspectionSource": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "const": "document"
+          },
+          "source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "step_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "rank": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "project_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "document_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "passage_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "kind",
+          "source_id",
+          "step_id",
+          "rank",
+          "project_id",
+          "document_id",
+          "version_id",
+          "passage_id"
+        ]
+      },
+      "OperationalInspectionSource": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "const": "operational"
+          },
+          "source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "step_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "rank": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "project_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "entity_kind": {
+            "enum": [
+              "project",
+              "sprint",
+              "task"
+            ]
+          },
+          "entity_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "entity_revision": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$"
+          },
+          "observation_revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "kind",
+          "source_id",
+          "step_id",
+          "rank",
+          "project_id",
+          "entity_kind",
+          "entity_id",
+          "entity_revision",
+          "observation_revision",
+          "observed_at"
+        ]
+      },
+      "InspectionSource": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/DocumentInspectionSource"
+          },
+          {
+            "$ref": "#/components/schemas/OperationalInspectionSource"
+          }
+        ],
+        "description": "Exact currently permitted source locator; rank is dense within the visible selected sources of step_id, preserving recorded relative order. No raw scores, denied source IDs, skipped ranks, hidden totals or omitted-source markers. Operational observations are historical evidence, not an assertion of current work state."
+      },
+      "InspectionValidation": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "check": {
+            "enum": [
+              "locator",
+              "current_access",
+              "version_binding",
+              "claim_support"
+            ]
+          },
+          "status": {
+            "enum": [
+              "passed",
+              "failed",
+              "not_performed"
+            ]
+          },
+          "source_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "check",
+          "status",
+          "source_id"
+        ],
+        "description": "Source-bound entries require a currently permitted ranked source mapping; omit the entire entry when its identity is denied. Null source_id is only for a safely disclosed run-level result, never a placeholder for a hidden/invalid source. Claim support is separately evaluated; locator success does not prove it."
+      },
+      "DocumentCommandPrecondition": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "document_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "target_action": {
+            "enum": [
+              "reviseDocument",
+              "archiveVersion",
+              "deleteDocument",
+              "editDocumentMetadata"
+            ]
+          },
+          "version_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "precondition_token": {
+            "type": "string",
+            "pattern": "^pc_[A-Za-z0-9_-]{43}$",
+            "description": "Opaque 32-random-byte base64url precondition reference. Binds actor/session/project/document/action/optional version and private current aggregate revision/policy generation; conveys no read or action authority."
+          }
+        },
+        "required": [
+          "document_id",
+          "target_action",
+          "version_id",
+          "precondition_token"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "target_action": {
+                  "const": "archiveVersion"
+                }
+              },
+              "required": [
+                "target_action"
+              ]
+            },
+            "then": {
+              "properties": {
+                "version_id": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "version_id": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        ],
+        "description": "Action-authorised minimal precondition projection, independent of content-read. Echo only supplied identities/action and an opaque token; no current revision, lifecycle state, pointer, labels, owner or content."
+      },
+      "DocumentMutationReceipt": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "document_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "operation": {
+            "enum": [
+              "reviseDocument",
+              "archiveVersion",
+              "editDocumentMetadata"
+            ]
+          },
+          "receipt_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "document_id",
+          "operation",
+          "receipt_id",
+          "version_id"
+        ],
+        "description": "Committed command acknowledgement, not a content read or current state. For revise, version_id is only the new identity created by this command; for archive, only the supplied exact target identity; metadata edit uses null. No existing title/content/owner/labels/state/current pointer/revision. Persist atomically with command/audit/idempotency receipt; replay returns the original receipt after renewed operation authority.",
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "operation": {
+                  "const": "editDocumentMetadata"
+                }
+              },
+              "required": [
+                "operation"
+              ]
+            },
+            "then": {
+              "properties": {
+                "version_id": {
+                  "type": "null"
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "version_id": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          }
+        ]
+      },
+      "DocumentCommandConcurrency": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "expected_revision": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "required": [
+              "expected_revision"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "precondition_token": {
+                "type": "string",
+                "pattern": "^pc_[A-Za-z0-9_-]{43}$",
+                "description": "Opaque 32-random-byte base64url precondition reference. Binds actor/session/project/document/action/optional version and private current aggregate revision/policy generation; conveys no read or action authority."
+              }
+            },
+            "required": [
+              "precondition_token"
+            ]
+          }
+        ]
       }
     },
     "securitySchemes": {

@@ -1,9 +1,9 @@
 # Create restricted knowledge and manage its access
 
 **Artifact ID:** SP-06  
-**Version/date:** 0.3 Draft · 17 October 2026\
+**Version/date:** 0.5 Draft · 18 October 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
-**Inputs:** PRD-01 v0.8; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-06--create-restricted-knowledge-and-manage-its-access); [contract pack](../contracts/README.md); PLAN-01 v0.3.\
+**Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-06--create-restricted-knowledge-and-manage-its-access); [contract pack](../contracts/README.md); PLAN-01 v0.3.\; Proposed ADR-0022
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 2.  
@@ -41,3 +41,13 @@ Done requires the matching PRD ACs exercised on real handlers/persisted state; r
 Uses the applicable owner-confirmed directions through ADR-0017 and OWNER-Q-01. Additional delegation, physical retention, OD-09 identity and OD-12 framework details stay open. Pass for goal/trace/input-output/edges/paths/Done; Gap for accepted policy/contract/stack and runtime tests. Handoff: proceed under confirmed directions; resolve only remaining decisions relevant to implementation. No settled policy requires repeat approval.
 
 **17 October input reconciliation:** FR-04/10/14/50/51/52/62/65: Workspace owns policy and grants; Knowledge owns content; creator read remains revocable. Reviewed against the current requirement rows and operation ownership. This is specification review, not implementation or full AC coverage evidence.
+
+## Priority 2 explorer and access-management reads — 18 October 2026
+
+Additional operations: Knowledge listDocuments; Workspace getDocumentPolicy, listDocumentReadGrants, listMembers and getAllowedActions. Explorer includes only currently readable nondeleted metadata, including documents with null Current or failed/pending indexing. Scope/classification filters never bypass grants. A known-ID manage route can read minimal policy and explicit current grantees without content-read; no title/content/owner/version/readiness is disclosed there. Classification/grant/revoke preconditions come from policy.permission_revision, including the same revision on each grant page. See Proposed ADR-0019.
+
+Acceptance additions: revoked author read with retained manage-access must produce no explorer/content entry yet permit policy/grant administration; ordinary reader without manage-access cannot inspect policy/grantee lists. Traverse multiple pages, change classification/grants/membership between pages, reject stale cursors/preconditions and test authority/Knowledge outage without partial output. Different endpoints are not a shared snapshot. UI reloads on conflict and clears denied data. Known-ID add-member interaction does not add account discovery. Handlers and permission tests remain unimplemented.
+
+## NEXT-06 non-reading metadata command
+
+Additional Knowledge operation getDocumentCommandPrecondition supplies an opaque token for an existing exact command capability, without current revision/content/metadata disclosure. Optional editDocumentMetadata stays FR-65 Could; an implemented author can submit explicit new labels/owner with exactly one known expected_revision or precondition_token and receive DocumentMutationReceipt with null version_id. No prefill/list/read grant is added. Test read revocation with retained action, manage-only/read-only denial, wrong command/session/project and minimal same-key receipt replay. See Proposed ADR-0022; no handler/token-storage tests have run.

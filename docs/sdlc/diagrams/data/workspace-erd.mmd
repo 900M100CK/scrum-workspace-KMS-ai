@@ -1,14 +1,15 @@
 %% Origin: docs/sdlc/diagrams/design-foundation-2026-10-17.md v0.1
-%% DGM-DATA-01 v0.1 Draft - 17 October 2026
-%% Sources: DGM-DESIGN-01 v0.1; PRD-01 v0.9; UC-02 v0.6; SAD-03 v0.12; DATA-04 v0.6; ADR-0004; ADR-0007; ADR-0008; ADR-0011; ADR-0012; ADR-0017
+%% DGM-DATA-01 v0.3 Draft - 18 October 2026
+%% Sources: DGM-DESIGN-01 v0.1; PRD-01 v0.9; UC-02 v0.7; SAD-03 v0.15; DATA-04 v0.11; ADR-0004; ADR-0007; ADR-0008; ADR-0011; ADR-0012; ADR-0017; ADR-0018; ADR-0023
 %% Trace: BR-01–BR-03, BR-06, BR-10–BR-12; SC-03/04/06
-%% Scope: Applied migrations 001 + 002; selected identity/state columns. Tables exist; handlers and transactional policy enforcement are pending.
+%% Scope: Schema through Workspace migration 004; development database upgrade not claimed. Selected columns; storage/service constraints are not end-user authority.
 %% Legend: Relationship label names FK columns; ||--o{ means parent 1 to child 0..many. User IDs are opaque; no User table or cross-store FK. Session/idempotency have no project FK.
 erDiagram
     project {
         uuid project_id PK
         text name
         bigint revision
+        bigint backlog_revision "set and order generation"
     }
     membership {
         uuid project_id PK,FK
@@ -37,6 +38,8 @@ erDiagram
         text state "todo in_progress done"
         numeric backlog_position
         bigint revision
+        text location_kind "backlog sprint completed"
+        uuid location_sprint_id FK "nullable current pointer independent of history"
     }
     sprint_allocation {
         uuid sprint_id PK,FK
@@ -88,6 +91,18 @@ erDiagram
         text payload_hash
         text state
         timestamptz expires_at
+        uuid claim_fence "protected only"
+        uuid process_ref "protected only"
+    }
+    protected_handoff_outcome {
+        uuid outcome_id PK
+        uuid actor_id FK
+        text operation FK
+        text handoff_id FK
+        uuid claim_fence FK
+        text status
+        timestamptz observed_at
+        text enforcement_ref
     }
     project ||--o{ membership : "project_id"
     project ||--o{ sprint : "project_id"
@@ -101,3 +116,6 @@ erDiagram
     membership ||--o{ read_grant : "project_id + user_id"
     project ||--o{ capability_grant : "project_id"
     project ||--o{ business_audit : "project_id"
+    sprint o|--o{ task : "project_id + location_sprint_id (deferred)"
+    sprint_allocation o|--o| task : "location_sprint_id + task_id (deferred)"
+    idempotency_record ||--o{ protected_handoff_outcome : "actor operation key fence; append-only"

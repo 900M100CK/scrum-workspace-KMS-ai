@@ -1,7 +1,7 @@
 # Information Architecture & Sitemap (SACW)
 
 **Artifact ID:** UX-SITEMAP-03  
-**Version/date:** 0.5 Draft · 17 October 2026\
+**Version/date:** 0.9 Draft · 18 October 2026
 **Trace:** BRD BR-01–BR-15; PRD-01 (FR-01–FR-70; FR-45 withdrawn, SC-01–SC-08); SAD-03; ADR-0001; ADR-0006
 **Scope:** Information Architecture, Navigation Hierarchy, Screen Inventory, and Global AI Placement.
 
@@ -35,7 +35,7 @@ The interface uses a 3-tier navigation layout:
     - 📚 **Documents** (`/p/:projectId/docs`)
     - 🔍 **Search** (`/p/:projectId/search`) — keyword search over permitted Current documents and tasks
     - 🏷️ **Labels & Classifications** (Quick filters: `Project-shared`, `Restricted`; restricted items appear only with a current read grant)
-  - **Settings Section (Role-dependent):**
+  - **Settings Section (Capability-dependent):**
     - 👥 **Members** (`/p/:projectId/settings/members`)
     - ⚙️ **Project Settings** (`/p/:projectId/settings/general`)
     - 🧾 **Audit** (`/p/:projectId/audit`) — only with audit-read or trace-read capability
@@ -46,7 +46,7 @@ The interface uses a 3-tier navigation layout:
   - Dynamic content canvas (Board columns, Document editor, Backlog table).
 - **Persistent Right Drawer / Split Pane:**
   - **AI Assistant Drawer:** Can be docked to the right (30% screen width) or floated as a modal (`Ctrl+K`).
-  - **Citation Passage Inspector:** When a citation chip is clicked anywhere in the UI, this panel slides in to show the exact version and highlighted passage.
+  - **Citation Inspector:** Branch by citation kind: an exact document version/passage, or a historical operational observation locator alongside a separately refreshed current entity.
 
 ---
 
@@ -62,11 +62,14 @@ The interface uses a 3-tier navigation layout:
 | `/p/:projectId/docs/:docId` | Document Viewer / Editor | View authorised version; save immediate Current revision with content-write; independent manage-access entry for access managers (FR-11, FR-47; UC-06, UC-07) | Current project membership plus document read checks; write/manage capabilities do not grant read | Generic 404 when unknown or inaccessible |
 | `/p/:projectId/docs/:docId/history` | Version History | Explicit history with Superseded/Archived labels (SC-05) | Same as document read | Generic 404 |
 | `/p/:projectId/search` | Keyword Search | AI-independent keyword search over permitted Current documents and tasks (UC-08; FR-18, FR-34) | Project member | Separate groups: document search unavailable when Knowledge is down; FR-70 Should task search remains available while Workspace is healthy |
-| `/p/:projectId/settings/members` | Team Membership | Manage membership and project roles (UC-02) | Membership-management capability | Generic 404 for other members |
+| `/p/:projectId/settings/members` | Team Membership | Add/remove membership; initial descriptive role selection (UC-02) | Membership-management capability | Generic 404 for other members |
 | `/p/:projectId/settings/general` | Project Settings | Project details | Settings capability | Generic 404 for other members |
 | `/p/:projectId/audit` | Audit & Trace Inspector | Scoped audit events and execution traces (UC-13; FR-56, FR-58) | Audit-read or trace-read capability only | Generic 404 outside scope or without capability |
 | `/p/:projectId/citations/:documentId/:versionId/:passageId` | Citation Passage Inspector | Exact excerpt and version with Current / Superseded / Archived label (UC-09) | Re-checked protected read | Generic 404; specific "Citation unavailable" only when the surviving identity is readable |
+| `/p/:projectId/observations/:entityKind/:entityId` | Operational Citation Inspector | Cited entity/time/observation revision plus separately refreshed current state (UC-10) | Current member and exact entity scope; getProject/getSprint/getTask recheck | Generic 404 or dependency failure; missing original answer context shows observation unavailable, with any renewed current read labelled separately |
 | `/p/:projectId/ai` (Drawer) | AI Q&A Assistant | Buffered answers with exact citations (SC-02, SC-07) | Project member; evidence filtered by current access | Insufficient evidence; AI failure with keyword fallback |
+| `/p/:projectId/docs/:docId/manage` | Document Access | Known-ID policy and current grantees via getDocumentPolicy/listDocumentReadGrants | Membership plus manage-access, independent of content-read | Generic 404; no content metadata without read |
+| `/p/:projectId/docs/:docId/actions` | Independent Document Actions | Known-ID scoped write/lifecycle discovery via getAllowedActions | Scoped action authority; no content prefill without read | Opaque action precondition/conflict handling; no protected prefill |
 | any protected route | Generic Not Found | One response for unknown and inaccessible resources | Any | No title, count, version or excerpt |
 
 ---
@@ -86,7 +89,7 @@ The interface uses a 3-tier navigation layout:
 ### 4.3 AI Service Status Awareness (FR-33, FR-69)
 - If only the AI provider path fails (FR-69, FR-34):
   - Top header displays an amber status pill: `▲ KMS Fallback: Keyword Search Only`.
-  - The AI prompt box is disabled with an explanatory note: *"AI service is temporarily unavailable. Keyword search and manual task board operations remain available while their own services are healthy; if Knowledge is unavailable, documents and document search are unavailable; healthy Workspace board operations and optional task keyword search continue."*
+  - Keep the question editor and deliberate retry/new-question action reachable while session/scope permits; do not permanently disable it from the health badge. Show an explanatory note: *"AI service is temporarily unavailable. Keyword search and manual task board operations remain available while their own services are healthy; if Knowledge is unavailable, documents and document search are unavailable; healthy Workspace board operations and optional task keyword search continue."*
 
 
 **v0.2 documentation change:** Moved the inline diagram to the Stage 7 diagram directory, retaining its labels and relationships. Added an editable Draw.io representation; no policy or product scope is changed. Diagram consistency gaps are recorded in the central index.

@@ -1,9 +1,9 @@
 # Answer a question with exact accessible evidence
 
 **Artifact ID:** SP-09  
-**Version/date:** 0.4 Draft · 17 October 2026\
+**Version/date:** 0.8 Draft · 18 October 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
-**Inputs:** PRD-01 v0.8; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-09--answer-a-question-with-exact-accessible-evidence); [contract pack](../contracts/README.md); PLAN-01 v0.3.\
+**Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-09--answer-a-question-with-exact-accessible-evidence); [contract pack](../contracts/README.md); PLAN-01 v0.3.\; Proposed ADR-0020; Proposed ADR-0023
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 3.  
@@ -50,3 +50,19 @@ ADR-0015 additionally requires partially_answered for supported cited components
 ADR-0012 / OWNER-Q-01 handoff assertion (TC-26): persist a complete immutable per-handoff manifest outside the guard, await durable acknowledgement, acquire the guard and match the frozen payload, entire evidence set and recorded revisions. Any mismatch sends zero bytes and releases the guard before a bounded fresh manifest/attempt. Fail persistence and race revocation/version/observation changes; test consumed-identity replay and crash/restart without resuming an old send. Guard remains held through valid transport completion/abort. Schema/handler tests are Not run.
 
 **17 October input reconciliation:** FR-21/22/23/24/28/29/30/46/53/54/55/60/69: partial answers, original-draft withholding and manifest-before-guard assertions remain binding. Reviewed against the current requirement rows and operation ownership. This is specification review, not implementation or full AC coverage evidence.
+
+## SYS-01 transport acceptance additions
+
+Consume Proposed ADR-0020 and both service contracts: ProviderInput binds a committed provider-purpose manifest and exact final bytes; InternalQuestionResult binds an independently prepared answer-purpose manifest and exact result bytes. Include every generation input, even uncited context. Validate exact document policy/lifecycle/version/excerpt binding, purpose/run/attempt/actor/project/destination, durable receipt and one-use claim. No raw manifest/receipt reaches the browser. A changed/invalid original answer is withheld whole under ADR-0013; replacement needs fresh validated generation and new immutable manifest. Final provider-wire adapter mapping is an implementation prerequisite; no provider is adopted. Execute TC-26 at real byte boundaries before allowing relay; contract negatives are not runtime evidence.
+
+## NEXT-11 protocol reference prerequisite
+
+[HANDOFF-REF-01](../docs/sdlc/references/handoff-byte-reference-2026-10-18.md) supplies executed synthetic byte-binding cases for this slice. They are reusable acceptance inputs, not real handler/guard/transport or durable persistence evidence. Actual source/capture/receipt authority, safe numeric serialization and provider-specific wire mapping still require implementation. This SP remains Unimplemented and its Done criteria are unchanged.
+
+## NEXT-12 storage prerequisite evidence
+
+Proposed ADR-0023 supplies Knowledge 003 / Workspace 004 and 26 isolated SQL results for preparation/outcomes, permanent claims, races, rollback, runtime-role immutability and failed legacy upgrade. This SP remains Unimplemented: no real producer/permission/lookup/guard/provider/answer handler is supplied. Durable acknowledgement, active process fencing and actual byte-boundary TC-26 still require application evidence. No development upgrade or send authority follows from these tests.
+
+## NEXT-13 SQL projection prerequisite
+
+HANDOFF-SQL-01 supplies an executed SQL-to-StoredHandoff reference projection and scope/encoding/transaction-visibility negatives. It is not the authenticated getHandoffManifest handler or a current authority decision. Derive every selector from validated server context; preserve exact stored bytes, known commit ordering and later guard/claim checks. This SP remains Unimplemented and live acceptance criteria are unchanged.

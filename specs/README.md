@@ -3,7 +3,7 @@
 **Artifact ID:** SPEC-INDEX  
 **Version/date:** 0.4 Draft · 17 October 2026\
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
-**Inputs:** PRD-01 v0.8; [PLAN-01](../docs/planning/five-month-plan.md); [architecture](../docs/architecture.md); [contracts](../contracts/README.md).\
+**Inputs:** PRD-01 v0.9; [PLAN-01](../docs/planning/five-month-plan.md); [architecture](../docs/architecture.md); [contracts](../contracts/README.md).\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 Read AGENTS and full rules, then one spec/contract. All 13 specs are Draft/Unimplemented. Shared contracts have one editing owner at a time. No agents are spawned by this plan. Context checks are available; application tests are not wired yet.

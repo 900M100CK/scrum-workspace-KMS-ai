@@ -1,9 +1,9 @@
 # Capture business audit and answer provenance
 
 **Artifact ID:** SP-11  
-**Version/date:** 0.4 Draft · 17 October 2026\
+**Version/date:** 0.9 Draft · 18 October 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
-**Inputs:** PRD-01 v0.8; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-11--capture-business-audit-and-answer-provenance); [contract pack](../contracts/README.md); PLAN-01 v0.3.\
+**Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-11--capture-business-audit-and-answer-provenance); [contract pack](../contracts/README.md); PLAN-01 v0.3.\; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0023
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 1 mutation capture; Month 3 answer receipts.  
@@ -43,3 +43,23 @@ Uses the applicable owner-confirmed directions through ADR-0017 and OWNER-Q-01. 
 ADR-0012 / OWNER-Q-01 handoff assertion (TC-26): persist a complete immutable per-handoff manifest outside the guard, await durable acknowledgement, acquire the guard and match the frozen payload, entire evidence set and recorded revisions. Any mismatch sends zero bytes and releases the guard before a bounded fresh manifest/attempt. Fail persistence and race revocation/version/observation changes; test consumed-identity replay and crash/restart without resuming an old send. Guard remains held through valid transport completion/abort. Schema/handler tests are Not run.
 
 **17 October input reconciliation:** FR-31/32/57 and ADR-0012: atomic minimum audit and immutable pre-handoff evidence remain required. Reviewed against the current requirement rows and operation ownership. This is specification review, not implementation or full AC coverage evidence.
+
+## SYS-01 preparation lookup and claim ownership
+
+Additional internal Knowledge operation: getHandoffManifest. SP-11 owns durable run/manifest/evidence preparation and append-only outcome capture; Workspace owns the protected_handoff one-use claim/fence. Lookup runs outside guard with service plus current actor scope, verifies exact complete acknowledged immutable receipt, and grants no send authority. No cross-service database write. Applied migrations are preserved; Knowledge 003 / Workspace 004 add isolated-tested immutable preparation and permanent claim storage. Actual scoped lookup, current authority, active-process fencing and guard/transport adapters remain unimplemented. Test failed/unknown preparation, mismatched bytes/digests/receipt, replayed purpose/actor/run/destination, omitted uncited operational evidence, unknown claim, crash/fence and unknown transport for both provider and answer boundaries. Contract/schema checks cannot tick those live acceptance cases.
+
+## NEXT-03 capture assertions
+
+Proposed ADR-0021 / Knowledge v0.2.7 require actual question/retrieval queries, recorded step identities/status/order and exact selected document/operational provenance. Same source IDs across steps retain one locator plus distinct StepSource ordering; operational entity revision/observation revision/time must survive capture. Missing mandatory capture is an explicit failure, not an unavailable optional metric. Timing and token usage independently record measured nonnegative values, unavailable without values, or not_performed. Measured zero stays zero; incomplete totals never become invented sums. Future producing-handler tests must prove metric sink failure preserves mandatory evidence and mandatory-record failure blocks unsafe handoffs. No handler or storage acceptance is claimed.
+
+## NEXT-11 protocol reference prerequisite
+
+[HANDOFF-REF-01](../docs/sdlc/references/handoff-byte-reference-2026-10-18.md) supplies executed synthetic byte-binding cases for this slice. They are reusable acceptance inputs, not real handler/guard/transport or durable persistence evidence. Actual source/capture/receipt authority, safe numeric serialization and provider-specific wire mapping still require implementation. This SP remains Unimplemented and its Done criteria are unchanged.
+
+## NEXT-12 storage prerequisite evidence
+
+Proposed ADR-0023 supplies Knowledge 003 / Workspace 004 and 26 isolated SQL results for preparation/outcomes, permanent claims, races, rollback, runtime-role immutability and failed legacy upgrade. This SP remains Unimplemented: no real producer/permission/lookup/guard/provider/answer handler is supplied. Durable acknowledgement, active process fencing and actual byte-boundary TC-26 still require application evidence. No development upgrade or send authority follows from these tests.
+
+## NEXT-13 SQL projection prerequisite
+
+HANDOFF-SQL-01 supplies an executed SQL-to-StoredHandoff reference projection and scope/encoding/transaction-visibility negatives. It is not the authenticated getHandoffManifest handler or a current authority decision. Derive every selector from validated server context; preserve exact stored bytes, known commit ordering and later guard/claim checks. This SP remains Unimplemented and live acceptance criteria are unchanged.

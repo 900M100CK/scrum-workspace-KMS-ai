@@ -1,8 +1,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { fileURLToPath } from 'node:url';
-import { readFile } from 'node:fs/promises';
-import { parseMermaid, parseDrawio, compareGraphs, checkVersionTable, checkCurrentReferences, checkUnselectedSearchTerms, checkInputHeader, checkSourceAdrs, checkOperationRefs, verifyDocs } from '../scripts/verify-docs.mjs';
+import { readFile, readdir } from 'node:fs/promises';
+import { parseMermaid, parseDrawio, compareGraphs, checkVersionTable, checkCurrentReferences, checkUnselectedSearchTerms, checkInputHeader, checkSourceAdrs, checkOperationRefs, checkLinkedInputVersions, verifyDocs } from '../scripts/verify-docs.mjs';
 import { adrIds, loadManifest, generatedOutputs } from '../scripts/docs-metadata.mjs';
 
 const xml = `<mxfile><diagram><mxGraphModel><root>
@@ -117,6 +117,15 @@ test('current prose references cannot disagree with headers while historical sna
   assert.throws(() => checkCurrentReferences(text.replace('v0.3', 'v0.2'), versions, 'fixture'), /drift/);
 });
 
+test('current linked input aliases use target versions while snapshot evidence stays historical', () => {
+  const versions = new Map([['PRD.md','0.9'],['contracts/README.md','0.12']]);
+  const current = '**Inputs:** [PRD-01](PRD.md) v0.9; [contract pack](contracts/README.md) v0.12\n## Historical\n[older](PRD.md) v0.3\n';
+  checkLinkedInputVersions(current, versions, 'fixture');
+  assert.throws(() => checkLinkedInputVersions(current.replace('v0.9','v0.6'), versions, 'fixture'), /Linked input version drift/);
+  assert.throws(() => checkLinkedInputVersions(current.replace('v0.12','v0.6'), versions, 'fixture'), /Linked input version drift/);
+  checkLinkedInputVersions('**Snapshot inputs:** [PRD-01](PRD.md) v0.3', versions, 'fixture');
+});
+
 import { loadDesignModels, verifyDesignContent } from '../scripts/design-diagrams.mjs';
 
 test('design pairs reject reversed sequence handoffs and changed native multiplicities', async () => {
@@ -140,8 +149,11 @@ test('physical diagram entity inventory matches owned CREATE TABLE definitions',
   const root = fileURLToPath(new URL('../', import.meta.url));
   const models = await loadDesignModels(root);
   for (const [id, service] of [['DGM-DATA-01','workspace'],['DGM-DATA-02','knowledge']]) {
-    const ddl = await readFile(new URL('../services/'+service+'/migrations/001-store.up.sql', import.meta.url),'utf8');
-    const tables = [...ddl.matchAll(/CREATE TABLE\s+(\w+)/gi)].map(m=>m[1]).sort();
+    const directory = new URL('../services/'+service+'/migrations/', import.meta.url);
+    const names = (await readdir(directory)).filter(name=>name.endsWith('.up.sql')).sort();
+    const ddl = (await Promise.all(names.map(name=>readFile(new URL(name,directory),'utf8')))).join('\n');
+    const tables = [...ddl.matchAll(/CREATE TABLE\s+(?:IF NOT EXISTS\s+)?(?:(\w+)\.)?(\w+)/gi)]
+      .filter(match=>!match[1] || match[1]===service).map(match=>match[2]).sort();
     assert.deepEqual(models.find(d=>d.id===id).nodes.map(n=>n.id).sort(), tables);
   }
 });

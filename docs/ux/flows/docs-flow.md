@@ -1,9 +1,9 @@
 # User Flow: Knowledge Management (Docs & Versions)
 
 **Artifact ID:** UX-FLOW-DOCS-02\
-**Version/date:** 0.5 Draft · 17 October 2026\
+**Version/date:** 0.7 Draft · 18 October 2026
 **Status:** Owner-confirmed policy direction; UI, diagram and runtime verification pending.\
-**Sources:** PRD-01 v0.9; UC-02 v0.6 (UC-06/UC-07); SAD-03 v0.11; ADR-0007/0009/0011/0013/0017; Workspace OpenAPI v0.2.2 / Knowledge v0.2.3.\
+**Sources:** PRD-01 v0.9; UC-02 v0.7 (UC-06/UC-07); SAD-03 v0.15; ADR-0007/0009/0011/0013/0017; Workspace OpenAPI v0.2.8 / Knowledge v0.2.9\; Proposed ADR-0022
 **Trace:** BR-01, BR-04, BR-05, BR-07, BR-08, BR-10, BR-11, BR-12, BR-14; FR-04, FR-10–FR-15, FR-19, FR-31, FR-39, FR-46–FR-48, FR-50–FR-52, FR-55, FR-59, FR-61; SC-05, SC-06. FR-45 is Withdrawn, with replacement/history assertions under AC-11.
 
 ## 1. Creation and immutable revisions
@@ -18,8 +18,8 @@ Creation first registers a Workspace-allocated identity, policy, author capabili
 
 | Situation | Behaviour and presentation |
 | --- | --- |
-| Save revision | Require content-write; send expected aggregate revision and scoped idempotency key. Show “Saving” while waiting; this is an operation state, not a version lifecycle. |
-| Confirmed revision | Knowledge atomically creates replacement Current, makes previous Current Superseded and updates the pointer. Update badges only after confirmation. Independently display semantic readiness: `pending` = “Semantic indexing”, `ready` = “Semantic search ready”, `failed` = “Semantic indexing failed”. Keyword availability depends on committed, permitted, current passages and survives embedding failure; Current alone promises neither path is ready. |
+| Save revision | Require content-write; send exactly one already-known expected aggregate revision or action-bound opaque token, plus scoped idempotency key. Show “Saving” while waiting; this is an operation state, not a version lifecycle. |
+| Confirmed revision | Knowledge atomically creates replacement Current, makes previous Current Superseded and updates the pointer. The response is a minimal command receipt. Fetch protected display data only with separately renewed read authority, then update badges. Independently display semantic readiness: `pending` = “Semantic indexing”, `ready` = “Semantic search ready”, `failed` = “Semantic indexing failed”. Keyword availability depends on committed, permitted, current passages and survives embedding failure; Current alone promises neither path is ready. |
 | Concurrent revision / stale write | On `409`, retain unsaved text, refresh only permitted state and require a fresh decision. Never overwrite a newer Current pointer silently. |
 | Save failure / unknown outcome | Show explicit failure/pending, reconcile authoritative state and avoid blind retries. Reuse the original key for the same request. Unknown remote lifecycle-write outcomes block affected protected handoffs until reconciliation under ADR-0011. |
 | Indexing failure | Retain confirmed lifecycle badge and show failed readiness. Background retry is idempotent and rejects obsolete/out-of-order work. No browser reindex endpoint is assumed. |
@@ -58,3 +58,15 @@ DGM-FLOW-03: [Mermaid](../../sdlc/diagrams/flowchart/docs-flow.mmd) · [Draw.io]
 **Assumptions/open decisions:** Initial access/lifecycle direction is confirmed by ADR-0007/0009/0011. Additional capability delegation, physical retention and fenced orphan cleanup remain open. ADR-0013 resolves unavailable identity entitlement. This flow cannot resolve those policies implicitly; no polling endpoint is invented.
 
 **Checklist/handoff:** Pass for documented immediate revision, explicit author grant, separate readiness/denial branches and matching diagram structure; Gap for rendered/usability and runtime/concurrency tests. v0.5 and DGM-FLOW-03 v0.8 clarify independent action entry and separate semantic readiness.
+
+## Priority 2 read bindings
+
+Explorer uses listDocuments (not an empty keyword query); explicit history uses listVersions, with exact getVersion on selection. Retained readable documents with no Current remain discoverable, and indexing pending/failed does not hide the source. Preserve explicit history labels. Each page is permission-filtered; stale cursor means discard accumulated pages/restart, denied means clear rows, dependency failure means an error rather than an empty list.
+
+Known-ID manage access uses getAllowedActions(document), getDocumentPolicy and listDocumentReadGrants; use listMembers for current grantees. Show only policy classification and grantee IDs without content-read, no title/owner/version/readiness prefill. policy.permission_revision supplies classification/grant/revoke concurrency. Reload and reconsider after conflict. Returned action names guide controls but never grant authority. Non-reading write/lifecycle preconditions remain unresolved for that separate action path. See Proposed ADR-0019; additional delegation UI remains excluded.
+
+## NEXT-06 independent known-ID command interaction
+
+Use getAllowedActions for controls, then getDocumentCommandPrecondition for the chosen implemented command. Non-reading authors enter replacement text or explicit metadata changes without prefill; non-reading lifecycle managers supply an already-known exact archive version or document for deletion. No current content/revision/history/lifecycle metadata is loaded. Submit the opaque token; numeric revisions already known to readable users remain supported. Confirmation is DocumentMutationReceipt (or deletion 204). Show only the committed command and created/supplied identity; no protected content is returned or cached through the mutation.
+
+If still permitted to read, fetch document/version/history/readiness separately and label any fresh state. After 409 obtain a fresh token and require a fresh decision; never silently resubmit. A lost mutation response uses the original key/payload until reconciled, not a new token/key write. Proposed ADR-0022 resolves the design precondition gap; token storage/transactions/permission tests remain open.

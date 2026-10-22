@@ -44,7 +44,9 @@
         "listProjects",
         "addMember",
         "removeMember",
-        "editProject"
+        "editProject",
+        "listMembers",
+        "getAllowedActions"
       ],
       "status": "Unimplemented"
     },
@@ -86,7 +88,8 @@
         "editTask",
         "setTaskState",
         "setAssignee",
-        "recordBlocker"
+        "recordBlocker",
+        "listBlockerEvents"
       ],
       "status": "Unimplemented"
     },
@@ -115,7 +118,10 @@
         "completeSprint",
         "reorderBacklog",
         "editSprint",
-        "removeAllocation"
+        "removeAllocation",
+        "listSprintItems",
+        "listTasks",
+        "getSprint"
       ],
       "status": "Unimplemented"
     },
@@ -148,7 +154,13 @@
         "importDocument",
         "editDocumentMetadata",
         "registerDocumentPolicy",
-        "persistDocument"
+        "persistDocument",
+        "listDocuments",
+        "getDocumentPolicy",
+        "listDocumentReadGrants",
+        "getAllowedActions",
+        "listMembers",
+        "getDocumentCommandPrecondition"
       ],
       "status": "Unimplemented"
     },
@@ -160,7 +172,7 @@
       "dependencies": [
         "SP-06"
       ],
-      "service": "knowledge",
+      "service": "both",
       "requirements": [
         "FR-11",
         "FR-12",
@@ -176,7 +188,10 @@
         "archiveVersion",
         "deleteDocument",
         "getVersion",
-        "getReadiness"
+        "getReadiness",
+        "listVersions",
+        "getAllowedActions",
+        "getDocumentCommandPrecondition"
       ],
       "status": "Unimplemented",
       "withdrawnRequirements": [
@@ -280,7 +295,9 @@
         "FR-32",
         "FR-57"
       ],
-      "operationIds": [],
+      "operationIds": [
+        "getHandoffManifest"
+      ],
       "status": "Unimplemented"
     },
     {
@@ -318,7 +335,8 @@
       "operationIds": [
         "listAudit",
         "getTrace",
-        "getRetrievalSummary"
+        "getRetrievalSummary",
+        "getAllowedActions"
       ],
       "status": "Unimplemented"
     }

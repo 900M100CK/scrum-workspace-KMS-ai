@@ -3,7 +3,7 @@
 **Artifact ID:** SP-01  
 **Version/date:** 0.3 Draft · 17 October 2026\
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
-**Inputs:** PRD-01 v0.8; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-01--establish-and-end-a-session); [contract pack](../contracts/README.md); PLAN-01 v0.3.\
+**Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-01--establish-and-end-a-session); [contract pack](../contracts/README.md); PLAN-01 v0.3.\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 1.  

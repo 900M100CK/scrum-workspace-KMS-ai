@@ -1,8 +1,8 @@
 # Agent pre-flight checklist
 
 Audience: any agent editing docs, contracts, tests or code in this repository.
-Run this list **before** changing anything and again **before** reporting. It complements `AGENTS.md` (development-rules.md); it does not override it.
-Source: `consistency-review.md` (16 Oct 2026). Items marked **(known drift)** were wrong in the current set at that date: verify, do not assume fixed.
+Run this list **before** changing anything and again **before** reporting. This file lives in `docs/` and is subordinate to [root AGENTS.md](../AGENTS.md) and [development-rules.md](development-rules.md); it complements them and does not replace or override them.
+Source: `consistency-review.md`, written against PRD v0.5 / UC-02 v0.3 / SAD-03 v0.7. By 18 Oct the set was PRD v0.9 / UC-02 v0.7 / SAD-03 v0.15 / UX-06 v0.12 / API-05 v0.16 / FIX-PLAN-01 v0.20 / REG-00 v0.48, with OWNER-Q-01 and Proposed ADR-0018–0023. This checklist has **not** been re-verified against those versions. Items marked **(known drift)** were wrong in the older versions: re-check each against the current files before relying on it.
 
 ## 0. Authority and scope
 
@@ -20,14 +20,25 @@ Source: `consistency-review.md` (16 Oct 2026). Items marked **(known drift)** we
 | Release split | 60 Must / 4 Should (FR-27, 49, 62, 70) / 4 Could (FR-64–67) / 1 Won't (FR-35) | ADR-0010, ADR-0016 |
 | Must = P0 + P1 | 54 P0 + 6 P1 (FR-15, 16, 17, 47, 56, 58) | PRD §4 |
 | EX identities | 48 (47 active + 1 withdrawn: UC-07 EX-02) | `use-cases.md`, `test-coverage.md` |
-| Operations | 56 (Workspace v0.2.1, Knowledge v0.2.2) | `api-design.md` |
+| Declared operations | 66 on 18 Oct (Workspace v0.2.8, Knowledge v0.2.9); was 56 on 14 Oct. Declared, not deployed. Recount with `context:check` | `api-design.md` |
 | Version states | Current / Superseded / Archived. **No Draft, no publish operation** | ADR-0009 |
 | Board states | To Do / In Progress / Done (no In Review) | ADR-0008 |
 | Sprint states | Planned → Active → Completed; one Active per project; one Planned/Active allocation per task | ADR-0008 |
-| Keyword search | PostgreSQL **English full-text**. Trigram/fusion is *unselected* **(known drift: SAD says trigram)** | ADR-0004, DATA-04 |
+| Keyword search | PostgreSQL **English full-text**. Trigram/fusion is *unselected*. Diagrams DGM-ARCH-01 / DGM-FLOW-01 v0.8 already say English full-text; re-check SAD-03 v0.10, specs and eval | ADR-0004, DATA-04 |
 | Provider Relay | Module inside Workspace, not a third service | ADR-0006, SAD §2.1 |
 
 Before quoting any count, run the context check (`npm run context:check`) and cite its output with the Node version used. Node 24+ is required; record the actual version.
+
+## 1b. Scope control (check before adding anything)
+
+- [ ] Name the next vertical slice (suggested: SP-01 identity/session, SP-02 projects, then SP-03–05 work). The change must serve a Must AC of that slice, or unblock it.
+- [ ] No new ADR, contract operation, migration, diagram or doc version unless it unblocks that slice. Record the reason in the report.
+- [ ] Do not build on a **Proposed** ADR (0018–0023) as if accepted. List every artifact that depends on it; ask the owner to accept or reject in one batch.
+- [ ] Count behaviour, not checks: report "N handler behaviours verified" separately from "N structural/schema/SQL checks passed". 122 passing results with 0 handlers is 0 behaviours.
+- [ ] Do not tick RUNTIME-GATE, SYS-01 or SYS-02 from structural checks.
+- [ ] Do not put account/quota figures, tool state or run logistics into design artifacts; keep them in a progress report.
+- [ ] AI relay (SP-09) comes after work and document slices (work-before-AI plan). Do not reorder a Next-tasks list so AI-relay handlers precede the first work slice.
+- [ ] Check that ADR-0020/0022/0023 mechanisms (byte-exact binding, permanent claims, fencing, opaque tokens) do not exceed ADR-0012's stated minimum. Flag any excess to the owner as a scope decision.
 
 ## 2. Version and header hygiene
 
@@ -38,6 +49,13 @@ Before quoting any count, run the context check (`npm run context:check`) and ci
 - [ ] Historical files (`*-history.md`, `CHANGELOG.md`) are never rewritten. Current statements win over history.
 - [ ] Bump the version of any artifact you change and update `artifact-register.md` in the same change.
 - [ ] One status vocabulary for ADRs: Proposed / Owner-confirmed / Implemented / Superseded. Record the source of the owner confirmation (file path), not "session reply".
+
+Keyword-technology scan (trigram/fusion may appear only next to "unselected", "candidate" or "not adopted"):
+
+```bash
+grep -rniE 'trigram|pg_trgm|\bRRF\b|reciprocal|hybrid|fusion' docs/ contracts/ specs/ eval/ services/*/migrations/ | grep -viE 'history|CHANGELOG|unselected|not adopted|candidate'
+grep -rliE 'trigram|pg_trgm' docs/sdlc/diagrams/ --include='*.drawio'   # check the Draw.io pairs for unselected mechanisms too
+```
 
 Quick drift scan:
 
@@ -90,11 +108,11 @@ done
 
 ## 7. Open decisions: surface, do not invent
 
-- [ ] Return state of tasks sent back to Backlog (In Progress inside Backlog?). Unspecified (ADR-0008, FR-42, UC-04 Alt-1).
-- [ ] Manifest persistence vs protected guard ordering; immutable per-handoff manifest record and operational `entity_kind` (ADR-0012, DATA-FIT-01).
+- [ ] RESOLVED by OWNER-Q-01 (16 Oct, per UML-07 v0.13): unfinished Backlog returns go to To Do; input and delivery manifests are persisted **outside** the guard, then validated exactly inside it through handoff; a stale attempt releases the guard and prepares afresh. Confirm ADR-0008/0012 v0.3, UC-02 v0.5, SAD-03 v0.10 and the TCs all say this.
+- [ ] Remaining DATA-FIT-01 gaps: immutable per-handoff manifest record and operational `entity_kind` (check whether a migration now exists).
 - [ ] Delegation of non-read capabilities, audit/trace grant authority (OD-02, OD-08).
 - [ ] Physical retention and exact-locator tombstone duration (OD-04).
-- [ ] Identity mechanism and session expiry (OD-09). Provider/model choice (OD-06, ADR-0005). Application stack and commands (ADR-0003, AGENTS §3 still empty).
+- [ ] Identity mechanism and session expiry (OD-09). Provider/model choice (OD-06, ADR-0005). Application stack (ADR-0003) remains Proposed; development-rules §3 lists the available context, documentation, contract and storage commands, while application build/run commands remain unavailable.
 - [ ] Kickoff date and weekly capacity (OD-01, OD-11). Do not turn a missing input into a number.
 
 ## 8. Test and evaluation discipline
@@ -109,7 +127,7 @@ done
 
 ## 9. Before you report
 
-- [ ] Smallest report level that fits (Small / Standard / Critical, AGENTS §12). Critical changes (permissions, versions, citations, data model, service boundaries, provider) need an ADR marked **Proposed** and an owner-level explanation.
+- [ ] Smallest report level that fits (Small / Standard / Critical, development-rules §12). Critical changes (permissions, versions, citations, data model, service boundaries, provider) need an ADR marked **Proposed** and an owner-level explanation.
 - [ ] List files changed, versions bumped, register updated.
 - [ ] No claim of "complete", "secure", "approved", "independently reviewed" or "zero hallucination".
 - [ ] No secrets, unrestricted source text or private reasoning in code, logs, traces or reports.

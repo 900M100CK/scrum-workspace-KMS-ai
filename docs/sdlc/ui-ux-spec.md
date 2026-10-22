@@ -1,14 +1,14 @@
 # User experience specification and source inventory
 
 **Artifact ID:** UX-06
-**Version/date:** 0.3 Draft - 16 October 2026
+**Version/date:** 0.12 Draft · 18 October 2026
 **Status:** Consolidated design requirements; no rendered application, usability study or accessibility certification.
-**Inputs:** PRD-01 v0.9; UC-02 v0.6; SAD-03 v0.12; Workspace/Knowledge contract drafts; ADR-0007 through ADR-0017; Stage 6 profile and local UI/UX and Blueprint checklists.
+**Inputs:** PRD-01 v0.9; UC-02 v0.7; SAD-03 v0.15; Workspace/Knowledge contract drafts; ADR-0007 through ADR-0017; Stage 6 profile and local UI/UX and Blueprint checklists; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022
 **Trace:** BR-01 through BR-14; SC-01 through SC-08. Enhanced reports and Future Work remain outside these journeys.
 
 ## Sources and authority
 
-This is the Stage 6 entry and inventory. Detailed flows remain in [personas](../ux/personas.md) v0.4, [sitemap](../ux/sitemap.md) v0.4, [permission matrix](../ux/permission-matrix.md) v0.5, [board](../ux/flows/board-flow.md) v0.6, [documents](../ux/flows/docs-flow.md) v0.4 and [AI](../ux/flows/ai-qa-flow.md) v0.6, including OWNER-Q-01's To Do return and manifest-before-guard directions. [Diagrams](diagrams/README.md) are editable design sources; structural checks are not visual verification.
+This is the Stage 6 entry and inventory. Detailed flows remain in [personas](../ux/personas.md) v0.4, [sitemap](../ux/sitemap.md) v0.9, [permission matrix](../ux/permission-matrix.md) v0.10, [board](../ux/flows/board-flow.md) v0.9, [documents](../ux/flows/docs-flow.md) v0.7 and [AI](../ux/flows/ai-qa-flow.md) v0.8, including OWNER-Q-01's To Do return and manifest-before-guard directions. [Diagrams](diagrams/README.md) are editable design sources; structural checks are not visual verification.
 
 Personas are illustrative, not interviewed users. Roles express responsibilities; current scoped capabilities determine actions. Workspace owns identity, project membership, work and permission decisions; Knowledge owns immutable sources and AI evidence. Neither client controls nor a known URL grant authority. No account provisioning, saved conversation, AI write, report or additional service is added by this entry.
 
@@ -67,6 +67,52 @@ The two workbook templates were read directly. Their examples, numeric targets a
 | Requirements Traceability | Screen/UC/TC mapping plus VERIFY-01 present; semantic and runtime evidence must still be attached. |
 | Completeness Check | Gap: this is a reviewed draft, not a complete application design or standards sign-off. |
 
+The [item-by-item checklist review](reviews/ui-ux-checklist-review-2026-10-18.md) records all 22 UI/UX and 19 Blueprint rows against byte-verified pinned inputs, plus eight scenario walkthroughs. Grouped dispositions above remain a summary; they are not visual/runtime acceptance.
+
 ## Handoff
 
 Ready for detailed UI implementation planning with explicit gaps. Verify each listed state through real flows and inspect the rendered diagrams; structural lint alone cannot check legibility, route geometry or accessibility. Browser/device targets, delegated non-read capabilities and visual design choices require clarification when implementing affected flows. Optional task keyword search follows the separately owner-confirmed Should extension, not an automatic Must increase. No Figma publication, external transfer or generated user-research result occurred.
+
+## Priority 2 screen-to-operation handoff — 18 October 2026
+
+| Screen/control | Draft source | Required failure handling |
+| --- | --- | --- |
+| Membership management and assignment/owner/grantee selectors | listMembers; selected Member.revision for removal; known registered ID for adding a nonmember | Distinguish empty/error, restart stale pages, clear membership loss; manage controls require action authority |
+| Explorer | listDocuments with permitted metadata and nullable Current pointer | Omit unreadable documents, include archived-only/readiness-failed sources; no hidden counts |
+| Explicit history | listVersions; exact getVersion; document_revision | Label historical state; no substitution; restart changed pages |
+| Known-ID manage route | getDocumentPolicy + listDocumentReadGrants; permission_revision | Permit independently scoped managers without content prefill; reload on stale policy |
+| Scoped controls | getAllowedActions at global/project/exact resource scope | Missing action means disabled/hidden; authority failure clears old allows; actual mutation rechecks authority and business preconditions |
+
+These projections address UX-R01/R02 drafting gaps under Proposed ADR-0019. Runtime acceptance and additional delegation remain open. Proposed ADR-0022 now supplies non-reading command preconditions; handler/token verification remains pending. No role editor, global user directory or new business capability is implied.
+
+## Priority 2 recheck consumer correction
+
+Version action discovery supplies project_id + document_id + version_id from the exact history row and verifies the echoed pair; resource_id is unused for that scope. Summary and trace controls use independent allowed operations for the same run: answer-reader entitlement enables optional FR-27 summary without trace-read, while FR-58 requires trace-read and does not inherit summary rights. No role or sibling document can fill a missing authority result. Proposed ADR-0019 v0.2 and SP-07/SP-13 carry the paired scenarios; UI/runtime acceptance is unrun.
+
+## NEXT-03 trace/summary rendering contract
+
+Inspection uses Knowledge v0.2.7 Trace/RetrievalSummary. Show actual permitted queries and recorded stage/status, exact document/operational identity and source-to-step ranks; operational observation time/revision is labelled historical. Trace has separately permitted configuration/duration/usage; optional summary contains only retrieval/citation stages. Do not invent a source-ID resolver or display hidden totals/gaps. Query state unavailable has no source-specific explanation. Validation locator success is distinct from claim-support evaluation.
+
+Metric states render independently: measured zero is “0 ms” or “0 tokens”; unavailable is “Not measured”; not_performed is “Not performed”. Failed execution may still have measured timing. Scope/dependency failure clears protected output and uses generic failure, not zero metrics or empty success. Source opening rechecks exact current access. Proposed ADR-0021 and TC-11/18 define future tests; no rendered UI or runtime evidence is supplied here.
+
+## NEXT-04 citation, retry and readiness bindings
+
+Citation chips branch by kind. Document chips use exact openCitation/getVersion locators; operational chips show their recorded observation time/revision and separately refresh getProject/getSprint/getTask, never invent a document locator or historical snapshot. Current entity reads remain renewed permission checks.
+
+After terminal AI failure/withholding, deliberate retry starts a fresh user request while preserving whole-draft withholding. Lost responses are labelled unknown and never replay automatically; an explicit new-question action does not override transport quarantine. A stale health badge cannot permanently lock the prompt. Readiness.semantic_readiness is semantic processing only; actual keyword availability is independent. TC-08/10/20/22 carry the unrun UI/runtime assertions.
+
+## NEXT-05 current source and route inventory
+
+The Sources and authority paragraph now identifies the current source editions. The sitemap main route table includes independent known-ID manage/actions routes and the operational observation inspector; document and operational inspectors use distinct existing HTTP reads. Descriptive member roles do not supply action authority. UI sources remain drafts; current version reconciliation is not a fresh usability/permission test. Proposed ADR-0022 supplies the non-reading concurrency/acknowledgement design; application evidence remains open.
+
+## NEXT-06 command route handoff
+
+The independent /docs/:docId/actions route now has a complete draft precondition/acknowledgement source: getDocumentCommandPrecondition for the selected action, opaque token submission and DocumentMutationReceipt (delete 204). It does not require content prefill or disclose a private current revision/state. Archive requires an already-known exact version; no history is inferred. A reader can fetch protected display state separately; no read grant follows from command success. Conflict requires reconsideration and unknown outcomes preserve the original operation identity. Proposed ADR-0022 resolves the design gap; all application evidence remains pending.
+
+## NEXT-09 operational inspector recovery
+
+The observation route has only current entity selectors. A reload/direct visit without the delivered citation context shows original observation unavailable; any renewed permitted current read is labelled separately. No timestamp, observation revision or historical value is inferred from current data, URL arguments or persistent browser state. No saved answer/history endpoint or extra entitlement is added. TC-08 specifies the future browser/revocation checks. The companion checklist report records this design omission and its bounded correction.
+
+## Next wireframe work plan
+
+[UX-PLAN-01](../ux/wireframe-workplan.md) orders the next Core design slices and supplies ten Backlog-reorder and ten independent-document-command state variants, plus AI/inspection distinctions. It selects no visual framework, design tool, device budget or new product feature. All rendered WF tasks remain unchecked; it is a textual handoff alongside the canonical sources, not evidence that UI has been implemented or validated.

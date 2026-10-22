@@ -1,9 +1,9 @@
 # Architecture for the five-month capstone
 
 **Artifact ID:** SAD-03
-**Version/date:** 0.12 Draft · 17 October 2026\
+**Version/date:** 0.15 Draft · 18 October 2026
 **Status:** Draft for owner review; organized into 4+1 views; ADR-0007–ADR-0017 directions are owner-confirmed; implementation and remaining policy details are unverified.\
-**Inputs:** [BRD](BRD.md) v1.0; [PRD](sdlc/PRD_SRS.md) v0.9; [use cases](sdlc/use-cases.md) v0.6; [delivery plan](planning/five-month-plan.md) v0.3; [ADR-0004](adr/0004-knowledge-store.md) v0.2; ADR-0007–ADR-0017; AGENTS rules; owner confirmation to retain minimal microservices. Input-number reconciliation does not establish full semantic or runtime acceptance.
+**Inputs:** [BRD](BRD.md) v1.0; [PRD](sdlc/PRD_SRS.md) v0.9; [use cases](sdlc/use-cases.md) v0.7; [delivery plan](planning/five-month-plan.md) v0.3; [ADR-0004](adr/0004-knowledge-store.md) v0.2; ADR-0007–ADR-0017; AGENTS rules; owner confirmation to retain minimal microservices. Input-number reconciliation does not establish full semantic or runtime acceptance.; Proposed ADR-0018–ADR-0023
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 ---
@@ -53,6 +53,12 @@ All architectural decisions are tracked via Architecture Decision Records (ADRs)
 | Partial evidence answers | Owner-confirmed [ADR-0015](adr/0015-partial-evidence-answers.md) | Cited supported components and explicit missing components. |
 | Optional Workspace task search | Owner-confirmed [ADR-0016](adr/0016-optional-task-keyword-search.md) | FR-70 Should; Workspace substring search independent of Knowledge. |
 | Membership removal | Owner-confirmed [ADR-0017](adr/0017-membership-removal-capabilities-and-assignees.md) | Atomic individual-capability invalidation, unassignment and last-manager protection. |
+| Operational read projections | Proposed [ADR-0018](adr/0018-operational-read-projections.md) | Current location and Backlog generation; migration 003 storage prerequisites tested, application behavior pending. |
+| Scoped UI discovery | Proposed [ADR-0019](adr/0019-scoped-ui-discovery.md) | Minimal lists, independent policy/grants and advisory exact-scope action discovery. |
+| Manifest-bound transport | Proposed [ADR-0020](adr/0020-manifest-bound-ai-transport.md) | Complete immutable receipts and one-use guarded byte binding; additive storage/adapters remain pending. |
+| Inspection and optional metrics | Proposed [ADR-0021](adr/0021-scoped-inspection-and-missing-metrics.md) | Exact per-step evidence and explicit missing measurements; capture/runtime tests pending. |
+| Handoff storage mapping | Proposed [ADR-0023](adr/0023-immutable-handoff-storage.md) | Knowledge 003 / Workspace 004 have isolated SQL evidence; no development upgrade, active-process fence, handler/guard or relay acceptance. |
+| Non-reading document commands | Proposed [ADR-0022](adr/0022-opaque-document-command-preconditions.md) | Action-bound opaque concurrency and minimal receipts; token storage, authority and command handlers remain unimplemented. |
 
 ADR-0007–ADR-0011 now record owner-confirmed access, Sprint, lifecycle, release and guard directions. Remaining delegation, retention/identity, provider and deployment details require validation. The owner's 13 October request to implement ADR-0004 selects OD-12's storage portion only; application frameworks, providers and product policies are not accepted by this change.
 
@@ -143,9 +149,9 @@ System contracts are formalized using OpenAPI 3.1.1:
 - [Logical Data Model](../contracts/data-model.json)
 
 **Security Invariants in Contracts:**
-1. **Opaque Identity:** Client requests never submit `actor_id`, `role`, or `permissions` in request bodies. Actor identity is derived strictly from server-verified sessions.
+1. **Opaque Identity:** Authenticated caller identity and authority come strictly from server-verified sessions/current scope, never client `actor_id`, `permissions` or a caller-role claim. `AddMember.role` is the descriptive Scrum role selected for the target member, not a claim about the caller and not a capability grant. The server separately authorizes membership management; no role-update or non-read delegation interface is implied.
 2. **Generic Not-Found Response:** Denied or nonexistent resources return identical 404 responses `{ "code": "not_found", "message": "Resource unavailable" }` with `additionalProperties: false` to prevent metadata leakage.
-3. **Exact Citation Schema:** Citations require `[document_id, version_id, passage_id]` tuples; vague or unversioned citations are rejected.
+3. **Exact Citation Schema:** Document citations require `[document_id, version_id, passage_id]`. Operational citations instead bind entity kind/ID, observation revision and observation time; they never fabricate a document tuple. Both use server-assigned source IDs and current scope checks. Operational observation revisions are distinct from a freshly read entity revision.
 4. **Version lifecycle:** Product states are `current`, `superseded`, `archived`; ordinary retrieval returns eligible Current only. Revisions become Current atomically; no separate publish endpoint exists (ADR-0009).
 
 ---
@@ -202,7 +208,7 @@ Authorized access manager               Workspace Handoff Guard                 
 5. **Not selected / future option:** Trigram and fusion, including Reciprocal Rank Fusion (RRF), are unselected pending pilot evidence and a separate ADR. No combined ranking path is part of the current design or C0 baseline.
 
 #### Flow 4: Guarded Evidence Handoff and AI Synthesis
-1. **Evidence Packaging:** Knowledge assigns server-controlled reference IDs (`[SRC-1]`, `[SRC-2]`) stable within the run and bound to exact passage/version locators. If no eligible evidence exists, return Insufficient evidence without a model call. Nonempty retrieval is not sufficient support: related documents may omit the requested decision or rationale.
+1. **Evidence Packaging:** Knowledge assigns server-controlled reference IDs (`[SRC-1]`, `[SRC-2]`) stable within the run and bound to exact document/version/passage locators OR operational entity kind/ID/observation revision/time. If no eligible evidence exists, return Insufficient evidence without a model call. Nonempty retrieval is not sufficient support: related documents may omit the requested decision or rationale.
 2. **Operational Context Injection:** Knowledge queries Workspace for current operational status of linked tasks/sprints.
 3. **Durable input manifest:** Persist the run ID and exact evidence manifest before protected provider input; persistence failure withholds handoff (ADR-0012). **Guard Acquisition:** Only after durable acknowledgement, Workspace acquires the applicable guard and matches the frozen payload/manifest, recorded revisions, session/access and Knowledge version/availability checks, and holds it through provider-input handoff completion or abort (§3.1).
 4. **Model Execution:** Model generates response citing only provided `[SRC-x]` tags.
@@ -210,9 +216,9 @@ Authorized access manager               Workspace Handoff Guard                 
 6. **Delivery Re-Check:** Persist a complete immutable per-handoff manifest outside the guard, then acquire the guard for final full evidence-set access, recorded revision and frozen payload/manifest matching through response handoff completion or abort (§3.1). Any mismatch sends zero bytes: release the guard, prepare a fresh manifest outside it and repeat checks as a bounded new attempt. Never write a remote manifest or modify a payload inside the guard (ADR-0012). Withhold the entire original draft if any source is revoked (FR-29). Optional regeneration uses only remaining permitted evidence as a new bounded attempt.
 
 #### Flow 5: Citation Resolution and Inspection
-1. **Inspection Request:** User clicks citation locator `[doc_id, version_id, passage_id]`.
+1. **Inspection Request:** Branch on the server citation kind: document tuple or operational observation locator.
 2. **Authorization Gate:** Workspace re-verifies actor's current permission for the target document.
-3. **Exact Resolution:** Under the applicable protected-read guard, Knowledge returns the exact immutable passage and labelled version after current availability/validity checks. A historical citation does not redirect to Current.
+3. **Exact Resolution:** For document citations, under the protected-read guard Knowledge returns the exact immutable passage and labelled version; history never redirects to Current. For operational citations, preserve the cited observation identity/time/revision and separately fetch the exact current Project/Sprint/Task under renewed authority. Label current state separately; no historical operational-snapshot endpoint or document locator is invented.
 4. **Denial/unavailability:** Unauthorized or unknown identities use FR-59's generic response. An authorized citation whose evidence is unavailable reports Unavailable without substituting a newer version (FR-61).
 
 ### 3.3 Boundary Timeouts, Retries and Failures
@@ -522,3 +528,11 @@ The following is an author check of design topics and remaining gaps. It is not 
 **v0.10 change — 16 October 2026:** OWNER-Q-01 resolves Q-1/Q-2: unfinished Backlog returns become To Do; exact immutable manifests are durable before guard acquisition and must match guarded revalidation. Stale attempts abort without bytes and retry outside the guard. Schema/handler enforcement remains unimplemented.
 
 **v0.11 editorial correction — 17 October 2026:** Corrects the hardware paragraph to acknowledge implemented ADR-0004 storage. PRD-01 v0.8 changes handoff wording only; its FR/AC and this architecture's permission, transport and storage behavior are unchanged. Current candidate toolchain versions and compatibility gates are maintained in [TECH-STACK-01](tech-stack.md).
+
+## 18 October design correction handoff
+
+SYS-05 is corrected by distinguishing target-member descriptive role from caller authority and document citations from operational observation identity. Proposed ADR-0018–ADR-0023 refine the existing two-service design; they are not new owner-approved policies or runtime evidence. SYS-01 still blocks provider relay pending storage/claim/guard/adapter tests. Additional non-read delegation and retention/identity/provisioning remain open. The source/route inventories are reconciled in the current register and UX entry; dated snapshots remain historical.
+
+## NEXT-12 additive handoff storage
+
+Knowledge migration 003 stores complete immutable manifest/evidence JSON and exact raw bytes in one transaction, generated SHA-256/receipt identity and append-only outcomes. A run/actor/project FK prevents rebinding preparation to another owned execution. Workspace migration 004 reserves protected_handoff in existing idempotency_record with permanent immutable fence/process and infinity expiry; a fresh insertion returns a fence, while duplicate/changed claims return none. Outcomes bind the exact claim fence. Commit/acknowledgement and current permission/guard/transport checks remain application responsibilities. Isolated SQL evidence does not implement active-process fencing or prove any provider byte was blocked/delivered. No development database upgrade or framework/provider selection.

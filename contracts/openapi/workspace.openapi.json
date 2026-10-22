@@ -2,7 +2,7 @@
   "openapi": "3.1.1",
   "info": {
     "title": "Workspace service public facade and internal policy",
-    "version": "0.2.2",
+    "version": "0.2.8",
     "description": "Draft contract; policy/stack decisions remain proposed. Schema validation proves shape only."
   },
   "x-status": "Draft",
@@ -521,6 +521,95 @@
           }
         },
         "x-release-priority": "Must"
+      },
+      "get": {
+        "operationId": "listMembers",
+        "x-requirements": [
+          "FR-03",
+          "FR-38",
+          "FR-39"
+        ],
+        "x-release-priority": "Must",
+        "description": "Current project members may read minimal current-member IDs, descriptive roles and membership revisions for assignment/owner/grantee selectors. No email, global directory, removed members or capability inventory. Order user_id ascending. Membership-management route/actions separately require membership-manage. removeMember X-Expected-Revision comes from the selected Member.revision; rejoining changes it. Add-member uses a known registered user ID, not this current-member list. Pages are committed, permission-filtered projections ordered as specified. An opaque authenticated cursor binds actor, current membership/permission generation, route, filters, order and the complete visible projection generation. Revalidate authority on every page and protected response handoff. Filter before pagination; expose no hidden counts, placeholders or skipped IDs. Malformed/foreign cursor: generic 400; changed/expired cursor: 409 state_conflict without items. Discard all accumulated pages and restart. No cross-endpoint snapshot is implied. Return Cache-Control: no-store. See Proposed ADR-0019.",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 50
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Current authorised projection",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MemberList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid selector or cursor; no resource metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Changed or expired projection; discard all pages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        }
       }
     },
     "/projects/{project_id}/members/{user_id}": {
@@ -712,9 +801,11 @@
         "operationId": "listTasks",
         "x-requirements": [
           "FR-03",
-          "FR-09"
+          "FR-07",
+          "FR-09",
+          "FR-41"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "Current membership required. Default location=all returns all project tasks ordered by task_id. location=backlog returns only current Backlog tasks, ordered numerically by work_location.position then task_id; Done Backlog items remain included. Completed-Sprint retained tasks are not Backlog until reopened/returned.  Each page is a consistent committed read. Opaque cursor binds actor/current membership generation, resource/filter/order and dataset version. Recheck current authority on every page. Malformed or foreign cursor returns generic 400 without scope details; changed/expired dataset returns 409 state_conflict without items. Discard accumulated pages and restart. Cursor version covers all projected fields; separate endpoints are not a shared snapshot. See Proposed ADR-0018. AI and Knowledge are not dependencies. TaskList.backlog_revision is the project Backlog set/order generation read in the same transaction as the page. Content changes may invalidate a cursor dataset without changing this generation. Only location=backlog traversal supplies the complete reorder set; never reorder search results. After pagination 409 discard all pages and reload.",
         "parameters": [
           {
             "name": "project_id",
@@ -732,6 +823,19 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "all",
+                "backlog"
+              ],
+              "default": "all"
+            }
           }
         ],
         "responses": {
@@ -745,11 +849,31 @@
               }
             }
           },
+          "400": {
+            "description": "Invalid filter/cursor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
           "401": {
             "$ref": "#/components/responses/Unauthenticated"
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Changed or expired list; discard pages and restart",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           },
           "503": {
             "$ref": "#/components/responses/Unavailable"
@@ -1164,6 +1288,75 @@
           }
         },
         "x-release-priority": "Must"
+      },
+      "get": {
+        "operationId": "listBlockerEvents",
+        "x-requirements": [
+          "FR-44"
+        ],
+        "x-release-priority": "Must",
+        "description": "Current authenticated project membership and target work read authority required. Unknown/inaccessible target is generic 404; unknown authority denies with 503. Return committed blocker events in ascending per-task sequence. No audit-read capability required. Empty items means no events, not dependency failure. Each page is a consistent committed read. Opaque cursor binds actor/current membership generation, resource/filter/order and dataset version. Recheck current authority on every page. Malformed or foreign cursor returns generic 400 without scope details; changed/expired dataset returns 409 state_conflict without items. Discard accumulated pages and restart. Cursor version covers all projected fields; separate endpoints are not a shared snapshot. See Proposed ADR-0018. AI and Knowledge are not dependencies.",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Permitted committed page",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockerEventList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid cursor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Changed or expired list; discard pages and restart",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        }
       }
     },
     "/projects/{project_id}/sprints": {
@@ -1524,6 +1717,77 @@
           }
         },
         "x-release-priority": "Must"
+      },
+      "get": {
+        "operationId": "listSprintItems",
+        "x-requirements": [
+          "FR-07",
+          "FR-09",
+          "FR-42"
+        ],
+        "x-release-priority": "Must",
+        "description": "Current authenticated project membership and target work read authority required. Unknown/inaccessible target is generic 404; unknown authority denies with 503. Return all retained allocation associations ordered by task_id. Active Board uses allocated rows only. Returned/completed associations remain visible as history with separately labelled current task state/location. Each page is a consistent committed read. Opaque cursor binds actor/current membership generation, resource/filter/order and dataset version. Recheck current authority on every page. Malformed or foreign cursor returns generic 400 without scope details; changed/expired dataset returns 409 state_conflict without items. Discard accumulated pages and restart. Cursor version covers all projected fields; separate endpoints are not a shared snapshot. See Proposed ADR-0018. AI and Knowledge are not dependencies.",
+        "parameters": [
+          {
+            "name": "sprint_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Permitted committed page",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SprintItemList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid cursor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Changed or expired list; discard pages and restart",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        }
       }
     },
     "/sprints/{sprint_id}/items/{task_id}": {
@@ -1725,7 +1989,7 @@
         "x-requirements": [
           "FR-42"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. ADR-0008 v0.3: unfinished tasks returned to Product Backlog become To Do; commit allocation return, task revision and minimum audit atomically, preserve Done/completed history, and reconcile same-key replay.",
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. ADR-0008 v0.3: unfinished tasks returned to Product Backlog become To Do; commit allocation return, task revision and minimum audit atomically, preserve Done/completed history, and reconcile same-key replay. Return SprintCompletion counts from the same committed completion transaction; retained_done_count counts Done associations kept, returned_unfinished_count counts unfinished tasks returned as To Do. Same-key reconciliation retains these counts and rechecks current authority; do not recompute from later task state.",
         "parameters": [
           {
             "name": "sprint_id",
@@ -1753,7 +2017,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Sprint"
+                  "$ref": "#/components/schemas/SprintCompletion"
                 }
               }
             }
@@ -1817,7 +2081,7 @@
         "x-requirements": [
           "FR-41"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "Current membership and Backlog-order capability required. expected_revision comes exclusively from TaskList.backlog_revision for listTasks(location=backlog); never use task/project revision or cursor. With project locked before work rows, compare the revision and require task_ids to be a complete permutation of the current Backlog set. Duplicate or malformed IDs: 400. Stale revision, omission, non-Backlog or foreign IDs: generic 409 state_conflict without identifying offending items. Empty list succeeds only if Backlog is empty. No partial reorder: unlisted items are never deleted, moved or implicitly appended. Assign ordinal numeric positions 1..N in submitted order and bump revisions only for changed tasks; project.backlog_revision advances transactionally through the membership/order triggers. Identical existing order is a no-op with unchanged revision. Minimum audit and idempotent receipt commit with changed positions. Same-key/same-payload replay rechecks current authority and returns the original receipt without rerunning the stale comparison or mutation; different payload conflicts. Unknown outcomes reconcile the same key. Receipt revision describes that commit, not later current state; renew reads before another edit.",
         "parameters": [
           {
             "name": "project_id",
@@ -1845,7 +2109,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TaskList"
+                  "$ref": "#/components/schemas/ReorderResult"
                 }
               }
             }
@@ -1909,7 +2173,7 @@
         "x-requirements": [
           "FR-50"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. Expected revision comes from getDocumentPolicy.permission_revision (or the same revision on listDocumentReadGrants). Recheck current manage-access and target membership; compare the policy aggregate atomically. On 409 reload policy/grants and reconsider, never overwrite with an automatic fresh revision.",
         "parameters": [
           {
             "name": "document_id",
@@ -2001,7 +2265,7 @@
         "x-requirements": [
           "FR-51"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. Expected revision comes from getDocumentPolicy.permission_revision (or the same revision on listDocumentReadGrants). Recheck current manage-access and target membership; compare the policy aggregate atomically. On 409 reload policy/grants and reconsider, never overwrite with an automatic fresh revision.",
         "parameters": [
           {
             "name": "document_id",
@@ -2085,6 +2349,94 @@
           }
         },
         "x-release-priority": "Must"
+      },
+      "get": {
+        "operationId": "listDocumentReadGrants",
+        "x-requirements": [
+          "FR-51",
+          "FR-52"
+        ],
+        "x-release-priority": "Must",
+        "description": "Require current membership plus document manage-access even without content-read. List only valid explicit read grants for current membership generations, ordered user_id ascending; includes revocable author grant. Project-shared membership access is not fabricated as a grant. Retained explicit grants may be shown for project-shared policy; no removed/revoked grant history. permission_revision is the same policy aggregate precondition as getDocumentPolicy; changes invalidate traversal. No content metadata. Pages are committed, permission-filtered projections ordered as specified. An opaque authenticated cursor binds actor, current membership/permission generation, route, filters, order and the complete visible projection generation. Revalidate authority on every page and protected response handoff. Filter before pagination; expose no hidden counts, placeholders or skipped IDs. Malformed/foreign cursor: generic 400; changed/expired cursor: 409 state_conflict without items. Discard all accumulated pages and restart. No cross-endpoint snapshot is implied. Return Cache-Control: no-store. See Proposed ADR-0019.",
+        "parameters": [
+          {
+            "name": "document_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 50
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Current authorised projection",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentReadGrantList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid selector or cursor; no resource metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Changed or expired projection; discard all pages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        }
       }
     },
     "/documents/{document_id}/read-grants/{user_id}": {
@@ -2093,7 +2445,7 @@
         "x-requirements": [
           "FR-52"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. Expected revision comes from getDocumentPolicy.permission_revision (or the same revision on listDocumentReadGrants). Recheck current manage-access and target membership; compare the policy aggregate atomically. On 409 reload policy/grants and reconsider, never overwrite with an automatic fresh revision.",
         "parameters": [
           {
             "name": "document_id",
@@ -2561,7 +2913,7 @@
           "FR-28",
           "FR-29"
         ],
-        "description": "Internal authenticated service only; Workspace validates actor/session/current project and document scope. Not a browser-callable endpoint.",
+        "description": "Internal authenticated service only; Workspace validates actor/session/current project and document scope. Not a browser-callable endpoint. SYS-01 / Proposed ADR-0020: ProviderInput is a complete StoredHandoff-bound frozen payload. Verify the Knowledge durable record outside guard, then claim once and validate exact full record/payload/current evidence under guard. No content handoff on lookup failure, incomplete/mismatched record or replay. A request retry never repeats provider transmission.",
         "parameters": [
           {
             "name": "Idempotency-Key",
@@ -2571,7 +2923,7 @@
               "type": "string",
               "minLength": 1
             },
-            "description": "Actor/operation scoped; replay rechecks access; different payload conflicts."
+            "description": "Must equal handoff.manifest.handoff_id. One-use actor/protected_handoff claim binds manifest_digest; any existing or unknown claim denies transmission, without automatic expiry or replay."
           }
         ],
         "responses": {
@@ -2732,7 +3084,7 @@
           "FR-59",
           "FR-70"
         ],
-        "description": "ADR-0016 optional task search, after the 60 Must. Workspace reads committed task title/description under current project membership; no AI or Knowledge dependency. Match literal case-insensitive substring after trimming q; reject blank query. Return only current-project matches, deterministic task_id order and opaque project/query-bound cursor; recheck access for every page. Unknown/inaccessible project is generic 404. Cursor grants no authority; do not expose hidden counts.",
+        "description": "ADR-0016 optional task search, after the 60 Must. Workspace reads committed task title/description under current project membership; no AI or Knowledge dependency. Match literal case-insensitive substring after trimming q; reject blank query. Return only current-project matches, deterministic task_id order and opaque project/query-bound cursor; recheck access for every page. Unknown/inaccessible project is generic 404. Cursor grants no authority; do not expose hidden counts. TaskList.backlog_revision is the project Backlog set/order generation read in the same transaction as the page. Content changes may invalidate a cursor dataset without changing this generation. Only location=backlog traversal supplies the complete reorder set; never reorder search results. After pagination 409 discard all pages and reload.",
         "parameters": [
           {
             "name": "project_id",
@@ -2794,6 +3146,232 @@
           }
         },
         "x-release-priority": "Should"
+      }
+    },
+    "/documents/{document_id}/policy": {
+      "get": {
+        "operationId": "getDocumentPolicy",
+        "x-requirements": [
+          "FR-04",
+          "FR-50",
+          "FR-51",
+          "FR-52"
+        ],
+        "x-release-priority": "Must",
+        "description": "Require current membership and document-scoped manage-access, independent of content-read. Return only policy identity, classification, registry_state and permission_revision; no Knowledge title, content, owner, version or readiness. Unknown and unauthorised targets share generic 404. Policy existence does not establish content availability. Return Cache-Control: no-store. See Proposed ADR-0019.",
+        "parameters": [
+          {
+            "name": "document_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Current authorised projection",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Policy"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid selector or cursor; no resource metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        }
+      }
+    },
+    "/access/allowed-actions": {
+      "get": {
+        "operationId": "getAllowedActions",
+        "x-requirements": [
+          "FR-03",
+          "FR-04",
+          "FR-38",
+          "FR-50",
+          "FR-12",
+          "FR-27",
+          "FR-47",
+          "FR-58",
+          "FR-59"
+        ],
+        "x-release-priority": "Must",
+        "description": "Read-only current actor projection; never accepts actor, role, permission or capability assertions. resource_kind=global requires omitted project_id/resource_id and returns only applicable global operations (e.g. createProject). project requires project_id and omitted resource_id. Version scope requires project_id, document_id and version_id, with resource_id omitted. Resolve the exact (document_id, version_id) pair and verify its parent project; version_id alone is never a locator. All other nonglobal/nonproject kinds require project_id and resource_id and forbid document_id/version_id. Global/project also forbid document_id/version_id. Extra or contradictory selectors return generic 400; a well-formed but unknown or mismatched project/document/version pair returns generic 404. Echo the exact pair in document_id/version_id and set resource_id=null for version responses; for other scopes both version locator fields are null. Return matching target IDs and only existing public operation identifiers whose scoped authority the caller currently holds. Project-scoped operations do not imply document/task/Sprint-specific authority; resolve the exact resource before its actions. For document/version, content-read OR an independently held scoped content-write/lifecycle/manage-access capability permits discovery of the already-known target identity and applicable action names only; no content metadata. For task/Sprint require operational read; link requires both endpoint visibility; run evaluates getRetrievalSummary and getTrace separately. When the optional summary is implemented, a currently permitted answer reader may discover getRetrievalSummary without trace-read (FR-27); getTrace requires current scoped trace-read (FR-58). Each independently rechecks its own source disclosure rules; trace authority does not automatically grant summary entitlement. A caller entitled to either may discover only the permitted operations; neither entitlement yields generic 404. Revoked/unknown answer entitlement never retains a summary allow. Audit-read alone grants neither. Unknown and no applicable read/action entitlement use identical 404. A readable target with no mutation rights returns read operations only. Empty global result is valid. No grant identities, reasons, role mapping, resource revision or authority token. Known unavailable authority/dependency returns 503, never a cached allow. Result is an advisory authority snapshot, not a guarantee of state/revision/business-rule validity or authorisation of a subsequent request; every operation rechecks all preconditions. Return Cache-Control: no-store. See Proposed ADR-0019. For known document/version scope, getDocumentCommandPrecondition may be returned only when at least one implemented supported command is currently allowed; the requested target_action is independently checked on its precondition read. It exposes only opaque command preconditions, never content or current revisions.",
+        "parameters": [
+          {
+            "name": "resource_kind",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "global",
+                "project",
+                "task",
+                "sprint",
+                "document",
+                "version",
+                "link",
+                "run"
+              ]
+            }
+          },
+          {
+            "name": "project_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "resource_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "document_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Required only for resource_kind=version; forbidden for every other scope. Both fields form the exact version locator."
+          },
+          {
+            "name": "version_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Required only for resource_kind=version; forbidden for every other scope. Both fields form the exact version locator."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Current authorised projection",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AllowedActions"
+                },
+                "examples": {
+                  "version": {
+                    "summary": "Exact version authority for a known document",
+                    "value": {
+                      "resource_kind": "version",
+                      "project_id": "project-a",
+                      "resource_id": null,
+                      "document_id": "document-a",
+                      "version_id": "v1",
+                      "allowed_operations": [
+                        "getVersion"
+                      ]
+                    }
+                  },
+                  "summaryReader": {
+                    "summary": "Permitted answer reader without trace-read; FR-27 remains optional",
+                    "value": {
+                      "resource_kind": "run",
+                      "project_id": "project-a",
+                      "resource_id": "run-a",
+                      "document_id": null,
+                      "version_id": null,
+                      "allowed_operations": [
+                        "getRetrievalSummary"
+                      ]
+                    }
+                  },
+                  "traceInspector": {
+                    "summary": "Scoped execution inspector without independent answer-reader entitlement",
+                    "value": {
+                      "resource_kind": "run",
+                      "project_id": "project-a",
+                      "resource_id": "run-a",
+                      "document_id": null,
+                      "version_id": null,
+                      "allowed_operations": [
+                        "getTrace"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid selector or cursor; no resource metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "x-version-locator": [
+          "project_id",
+          "document_id",
+          "version_id"
+        ],
+        "x-run-action-entitlements": {
+          "getRetrievalSummary": "permitted_answer_reader",
+          "getTrace": "scoped_trace_read"
+        }
       }
     }
   },
@@ -3051,6 +3629,9 @@
           "revision": {
             "type": "integer",
             "minimum": 1
+          },
+          "work_location": {
+            "$ref": "#/components/schemas/WorkLocation"
           }
         },
         "required": [
@@ -3062,7 +3643,8 @@
           "state",
           "assignee_id",
           "blocked",
-          "revision"
+          "revision",
+          "work_location"
         ]
       },
       "CreateTask": {
@@ -3367,11 +3949,13 @@
               "type": "string",
               "minLength": 1
             },
-            "uniqueItems": true
+            "uniqueItems": true,
+            "description": "Complete permutation of all current Backlog task IDs, gathered through all pages of listTasks(location=backlog) with the same backlog_revision; never a single page or arbitrary subset. Empty only for an empty Backlog."
           },
           "expected_revision": {
-            "type": "integer",
-            "minimum": 1
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$",
+            "description": "Exact decimal project.backlog_revision; distinct from Project.revision, Task.revision and the cursor dataset fingerprint."
           }
         },
         "required": [
@@ -3649,11 +4233,17 @@
               "string",
               "null"
             ]
+          },
+          "backlog_revision": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$",
+            "description": "Exact decimal project.backlog_revision; distinct from Project.revision, Task.revision and the cursor dataset fingerprint."
           }
         },
         "required": [
           "items",
-          "next_cursor"
+          "next_cursor",
+          "backlog_revision"
         ]
       },
       "AuditList": {
@@ -3741,43 +4331,24 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "run_id": {
+          "handoff": {
+            "$ref": "#/components/schemas/ProviderHandoff"
+          },
+          "payload": {
+            "$ref": "#/components/schemas/ProviderPayload"
+          },
+          "payload_bytes_base64": {
             "type": "string",
-            "minLength": 1
-          },
-          "project_id": {
-            "type": "string",
-            "minLength": 1
-          },
-          "provider_configuration_id": {
-            "type": "string",
-            "minLength": 1
-          },
-          "question": {
-            "type": "string",
-            "minLength": 1
-          },
-          "evidence": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ContextPassage"
-            }
-          },
-          "operational_observations": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Observation"
-            }
+            "minLength": 1,
+            "contentEncoding": "base64"
           }
         },
         "required": [
-          "run_id",
-          "project_id",
-          "provider_configuration_id",
-          "question",
-          "evidence",
-          "operational_observations"
-        ]
+          "handoff",
+          "payload",
+          "payload_bytes_base64"
+        ],
+        "description": "Internal only. Decode exact final provider UTF-8 JSON request bytes. The immutable allowlisted provider adapter must validate their complete semantic mapping to typed payload (question/configuration/evidence and no extra hidden context); provider wire JSON need not equal the internal ProviderPayload object. Adapter-specific final-wire schema and validation tests are prerequisites before relay implementation. Compare byte count/digest against the committed manifest; send only these bytes to the allowlisted provider destination bound by destination_ref. Compare run/project/configuration, full evidence including uncited context and current revisions. Existing idempotency key must equal handoff_id; Workspace claims actor/protected_handoff/handoff_id once before guard, with no expiry into replay. Fail closed on missing/unknown preparation/claim; no automatic replay or fresh-ID resend after unknown transport."
       },
       "ProviderOutput": {
         "type": "object",
@@ -3801,13 +4372,18 @@
               "null"
             ],
             "minimum": 0
+          },
+          "handoff_id": {
+            "type": "string",
+            "minLength": 1
           }
         },
         "required": [
           "run_id",
           "output",
           "model_configuration_id",
-          "usage_tokens"
+          "usage_tokens",
+          "handoff_id"
         ]
       },
       "SprintList": {
@@ -3859,6 +4435,728 @@
         "required": [
           "project_id",
           "entity_kind"
+        ]
+      },
+      "WorkLocation": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "const": "backlog"
+              },
+              "position": {
+                "type": "string",
+                "pattern": "^-?[0-9]+(\\.[0-9]+)?$",
+                "description": "Exact numeric backlog position; compare numerically, then task_id."
+              }
+            },
+            "required": [
+              "kind",
+              "position"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "const": "sprint"
+              },
+              "sprint_id": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "kind",
+              "sprint_id"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "const": "completed"
+              },
+              "sprint_id": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "kind",
+              "sprint_id"
+            ]
+          }
+        ],
+        "description": "Current location, not complete allocation history. Completed-Sprint reopening returns backlog; retained associations are read through listSprintItems."
+      },
+      "SprintItem": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "task": {
+            "$ref": "#/components/schemas/Task"
+          },
+          "allocation_state": {
+            "enum": [
+              "allocated",
+              "completed",
+              "returned"
+            ]
+          }
+        },
+        "required": [
+          "task",
+          "allocation_state"
+        ],
+        "description": "Association to the requested Sprint; task is current state, never a historical snapshot. Returned/completed rows do not imply current allocation."
+      },
+      "SprintItemList": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SprintItem"
+            }
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor"
+        ]
+      },
+      "BlockerEventList": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Blocker"
+            }
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor"
+        ]
+      },
+      "SprintCompletion": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "sprint": {
+            "$ref": "#/components/schemas/Sprint"
+          },
+          "retained_done_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "returned_unfinished_count": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "sprint",
+          "retained_done_count",
+          "returned_unfinished_count"
+        ]
+      },
+      "ReorderResult": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "project_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "backlog_revision": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$",
+            "description": "Exact decimal project.backlog_revision; distinct from Project.revision, Task.revision and the cursor dataset fingerprint."
+          }
+        },
+        "required": [
+          "project_id",
+          "backlog_revision"
+        ]
+      },
+      "MemberList": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Member"
+            }
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor"
+        ]
+      },
+      "DocumentReadGrant": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "user_id"
+        ]
+      },
+      "DocumentReadGrantList": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DocumentReadGrant"
+            }
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "document_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "permission_revision": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor",
+          "document_id",
+          "permission_revision"
+        ]
+      },
+      "AllowedActions": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "resource_kind": {
+            "enum": [
+              "global",
+              "project",
+              "task",
+              "sprint",
+              "document",
+              "version",
+              "link",
+              "run"
+            ]
+          },
+          "project_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "resource_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "allowed_operations": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "enum": [
+                "addMember",
+                "allocateTask",
+                "archiveVersion",
+                "askQuestion",
+                "completeSprint",
+                "createDocument",
+                "createLink",
+                "createProject",
+                "createSprint",
+                "createTask",
+                "deleteDocument",
+                "editDocumentMetadata",
+                "editProject",
+                "editSprint",
+                "editTask",
+                "getAllowedActions",
+                "getDocument",
+                "getDocumentCommandPrecondition",
+                "getDocumentPolicy",
+                "getProject",
+                "getReadiness",
+                "getRetrievalSummary",
+                "getSession",
+                "getSprint",
+                "getTask",
+                "getTrace",
+                "getVersion",
+                "grantDocumentRead",
+                "importDocument",
+                "keywordSearch",
+                "listAudit",
+                "listBlockerEvents",
+                "listDocumentReadGrants",
+                "listDocuments",
+                "listLinks",
+                "listMembers",
+                "listProjects",
+                "listSprintItems",
+                "listSprints",
+                "listTasks",
+                "listVersions",
+                "observeBlockedTasks",
+                "openCitation",
+                "recordBlocker",
+                "removeAllocation",
+                "removeLink",
+                "removeMember",
+                "reorderBacklog",
+                "reviseDocument",
+                "revokeDocumentRead",
+                "searchTasks",
+                "semanticSearch",
+                "setAssignee",
+                "setClassification",
+                "setTaskState",
+                "signIn",
+                "signOut",
+                "startSprint"
+              ]
+            }
+          },
+          "document_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "version_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "resource_kind",
+          "project_id",
+          "resource_id",
+          "allowed_operations",
+          "document_id",
+          "version_id"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "resource_kind": {
+                  "const": "version"
+                }
+              },
+              "required": [
+                "resource_kind"
+              ]
+            },
+            "then": {
+              "properties": {
+                "resource_id": {
+                  "type": "null"
+                },
+                "document_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "version_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "project_id": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "document_id": {
+                  "type": "null"
+                },
+                "version_id": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "DocumentHandoffEvidence": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "const": "document"
+          },
+          "source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "project_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "document_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "passage_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "permission_revision": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$"
+          },
+          "lifecycle_revision": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$"
+          },
+          "version_digest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "Lowercase SHA-256 over the exact specified bytes; no normalization or JSON reserialization."
+          },
+          "excerpt_digest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "Lowercase SHA-256 over the exact specified bytes; no normalization or JSON reserialization."
+          }
+        },
+        "required": [
+          "kind",
+          "source_id",
+          "project_id",
+          "document_id",
+          "version_id",
+          "passage_id",
+          "permission_revision",
+          "lifecycle_revision",
+          "version_digest",
+          "excerpt_digest"
+        ]
+      },
+      "OperationalHandoffEvidence": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "const": "operational"
+          },
+          "source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "project_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "entity_kind": {
+            "enum": [
+              "project",
+              "sprint",
+              "task"
+            ]
+          },
+          "entity_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "entity_revision": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$"
+          },
+          "observation_revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "entity_digest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "Lowercase SHA-256 over the exact specified bytes; no normalization or JSON reserialization."
+          }
+        },
+        "required": [
+          "kind",
+          "source_id",
+          "project_id",
+          "entity_kind",
+          "entity_id",
+          "entity_revision",
+          "observation_revision",
+          "observed_at",
+          "entity_digest"
+        ]
+      },
+      "HandoffEvidence": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/DocumentHandoffEvidence"
+          },
+          {
+            "$ref": "#/components/schemas/OperationalHandoffEvidence"
+          }
+        ]
+      },
+      "HandoffManifest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "handoff_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "run_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "attempt_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "purpose": {
+            "enum": [
+              "provider_input",
+              "answer_delivery"
+            ]
+          },
+          "actor_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "project_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "access_context_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "session_generation": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$"
+          },
+          "project_permission_revision": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$"
+          },
+          "evidence_set": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HandoffEvidence"
+            }
+          },
+          "payload_digest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "Lowercase SHA-256 over the exact specified bytes; no normalization or JSON reserialization."
+          },
+          "payload_length": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "destination_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "prepared_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "complete": {
+            "const": true
+          }
+        },
+        "required": [
+          "handoff_id",
+          "run_id",
+          "attempt_id",
+          "purpose",
+          "actor_id",
+          "project_id",
+          "access_context_ref",
+          "session_generation",
+          "project_permission_revision",
+          "evidence_set",
+          "payload_digest",
+          "payload_length",
+          "destination_ref",
+          "prepared_at",
+          "complete"
+        ]
+      },
+      "StoredHandoff": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "manifest": {
+            "$ref": "#/components/schemas/HandoffManifest"
+          },
+          "manifest_bytes_base64": {
+            "type": "string",
+            "minLength": 1,
+            "contentEncoding": "base64"
+          },
+          "manifest_digest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "Lowercase SHA-256 over the exact specified bytes; no normalization or JSON reserialization."
+          },
+          "durable_commit_ref": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "manifest",
+          "manifest_bytes_base64",
+          "manifest_digest",
+          "durable_commit_ref"
+        ],
+        "description": "Knowledge-owned immutable committed manifest receipt. Decode manifest_bytes_base64 as UTF-8 JSON equal to manifest; manifest_digest hashes those exact bytes. Resolve by authenticated getHandoffManifest and compare the entire stored record before claiming. A caller assertion, digest or complete=true is never evidence of persistence or current access."
+      },
+      "ProviderHandoff": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/StoredHandoff"
+          },
+          {
+            "properties": {
+              "manifest": {
+                "properties": {
+                  "purpose": {
+                    "const": "provider_input"
+                  }
+                },
+                "required": [
+                  "purpose"
+                ]
+              }
+            },
+            "required": [
+              "manifest"
+            ]
+          }
+        ]
+      },
+      "AnswerHandoff": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/StoredHandoff"
+          },
+          {
+            "properties": {
+              "manifest": {
+                "properties": {
+                  "purpose": {
+                    "const": "answer_delivery"
+                  }
+                },
+                "required": [
+                  "purpose"
+                ]
+              }
+            },
+            "required": [
+              "manifest"
+            ]
+          }
+        ]
+      },
+      "ProviderPayload": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "run_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "project_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "provider_configuration_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "question": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContextPassage"
+            }
+          },
+          "operational_observations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Observation"
+            }
+          }
+        },
+        "required": [
+          "run_id",
+          "project_id",
+          "provider_configuration_id",
+          "question",
+          "evidence",
+          "operational_observations"
         ]
       }
     },

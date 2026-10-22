@@ -1,15 +1,15 @@
 # Storage fit against confirmed business policies
 
 **Artifact ID:** DATA-FIT-01
-**Version/date:** 0.3 Draft - 16 October 2026
-**Inputs:** owned migrations 001 and additive 002; DATA-04 v0.6; ADR-0007 through ADR-0017; current contracts.
-**Status:** Static schema/privilege review; no new migration or runtime result.
+**Version/date:** 0.5 Draft · 18 October 2026
+**Inputs:** owned migrations 001/002 and additive Workspace 003; DATA-04 v0.11; ADR-0007 through ADR-0017; current contracts.; Proposed ADR-0018.; Proposed ADR-0020
+**Status:** Draft schema/privilege review; migration 003 verified in isolated storage tests, application enforcement remains unimplemented.
 
 ## Findings and required evidence
 
 | Policy / source | Current storage evidence | Fit and remaining work |
 | --- | --- | --- |
-| Reopen Done from Completed Sprint / ADR-0008 | Workspace sprint_allocation has completed/returned/allocated states and unique live allocation by task; task has state/backlog_position/revision | Can retain completed row while task becomes To Do and has no live allocation. Query current Backlog from current task state/allocation, not by deleting or changing completed history. Atomic reopen/reorder/audit handler and race against new allocation remain unimplemented. No extra historical table is proved necessary by this rule alone. |
+| Reopen Done from Completed Sprint / ADR-0008 | Workspace sprint_allocation has completed/returned/allocated states and unique live allocation by task; task has state/backlog_position/revision | Migration 003 supplies a persisted current-location marker: reopening and later Done in Backlog cannot be derived from old completed rows. Preserve completed history; current location and dedicated backlog_revision change atomically. Handler authority/audit and concurrent API behavior remain unimplemented. |
 | Membership and restricted rejoin / ADR-0007 | Membership active/generation; read_grant membership_generation, valid and revision | Fields support fresh-generation authority, but constraints do not enforce active membership or generation equality. Authority queries and removal/rejoin transactions must do so. Storage tests alone cannot prove revocation. |
 | Non-read grants and assignee removal / ADR-0017 | CapabilityGrant valid/permission_revision, no membership generation; task nullable assignee FK references membership identity only | Atomic invalidation/unassignment is possible with existing columns. The FK permits an inactive member, so current-membership validation and assignment/removal serialization are required. Increment task revisions, preserve audit, never restore grants from author/role names. |
 | Immediate revisions / ADR-0009 | Knowledge 002 removes Draft; unique Current index, deferred current pointer checks, immutable passage/version protections | Storage prerequisites tested earlier; content-write/current-read authority, guarded revision and audit/idempotency composition are handler gaps. Keep applied 001 unchanged. |
@@ -28,3 +28,11 @@ This review distinguishes fields that can express a policy from enforcement that
 Prioritise current authority/grant/assignment transactions, immutable handoff manifest design, identity-only citation reads and safe creation reconciliation before runtime AI. Optional unlink and task search remain conditional on their Should scope. Any needed migration must be additive and reversible, preserve cited evidence and leave applied 001 unchanged. No service may write the other service's database.
 
 The missing enforcement is an implementation gap for the application; the confirmed schema mismatch is a concrete design input. ADR-0017 now confirms rejection of last-manager removal; test effective capability and concurrent removals in the owning transaction. Additional delegation/provisioning mechanics and retention duration remain open. These are not silently chosen by a schema constraint.
+
+## SYS-02 follow-up — 18 October 2026
+
+Proposed ADR-0018 / Workspace migration 003 supply explicit current location, same-project/deferred allocation references, completed-history immutability and a dedicated Backlog revision. Current placement no longer depends on interpreting historical associations. Ambiguous legacy completed rows require explicit revision-bound reconciliation. Storage tests are distinct from absent reorder/cursor/permission/audit handlers. No development database migration was applied.
+
+## SYS-01 design follow-up
+
+Proposed ADR-0020 and logical model v0.5 supply complete mixed evidence, immutable receipt/byte binding and nonexpiring one-use claim/fence design. The new internal getHandoffManifest verifies an acknowledged Knowledge record outside guard. This addresses missing transport representation, not physical enforcement. Knowledge additive immutable storage, Workspace claim fencing/retention, final provider-wire schema and all live TC-26 cases remain gaps. General idempotency expiry is insufficient and must not allow consumed protected IDs to reappear as fresh. Existing migrations are unchanged.

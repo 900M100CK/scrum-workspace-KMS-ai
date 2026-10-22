@@ -1,8 +1,8 @@
 # Functional and alternate-flow verification design
 
 **Artifact ID:** VERIFY-01
-**Version/date:** 0.3 Draft - 16 October 2026
-**Inputs:** PRD-01 v0.9; UC-02 v0.6; TEST-08 v0.5; ADR-0007 through ADR-0017; release-scope v0.2.
+**Version/date:** 0.4 Draft · 18 October 2026
+**Inputs:** PRD-01 v0.9; UC-02 v0.7; TEST-08 v0.20; ADR-0007 through ADR-0017; release-scope v0.2.
 **Status:** Analyst review of required observations; application execution Not run. No independent approval.
 **Trace:** BR-01 through BR-15; SC-01 through SC-08 through TEST-COVERAGE-01.
 
@@ -30,7 +30,7 @@ For every applicable mutation add authority denial, stale revision, replay, owni
 | FR-12 / AC-12 | UC-07; UC-09 citation | TC-05, TC-06 | Exact source view matches stored version and Current/Superseded/Archived status; historical label visible. Defined. |
 | FR-13 / AC-13 | UC-07 archive | TC-06 | Archive Current and Superseded separately; ordinary discovery excludes them, permitted history still labels/opens retained content. Defined. |
 | FR-14 / AC-14 | UC-06 revoke; UC-07 delete | TC-03, TC-04 | Commit revoke/delete before renewed protected boundary; source/search/citation/answer content is absent, including stale cache reuse. Defined. |
-| FR-15 / AC-15 | UC-08 Alt-4 | TC-06, TC-20 | Pending/ready/failed readiness differs from Current validity; pending/failed never advertised searchable. Defined. |
+| FR-15 / AC-15 | UC-08 Alt-4 | TC-06, TC-20 | Pending/ready/failed readiness differs from Current validity; pending/failed never advertised ready for semantic search; keyword availability is independent and checked through its own request against committed, permitted Current passages. Defined. |
 | FR-16 / AC-16 | UC-08 create link | TC-13, TC-17 | Permitted endpoints show explicit relationship from both directions; AI suggestion alone persists nothing. Defined. |
 | FR-17 / AC-17 | UC-08 Alt-3 | TC-02, TC-17 | Readable source with hidden target exposes no target metadata or hidden-link count; guessed read generic. Defined. |
 | FR-18 / AC-18 | UC-08 keyword | TC-23 | Exact-term fixture includes permitted and restricted matches; only eligible Current results return. Defined. |
@@ -145,3 +145,9 @@ Rows are branch-specific, not claims that the enclosing UC has passed. UC-01 ext
 The old gates named retrieval broadly but lacked explicit exact-term, paraphrase and result-metadata assertions; TC-23 now supplies them. TC-24 makes positive project creation/membership and optional project edit visible instead of relying only on denial tests. FR-64 now has UC-02 Alt-2 under its existing optional scope. Multi-selection is explicitly owner-confirmed; ADR-0014 describes per-task transport/retry semantics without a new bulk endpoint. Source-policy/tombstone, reopening-history mapping, orphan cleanup, identity/provider choices and measured evaluation remain recorded implementation/input gaps.
 
 This completes an explicit inventory against the current FR/AC rows and named alternate branches, not proof that every AC is implemented or that every business rule is unambiguous. Further consistency findings must amend the source and this matrix together. Test authors should split compound observations into runnable cases, attach actual evidence and preserve failures.
+
+## NEXT-04 recovery and citation assertions
+
+TC-08: an operational citation opens by entity kind/ID, observation revision/time; a fresh authorised entity read is labelled current and cannot substitute for the historical observation. Change a blocker after answer generation and verify both labels, generic denial after membership loss and no fabricated document locator/snapshot.
+
+TC-10/22: after terminal provider failure the editor permits deliberate new request; a recovered successful request clears stale failure presentation. A lost response is unknown, never automatic same-handoff replay or fresh-identity resend; explicit new user intent still cannot bypass server quarantine. Healthy keyword/work paths remain available according to their own dependencies. TC-20: failed/pending semantic indexing with committed permitted Current passages still permits a successful keyword request. No runtime result is claimed.

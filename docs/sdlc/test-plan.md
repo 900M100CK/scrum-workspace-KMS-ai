@@ -1,9 +1,9 @@
 # Minimum test and evidence plan
 
 **Artifact ID:** TEST-08
-**Version/date:** 0.5 Draft - 16 October 2026
+**Version/date:** 0.20 Draft · 18 October 2026
 **Status:** Planned application assertions; owner-confirmed policy direction, no release acceptance.
-**Inputs:** [PRD-01](PRD_SRS.md) v0.6; [UC-02](use-cases.md) v0.4; [SAD-03](../architecture.md) v0.9; DATA-04 v0.6; API-05 v0.6; ADR-0007 through ADR-0017; current UX/diagrams; [specs](../../specs/README.md); [evaluation](../../eval/README.md).
+**Inputs:** [PRD-01](PRD_SRS.md) v0.9; [UC-02](use-cases.md) v0.7; [SAD-03](../architecture.md) v0.15; DATA-04 v0.11; API-05 v0.16; ADR-0007 through ADR-0017; current UX/diagrams; [specs](../../specs/README.md); [evaluation](../../eval/README.md).; Proposed ADR-0018.; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
 **Author:** Development agent acting sequentially; no independent review claimed.
 
 ## Scope, levels and environment
@@ -74,3 +74,83 @@ The optional user-stories file stays N/A because PRD FR/AC and UC journeys suppl
 ADR-0017 extends TC-03/13/14/18/19: remove all individually granted capability families and clear task assignees atomically, preserve historical attribution, race removal against assignment/grant issuance, inject audit failure and verify rollback, then rejoin and prove neither grant nor assignment revival. These assertions apply to FR-38/39/43 and do not add a release requirement.
 
 ADR-0017 last-manager rule: reject removal of the final current member with effective membership-management authority until another current member has that authority. Check inside the serialized removal transaction, including concurrent removals/capability changes; no Admin/creator bypass or automatic successor. Rejection leaves all state unchanged.
+
+## SYS-02 operational reconstruction acceptance — 18 October 2026
+
+Proposed ADR-0018 / Workspace v0.2.3 extend TC-07/08/16/21 without changing release scope. From a fresh authenticated client, use only public reads to reconstruct all versus ordered Backlog tasks, Planned/Active Sprint allocated rows and Completed Sprint retained/returned rows. Reopen completed work and verify Backlog/To Do while the old completed association remains. Do not infer a historical task state from the current Task nested in an association. Verify equal numeric positions use task-ID tie order and decimal precision is preserved.
+
+Read blocker events in ascending sequence after refresh, including repeated Open and subsequent Resolved, actor/time/outcome and empty history. A member without audit-read can inspect permitted work history; a removed member cannot. During pagination mutate a projected row, reorder, reassign or revoke membership: stale datasets return 409 without rows, access loss returns generic denial, foreign cursors disclose no scope. The client discards stale pages. Compare completion counts to its transaction and same-key replay after later work changes. Repeat with AI unavailable. All runtime assertions remain Not run; context tests only protect contract declarations.
+
+## P1-R01/P1-R02 closure assertions — 18 October 2026
+
+TC-07/16/21: complete in Sprint A, reopen into Backlog, mark Done there and allocate to B; A's completed association remains unchanged throughout. Reject cross-project/wrong-state/missing-association markers and completion with unsettled live allocations. Rollback restores location and generation. Legacy ambiguous completed histories fail upgrade without explicit revision-bound mapping; stale mapping fails; no content/history deletion. Down refuses nonempty tasks.
+
+TC-07/19: traverse multiple Backlog pages at one revision; valid full permutation succeeds, duplicate/omitted/foreign/currently allocated IDs fail unchanged, empty only succeeds for an empty set, same-order is no-op. Concurrent creation/allocation/return/reorder changes backlog_revision and rejects the old request; content-only edits do not change this revision but invalidate cursor datasets. Same-key replay after a later reorder returns its original receipt without rewriting newer order. Handler/cursor/permission scenarios remain Not run even if SQL storage tests pass.
+
+## Priority 2 discovery assertions — 18 October 2026
+
+TC-03/13/24: page current members, remove/rejoin and reject a prior membership revision; known-ID add does not enumerate accounts. Compare same-role actors with different grants. getAllowedActions must not return internal operations, other-scope actions, grant identities, hidden metadata or usable authority after revocation. Unknown/denied response equivalence includes forged cross-project resource selectors. Authority failures return no cached allow.
+
+TC-05/15/20: browse readable documents with pending/failed indexing or null Current; page exact labelled history and retrieve selected immutable version. Non-reading manage-access retains policy/grant administration while content/explorer/history remain denied. Reader without manage-access cannot enumerate grantees. Verify fresh policy preconditions, grant-page revision consistency, concurrent classification/grant changes and remove/rejoin invalidation. Forge/expire/change cursors and ensure no mixed page sets or hidden counts; test final protected handoff revocation, Knowledge outage and authority outage. No handler tests have run; harness negatives below only protect selected contract declarations. Trace: SC-01/05/06; Proposed ADR-0019.
+
+## Priority 2 recheck regression assertions
+
+P2-R01 / TC-05/20: seed two documents in one project with identical version IDs and different grants; discover using full pairs and verify exact echoed bindings. Wrong project/parent, unknown version, missing/extra selectors and independently held non-read action grants must not borrow another document's read authority. Runtime handler evidence is pending.
+
+P2-R02 / TC-11/18: pair answer-reader/no-trace, trace-inspector/no-answer, both, unrelated and revoked readers. Discover summary and trace independently; recheck at actual inspection and source delivery. FR-27 remains Should. Declaration tests do not exercise these decisions.
+
+P2-R03: through validateApi, inject actual guardProviderInput, retireDocumentPolicy and an unknown operation into separate catalogue copies; each must fail public membership derived from both current contracts. A Knowledge public operation must pass, a removed/renamed peer operation must fail, a narrower intentional catalogue must pass, and missing peer contracts must fail closed. Catalogue membership does not prove operation-to-scope enforcement.
+
+## SYS-01 transport contract and runtime distinction
+
+TC-26 now uses manifest-bound ProviderInput and InternalQuestionResult. Exercise the authenticated internal getHandoffManifest outside guard, then local one-use claim, then exact full current evidence validation and frozen byte handoff. Alter purpose, actor/session/project/run/attempt/destination, complete marker, byte length/digests, receipt, uncited document and operational entity revision/time. Failed/unknown persistence or claim sends zero bytes. Duplicate/unknown claim never resends. A source revision/permission change rejects the entire original draft; fresh validated replacement occurs only after guard release. Crash/restart/unknown send cannot resume or auto-resend with a new identity. A valid attempt holds guard through completion/confirmed abort.
+
+Harness mutation tests protect mandatory receipt/manifest/frozen-byte fields, purpose and full mixed evidence declarations across both contracts. They do not execute storage, byte hashing, provider adapter semantic mapping, guard/claim fencing or real revocation. Both purposes require live paused-boundary tests and additive storage evidence before AI relay. No such test has run in this slice.
+
+## NEXT-03 inspection and metric cases
+
+TC-11: permitted answer reader without trace-read sees optional summary only; scoped trace inspector sees separately allowed fields. Exercise actual query, two recorded retrieval steps, source-to-step ranks, exact document tuple and operational entity/revision/time, including a repeated source in both steps. Deny/revoke one source and verify no identity, dependent query/validation text, hidden count or rank gap survives; recheck at protected response handoff. Unknown/denied run is generic 404; authority or mandatory-record failure is generic 503. No audit-only identity exception carries into trace/summary.
+
+TC-18: valid measured-zero duration/usage, unavailable metrics with no number, unexecuted not_performed step/query/metrics, partial totals with unavailable run total, failed step with measured duration, optional metric persistence loss and mandatory query/step/evidence failure. Optional metric loss does not invent defaults or undo durable mandatory provenance; missing mandatory records are failures. Test strict exclusive metric shapes and safe error categories without private reasoning/raw logs.
+
+Harness negatives reject absent actual query/steps, incomplete exact document/operational source binding, numeric-only timing, values attached to unavailable metrics, missing usage availability, full generation stages in summary and FR-27 promotion to Must. These are contract regression checks, not capture/permission/telemetry runtime evidence.
+
+## NEXT-04 consumer scenarios
+
+TC-08: change current blocker/task state after an operational citation was delivered; open its observation locator, fetch exact current entity under renewed project scope and label the two separately. Denial must not repopulate cached titles/current values or call a document citation endpoint. No historical snapshot read is invented.
+
+TC-10/22: terminal AI failure followed by deliberate new request and success clears stale health/error UI; no background loop. Lose a response and verify explicit unknown state, no automatic replay/new-ID resend and server quarantine respected by any new user request. Test expired session and membership loss separately from provider recovery. TC-20: semantic pending/failed plus committed permitted Current passages still allows keyword results; Current alone promises neither path. These are planned runtime/UI cases; contract negatives only protect explicit semantic readiness fields.
+
+## NEXT-06 command precondition and receipt scenarios
+
+TC-03/05/06/13/20: revoke restricted-author read but retain exact write/lifecycle authority; deny all content/history/readiness while allowing known-ID opaque precondition and new-text revision/archive/delete. Return only minimal receipt, never Version/Document content. Read-only/manage-only actor is denied the requested command precondition. Race revocation/session change and revision; reject wrong actor/project/document/action/version/generation and stale/unknown tokens without current revision/state leakage. Commit state/audit/token consumption atomically, roll back all on failure and return original minimal same-key receipt without re-executing or requiring a consumed token. A changed replay payload conflicts. Unknown outcome keeps the original key; a new precondition does not prove rollback. FR-65 remains Could. Contract negatives cover selected precondition unions and receipt disclosure only; runtime/SQL tests are unrun.
+
+## NEXT-07 contract example checks
+
+`npm run contracts:test` evaluates synthetic component-schema samples with pinned development tooling after `npm ci`. It compiles the current OpenAPI component schemas and checks valid/invalid metric states, inspection locators, full version discovery identity, command selector exclusivity, minimal acknowledgements and manifest purposes. Inputs are never coerced, defaulted or stripped. This supplements declaration checks; it neither validates the complete OpenAPI document nor executes HTTP, permissions, storage, relay or UI behavior. Non-schema semantics in TC-26 and command/token/reorder scenarios remain unrun.
+
+## NEXT-08 document and inline-schema checks
+
+The same contract test command now adds whole-document structure checks using the pinned official 3.1.x schema and a calibrated local dynamic-reference specialization. Schema Object validation remains a separate JSON Schema 2020-12 meta-validation/compilation step for both named components and inline HTTP schemas. A valid synthetic document and malformed response/parameter/operation cases calibrate the structure adapter; an invalid inline schema must fail while arbitrary example data stays opaque. Source hash and license are recorded under tests/fixtures/openapi31. This is bounded structural evidence, without document-level format assertions, external dialect overrides, full standard semantics or live HTTP acceptance.
+
+## NEXT-09 operational inspector reload scenario
+
+TC-08 / NFR-01: deliver an operational citation, open its inspector, then reload/direct-navigate after losing the original answer context. The historical panel must state original cited observation unavailable; a renewed current entity read is separate and cannot supply historical observation time/revision/value. Tampered URL observation parameters or browser storage must not become authoritative history. Back navigation may retain actual in-memory delivered context but still renews scope; denied/expired scope clears protected details. Do not auto-submit a new question or borrow trace/optional-summary entitlement. These are planned UI assertions; no browser handler/prototype test ran in this textual correction.
+
+## NEXT-10 routing/authentication declaration regressions
+
+Dependency-free context tests now reject empty or partial authentication alternatives for all eight actual internal operations, public session opt-outs/unknown schemes, duplicate/extra/missing path parameters and equivalent templated routes. Positive tests retain inherited parameter references and legal operation overrides; cyclic references fail, and HEAD cannot bypass requirement trace. This tests the harness through current full contracts. Real HTTP authentication, guard and route behavior remain Not run.
+
+## NEXT-11 executable byte reference for TC-26
+
+HANDOFF-REF-01 adds local tests for canonical base64, byte limits, invalid UTF-8/JSON/decoded duplicate keys, exact integers, raw byte digest/length, independent preparation/identity, full uncited mixed evidence and exact answer citations/claim references. Whitespace/Unicode changes and UTF-16 versus UTF-8 byte counting are explicit negatives. Zero-evidence insufficiency is retained. The source/capture/receipt fixtures are synthetic test oracles, not real authoritative persistence or access evidence. Provider wire mapping, actual guard/claim/byte boundaries and factual support remain unrun; TC-26 is not Passed.
+
+## NEXT-12 isolated SQL evidence and remaining TC-26
+
+The separate handoff storage suite passed 11 results (10 subtests plus parent), and the updated existing storage suite passed 15 (14 plus parent) on PostgreSQL 17.10 / pgvector 0.8.2. It checks new migration repeat/empty reverse, exact byte/digest/owned identity, rejected malformed/partial metadata and duplicate sources, rollback/append-only rights, both purposes, permanent duplicate claims, two-session claim race, outcome-fence FK, nonempty down refusal and legacy protected-row rejection without mutation. The existing policy/revision/location/retrieval/isolation tests remain passing. All fixtures ran in unique disposable containers; no development migration occurred.
+
+These are SQL service-role/storage tests. Active process fencing, durable/unknown acknowledgements at application boundaries, real scoped getHandoffManifest, source capture/revocation, guard retention, actual provider/answer zero-byte rejection and no automatic resend still need handler/transport evidence. No SP or TC-26 is marked Passed.
+
+## NEXT-13 optional SQL/reference integration
+
+The actual contracts:storage:test command passed seven results (six subtests plus parent) in a fresh isolated container. Both purposes retain exact raw bytes through a canonical StoredHandoff projection. Every trusted-context selector mismatch/NULL yields no row; wrapped base64 and reserialized bytes fail; readable consumed preparations do not regain a claim; a separate connection cannot see uncommitted preparation and cancelled rollback leaves none; unsafe integer parsing fails closed. These are storage/serialization tests with synthetic context, not current permission or HTTP consumer/provider acceptance. No live TC-26 or SP Done is claimed.

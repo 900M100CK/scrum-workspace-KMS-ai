@@ -1,0 +1,43 @@
+# Opaque preconditions and minimal document command receipts
+
+**Artifact ID:** ADR-0022
+**Version/date:** 0.1 Proposed · 18 October 2026
+**Status:** Proposed implementation design for existing independent write/lifecycle authority; no content-read grant or delegation policy.
+**Inputs:** PRD-01 v0.9 AC-04/11/13/48/65; UC-02 v0.6 UC-06/07; ADR-0007/0009/0011/0012/0019; Workspace v0.2.8 / Knowledge v0.2.9; NEXT-06.
+**Trace:** BR-04, BR-05, BR-10, BR-14; FR-04/11/13/14/48/59/65; SC-05, SC-06; TC-03/05/06/13/20.
+
+## Decision and alternatives
+
+A holder of content-write or lifecycle authority can submit known-ID commands without content-read. They need a concurrency precondition without reading current content/metadata, and success must not return a content-bearing Version or Document. Requiring content-read would contradict the existing independent-capability design; disclosing the current aggregate revision would expose activity metadata; blind last-write-wins would permit stale overwrite.
+
+Knowledge therefore exposes action-scoped getDocumentCommandPrecondition, returning only selector echoes and an opaque precondition reference. The private numeric document revision remains server-side. Existing numeric expected_revision remains valid when already known; callers may instead submit the opaque token. Both variants still require current action authority and exact revision checks. No capability/read grant is created by issuance or token possession. This is an interface for existing commands, not a new document-reading entitlement.
+
+## Scope and issuance
+
+GET /knowledge/projects/{project_id}/documents/{document_id}/command-precondition requires an authenticated current member plus the exact target command's current content-write/lifecycle capability as decided by Workspace. target_action is reviseDocument, archiveVersion, deleteDocument or optional editDocumentMetadata. FR-65 remains Could and unsupported commands are unavailable. For archive, the already-known version_id is required and must match that document; other actions forbid it. A reader or manage-access holder without the requested action is denied, even if they can inspect content or grants. AddMember/role/ownership labels confer no implicit authority.
+
+Return document_id, target_action, nullable supplied version_id and precondition_token only. No title, labels, owner, lifecycle, Current pointer, existing version IDs, revision number, history or readiness is returned. The token's grammar pc_ plus 43 base64url characters represents 32 unpredictable random bytes; store a cryptographic token hash rather than the bearer text. This reference is not a signed permission token or an embedded revision. Resolve the supplied project/document/version relationship and current authority before issuance; malformed combinations are generic 400, unknown/denied/mismatched targets generic 404 and authority/storage failure generic 503. No-store and no cached token on failure.
+
+Knowledge privately binds token hash to actor/session generation, project/document, action, optional exact version, current document aggregate revision and Workspace policy-generation reference. It makes no content/lifecycle eligibility assertion to the caller. A token for an archived document may still fail a revision command's existing lifecycle rules; no state is disclosed to make the form look more helpful. There is no target listing or version discovery bypass. Creating a precondition record changes no business document state and does not require a business audit event. Issuance storage can be bounded by current session/scope/revision cleanup; no numeric TTL is selected here.
+
+## Guarded use, receipts and replay
+
+Revise/EditMetadata request bodies accept exactly one expected_revision or precondition_token alongside their existing fields. Archive accepts a DocumentCommandConcurrency union. Delete accepts exactly one X-Expected-Revision or X-Document-Precondition header. Missing/both is 400; fields/tokens are selectors/preconditions, never actor or authority assertions.
+
+Under the existing lifecycle guard, recheck current session/project/document action authority. For a token, match actor/session/policy/action/parent/version and compare its private document revision atomically with the command. Lock/compare/consume the precondition in the same Knowledge transaction as state, minimum audit and durable idempotency receipt. Revocation or scope failure denies; stale/consumed/unknown token or revision/lifecycle conflict is a generic 409 without current revision/state/content. Failed transactions do not consume a token as though the command committed. On conflict reload a fresh precondition and let the user reconsider new text or the known target; never blindly overwrite.
+
+Revision/archive/optional metadata edit return DocumentMutationReceipt for all callers: known document identity, operation, durable receipt_id and only that command's result version identity. Revision may acknowledge its newly created version ID; archive echoes the supplied target; metadata edit returns null. These are command acknowledgements, not content reads or current-state metadata. Do not include old/new content, title, owner, labels, lifecycle, Current pointer or numeric revision. Delete remains content-free 204. An opaque receipt proves that command committed; its identity/result does not imply current document access or unchanged current state.
+
+Same-key/same-payload replay first rechecks current command authority, then returns the original committed receipt without reapplying the command or failing merely because its precondition token was consumed. A changed payload conflicts. The receipt must not be a cached Version/Document. If authority was revoked, do not reveal the original receipt through replay. Cleanup can delete unusable token records because an unknown token always rejects; it must never turn an old token into an issued valid reference. Token text is never deliberately reused.
+
+A lost response or unknown remote lifecycle commit is reconciled with the original key/payload under ADR-0011; obtaining a new token does not prove rollback or justify a fresh-key write. A rollback is not inferred from a 503. Protected handoffs remain blocked as required while lifecycle outcome is unresolved. This command protocol is separate from ADR-0012's nonreplayable protected transport claims; business-command replay returns a receipt, whereas an old AI handoff never sends bytes again.
+
+## Consumer and implementation handoff
+
+The independent known-ID actions route uses getAllowedActions to choose controls, then requests a precondition for the selected action. It accepts new content or explicit metadata changes without prefill from the protected document. Archive requires an already-known exact version; there is no non-reading history list. Readers may continue using a known numeric revision; after a receipt they perform a fresh permitted document/version/history/readiness request for display. A non-reader sees only confirmation/receipt and command-created or supplied identity, without fetching protected content. A receipt does not enable navigation as a read grant.
+
+Creation/import currently return Document and must still pass renewed content/metadata read checks before handing off that body. This correction does not weaken those existing guards or decide orphan cleanup. Policy/grant reads remain the separate manage-access protocol from ADR-0019. Additional delegation/provisioning and retention are not chosen here; no owner decision is needed merely to use an already confirmed independent command capability. Proposed receipt/precondition details remain reviewable design, not owner approval.
+
+Logical model v0.7 records Knowledge-owned DocumentCommandPrecondition; additive storage/token cleanup/transaction composition and handlers remain unimplemented. No existing migration is edited or applied. Future tests must revoke author read while retaining write/lifecycle, issue/use a precondition without a content read, reject another actor/session/action/version/project or old generation, race a revision/revocation, roll back state/audit/token together and replay only minimal receipts. Test read-only/manage-only actors denied, unknown-outcome reconciliation and no protected response leakage. FR-65 remains optional. Contract negatives only protect chosen fields/unions and response references.
+
+**Checklist:** Pass for precondition/receipt design and scope/failure trace; Gap for producing-handler, token storage/cleanup, concurrency and response-handoff evidence. **Handoff:** NEXT-06 may be ticked for supplied design after dependent checks, while all application acceptance and SYS-01 runtime gate remain open.

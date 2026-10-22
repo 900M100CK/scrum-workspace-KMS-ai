@@ -4,7 +4,8 @@
 **Version/date:** 0.1 Draft · 18 October 2026  
 **Status:** Sequential author review; findings open, not independent approval or application acceptance.  
 **Owner:** Stage 9 consistency reviewer; Stage 0 coordinates corrections.  
-**Inputs:** BRD English v1.0 and proposed audit/research addenda; development rules v1.4; PRD-01 v0.9; UC-02 v0.6; PLAN-01 v0.3; SAD-03 v0.12; DATA-04 v0.6; DATA-FIT-01 v0.3; API-05 v0.6; Workspace OpenAPI v0.2.2 / Knowledge v0.2.3; UX-06 v0.3 and supporting flows; TEST-08 v0.5; VERIFY-01 v0.3; SPEC-REVIEW-01 v0.11 (retains the earlier Stage 6 review); ADR-0006 through ADR-0017 and OWNER-Q-01.  
+
+**Snapshot inputs (pre-correction review):** BRD English v1.0 and proposed audit/research addenda; development rules v1.4; PRD-01 v0.9; UC-02 v0.6; PLAN-01 v0.3; SAD-03 v0.12; DATA-04 v0.6; DATA-FIT-01 v0.3; API-05 v0.6; Workspace OpenAPI v0.2.2 / Knowledge v0.2.3; UX-06 v0.3 and supporting flows; TEST-08 v0.5; VERIFY-01 v0.3; SPEC-REVIEW-01 v0.11 (retains the earlier Stage 6 review); ADR-0006 through ADR-0017 and OWNER-Q-01.
 **Trace:** BR-01–BR-14; SC-01–SC-08, with targeted findings below. BR-15 remains Should/Enhanced.
 
 ## Method and boundaries
