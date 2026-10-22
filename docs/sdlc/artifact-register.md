@@ -39,13 +39,14 @@ Prior OWNER-Q-01 verification: combined Node 24.21.0 run `node --test tests/docs
 ## Current register and handoffs
 
 **Artifact ID:** REG-00
-**Version/date:** 0.51 Draft · 22 October 2026
+**Version/date:** 0.52 Draft · 22 October 2026
 **Status:** Draft; confirmed policy corrections in progress, full coverage and remaining decisions explicit.
-**Source versions:** [BRD stable entry](../BRD.md) → [English BRD v1.0](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md) and two Proposed addenda, [AGENTS.md v1.4](../../AGENTS.md), [workflow](../../agents/WORKFLOW.md), PRD-01 v0.9, UC-02 v0.7, SAD-03 v0.15 and ADR-0007–ADR-0017. Prior review inputs remain historical. Storage has measured test evidence; interviews, pilot and application runtime evidence remain absent.; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
+**Source versions:** [BRD stable entry](../BRD.md) → [English BRD v1.0](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md) and two Proposed addenda, [AGENTS.md v1.6](../../AGENTS.md), [workflow](../../agents/WORKFLOW.md), PRD-01 v0.9, UC-02 v0.7, SAD-03 v0.15 and ADR-0007–ADR-0017. Prior review inputs remain historical. Storage has measured test evidence; interviews, pilot and application runtime evidence remain absent.; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
 
 | Stage/ID | Path | Owner role | Version/status | Inputs/dependencies | Planned BR/SC coverage | Open decisions |
 | --- | --- | --- | --- | --- | --- | --- |
-| 0 / REG-00 | docs/sdlc/artifact-register.md | Coordinator | 0.51 Draft | Current requirements, corrective ADRs and queue | BR-01–BR-15; SC-01–SC-08 | Author corrections tracked separately from runtime acceptance |
+| 0 / REG-00 | docs/sdlc/artifact-register.md | Coordinator | 0.52 Draft | Current requirements, corrective ADRs and queue | BR-01–BR-15; SC-01–SC-08 | Author corrections tracked separately from runtime acceptance |
+| Development tooling / DEV-SKILLS-01 | agents/development-skills.md; .agents/skills/sources.json | Development agent | 0.1 Draft; five local skills installed | AGENTS v1.6; development-rules v1.5; pinned upstream revisions in guide | Supports implementation discipline; no new FR/AC or runtime evidence | Fresh-session discovery and measured agent impact unverified |
 | 1 / PRD-01 | `docs/sdlc/PRD_SRS.md` | PRD/SRS author | 0.9 Draft; 69 active FRs plus withdrawn FR-45 | BRD v1.0; ADR-0007-0017; owner clarifications | BR-01–BR-15; SC-01–SC-08 mapped | Remaining decisions as recorded in PRD; 60 Must retained |
 | Architecture policy / ADR-0001 | `docs/adr/0001-protected-resource-read-policy.md` | Architect role | 0.3 Superseded in part; remaining safeguards Proposed | BRD v1.0, PRD-01 (historical v0.4 input), owner review | BR-01, BR-05, BR-08, BR-10, BR-12, BR-14; SC-05, SC-06 | OD-02, OD-04; enforcement design remains Stage 3 |
 | 2 / UC-02 | docs/sdlc/use-cases.md | Use-case author | 0.7 Draft | PRD-01 v0.9; owner-confirmed ADRs | BR-01–BR-14; SC-01–SC-08 | Delegation/retention and runtime exception execution |
@@ -106,7 +107,7 @@ The BRD leaves architecture to design while AGENTS.md directs minimal microservi
 | Artifact ID | Version | Canonical source |
 | --- | --- | --- |
 | UML-07 | v0.19 | [Source](diagrams/README.md) |
-| REG-00 | v0.51 | [Source](artifact-register.md) |
+| REG-00 | v0.52 | [Source](artifact-register.md) |
 | SAD-03 | v0.15 | [Source](../architecture.md) |
 | UX-PERM-MATRIX-02 | v0.10 | [Source](../ux/permission-matrix.md) |
 | UX-PERSONAS-01 | v0.4 | [Source](../ux/personas.md) |
@@ -248,7 +249,9 @@ REG-00 v0.50 records an owner-requested navigation change. Seven previously untr
 
 Layout verification (22 October 2026, Node 24.19.0): context:lint and context:check passed; context:test passed 45/45. All 185 local links examined across relocated documents and affected references resolve, and the new directory index has no broken local links. The seven moved documents preserve non-link content. Metadata check passed with 66 outputs and no pending changes; verifier syntax and git diff whitespace checks passed, and the Git index has no unmerged entries. docs:lint and docs:test were run and still fail on the AI Mermaid/Draw.io node/label mismatch observed before this layout change. No diagram behavior was changed to suppress that failure. Database, contract-runtime, provider, UI and application tests were not run because this change only reorganizes documentation and its discovery. No commit, branch change, independent review or runtime acceptance is claimed.
 
-## AI diagram reconciliation — 22 October 2026
+<a id="ai-diagram-reconciliation--22-october-2026"></a>
+
+## Historical AI diagram reconciliation — 22 October 2026
 
 REG-00 v0.51 / UML-07 v0.19 register the owner-requested DGM-FLOW-01 v0.13 correction. The native page now follows all 28 nodes and 42 edges of the existing Mermaid source, including operational citations and unknown-outcome/new-question branches. The source design, requirements and APIs are unchanged. Prior 21 October diagram and directory checkpoint results remain explicitly historical; their former failures are not rewritten into passes. The [central index](diagrams/README.md#ai-diagram-reconciliation--22-october-2026) records inputs, reproducible sync command, trace, author checklist and remaining 32 crossing warnings. No overlapping vertices or through-vertex routes were reported for the updated page. The owner-requested repair supports existing SP-09/10/12 documentation and restores the documentation verification prerequisite; it creates no new application slice, policy or ADR. Downstream impact: generated inventories, AI preview and this register only; implementation and independent acceptance remain open. Final executed check results follow after verification.
 

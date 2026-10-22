@@ -169,7 +169,7 @@ Current filesystem inspection found eight Draw.io files in the five type folders
 | Artifact ID | Version | Canonical source |
 | --- | --- | --- |
 | UML-07 | v0.19 | [Source](README.md) |
-| REG-00 | v0.51 | [Source](../artifact-register.md) |
+| REG-00 | v0.52 | [Source](../artifact-register.md) |
 | SAD-03 | v0.15 | [Source](../../architecture.md) |
 | UX-PERM-MATRIX-02 | v0.10 | [Source](../../ux/permission-matrix.md) |
 | UX-PERSONAS-01 | v0.4 | [Source](../../ux/personas.md) |
