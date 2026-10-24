@@ -1,7 +1,7 @@
 # User Flow: Knowledge Management (Docs & Versions)
 
 **Artifact ID:** UX-FLOW-DOCS-02\
-**Version/date:** 0.7 Draft · 18 October 2026
+**Version/date:** 0.8 Draft · 23 October 2026
 **Status:** Owner-confirmed policy direction; UI, diagram and runtime verification pending.\
 **Sources:** PRD-01 v0.9; UC-02 v0.7 (UC-06/UC-07); SAD-03 v0.15; ADR-0007/0009/0011/0013/0017; Workspace OpenAPI v0.2.8 / Knowledge v0.2.9\; Proposed ADR-0022
 **Trace:** BR-01, BR-04, BR-05, BR-07, BR-08, BR-10, BR-11, BR-12, BR-14; FR-04, FR-10–FR-15, FR-19, FR-31, FR-39, FR-46–FR-48, FR-50–FR-52, FR-55, FR-59, FR-61; SC-05, SC-06. FR-45 is Withdrawn, with replacement/history assertions under AC-11.
@@ -63,10 +63,12 @@ DGM-FLOW-03: [Mermaid](../../sdlc/diagrams/flowchart/docs-flow.mmd) · [Draw.io]
 
 Explorer uses listDocuments (not an empty keyword query); explicit history uses listVersions, with exact getVersion on selection. Retained readable documents with no Current remain discoverable, and indexing pending/failed does not hide the source. Preserve explicit history labels. Each page is permission-filtered; stale cursor means discard accumulated pages/restart, denied means clear rows, dependency failure means an error rather than an empty list.
 
-Known-ID manage access uses getAllowedActions(document), getDocumentPolicy and listDocumentReadGrants; use listMembers for current grantees. Show only policy classification and grantee IDs without content-read, no title/owner/version/readiness prefill. policy.permission_revision supplies classification/grant/revoke concurrency. Reload and reconsider after conflict. Returned action names guide controls but never grant authority. Non-reading write/lifecycle preconditions remain unresolved for that separate action path. See Proposed ADR-0019; additional delegation UI remains excluded.
+Known-ID manage access uses getAllowedActions(document), getDocumentPolicy and listDocumentReadGrants; use listMembers for current grantees. Show only policy classification and grantee IDs without content-read, no title/owner/version/readiness prefill. policy.permission_revision supplies classification/grant/revoke concurrency. Reload and reconsider after conflict. Returned action names guide controls but never grant authority. Non-reading write/lifecycle preconditions have a Proposed design in ADR-0022 using action-bound opaque tokens and minimal command receipts (see NEXT-06 below); implementation and verification remain open. See Proposed ADR-0019 for policy/grant reads; additional delegation UI remains excluded.
 
 ## NEXT-06 independent known-ID command interaction
 
 Use getAllowedActions for controls, then getDocumentCommandPrecondition for the chosen implemented command. Non-reading authors enter replacement text or explicit metadata changes without prefill; non-reading lifecycle managers supply an already-known exact archive version or document for deletion. No current content/revision/history/lifecycle metadata is loaded. Submit the opaque token; numeric revisions already known to readable users remain supported. Confirmation is DocumentMutationReceipt (or deletion 204). Show only the committed command and created/supplied identity; no protected content is returned or cached through the mutation.
 
 If still permitted to read, fetch document/version/history/readiness separately and label any fresh state. After 409 obtain a fresh token and require a fresh decision; never silently resubmit. A lost mutation response uses the original key/payload until reconciled, not a new token/key write. Proposed ADR-0022 resolves the design precondition gap; token storage/transactions/permission tests remain open.
+
+**v0.8 correction — 23 October 2026:** Reconciled the Priority 2 precondition status with NEXT-06 and Proposed ADR-0022. Existing FR-04/11/13/48/59/65 and SC-05/06 remain unchanged; no implementation or verification acceptance is claimed.

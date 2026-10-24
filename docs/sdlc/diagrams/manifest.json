@@ -9,7 +9,7 @@
     {
       "id": "REG-00",
       "path": "docs/sdlc/artifact-register.md",
-      "version": "0.52",
+      "version": "0.59",
       "adrs": []
     },
     {
@@ -33,7 +33,7 @@
     {
       "id": "UX-SITEMAP-03",
       "path": "docs/ux/sitemap.md",
-      "version": "0.9",
+      "version": "0.10",
       "adrs": []
     },
     {
@@ -51,7 +51,7 @@
     {
       "id": "UX-FLOW-DOCS-02",
       "path": "docs/ux/flows/docs-flow.md",
-      "version": "0.7",
+      "version": "0.8",
       "adrs": []
     },
     {

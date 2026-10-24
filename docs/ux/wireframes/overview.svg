@@ -1,0 +1,656 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="4020" height="4010" viewBox="0 0 4020 4010">
+<rect width="100%" height="100%" fill="#e9edf2"/>
+<rect x="0" y="140" width="1280" height="900" fill="#ffffff" stroke="#c8d0da"/>
+<rect x="0" y="140" width="1280" height="66" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="24" y="184.0" font-family="Arial,sans-serif" font-size="24" fill="#253247">S / K</text>
+<text x="110" y="181.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Scrum + Knowledge</text>
+<rect x="0" y="206" width="202" height="834" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="24" y="883.0" font-family="Arial,sans-serif" font-size="13" fill="#607087">WORK + EVIDENCE</text>
+<text x="24" y="923.0" font-family="Arial,sans-serif" font-size="15" fill="#607087">Sign in to continue.</text>
+<text x="226" y="260.0" font-family="Arial,sans-serif" font-size="28" fill="#253247">01  Sign in</text>
+<text x="226" y="291.0" font-family="Arial,sans-serif" font-size="16" fill="#607087">Start a session before loading project information.</text>
+<text x="226" y="1004.0" font-family="Arial,sans-serif" font-size="14" fill="#607087">WF-01 / UC-01 / BR-01, BR-10 / TC-01, TC-24</text>
+<text x="226" y="1027.0" font-family="Arial,sans-serif" font-size="12" fill="#607087">UX-WF-EX-01 v0.1  |  Draft  |  Synthetic data  |  Desktop layout proposal</text>
+<rect x="500" y="345" width="490" height="510" fill="#ffffff" stroke="#c8d0da"/>
+<text x="516" y="379.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Welcome to Scrum + Knowledge</text>
+<text x="524" y="423.0" font-family="Arial,sans-serif" font-size="18" fill="#607087">Keep work and its evidence together.</text>
+<text x="524" y="475.0" font-family="Arial,sans-serif" font-size="15" fill="#607087">Account</text>
+<rect x="524" y="485" width="440" height="42" fill="#ffffff" stroke="#c8d0da"/>
+<text x="536" y="513.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">demo.member</text>
+<text x="524" y="565.0" font-family="Arial,sans-serif" font-size="15" fill="#607087">Password</text>
+<rect x="524" y="575" width="440" height="42" fill="#ffffff" stroke="#c8d0da"/>
+<text x="536" y="603.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">................</text>
+<rect x="524" y="650" width="440" height="38" fill="#253247" stroke="#c8d0da"/>
+<text x="536" y="674.0" font-family="Arial,sans-serif" font-size="16" fill="#ffffff">Sign in</text>
+<text x="524" y="734.0" font-family="Arial,sans-serif" font-size="16" fill="#607087">Invalid credentials: check your account details.</text>
+<text x="524" y="781.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">Expired session: sign in again.</text>
+<text x="524" y="803.1" font-family="Arial,sans-serif" font-size="17" fill="#253247">Protected content is cleared.</text>
+<rect x="1370" y="140" width="1280" height="900" fill="#ffffff" stroke="#c8d0da"/>
+<rect x="1370" y="140" width="1280" height="66" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="1394" y="184.0" font-family="Arial,sans-serif" font-size="24" fill="#253247">S / K</text>
+<text x="1480" y="181.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Atlas Demo  /  Project workspace</text>
+<rect x="2154" y="154" width="210" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2166" y="178.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Search project</text>
+<rect x="2378" y="154" width="152" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2390" y="178.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Ask AI</text>
+<text x="2553" y="182.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">JD</text>
+<rect x="1370" y="206" width="202" height="834" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="1398" y="268.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Backlog</text>
+<text x="1398" y="325.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Board</text>
+<text x="1398" y="382.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Documents</text>
+<text x="1398" y="439.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Search</text>
+<rect x="1382" y="466" width="178" height="43" fill="#e5edf8" stroke="#e5edf8"/>
+<text x="1398" y="496.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Members</text>
+<text x="1398" y="553.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Audit</text>
+<text x="1394" y="883.0" font-family="Arial,sans-serif" font-size="13" fill="#607087">PROJECT SCOPE</text>
+<text x="1394" y="914.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Atlas Demo</text>
+<text x="1394" y="959.0" font-family="Arial,sans-serif" font-size="15" fill="#607087">AI: available</text>
+<text x="1596" y="260.0" font-family="Arial,sans-serif" font-size="28" fill="#253247">02  Projects and members</text>
+<text x="1596" y="291.0" font-family="Arial,sans-serif" font-size="16" fill="#607087">Only permitted projects. Membership controls require their own authority.</text>
+<text x="1596" y="1004.0" font-family="Arial,sans-serif" font-size="14" fill="#607087">WF-01 / UC-02 / BR-01, BR-10 / TC-03, TC-24</text>
+<text x="1596" y="1027.0" font-family="Arial,sans-serif" font-size="12" fill="#607087">UX-WF-EX-01 v0.1  |  Draft  |  Synthetic data  |  Desktop layout proposal</text>
+<rect x="1596" y="330" width="490" height="270" fill="#ffffff" stroke="#c8d0da"/>
+<text x="1612" y="364.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Your projects</text>
+<rect x="1614" y="392" width="454" height="102" fill="#ffffff" stroke="#c8d0da"/>
+<text x="1630" y="426.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Atlas Demo</text>
+<text x="1630" y="461.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">Scrum workspace and project knowledge</text>
+<rect x="1912" y="522" width="154" height="38" fill="#253247" stroke="#c8d0da"/>
+<text x="1924" y="546.0" font-family="Arial,sans-serif" font-size="16" fill="#ffffff">Open project</text>
+<rect x="2108" y="330" width="516" height="270" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2124" y="364.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Project settings</text>
+<text x="2126" y="407.0" font-family="Arial,sans-serif" font-size="15" fill="#607087">Project name</text>
+<rect x="2126" y="417" width="478" height="42" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2138" y="445.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">Atlas Demo</text>
+<rect x="2430" y="510" width="176" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2442" y="534.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Save changes</text>
+<rect x="1596" y="628" width="1028" height="252" fill="#ffffff" stroke="#c8d0da"/>
+<text x="1612" y="662.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Current members</text>
+<text x="1614" y="706.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Jordan Demo     Developer                 Active member</text>
+<text x="1614" y="751.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Casey Demo       Scrum Master            Active member</text>
+<rect x="2404" y="676" width="198" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2416" y="700.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Add existing member</text>
+<rect x="2404" y="725" width="198" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2416" y="749.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Remove member</text>
+<text x="1614" y="813.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">Role labels do not grant restricted document access.</text>
+<rect x="1596" y="898" width="1028" height="76" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="1612" y="925.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">Before removal</text>
+<text x="1612" y="951.0" font-family="Arial,sans-serif" font-size="16" fill="#607087">Confirm the person. Individual grants and current assignments will be cleared.</text>
+<rect x="2740" y="140" width="1280" height="900" fill="#ffffff" stroke="#c8d0da"/>
+<rect x="2740" y="140" width="1280" height="66" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="2764" y="184.0" font-family="Arial,sans-serif" font-size="24" fill="#253247">S / K</text>
+<text x="2850" y="181.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Atlas Demo  /  Project workspace</text>
+<rect x="3524" y="154" width="210" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="3536" y="178.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Search project</text>
+<rect x="3748" y="154" width="152" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="3760" y="178.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Ask AI</text>
+<text x="3923" y="182.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">JD</text>
+<rect x="2740" y="206" width="202" height="834" fill="#f3f5f8" stroke="#c8d0da"/>
+<rect x="2752" y="238" width="178" height="43" fill="#e5edf8" stroke="#e5edf8"/>
+<text x="2768" y="268.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Backlog</text>
+<text x="2768" y="325.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Board</text>
+<text x="2768" y="382.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Documents</text>
+<text x="2768" y="439.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Search</text>
+<text x="2768" y="496.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Members</text>
+<text x="2768" y="553.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Audit</text>
+<text x="2764" y="883.0" font-family="Arial,sans-serif" font-size="13" fill="#607087">PROJECT SCOPE</text>
+<text x="2764" y="914.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Atlas Demo</text>
+<text x="2764" y="959.0" font-family="Arial,sans-serif" font-size="15" fill="#607087">AI: available</text>
+<text x="2966" y="260.0" font-family="Arial,sans-serif" font-size="28" fill="#253247">03  Backlog and Sprint planning</text>
+<text x="2966" y="291.0" font-family="Arial,sans-serif" font-size="16" fill="#607087">Review the full Backlog before reordering. Allocation has per-item outcomes.</text>
+<text x="2966" y="1004.0" font-family="Arial,sans-serif" font-size="14" fill="#607087">WF-02 / UC-03, UC-05 / BR-02, BR-03 / TC-07, TC-19, TC-21</text>
+<text x="2966" y="1027.0" font-family="Arial,sans-serif" font-size="12" fill="#607087">UX-WF-EX-01 v0.1  |  Draft  |  Synthetic data  |  Desktop layout proposal</text>
+<rect x="2966" y="327" width="160" height="38" fill="#253247" stroke="#c8d0da"/>
+<text x="2978" y="351.0" font-family="Arial,sans-serif" font-size="16" fill="#ffffff">+ Create task</text>
+<rect x="3140" y="327" width="174" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="3152" y="351.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Reorder list</text>
+<text x="3350" y="355.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">All Backlog pages loaded</text>
+<rect x="2966" y="388" width="620" height="390" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2982" y="422.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Product Backlog</text>
+<rect x="2984" y="450" width="584" height="76" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="3000" y="478.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">AT-21   Define sign-in flow</text>
+<text x="3000" y="508.0" font-family="Arial,sans-serif" font-size="16" fill="#607087">Story   |   To Do   |   Backlog</text>
+<rect x="2984" y="542" width="584" height="76" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="3000" y="570.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">AT-22   Show blocker history</text>
+<text x="3000" y="600.0" font-family="Arial,sans-serif" font-size="16" fill="#607087">Task   |   To Do   |   Backlog</text>
+<rect x="2984" y="634" width="584" height="76" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="3000" y="662.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">AT-23   Fix empty search feedback</text>
+<text x="3000" y="692.0" font-family="Arial,sans-serif" font-size="16" fill="#607087">Bug   |   To Do   |   Backlog</text>
+<text x="2986" y="755.0" font-family="Arial,sans-serif" font-size="16" fill="#607087">Move up / Move down available for keyboard use.</text>
+<rect x="3606" y="388" width="388" height="390" fill="#ffffff" stroke="#c8d0da"/>
+<text x="3622" y="422.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Sprint 04  /  Planned</text>
+<text x="3624" y="466.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Goal: inspect work with evidence</text>
+<text x="3624" y="489.4" font-family="Arial,sans-serif" font-size="18" fill="#253247"></text>
+<text x="3624" y="512.8" font-family="Arial,sans-serif" font-size="18" fill="#253247">Start: 26 Oct 2026</text>
+<text x="3624" y="536.2" font-family="Arial,sans-serif" font-size="18" fill="#253247">End: 06 Nov 2026</text>
+<rect x="3624" y="594" width="350" height="38" fill="#253247" stroke="#c8d0da"/>
+<text x="3636" y="618.0" font-family="Arial,sans-serif" font-size="16" fill="#ffffff">Allocate selected tasks</text>
+<text x="3624" y="670.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">AT-21  Confirmed</text>
+<text x="3624" y="693.4" font-family="Arial,sans-serif" font-size="18" fill="#253247">AT-22  Rejected</text>
+<text x="3624" y="716.8" font-family="Arial,sans-serif" font-size="18" fill="#253247">AT-23  Outcome unknown</text>
+<rect x="2966" y="801" width="1028" height="76" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="2982" y="828.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">Sprint lifecycle: Planned &gt; Active &gt; Completed</text>
+<text x="2982" y="854.0" font-family="Arial,sans-serif" font-size="16" fill="#607087">Only one Active Sprint. Completion keeps Done items; unfinished work returns as To Do.</text>
+<rect x="2966" y="891" width="1028" height="76" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="2982" y="918.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">An unknown response is not a failed change</text>
+<text x="2982" y="944.0" font-family="Arial,sans-serif" font-size="16" fill="#607087">Reconcile the original operation; do not submit the allocation again as a new action.</text>
+<rect x="0" y="1130" width="1280" height="900" fill="#ffffff" stroke="#c8d0da"/>
+<rect x="0" y="1130" width="1280" height="66" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="24" y="1174.0" font-family="Arial,sans-serif" font-size="24" fill="#253247">S / K</text>
+<text x="110" y="1171.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Atlas Demo  /  Project workspace</text>
+<rect x="784" y="1144" width="210" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="796" y="1168.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Search project</text>
+<rect x="1008" y="1144" width="152" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="1020" y="1168.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Ask AI</text>
+<text x="1183" y="1172.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">JD</text>
+<rect x="0" y="1196" width="202" height="834" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="28" y="1258.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Backlog</text>
+<rect x="12" y="1285" width="178" height="43" fill="#e5edf8" stroke="#e5edf8"/>
+<text x="28" y="1315.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Board</text>
+<text x="28" y="1372.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Documents</text>
+<text x="28" y="1429.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Search</text>
+<text x="28" y="1486.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Members</text>
+<text x="28" y="1543.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Audit</text>
+<text x="24" y="1873.0" font-family="Arial,sans-serif" font-size="13" fill="#607087">PROJECT SCOPE</text>
+<text x="24" y="1904.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Atlas Demo</text>
+<text x="24" y="1949.0" font-family="Arial,sans-serif" font-size="15" fill="#607087">AI: available</text>
+<text x="226" y="1250.0" font-family="Arial,sans-serif" font-size="28" fill="#253247">04  Board and task context</text>
+<text x="226" y="1281.0" font-family="Arial,sans-serif" font-size="16" fill="#607087">Sprint 03  /  Active  /  Goal: connect tasks to project knowledge.</text>
+<text x="226" y="1994.0" font-family="Arial,sans-serif" font-size="14" fill="#607087">WF-03 / UC-04, UC-05 / BR-02, BR-03, BR-06 / TC-08, TC-16, TC-22</text>
+<text x="226" y="2017.0" font-family="Arial,sans-serif" font-size="12" fill="#607087">UX-WF-EX-01 v0.1  |  Draft  |  Synthetic data  |  Desktop layout proposal</text>
+<rect x="226" y="1315" width="138" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="238" y="1339.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">All assignees</text>
+<rect x="380" y="1315" width="148" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="392" y="1339.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Blocked only</text>
+<rect x="544" y="1315" width="164" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="556" y="1339.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Complete Sprint</text>
+<rect x="226" y="1376" width="220" height="470" fill="#ffffff" stroke="#c8d0da"/>
+<text x="242" y="1410.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">To Do</text>
+<rect x="462" y="1376" width="220" height="470" fill="#ffffff" stroke="#c8d0da"/>
+<text x="478" y="1410.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">In Progress</text>
+<rect x="698" y="1376" width="220" height="470" fill="#ffffff" stroke="#c8d0da"/>
+<text x="714" y="1410.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Done</text>
+<rect x="240" y="1432" width="192" height="124" fill="#ffffff" stroke="#c8d0da"/>
+<text x="256" y="1466.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">AT-21</text>
+<text x="256" y="1501.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">Define sign-in</text>
+<text x="256" y="1523.1" font-family="Arial,sans-serif" font-size="17" fill="#607087">Jordan Demo</text>
+<rect x="476" y="1432" width="192" height="165" fill="#ffffff" stroke="#c8d0da"/>
+<text x="492" y="1466.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">AT-22</text>
+<text x="492" y="1501.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">Blocker history</text>
+<text x="492" y="1523.1" font-family="Arial,sans-serif" font-size="17" fill="#607087">Casey Demo</text>
+<text x="492" y="1545.2" font-family="Arial,sans-serif" font-size="17" fill="#607087">Blocked: Open</text>
+<rect x="712" y="1432" width="192" height="124" fill="#ffffff" stroke="#c8d0da"/>
+<text x="728" y="1466.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">AT-20</text>
+<text x="728" y="1501.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">Link a document</text>
+<text x="728" y="1523.1" font-family="Arial,sans-serif" font-size="17" fill="#607087">Jordan Demo</text>
+<rect x="940" y="1316" width="314" height="550" fill="#ffffff" stroke="#c8d0da"/>
+<text x="956" y="1350.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">AT-22 / Task details</text>
+<text x="956" y="1394.0" font-family="Arial,sans-serif" font-size="22" fill="#253247">Blocker history</text>
+<text x="956" y="1435.0" font-family="Arial,sans-serif" font-size="15" fill="#607087">State (keyboard alternative)</text>
+<rect x="956" y="1445" width="280" height="42" fill="#ffffff" stroke="#c8d0da"/>
+<text x="968" y="1473.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">In Progress</text>
+<text x="956" y="1525.0" font-family="Arial,sans-serif" font-size="15" fill="#607087">Assignee</text>
+<rect x="956" y="1535" width="280" height="42" fill="#ffffff" stroke="#c8d0da"/>
+<text x="968" y="1563.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">Casey Demo</text>
+<text x="956" y="1621.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">BLOCKER EVENTS</text>
+<text x="956" y="1641.8" font-family="Arial,sans-serif" font-size="16" fill="#253247">#1 Open: waiting for fixture</text>
+<text x="956" y="1662.6" font-family="Arial,sans-serif" font-size="16" fill="#253247">#2 Resolved: fixture ready</text>
+<text x="956" y="1683.4" font-family="Arial,sans-serif" font-size="16" fill="#253247">#3 Open: review pending</text>
+<rect x="956" y="1720" width="280" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="968" y="1744.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Add blocker event</text>
+<rect x="956" y="1773" width="280" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="968" y="1797.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Open related document</text>
+<rect x="226" y="1886" width="1028" height="76" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="242" y="1913.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">Reopening work from a Completed Sprint</text>
+<text x="242" y="1939.0" font-family="Arial,sans-serif" font-size="16" fill="#607087">The Sprint stays Completed. Reopened work returns to Backlog as To Do; history is retained.</text>
+<rect x="1370" y="1130" width="1280" height="900" fill="#ffffff" stroke="#c8d0da"/>
+<rect x="1370" y="1130" width="1280" height="66" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="1394" y="1174.0" font-family="Arial,sans-serif" font-size="24" fill="#253247">S / K</text>
+<text x="1480" y="1171.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Atlas Demo  /  Project workspace</text>
+<rect x="2154" y="1144" width="210" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2166" y="1168.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Search project</text>
+<rect x="2378" y="1144" width="152" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2390" y="1168.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Ask AI</text>
+<text x="2553" y="1172.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">JD</text>
+<rect x="1370" y="1196" width="202" height="834" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="1398" y="1258.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Backlog</text>
+<text x="1398" y="1315.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Board</text>
+<rect x="1382" y="1342" width="178" height="43" fill="#e5edf8" stroke="#e5edf8"/>
+<text x="1398" y="1372.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Documents</text>
+<text x="1398" y="1429.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Search</text>
+<text x="1398" y="1486.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Members</text>
+<text x="1398" y="1543.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Audit</text>
+<text x="1394" y="1873.0" font-family="Arial,sans-serif" font-size="13" fill="#607087">PROJECT SCOPE</text>
+<text x="1394" y="1904.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Atlas Demo</text>
+<text x="1394" y="1949.0" font-family="Arial,sans-serif" font-size="15" fill="#607087">AI: available</text>
+<text x="1596" y="1250.0" font-family="Arial,sans-serif" font-size="28" fill="#253247">05  Documents and exact versions</text>
+<text x="1596" y="1281.0" font-family="Arial,sans-serif" font-size="16" fill="#607087">Browse readable documents. Version validity and search readiness are separate.</text>
+<text x="1596" y="1994.0" font-family="Arial,sans-serif" font-size="14" fill="#607087">WF-04 / UC-06, UC-07, UC-08 / BR-04, BR-05, BR-14 / TC-05, TC-06, TC-20</text>
+<text x="1596" y="2017.0" font-family="Arial,sans-serif" font-size="12" fill="#607087">UX-WF-EX-01 v0.1  |  Draft  |  Synthetic data  |  Desktop layout proposal</text>
+<rect x="1596" y="1314" width="178" height="38" fill="#253247" stroke="#c8d0da"/>
+<text x="1608" y="1338.0" font-family="Arial,sans-serif" font-size="16" fill="#ffffff">+ New document</text>
+<rect x="1790" y="1314" width="170" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="1802" y="1338.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Current sources</text>
+<rect x="1976" y="1314" width="166" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="1988" y="1338.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Classification</text>
+<rect x="1596" y="1376" width="394" height="480" fill="#ffffff" stroke="#c8d0da"/>
+<text x="1612" y="1410.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Documents</text>
+<rect x="1612" y="1436" width="362" height="130" fill="#ffffff" stroke="#c8d0da"/>
+<text x="1628" y="1470.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Session design</text>
+<text x="1628" y="1505.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">Project-shared  /  Current v3</text>
+<text x="1628" y="1527.1" font-family="Arial,sans-serif" font-size="17" fill="#607087">Semantic search: Ready</text>
+<rect x="1612" y="1584" width="362" height="130" fill="#ffffff" stroke="#c8d0da"/>
+<text x="1628" y="1618.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">API conventions</text>
+<text x="1628" y="1653.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">Restricted  /  Current v2</text>
+<text x="1628" y="1675.1" font-family="Arial,sans-serif" font-size="17" fill="#607087">Semantic search: Pending</text>
+<text x="1614" y="1779.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">Restricted rows appear only</text>
+<text x="1614" y="1801.1" font-family="Arial,sans-serif" font-size="17" fill="#607087">with current read access.</text>
+<rect x="2010" y="1376" width="614" height="480" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2026" y="1410.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Session design  /  v3 Current</text>
+<text x="2028" y="1450.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">Classification: Project-shared</text>
+<text x="2028" y="1472.1" font-family="Arial,sans-serif" font-size="17" fill="#607087">Owner: Jordan Demo</text>
+<text x="2028" y="1526.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Session handling</text>
+<text x="2028" y="1552.0" font-family="Arial,sans-serif" font-size="20" fill="#253247"></text>
+<text x="2028" y="1578.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">This synthetic source records the demo</text>
+<text x="2028" y="1604.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">project session requirements.</text>
+<text x="2028" y="1630.0" font-family="Arial,sans-serif" font-size="20" fill="#253247"></text>
+<text x="2028" y="1656.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Passage p-03: Renew access before</text>
+<text x="2028" y="1682.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">showing protected project information.</text>
+<rect x="2028" y="1735" width="166" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2040" y="1759.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Revise content</text>
+<rect x="2212" y="1735" width="158" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2224" y="1759.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Version history</text>
+<text x="2028" y="1813.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">History: v3 Current | v2 Superseded | v1 Archived</text>
+<rect x="1596" y="1881" width="1028" height="76" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="1612" y="1908.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">Historical viewing is deliberate and labelled</text>
+<text x="1612" y="1934.0" font-family="Arial,sans-serif" font-size="16" fill="#607087">Opening v2 keeps v2 and its exact passages. It never silently redirects to v3.</text>
+<rect x="2740" y="1130" width="1280" height="900" fill="#ffffff" stroke="#c8d0da"/>
+<rect x="2740" y="1130" width="1280" height="66" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="2764" y="1174.0" font-family="Arial,sans-serif" font-size="24" fill="#253247">S / K</text>
+<text x="2850" y="1171.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Atlas Demo  /  Project workspace</text>
+<rect x="3524" y="1144" width="210" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="3536" y="1168.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Search project</text>
+<rect x="3748" y="1144" width="152" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="3760" y="1168.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Ask AI</text>
+<text x="3923" y="1172.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">JD</text>
+<rect x="2740" y="1196" width="202" height="834" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="2768" y="1258.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Backlog</text>
+<text x="2768" y="1315.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Board</text>
+<rect x="2752" y="1342" width="178" height="43" fill="#e5edf8" stroke="#e5edf8"/>
+<text x="2768" y="1372.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Documents</text>
+<text x="2768" y="1429.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Search</text>
+<text x="2768" y="1486.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Members</text>
+<text x="2768" y="1543.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Audit</text>
+<text x="2764" y="1873.0" font-family="Arial,sans-serif" font-size="13" fill="#607087">PROJECT SCOPE</text>
+<text x="2764" y="1904.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Atlas Demo</text>
+<text x="2764" y="1949.0" font-family="Arial,sans-serif" font-size="15" fill="#607087">AI: available</text>
+<text x="2966" y="1250.0" font-family="Arial,sans-serif" font-size="28" fill="#253247">06  Edit content and manage access</text>
+<text x="2966" y="1281.0" font-family="Arial,sans-serif" font-size="16" fill="#607087">Separate capabilities: content read, content write, lifecycle and access management.</text>
+<text x="2966" y="1994.0" font-family="Arial,sans-serif" font-size="14" fill="#607087">WF-05 / UC-06, UC-07 / BR-01, BR-05, BR-10 / TC-03, TC-15, TC-20</text>
+<text x="2966" y="2017.0" font-family="Arial,sans-serif" font-size="12" fill="#607087">UX-WF-EX-01 v0.1  |  Draft  |  Synthetic data  |  Desktop layout proposal</text>
+<rect x="2966" y="1320" width="600" height="531" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2982" y="1354.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Revise document</text>
+<text x="2984" y="1397.0" font-family="Arial,sans-serif" font-size="15" fill="#607087">Title (only when readable)</text>
+<rect x="2984" y="1407" width="564" height="42" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2996" y="1435.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">Session design</text>
+<text x="2984" y="1485.0" font-family="Arial,sans-serif" font-size="15" fill="#607087">New Markdown content</text>
+<rect x="2984" y="1496" width="564" height="200" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="3000" y="1533.0" font-family="Arial,sans-serif" font-size="19" fill="#253247"># Session handling</text>
+<text x="3000" y="1557.7" font-family="Arial,sans-serif" font-size="19" fill="#253247"></text>
+<text x="3000" y="1582.4" font-family="Arial,sans-serif" font-size="19" fill="#253247">Enter new content here...</text>
+<text x="2984" y="1738.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">Saving creates an immutable Current version.</text>
+<text x="2984" y="1760.1" font-family="Arial,sans-serif" font-size="17" fill="#253247">The previous Current version becomes Superseded.</text>
+<rect x="2984" y="1786" width="270" height="38" fill="#253247" stroke="#c8d0da"/>
+<text x="2996" y="1810.0" font-family="Arial,sans-serif" font-size="16" fill="#ffffff">Save new Current version</text>
+<rect x="3586" y="1320" width="408" height="531" fill="#ffffff" stroke="#c8d0da"/>
+<text x="3602" y="1354.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Manage access  /  doc-demo-07</text>
+<text x="3604" y="1398.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">Known-ID management surface</text>
+<text x="3604" y="1420.1" font-family="Arial,sans-serif" font-size="17" fill="#253247"></text>
+<text x="3604" y="1442.2" font-family="Arial,sans-serif" font-size="17" fill="#253247">Title and source content are absent</text>
+<text x="3604" y="1464.3" font-family="Arial,sans-serif" font-size="17" fill="#253247">without separate read permission.</text>
+<text x="3604" y="1517.0" font-family="Arial,sans-serif" font-size="15" fill="#607087">Classification</text>
+<rect x="3604" y="1527" width="372" height="42" fill="#ffffff" stroke="#c8d0da"/>
+<text x="3616" y="1555.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">Restricted</text>
+<text x="3604" y="1608.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Explicit read grants</text>
+<text x="3604" y="1631.4" font-family="Arial,sans-serif" font-size="18" fill="#253247">Jordan Demo     [Revoke]</text>
+<text x="3604" y="1654.8" font-family="Arial,sans-serif" font-size="18" fill="#253247">Casey Demo       [Grant]</text>
+<rect x="3604" y="1712" width="372" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="3616" y="1736.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Save access changes</text>
+<text x="3604" y="1787.0" font-family="Arial,sans-serif" font-size="16" fill="#607087">No automatic read grant from success.</text>
+<rect x="2966" y="1881" width="1028" height="76" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="2982" y="1908.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">Independent write without source read</text>
+<text x="2982" y="1934.0" font-family="Arial,sans-serif" font-size="16" fill="#607087">Use a blank content entry, never old-text prefill. Archive requires an already-known exact version.</text>
+<rect x="0" y="2120" width="1280" height="900" fill="#ffffff" stroke="#c8d0da"/>
+<rect x="0" y="2120" width="1280" height="66" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="24" y="2164.0" font-family="Arial,sans-serif" font-size="24" fill="#253247">S / K</text>
+<text x="110" y="2161.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Atlas Demo  /  Project workspace</text>
+<rect x="784" y="2134" width="210" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="796" y="2158.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Search project</text>
+<rect x="1008" y="2134" width="152" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="1020" y="2158.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Ask AI</text>
+<text x="1183" y="2162.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">JD</text>
+<rect x="0" y="2186" width="202" height="834" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="28" y="2248.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Backlog</text>
+<text x="28" y="2305.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Board</text>
+<text x="28" y="2362.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Documents</text>
+<rect x="12" y="2389" width="178" height="43" fill="#e5edf8" stroke="#e5edf8"/>
+<text x="28" y="2419.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Search</text>
+<text x="28" y="2476.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Members</text>
+<text x="28" y="2533.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Audit</text>
+<text x="24" y="2863.0" font-family="Arial,sans-serif" font-size="13" fill="#607087">PROJECT SCOPE</text>
+<text x="24" y="2894.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Atlas Demo</text>
+<text x="24" y="2939.0" font-family="Arial,sans-serif" font-size="15" fill="#607087">AI: available</text>
+<text x="226" y="2240.0" font-family="Arial,sans-serif" font-size="28" fill="#253247">07  Keyword search and manual links</text>
+<text x="226" y="2271.0" font-family="Arial,sans-serif" font-size="16" fill="#607087">Permitted Current documents. Task search is an optional Should extension.</text>
+<text x="226" y="2984.0" font-family="Arial,sans-serif" font-size="14" fill="#607087">WF-06 / UC-08 / BR-06, BR-07, BR-10, BR-13 / TC-17, TC-23</text>
+<text x="226" y="3007.0" font-family="Arial,sans-serif" font-size="12" fill="#607087">UX-WF-EX-01 v0.1  |  Draft  |  Synthetic data  |  Desktop layout proposal</text>
+<text x="226" y="2320.0" font-family="Arial,sans-serif" font-size="15" fill="#607087">Search in Atlas Demo</text>
+<rect x="226" y="2330" width="802" height="42" fill="#ffffff" stroke="#c8d0da"/>
+<text x="238" y="2358.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">session</text>
+<rect x="1046" y="2330" width="208" height="38" fill="#253247" stroke="#c8d0da"/>
+<text x="1058" y="2354.0" font-family="Arial,sans-serif" font-size="16" fill="#ffffff">Search</text>
+<rect x="226" y="2402" width="180" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="238" y="2426.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Documents</text>
+<rect x="422" y="2402" width="226" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="434" y="2426.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Tasks (Should, if enabled)</text>
+<rect x="226" y="2466" width="650" height="176" fill="#ffffff" stroke="#c8d0da"/>
+<text x="242" y="2500.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Session design  /  Current v3</text>
+<text x="242" y="2535.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">... renew access before showing protected project information ...</text>
+<text x="242" y="2557.1" font-family="Arial,sans-serif" font-size="17" fill="#607087">Project-shared  |  Keyword result</text>
+<rect x="244" y="2587" width="196" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="256" y="2611.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Open exact source</text>
+<rect x="226" y="2660" width="650" height="176" fill="#ffffff" stroke="#c8d0da"/>
+<text x="242" y="2694.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Task results (optional)</text>
+<text x="242" y="2729.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">AT-21  Define sign-in flow  /  Backlog  /  To Do</text>
+<text x="244" y="2782.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">Task matches come from current work data.</text>
+<rect x="896" y="2466" width="358" height="370" fill="#ffffff" stroke="#c8d0da"/>
+<text x="912" y="2500.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Related work</text>
+<text x="914" y="2547.0" font-family="Arial,sans-serif" font-size="19" fill="#253247">Session design</text>
+<text x="914" y="2571.7" font-family="Arial,sans-serif" font-size="19" fill="#253247">    linked to</text>
+<text x="914" y="2596.4" font-family="Arial,sans-serif" font-size="19" fill="#253247">AT-21  Define sign-in flow</text>
+<rect x="914" y="2675" width="322" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="926" y="2699.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Add manual relationship</text>
+<text x="914" y="2755.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">Show permitted endpoints only.</text>
+<text x="914" y="2777.1" font-family="Arial,sans-serif" font-size="17" fill="#607087">No hidden-link totals.</text>
+<rect x="226" y="2871" width="1028" height="76" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="242" y="2898.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">AI unavailable? Keyword search remains usable</text>
+<text x="242" y="2924.0" font-family="Arial,sans-serif" font-size="16" fill="#607087">Document search and reading need healthy Knowledge service and current authority.</text>
+<rect x="1370" y="2120" width="1280" height="900" fill="#ffffff" stroke="#c8d0da"/>
+<rect x="1370" y="2120" width="1280" height="66" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="1394" y="2164.0" font-family="Arial,sans-serif" font-size="24" fill="#253247">S / K</text>
+<text x="1480" y="2161.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Atlas Demo  /  Project workspace</text>
+<rect x="2154" y="2134" width="210" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2166" y="2158.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Search project</text>
+<rect x="2378" y="2134" width="152" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2390" y="2158.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Ask AI</text>
+<text x="2553" y="2162.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">JD</text>
+<rect x="1370" y="2186" width="202" height="834" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="1398" y="2248.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Backlog</text>
+<rect x="1382" y="2275" width="178" height="43" fill="#e5edf8" stroke="#e5edf8"/>
+<text x="1398" y="2305.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Board</text>
+<text x="1398" y="2362.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Documents</text>
+<text x="1398" y="2419.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Search</text>
+<text x="1398" y="2476.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Members</text>
+<text x="1398" y="2533.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Audit</text>
+<text x="1394" y="2863.0" font-family="Arial,sans-serif" font-size="13" fill="#607087">PROJECT SCOPE</text>
+<text x="1394" y="2894.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Atlas Demo</text>
+<text x="1394" y="2939.0" font-family="Arial,sans-serif" font-size="15" fill="#607087">AI: available</text>
+<text x="1596" y="2240.0" font-family="Arial,sans-serif" font-size="28" fill="#253247">08  Ask AI and inspect evidence</text>
+<text x="1596" y="2271.0" font-family="Arial,sans-serif" font-size="16" fill="#607087">Read-only answers. Sources open only after renewed current access checks.</text>
+<text x="1596" y="2984.0" font-family="Arial,sans-serif" font-size="14" fill="#607087">WF-07 / UC-09, UC-10, UC-12 / BR-08, BR-09, BR-10, BR-12 / TC-04, TC-09, TC-10</text>
+<text x="1596" y="3007.0" font-family="Arial,sans-serif" font-size="12" fill="#607087">UX-WF-EX-01 v0.1  |  Draft  |  Synthetic data  |  Desktop layout proposal</text>
+<rect x="1596" y="2306" width="548" height="618" fill="#ffffff" stroke="#c8d0da"/>
+<text x="1612" y="2340.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Project assistant  /  read-only</text>
+<text x="1614" y="2386.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Which work is blocked, and why?</text>
+<rect x="1614" y="2418" width="512" height="278" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="1632" y="2453.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">RECORDED FACT</text>
+<text x="1632" y="2475.1" font-family="Arial,sans-serif" font-size="17" fill="#253247">AT-22 is blocked at the recorded observation. [1]</text>
+<text x="1632" y="2497.2" font-family="Arial,sans-serif" font-size="17" fill="#253247"></text>
+<text x="1632" y="2519.3" font-family="Arial,sans-serif" font-size="17" fill="#253247">SYNTHESIS</text>
+<text x="1632" y="2541.4" font-family="Arial,sans-serif" font-size="17" fill="#253247">The open blocker concerns a pending review. [1]</text>
+<text x="1632" y="2563.5" font-family="Arial,sans-serif" font-size="17" fill="#253247"></text>
+<text x="1632" y="2585.6" font-family="Arial,sans-serif" font-size="17" fill="#253247">UNCERTAINTY</text>
+<text x="1632" y="2607.7" font-family="Arial,sans-serif" font-size="17" fill="#253247">No supported completion date is available.</text>
+<rect x="1614" y="2715" width="230" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="1626" y="2739.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">[1] AT-22 observation</text>
+<rect x="1860" y="2715" width="266" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="1872" y="2739.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">[2] Session design v3</text>
+<text x="1614" y="2790.0" font-family="Arial,sans-serif" font-size="15" fill="#607087">Ask in this project</text>
+<rect x="1614" y="2800" width="512" height="42" fill="#ffffff" stroke="#c8d0da"/>
+<text x="1626" y="2828.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">Ask a follow-up question...</text>
+<rect x="1614" y="2860" width="172" height="38" fill="#253247" stroke="#c8d0da"/>
+<text x="1626" y="2884.0" font-family="Arial,sans-serif" font-size="16" fill="#ffffff">Ask question</text>
+<rect x="1802" y="2860" width="324" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="1814" y="2884.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Retrieval summary (Should)</text>
+<rect x="2166" y="2306" width="458" height="294" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2182" y="2340.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Operational citation [1]</text>
+<text x="2184" y="2384.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">Task: AT-22  /  Revision: 8</text>
+<text x="2184" y="2406.1" font-family="Arial,sans-serif" font-size="17" fill="#253247">Observed: 23 Oct 2026, 09:15 +07</text>
+<text x="2184" y="2428.2" font-family="Arial,sans-serif" font-size="17" fill="#253247">Historical observation: Blocked / Open</text>
+<text x="2184" y="2450.3" font-family="Arial,sans-serif" font-size="17" fill="#253247"></text>
+<text x="2184" y="2472.4" font-family="Arial,sans-serif" font-size="17" fill="#253247">Current task state loads separately.</text>
+<rect x="2184" y="2532" width="422" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2196" y="2556.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Refresh current task</text>
+<rect x="2166" y="2622" width="458" height="302" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2182" y="2656.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Document citation [2]</text>
+<text x="2184" y="2701.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">doc-demo-01 / v3 / p-03</text>
+<text x="2184" y="2723.1" font-family="Arial,sans-serif" font-size="17" fill="#253247">Version: Current when retrieved</text>
+<text x="2184" y="2745.2" font-family="Arial,sans-serif" font-size="17" fill="#253247"></text>
+<text x="2184" y="2767.3" font-family="Arial,sans-serif" font-size="17" fill="#253247">&quot;Renew access before showing protected</text>
+<text x="2184" y="2789.4" font-family="Arial,sans-serif" font-size="17" fill="#253247">project information.&quot;</text>
+<text x="2184" y="2811.5" font-family="Arial,sans-serif" font-size="17" fill="#253247"></text>
+<text x="2184" y="2833.6" font-family="Arial,sans-serif" font-size="17" fill="#253247">Open this exact version and passage.</text>
+<rect x="2740" y="2120" width="1280" height="900" fill="#ffffff" stroke="#c8d0da"/>
+<rect x="2740" y="2120" width="1280" height="66" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="2764" y="2164.0" font-family="Arial,sans-serif" font-size="24" fill="#253247">S / K</text>
+<text x="2850" y="2161.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Atlas Demo  /  Project workspace</text>
+<rect x="3524" y="2134" width="210" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="3536" y="2158.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Search project</text>
+<rect x="3748" y="2134" width="152" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="3760" y="2158.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Ask AI</text>
+<text x="3923" y="2162.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">JD</text>
+<rect x="2740" y="2186" width="202" height="834" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="2768" y="2248.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Backlog</text>
+<text x="2768" y="2305.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Board</text>
+<text x="2768" y="2362.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Documents</text>
+<text x="2768" y="2419.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Search</text>
+<text x="2768" y="2476.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Members</text>
+<rect x="2752" y="2503" width="178" height="43" fill="#e5edf8" stroke="#e5edf8"/>
+<text x="2768" y="2533.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Audit</text>
+<text x="2764" y="2863.0" font-family="Arial,sans-serif" font-size="13" fill="#607087">PROJECT SCOPE</text>
+<text x="2764" y="2894.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Atlas Demo</text>
+<text x="2764" y="2939.0" font-family="Arial,sans-serif" font-size="15" fill="#607087">AI: available</text>
+<text x="2966" y="2240.0" font-family="Arial,sans-serif" font-size="28" fill="#253247">09  Audit and execution inspection</text>
+<text x="2966" y="2271.0" font-family="Arial,sans-serif" font-size="16" fill="#607087">Audit, trace and optional summary have independent access requirements.</text>
+<text x="2966" y="2984.0" font-family="Arial,sans-serif" font-size="14" fill="#607087">WF-08 / UC-13 / BR-10, BR-11, BR-12 / TC-11, TC-18</text>
+<text x="2966" y="3007.0" font-family="Arial,sans-serif" font-size="12" fill="#607087">UX-WF-EX-01 v0.1  |  Draft  |  Synthetic data  |  Desktop layout proposal</text>
+<rect x="2966" y="2306" width="200" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2978" y="2330.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Business audit</text>
+<rect x="3182" y="2306" width="208" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="3194" y="2330.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Execution trace</text>
+<rect x="2966" y="2370" width="1028" height="196" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2982" y="2404.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Business audit  /  permitted rows</text>
+<text x="2984" y="2449.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">09:15   Jordan Demo   update_task      AT-22</text>
+<text x="2984" y="2472.4" font-family="Arial,sans-serif" font-size="18" fill="#253247">09:10   Casey Demo     revise_document  doc-demo-07</text>
+<text x="2984" y="2495.8" font-family="Arial,sans-serif" font-size="18" fill="#253247"></text>
+<text x="2984" y="2519.2" font-family="Arial,sans-serif" font-size="18" fill="#253247">Restricted payload: title, content and before/after are redacted.</text>
+<rect x="2966" y="2588" width="628" height="343" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2982" y="2622.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Execution trace  /  trace-read only</text>
+<text x="2984" y="2668.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Query: Which work is blocked?</text>
+<text x="2984" y="2691.4" font-family="Arial,sans-serif" font-size="18" fill="#253247">Retrieval: completed</text>
+<text x="2984" y="2714.8" font-family="Arial,sans-serif" font-size="18" fill="#253247">Source: AT-22 / revision 8 / observed 09:15 +07</text>
+<text x="2984" y="2738.2" font-family="Arial,sans-serif" font-size="18" fill="#253247">Citation locator: validated</text>
+<text x="2984" y="2761.6" font-family="Arial,sans-serif" font-size="18" fill="#253247">Claim support: separate evaluation</text>
+<text x="2984" y="2785.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Generation: completed</text>
+<rect x="3616" y="2588" width="378" height="343" fill="#ffffff" stroke="#c8d0da"/>
+<text x="3632" y="2622.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Recorded metrics</text>
+<text x="3634" y="2667.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">Duration: 0 ms (measured)</text>
+<text x="3634" y="2689.1" font-family="Arial,sans-serif" font-size="17" fill="#253247">Tokens: Not measured</text>
+<text x="3634" y="2711.2" font-family="Arial,sans-serif" font-size="17" fill="#253247">Embedding: Not performed</text>
+<text x="3634" y="2733.3" font-family="Arial,sans-serif" font-size="17" fill="#253247"></text>
+<text x="3634" y="2755.4" font-family="Arial,sans-serif" font-size="17" fill="#253247">Failure can still have measured timing.</text>
+<text x="3634" y="2777.5" font-family="Arial,sans-serif" font-size="17" fill="#253247">No hidden-source totals.</text>
+<rect x="0" y="3110" width="1280" height="900" fill="#ffffff" stroke="#c8d0da"/>
+<rect x="0" y="3110" width="1280" height="66" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="24" y="3154.0" font-family="Arial,sans-serif" font-size="24" fill="#253247">S / K</text>
+<text x="110" y="3151.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Atlas Demo  /  Project workspace</text>
+<rect x="784" y="3124" width="210" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="796" y="3148.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Search project</text>
+<rect x="1008" y="3124" width="152" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="1020" y="3148.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Ask AI</text>
+<text x="1183" y="3152.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">JD</text>
+<rect x="0" y="3176" width="202" height="834" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="28" y="3238.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Backlog</text>
+<rect x="12" y="3265" width="178" height="43" fill="#e5edf8" stroke="#e5edf8"/>
+<text x="28" y="3295.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Board</text>
+<text x="28" y="3352.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Documents</text>
+<text x="28" y="3409.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Search</text>
+<text x="28" y="3466.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Members</text>
+<text x="28" y="3523.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Audit</text>
+<text x="24" y="3853.0" font-family="Arial,sans-serif" font-size="13" fill="#607087">PROJECT SCOPE</text>
+<text x="24" y="3884.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Atlas Demo</text>
+<text x="24" y="3929.0" font-family="Arial,sans-serif" font-size="15" fill="#607087">AI: available</text>
+<text x="226" y="3230.0" font-family="Arial,sans-serif" font-size="28" fill="#253247">10  Work states and recovery</text>
+<text x="226" y="3261.0" font-family="Arial,sans-serif" font-size="16" fill="#607087">State variants for sign-in, project lists, Backlog, planning and Board.</text>
+<text x="226" y="3974.0" font-family="Arial,sans-serif" font-size="14" fill="#607087">WF-01–03, WF-09 / UC-01–05 / BR-01, BR-02, BR-03, BR-13</text>
+<text x="226" y="3997.0" font-family="Arial,sans-serif" font-size="12" fill="#607087">UX-WF-EX-01 v0.1  |  Draft  |  Synthetic data  |  Desktop layout proposal</text>
+<rect x="226" y="3300" width="496" height="178" fill="#ffffff" stroke="#c8d0da"/>
+<text x="242" y="3334.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Loading / renewed scope</text>
+<text x="242" y="3366.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">Loading permitted work...</text>
+<text x="242" y="3388.1" font-family="Arial,sans-serif" font-size="17" fill="#607087">No cached protected rows.</text>
+<text x="242" y="3456.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Wait; do not submit duplicate actions.</text>
+<rect x="758" y="3300" width="496" height="178" fill="#ffffff" stroke="#c8d0da"/>
+<text x="774" y="3334.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Empty result / no Active Sprint</text>
+<text x="774" y="3366.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">No tasks match this filter. [Clear filters]</text>
+<text x="774" y="3388.1" font-family="Arial,sans-serif" font-size="17" fill="#607087">No Active Sprint. [Open planning]</text>
+<text x="774" y="3456.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">A successful empty list differs from a failure.</text>
+<rect x="226" y="3502" width="496" height="178" fill="#ffffff" stroke="#c8d0da"/>
+<text x="242" y="3536.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Conflict / changed Backlog</text>
+<text x="242" y="3568.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">Work changed while you were editing.</text>
+<text x="242" y="3590.1" font-family="Arial,sans-serif" font-size="17" fill="#607087">Discard mixed list pages; load a fresh list.</text>
+<text x="242" y="3658.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">[Reload] Review before submitting again.</text>
+<rect x="758" y="3502" width="496" height="178" fill="#ffffff" stroke="#c8d0da"/>
+<text x="774" y="3536.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Outcome unknown / lost response</text>
+<text x="774" y="3568.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">The change may have committed.</text>
+<text x="774" y="3590.1" font-family="Arial,sans-serif" font-size="17" fill="#607087">Keep the original request details.</text>
+<text x="774" y="3658.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Reconcile original operation; no new submission.</text>
+<rect x="226" y="3704" width="496" height="178" fill="#ffffff" stroke="#c8d0da"/>
+<text x="242" y="3738.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Session or resource unavailable</text>
+<text x="242" y="3770.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">Session expired: sign in again.</text>
+<text x="242" y="3792.1" font-family="Arial,sans-serif" font-size="17" fill="#607087">Denied/unknown read: Resource unavailable.</text>
+<text x="242" y="3860.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Clear protected view and stale controls.</text>
+<rect x="758" y="3704" width="496" height="178" fill="#ffffff" stroke="#c8d0da"/>
+<text x="774" y="3738.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Service failure / partial list</text>
+<text x="774" y="3770.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">Unable to load work. [Try loading again]</text>
+<text x="774" y="3792.1" font-family="Arial,sans-serif" font-size="17" fill="#607087">More Backlog pages: reorder unavailable.</text>
+<text x="774" y="3860.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Do not treat failure as empty or partial as complete.</text>
+<rect x="1370" y="3110" width="1280" height="900" fill="#ffffff" stroke="#c8d0da"/>
+<rect x="1370" y="3110" width="1280" height="66" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="1394" y="3154.0" font-family="Arial,sans-serif" font-size="24" fill="#253247">S / K</text>
+<text x="1480" y="3151.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Atlas Demo  /  Project workspace</text>
+<rect x="2154" y="3124" width="210" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2166" y="3148.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Search project</text>
+<rect x="2378" y="3124" width="152" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2390" y="3148.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Ask AI</text>
+<text x="2553" y="3152.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">JD</text>
+<rect x="1370" y="3176" width="202" height="834" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="1398" y="3238.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Backlog</text>
+<text x="1398" y="3295.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Board</text>
+<rect x="1382" y="3322" width="178" height="43" fill="#e5edf8" stroke="#e5edf8"/>
+<text x="1398" y="3352.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Documents</text>
+<text x="1398" y="3409.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Search</text>
+<text x="1398" y="3466.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Members</text>
+<text x="1398" y="3523.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Audit</text>
+<text x="1394" y="3853.0" font-family="Arial,sans-serif" font-size="13" fill="#607087">PROJECT SCOPE</text>
+<text x="1394" y="3884.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Atlas Demo</text>
+<text x="1394" y="3929.0" font-family="Arial,sans-serif" font-size="15" fill="#607087">AI: available</text>
+<text x="1596" y="3230.0" font-family="Arial,sans-serif" font-size="28" fill="#253247">11  Document states and recovery</text>
+<text x="1596" y="3261.0" font-family="Arial,sans-serif" font-size="16" fill="#607087">Version status, semantic readiness and command outcome are distinct.</text>
+<text x="1596" y="3974.0" font-family="Arial,sans-serif" font-size="14" fill="#607087">WF-04–06, WF-09 / UC-06–08 / BR-04, BR-05, BR-10, BR-14</text>
+<text x="1596" y="3997.0" font-family="Arial,sans-serif" font-size="12" fill="#607087">UX-WF-EX-01 v0.1  |  Draft  |  Synthetic data  |  Desktop layout proposal</text>
+<rect x="1596" y="3300" width="496" height="178" fill="#ffffff" stroke="#c8d0da"/>
+<text x="1612" y="3334.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Readiness / first save</text>
+<text x="1612" y="3366.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">Current v4  /  Semantic search: Pending</text>
+<text x="1612" y="3388.1" font-family="Arial,sans-serif" font-size="17" fill="#607087">New content is saved; indexing is not ready.</text>
+<text x="1612" y="3456.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Pending / Ready / Failed never replace version status.</text>
+<rect x="2128" y="3300" width="496" height="178" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2144" y="3334.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">History / unavailable citation</text>
+<text x="2144" y="3366.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">Superseded v2: historical source.</text>
+<text x="2144" y="3388.1" font-family="Arial,sans-serif" font-size="17" fill="#607087">Verified unavailable identity: no excerpt.</text>
+<text x="2144" y="3456.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Keep exact locator; never substitute a newer version.</text>
+<rect x="1596" y="3502" width="496" height="178" fill="#ffffff" stroke="#c8d0da"/>
+<text x="1612" y="3536.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Independent command / no read</text>
+<text x="1612" y="3568.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">Blank editor for new content only.</text>
+<text x="1612" y="3590.1" font-family="Arial,sans-serif" font-size="17" fill="#607087">Acknowledgement does not open source content.</text>
+<text x="1612" y="3658.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Only controls explicitly allowed for this resource.</text>
+<rect x="2128" y="3502" width="496" height="178" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2144" y="3536.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Conflict / unknown outcome</text>
+<text x="2144" y="3568.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">Conflict: reconsider after permitted reload.</text>
+<text x="2144" y="3590.1" font-family="Arial,sans-serif" font-size="17" fill="#607087">Unknown: previous save may have committed.</text>
+<text x="2144" y="3658.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Keep original operation; no blind resubmission.</text>
+<rect x="1596" y="3704" width="496" height="178" fill="#ffffff" stroke="#c8d0da"/>
+<text x="1612" y="3738.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Archive / delete confirmation</text>
+<text x="1612" y="3770.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">Archive exact v2: removed from normal retrieval.</text>
+<text x="1612" y="3792.1" font-family="Arial,sans-serif" font-size="17" fill="#607087">Delete: source content becomes unavailable.</text>
+<text x="1612" y="3860.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">[Cancel] [Confirm action] No implied restore feature.</text>
+<rect x="2128" y="3704" width="496" height="178" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2144" y="3738.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Loading / empty / dependency failure</text>
+<text x="2144" y="3770.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">Loading... / No readable documents.</text>
+<text x="2144" y="3792.1" font-family="Arial,sans-serif" font-size="17" fill="#607087">Unable to load documents: try again.</text>
+<text x="2144" y="3860.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Denied/unknown: Resource unavailable; clear content.</text>
+<rect x="2740" y="3110" width="1280" height="900" fill="#ffffff" stroke="#c8d0da"/>
+<rect x="2740" y="3110" width="1280" height="66" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="2764" y="3154.0" font-family="Arial,sans-serif" font-size="24" fill="#253247">S / K</text>
+<text x="2850" y="3151.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Atlas Demo  /  Project workspace</text>
+<rect x="3524" y="3124" width="210" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="3536" y="3148.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Search project</text>
+<rect x="3748" y="3124" width="152" height="38" fill="#ffffff" stroke="#c8d0da"/>
+<text x="3760" y="3148.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Ask AI</text>
+<text x="3923" y="3152.0" font-family="Arial,sans-serif" font-size="17" fill="#253247">JD</text>
+<rect x="2740" y="3176" width="202" height="834" fill="#f3f5f8" stroke="#c8d0da"/>
+<text x="2768" y="3238.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Backlog</text>
+<text x="2768" y="3295.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Board</text>
+<text x="2768" y="3352.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Documents</text>
+<rect x="2752" y="3379" width="178" height="43" fill="#e5edf8" stroke="#e5edf8"/>
+<text x="2768" y="3409.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Search</text>
+<text x="2768" y="3466.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Members</text>
+<text x="2768" y="3523.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Audit</text>
+<text x="2764" y="3853.0" font-family="Arial,sans-serif" font-size="13" fill="#607087">PROJECT SCOPE</text>
+<text x="2764" y="3884.0" font-family="Arial,sans-serif" font-size="18" fill="#253247">Atlas Demo</text>
+<text x="2764" y="3929.0" font-family="Arial,sans-serif" font-size="15" fill="#607087">AI: available</text>
+<text x="2966" y="3230.0" font-family="Arial,sans-serif" font-size="28" fill="#253247">12  AI and inspector states</text>
+<text x="2966" y="3261.0" font-family="Arial,sans-serif" font-size="16" fill="#607087">No generated draft is shown before validation and protected delivery.</text>
+<text x="2966" y="3974.0" font-family="Arial,sans-serif" font-size="14" fill="#607087">WF-07–09 / UC-09, UC-10, UC-12, UC-13 / BR-08–BR-13</text>
+<text x="2966" y="3997.0" font-family="Arial,sans-serif" font-size="12" fill="#607087">UX-WF-EX-01 v0.1  |  Draft  |  Synthetic data  |  Desktop layout proposal</text>
+<rect x="2966" y="3300" width="496" height="178" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2982" y="3334.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Loading / answered / partial</text>
+<text x="2982" y="3366.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">Preparing and checking answer...</text>
+<text x="2982" y="3388.1" font-family="Arial,sans-serif" font-size="17" fill="#607087">Partial: supported claims + exact citations.</text>
+<text x="2982" y="3456.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">List missing requested components without source hints.</text>
+<rect x="3498" y="3300" width="496" height="178" fill="#ffffff" stroke="#c8d0da"/>
+<text x="3514" y="3334.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Insufficient evidence / conflict</text>
+<text x="3514" y="3366.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">Not enough evidence for this question.</text>
+<text x="3514" y="3388.1" font-family="Arial,sans-serif" font-size="17" fill="#607087">Conflict: show each permitted cited position.</text>
+<text x="3514" y="3456.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Do not choose a source by modification time alone.</text>
+<rect x="2966" y="3502" width="496" height="178" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2982" y="3536.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Withheld / dependency failure</text>
+<text x="2982" y="3568.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">Unable to provide this answer.</text>
+<text x="2982" y="3590.1" font-family="Arial,sans-serif" font-size="17" fill="#607087">AI unavailable: no generated answer.</text>
+<text x="2982" y="3658.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">[Search documents] [Open Board] Deliberate retry.</text>
+<rect x="3498" y="3502" width="496" height="178" fill="#ffffff" stroke="#c8d0da"/>
+<text x="3514" y="3536.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Lost response / missing observation</text>
+<text x="3514" y="3568.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">Outcome unknown: do not auto-resend.</text>
+<text x="3514" y="3590.1" font-family="Arial,sans-serif" font-size="17" fill="#607087">Original observation unavailable after reload.</text>
+<text x="3514" y="3658.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Current values cannot recreate the old observation.</text>
+<rect x="2966" y="3704" width="496" height="178" fill="#ffffff" stroke="#c8d0da"/>
+<text x="2982" y="3738.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Unavailable / denied / authority error</text>
+<text x="2982" y="3770.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">Retained permission: verified unavailable identity.</text>
+<text x="2982" y="3792.1" font-family="Arial,sans-serif" font-size="17" fill="#607087">Denied/unknown: Resource unavailable.</text>
+<text x="2982" y="3860.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">No excerpt, substitute version or hidden-source hint.</text>
+<rect x="3498" y="3704" width="496" height="178" fill="#ffffff" stroke="#c8d0da"/>
+<text x="3514" y="3738.0" font-family="Arial,sans-serif" font-size="20" fill="#253247">Shared interaction proposal / WF-09</text>
+<text x="3514" y="3770.0" font-family="Arial,sans-serif" font-size="17" fill="#607087">Visible focus; labels; status text; keyboard moves.</text>
+<text x="3514" y="3792.1" font-family="Arial,sans-serif" font-size="17" fill="#607087">Dialog focus returns to trigger on close.</text>
+<text x="3514" y="3860.0" font-family="Arial,sans-serif" font-size="16" fill="#253247">Desktop only; mobile and accessibility testing remain open.</text>
+<text x="0" y="42.0" font-family="Arial,sans-serif" font-size="42" fill="#253247">SCRUM + KNOWLEDGE / CORE WIREFRAMES</text>
+<text x="0" y="85.0" font-family="Arial,sans-serif" font-size="23" fill="#607087">12 editable frames  /  Work &gt; Knowledge &gt; Evidence  /  Draft v0.1  /  23 October 2026</text>
+</svg>

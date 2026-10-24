@@ -1,7 +1,7 @@
 # Information Architecture & Sitemap (SACW)
 
 **Artifact ID:** UX-SITEMAP-03  
-**Version/date:** 0.9 Draft · 18 October 2026
+**Version/date:** 0.10 Draft · 23 October 2026
 **Trace:** BRD BR-01–BR-15; PRD-01 (FR-01–FR-70; FR-45 withdrawn, SC-01–SC-08); SAD-03; ADR-0001; ADR-0006
 **Scope:** Information Architecture, Navigation Hierarchy, Screen Inventory, and Global AI Placement.
 
@@ -68,6 +68,7 @@ The interface uses a 3-tier navigation layout:
 | `/p/:projectId/citations/:documentId/:versionId/:passageId` | Citation Passage Inspector | Exact excerpt and version with Current / Superseded / Archived label (UC-09) | Re-checked protected read | Generic 404; specific "Citation unavailable" only when the surviving identity is readable |
 | `/p/:projectId/observations/:entityKind/:entityId` | Operational Citation Inspector | Cited entity/time/observation revision plus separately refreshed current state (UC-10) | Current member and exact entity scope; getProject/getSprint/getTask recheck | Generic 404 or dependency failure; missing original answer context shows observation unavailable, with any renewed current read labelled separately |
 | `/p/:projectId/ai` (Drawer) | AI Q&A Assistant | Buffered answers with exact citations (SC-02, SC-07) | Project member; evidence filtered by current access | Insufficient evidence; AI failure with keyword fallback |
+| Inline panel on an answer in `/p/:projectId/ai` | Retrieval Summary | Optional FR-27 Should bounded summary for the exact answer/run, only when implemented | Run-scoped getAllowedActions discovers getRetrievalSummary independently; current membership and permitted-answer-reader entitlement, without audit-read or trace-read; server rechecks current run/source access | Generic 404 for unknown/unrelated/revoked readers; generic 503 on authority/dependency failure, no cached summary; omit denied source details and dependent query/validation data without hidden counts or rank gaps |
 | `/p/:projectId/docs/:docId/manage` | Document Access | Known-ID policy and current grantees via getDocumentPolicy/listDocumentReadGrants | Membership plus manage-access, independent of content-read | Generic 404; no content metadata without read |
 | `/p/:projectId/docs/:docId/actions` | Independent Document Actions | Known-ID scoped write/lifecycle discovery via getAllowedActions | Scoped action authority; no content prefill without read | Opaque action precondition/conflict handling; no protected prefill |
 | any protected route | Generic Not Found | One response for unknown and inaccessible resources | Any | No title, count, version or excerpt |
@@ -81,6 +82,7 @@ The interface uses a 3-tier navigation layout:
 2. **Contextual In-Line Action:**
    - In Task Modal: Button `[ 🤖 Ask AI about this task's specs ]`.
    - In Document View: Button `[ 🤖 Explain historical rationale of this section ]`.
+3. **Answer Retrieval Summary:** Offer an inline summary control on the exact answer when run-scoped discovery allows getRetrievalSummary and FR-27 is implemented. Open it directly in the AI drawer without passing through `/audit`; summary and trace controls have independent entitlements. Discovery is advisory and each operation rechecks current authority.
 
 ### 4.2 Presentation Modes
 - **Docked Split Mode (Recommended for Devs):** The right side of the screen opens the AI Assistant drawer alongside the Active Board or Document Editor, allowing side-by-side reading of citations without losing work context.
@@ -101,3 +103,5 @@ The interface uses a 3-tier navigation layout:
 ## Independent document action entry — 17 October 2026
 
 Proposed browser routes `/p/:projectId/docs/:docId/manage` and `/p/:projectId/docs/:docId/actions` accept a known identity and validate scoped manage-access or content-write/lifecycle authority independently of the readable explorer/viewer. They expose no content or hidden metadata without the relevant permission. Prefill/history/readiness still require content-read. These are UI routes, not new HTTP operations; ADR-0007 and UC-06/07 govern the existing operations. Sources: PRD-01 v0.9; UC-02 v0.6; SAD-03 v0.11; UX-PERM-MATRIX-02 v0.6.
+
+**v0.10 correction — 23 October 2026:** Added the answer-local FR-27 summary entry under the existing run-scoped contract and Proposed ADR-0021. Audit navigation retains its audit-read/trace-read gate. Trace: BR-10/BR-12; FR-27/58/59; AC-27/58/59; SP-13. No new HTTP operation, policy or runtime evidence. Checklist/handoff: Pass for documented independent entry; Gap for rendered UI and handler permission/failure verification.

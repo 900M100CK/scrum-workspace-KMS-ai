@@ -1,7 +1,7 @@
 # UI/UX and web frontend design blueprint
 
 **Artifact ID:** UX-BLUEPRINT-01  
-**Version/date:** 1.2 Draft · 21 October 2026  
+**Version/date:** 1.3 Draft · 23 October 2026
 **Status:** Corrected author draft for bounded wireframe/design work; visual tokens remain candidates. Not owner approval, independent review or application readiness.  
 **Template basis:** Local IEEE 1016-2009 Blueprint and UI/UX prompts/checklists; no standards-conformance claim.  
 **Inputs:** [PRD-01 v0.9](PRD_SRS.md); [UC-02 v0.7](use-cases.md); [SAD-03 v0.15](../architecture.md); [UX-06 v0.12](ui-ux-spec.md); [UX-CHECK-01 v0.1](reviews/ui-ux-checklist-review-2026-10-18.md); [UX-HANDOFF-01 v0.8](handoffs/ui-ux-handoff-2026-10-18.md); [UX-PLAN-01 v0.1](../ux/wireframe-workplan.md); Workspace OpenAPI v0.2.8; Knowledge OpenAPI v0.2.9; Logical Data Model v0.8; ADR-0004; ADR-0007–ADR-0017; Proposed ADR-0018–ADR-0023; [BRD English v1.0](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md); [PLAN-01 v0.3](../planning/five-month-plan.md); [Stage 6 profile](../agents/06-ui-ux.md); [SP-01 v0.3](../../specs/001-session.md).
@@ -11,7 +11,7 @@
 
 ### 1.1 Identification and authority
 
-Scrum Workspace with AI-Assisted Knowledge Management System (KMS), UI/UX design v1.2 Draft, 21 October 2026. Author role: Stage 6 UI/UX author. This document translates UX-06 into screen, component and interaction briefs. UX-06 remains the consolidated entry; SAD, PRD and contracts remain their canonical sources. Templates and author proposals cannot change product scope or select a framework/provider.
+Scrum Workspace with AI-Assisted Knowledge Management System (KMS), UI/UX design v1.3 Draft, 23 October 2026. Author role: Stage 6 UI/UX author. This document translates UX-06 into screen, component and interaction briefs. UX-06 remains the consolidated entry; SAD, PRD and contracts remain their canonical sources. Templates and author proposals cannot change product scope or select a framework/provider.
 
 #### Revision History
 
@@ -21,6 +21,7 @@ Scrum Workspace with AI-Assisted Knowledge Management System (KMS), UI/UX design
 | v1.0 | 2026-10-19 | UI/UX Author | Full IEEE 1016-2009 Blueprint creation integrating 8 design views, component catalogs, state dynamics, and complete checklist dispositions. |
 | v1.1 | 2026-10-20 | UI/UX Author | Reconciled with upstream SAD-03 gateway boundaries (Trust Boundary 1 & 4), explicit Proposed ADR-0018–0023 labeling, canonical UX-SITEMAP-03 routes, claim-level badges (FR-24), UX constraints matrix completion, and UX-CHECK-01 checklist reconciliation notes. |
 | v1.2 | 2026-10-21 | UI/UX Author | Preserved v1.1 gateway/routes; corrected actors, contract bindings, state/trace errors, visual evidence claims and sequential construction briefs. |
+| v1.3 | 2026-10-23 | UI/UX Author | Bound task placement to Task.work_location and exposed optional run summary from the answer independently of Audit navigation; existing contracts and Proposed designs unchanged. |
 
 
 ### 1.2 Boundaries
@@ -123,7 +124,7 @@ Multi-select Sprint allocation is one allocateTask request/key/result per task, 
 | View model | Contract source / invariant |
 | --- | --- |
 | Session/project context | Session and exact-scope AllowedActions; descriptive roles grant no authority |
-| Work card | Task state/revision and location_kind/location_sprint_id; completion history cannot derive current placement |
+| Work card | Task.state/revision and Task.work_location: kind=backlog uses position; kind=sprint or completed uses sprint_id. These are API fields, not logical-model location_kind/location_sprint_id; completion history cannot derive current placement |
 | Document list/history | DocumentSummary/VersionSummary; nullable Current pointer; Current/Superseded/Archived separate from semantic_readiness |
 | Answer | QuestionResult union with server-controlled claims, citations and missing_components where applicable |
 | Document citation | kind=document, source_id, document_id, version_id, passage_id; no invented offset locator |
@@ -294,11 +295,12 @@ Follow [sitemap](../ux/sitemap.md) and [UX-PLAN-01](../ux/wireframe-workplan.md)
 | Access/actions: /p/:projectId/docs/:docId/manage, /p/:projectId/docs/:docId/actions | getDocumentPolicy/listDocumentReadGrants and exact scoped commands from §3.1; independent read/write/lifecycle/manage, DC-01–10 |
 | Search: /p/:projectId/search | keywordSearch/listLinks/createLink; permitted endpoint navigation, cursor errors; searchTasks FR-70 Should only if implemented/allowed |
 | AI: /p/:projectId/ai | askQuestion; §3.7 result/failure states, safe prompt retained |
+| Answer retrieval summary: inline panel in /p/:projectId/ai | Run-scoped getAllowedActions, then FR-27 Should getRetrievalSummary for the exact answer run when implemented/allowed; current permitted-answer-reader entitlement, independent of audit-read/trace-read; generic 404 on denied/unknown/revoked run, generic 503 on authority/dependency failure with no cached summary |
 | Citation: /p/:projectId/citations/:docId/:versionId/:passageId | openCitation/getVersion; exact permitted identity/validity, unavailable without excerpt, generic denied |
 | Observation: /p/:projectId/observations/:entityKind/:entityId | getProject/getSprint/getTask; original observation versus renewed current; missing original context after reload |
-| Audit: /p/:projectId/audit | listAudit/getTrace and FR-27 Should getRetrievalSummary; independent authorities, redaction and honest metrics |
+| Audit: /p/:projectId/audit | listAudit/getTrace; scoped audit-read or trace-read respectively, redaction and honest metrics |
 
-Version action discovery supplies exact project/document/version IDs and validates the echoed pair. Trace and optional summary controls have independent entitlements for the same run; summary rights do not confer trace-read. Pagination must never reveal hidden totals or counts.
+Version action discovery supplies exact project/document/version IDs and validates the echoed pair. Offer the optional retrieval-summary control on its answer without traversing the Audit route gate. Run-scoped discovery evaluates summary and trace controls independently; the server rechecks each operation's current entitlement and source access at open/handoff. Summary rights do not confer trace-read, and audit-read/trace-read do not confer summary rights. Omit denied source details and dependent query/validation data without hidden counts or rank gaps. Pagination must never reveal hidden totals or counts.
 
 ### 3.7 State dynamics view
 

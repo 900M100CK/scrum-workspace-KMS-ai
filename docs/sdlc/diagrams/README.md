@@ -169,14 +169,14 @@ Current filesystem inspection found eight Draw.io files in the five type folders
 | Artifact ID | Version | Canonical source |
 | --- | --- | --- |
 | UML-07 | v0.19 | [Source](README.md) |
-| REG-00 | v0.52 | [Source](../artifact-register.md) |
+| REG-00 | v0.59 | [Source](../artifact-register.md) |
 | SAD-03 | v0.15 | [Source](../../architecture.md) |
 | UX-PERM-MATRIX-02 | v0.10 | [Source](../../ux/permission-matrix.md) |
 | UX-PERSONAS-01 | v0.4 | [Source](../../ux/personas.md) |
-| UX-SITEMAP-03 | v0.9 | [Source](../../ux/sitemap.md) |
+| UX-SITEMAP-03 | v0.10 | [Source](../../ux/sitemap.md) |
 | UX-FLOW-AI-03 | v0.8 | [Source](../../ux/flows/ai-qa-flow.md) |
 | UX-FLOW-BOARD-01 | v0.9 | [Source](../../ux/flows/board-flow.md) |
-| UX-FLOW-DOCS-02 | v0.7 | [Source](../../ux/flows/docs-flow.md) |
+| UX-FLOW-DOCS-02 | v0.8 | [Source](../../ux/flows/docs-flow.md) |
 | DGM-ARCH-01 | v0.9 | [Source](architecture/service-composition.mmd) |
 | DGM-SITE-01 | v0.8 | [Source](sitemap/application-sitemap.mmd) |
 | DGM-FLOW-01 | v0.13 | [Source](flowchart/ai-qa-flow.mmd) |
