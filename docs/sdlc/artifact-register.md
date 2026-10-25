@@ -39,13 +39,15 @@ Prior OWNER-Q-01 verification: combined Node 24.21.0 run `node --test tests/docs
 ## Current register and handoffs
 
 **Artifact ID:** REG-00
-**Version/date:** 0.59 Draft · 24 October 2026
+**Version/date:** 0.60 Draft · 25 October 2026
 **Status:** Draft; confirmed policy corrections in progress, full coverage and remaining decisions explicit.
 **Source versions:** [BRD stable entry](../BRD.md) → [English BRD v1.0](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md) and two Proposed addenda, [AGENTS.md v1.7](../../AGENTS.md), [workflow](../../agents/WORKFLOW.md), PRD-01 v0.9, UC-02 v0.7, SAD-03 v0.15 and ADR-0007–ADR-0017. Prior review inputs remain historical. Storage has measured test evidence; interviews, pilot and application runtime evidence remain absent.; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
 
 | Stage/ID | Path | Owner role | Version/status | Inputs/dependencies | Planned BR/SC coverage | Open decisions |
 | --- | --- | --- | --- | --- | --- | --- |
-| 0 / REG-00 | docs/sdlc/artifact-register.md | Coordinator | 0.59 Draft | Current requirements, corrective ADRs and queue | BR-01–BR-15; SC-01–SC-08 | Author corrections tracked separately from runtime acceptance |
+| 0 / REG-00 | docs/sdlc/artifact-register.md | Coordinator | 0.60 Draft | Current requirements, corrective ADRs and queue | BR-01–BR-15; SC-01–SC-08 | Author corrections tracked separately from runtime acceptance |
+| Supporting review register / DOC-REVIEW-REG-01 | [docs/sdlc/references/document-review-register.md](references/document-review-register.md) | SDLC coordinator | 0.1 Draft | Development rules v1.5; pre-flight checklist; workflow; REG-00; SDLC index | Existing BR-01–BR-15 / SC-01–SC-08 documentation navigation only | First target/reviewer unassigned; no semantic review performed |
+| Navigation / SDLC-INDEX-01 | [docs/sdlc/README.md](README.md) | SDLC coordinator | 0.2 Draft | Development rules; workflow; REG-00 | Existing documentation navigation only | Review register linked; source review and acceptance remain separate |
 | Excalidraw wireframes / UX-WF-EX-01 | [docs/ux/wireframes/README.md](../ux/wireframes/README.md); native scene and PNG/SVG previews | Sequential UX author | 0.1 Draft | UX-BLUEPRINT-01 v1.3; UX-PLAN-01 v0.1; UX-06 v0.12; current scoped contracts | BR-01–BR-14; SC-01–SC-08 through frame UC/TC mappings | Initial 12 desktop frames; native import, full BL/DC variants, responsive/accessibility/usability and runtime gates remain open |
 | UI references / UI-REF-01; UI-REVIEW-01 | references/README.md; references/ui-review-2026-10-23.md | Sequential UI author | UI-REF-01 v0.4; UI-REVIEW-01 v0.1 historical | UX-BLUEPRINT-01 v1.3; contracts; SP-01–04; Proposed stack/read designs | BR-01/02/03/10/12/13; SC-01/03/06/08 | Live stack/identity, application enforcement and independent acceptance remain open |
 | UI theme / UI-THEME-01 | references/ui-dark-theme-2026-10-24.md; apps/web/ | Sequential UI author | 0.1 Draft | UX-WF-EX-01 v0.1; UX-BLUEPRINT-01 v1.3; UI-REF-01 v0.4 | BR-01/02/03/10/13; SC-01/03/06/08 | Local theme, token tests and screenshots; independent/runtime acceptance open |
@@ -113,7 +115,7 @@ The BRD leaves architecture to design while AGENTS.md directs minimal microservi
 | Artifact ID | Version | Canonical source |
 | --- | --- | --- |
 | UML-07 | v0.19 | [Source](diagrams/README.md) |
-| REG-00 | v0.59 | [Source](artifact-register.md) |
+| REG-00 | v0.60 | [Source](artifact-register.md) |
 | SAD-03 | v0.15 | [Source](../architecture.md) |
 | UX-PERM-MATRIX-02 | v0.10 | [Source](../ux/permission-matrix.md) |
 | UX-PERSONAS-01 | v0.4 | [Source](../ux/personas.md) |
@@ -299,8 +301,12 @@ REG-00 v0.58 records UI-REF-01 v0.3 and UI-REDESIGN-01 v0.1. Owner-requested red
 
 Final author checks (bundled Node 24.22.1): context:lint and context:check passed; context:test passed 45/45; docs:lint passed for 20 diagram pairs and 35 manifest artifacts; docs:test passed 18/18. UI syntax and changed tracked-file whitespace checks passed. Taste source lint: zero failures, four explained warnings. These are presentation and structural results, with zero live application handler behaviours verified.
 
-## Dark theme and Board separation — 24 October 2026
+## Historical dark theme and Board separation — 24 October 2026
 
 REG-00 v0.59 records UI-THEME-01 v0.1 and UI-REF-01 v0.4. Owner-requested Board shadows and neutral dark theme retain the existing work-first preview layout and flows. Theme switching preserves form text and navigation state without changing unavailable scope. The report preserves historical palette rollback evidence and supplies dark tokens, desktop/phone/source screenshots and explicit reporting limits. Local UI/server/token tests passed 16/16 with Node 24.22.1; zero live application handler behaviours verified. No product requirement, contract, accepted ADR, provider, migration, dependency, branch or commit was added. Checklist: bounded reversible presentation and reporting scope; independent accessibility/usability and runtime acceptance remain Gap. Handoff: reusable UI/UX evidence supplied; do not treat token contrast as complete rendered accessibility acceptance.
 
 Final structural verification (Node 24.22.1): context:lint and context:check passed; context:test 45/45 and docs:test 18/18 passed. docs:lint passed for 20 diagram pairs / 35 manifest artifacts. Generated metadata check: 66 outputs, no drift. Changed tracked-file whitespace check passed. These structural results do not add live handler or independent acceptance evidence.
+
+## Supporting document review register — 25 October 2026
+
+REG-00 v0.60 records the owner-requested DOC-REVIEW-REG-01 v0.1 and SDLC-INDEX-01 v0.2 navigation update. The reference groups supporting document types and supplies per-review fields for source versions, reviewer/date, checklist/trace, findings, evidence and follow-up ownership. All initial items are Not reviewed. This is a documentation aid, not a new application slice, requirement, ADR or runtime feature. Existing historical records and unrelated workspace changes are preserved. Checklist: authority and scope preserved; semantic review remains Gap; application checks are N/A. Handoff: Ready for downstream planning with the first bounded target and reviewer unassigned.

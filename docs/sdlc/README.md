@@ -1,7 +1,7 @@
 # SDLC documentation
 
 **Artifact ID:** SDLC-INDEX-01  
-**Version/date:** 0.1 Draft · 22 October 2026  
+**Version/date:** 0.2 Draft · 25 October 2026\
 **Status:** Navigation only; artifact status and acceptance remain with each source.  
 **Inputs:** [Development rules](../development-rules.md), [workflow](../../agents/WORKFLOW.md), [artifact register](artifact-register.md).  
 **Trace:** Existing BR-01–BR-15 / SC-01–SC-08 artifacts; no requirement change.
@@ -42,7 +42,7 @@ docs/sdlc/
 | Folder | Documents |
 | --- | --- |
 | `handoffs/` | [Remediation priorities](handoffs/remediation-priorities-2026-10-18.md), [UX handoff](handoffs/ui-ux-handoff-2026-10-18.md) |
-| `references/` | [Byte-binding reference](references/handoff-byte-reference-2026-10-18.md), [SQL projection](references/handoff-sql-projection-2026-10-18.md) |
+| `references/` | [Document review register](references/document-review-register.md), [byte-binding reference](references/handoff-byte-reference-2026-10-18.md), [SQL projection](references/handoff-sql-projection-2026-10-18.md) |
 | `reports/` | [Progress report](reports/progress-report-2026-10-18.md), [concise progress handoff](reports/progress-report-handoff-2026-10-18.md) |
 | `reviews/` | [UX/blueprint checklist review](reviews/ui-ux-checklist-review-2026-10-18.md) |
 
