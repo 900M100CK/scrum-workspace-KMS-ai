@@ -1,9 +1,9 @@
 # Architecture — stable SDLC entry
 
 **Artifact ID:** SAD-03-ENTRY
-**Version/date:** 0.14 Draft · 18 October 2026
+**Version/date:** 0.15 Draft · 25 October 2026
 **Status:** Draft; recorded owner-confirmed directions apply, while remaining choices and runtime acceptance are open.
-**Inputs:** SAD-03 v0.15; PRD-01 v0.9; PLAN-01 v0.3; ADR-0004 v0.2; ADR-0007–ADR-0017.; Proposed ADR-0018–ADR-0023
+**Inputs:** SAD-03 v0.16; PRD-01 v0.9; PLAN-01 v0.4; ADR-0004 v0.2; ADR-0007–ADR-0017.; Proposed ADR-0018–ADR-0023
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 Read [the complete architecture](../architecture.md). It is the single design source; this entry preserves the workflow path without duplicating design.
@@ -31,3 +31,7 @@ Status: Draft; Ready for downstream with explicit gaps. Checklist: Pass for sour
 **v0.7 change:** Points to SAD-03 v0.8, which separates the English full-text keyword baseline from pgvector AI discovery. Prior change summaries above are historical.
 
 The [diagram foundation](diagrams/design-foundation-2026-10-17.md) uses C4 Context/Container as the structural entry and maps the same diagrams to the 4+1 narrative above. Deployment distinguishes configured storage from proposed application processes.
+
+## Input metadata reconciliation — 25 October 2026
+
+Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.

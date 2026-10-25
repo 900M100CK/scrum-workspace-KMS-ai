@@ -1,9 +1,9 @@
 # Minimum test and evidence plan
 
 **Artifact ID:** TEST-08
-**Version/date:** 0.20 Draft · 18 October 2026
+**Version/date:** 0.21 Draft · 25 October 2026
 **Status:** Planned application assertions; owner-confirmed policy direction, no release acceptance.
-**Inputs:** [PRD-01](PRD_SRS.md) v0.9; [UC-02](use-cases.md) v0.7; [SAD-03](../architecture.md) v0.15; DATA-04 v0.11; API-05 v0.16; ADR-0007 through ADR-0017; current UX/diagrams; [specs](../../specs/README.md); [evaluation](../../eval/README.md).; Proposed ADR-0018.; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
+**Inputs:** [PRD-01](PRD_SRS.md) v0.9; [UC-02](use-cases.md) v0.8; [SAD-03](../architecture.md) v0.16; DATA-04 v0.12; API-05 v0.17; ADR-0007 through ADR-0017; current UX/diagrams; [specs](../../specs/README.md); [evaluation](../../eval/README.md).; Proposed ADR-0018.; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
 **Author:** Development agent acting sequentially; no independent review claimed.
 
 ## Scope, levels and environment
@@ -154,3 +154,7 @@ These are SQL service-role/storage tests. Active process fencing, durable/unknow
 ## NEXT-13 optional SQL/reference integration
 
 The actual contracts:storage:test command passed seven results (six subtests plus parent) in a fresh isolated container. Both purposes retain exact raw bytes through a canonical StoredHandoff projection. Every trusted-context selector mismatch/NULL yields no row; wrapped base64 and reserialized bytes fail; readable consumed preparations do not regain a claim; a separate connection cannot see uncommitted preparation and cancelled rollback leaves none; unsafe integer parsing fails closed. These are storage/serialization tests with synthetic context, not current permission or HTTP consumer/provider acceptance. No live TC-26 or SP Done is claimed.
+
+## Input metadata reconciliation — 25 October 2026
+
+Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.

@@ -1,9 +1,9 @@
 # Answer a current work-state question
 
 **Artifact ID:** SP-10  
-**Version/date:** 0.4 Draft · 18 October 2026
+**Version/date:** 0.5 Draft · 25 October 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
-**Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-10--answer-a-current-work-state-question); [contract pack](../contracts/README.md); PLAN-01 v0.3.\; Proposed ADR-0020
+**Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-10--answer-a-current-work-state-question); [contract pack](../contracts/README.md); PLAN-01 v0.4.\; Proposed ADR-0020
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 3.  
@@ -43,3 +43,7 @@ Uses the applicable owner-confirmed directions through ADR-0017 and OWNER-Q-01. 
 ## SYS-01 complete operational handoff evidence
 
 Proposed ADR-0020 requires every current operational entity used in context, including uncited observations, to bind project/source/entity kind/ID/entity revision/observation revision/time and entity snapshot digest. The transport uses a complete mixed manifest; bare entity IDs or one source_revision cannot replace per-source bindings. Test a document-plus-task answer with distinct observed entities and an uncited task changing between preparation and final validation: reject the whole stale draft before protected bytes, release guard and reprepare safely. Workspace outage cannot use embedded history as current truth. These are future live TC-26 assertions; no observation or relay handler is implemented.
+
+## Input metadata reconciliation — 25 October 2026
+
+Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.

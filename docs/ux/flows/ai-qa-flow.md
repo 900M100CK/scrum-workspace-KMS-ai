@@ -1,9 +1,9 @@
 # User Flow: AI Q&A, Citations & Fallback
 
 **Artifact ID:** UX-FLOW-AI-03\
-**Version/date:** 0.8 Draft · 18 October 2026
+**Version/date:** 0.9 Draft · 25 October 2026
 **Status:** Owner-confirmed policy direction; runtime and full UX review pending.\
-**Sources:** PRD-01 v0.9; UC-02 v0.7 (UC-09/UC-10/UC-12); SAD-03 v0.15; ADR-0007/0009/0011; Workspace OpenAPI v0.2.8 / Knowledge v0.2.9\
+**Sources:** PRD-01 v0.9; UC-02 v0.8 (UC-09/UC-10/UC-12); SAD-03 v0.16; ADR-0007/0009/0011; Workspace OpenAPI v0.2.8 / Knowledge v0.2.9\
 **Trace:** BR-07–BR-10, BR-12–BR-14; FR-18–FR-30, FR-32–FR-34, FR-46, FR-53–FR-55, FR-59–FR-61, FR-69; SC-02, SC-03, SC-05–SC-08.
 
 ## 1. Request and protected handoffs
@@ -94,3 +94,7 @@ Provider health is an advisory badge. With a valid session and no confirmed scop
 For a lost response, show “Previous request outcome unknown” and stop automatic retries. Offer keyword search and, if the user deliberately chooses it, “Submit as a new question”, with notice that the previous request may have completed. This is new user intent, not transparent replay or a claim of rollback; unresolved server transport quarantine may still reject it. A later successful request clears the stale failure badge. Session expiry requires sign-in; confirmed membership loss clears protected state. Current authority/dependency errors remain server decisions, not health-badge guesses.
 
 Keyword and document/work actions depend on their own services. Semantic/provider failure does not disable healthy keyword search. Knowledge failure can disable document search/reads while healthy Workspace work remains available. No health polling, request-status endpoint, provider switch or runtime AI mutation is introduced.
+
+## Input metadata reconciliation — 25 October 2026
+
+Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.

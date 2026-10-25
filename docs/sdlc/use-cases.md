@@ -1,9 +1,9 @@
 # Goal-level use cases for the five-month release
 
 **Artifact ID:** UC-02  
-**Version/date:** 0.7 Draft · 18 October 2026
+**Version/date:** 0.8 Draft · 25 October 2026
 **Status:** Owner-confirmed ADR-0007–ADR-0011 direction; remaining policy and application evidence gaps are explicit.
-**Inputs:** BRD v1.0; [PRD-01](PRD_SRS.md) v0.9; [PLAN-01](../planning/five-month-plan.md) v0.3; ADR-0007–ADR-0017; repository UC prompt/checklist.; Proposed ADR-0022
+**Inputs:** BRD v1.0; [PRD-01](PRD_SRS.md) v0.9; [PLAN-01](../planning/five-month-plan.md) v0.4; ADR-0007–ADR-0017; repository UC prompt/checklist.; Proposed ADR-0022
 **Author:** development agent acting sequentially; owner reviews business choices.  
 **Changes v0.1 → v0.2:** Replaced boilerplate trigger/flow template with per-UC specific triggers, detailed numbered main success scenarios, separate alternate (Alt-*) and exception (EX-*) flows, and inline Business Rules. All FR/BR/SC traces, postconditions, relationship notes and handoff statements preserved unchanged.
 **Revision note (12 October 2026, version unchanged):** Corrected the UML relationship specification and `use-case-diagram.drawio` so UC-02, UC-03, UC-07 and UC-13 are associated with their scoped actors instead of Authorised Member; added the FR-35 trace note below. No UC flow, FR/BR/SC trace or postcondition changed.
@@ -539,7 +539,7 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 **Trigger:** Any committed mutation (project/membership/work/knowledge/relationship change per audit catalogue) or any answer attempt (success or failure) triggers internal audit/trace capture.  
 **Precondition:** A committed change or answer attempt has just completed or failed.
 
-> **Relationship note:** UC-11 capture is a mandatory include of every committed mutation/answer case (UC-02 through UC-10, UC-12). In a UML include diagram, base cases → UC-11 (`<<include>>`). Authentication (UC-01) is a precondition, not a forced include.
+> **Relationship note:** UC-11 capture is mandatory for every committed mutation and answer. UC-02–UC-07 and UC-09–UC-10 include UC-11. In UC-08 and UC-12, only mutation branches require capture; broad read/navigation/outage cases have no unconditional include arrow. Authentication (UC-01) is a precondition, not a forced include.
 
 ### Main Success Scenario — Business audit event (FR-31)
 
@@ -720,7 +720,7 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 | 1 · Use Case ID | Pass | UC-01–UC-13, Artifact UC-02 |
 | 2 · Use Case Name | Pass | Active verb phrases throughout |
 | 3 · Description/Purpose | Pass | One-to-two sentence Purpose per UC |
-| 4 · Version & Date | Pass | 0.3 Draft · 14 October 2026 |
+| 4 · Version & Date | Pass | 0.8 Draft · 25 October 2026 |
 | 5 · Author & Stakeholders | Pass | Development agent; owner reviews |
 | 6 · Status | Pass | Draft for owner review |
 | 7 · Primary Actor | Pass | Named per UC |
@@ -759,3 +759,7 @@ Main step 9 now contains the ADR-0015 partial-answer outcome; invalid or revoked
 ### UC-02 change record - 16 October 2026
 
 Removal, rejoin and last-manager checks now appear in the main/exception flows. UC-04 assignment must recheck membership under the same serialization boundary.
+
+## Relationship reconciliation — 25 October 2026
+
+Version 0.8 aligns the UC-11 relationship note with the existing branch-specific UC-08/UC-12 UML specification and refreshes the checklist version/date. Mutation audit remains mandatory; read-only branches do not acquire unconditional include arrows. No flow, FR/AC, permission or audit policy is added; runtime evidence remains unrun.

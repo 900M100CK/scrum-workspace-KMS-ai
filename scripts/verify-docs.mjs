@@ -192,7 +192,7 @@ async function walk(directory) {
 }
 
 export function checkUnselectedSearchTerms(text, location) {
-  const term = /\b(?:trigram|pg_trgm|rrf|reciprocal|fusion)\b/i;
+  const term = /\b(?:trigram|pg_trgm|trgm|rrf|reciprocal|fusion)\b/i;
   const status = /\b(?:unselected|not adopted)\b/i;
   const labels = location.endsWith('.drawio')
     ? [...new DOMParser().parseFromString(text, 'text/xml').getElementsByTagName('mxCell')].map(cell => normaliseLabel(cell.getAttribute('value')))
@@ -256,6 +256,8 @@ async function checkSearchTerminology(root) {
     for (const path of await walk(resolve(root, location))) {
       const relativePath = relative(root, path).replaceAll('\\', '/');
       if (relativePath.split('/').some(part => /history|^CHANGELOG/i.test(part))) continue;
+      // These dated reports describe old diagrams; current canonical sources are checked separately.
+      if (/^docs\/sdlc\/documentation-freshness(?:-inventory)?-2026-10-17\.md$/.test(relativePath)) continue;
       if (!/\.(?:md|mmd|drawio|json|sql|ya?ml)$/i.test(path)) continue;
       checkUnselectedSearchTerms(await readFile(path, 'utf8'), relativePath);
     }

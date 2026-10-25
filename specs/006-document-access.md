@@ -1,9 +1,9 @@
 # Create restricted knowledge and manage its access
 
 **Artifact ID:** SP-06  
-**Version/date:** 0.5 Draft · 18 October 2026
+**Version/date:** 0.6 Draft · 25 October 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
-**Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-06--create-restricted-knowledge-and-manage-its-access); [contract pack](../contracts/README.md); PLAN-01 v0.3.\; Proposed ADR-0022
+**Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-06--create-restricted-knowledge-and-manage-its-access); [contract pack](../contracts/README.md); PLAN-01 v0.4.\; Proposed ADR-0022
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 2.  
@@ -51,3 +51,7 @@ Acceptance additions: revoked author read with retained manage-access must produ
 ## NEXT-06 non-reading metadata command
 
 Additional Knowledge operation getDocumentCommandPrecondition supplies an opaque token for an existing exact command capability, without current revision/content/metadata disclosure. Optional editDocumentMetadata stays FR-65 Could; an implemented author can submit explicit new labels/owner with exactly one known expected_revision or precondition_token and receive DocumentMutationReceipt with null version_id. No prefill/list/read grant is added. Test read revocation with retained action, manage-only/read-only denial, wrong command/session/project and minimal same-key receipt replay. See Proposed ADR-0022; no handler/token-storage tests have run.
+
+## Input metadata reconciliation — 25 October 2026
+
+Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.

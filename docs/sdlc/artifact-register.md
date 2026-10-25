@@ -39,42 +39,45 @@ Prior OWNER-Q-01 verification: combined Node 24.21.0 run `node --test tests/docs
 ## Current register and handoffs
 
 **Artifact ID:** REG-00
-**Version/date:** 0.60 Draft · 25 October 2026
+**Version/date:** 0.61 Draft · 25 October 2026
 **Status:** Draft; confirmed policy corrections in progress, full coverage and remaining decisions explicit.
-**Source versions:** [BRD stable entry](../BRD.md) → [English BRD v1.0](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md) and two Proposed addenda, [AGENTS.md v1.7](../../AGENTS.md), [workflow](../../agents/WORKFLOW.md), PRD-01 v0.9, UC-02 v0.7, SAD-03 v0.15 and ADR-0007–ADR-0017. Prior review inputs remain historical. Storage has measured test evidence; interviews, pilot and application runtime evidence remain absent.; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
+**Source versions:** [BRD stable entry](../BRD.md) → [English BRD v1.0](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md) and two Proposed addenda, [AGENTS.md v1.7](../../AGENTS.md), [workflow](../../agents/WORKFLOW.md), PRD-01 v0.9, UC-02 v0.8, SAD-03 v0.16 and ADR-0007–ADR-0017. Prior review inputs remain historical. Storage has measured test evidence; interviews, pilot and application runtime evidence remain absent.; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
 
 | Stage/ID | Path | Owner role | Version/status | Inputs/dependencies | Planned BR/SC coverage | Open decisions |
 | --- | --- | --- | --- | --- | --- | --- |
-| 0 / REG-00 | docs/sdlc/artifact-register.md | Coordinator | 0.60 Draft | Current requirements, corrective ADRs and queue | BR-01–BR-15; SC-01–SC-08 | Author corrections tracked separately from runtime acceptance |
-| Supporting review register / DOC-REVIEW-REG-01 | [docs/sdlc/references/document-review-register.md](references/document-review-register.md) | SDLC coordinator | 0.1 Draft | Development rules v1.5; pre-flight checklist; workflow; REG-00; SDLC index | Existing BR-01–BR-15 / SC-01–SC-08 documentation navigation only | First target/reviewer unassigned; no semantic review performed |
-| Navigation / SDLC-INDEX-01 | [docs/sdlc/README.md](README.md) | SDLC coordinator | 0.2 Draft | Development rules; workflow; REG-00 | Existing documentation navigation only | Review register linked; source review and acceptance remain separate |
-| Excalidraw wireframes / UX-WF-EX-01 | [docs/ux/wireframes/README.md](../ux/wireframes/README.md); native scene and PNG/SVG previews | Sequential UX author | 0.1 Draft | UX-BLUEPRINT-01 v1.3; UX-PLAN-01 v0.1; UX-06 v0.12; current scoped contracts | BR-01–BR-14; SC-01–SC-08 through frame UC/TC mappings | Initial 12 desktop frames; native import, full BL/DC variants, responsive/accessibility/usability and runtime gates remain open |
-| UI references / UI-REF-01; UI-REVIEW-01 | references/README.md; references/ui-review-2026-10-23.md | Sequential UI author | UI-REF-01 v0.4; UI-REVIEW-01 v0.1 historical | UX-BLUEPRINT-01 v1.3; contracts; SP-01–04; Proposed stack/read designs | BR-01/02/03/10/12/13; SC-01/03/06/08 | Live stack/identity, application enforcement and independent acceptance remain open |
-| UI theme / UI-THEME-01 | references/ui-dark-theme-2026-10-24.md; apps/web/ | Sequential UI author | 0.1 Draft | UX-WF-EX-01 v0.1; UX-BLUEPRINT-01 v1.3; UI-REF-01 v0.4 | BR-01/02/03/10/13; SC-01/03/06/08 | Local theme, token tests and screenshots; independent/runtime acceptance open |
-| UI redesign / UI-REDESIGN-01 | references/ui-redesign-2026-10-24.md; apps/web/ | Sequential UI author | 0.1 Draft | UX-WF-EX-01 v0.1; UI-REF-01 v0.3; existing contracts and Proposed stack | BR-01/02/03/06/10/13; SC-01/03/04/06/08 | Local rendered observations and DOM tests; live application and independent acceptance open |
-| UI wireframe implementation / UI-WORK-02 | references/ui-work-wireframe-2026-10-24.md; apps/web/ | Sequential UI author | 0.1 Draft | UX-WF-EX-01 v0.1; UI-REF-01 v0.2; existing contracts; ADR-0008/0014; Proposed stack/read designs | BR-01/02/03/06/10/13; SC-01/03/04/06/08 | DOM/test evidence only; live security/transaction/runtime and fresh rendered acceptance open |
+| 0 / REG-00 | docs/sdlc/artifact-register.md | Coordinator | 0.61 Draft | Current requirements, corrective ADRs and queue | BR-01–BR-15; SC-01–SC-08 | Author corrections tracked separately from runtime acceptance |
+| Supporting review register / DOC-REVIEW-REG-01 | [docs/sdlc/references/document-review-register.md](references/document-review-register.md) | SDLC coordinator | 0.2 Draft | Development rules v1.5; pre-flight checklist; workflow; REG-00; SDLC index | Existing BR-01–BR-15 / SC-01–SC-08 documentation navigation only | Bounded corrections recorded; full document-type reviews remain unassigned |
+| Navigation / SDLC-INDEX-01 | [docs/sdlc/README.md](README.md) | SDLC coordinator | 0.3 Draft | Development rules; workflow; REG-00 | Existing documentation navigation only | Review register linked; source review and acceptance remain separate |
+| Excalidraw wireframes / UX-WF-EX-01 | [docs/ux/wireframes/README.md](../ux/wireframes/README.md); native scene and PNG/SVG previews | Sequential UX author | 0.2 Draft | UX-BLUEPRINT-01 v1.4; UX-PLAN-01 v0.2; UX-06 v0.13; current scoped contracts | BR-01–BR-14; SC-01–SC-08 through frame UC/TC mappings | Initial 12 desktop frames; native import, full BL/DC variants, responsive/accessibility/usability and runtime gates remain open |
+| UI references / UI-REF-01; UI-REVIEW-01 | references/README.md; references/ui-review-2026-10-23.md | Sequential UI author | UI-REF-01 v0.4; UI-REVIEW-01 v0.1 historical | UX-BLUEPRINT-01 (snapshot 1.3); contracts; SP-01–04; Proposed stack/read designs | BR-01/02/03/10/12/13; SC-01/03/06/08 | Live stack/identity, application enforcement and independent acceptance remain open |
+| UI theme / UI-THEME-01 | references/ui-dark-theme-2026-10-24.md; apps/web/ | Sequential UI author | 0.1 Draft | UX-WF-EX-01 (snapshot 0.1); UX-BLUEPRINT-01 (snapshot 1.3); UI-REF-01 v0.4 | BR-01/02/03/10/13; SC-01/03/06/08 | Local theme, token tests and screenshots; independent/runtime acceptance open |
+| UI redesign / UI-REDESIGN-01 | references/ui-redesign-2026-10-24.md; apps/web/ | Sequential UI author | 0.1 Draft | UX-WF-EX-01 (snapshot 0.1); UI-REF-01 v0.3; existing contracts and Proposed stack | BR-01/02/03/06/10/13; SC-01/03/04/06/08 | Local rendered observations and DOM tests; live application and independent acceptance open |
+| UI wireframe implementation / UI-WORK-02 | references/ui-work-wireframe-2026-10-24.md; apps/web/ | Sequential UI author | 0.1 Draft | UX-WF-EX-01 (snapshot 0.1); UI-REF-01 v0.2; existing contracts; ADR-0008/0014; Proposed stack/read designs | BR-01/02/03/06/10/13; SC-01/03/04/06/08 | DOM/test evidence only; live security/transaction/runtime and fresh rendered acceptance open |
 | UI preview / local presentation | apps/web/ | UI author | Work-preview update; synthetic state only | UX-WF-EX-01 frames 03/04/10; WF-01–03/09; current work_location draft | SP-01–05 presentation groundwork only | No live session/API/permissions/persistence; fresh rendered validation blocked by browser URL policy |
 | Development tooling / DEV-SKILLS-01 | agents/development-skills.md; .agents/skills/sources.json | Development agent | 0.2 Draft; five local skills plus routing for 13 user-level UI skills | AGENTS v1.7; development-rules v1.5; pinned upstream revisions in guide | Supports SP-01–04 presentation discipline; no new FR/AC or runtime evidence | Exact-path workflow is guidance, not global discovery control; adherence and design outcomes unmeasured |
 | 1 / PRD-01 | `docs/sdlc/PRD_SRS.md` | PRD/SRS author | 0.9 Draft; 69 active FRs plus withdrawn FR-45 | BRD v1.0; ADR-0007-0017; owner clarifications | BR-01–BR-15; SC-01–SC-08 mapped | Remaining decisions as recorded in PRD; 60 Must retained |
 | Architecture policy / ADR-0001 | `docs/adr/0001-protected-resource-read-policy.md` | Architect role | 0.3 Superseded in part; remaining safeguards Proposed | BRD v1.0, PRD-01 (historical v0.4 input), owner review | BR-01, BR-05, BR-08, BR-10, BR-12, BR-14; SC-05, SC-06 | OD-02, OD-04; enforcement design remains Stage 3 |
-| 2 / UC-02 | docs/sdlc/use-cases.md | Use-case author | 0.7 Draft | PRD-01 v0.9; owner-confirmed ADRs | BR-01–BR-14; SC-01–SC-08 | Delegation/retention and runtime exception execution |
-| 3 / SAD-03 | docs/architecture.md; docs/sdlc/SAD.md entry | Architect | SAD-03 v0.15; SAD-03-ENTRY v0.14 Draft | Current PRD/use cases; Proposed ADR-0018–ADR-0023 | BR-01–BR-14; SC-01–SC-08 | Isolated handoff storage supplied; active process/guard/adapter evidence open |
-| Architecture reference / TECH-STACK-01 | `docs/tech-stack.md` | Architect | v1.3 Draft candidate; storage portion implemented | SAD-03 v0.15 semantic recheck pending; ADR-0004 v0.2 | BR-07, BR-08, BR-13; SC-02, SC-08 | Framework/provider selection and pilot ranking evidence remain open |
-| 4 / DATA-04 | docs/sdlc/data-design.md; contracts/data-model.json | Data designer | DATA-04 v0.11 Draft; logical model v0.8 | SAD-03 v0.15; confirmed policy and corrective Proposed ADRs | BR-01–BR-14; SC-01–SC-08 | Applied storage foundation distinct from unimplemented logical additions |
-| 5 / API-05 | docs/sdlc/api-design.md; contracts/ | API designer | API-05 v0.16; Workspace v0.2.8 / Knowledge v0.2.9; 66 operations | DATA-04 v0.11; SAD-03 v0.15; Proposed ADR-0018–ADR-0023 | BR-01–BR-14; SC-01–SC-08 | Handler/consumer-provider/access tests and unimplemented opaque token/receipt handlers |
-| 6 / UX-06 | docs/sdlc/ui-ux-spec.md; docs/ux/ | UX designer | UX-06 v0.12; Board v0.9, AI v0.8, Docs v0.8, sitemap v0.10, matrix v0.10, personas v0.4 | Current PRD/use cases/SAD and contract drafts | BR-01–BR-14; SC-01–SC-08 | Token/receipt handlers, visual tokens/viewports, usability/accessibility and application evidence |
-| 7 / UML-07 | `docs/sdlc/diagrams/README.md`; five type folders; `docs/sdlc/diagrams/review-2026-10-16.md`; historical `review.md` | Diagram author | UML-07 v0.19; DGM-REVIEW-02 v0.1; current versions below | Current UC/UX/SAD sources and owner-confirmed direction | BR-01–BR-14; SC-01–SC-08 as applicable | RV-09 rendered routing/readability and full semantic review |
-| 8 / TEST-08 | docs/sdlc/test-plan.md; test-coverage.md; requirement-verification.md; eval/ | Test author | TEST-08 v0.20; TEST-COVERAGE-01 v0.3; VERIFY-01 v0.4; EVAL-CASES-ENTRY v0.5 | Current PRD/use cases/specs/corrective contracts | BR-01–BR-14; SC-01–SC-08 planned | All application/permission/guard/provider evaluation evidence remains unrun |
-| 9 / SPEC-REVIEW-01 (Stage alias REVIEW-09) | docs/sdlc/spec-review.md | Sequential reviewer | 0.29 Draft; original v0.4 history preserved | Current corrections and dated review snapshots | BR-01–BR-15; SC-01–SC-08 | Bounded handoff, owner-policy gaps and all runtime acceptance |
+| 2 / UC-02 | docs/sdlc/use-cases.md | Use-case author | 0.8 Draft | PRD-01 v0.9; owner-confirmed ADRs | BR-01–BR-14; SC-01–SC-08 | Delegation/retention and runtime exception execution |
+| 3 / SAD-03 | docs/architecture.md; docs/sdlc/SAD.md entry | Architect | SAD-03 v0.16; SAD-03-ENTRY v0.15 Draft | Current PRD/use cases; Proposed ADR-0018–ADR-0023 | BR-01–BR-14; SC-01–SC-08 | Isolated handoff storage supplied; active process/guard/adapter evidence open |
+| Architecture reference / TECH-STACK-01 | `docs/tech-stack.md` | Architect | v1.4 Draft candidate; storage portion implemented | SAD-03 v0.16 semantic recheck pending; ADR-0004 v0.2 | BR-07, BR-08, BR-13; SC-02, SC-08 | Framework/provider selection and pilot ranking evidence remain open |
+| 4 / DATA-04 | docs/sdlc/data-design.md; contracts/data-model.json | Data designer | DATA-04 v0.12 Draft; logical model v0.8 | SAD-03 v0.16; confirmed policy and corrective Proposed ADRs | BR-01–BR-14; SC-01–SC-08 | Applied storage foundation distinct from unimplemented logical additions |
+| 5 / API-05 | docs/sdlc/api-design.md; contracts/ | API designer | API-05 v0.17; Workspace v0.2.8 / Knowledge v0.2.9; 66 operations | DATA-04 v0.12; SAD-03 v0.16; Proposed ADR-0018–ADR-0023 | BR-01–BR-14; SC-01–SC-08 | Handler/consumer-provider/access tests and unimplemented opaque token/receipt handlers |
+| 6 / UX-06 | docs/sdlc/ui-ux-spec.md; docs/ux/ | UX designer | UX-06 v0.13; Board v0.10, AI v0.9, Docs v0.9, sitemap v0.10, matrix v0.11, personas v0.5 | Current PRD/use cases/SAD and contract drafts | BR-01–BR-14; SC-01–SC-08 | Token/receipt handlers, visual tokens/viewports, usability/accessibility and application evidence |
+| 7 / UML-07 | `docs/sdlc/diagrams/README.md`; five type folders; `docs/sdlc/diagrams/review-2026-10-16.md`; historical `review.md` | Diagram author | UML-07 v0.20; DGM-REVIEW-02 v0.1; current versions below | Current UC/UX/SAD sources and owner-confirmed direction | BR-01–BR-14; SC-01–SC-08 as applicable | RV-09 rendered routing/readability and full semantic review |
+| 8 / TEST-08 | docs/sdlc/test-plan.md; test-coverage.md; requirement-verification.md; eval/ | Test author | TEST-08 v0.21; TEST-COVERAGE-01 v0.4; VERIFY-01 v0.5; EVAL-CASES-ENTRY v0.6 | Current PRD/use cases/specs/corrective contracts | BR-01–BR-14; SC-01–SC-08 planned | All application/permission/guard/provider evaluation evidence remains unrun |
+| 9 / SPEC-REVIEW-01 (Stage alias REVIEW-09) | docs/sdlc/spec-review.md | Sequential reviewer | 0.30 Draft; original v0.4 history preserved | Snapshot inputs retained in source; no execution or review rerun | BR-01–BR-15; SC-01–SC-08 | Bounded handoff, owner-policy gaps and all runtime acceptance |
 | Budget checkpoint / PROGRESS-01 | docs/sdlc/reports/progress-report-2026-10-18.md | Coordinator / author | 0.2 Draft | Correction queue and executed evidence; account 5% observation | BR-01–BR-14; SC-01–SC-08 | Budget-stop reporting complete; application, owner and rendered UI gates remain open |
-| Concise handoff / PROGRESS-HANDOFF-01 | docs/sdlc/reports/progress-report-handoff-2026-10-18.md | Coordinator / author | 0.1 Draft | PROGRESS-01 v0.1; FIX-PLAN-01 v0.20 | BR-01–BR-14; SC-01–SC-08 | Ready for downstream with runtime/UI gaps; no approval implied |
-| Wireframe plan / UX-PLAN-01 | docs/ux/wireframe-workplan.md | UX author | 0.1 Draft | Current Core sources and checklist gaps | BR-01–BR-14; SC-01–SC-08 | Text/state planning only; WF-01–09 rendered tasks remain unchecked |
-| SQL projection / HANDOFF-SQL-01 | docs/sdlc/references/handoff-sql-projection-2026-10-18.md | Sequential storage/contract author | 0.1 Draft | Knowledge 003, parameterized query and byte reference | BR-08–BR-10, BR-12, BR-14; SC-02/03/05/06 | Seven isolated integration results; current-authority/HTTP/guard/provider gates open |
-| Protocol reference / HANDOFF-REF-01 | docs/sdlc/references/handoff-byte-reference-2026-10-18.md | Sequential contract/test author | 0.2 Draft | Proposed ADR-0020 and current contracts | BR-08–BR-10, BR-12, BR-14; SC-02/03/05/06 | Synthetic byte/evidence binding only; live SYS-01 gates remain open |
-| UX checklist / UX-CHECK-01 | docs/sdlc/reviews/ui-ux-checklist-review-2026-10-18.md | Sequential UX reviewer | 0.1 Draft | Pinned 41 checklist rows and current design sources | BR-01–BR-14; SC-01–SC-08 | No workbook approval; research, rendered UI and runtime gates remain open |
-| UI/UX Blueprint / UX-BLUEPRINT-01 | docs/sdlc/ui-ux-blueprint.md | UI/UX Designer / Author | 1.3 Draft | Local IEEE templates; UX-06, UX-PLAN-01, contracts v0.2.8/v0.2.9; Proposed ADR-0018–0023 | BR-01–BR-14; SC-01–SC-08 | Answer-local optional summary and API task placement aligned; visual/runtime/independent-review gaps open |
-| Handoff / UX-HANDOFF-01 | docs/sdlc/handoffs/ui-ux-handoff-2026-10-18.md | Coordinator / UX author | 0.8 Draft | Current corrected contracts, sources and NEXT-07 checks | BR-01–BR-14; SC-01–SC-08 | Wireframes may be drafted; runtime, owner and visual gates remain open |
+| Concise handoff / PROGRESS-HANDOFF-01 | docs/sdlc/reports/progress-report-handoff-2026-10-18.md | Coordinator / author | 0.1 Draft | PROGRESS-01 v0.1; FIX-PLAN-01 (snapshot 0.20) | BR-01–BR-14; SC-01–SC-08 | Ready for downstream with runtime/UI gaps; no approval implied |
+| Wireframe plan / UX-PLAN-01 | docs/ux/wireframe-workplan.md | UX author | 0.2 Draft | Current Core sources and checklist gaps | BR-01–BR-14; SC-01–SC-08 | Initial native frames/previews exist; full WF variants and rendered/runtime acceptance remain open |
+| SQL projection / HANDOFF-SQL-01 | docs/sdlc/references/handoff-sql-projection-2026-10-18.md | Sequential storage/contract author | 0.2 Draft | Snapshot inputs retained in source; no execution or review rerun | BR-08–BR-10, BR-12, BR-14; SC-02/03/05/06 | Seven isolated integration results; current-authority/HTTP/guard/provider gates open |
+| Protocol reference / HANDOFF-REF-01 | docs/sdlc/references/handoff-byte-reference-2026-10-18.md | Sequential contract/test author | 0.3 Draft | Snapshot inputs retained in source; no execution or review rerun | BR-08–BR-10, BR-12, BR-14; SC-02/03/05/06 | Synthetic byte/evidence binding only; live SYS-01 gates remain open |
+| UX checklist / UX-CHECK-01 | docs/sdlc/reviews/ui-ux-checklist-review-2026-10-18.md | Sequential UX reviewer | 0.2 Draft | Snapshot inputs retained in source; no execution or review rerun | BR-01–BR-14; SC-01–SC-08 | No workbook approval; research, rendered UI and runtime gates remain open |
+| UI/UX Blueprint / UX-BLUEPRINT-01 | docs/sdlc/ui-ux-blueprint.md | UI/UX Designer / Author | 1.4 Draft | Local IEEE templates; UX-06, UX-PLAN-01, contracts v0.2.8/v0.2.9; Proposed ADR-0018–0023 | BR-01–BR-14; SC-01–SC-08 | Answer-local optional summary and API task placement aligned; visual/runtime/independent-review gaps open |
+| Handoff / UX-HANDOFF-01 | docs/sdlc/handoffs/ui-ux-handoff-2026-10-18.md | Coordinator / UX author | 0.9 Draft | Snapshot inputs retained in source; no execution or review rerun | BR-01–BR-14; SC-01–SC-08 | Wireframes may be drafted; runtime, owner and visual gates remain open |
 | 9 / SYS-REVIEW-01 | `docs/sdlc/system-consistency-review-2026-10-18.md` | Consistency reviewer | 0.1 Draft; targeted system review through obsidian_docs | PRD-01 v0.9; UC-02 (dated review snapshot); SAD-03 (dated review snapshot); DATA-04 (pre-correction snapshot); Workspace v0.2.2 / Knowledge v0.2.3; ADR-0012 / OWNER-Q-01 | BR-01–BR-14; SC-01–SC-08 scenario handoff | Two Blocking, two Important, one Minor new finding; existing UX findings remain open |
+
+| Agent checklist / PREFLIGHT-01 | docs/agent-preflight-checklist.md | Development agent | 0.1 Draft | Current source assertions; historical review context | Existing permission/version/citation and evaluation safeguards | Remaining drift notes and runtime enforcement need separate review |
+| Delivery / PLAN-01 | docs/planning/five-month-plan.md; release-scope.json | Coordinator / requirements author | 0.4 Draft | PRD-01 v0.9; existing ADR-0010/0016 directions | Existing release scope; no priority change | Capacity and runtime acceptance remain open |
 
 All Must BRs (BR-01–BR-14) and all Core scenarios (SC-01–SC-08) have Stage 1, design and test owners. BR-15 remains Should/Enhanced. Planned status is not completion or approval.
 
@@ -114,15 +117,15 @@ The BRD leaves architecture to design while AGENTS.md directs minimal microservi
 <!-- BEGIN GENERATED:artifact-versions -->
 | Artifact ID | Version | Canonical source |
 | --- | --- | --- |
-| UML-07 | v0.19 | [Source](diagrams/README.md) |
-| REG-00 | v0.60 | [Source](artifact-register.md) |
-| SAD-03 | v0.15 | [Source](../architecture.md) |
-| UX-PERM-MATRIX-02 | v0.10 | [Source](../ux/permission-matrix.md) |
-| UX-PERSONAS-01 | v0.4 | [Source](../ux/personas.md) |
+| UML-07 | v0.20 | [Source](diagrams/README.md) |
+| REG-00 | v0.61 | [Source](artifact-register.md) |
+| SAD-03 | v0.16 | [Source](../architecture.md) |
+| UX-PERM-MATRIX-02 | v0.11 | [Source](../ux/permission-matrix.md) |
+| UX-PERSONAS-01 | v0.5 | [Source](../ux/personas.md) |
 | UX-SITEMAP-03 | v0.10 | [Source](../ux/sitemap.md) |
-| UX-FLOW-AI-03 | v0.8 | [Source](../ux/flows/ai-qa-flow.md) |
-| UX-FLOW-BOARD-01 | v0.9 | [Source](../ux/flows/board-flow.md) |
-| UX-FLOW-DOCS-02 | v0.8 | [Source](../ux/flows/docs-flow.md) |
+| UX-FLOW-AI-03 | v0.9 | [Source](../ux/flows/ai-qa-flow.md) |
+| UX-FLOW-BOARD-01 | v0.10 | [Source](../ux/flows/board-flow.md) |
+| UX-FLOW-DOCS-02 | v0.9 | [Source](../ux/flows/docs-flow.md) |
 | DGM-ARCH-01 | v0.9 | [Source](diagrams/architecture/service-composition.mmd) |
 | DGM-SITE-01 | v0.8 | [Source](diagrams/sitemap/application-sitemap.mmd) |
 | DGM-FLOW-01 | v0.13 | [Source](diagrams/flowchart/ai-qa-flow.mmd) |
@@ -132,11 +135,11 @@ The BRD leaves architecture to design while AGENTS.md directs minimal microservi
 | DGM-FLOW-05 | v0.4 | [Source](diagrams/flowchart/permission-ai-checkpoints.mmd) |
 | DGM-JOURNEY-01 | v0.4 | [Source](diagrams/user-journey/core-user-journeys.mmd) |
 | PRD-01 | v0.9 | [Source](PRD_SRS.md) |
-| UC-02 | v0.7 | [Source](use-cases.md) |
+| UC-02 | v0.8 | [Source](use-cases.md) |
 | DGM-UC-01 | v0.5 | [Source](diagrams/use-case/use-case-diagram.mmd) |
 | DGM-REVIEW-02 | v0.1 | [Source](diagrams/review-2026-10-16.md) |
 | DGM-REVIEW-03 | v0.1 | [Source](diagrams/review-2026-10-17.md) |
-| DATA-04 | v0.11 | [Source](data-design.md) |
+| DATA-04 | v0.12 | [Source](data-design.md) |
 | DGM-DESIGN-01 | v0.1 | [Source](diagrams/design-foundation-2026-10-17.md) |
 | DGM-C4-01 | v0.1 | [Source](diagrams/c4/system-context.mmd) |
 | DGM-C4-02 | v0.1 | [Source](diagrams/c4/containers.mmd) |
@@ -221,7 +224,7 @@ Proposed ADR-0019 v0.2, Workspace v0.2.6 / Knowledge v0.2.5, SP-07 v0.5 and SP-1
 
 Proposed ADR-0020 v0.1, Workspace v0.2.7 / Knowledge v0.2.6, logical model v0.5 and revised SP-09/10/11 supply complete manifest-bound internal transport. DGM-SEQ-01 and DGM-DATA-03 reflect authoritative preparation lookup and exact receipt/evidence/byte/claim bindings. No applied migration, framework/provider choice or runtime permission evidence is changed. The queue checklist tracks remaining priorities, owner-policy gaps and the separate AI-relay runtime gate.
 
-## NEXT-03 inspection handoff — 18 October 2026
+## Historical NEXT-03 inspection handoff — 18 October 2026
 
 Proposed ADR-0021 v0.1, Knowledge v0.2.7, logical model v0.6, revised SP-11/13 and API/UX/test sources address SYS-03/SYS-04 inspection data and missing telemetry at design level. Exact sources bind per-step visible rank; unavailable/not_performed metrics never fabricate values. Source/query/check filtering retains current permission authority; summary stays optional and separate from trace-read. No migration, provider or runtime acceptance. SYS-01 remains the pre-AI-relay gate.
 
@@ -233,11 +236,11 @@ UX-FLOW-AI-03 v0.7, UX-SITEMAP-03 v0.7, VERIFY-01 v0.4, UX-06 v0.7 and Knowledge
 
 SAD-03 v0.13 / SAD-03-ENTRY v0.12 distinguish target-member role data from caller authority and document tuples from operational citation locators. Manual stage/source/route inventories now identify current drafts; older review outcomes and source lists remain under explicitly historical sections. Current table updates do not claim the original dated reviews were rerun. Additional delegation and NEXT-06 remain open; SYS-01 still blocks AI relay.
 
-## NEXT-06 independent command handoff — 18 October 2026
+## Historical NEXT-06 independent command handoff — 18 October 2026
 
 Proposed ADR-0022 v0.1, Workspace v0.2.8 / Knowledge v0.2.9 and logical model v0.7 resolve the known-ID non-reading write/lifecycle precondition/acknowledgement design. Opaque tokens keep current revisions private; minimal receipts never substitute for source reads. UC-02 v0.7, SP-06/07, UX and tests are aligned. Additional delegation/provisioning and token/handler/guard/runtime evidence remain open; SYS-01 still blocks AI relay. NEXT-07 supplied the bounded design recheck and UI handoff; application acceptance remains pending.
 
-## NEXT-07/08 bounded UI/UX handoff — 18 October 2026
+## Historical NEXT-07/08 bounded UI/UX handoff — 18 October 2026
 
 UX-HANDOFF-01 v0.2 supplies screen-to-operation bindings, completed author correction tasks and explicit owner/runtime/visual gaps. The queue records 72/72 final structural/schema tests and protected-file comparison; it also distinguishes the calibrated whole-document structure adapter from full OpenAPI semantics and runtime evidence. NEXT-00 through NEXT-08 are supplied author work, while RUNTIME-GATE stays open. SYS-01 remains a pre-AI-relay blocker; SYS-02 still requires operational handlers. Wireframe drafting can use the bounded sources without inventing permissions or marking the drafts approved.
 
@@ -307,6 +310,67 @@ REG-00 v0.59 records UI-THEME-01 v0.1 and UI-REF-01 v0.4. Owner-requested Board 
 
 Final structural verification (Node 24.22.1): context:lint and context:check passed; context:test 45/45 and docs:test 18/18 passed. docs:lint passed for 20 diagram pairs / 35 manifest artifacts. Generated metadata check: 66 outputs, no drift. Changed tracked-file whitespace check passed. These structural results do not add live handler or independent acceptance evidence.
 
-## Supporting document review register — 25 October 2026
+## Historical Supporting document review register — 25 October 2026
 
-REG-00 v0.60 records the owner-requested DOC-REVIEW-REG-01 v0.1 and SDLC-INDEX-01 v0.2 navigation update. The reference groups supporting document types and supplies per-review fields for source versions, reviewer/date, checklist/trace, findings, evidence and follow-up ownership. All initial items are Not reviewed. This is a documentation aid, not a new application slice, requirement, ADR or runtime feature. Existing historical records and unrelated workspace changes are preserved. Checklist: authority and scope preserved; semantic review remains Gap; application checks are N/A. Handoff: Ready for downstream planning with the first bounded target and reviewer unassigned.
+REG-00 v0.60 records the owner-requested DOC-REVIEW-REG-01 v0.1 and SDLC-INDEX-01 v0.2 navigation update. The new reference groups supporting document types and supplies a per-review record for exact source versions, reviewer/date, checklist/trace, findings, evidence and follow-up ownership. All initial items are Not reviewed; no repository audit, independent review or approval is claimed. This is an explicit owner-requested documentation aid, not a new application slice, requirement, ADR or runtime feature. Existing historical records and unrelated workspace changes are preserved. Downstream impact: review planning, navigation and generated register-version metadata only. Checklist: scope and authority preserved; semantic review remains Gap; application checks are N/A. Handoff: Ready for downstream planning with the first bounded target and reviewer unassigned. Executed checks and unrun work are reported in the task response.
+
+## Bounded documentation corrections — 25 October 2026
+
+REG-00 v0.61 records owner-authorised corrections to the confirmed B1–B7 findings, R1 input identification and R4 review routing. PREFLIGHT-01 distinguishes repaired source text from unrun application evidence and records 49 EX identities. SAD-03 v0.16 restores the selected English full-text keyword sketch and FR-70 table; UC-02 v0.8 reconciles branch-specific audit includes. PLAN-01 v0.4 and release-scope.json retain priorities while recording current inputs, confirmed exceptions and FR-70 trace. TECH-STACK-01 v1.4 updates source metadata only. UML-07 v0.20 refreshes manual source labels; generated child inventories use its record date, preserving individual diagram dates. DOC-REVIEW-REG-01 v0.2 adds routing and three supporting groups; UX-PLAN-01 v0.2 distinguishes existing visual artifacts from outstanding WF acceptance.
+
+The corrections support existing SP-01–SP-08 work/document implementation and later evidence safeguards; this explicit owner-requested reconciliation adds no feature, operation, provider, migration or ADR. Baseline editions, accepted decisions, historical reports, root owner notes and unrelated package/submodule work are preserved. R2 and B8 were already absent at review; R3 links are retained and R5 relocation is not performed. Full queue groups remain Not reviewed. ADR-0019/0020 source-version interpretation and broader remaining drift are not declared resolved.
+
+Downstream metadata closure: these current headers were revised together because their explicit input versions depend on the corrections. Non-primary revisions change input labels only; body text, acceptance assertions and results are unchanged. Dated reference/checklist/handoff records retain original inputs under snapshot headers. Existing root UI/report snapshot inputs remain recorded in their own sources. Generated paired headers and inventories follow these versions without changing diagram graphs or claiming fresh visual acceptance. A version bump is not a repeated review or execution.
+
+| Artifact ID | Current version | Canonical source | Revision scope |
+| --- | --- | --- | --- |
+| SAD-03 | 0.16 | docs/architecture.md | Bounded correction / coordination |
+| CONTRACT-01 | 0.19 | contracts/README.md | Input metadata only |
+| PLAN-01 | 0.4 | docs/planning/five-month-plan.md | Bounded correction / coordination |
+| TECH-STACK-01 | 1.4 | docs/tech-stack.md | Bounded correction / coordination |
+| API-05 | 0.17 | docs/sdlc/api-design.md | Input metadata only |
+| REG-00 | 0.61 | docs/sdlc/artifact-register.md | Bounded correction / coordination |
+| DATA-04 | 0.12 | docs/sdlc/data-design.md | Input metadata only |
+| DATA-FIT-01 | 0.6 | docs/sdlc/data-policy-fit-review.md | Snapshot metadata clarification only |
+| EVAL-CASES-ENTRY | 0.6 | docs/sdlc/evaluation-cases.md | Input metadata only |
+| SDLC-INDEX-01 | 0.3 | docs/sdlc/README.md | Bounded correction / coordination |
+| VERIFY-01 | 0.5 | docs/sdlc/requirement-verification.md | Input metadata only |
+| SAD-03-ENTRY | 0.15 | docs/sdlc/SAD.md | Input metadata only |
+| SPEC-REVIEW-01 | 0.30 | docs/sdlc/spec-review.md | Snapshot metadata clarification only |
+| TEST-COVERAGE-01 | 0.4 | docs/sdlc/test-coverage.md | Input metadata only |
+| TEST-08 | 0.21 | docs/sdlc/test-plan.md | Input metadata only |
+| UX-BLUEPRINT-01 | 1.4 | docs/sdlc/ui-ux-blueprint.md | Input metadata only |
+| UX-06 | 0.13 | docs/sdlc/ui-ux-spec.md | Input metadata only |
+| UC-02 | 0.8 | docs/sdlc/use-cases.md | Bounded correction / coordination |
+| FIX-PLAN-01 | 0.21 | docs/sdlc/handoffs/remediation-priorities-2026-10-18.md | Snapshot metadata clarification only |
+| UX-HANDOFF-01 | 0.9 | docs/sdlc/handoffs/ui-ux-handoff-2026-10-18.md | Snapshot metadata clarification only |
+| DOC-REVIEW-REG-01 | 0.2 | docs/sdlc/references/document-review-register.md | Bounded correction / coordination |
+| HANDOFF-REF-01 | 0.3 | docs/sdlc/references/handoff-byte-reference-2026-10-18.md | Snapshot metadata clarification only |
+| HANDOFF-SQL-01 | 0.2 | docs/sdlc/references/handoff-sql-projection-2026-10-18.md | Snapshot metadata clarification only |
+| UX-CHECK-01 | 0.2 | docs/sdlc/reviews/ui-ux-checklist-review-2026-10-18.md | Snapshot metadata clarification only |
+| SP-01 | 0.4 | specs/001-session.md | Input metadata only |
+| SP-02 | 0.5 | specs/002-project-membership.md | Input metadata only |
+| SP-03 | 0.6 | specs/003-create-task.md | Input metadata only |
+| SP-04 | 0.7 | specs/004-update-task.md | Input metadata only |
+| SP-05 | 0.7 | specs/005-sprint-lifecycle.md | Input metadata only |
+| SP-06 | 0.6 | specs/006-document-access.md | Input metadata only |
+| SP-08 | 0.4 | specs/008-linked-keyword-search.md | Input metadata only |
+| SP-09 | 0.9 | specs/009-cited-question.md | Input metadata only |
+| SP-10 | 0.5 | specs/010-current-work-question.md | Input metadata only |
+| SP-11 | 0.10 | specs/011-audit-and-source-inspection.md | Input metadata only |
+| SP-12 | 0.4 | specs/012-failure-and-evaluation.md | Input metadata only |
+| SP-13 | 0.6 | specs/013-scoped-inspection.md | Input metadata only |
+| UX-PERM-MATRIX-02 | 0.11 | docs/ux/permission-matrix.md | Input metadata only |
+| UX-PERSONAS-01 | 0.5 | docs/ux/personas.md | Input metadata only |
+| UX-PLAN-01 | 0.2 | docs/ux/wireframe-workplan.md | Bounded correction / coordination |
+| UX-FLOW-AI-03 | 0.9 | docs/ux/flows/ai-qa-flow.md | Input metadata only |
+| UX-FLOW-BOARD-01 | 0.10 | docs/ux/flows/board-flow.md | Input metadata only |
+| UX-FLOW-DOCS-02 | 0.9 | docs/ux/flows/docs-flow.md | Input metadata only |
+| UX-WF-EX-01 | 0.2 | docs/ux/wireframes/README.md | Input metadata only |
+| PREFLIGHT-01 | 0.1 | docs/agent-preflight-checklist.md | Targeted drift corrections; newly versioned checklist |
+
+Checklist: owner scope and source authority preserved; no application acceptance or independent approval. Handoff: use corrected guidance and routing, retain Proposed decisions and outstanding runtime/semantic review gaps. Executed checks and their limits follow after verification.
+
+Author verification (bundled Node 24.22.1): context:lint/context:check passed; context:test passed 45/45; docs:lint passed for 20 diagram pairs / 35 manifest artifacts; docs:test passed 20/20. Regression coverage now rejects the abbreviated trgm label when presented as current, checks EX counts against use-case definitions, requires one continuous architecture FR table and checks the inventory-date override without redating unrelated diagrams. The new terminology scan initially flagged its own example command; an explicit unselected annotation resolved that authoring failure. The two dated 17 October freshness snapshots are explicitly excluded from current-technology scanning so their recorded historical observations are preserved; canonical sources remain checked.
+
+All 635 checked local path targets in changed Markdown resolved, including the new register, and correction-record anchors resolved. The seven snapshot evidence bodies were compared with HEAD and remain unchanged apart from version/input-label metadata; release identities, priorities and statuses are unchanged. Generated metadata checked 66 outputs with no drift; changed tracked-file whitespace check passed. No contract behavior, application handler, database/storage, provider, rendering, external technology lifecycle or independent acceptance check was run; zero live handler behaviors are verified by this documentation change.

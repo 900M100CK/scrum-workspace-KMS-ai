@@ -1,7 +1,7 @@
 {
   "artifactId": "PLAN-01",
-  "version": "0.2",
-  "date": "2026-10-13",
+  "version": "0.4",
+  "date": "2026-10-25",
   "status": "Draft",
   "horizonMonths": 5,
   "staffing": {
@@ -13,7 +13,7 @@
   },
   "inputs": {
     "brd": "1.0",
-    "prd": "0.5 Draft",
+    "prd": "0.9 Draft",
     "ownerDirection": "five months; solo; minimal microservices"
   },
   "approval": "Owner-confirmed release exceptions under ADR-0010; direction is not implementation acceptance or an owner commit.",
@@ -1334,7 +1334,7 @@
       ],
       "spec": "SP-02",
       "month": 1,
-      "reason": "Descriptive/planned-work edit convenience; proposed capacity cut only.",
+      "reason": "Descriptive/planned-work edit convenience; owner-confirmed release exception under ADR-0010.",
       "businessObjectives": [
         "BO-01",
         "BO-05"
@@ -1355,7 +1355,7 @@
       ],
       "spec": "SP-06",
       "month": 2,
-      "reason": "Descriptive/planned-work edit convenience; proposed capacity cut only.",
+      "reason": "Descriptive/planned-work edit convenience; owner-confirmed release exception under ADR-0010.",
       "businessObjectives": [
         "BO-02",
         "BO-04"
@@ -1375,7 +1375,7 @@
       ],
       "spec": "SP-05",
       "month": 2,
-      "reason": "Descriptive/planned-work edit convenience; proposed capacity cut only.",
+      "reason": "Descriptive/planned-work edit convenience; owner-confirmed release exception under ADR-0010.",
       "businessObjectives": [
         "BO-01"
       ],
@@ -1394,7 +1394,7 @@
       ],
       "spec": "SP-05",
       "month": 2,
-      "reason": "Descriptive/planned-work edit convenience; proposed capacity cut only.",
+      "reason": "Descriptive/planned-work edit convenience; owner-confirmed release exception under ADR-0010.",
       "businessObjectives": [
         "BO-01"
       ],
@@ -1456,7 +1456,17 @@
       "month": 4,
       "reason": "Owner-confirmed ADR-0016 extension after the existing 60 Must; project-scoped task title/description keyword search independent of AI and Knowledge.",
       "status": "active",
-      "addedBy": "ADR-0016"
+      "addedBy": "ADR-0016",
+      "painPoints": [
+        "PP-01",
+        "PP-02"
+      ],
+      "businessObjectives": [
+        "BO-01",
+        "BO-02",
+        "BO-05"
+      ],
+      "objectiveTrace": "Derived from existing BR-01 / BR-07 / BR-13 objective mappings in BRD v1.0; not a new objective or scope decision."
     }
   ],
   "releaseGateExceptions": {

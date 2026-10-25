@@ -1,8 +1,8 @@
 # Scenario and exception verification matrix
 
 **Artifact ID:** TEST-COVERAGE-01
-**Version/date:** 0.3 Draft · 16 October 2026
-**Inputs:** PRD-01 v0.9; UC-02 v0.7; TEST-08 v0.20; ADR-0007–ADR-0017.
+**Version/date:** 0.4 Draft · 25 October 2026
+**Inputs:** PRD-01 v0.9; UC-02 v0.8; TEST-08 v0.21; ADR-0007–ADR-0017.
 **Status:** Planned assertions, not executed application coverage or independent approval.
 
 ## Evidence rules
@@ -101,3 +101,7 @@
 ## Handoff and gaps
 
 Test author owns fixtures/assertions; implementer owns runnable handler/consumer-provider/UI tests; the owner validates remaining policies and post-pilot thresholds. No parallel or independent reviewer is claimed. [VERIFY-01](requirement-verification.md) supplies the FR/AC, alternate and NFR inventory; detailed UI/accessibility and runtime checks remain separate work. ADR-0013 resolves two former contract-policy gaps; the orphan cleanup protocol gap remains. Run all relevant gates, record exact results and retain failures before claiming application coverage.
+
+## Input metadata reconciliation — 25 October 2026
+
+Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.

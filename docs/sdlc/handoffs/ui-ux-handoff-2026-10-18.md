@@ -1,9 +1,9 @@
 # Bounded UI/UX design handoff
 
 **Artifact ID:** UX-HANDOFF-01  
-**Version/date:** 0.8 Draft · 18 October 2026  
+**Version/date:** 0.9 Draft · 25 October 2026
 **Status:** Author handoff for wireframe drafting with explicit gaps; not approval or application acceptance.  
-**Inputs:** PRD-01 v0.9; UC-02 v0.7; SAD-03 v0.15 / SAD-03-ENTRY v0.14; DATA-04 v0.11; API-05 v0.16; UX-06 v0.12; TEST-08 v0.20; SPEC-REVIEW-01 v0.29; Workspace OpenAPI v0.2.8 / Knowledge v0.2.9; logical model v0.7; Proposed ADR-0018–ADR-0022.  ; Proposed ADR-0023
+**Snapshot inputs (18 October 2026):** PRD-01 v0.9; UC-02 v0.7; SAD-03 v0.15 / SAD-03-ENTRY v0.14; DATA-04 v0.11; API-05 v0.16; UX-06 v0.12; TEST-08 v0.20; SPEC-REVIEW-01 v0.29; Workspace OpenAPI v0.2.8 / Knowledge v0.2.9; logical model v0.7; Proposed ADR-0018–ADR-0022.  ; Proposed ADR-0023
 **Trace:** BR-01–BR-14; SC-01–SC-08; original 60 Must requirements retained. FR-27 summary and FR-70 task search remain Should.
 
 ## Completed author tasks
@@ -85,3 +85,7 @@ Knowledge 003 / Workspace 004 now have isolated SQL evidence for immutable prepa
 ## NEXT-14 wireframe work brief
 
 [UX-PLAN-01](../../ux/wireframe-workplan.md) supplies ordered Core wireframe tasks and concrete Backlog/document-command state variants, retaining exact source/authority/failure distinctions. It addresses planning and textual state detail only; no WF frame, UI framework, viewports, measurements or usability/permission gate is completed.
+
+## Input metadata reconciliation — 25 October 2026
+
+The original 18 October input versions are explicitly retained as a frozen snapshot. Prior review findings, commands and observed results are unchanged and have not been rerun by this metadata correction. Read current canonical sources before implementation.

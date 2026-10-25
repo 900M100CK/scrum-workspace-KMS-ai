@@ -15,9 +15,30 @@ test('all registered docs and diagram pairs pass', async () => {
   await verifyDocs(fileURLToPath(new URL('../', import.meta.url)));
 });
 
+test('preflight exception counts agree with current use-case definitions', async () => {
+  const cases = await readFile(new URL('../docs/sdlc/use-cases.md', import.meta.url), 'utf8');
+  const checklist = await readFile(new URL('../docs/agent-preflight-checklist.md', import.meta.url), 'utf8');
+  const definitions = [...cases.matchAll(/^- \*\*EX-\d+[^\n]*/gm)];
+  const withdrawn = definitions.filter(([line]) => /\(Withdrawn\)/i.test(line)).length;
+  const recorded = checklist.match(/\| EX identities \| (\d+) \((\d+) active \+ (\d+) withdrawn:/);
+  assert(recorded, 'Preflight must distinguish total, active and withdrawn EX identities');
+  assert.deepEqual(recorded.slice(1).map(Number), [definitions.length, definitions.length - withdrawn, withdrawn]);
+});
+
+test('architecture FR trace rows stay inside one continuous Markdown table', async () => {
+  const source = await readFile(new URL('../docs/architecture.md', import.meta.url), 'utf8');
+  const section = source.split('### 7.1 ')[1].split('### 7.2 ')[0];
+  const all = [...section.matchAll(/^\| (FR-\d+) \|/gm)].map(([, id]) => id);
+  const block = section.match(/^\| FR-\d+ \|[^\n]*(?:\n\| FR-\d+ \|[^\n]*)*/m)?.[0];
+  assert(all.length && block, 'Architecture must retain its requirement trace table');
+  assert.deepEqual([...block.matchAll(/^\| (FR-\d+) \|/gm)].map(([, id]) => id), all);
+});
+
 test('unselected retrieval mechanisms need explicit status in current text', () => {
   checkUnselectedSearchTerms('Trigram and Reciprocal Rank Fusion (RRF) remain unselected.', 'candidate.md');
   checkUnselectedSearchTerms('pg_trgm is not adopted.', 'candidate.md');
+  checkUnselectedSearchTerms('trgm remains unselected.', 'candidate.md');
+  assert.throws(() => checkUnselectedSearchTerms('Keyword (trgm) & Vector (pgvec)', 'architecture.md'), /architecture.md:1/);
   assert.throws(() => checkUnselectedSearchTerms('pg_trgm is a candidate.', 'candidate.md'), /presented as current/);
   assert.throws(() => checkUnselectedSearchTerms('Use trigram keyword and fusion ranking.', 'current.md'), /current.md:1/);
   assert.throws(() => checkUnselectedSearchTerms('CREATE EXTENSION pg_trgm; -- unselected', 'services/knowledge/migrations/003-search.up.sql'), /migration.*:1/);
@@ -40,6 +61,8 @@ test('manifest version/ADR changes propagate to all generated inventories and bo
   const root = fileURLToPath(new URL('../', import.meta.url));
   const manifest = await loadManifest(root);
   const changed = structuredClone(manifest);
+  const inventory = changed.artifacts.find(a => a.id === 'UML-07');
+  inventory.date = '25 October 2026';
   const site = changed.artifacts.find(a => a.id === 'DGM-SITE-01');
   site.version = '0.999'; site.adrs.unshift('ADR-0001');
   site.date = '22 October 2026';
@@ -51,6 +74,7 @@ test('manifest version/ADR changes propagate to all generated inventories and bo
   assert(outputs.get(site.drawio).includes('ADR-0001'));
   assert(outputs.get(site.path).includes('Draft - 22 October 2026'));
   assert(outputs.get(site.drawio).includes('| 22 October 2026 |'));
+  assert(outputs.get('docs/sdlc/diagrams/sitemap/README.md').includes('Inventory: UML-07 v' + inventory.version + ' · 25 October 2026'));
   const unchanged = changed.artifacts.find(a => a.id === 'DGM-ARCH-01');
   assert(outputs.get(unchanged.path).includes('Draft - ' + manifest.date), 'A local date override must not redate unrelated diagrams');
 });

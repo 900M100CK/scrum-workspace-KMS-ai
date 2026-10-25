@@ -1,9 +1,9 @@
 # Contract-first interface pack
 
 **Artifact ID:** CONTRACT-01  
-**Version/date:** 0.18 Draft · 18 October 2026
+**Version/date:** 0.19 Draft · 25 October 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0011 direction is owner-confirmed; remaining protocol/policy gaps and handler evidence are pending.\
-**Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [data design](../docs/sdlc/data-design.md); PLAN-01 v0.3.\; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
+**Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [data design](../docs/sdlc/data-design.md); PLAN-01 v0.4.\; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 ## Status and ownership
@@ -87,3 +87,7 @@ Logical model v0.8 and Proposed ADR-0023 now map exact Knowledge preparation/out
 ## Optional stored-receipt integration
 
 After npm ci, Node 24+ and Docker, npm run contracts:storage:test verifies the parameterized Knowledge preparation query and exact StoredHandoff projection against the byte reference. Base64 line wrapping is removed without changing decoded bytes; JSONB is not reserialized as the original manifest. This command is separate from dependency-free db/context checks and Docker-free contracts:test. Seven SQL-to-reference results passed; authenticated HTTP scope/guard/provider behavior remains unimplemented.
+
+## Input metadata reconciliation — 25 October 2026
+
+Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.

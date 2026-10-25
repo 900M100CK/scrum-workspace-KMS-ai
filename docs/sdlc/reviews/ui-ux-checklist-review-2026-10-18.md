@@ -1,9 +1,9 @@
 # UI/UX and Blueprint checklist disposition
 
 **Artifact ID:** UX-CHECK-01  
-**Version/date:** 0.1 Draft · 18 October 2026  
+**Version/date:** 0.2 Draft · 25 October 2026
 **Status:** Sequential author review of textual design; not independent acceptance, a usability result or IEEE/WCAG certification.  
-**Inputs:** PRD-01 v0.9; UC-02 v0.7; SAD-03 v0.15; API-05 v0.16; UX-06 v0.12; TEST-08 v0.20; current UX sources and the pinned template workbooks identified below.  
+**Snapshot inputs (18 October 2026):** PRD-01 v0.9; UC-02 v0.7; SAD-03 v0.15; API-05 v0.16; UX-06 v0.12; TEST-08 v0.20; current UX sources and the pinned template workbooks identified below.\
 **Trace:** BR-01–BR-14; SC-01–SC-08; NFR-01–NFR-09. Original scope and release priorities remain binding.
 
 ## Method and source provenance
@@ -90,3 +90,7 @@ UX-H09-01 · Important design omission · SC-03 / FR-24–26 / NFR-01: the opera
 Minor inventory corrections: Board and AI flow current source headers now identify Workspace v0.2.8 / Knowledge v0.2.9 as applicable. Earlier version-specific change paragraphs remain historical evidence rather than being rewritten as new reviews.
 
 Checklist: Pass for item-by-item disposition and eight bounded scenario walkthroughs; Gap for the visual/research/runtime items above. Handoff: use this list to plan detailed UI work, retaining owner choices and original priorities. No workbook edit, Figma publication, provider transfer, runtime feature, commit or self-approval.
+
+## Input metadata reconciliation — 25 October 2026
+
+The original 18 October input versions are explicitly retained as a frozen snapshot. Prior review findings, commands and observed results are unchanged and have not been rerun by this metadata correction. Read current canonical sources before implementation.

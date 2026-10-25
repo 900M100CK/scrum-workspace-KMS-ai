@@ -1,9 +1,9 @@
 # Plan, start and complete a basic Sprint
 
 **Artifact ID:** SP-05  
-**Version/date:** 0.6 Draft · 18 October 2026
+**Version/date:** 0.7 Draft · 25 October 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
-**Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-05--plan-start-and-complete-a-basic-sprint); [contract pack](../contracts/README.md); PLAN-01 v0.3.\
+**Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-05--plan-start-and-complete-a-basic-sprint); [contract pack](../contracts/README.md); PLAN-01 v0.4.\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 2.  
@@ -53,3 +53,7 @@ Use listSprintItems, listTasks and getSprint to reconstruct current allocation a
 ## Full-list reorder and location follow-up — 18 October 2026
 
 Proposed ADR-0018 and DATA-04 define atomic current location, retained completed history and project.backlog_revision. Read every listTasks(location=backlog) page with the same backlog_revision and a terminal null cursor. Submit the complete permutation; expected_revision is that exact decimal-string value. Never reorder only a visible page/search result. Reject missing/foreign/non-Backlog or stale sets generically, duplicates as invalid input, and empty input unless Backlog is empty. Identical order is a no-op. Actual reorder writes positions 1..N, changed task revisions, audit and idempotent receipt together; successful same-key replay returns the original receipt after renewed authority. Refresh before another edit. Test concurrent allocation/return/reorder and unknown outcomes; no runtime handler is claimed.
+
+## Input metadata reconciliation — 25 October 2026
+
+Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.

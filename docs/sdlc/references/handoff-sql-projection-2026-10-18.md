@@ -1,9 +1,9 @@
 # Prepared-record SQL and receipt integration
 
 **Artifact ID:** HANDOFF-SQL-01  
-**Version/date:** 0.1 Draft · 18 October 2026  
+**Version/date:** 0.2 Draft · 25 October 2026
 **Status:** Executed optional SQL-to-reference integration; no HTTP handler, permission authority or relay acceptance.  
-**Inputs:** PRD-01 v0.9; Proposed ADR-0020 v0.3 / ADR-0023 v0.2; HANDOFF-REF-01 v0.2; Knowledge OpenAPI v0.2.9; Knowledge migration 003; SP-09/11; TC-26.  
+**Snapshot inputs (18 October 2026):** PRD-01 v0.9; Proposed ADR-0020 v0.3 / ADR-0023 v0.2; HANDOFF-REF-01 v0.2; Knowledge OpenAPI v0.2.9; Knowledge migration 003; SP-09/11; TC-26.\
 **Trace:** BR-08–BR-10, BR-12, BR-14; FR-21/28/29/32/55/57/59; SC-02/03/05/06.
 
 ## Query contract and trust
@@ -38,3 +38,7 @@ The writer cancellation targets only the backend identified by this test's uniqu
 Not implemented or tested here: real HTTP/session/service authorization, current document scope, source-capture truth, provider wire schema/mapping, claim acquisition after known durable application acknowledgement, active-process fencing/quarantine, real guard ordering through transport completion/abort, crash recovery or actual zero-byte rejection/delivery. No endpoint, business policy, provider, framework, schema migration or SP Done is added by this query. SYS-01 remains blocking for AI relay; the UI/UX handoff retains its original runtime/visual limitations.
 
 Checklist: Pass for bounded query/projection/reference integration; Gap for the live application boundary above. Handoff: use this query and cases when implementing the authenticated adapter, retaining the exact bytes and independently validated context.
+
+## Input metadata reconciliation — 25 October 2026
+
+The original 18 October input versions are explicitly retained as a frozen snapshot. Prior review findings, commands and observed results are unchanged and have not been rerun by this metadata correction. Read current canonical sources before implementation.

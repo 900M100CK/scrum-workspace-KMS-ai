@@ -1,7 +1,7 @@
 # SDLC documentation
 
 **Artifact ID:** SDLC-INDEX-01  
-**Version/date:** 0.2 Draft · 25 October 2026\
+**Version/date:** 0.3 Draft · 25 October 2026\
 **Status:** Navigation only; artifact status and acceptance remain with each source.  
 **Inputs:** [Development rules](../development-rules.md), [workflow](../../agents/WORKFLOW.md), [artifact register](artifact-register.md).  
 **Trace:** Existing BR-01–BR-15 / SC-01–SC-08 artifacts; no requirement change.
@@ -18,7 +18,7 @@ docs/sdlc/
   *.md                          Stable specifications, existing reviews and snapshots
   diagrams/                     Existing Stage 7 sources, previews and manifests
   handoffs/                     Correction queue and downstream handoff notes
-  references/                   Supporting protocol and storage references
+  references/                   Supporting references and document review register
   reports/                      Dated execution and progress reports
   reviews/                      New bounded checklist and consistency reviews
 ```

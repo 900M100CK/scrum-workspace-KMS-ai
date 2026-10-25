@@ -1,9 +1,9 @@
 # Pre-UI implementation correction queue
 
 **Artifact ID:** FIX-PLAN-01  
-**Version/date:** 0.20 Draft · 18 October 2026
+**Version/date:** 0.21 Draft · 25 October 2026
 **Status:** Budget-stop author checkpoint supplied; runtime/owner/UI gates remain open, not approval.  
-**Inputs:** SYS-REVIEW-01 v0.1; SPEC-REVIEW-01 v0.29; PRD-01 v0.9; Proposed ADR-0018 v0.2; Workspace OpenAPI v0.2.8 / Knowledge v0.2.9; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
+**Snapshot inputs (18 October 2026):** SYS-REVIEW-01 v0.1; SPEC-REVIEW-01 v0.29; PRD-01 v0.9; Proposed ADR-0018 v0.2; Workspace OpenAPI v0.2.8 / Knowledge v0.2.9; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
 **Trace:** BR-01–BR-14; SC-01–SC-08; priorities do not change the 60-Must release scope.
 
 ## Active task checklist — 18 October 2026
@@ -283,3 +283,7 @@ Relevant final docs tests passed 18/18 after the first run identified stale UX-0
 The account tool confirmed 95% used / 5% remaining in the shared Codex weekly window at 07:15:04 UTC (14:15:04 Asia/Saigon). Stopped opening implementation work and delivered PROGRESS-01 v0.1 at progress-report-2026-10-18.md. The report distinguishes all completed NEXT-00–14 author/storage tasks from open RUNTIME-GATE, SYS-01/SYS-02 and unchecked rendered WF tasks. It records the 89 harness/reference, 26 SQL and seven optional SQL/receipt results, including parent-count limits; no runtime/owner approval is inferred.
 
 Final report exists, all 23 local link targets resolve, documentation lint passed 20 pairs / 35 artifacts / 318 nodes / 359 edges, metadata is synchronized, and whitespace passed. No deployment, commit, development migration, provider/permission/framework adoption, quota reset or credit purchase. The budget-stop/reporting objective is fulfilled; the project and application gates are not declared complete.
+
+## Input metadata reconciliation — 25 October 2026
+
+The original 18 October input versions are explicitly retained as a frozen snapshot. Prior review findings, commands and observed results are unchanged and have not been rerun by this metadata correction. Read current canonical sources before implementation.

@@ -1,9 +1,9 @@
 # Permission Matrix by Screen & Action
 
 **Artifact ID:** UX-PERM-MATRIX-02\
-**Version/date:** 0.10 Draft · 18 October 2026
+**Version/date:** 0.11 Draft · 25 October 2026
 **Status:** Owner-confirmed initial access/lifecycle/guard direction; additional delegation and retention rights remain open.\
-**Source versions:** BRD English v1.0; PRD-01 v0.9; UC-02 v0.7; SAD-03 v0.15; ADR-0007–ADR-0011; Workspace OpenAPI v0.2.8 / Knowledge v0.2.9\; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022
+**Source versions:** BRD English v1.0; PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; ADR-0007–ADR-0011; Workspace OpenAPI v0.2.8 / Knowledge v0.2.9\; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022
 **Trace:** BR-01, BR-05, BR-08, BR-10, BR-12, BR-14; FR-01–FR-04, FR-09–FR-14, FR-19–FR-21, FR-28–FR-29, FR-38–FR-39, FR-46–FR-48, FR-50–FR-52, FR-55–FR-59, FR-61, FR-68; SC-05, SC-06.\
 **Scope:** UI visibility and action states derived from current server-authorised capabilities. Capability descriptions are design terms, not new API enums or an accepted role mapping.
 
@@ -93,3 +93,7 @@ Render query/step metadata, exact selected source locators and typed checks only
 ## NEXT-06 independent command preconditions and receipts
 
 getDocumentCommandPrecondition is action-authorised, not document-read: current membership plus exact requested content-write/lifecycle command is required. Reader-only and manage-access-only do not suffice. It reveals only already-known selectors and an opaque token, never numeric revision/content/history/readiness. Revision/archive/optional metadata edit return only the operation-authorised minimal receipt; source reads are independent renewed checks. Token possession, descriptive role and receipt identity grant no access. Additional non-read delegation remains open; Proposed ADR-0022 and future TC-03/05/06/13/20 govern live verification.
+
+## Input metadata reconciliation — 25 October 2026
+
+Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.

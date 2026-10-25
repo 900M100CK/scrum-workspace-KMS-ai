@@ -3,31 +3,32 @@
     {
       "id": "UML-07",
       "path": "docs/sdlc/diagrams/README.md",
-      "version": "0.19",
-      "adrs": []
+      "version": "0.20",
+      "adrs": [],
+      "date": "25 October 2026"
     },
     {
       "id": "REG-00",
       "path": "docs/sdlc/artifact-register.md",
-      "version": "0.60",
+      "version": "0.61",
       "adrs": []
     },
     {
       "id": "SAD-03",
       "path": "docs/architecture.md",
-      "version": "0.15",
+      "version": "0.16",
       "adrs": []
     },
     {
       "id": "UX-PERM-MATRIX-02",
       "path": "docs/ux/permission-matrix.md",
-      "version": "0.10",
+      "version": "0.11",
       "adrs": []
     },
     {
       "id": "UX-PERSONAS-01",
       "path": "docs/ux/personas.md",
-      "version": "0.4",
+      "version": "0.5",
       "adrs": []
     },
     {
@@ -39,19 +40,19 @@
     {
       "id": "UX-FLOW-AI-03",
       "path": "docs/ux/flows/ai-qa-flow.md",
-      "version": "0.8",
+      "version": "0.9",
       "adrs": []
     },
     {
       "id": "UX-FLOW-BOARD-01",
       "path": "docs/ux/flows/board-flow.md",
-      "version": "0.9",
+      "version": "0.10",
       "adrs": []
     },
     {
       "id": "UX-FLOW-DOCS-02",
       "path": "docs/ux/flows/docs-flow.md",
-      "version": "0.8",
+      "version": "0.9",
       "adrs": []
     },
     {
@@ -353,7 +354,7 @@
     {
       "id": "UC-02",
       "path": "docs/sdlc/use-cases.md",
-      "version": "0.7",
+      "version": "0.8",
       "adrs": []
     },
     {
@@ -398,7 +399,7 @@
     {
       "id": "DATA-04",
       "path": "docs/sdlc/data-design.md",
-      "version": "0.11",
+      "version": "0.12",
       "adrs": []
     },
     {
@@ -427,7 +428,7 @@
         "ADR-0012"
       ],
       "kind": "design",
-      "purpose": "C4 Level 1 — system context"
+      "purpose": "C4 Level 1 \u00e2\u20ac\u201d system context"
     },
     {
       "id": "DGM-C4-02",
@@ -449,7 +450,7 @@
         "ADR-0012"
       ],
       "kind": "design",
-      "purpose": "C4 Level 2 — applications and owned stores"
+      "purpose": "C4 Level 2 \u00e2\u20ac\u201d applications and owned stores"
     },
     {
       "id": "DGM-SEQ-01",
@@ -561,7 +562,7 @@
         "ADR-0023"
       ],
       "kind": "design",
-      "purpose": "Workspace physical ERD — owned schema"
+      "purpose": "Workspace physical ERD \u00e2\u20ac\u201d owned schema"
     },
     {
       "id": "DGM-DATA-02",
@@ -584,7 +585,7 @@
         "ADR-0023"
       ],
       "kind": "design",
-      "purpose": "Knowledge physical ERD — owned schema"
+      "purpose": "Knowledge physical ERD \u00e2\u20ac\u201d owned schema"
     },
     {
       "id": "DGM-DATA-03",
@@ -608,7 +609,7 @@
         "ADR-0023"
       ],
       "kind": "design",
-      "purpose": "Logical evidence and command additions — NOT applied schema"
+      "purpose": "Logical evidence and command additions \u00e2\u20ac\u201d NOT applied schema"
     },
     {
       "id": "DGM-DEPLOY-01",
@@ -630,7 +631,7 @@
         "ADR-0011"
       ],
       "kind": "design",
-      "purpose": "Local development deployment — configured and proposed"
+      "purpose": "Local development deployment \u00e2\u20ac\u201d configured and proposed"
     },
     {
       "id": "DGM-DEV-01",
@@ -652,7 +653,7 @@
         "ADR-0012"
       ],
       "kind": "design",
-      "purpose": "Development view — package ownership and adapter boundaries"
+      "purpose": "Development view \u00e2\u20ac\u201d package ownership and adapter boundaries"
     }
   ],
   "schemaVersion": 2,

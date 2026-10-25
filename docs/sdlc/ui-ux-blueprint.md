@@ -1,10 +1,10 @@
 # UI/UX and web frontend design blueprint
 
 **Artifact ID:** UX-BLUEPRINT-01  
-**Version/date:** 1.3 Draft · 23 October 2026
+**Version/date:** 1.4 Draft · 25 October 2026
 **Status:** Corrected author draft for bounded wireframe/design work; visual tokens remain candidates. Not owner approval, independent review or application readiness.  
 **Template basis:** Local IEEE 1016-2009 Blueprint and UI/UX prompts/checklists; no standards-conformance claim.  
-**Inputs:** [PRD-01 v0.9](PRD_SRS.md); [UC-02 v0.7](use-cases.md); [SAD-03 v0.15](../architecture.md); [UX-06 v0.12](ui-ux-spec.md); [UX-CHECK-01 v0.1](reviews/ui-ux-checklist-review-2026-10-18.md); [UX-HANDOFF-01 v0.8](handoffs/ui-ux-handoff-2026-10-18.md); [UX-PLAN-01 v0.1](../ux/wireframe-workplan.md); Workspace OpenAPI v0.2.8; Knowledge OpenAPI v0.2.9; Logical Data Model v0.8; ADR-0004; ADR-0007–ADR-0017; Proposed ADR-0018–ADR-0023; [BRD English v1.0](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md); [PLAN-01 v0.3](../planning/five-month-plan.md); [Stage 6 profile](../agents/06-ui-ux.md); [SP-01 v0.3](../../specs/001-session.md).
+**Inputs:** [PRD-01 v0.9](PRD_SRS.md); [UC-02 v0.8](use-cases.md); [SAD-03 v0.16](../architecture.md); [UX-06 v0.13](ui-ux-spec.md); [UX-CHECK-01 v0.2](reviews/ui-ux-checklist-review-2026-10-18.md); [UX-HANDOFF-01 v0.9](handoffs/ui-ux-handoff-2026-10-18.md); [UX-PLAN-01 v0.2](../ux/wireframe-workplan.md); Workspace OpenAPI v0.2.8; Knowledge OpenAPI v0.2.9; Logical Data Model v0.8; ADR-0004; ADR-0007–ADR-0017; Proposed ADR-0018–ADR-0023; [BRD English v1.0](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md); [PLAN-01 v0.4](../planning/five-month-plan.md); [Stage 6 profile](../agents/06-ui-ux.md); [SP-01 v0.4](../../specs/001-session.md).
 **Trace:** BR-01–BR-14; SC-01–SC-08; NFR-01–NFR-09 through PRD/Test Plan; Blueprint B02–B20 and UI/UX U02–U23.
 
 ## 1. Context and subject
@@ -464,3 +464,7 @@ S1 → S2 → S3 keeps work/doc fallback before AI. S4 iterates across them; vis
 Each step records source versions, exact FR/UC/TC anchors, allowed/changed paths, decisions, checks run and checks not run. Run context:lint/check/test and docs:lint/test on the resulting draft; failures remain explicit and structural success proves no handler behaviour. Add application checks only when actual entry points exist; inspect rendered drafts before any usability/accessibility claim.
 
 Record any step split/insert/skip with date, reason, affected acceptance and downstream dependencies. A skip cannot defer a Must without OD-11. Rollback means reverting only owned step changes, preserving other edits; it never means resetting the shared working tree. Reviewer findings name the source/correction owner. Author validation is not independent approval. The blueprint skill's delegated adversarial review is not run because the owner's no-parallel-agent instruction takes precedence.
+
+## Input metadata reconciliation — 25 October 2026
+
+Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.

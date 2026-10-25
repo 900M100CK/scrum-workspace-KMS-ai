@@ -1,9 +1,9 @@
 # User experience specification and source inventory
 
 **Artifact ID:** UX-06
-**Version/date:** 0.12 Draft · 18 October 2026
+**Version/date:** 0.13 Draft · 25 October 2026
 **Status:** Consolidated design requirements; no rendered application, usability study or accessibility certification.
-**Inputs:** PRD-01 v0.9; UC-02 v0.7; SAD-03 v0.15; Workspace/Knowledge contract drafts; ADR-0007 through ADR-0017; Stage 6 profile and local UI/UX and Blueprint checklists; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022
+**Inputs:** PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; Workspace/Knowledge contract drafts; ADR-0007 through ADR-0017; Stage 6 profile and local UI/UX and Blueprint checklists; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022
 **Trace:** BR-01 through BR-14; SC-01 through SC-08. Enhanced reports and Future Work remain outside these journeys.
 
 ## Sources and authority
@@ -116,3 +116,7 @@ The observation route has only current entity selectors. A reload/direct visit w
 ## Next wireframe work plan
 
 [UX-PLAN-01](../ux/wireframe-workplan.md) orders the next Core design slices and supplies ten Backlog-reorder and ten independent-document-command state variants, plus AI/inspection distinctions. It selects no visual framework, design tool, device budget or new product feature. All rendered WF tasks remain unchecked; it is a textual handoff alongside the canonical sources, not evidence that UI has been implemented or validated.
+
+## Input metadata reconciliation — 25 October 2026
+
+Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.

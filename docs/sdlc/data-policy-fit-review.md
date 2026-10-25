@@ -1,8 +1,8 @@
 # Storage fit against confirmed business policies
 
 **Artifact ID:** DATA-FIT-01
-**Version/date:** 0.5 Draft · 18 October 2026
-**Inputs:** owned migrations 001/002 and additive Workspace 003; DATA-04 v0.11; ADR-0007 through ADR-0017; current contracts.; Proposed ADR-0018.; Proposed ADR-0020
+**Version/date:** 0.6 Draft · 25 October 2026
+**Snapshot inputs (18 October 2026):** owned migrations 001/002 and additive Workspace 003; DATA-04 v0.11; ADR-0007 through ADR-0017; current contracts.; Proposed ADR-0018.; Proposed ADR-0020
 **Status:** Draft schema/privilege review; migration 003 verified in isolated storage tests, application enforcement remains unimplemented.
 
 ## Findings and required evidence
@@ -36,3 +36,7 @@ Proposed ADR-0018 / Workspace migration 003 supply explicit current location, sa
 ## SYS-01 design follow-up
 
 Proposed ADR-0020 and logical model v0.5 supply complete mixed evidence, immutable receipt/byte binding and nonexpiring one-use claim/fence design. The new internal getHandoffManifest verifies an acknowledged Knowledge record outside guard. This addresses missing transport representation, not physical enforcement. Knowledge additive immutable storage, Workspace claim fencing/retention, final provider-wire schema and all live TC-26 cases remain gaps. General idempotency expiry is insufficient and must not allow consumed protected IDs to reappear as fresh. Existing migrations are unchanged.
+
+## Input metadata reconciliation — 25 October 2026
+
+The original 18 October input versions are explicitly retained as a frozen snapshot. Prior review findings, commands and observed results are unchanged and have not been rerun by this metadata correction. Read current canonical sources before implementation.

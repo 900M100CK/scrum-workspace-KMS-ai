@@ -1,9 +1,9 @@
 # Create a project and manage membership
 
 **Artifact ID:** SP-02  
-**Version/date:** 0.4 Draft · 18 October 2026
+**Version/date:** 0.5 Draft · 25 October 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
-**Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-02--create-a-project-and-manage-membership); [contract pack](../contracts/README.md); PLAN-01 v0.3.\
+**Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-02--create-a-project-and-manage-membership); [contract pack](../contracts/README.md); PLAN-01 v0.4.\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 1.  
@@ -51,3 +51,7 @@ ADR-0017 last-manager rule: reject removal of the final current member with effe
 Additional Workspace operations: listMembers and getAllowedActions. Current members obtain minimal user IDs/descriptive roles/membership revisions for selectors; the management screen and add/remove controls require membership-manage. Remove uses the selected Member.revision, which must change on rejoin. Add accepts a known registered user ID; no global directory or role editor is added. getAllowedActions supplies current global/project/selected-resource operation authority and is advisory, never a bearer grant. See Proposed ADR-0019.
 
 Acceptance additions: a fresh client can page current members and obtain the removal precondition; test removed/rejoined members, malformed/foreign/stale cursors, identical-role users with different capabilities, unknown/denied scopes, lost authority and service failure. No hidden member history or emails. Runtime tests remain unimplemented.
+
+## Input metadata reconciliation — 25 October 2026
+
+Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.

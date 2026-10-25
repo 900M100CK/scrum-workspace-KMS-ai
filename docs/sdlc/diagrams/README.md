@@ -1,9 +1,9 @@
 # Central diagram index
 
 **Artifact ID:** UML-07
-**Version/date:** 0.19 Draft · 22 October 2026
+**Version/date:** 0.20 Draft · 25 October 2026
 **Status:** Draft; Ready for downstream inventory use; C4 primary views with a 4+1 coverage crosswalk are recommended; see the 17 October report for corrections and remaining design/implementation gates.
-**Source versions:** BRD English v1.0; PRD-01 v0.9; UC-02 v0.7; SAD-03 v0.15; UX Docs v0.7 / sitemap v0.9 / personas v0.4 / matrix v0.10 / Board v0.9 / AI v0.8; ADR-0004 v0.2; ADR-0007–ADR-0017; Proposed ADR-0018–ADR-0023; PLAN-01 v0.3.
+**Source versions:** BRD English v1.0; PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; UX Docs v0.9 / sitemap v0.10 / personas v0.5 / matrix v0.11 / Board v0.10 / AI v0.9; ADR-0004 v0.2; ADR-0007–ADR-0017; Proposed ADR-0018–ADR-0023; PLAN-01 v0.4.
 
 ## Historical Diagram-first design foundation — 17 October 2026
 
@@ -45,7 +45,7 @@ The docs:lint command checks real Mermaid grammar, native XML, node labels and d
 
 Each diagram type has a folder: architecture, flowchart, sitemap, use-case and user-journey. Product diagrams live here; origin documents link to them. Prompt/checklist examples remain in SDLC-Prompt-Checklist because they are templates.
 
-Current versions are listed below. Mermaid remains the structural source for its eight paired diagrams; update both formats together. The use-case diagram uses Draw.io as its primary source with a paired Mermaid representation (`use-case-diagram.mmd`). Historical source/check snapshots remain labelled below; they are not fresh validation results. Future exports belong beside sources in the matching type folder.
+Current versions are listed below. The generated inventory lists all 20 diagram pairs. Mermaid remains the structural source except for the use-case pair; update both formats together. The use-case diagram uses Draw.io as its primary source with a paired Mermaid representation (`use-case-diagram.mmd`). Historical source/check snapshots remain labelled below; they are not fresh validation results. Future exports belong beside sources in the matching type folder.
 
 ## Historical: patch follow-up — 12 October 2026
 
@@ -79,15 +79,15 @@ The system diagram inventory aligns with Philippe Kruchten's 4+1 Architectural V
 | 4+1 View | Diagram ID | Sources | Purpose & Design Focus | Origin / Trace |
 | --- | --- | --- | --- | --- |
 | **Logical View** | DGM-ARCH-01 | [Draw.io](architecture/service-composition.drawio) / [Mermaid](architecture/service-composition.mmd) | Service boundaries, component responsibilities, data ownership | [docs/architecture.md](../../architecture.md) §2; BR-01–BR-14; SC-01–SC-08 |
-| **Logical View** | DGM-SITE-01 | [Draw.io](sitemap/application-sitemap.drawio) / [Mermaid](sitemap/application-sitemap.mmd) | Client screen structure, navigation hierarchy, information layout | [docs/ux/sitemap.md](../../ux/sitemap.md) v0.4; SAD-03 §2.1 |
-| **Process View** | DGM-FLOW-01 | [Draw.io](flowchart/ai-qa-flow.drawio) / [Mermaid](flowchart/ai-qa-flow.mmd) | Runtime AI Q&A flow, citation validation, guarded transport fallback | [docs/ux/flows/ai-qa-flow.md](../../ux/flows/ai-qa-flow.md) v0.8; SAD-03 §3.1, §3.2 (Flow 4) |
-| **Process View** | DGM-FLOW-02 | [Draw.io](flowchart/board-flow.drawio) / [Mermaid](flowchart/board-flow.mmd) | Scrum board mutations, optimistic revisions, blocker events | [docs/ux/flows/board-flow.md](../../ux/flows/board-flow.md) v0.8; SAD-03 §3.2 (Flow 1) |
-| **Process View** | DGM-FLOW-03 | [Draw.io](flowchart/docs-flow.drawio) / [Mermaid](flowchart/docs-flow.mmd) | Document authoring, immutable versioning, Draft exclusion | [docs/ux/flows/docs-flow.md](../../ux/flows/docs-flow.md) v0.4; SAD-03 §3.2 (Flow 2) |
-| **Process View** | DGM-FLOW-04 | [Draw.io](flowchart/permission-read-flow.drawio) / [Mermaid](flowchart/permission-read-flow.mmd) | Authoritative scope resolution, access denial, generic 404 | [docs/ux/permission-matrix.md](../../ux/permission-matrix.md) v0.5; SAD-03 §3.1, §3.2 (Flow 3) |
-| **Process View** | DGM-FLOW-05 | [Draw.io](flowchart/permission-ai-checkpoints.drawio) / [Mermaid](flowchart/permission-ai-checkpoints.mmd) | Four AI permission checkpoints and citation return to DGM-FLOW-04 | [docs/ux/permission-matrix.md](../../ux/permission-matrix.md) v0.5; SAD-03 §3.1 |
+| **Logical View** | DGM-SITE-01 | [Draw.io](sitemap/application-sitemap.drawio) / [Mermaid](sitemap/application-sitemap.mmd) | Client screen structure, navigation hierarchy, information layout | [docs/ux/sitemap.md](../../ux/sitemap.md) v0.10; SAD-03 §2.1 |
+| **Process View** | DGM-FLOW-01 | [Draw.io](flowchart/ai-qa-flow.drawio) / [Mermaid](flowchart/ai-qa-flow.mmd) | Runtime AI Q&A flow, citation validation, guarded transport fallback | [docs/ux/flows/ai-qa-flow.md](../../ux/flows/ai-qa-flow.md) v0.9; SAD-03 §3.1, §3.2 (Flow 4) |
+| **Process View** | DGM-FLOW-02 | [Draw.io](flowchart/board-flow.drawio) / [Mermaid](flowchart/board-flow.mmd) | Scrum board mutations, optimistic revisions, blocker events | [docs/ux/flows/board-flow.md](../../ux/flows/board-flow.md) v0.10; SAD-03 §3.2 (Flow 1) |
+| **Process View** | DGM-FLOW-03 | [Draw.io](flowchart/docs-flow.drawio) / [Mermaid](flowchart/docs-flow.mmd) | Document authoring, immutable versioning, Draft exclusion | [docs/ux/flows/docs-flow.md](../../ux/flows/docs-flow.md) v0.9; SAD-03 §3.2 (Flow 2) |
+| **Process View** | DGM-FLOW-04 | [Draw.io](flowchart/permission-read-flow.drawio) / [Mermaid](flowchart/permission-read-flow.mmd) | Authoritative scope resolution, access denial, generic 404 | [docs/ux/permission-matrix.md](../../ux/permission-matrix.md) v0.11; SAD-03 §3.1, §3.2 (Flow 3) |
+| **Process View** | DGM-FLOW-05 | [Draw.io](flowchart/permission-ai-checkpoints.drawio) / [Mermaid](flowchart/permission-ai-checkpoints.mmd) | Four AI permission checkpoints and citation return to DGM-FLOW-04 | [docs/ux/permission-matrix.md](../../ux/permission-matrix.md) v0.11; SAD-03 §3.1 |
 | **Physical View** | DGM-ARCH-01 (Deployment aspect) | [Draw.io](architecture/service-composition.drawio) / [Mermaid](architecture/service-composition.mmd) | Host processes, PostgreSQL databases, network trust boundaries | [docs/architecture.md](../../architecture.md) §5 |
-| **+1 Scenarios View** | UC-02 diagram | [Draw.io](use-case/use-case-diagram.drawio) / [Mermaid](use-case/use-case-diagram.mmd) | Actors and 13 system use cases driving architectural validation | [UC-02 v0.7](../use-cases.md); SAD-03 §6.1 |
-| **+1 Scenarios View** | DGM-JOURNEY-01 | [Draw.io](user-journey/core-user-journeys.drawio) / [Mermaid](user-journey/core-user-journeys.mmd) | End-to-end user journeys validating cross-view behaviors | [docs/ux/personas.md](../../ux/personas.md) v0.4; SAD-03 §6.1 |
+| **+1 Scenarios View** | UC-02 diagram | [Draw.io](use-case/use-case-diagram.drawio) / [Mermaid](use-case/use-case-diagram.mmd) | Actors and 13 system use cases driving architectural validation | [UC-02 v0.8](../use-cases.md); SAD-03 §6.1 |
+| **+1 Scenarios View** | DGM-JOURNEY-01 | [Draw.io](user-journey/core-user-journeys.drawio) / [Mermaid](user-journey/core-user-journeys.mmd) | End-to-end user journeys validating cross-view behaviors | [docs/ux/personas.md](../../ux/personas.md) v0.5; SAD-03 §6.1 |
 
 ## Inventory and Trace
 
@@ -103,17 +103,17 @@ The system diagram inventory aligns with Philippe Kruchten's 4+1 Architectural V
 | DGM-FLOW-05 | [Draw.io](flowchart/permission-ai-checkpoints.drawio) / [Mermaid](flowchart/permission-ai-checkpoints.mmd) | AI permission and manifest checkpoints | ADR-0006, ADR-0007, ADR-0009, ADR-0011, ADR-0012, ADR-0013, ADR-0015, ADR-0017 |
 | DGM-JOURNEY-01 | [Draw.io](user-journey/core-user-journeys.drawio) / [Mermaid](user-journey/core-user-journeys.mmd) | Illustrative core user journeys | ADR-0007, ADR-0009, ADR-0011 |
 | DGM-UC-01 | [Draw.io](use-case/use-case-diagram.drawio) / [Mermaid](use-case/use-case-diagram.mmd) | Actors, system use cases and audit includes | ADR-0007, ADR-0008, ADR-0009, ADR-0010, ADR-0011, ADR-0012, ADR-0013, ADR-0014, ADR-0015, ADR-0016, ADR-0017 |
-| DGM-C4-01 | [Draw.io](c4/system-context.drawio) / [Mermaid](c4/system-context.mmd) | C4 Level 1 — system context | ADR-0002, ADR-0005, ADR-0007, ADR-0011, ADR-0012 |
-| DGM-C4-02 | [Draw.io](c4/containers.drawio) / [Mermaid](c4/containers.mmd) | C4 Level 2 — applications and owned stores | ADR-0002, ADR-0004, ADR-0006, ADR-0011, ADR-0012 |
+| DGM-C4-01 | [Draw.io](c4/system-context.drawio) / [Mermaid](c4/system-context.mmd) | C4 Level 1 â€” system context | ADR-0002, ADR-0005, ADR-0007, ADR-0011, ADR-0012 |
+| DGM-C4-02 | [Draw.io](c4/containers.drawio) / [Mermaid](c4/containers.mmd) | C4 Level 2 â€” applications and owned stores | ADR-0002, ADR-0004, ADR-0006, ADR-0011, ADR-0012 |
 | DGM-SEQ-01 | [Draw.io](sequence/protected-handoff.drawio) / [Mermaid](sequence/protected-handoff.mmd) | Protected handoff, one-use claim and revocation | ADR-0006, ADR-0011, ADR-0012, ADR-0013, ADR-0017, ADR-0020 |
 | DGM-SEQ-02 | [Draw.io](sequence/document-creation.drawio) / [Mermaid](sequence/document-creation.mmd) | Workspace-first document creation and uncertain outcomes | ADR-0007, ADR-0009, ADR-0011, ADR-0012, ADR-0017 |
 | DGM-STATE-01 | [Draw.io](state/document-and-readiness.drawio) / [Mermaid](state/document-and-readiness.mmd) | Version lifecycle and independent processing states | ADR-0007, ADR-0009, ADR-0011, ADR-0013 |
 | DGM-STATE-02 | [Draw.io](state/sprint-task-allocation.drawio) / [Mermaid](state/sprint-task-allocation.mmd) | Sprint, task, allocation and blocker state projections | ADR-0008, ADR-0012, ADR-0014, ADR-0018 |
-| DGM-DATA-01 | [Draw.io](data/workspace-erd.drawio) / [Mermaid](data/workspace-erd.mmd) | Workspace physical ERD — owned schema | ADR-0004, ADR-0007, ADR-0008, ADR-0011, ADR-0012, ADR-0017, ADR-0018, ADR-0023 |
-| DGM-DATA-02 | [Draw.io](data/knowledge-erd.drawio) / [Mermaid](data/knowledge-erd.mmd) | Knowledge physical ERD — owned schema | ADR-0004, ADR-0009, ADR-0011, ADR-0012, ADR-0013, ADR-0023 |
-| DGM-DATA-03 | [Draw.io](data/handoff-logical-model.drawio) / [Mermaid](data/handoff-logical-model.mmd) | Logical evidence and command additions — NOT applied schema | ADR-0011, ADR-0012, ADR-0013, ADR-0020, ADR-0021, ADR-0022, ADR-0023 |
-| DGM-DEPLOY-01 | [Draw.io](deployment/local-development.drawio) / [Mermaid](deployment/local-development.mmd) | Local development deployment — configured and proposed | ADR-0002, ADR-0003, ADR-0004, ADR-0006, ADR-0011 |
-| DGM-DEV-01 | [Draw.io](development/package-ownership.drawio) / [Mermaid](development/package-ownership.mmd) | Development view — package ownership and adapter boundaries | ADR-0002, ADR-0003, ADR-0004, ADR-0011, ADR-0012 |
+| DGM-DATA-01 | [Draw.io](data/workspace-erd.drawio) / [Mermaid](data/workspace-erd.mmd) | Workspace physical ERD â€” owned schema | ADR-0004, ADR-0007, ADR-0008, ADR-0011, ADR-0012, ADR-0017, ADR-0018, ADR-0023 |
+| DGM-DATA-02 | [Draw.io](data/knowledge-erd.drawio) / [Mermaid](data/knowledge-erd.mmd) | Knowledge physical ERD â€” owned schema | ADR-0004, ADR-0009, ADR-0011, ADR-0012, ADR-0013, ADR-0023 |
+| DGM-DATA-03 | [Draw.io](data/handoff-logical-model.drawio) / [Mermaid](data/handoff-logical-model.mmd) | Logical evidence and command additions â€” NOT applied schema | ADR-0011, ADR-0012, ADR-0013, ADR-0020, ADR-0021, ADR-0022, ADR-0023 |
+| DGM-DEPLOY-01 | [Draw.io](deployment/local-development.drawio) / [Mermaid](deployment/local-development.mmd) | Local development deployment â€” configured and proposed | ADR-0002, ADR-0003, ADR-0004, ADR-0006, ADR-0011 |
+| DGM-DEV-01 | [Draw.io](development/package-ownership.drawio) / [Mermaid](development/package-ownership.mmd) | Development view â€” package ownership and adapter boundaries | ADR-0002, ADR-0003, ADR-0004, ADR-0011, ADR-0012 |
 <!-- END GENERATED:diagram-inventory -->
 
 ## Review findings and correction owners
@@ -168,15 +168,15 @@ Current filesystem inspection found eight Draw.io files in the five type folders
 <!-- BEGIN GENERATED:artifact-versions -->
 | Artifact ID | Version | Canonical source |
 | --- | --- | --- |
-| UML-07 | v0.19 | [Source](README.md) |
-| REG-00 | v0.60 | [Source](../artifact-register.md) |
-| SAD-03 | v0.15 | [Source](../../architecture.md) |
-| UX-PERM-MATRIX-02 | v0.10 | [Source](../../ux/permission-matrix.md) |
-| UX-PERSONAS-01 | v0.4 | [Source](../../ux/personas.md) |
+| UML-07 | v0.20 | [Source](README.md) |
+| REG-00 | v0.61 | [Source](../artifact-register.md) |
+| SAD-03 | v0.16 | [Source](../../architecture.md) |
+| UX-PERM-MATRIX-02 | v0.11 | [Source](../../ux/permission-matrix.md) |
+| UX-PERSONAS-01 | v0.5 | [Source](../../ux/personas.md) |
 | UX-SITEMAP-03 | v0.10 | [Source](../../ux/sitemap.md) |
-| UX-FLOW-AI-03 | v0.8 | [Source](../../ux/flows/ai-qa-flow.md) |
-| UX-FLOW-BOARD-01 | v0.9 | [Source](../../ux/flows/board-flow.md) |
-| UX-FLOW-DOCS-02 | v0.8 | [Source](../../ux/flows/docs-flow.md) |
+| UX-FLOW-AI-03 | v0.9 | [Source](../../ux/flows/ai-qa-flow.md) |
+| UX-FLOW-BOARD-01 | v0.10 | [Source](../../ux/flows/board-flow.md) |
+| UX-FLOW-DOCS-02 | v0.9 | [Source](../../ux/flows/docs-flow.md) |
 | DGM-ARCH-01 | v0.9 | [Source](architecture/service-composition.mmd) |
 | DGM-SITE-01 | v0.8 | [Source](sitemap/application-sitemap.mmd) |
 | DGM-FLOW-01 | v0.13 | [Source](flowchart/ai-qa-flow.mmd) |
@@ -186,11 +186,11 @@ Current filesystem inspection found eight Draw.io files in the five type folders
 | DGM-FLOW-05 | v0.4 | [Source](flowchart/permission-ai-checkpoints.mmd) |
 | DGM-JOURNEY-01 | v0.4 | [Source](user-journey/core-user-journeys.mmd) |
 | PRD-01 | v0.9 | [Source](../PRD_SRS.md) |
-| UC-02 | v0.7 | [Source](../use-cases.md) |
+| UC-02 | v0.8 | [Source](../use-cases.md) |
 | DGM-UC-01 | v0.5 | [Source](use-case/use-case-diagram.mmd) |
 | DGM-REVIEW-02 | v0.1 | [Source](review-2026-10-16.md) |
 | DGM-REVIEW-03 | v0.1 | [Source](review-2026-10-17.md) |
-| DATA-04 | v0.11 | [Source](../data-design.md) |
+| DATA-04 | v0.12 | [Source](../data-design.md) |
 | DGM-DESIGN-01 | v0.1 | [Source](design-foundation-2026-10-17.md) |
 | DGM-C4-01 | v0.1 | [Source](c4/system-context.mmd) |
 | DGM-C4-02 | v0.1 | [Source](c4/containers.mmd) |
@@ -205,14 +205,18 @@ Current filesystem inspection found eight Draw.io files in the five type folders
 | DGM-DEV-01 | v0.1 | [Source](development/package-ownership.mmd) |
 <!-- END GENERATED:artifact-versions -->
 
-## 17 October correction handoff
+## Historical 17 October correction handoff
 
 See [DGM-REVIEW-03](review-2026-10-17.md). Corrected flowcharts can be laid out with `node scripts/layout-reviewed-diagrams.mjs`; use cases with `node scripts/layout-use-case.mjs`. Both replace the targeted native geometry and require a fresh visual review after use. C4/sequence/state/ERD sources are now registered in the current inventory; their original 17 October foundation/review reports remain dated evidence. Code-level detail still awaits implemented handlers.
 
-## AI diagram reconciliation — 22 October 2026
+## Historical AI diagram reconciliation — 22 October 2026
 
 DGM-FLOW-01 v0.13 restores the native Draw.io page to the existing Mermaid graph: 28 semantic vertices and 42 directed labelled edges. It adds the missing document/operational citation choice, fresh operational reads, missing original observation, deliberate new-question and unknown-browser-outcome branches. The obsolete direct Click-to-document-only edge is replaced by the citation-kind decision. Existing semantic vertex IDs, matching edge IDs and visual styles are retained; the expanded graph is reflowed by the installed ELK layout engine. No requirement, endpoint or runtime behavior changes.
 
 Regenerate this page with `node scripts/sync-ai-diagram.mjs`, then run `npm run docs:sync-metadata` and the documentation checks. The script compares the complete node labels and directed labelled edge multiset before saving, so it cannot silently write a structurally incomplete conversion. Per-diagram dates in the manifest keep this correction from redating unrelated diagram sources.
 
 Inputs remain UX-FLOW-AI-03 v0.8, PRD-01 v0.9, UC-02 v0.7, SAD-03 v0.15 and the existing cited ADRs. Trace: BR-07–BR-10, BR-12–BR-14; SC-02/03/05–08; SP-09/10/12 design support only, with work-before-AI implementation order retained. Author checklist: exact graph parity and source-backed branching supplied; offline geometry validation and native PNG export/inspection performed. The final layout has no overlapping vertices or through-vertex routes in the validator, but 32 edge-crossing warnings and dense return/error routes remain. Inspect at readable zoom; no print-scale, usability, runtime or independent-review acceptance is claimed. Handoff: Ready for downstream design use with those visual and implementation limits; other RV-09 findings stay open.
+
+## Inventory metadata reconciliation — 25 October 2026
+
+Version 0.20 refreshes the manual 4+1 source labels and the inventory count. Child inventory dates now use the UML inventory record date rather than the default date of unrelated diagrams. Paired source-version headers are synchronized; graph content and existing diagram dates remain unchanged. No fresh rendered, independent or runtime acceptance is claimed.

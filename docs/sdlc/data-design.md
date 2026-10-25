@@ -1,9 +1,9 @@
 # Logical data and lifecycle design
 
 **Artifact ID:** DATA-04  
-**Version/date:** 0.11 Draft · 18 October 2026
+**Version/date:** 0.12 Draft · 25 October 2026
 **Status:** Draft for owner review; proposed policies/deferrals are not approved.
-**Inputs:** PRD-01 v0.9; UC-02 v0.7; [SAD-03](../architecture.md) v0.15; [logical entities](../../contracts/data-model.json) v0.8; owner-authorised ADR-0004 implementation; ADR-0007–ADR-0017.; Proposed ADR-0018.; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
+**Inputs:** PRD-01 v0.9; UC-02 v0.8; [SAD-03](../architecture.md) v0.16; [logical entities](../../contracts/data-model.json) v0.8; owner-authorised ADR-0004 implementation; ADR-0007–ADR-0017.; Proposed ADR-0018.; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 ## Ownership and relationships
@@ -139,3 +139,7 @@ Logical model v0.8 maps to Knowledge 003 handoff_manifest/handoff_outcome and Wo
 Protected claim rows are consumed by existence, remain pending in the generic state column, expire at infinity and retain immutable fence/process. Only a fresh known committed insertion can proceed toward the guard; an uncommitted returned UUID is not send authority. Existing/unknown/aborted claims cannot resume or acquire a new fence. Outcome rows bind the exact claim and append without rewriting it. Active-process lifecycle/quarantine/current-scope enforcement still needs real adapters.
 
 New down scripts refuse nonempty protected records. Upgrade rejects legacy protected_handoff rows pending explicit reconciliation instead of assigning a guessed fence. Isolated runtime-role/transaction/concurrent-claim tests passed; no development migration was run. Inspection-step/provenance extensions and opaque command-precondition storage remain separate gaps; the physical ERDs show only implemented DDL.
+
+## Input metadata reconciliation — 25 October 2026
+
+Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.

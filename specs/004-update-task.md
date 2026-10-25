@@ -1,9 +1,9 @@
 # Update work state and record blockers
 
 **Artifact ID:** SP-04  
-**Version/date:** 0.6 Draft · 18 October 2026
+**Version/date:** 0.7 Draft · 25 October 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
-**Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-04--update-work-state-and-record-blockers); [contract pack](../contracts/README.md); PLAN-01 v0.3.\
+**Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-04--update-work-state-and-record-blockers); [contract pack](../contracts/README.md); PLAN-01 v0.4.\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 1.  
@@ -51,3 +51,7 @@ Use listBlockerEvents for member-facing history in ascending sequence. Test curr
 ## Reopen persistence follow-up — 18 October 2026
 
 Proposed ADR-0018/migration 003 persist current placement separately. Test complete in A, reopen Backlog/To Do, mark Done in Backlog, then allocate to B while A's completed association remains unchanged. Placement changes bump task revision; crossing the Backlog boundary changes backlog_revision. Rejected/rolled-back writes preserve both. Current read authority/audit/handler evidence remains required.
+
+## Input metadata reconciliation — 25 October 2026
+
+Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.

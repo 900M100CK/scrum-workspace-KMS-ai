@@ -1,9 +1,9 @@
 # Find linked knowledge without AI
 
 **Artifact ID:** SP-08  
-**Version/date:** 0.3 Draft · 17 October 2026\
+**Version/date:** 0.4 Draft · 25 October 2026\
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
-**Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-08--find-linked-knowledge-without-ai); [contract pack](../contracts/README.md); PLAN-01 v0.3.\
+**Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-08--find-linked-knowledge-without-ai); [contract pack](../contracts/README.md); PLAN-01 v0.4.\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 2.  
@@ -45,3 +45,7 @@ Uses the applicable owner-confirmed directions through ADR-0017 and OWNER-Q-01. 
 FR-70 Should follows the 60 Must. Workspace searchTasks searches committed task titles/descriptions in the current project; Knowledge keywordSearch remains document-scoped. Test title/description match, no match, invalid blank query, cross-project denial, revoked membership between pages and AI/Knowledge outages. Show task and document results/failures separately. This adds Workspace-owned paths for the optional slice, not cross-service writes.
 
 **17 October input reconciliation:** FR-16/17/18/20/34/49/59/63/70: Knowledge document search and optional Workspace task search have distinct contracts and failures. Reviewed against the current requirement rows and operation ownership. This is specification review, not implementation or full AC coverage evidence.
+
+## Input metadata reconciliation — 25 October 2026
+
+Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.

@@ -1,9 +1,9 @@
 # API design — contract entry
 
 **Artifact ID:** API-05  
-**Version/date:** 0.16 Draft · 18 October 2026
+**Version/date:** 0.17 Draft · 25 October 2026
 **Status:** ADR-0007–ADR-0013 directions are owner-confirmed; transport implementation and independent review remain pending.
-**Inputs:** PRD-01 v0.9; UC-02 v0.7; SAD-03 v0.15; DATA-04 v0.11; [contract pack](../../contracts/README.md) v0.18; ADR-0007–ADR-0017; Proposed ADR-0018.\; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022
+**Inputs:** PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; DATA-04 v0.12; [contract pack](../../contracts/README.md) v0.19; ADR-0007–ADR-0017; Proposed ADR-0018.\; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 The canonical payload/routes are the two OpenAPI files linked by the contract pack. Public consumers are the web UI; internal consumers are Workspace/Knowledge. Every operation has x-requirements, authenticated scope, resource parameters, explicit responses and mutation concurrency semantics. Context validation checks shape/trace only.
@@ -69,3 +69,7 @@ API-V10-01 identified a harness gap, not a demonstrated live API exposure. In-me
 ## NEXT-13 stored preparation projection
 
 The Knowledge query get-handoff-manifest.sql now projects the existing StoredHandoff DTO from exact committed bytes using seven bound trusted-context selectors. HANDOFF-SQL-01 records canonical-base64 and SQL/reference integration evidence. It adds no endpoint/query parameter to the draft HTTP contract and implements no service authentication, current permission authority or getHandoffManifest handler. Callers must derive context independently, deny unknown authority and repeat final guarded checks. A readable preparation or binding-only result does not enable a consumed claim to send again.
+
+## Input metadata reconciliation — 25 October 2026
+
+Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.

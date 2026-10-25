@@ -1,9 +1,9 @@
 # Answer a question with exact accessible evidence
 
 **Artifact ID:** SP-09  
-**Version/date:** 0.8 Draft · 18 October 2026
+**Version/date:** 0.9 Draft · 25 October 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
-**Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-09--answer-a-question-with-exact-accessible-evidence); [contract pack](../contracts/README.md); PLAN-01 v0.3.\; Proposed ADR-0020; Proposed ADR-0023
+**Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-09--answer-a-question-with-exact-accessible-evidence); [contract pack](../contracts/README.md); PLAN-01 v0.4.\; Proposed ADR-0020; Proposed ADR-0023
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 3.  
@@ -66,3 +66,7 @@ Proposed ADR-0023 supplies Knowledge 003 / Workspace 004 and 26 isolated SQL res
 ## NEXT-13 SQL projection prerequisite
 
 HANDOFF-SQL-01 supplies an executed SQL-to-StoredHandoff reference projection and scope/encoding/transaction-visibility negatives. It is not the authenticated getHandoffManifest handler or a current authority decision. Derive every selector from validated server context; preserve exact stored bytes, known commit ordering and later guard/claim checks. This SP remains Unimplemented and live acceptance criteria are unchanged.
+
+## Input metadata reconciliation — 25 October 2026
+
+Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.

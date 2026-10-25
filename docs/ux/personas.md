@@ -1,9 +1,9 @@
 # Personas & User Responsibilities (SACW)
 
 **Artifact ID:** UX-PERSONAS-01\
-**Version/date:** 0.4 Draft · 14 October 2026\
+**Version/date:** 0.5 Draft · 25 October 2026\
 **Status:** Illustrative draft; no interviews or measured satisfaction.\
-**Source versions:** BRD English v1.0; PRD-01 v0.9; UC-02 v0.7; SAD-03 v0.15; ADR-0007–ADR-0011.\
+**Source versions:** BRD English v1.0; PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; ADR-0007–ADR-0011.\
 **Trace:** BR-01–BR-15; FR-01–FR-69; SC-01–SC-08.\
 **Scope:** Core user goals and examples; Enhanced reports and Future Work remain outside these journeys.
 
@@ -61,3 +61,7 @@ Provider outage shows explicit failure and independent keyword access while depe
 **Checklist:** Pass for responsibility/capability separation and illustrative-evidence labels. The [UX-06 entry](../sdlc/ui-ux-spec.md) records workbook dispositions; research, accessibility/usability evaluation and runtime tests remain gaps. **Handoff:** Ready for scoped Stage 7/8/9 review; no measured persona validation is claimed.
 
 **v0.3 correction:** Removed administrator/viewer shortcuts, old classifications, authentication-choice assumption, four-column Board and unconditional outage-continuity claims; qualified journey scores/examples.
+
+## Input metadata reconciliation — 25 October 2026
+
+Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.

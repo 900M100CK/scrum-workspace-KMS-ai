@@ -1,8 +1,8 @@
 # Functional and alternate-flow verification design
 
 **Artifact ID:** VERIFY-01
-**Version/date:** 0.4 Draft · 18 October 2026
-**Inputs:** PRD-01 v0.9; UC-02 v0.7; TEST-08 v0.20; ADR-0007 through ADR-0017; release-scope v0.2.
+**Version/date:** 0.5 Draft · 25 October 2026
+**Inputs:** PRD-01 v0.9; UC-02 v0.8; TEST-08 v0.21; ADR-0007 through ADR-0017; release-scope v0.2.
 **Status:** Analyst review of required observations; application execution Not run. No independent approval.
 **Trace:** BR-01 through BR-15; SC-01 through SC-08 through TEST-COVERAGE-01.
 
@@ -151,3 +151,7 @@ This completes an explicit inventory against the current FR/AC rows and named al
 TC-08: an operational citation opens by entity kind/ID, observation revision/time; a fresh authorised entity read is labelled current and cannot substitute for the historical observation. Change a blocker after answer generation and verify both labels, generic denial after membership loss and no fabricated document locator/snapshot.
 
 TC-10/22: after terminal provider failure the editor permits deliberate new request; a recovered successful request clears stale failure presentation. A lost response is unknown, never automatic same-handoff replay or fresh-identity resend; explicit new user intent still cannot bypass server quarantine. Healthy keyword/work paths remain available according to their own dependencies. TC-20: failed/pending semantic indexing with committed permitted Current passages still permits a successful keyword request. No runtime result is claimed.
+
+## Input metadata reconciliation — 25 October 2026
+
+Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.

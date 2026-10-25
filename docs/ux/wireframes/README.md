@@ -1,9 +1,9 @@
 # Core wireframes — Excalidraw
 
 **Artifact ID:** UX-WF-EX-01  
-**Version/date:** 0.1 Draft · 23 October 2026  
+**Version/date:** 0.2 Draft · 25 October 2026
 **Status:** Editable visual author draft with synthetic data; no owner approval, independent review or application acceptance.  
-**Inputs:** BRD v1.0 through [stable entry](../../BRD.md); PRD-01 v0.9; UC-02 v0.7; SAD-03 v0.15; UX-06 v0.12; [UX-BLUEPRINT-01 v1.3](../../sdlc/ui-ux-blueprint.md); [UX-PLAN-01 v0.1](../wireframe-workplan.md); UX-SITEMAP-03 v0.10; SP-03 v0.5; Workspace v0.2.8 / Knowledge v0.2.9 contracts; ADR-0007–ADR-0017 and Proposed ADR-0018–ADR-0023 as referenced by those design inputs.  
+**Inputs:** BRD v1.0 through [stable entry](../../BRD.md); PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; UX-06 v0.13; [UX-BLUEPRINT-01 v1.4](../../sdlc/ui-ux-blueprint.md); [UX-PLAN-01 v0.2](../wireframe-workplan.md); UX-SITEMAP-03 v0.10; SP-03 v0.6; Workspace v0.2.8 / Knowledge v0.2.9 contracts; ADR-0007–ADR-0017 and Proposed ADR-0018–ADR-0023 as referenced by those design inputs.\
 **Trace:** BR-01–BR-14; SC-01–SC-08 through the UC/TC mappings below. No new FR/AC, framework, service or permission policy.  
 **Author:** Sequential UX author.
 
@@ -51,3 +51,7 @@ Author checks: scene JSON parses; IDs are unique; 12 frames contain their elemen
 Checklist: Pass for an editable initial desktop scene, screen/trace inventory and explicit state families. Gap for native Excalidraw import verification, exhaustive individual BL/DC frame variants, mobile layouts, expanded account controls, interactive keyboard/focus, contrast measurement, touch targets, user study, independent visual review and runtime verification. Existing WF-01–09 work-plan checkboxes remain unchecked because this initial draft does not close their full acceptance criteria.
 
 Handoff: review the visual structure and density, then refine individual task/permission/lifecycle flows against the current contracts. Keep Proposed mechanics labelled Proposed. No owner decision or application implementation is established by this scene.
+
+## Input metadata reconciliation — 25 October 2026
+
+Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.

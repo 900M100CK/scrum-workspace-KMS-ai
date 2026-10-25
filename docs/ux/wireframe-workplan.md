@@ -1,9 +1,9 @@
 # Core wireframe work plan and semantic state brief
 
 **Artifact ID:** UX-PLAN-01  
-**Version/date:** 0.1 Draft · 18 October 2026  
-**Status:** Planning/textual interaction brief only; no rendered wireframes, design-tool publication, application UI or usability approval.  
-**Inputs:** PRD-01 v0.9; UC-02 v0.7; SAD-03 v0.15; API-05 v0.16; UX-06 v0.12; UX-CHECK-01 v0.1; UX-HANDOFF-01 v0.8; current sitemap/permission/flow drafts.  
+**Version/date:** 0.2 Draft · 25 October 2026\
+**Status:** Planning/textual interaction brief; initial native frames and previews exist, while full WF acceptance and usability/runtime evidence remain open.\
+**Inputs:** PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; API-05 v0.17; UX-06 v0.13; UX-CHECK-01 v0.2; UX-HANDOFF-01 v0.9; current sitemap/permission/flow drafts.\
 **Trace:** BR-01–BR-14; SC-01–SC-08; NFR-01–NFR-04; U03–U18/U20–U23 and B19 in the detailed checklist review.
 
 ## Scope and order
@@ -74,3 +74,7 @@ For each WF task, supply the named frame variants, source operations, requiremen
 No frame or UI feature is completed by this plan. Server handlers/current-authority, token storage, active process fence/guard/provider/transport, full API semantics and real UI/application acceptance remain open. This is a bounded next-work brief under the existing Core scope, not a UI framework/design-tool choice, new role policy, runtime AI write capability, external publication or scope deferral.
 
 Checklist: Pass for ordered tasks, concrete Backlog/document command state variants and preserved Core distinctions; Gap for every unchecked rendered-design task and runtime gate. Handoff: use WF-01/WF-02 as the first design slices while retaining the documented assumptions and original 60 Must requirements.
+
+## Initial visual artifacts and remaining acceptance — 25 October 2026
+
+[UX-WF-EX-01](wireframes/README.md) supplies an editable scene and initial frame previews. This work plan still lacks complete acceptance evidence for the listed WF tasks, so its checkboxes remain unchecked. Artifact existence does not establish complete state variants, native Excalidraw rendering, responsive/accessibility/usability or runtime acceptance.

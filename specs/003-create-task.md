@@ -1,9 +1,9 @@
 # Create a task in the project backlog
 
 **Artifact ID:** SP-03  
-**Version/date:** 0.5 Draft · 18 October 2026
+**Version/date:** 0.6 Draft · 25 October 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
-**Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-03--create-a-task-in-the-project-backlog); [contract pack](../contracts/README.md); PLAN-01 v0.3.\
+**Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-03--create-a-task-in-the-project-backlog); [contract pack](../contracts/README.md); PLAN-01 v0.4.\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 1.  
@@ -47,3 +47,7 @@ listTasks now defines all versus Backlog scope, authoritative current work_locat
 ## Placement persistence follow-up — 18 October 2026
 
 Use migration 003 / Proposed ADR-0018: create with Backlog marker and null Sprint reference; append after maximum Backlog position under project lock. Persist task, Backlog generation, audit and idempotent result atomically. Return work_location and provide TaskList.backlog_revision from the same read transaction. No runtime handler is claimed.
+
+## Input metadata reconciliation — 25 October 2026
+
+Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.

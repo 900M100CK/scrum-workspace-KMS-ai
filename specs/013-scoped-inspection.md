@@ -1,9 +1,9 @@
 # Inspect scoped audit and answer evidence
 
 **Artifact ID:** SP-13  
-**Version/date:** 0.5 Draft · 18 October 2026
+**Version/date:** 0.6 Draft · 25 October 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
-**Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-13--inspect-scoped-audit-and-answer-evidence); [contract pack](../contracts/README.md); PLAN-01 v0.3.\; Proposed ADR-0021
+**Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-13--inspect-scoped-audit-and-answer-evidence); [contract pack](../contracts/README.md); PLAN-01 v0.4.\; Proposed ADR-0021
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 4.  
@@ -53,3 +53,7 @@ Future handler acceptance pairs: answer reader without trace-read sees summary o
 Use Trace and optional RetrievalSummary from Knowledge v0.2.7 under Proposed ADR-0021. Inspect actual query and recorded steps, exact document/version/passage or operational kind/ID/entity revision/observation revision/time, source-to-step rank binding and typed validation results. Trace carries permitted execution stages/configuration/run metrics; bounded summary only retrieval/citation stages and remains Should. Current permitted-answer-reader and trace-read entitlements remain independent.
 
 Test two retrieval steps, repeated source participation, mixed document/operational evidence, measured zero versus unavailable timing/usage and truly not_performed stages. After source revocation, omit denied identities and dependent query/check data, preserve relative permitted order and renumber visible ranks without gaps or hidden counts. Unknown authority fails closed; missing mandatory records never become empty success. Exact source opening rechecks current access and never substitutes a new version; operational observations remain historical evidence. No private reasoning/raw provider or tool logs. These are future handler/consumer assertions; harness tests check declarations only.
+
+## Input metadata reconciliation — 25 October 2026
+
+Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.

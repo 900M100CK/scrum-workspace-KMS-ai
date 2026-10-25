@@ -1,10 +1,10 @@
 # Technology Stack Specification
 
 **Artifact ID:** TECH-STACK-01\
-**Version/Date:** 1.3 · 17 October 2026\
+**Version/Date:** 1.4 · 25 October 2026\
 **Status:** Draft candidate stack; only the ADR-0004 storage foundation is implemented\
 **Context:** Solo 5-Month Capstone Project · Minimal Microservices Architecture\
-**Inputs:** [BRD](../docs/BRD.md) v1.0, [PRD-01](../docs/sdlc/PRD_SRS.md) v0.8, [SAD-03](../docs/architecture.md) v0.11, [ADR-0002](../docs/adr/0002-minimal-microservices.md), [ADR-0003](../docs/adr/0003-student-stack.md), [ADR-0004](../docs/adr/0004-knowledge-store.md), [ADR-0005](../docs/adr/0005-ai-provider-pilot.md), [ADR-0006](../docs/adr/0006-permission-handoff-guard.md)
+**Inputs:** [BRD](../docs/BRD.md) v1.0, [PRD-01](../docs/sdlc/PRD_SRS.md) v0.9, [SAD-03](../docs/architecture.md) v0.16, [ADR-0002](../docs/adr/0002-minimal-microservices.md), [ADR-0003](../docs/adr/0003-student-stack.md), [ADR-0004](../docs/adr/0004-knowledge-store.md), [ADR-0005](../docs/adr/0005-ai-provider-pilot.md), [ADR-0006](../docs/adr/0006-permission-handoff-guard.md)
 
 ---
 
@@ -249,3 +249,7 @@ scrum-workspace-KMS-ai/
 
 
 **v1.2 freshness review — 17 October 2026:** Corrected current harness counts, board states, handoff ordering and unsupported guarantees without selecting a framework or provider. Google records `gemini-1.5-flash` shutdown on 29 September 2025 in its [official changelog](https://ai.google.dev/gemini-api/docs/changelog#september-29-2025). The [Vite support policy](https://vite.dev/releases#supported-versions), checked 17 October 2026, distinguishes supported minor lines; a broad `6.x` candidate is not a current compatibility decision. Recheck model lifecycle, supported versions, Node compatibility and data terms at the actual pilot/scaffolding date. Checklist: Pass for these source corrections; Gap for framework selection, runtime/security evidence and pilot. Handoff: ADR-0003/0005 and OD-06/12 still govern selection.
+
+## Source metadata reconciliation — 25 October 2026
+
+Version 1.4 refreshes PRD and architecture input labels after the bounded editorial corrections. This is not a technology lifecycle recheck, framework/provider selection or runtime compatibility result. Existing dated external-source observations remain historical; recheck them at selection time.

@@ -1,9 +1,9 @@
 # Specification consistency review
 
 **Artifact ID:** SPEC-REVIEW-01
-**Version/date:** 0.29 Draft · 18 October 2026
+**Version/date:** 0.30 Draft · 25 October 2026
 **Status:** Author review with dated evidence; not independent approval or application acceptance.
-**Inputs:** PRD-01 v0.9; UC-02 v0.7; SAD-03 v0.15; DATA-04 v0.11 and DATA-FIT-01 v0.5; Workspace API v0.2.8 / Knowledge v0.2.9; UX-06 v0.12; TEST-08 v0.20; VERIFY-01 v0.4; ADR-0007 through ADR-0017; Proposed ADR-0018; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
+**Snapshot inputs (18 October 2026):** PRD-01 v0.9; UC-02 v0.7; SAD-03 v0.15; DATA-04 v0.11 and DATA-FIT-01 v0.5; Workspace API v0.2.8 / Knowledge v0.2.9; UX-06 v0.12; TEST-08 v0.20; VERIFY-01 v0.4; ADR-0007 through ADR-0017; Proposed ADR-0018; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
 
 The [v0.4 review](spec-review-v0.4-history.md) is preserved verbatim as historical evidence. Its old source versions, open findings and environment statements are not current conclusions. This review checked present text and diagram sources plus five targeted overview renders. Full print-scale readability, independent review and application behavior remain unverified.
 
@@ -186,3 +186,7 @@ Proposed ADR-0023, logical model v0.8, Knowledge 003 and Workspace 004 supply im
 ## NEXT-13 query-to-receipt integration
 
 HANDOFF-SQL-01 records a parameterized trusted-context query and seven optional SQL-to-byte-reference results. It prevents a likely encoding integration mistake (PostgreSQL base64 line wrapping) and rejects raw-byte reconstruction/precision loss while keeping consumed claim and readable receipt separate. The query accepts independently validated context, not user/model authority; real authenticated lookup/current scope/guard/provider implementations remain absent. Existing API operations, product policies and migrations are unchanged.
+
+## Input metadata reconciliation — 25 October 2026
+
+The original 18 October input versions are explicitly retained as a frozen snapshot. Prior review findings, commands and observed results are unchanged and have not been rerun by this metadata correction. Read current canonical sources before implementation.

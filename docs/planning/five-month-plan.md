@@ -1,9 +1,9 @@
 # Five-month delivery plan and MoSCoW
 
 **Artifact ID:** PLAN-01  
-**Version/date:** 0.3 Draft · 17 October 2026\
+**Version/date:** 0.4 Draft · 25 October 2026\
 **Status:** Draft for owner review; ADR-0007–ADR-0011 direction is owner-confirmed; application acceptance remains unproven.\
-**Inputs:** BRD v1.0 via [stable entry](../BRD.md); [PRD-01 v0.7](../sdlc/PRD_SRS.md); owner direction: solo, five months, minimal microservices; [scope data](release-scope.json).\
+**Inputs:** BRD v1.0 via [stable entry](../BRD.md); [PRD-01 v0.9](../sdlc/PRD_SRS.md); owner direction: solo, five months, minimal microservices; [scope data](release-scope.json).\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 ## Problem and prioritisation rule
@@ -144,3 +144,7 @@ At Week 2 and the ends of Months 2/3, record completed Must ACs and slices, rema
 ## Owner extension - 14 October 2026
 
 ADR-0016 adds FR-70 task keyword search as Should after the existing 60 Must. PLAN-01 release-scope now records 69 active requirements: 60 Must, 4 Should, 4 Could, 1 Wont; FR-45 remains Withdrawn. Month 4 is a tentative placement only if Must throughput permits. This is added optional scope, not an original-Core deferral.
+
+## Scope metadata reconciliation — 25 October 2026
+
+Version 0.4 reconciles the current PRD input and release-scope.json metadata and confirmed exception wording. FR-70 retains PP-01/PP-02; its JSON objective trace derives from existing BR-01/BR-07/BR-13 mappings in BRD v1.0 (BO-01/BO-02/BO-05), not a new business objective. Release priorities and capacity assumptions are unchanged.

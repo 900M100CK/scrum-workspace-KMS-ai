@@ -1,9 +1,9 @@
 # Architecture for the five-month capstone
 
 **Artifact ID:** SAD-03
-**Version/date:** 0.15 Draft · 18 October 2026
+**Version/date:** 0.16 Draft · 25 October 2026
 **Status:** Draft for owner review; organized into 4+1 views; ADR-0007–ADR-0017 directions are owner-confirmed; implementation and remaining policy details are unverified.\
-**Inputs:** [BRD](BRD.md) v1.0; [PRD](sdlc/PRD_SRS.md) v0.9; [use cases](sdlc/use-cases.md) v0.7; [delivery plan](planning/five-month-plan.md) v0.3; [ADR-0004](adr/0004-knowledge-store.md) v0.2; ADR-0007–ADR-0017; AGENTS rules; owner confirmation to retain minimal microservices. Input-number reconciliation does not establish full semantic or runtime acceptance.; Proposed ADR-0018–ADR-0023
+**Inputs:** [BRD](BRD.md) v1.0; [PRD](sdlc/PRD_SRS.md) v0.9; [use cases](sdlc/use-cases.md) v0.8; [delivery plan](planning/five-month-plan.md) v0.4; [ADR-0004](adr/0004-knowledge-store.md) v0.2; ADR-0007–ADR-0017; AGENTS rules; owner confirmation to retain minimal microservices. Input-number reconciliation does not establish full semantic or runtime acceptance.; Proposed ADR-0018–ADR-0023
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 ---
@@ -338,7 +338,7 @@ The Physical View details the physical infrastructure, node allocation, network 
 |  +-----------------------------+       +-----------------------------------+  |
 |  |    PostgreSQL Instance      |       | Knowledge Service Process (8001)  |  |
 |  |  (storage: PostgreSQL 17)   |       | - Document Store & Chunking       |  |
-|  |  +-----------------------+  |       | - Keyword (trgm) & Vector (pgvec) |  |
+|  |  +-----------------------+  |       | - English FTS (GIN) + pgvector    |  |
 |  |  | workspace_db (DB)     |  |       | - Evidence & Citation Resolution  |  |
 |  |  +-----------------------+  |       +-----------------+-----------------+  |
 |  |  | knowledge_db (DB)     |  |                         |                    |
@@ -414,7 +414,7 @@ The Scenarios View (+1 View) synthesizes and validates the Logical, Process, Dev
 
 ### 7.1 Requirement Traceability Matrix
 
-Each row retains the exact BR sources and requirement wording from PRD-01 v0.7 and identifies its bounded implementation spec. Section references identify design responsibility, not a claim that every acceptance criterion is fully designed or tested. Specs remain Draft/Unimplemented; read their ACs and planned tests before implementation. BR-15 remains Should/Enhanced, not an added Core commitment.
+Each row retains the exact BR sources and requirement wording from PRD-01 v0.9 and identifies its bounded implementation spec. Section references identify design responsibility, not a claim that every acceptance criterion is fully designed or tested. Specs remain Draft/Unimplemented; read their ACs and planned tests before implementation. BR-15 remains Should/Enhanced, not an added Core commitment.
 
 | FR | BR sources from PRD | Requirement | Architecture responsibility / implementation spec |
 | --- | --- | --- | --- |
@@ -487,7 +487,6 @@ Each row retains the exact BR sources and requirement wording from PRD-01 v0.7 a
 | FR-67 | BR-02 | An authorised Sprint manager shall be able to remove an item from a Sprint Backlog. | 2.1; 3.2 Flow 1 (Sprint lifecycle); [SP-05](../specs/005-sprint-lifecycle.md) |
 | FR-68 | BR-01, BR-10 | Expired sessions shall be rejected for protected operations. | 2.3; 5.2 (identity/session); [SP-01](../specs/001-session.md) |
 | FR-69 | BR-13 | An AI question shall return an explicit failure state, not generated content, when the AI dependency fails. | 3.1; 3.2 Flow 4; 3.4 (cited questions); [SP-09](../specs/009-cited-question.md) |
-
 | FR-70 | BR-01, BR-07, BR-13 | A current project member should be able to search task titles and descriptions by keyword without AI. | 2.1 Workspace task search; 3.4 independent outage path; [SP-08](../specs/008-linked-keyword-search.md); ADR-0016 |
 
 Inventory: 69 active FR rows plus the retained Withdrawn FR-45 row; FR-35 is separately Enhanced. This is an explicit responsibility/source mapping, not verified end-to-end BR/SC/EX test coverage. Stage 8 must complete scenario/exception assertions; open UX/diagram findings remain tracked in the consistency review.
@@ -536,3 +535,7 @@ SYS-05 is corrected by distinguishing target-member descriptive role from caller
 ## NEXT-12 additive handoff storage
 
 Knowledge migration 003 stores complete immutable manifest/evidence JSON and exact raw bytes in one transaction, generated SHA-256/receipt identity and append-only outcomes. A run/actor/project FK prevents rebinding preparation to another owned execution. Workspace migration 004 reserves protected_handoff in existing idempotency_record with permanent immutable fence/process and infinity expiry; a fresh insertion returns a fence, while duplicate/changed claims return none. Outcomes bind the exact claim fence. Commit/acknowledgement and current permission/guard/transport checks remain application responsibilities. Isolated SQL evidence does not implement active-process fencing or prove any provider byte was blocked/delivered. No development database upgrade or framework/provider selection.
+
+## Editorial reconciliation — 25 October 2026
+
+Version 0.16 corrects the deployment sketch to English full-text search (GIN) plus independent pgvector discovery, restores FR-70 inside the traceability table and updates its PRD source label. This aligns existing ADR-0004 and PRD-01 wording; no service boundary, requirement, permission policy or application behavior changes. Full downstream semantic and runtime acceptance remain open.

@@ -1,9 +1,9 @@
 # Executable handoff byte-binding reference
 
 **Artifact ID:** HANDOFF-REF-01  
-**Version/date:** 0.2 Draft · 18 October 2026  
+**Version/date:** 0.3 Draft · 25 October 2026
 **Status:** Local synthetic protocol reference; no application handler, durable store, permission decision, relay or runtime acceptance.  
-**Inputs:** PRD-01 v0.9; SAD-03 v0.15; DATA-04 v0.11; Proposed ADR-0020 v0.3; Workspace OpenAPI v0.2.8 / Knowledge v0.2.9; TC-26.  
+**Snapshot inputs (18 October 2026):** PRD-01 v0.9; SAD-03 v0.15; DATA-04 v0.11; Proposed ADR-0020 v0.3; Workspace OpenAPI v0.2.8 / Knowledge v0.2.9; TC-26.\
 **Trace:** BR-08–BR-10, BR-12, BR-14; FR-21/22/25/26/28/29/32/55/57/59/60; SC-02/03/05/06.
 
 ## Purpose and location
@@ -41,3 +41,7 @@ Checklist: Pass for executed local byte-binding negatives; Gap for live preparat
 ## SQL receipt integration follow-up
 
 [HANDOFF-SQL-01](handoff-sql-projection-2026-10-18.md) now feeds committed SQL projections into this reference, testing canonical base64, preserved raw bytes, both purposes, context mismatch, consumed-claim separation, uncommitted/rolled-back visibility and unsafe numeric decoding. Seven optional integration results passed. The receipt/context oracles remain synthetic and the reference still grants no send or permission authority.
+
+## Input metadata reconciliation — 25 October 2026
+
+The original 18 October input versions are explicitly retained as a frozen snapshot. Prior review findings, commands and observed results are unchanged and have not been rerun by this metadata correction. Read current canonical sources before implementation.
