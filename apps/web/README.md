@@ -36,6 +36,8 @@ The test suite covers these local interactions, partial/filtered reorder restric
 
 ## Visual direction
 
+The owner selected Hallmark **Studio** on 26 October 2026 for integration into main: cool proof paper, Hedvig headings, Geist work text and an orange primary action. The original Threadwork content and all event handlers remain unchanged. See the [Studio experiment record](../../references/hallmark-studio-2026-10-25.md); earlier Taste screenshots describe the previous appearance. See the [owner selection record](../../references/ui-selection-2026-10-26.md).
+
 Use **Dark theme** in the preview toolbar to switch between the neutral light and dark appearances. The choice survives navigation within the loaded preview and preserves unsaved form text; reload resets to light. Both modes retain the owner-requested separated Board columns. The [theme and Board design report](../../references/ui-dark-theme-2026-10-24.md) records tokens, screenshots, checks and remaining gaps for future reporting.
 
 The owner-requested Taste redesign uses achromatic-ledger: neutral chrome, labelled SVG icons, compact white task cards and self-hosted Geist. Project navigation folds into the Project menu on tablet/phone; Escape closes it. The [redesign record](../../references/ui-redesign-2026-10-24.md) includes fresh screenshots and verification. See [font provenance and license](assets/README.md).

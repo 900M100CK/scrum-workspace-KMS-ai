@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-25",
+  "scope": "app",
+  "theme": "Studio (by request)",
+  "branch": "codex/hallmark-field-office",
+  "signals": [
+    {
+      "kind": "owner theme",
+      "value": "Studio / Field Office, an identity studio"
+    },
+    {
+      "kind": "existing preview",
+      "value": "apps/web/ui.mjs:23; styles.css:1; index.html:1"
+    }
+  ],
+  "preserve": [
+    "Threadwork name",
+    "all handlers, fields and hooks",
+    "scope-denied presentation",
+    "dark theme",
+    "column separation"
+  ],
+  "introduce": [
+    "self-hosted Hedvig headings",
+    "cool proof paper palette",
+    "orange primary action",
+    "square sheet surfaces"
+  ],
+  "exceptions": [
+    "Unrelated dirty files retained outside allowed UI paths; no stash or reset",
+    "Browser capture through platform computer-use only; no independent browser driver",
+    "No subagents under owner instruction"
+  ]
+}
