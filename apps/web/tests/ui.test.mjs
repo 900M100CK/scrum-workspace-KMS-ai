@@ -169,6 +169,11 @@ test('preview server serves only its allowlisted UI assets, with no network conn
   try {
     const response = await fetch(base); assert.equal(response.status, 200); assert.match(response.headers.get('content-security-policy'), /connect-src 'none'/);
     assert.match(await response.text(), /Threadwork/);
+    for (const path of ['/tokens.css', '/base.css']) {
+      const style = await fetch(base + path); assert.equal(style.status, 200); assert.match(style.headers.get('content-type'), /text\/css/);
+    }
+    const displayFont = await fetch(base + '/assets/HedvigLettersSerif-Variable.ttf'); assert.equal(displayFont.status, 200); assert.equal(displayFont.headers.get('content-type'), 'font/ttf');
+    assert.deepEqual([...new Uint8Array(await displayFont.arrayBuffer()).slice(0, 4)], [0, 1, 0, 0]);
     const font = await fetch(base + '/assets/Geist-Variable.ttf'); assert.equal(font.status, 200); assert.equal(font.headers.get('content-type'), 'font/ttf');
     assert.deepEqual([...new Uint8Array(await font.arrayBuffer()).slice(0, 4)], [0, 1, 0, 0]);
     for (const path of ['/package.json', '/../../package.json', '/api/projects']) assert.equal((await fetch(base + path)).status, 404);

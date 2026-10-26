@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
 test('dark theme tokens meet text and non-text contrast thresholds', () => {
-  const css = readFileSync(new URL('../styles.css', import.meta.url), 'utf8');
+  const css = readFileSync(new URL('../tokens.css', import.meta.url), 'utf8');
   const block = css.match(/:root\[data-theme="dark"\]\s*\{([^}]+)\}/)[1];
   const tokens = Object.fromEntries([...block.matchAll(/--([\w-]+):\s*(#[\da-f]{6})\s*;/gi)].map(match => [match[1], match[2]]));
   const luminance = hex => {

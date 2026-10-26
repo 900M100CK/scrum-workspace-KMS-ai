@@ -5,6 +5,8 @@ import { fileURLToPath } from 'node:url';
 const files = new Map([
   ['/', ['index.html', 'text/html']], ['/index.html', ['index.html', 'text/html']],
   ['/styles.css', ['styles.css', 'text/css']], ['/main.mjs', ['main.mjs', 'text/javascript']],
+  ['/tokens.css', ['tokens.css', 'text/css']], ['/base.css', ['base.css', 'text/css']],
+  ['/assets/HedvigLettersSerif-Variable.ttf', ['assets/HedvigLettersSerif-Variable.ttf', 'font/ttf']],
   ['/ui.mjs', ['ui.mjs', 'text/javascript']], ['/fixtures.mjs', ['fixtures.mjs', 'text/javascript']],
   ['/assets/Geist-Variable.ttf', ['assets/Geist-Variable.ttf', 'font/ttf']]
 ]);

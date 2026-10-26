@@ -1,0 +1,25 @@
+[
+ {
+  "date": "2026-10-25",
+  "scope": "app",
+  "theme": "Studio",
+  "shape": "app screen",
+  "redesign": "full",
+  "axes": "light/roman-serif/warm",
+  "nav": "kept project shell",
+  "footer": "existing work provenance note",
+  "signature": "task evidence proof sheets",
+  "imagery": "local synthetic product screenshots",
+  "entry": "apps/web/index.html",
+  "prompt": "Experiment with Studio / Field Office on a separate branch, preserving the Scrum preview.",
+  "waived": [],
+  "exceptions": [
+   "owner-requested separated columns and shadows",
+   "existing copy and handlers preserved verbatim",
+   "platform computer-use screenshots; Hallmark render driver not run",
+   "no independent review or subagents"
+  ],
+  "review": "in-thread: hierarchy and phone stacking inspected; serif scanning-density tradeoff recorded",
+  "mode": "build"
+ }
+]
