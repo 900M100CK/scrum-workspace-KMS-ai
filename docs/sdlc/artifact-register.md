@@ -39,17 +39,19 @@ Prior OWNER-Q-01 verification: combined Node 24.21.0 run `node --test tests/docs
 ## Current register and handoffs
 
 **Artifact ID:** REG-00
-**Version/date:** 0.63 Draft · 26 October 2026
+**Version/date:** 0.65 Draft · 26 October 2026
 **Status:** Draft; confirmed policy corrections in progress, full coverage and remaining decisions explicit.
 **Source versions:** [BRD stable entry](../BRD.md) → [English BRD v1.0](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md) and two Proposed addenda, [AGENTS.md v1.7](../../AGENTS.md), [workflow](../../agents/WORKFLOW.md), PRD-01 v0.9, UC-02 v0.8, SAD-03 v0.16 and ADR-0007–ADR-0017. Prior review inputs remain historical. Storage has measured test evidence; interviews, pilot and application runtime evidence remain absent.; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
 
 | Stage/ID | Path | Owner role | Version/status | Inputs/dependencies | Planned BR/SC coverage | Open decisions |
 | --- | --- | --- | --- | --- | --- | --- |
-| 0 / REG-00 | docs/sdlc/artifact-register.md | Coordinator | 0.63 Draft | Current requirements, corrective ADRs and queue | BR-01–BR-15; SC-01–SC-08 | Author corrections tracked separately from runtime acceptance |
-| Supporting review register / DOC-REVIEW-REG-01 | [docs/sdlc/references/document-review-register.md](references/document-review-register.md) | SDLC coordinator | 0.4 Draft | Development rules v1.5; pre-flight checklist; workflow; REG-00; SDLC index | Existing BR-01–BR-15 / SC-01–SC-08 documentation navigation only | Bounded corrections recorded; full document-type reviews remain unassigned |
-| Navigation / SDLC-INDEX-01 | [docs/sdlc/README.md](README.md) | SDLC coordinator | 0.4 Draft | Development rules; workflow; REG-00 | Existing documentation navigation only | Review register linked; source review and acceptance remain separate |
+| 0 / REG-00 | docs/sdlc/artifact-register.md | Coordinator | 0.65 Draft | Current requirements, corrective ADRs and queue | BR-01–BR-15; SC-01–SC-08 | Author corrections tracked separately from runtime acceptance |
+| Supporting review register / DOC-REVIEW-REG-01 | [docs/sdlc/references/document-review-register.md](references/document-review-register.md) | SDLC coordinator | 0.6 Draft | Development rules v1.5; pre-flight checklist; workflow; REG-00; SDLC index | Existing BR-01–BR-15 / SC-01–SC-08 documentation navigation only | Bounded corrections recorded; full document-type reviews remain unassigned |
+| Navigation / SDLC-INDEX-01 | [docs/sdlc/README.md](README.md) | SDLC coordinator | 0.5 Draft | Development rules; workflow; REG-00 | Existing documentation navigation only | Review register linked; source review and acceptance remain separate |
 | Excalidraw wireframes / UX-WF-EX-01 | [docs/ux/wireframes/README.md](../ux/wireframes/README.md); native scene and PNG/SVG previews | Sequential UX author | 0.2 Draft | UX-BLUEPRINT-01 v1.4; UX-PLAN-01 v0.2; UX-06 v0.13; current scoped contracts | BR-01–BR-14; SC-01–SC-08 through frame UC/TC mappings | Initial 12 desktop frames; native import, full BL/DC variants, responsive/accessibility/usability and runtime gates remain open |
 | UI references / UI-REF-01; UI-REVIEW-01 | references/README.md; references/ui-review-2026-10-23.md | Sequential UI author | UI-REF-01 v0.5; UI-REVIEW-01 v0.1 historical | UX-BLUEPRINT-01 (snapshot 1.3); contracts; SP-01–04; Proposed stack/read designs | BR-01/02/03/10/12/13; SC-01/03/06/08 | Live stack/identity, application enforcement and independent acceptance remain open |
+| Soft green CSS system / UI-CSS-01 | references/ui-css-green-system-2026-10-26.md; apps/web/ | Sequential UI author | 0.1 Draft | UX-BLUEPRINT-01 v1.4; UI-REF-01 v0.5; owner CSS refinement | BR-01/02/03/10/13; SC-01/03/06/08 | Synthetic preview only; independent/runtime acceptance open |
+| Studio refinement / UI-REFINE-01 | references/studio-refinement-2026-10-26.md; apps/web/ | Sequential UI author | 0.1 Draft | UX-BLUEPRINT-01 v1.4; UI-REF-01 v0.5; owner comparison | BR-01/02/03/10/13; SC-01/03/06/08 | Local preview checks; independent/runtime acceptance open |
 | UI experiment / UI-STUDIO-01 | references/hallmark-studio-2026-10-25.md; apps/web/ | Sequential UI author | 0.1 Draft | UX-BLUEPRINT-01 v1.4; UI-REF-01 v0.5; Hallmark Studio reference | BR-01/02/03/10/13; SC-01/03/06/08 | Owner selected 26 October; independent/runtime acceptance open |
 | UI theme / UI-THEME-01 | references/ui-dark-theme-2026-10-24.md; apps/web/ | Sequential UI author | 0.1 Draft | UX-WF-EX-01 (snapshot 0.1); UX-BLUEPRINT-01 (snapshot 1.3); UI-REF-01 v0.4 | BR-01/02/03/10/13; SC-01/03/06/08 | Local theme, token tests and screenshots; independent/runtime acceptance open |
 | UI redesign / UI-REDESIGN-01 | references/ui-redesign-2026-10-24.md; apps/web/ | Sequential UI author | 0.1 Draft | UX-WF-EX-01 (snapshot 0.1); UI-REF-01 v0.3; existing contracts and Proposed stack | BR-01/02/03/06/10/13; SC-01/03/04/06/08 | Local rendered observations and DOM tests; live application and independent acceptance open |
@@ -119,7 +121,7 @@ The BRD leaves architecture to design while AGENTS.md directs minimal microservi
 | Artifact ID | Version | Canonical source |
 | --- | --- | --- |
 | UML-07 | v0.20 | [Source](diagrams/README.md) |
-| REG-00 | v0.63 | [Source](artifact-register.md) |
+| REG-00 | v0.65 | [Source](artifact-register.md) |
 | SAD-03 | v0.16 | [Source](../architecture.md) |
 | UX-PERM-MATRIX-02 | v0.11 | [Source](../ux/permission-matrix.md) |
 | UX-PERSONAS-01 | v0.5 | [Source](../ux/personas.md) |
@@ -382,8 +384,20 @@ REG-00 v0.62 records UI-STUDIO-01 v0.1 and UI-REF-01 v0.5 on the owner-requested
 
 Final verification with bundled Node 24.22.1: UI/static-server/contrast tests passed 17/17; context:lint/context:check passed and context:test passed 45/45; docs:lint passed for 20 diagram pairs / 35 manifest artifacts and docs:test passed 20/20; generated metadata checked 66 outputs with no drift. Hallmark static sweep: zero failures and zero warnings, one answered dialog finish finding. The first documentation run failed on the supporting register's linked REG-00 v0.61 input after the version bump; DOC-REVIEW-REG-01 v0.3 updates that input to v0.62 and preserves historical correction anchors, then the checks passed. No live application handler behaviours verified; render-tier, contract, storage, provider, evaluation and independent acceptance remain unrun.
 
-## Owner-selected Studio integration — 26 October 2026
+## Historical Owner-selected Studio integration — 26 October 2026
 
 REG-00 v0.63 records the owner's explicit selection of the Hallmark Studio preview and request to merge it into main. The [selection record](../../references/ui-selection-2026-10-26.md) preserves the boundary: visual direction selected, application/runtime and independent accessibility acceptance still open. The original Studio experiment remains historical evidence. DOC-REVIEW-REG-01 v0.4 synchronizes the linked register version only. No contract, accepted ADR, product scope or backend rule changes. Verification and Git outcome are reported with the integration.
 
 Pre-merge verification on 26 October 2026 with Node 24.22.1: UI/static-server/contrast tests 17/17 passed; docs lint and tests 20/20 passed; generated metadata checked 66 outputs with no drift. No code changes since the Studio interaction/render observations beyond documentation and licence whitespace. This run does not add live handler, contract/storage/provider or independent accessibility acceptance evidence.
+
+## Historical Studio work-screen refinement — 26 October 2026
+
+REG-00 v0.64 records UI-REFINE-01 v0.1: owner-requested refinement retains Studio and all source/filter/Sprint features, with sans column headings, semantic status markers, readable metadata, card depth, latest open blocker notes and a keyboard-scrollable horizontal Board on narrow screens. Invalid inherited white-space properties and the noninteractive main-landmark outline are corrected. Tests passed 18/18 locally and fresh desktop/dark/phone captures record the bounded observations. DOC-REVIEW-REG-01 v0.5 updates the linked register version only. No contract, backend, provider or accepted ADR changes; independent/runtime acceptance remains Gap. No commit/push. Structural results follow after verification.
+
+Final structural verification: docs:lint passed for 20 diagram pairs / 35 manifest artifacts; docs:test passed 20/20; changed tracked-file whitespace check passed. UI tests remain 18/18 as recorded above. No claim of full accessibility or live application correctness is added.
+
+## Soft green CSS system refinement — 26 October 2026
+
+REG-00 v0.65 records [UI-CSS-01 v0.1](../../references/ui-css-green-system-2026-10-26.md): one light/dark token definition, component CSS cleanup, distinct green surfaces, readable metadata, primary selection, source chips and active Sprint Done/Total progress. The README names the current soft-green direction and labels previous palettes historical. UI tests passed 20/20 using Node 24.22.1; rendered desktop/dark/phone observations and tablet geometry are bounded evidence. DOC-REVIEW-REG-01 v0.6 synchronizes its current register input only. No live handler behaviours verified, scope/contract/accepted ADR changes or commit/push. Independent acceptance remains Gap.
+
+Verification: docs:lint passed (20 diagram pairs / 35 manifest artifacts), docs:test passed 20/20, context:lint/context:check passed, context:test passed 45/45, and generated metadata checked 66 outputs. git diff --check passed. These are structural checks; live handler/runtime and independent acceptance remain unrun.

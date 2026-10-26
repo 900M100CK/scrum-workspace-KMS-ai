@@ -10,7 +10,7 @@
     {
       "id": "REG-00",
       "path": "docs/sdlc/artifact-register.md",
-      "version": "0.63",
+      "version": "0.65",
       "adrs": []
     },
     {

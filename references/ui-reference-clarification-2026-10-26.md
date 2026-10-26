@@ -1,0 +1,11 @@
+# Layout and identity clarification — 26 October 2026
+
+The owner identified `ui-board-2026-10-23.png` as the second (green) reference and requested its colours and logo be changed to the first Studio version. The resulting interpretation is the softer working layout from that supplied image, with Studio's cool paper/blue-black/orange identity and serif Threadwork wordmark. This is an appearance refinement, not a return to the older preview's feature set.
+
+Rounded navigation, project switcher, Sprint strip, segmented tabs, separated columns and lightly raised cards follow the supplied layout. The former green logo tile stays absent; the Studio serif wordmark and page heading remain. Controls and task text use Geist. Source counts, assignee filter, Complete Sprint, latest open blocker reason, real focus indication, dark mode and horizontal phone-column scrolling remain intact.
+
+This change touches only shared presentation styles/tokens. The earlier [Studio refinement report](studio-refinement-2026-10-26.md) records the functional changes and verification. Fresh rendered evidence and checks are recorded after this adjustment. No new action, fixture count, API, framework or runtime permission behaviour is added. No commit or push.
+
+Verification: Node 24.22.1, local UI/static-server/contrast tests 18/18 passed. Fresh [1440 × 900 screenshot](studio-rounded-layout-2026-10-26.png) visually confirms the rounded reference layout with cool Studio colours, orange primary action and serif wordmark. The viewport override was reset. Full accessibility, touch hardware, backend and contract/storage/provider checks were not rerun for this CSS-only adjustment.
+
+Later owner clarification: the primary colour should return to the original soft green preview (the Friday 10:45 reference), superseding the orange palette described above. Current light palette: primary #2D5142, hover #234333, rail #EEF3E9, columns #EFF4EB and white cards. The serif wordmark and current layout remain. Dark mode uses corresponding green neutrals and a pale green action. Local tests passed 18/18 with unchanged contrast thresholds; [fresh green Board screenshot](soft-green-board-2026-10-26.png) visually checked. No application logic changed. Full accessibility and hardware checks remain unrun; no commit/push.

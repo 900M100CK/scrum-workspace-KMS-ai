@@ -196,3 +196,53 @@ test('theme toggle retains unsaved task text and survives navigation and denied 
   assert.equal(dom.window.document.documentElement.dataset.theme, 'light');
   assert.equal(root.querySelector('[data-action="toggle-theme"]').getAttribute('aria-pressed'), 'false');
 });
+
+test('Board keeps source and planning controls while exposing only the latest open blocker note', () => {
+  const { root, click, change, submit } = setup(); click('[data-id="p-orbit"]');
+  assert.ok(root.querySelector('#assignee-filter'));
+  assert.ok(root.querySelector('[data-action="confirm-complete"]'));
+  const card = () => root.querySelector('.task-card[data-id="OW-14"]');
+  assert.match(card().querySelector('.task-context').textContent, /1 source/);
+  assert.match(card().querySelector('.blocked-label').textContent, /Waiting for source contract review/);
+  assert.ok(!card().textContent.includes('Waiting for source fixture.'));
+  assert.equal(root.querySelector('.board').getAttribute('tabindex'), '0');
+  click('[data-id="OW-14"]'); change('#blocker-status', 'open');
+  root.querySelector('#blocker-note').value = '<img src=x onerror=alert(1)> Waiting on review'; submit('#blocker-form');
+  assert.match(card().querySelector('.blocked-label').textContent, /<img src=x onerror=alert\(1\)> Waiting on review/);
+  assert.equal(card().querySelector('img'), null);
+  change('#blocker-status', 'resolved'); root.querySelector('#blocker-note').value = 'Review completed'; submit('#blocker-form');
+  assert.equal(card().querySelector('.blocked-label'), null);
+  assert.match(card().querySelector('.task-context').textContent, /1 source/);
+});
+
+test('Sprint progress counts the full active Sprint, updates after changes and clears with scope', () => {
+  const { dom, root, click, change, scenario } = setup();
+  click('[data-id="p-orbit"]');
+  const progress = () => root.querySelector('.sprint-progress');
+  assert.equal(progress().value, 1); assert.equal(progress().max, 5);
+  const input = root.querySelector('#filter'); input.value = 'exact version';
+  input.dispatchEvent(new dom.window.Event('input', { bubbles: true }));
+  assert.equal(root.querySelectorAll('.task-card').length, 1);
+  assert.equal(progress().value, 1); assert.equal(progress().max, 5);
+  click('[data-id="OW-14"]'); change('#task-state', 'done'); click('[data-action="save-state"]');
+  assert.equal(progress().value, 2); assert.equal(progress().max, 5);
+  assert.equal(progress().getAttribute('aria-label'), '2 of 5 Sprint tasks done');
+  click('[data-action="nav-backlog"]'); assert.equal(progress(), null);
+  click('[data-action="nav-board"]');
+  for (const value of ['no_sprint', 'empty', 'denied', 'loading', 'failure', 'authority_failure']) {
+    scenario(value); assert.equal(progress(), null, value);
+  }
+});
+
+test('source chips identify readable links only and empty Done copy makes no drag promise', () => {
+  const { root, click, change } = setup(); click('[data-id="p-orbit"]');
+  assert.equal(root.querySelectorAll('.source-chip').length, 2);
+  assert.match(root.querySelector('[data-id="OW-12"] .source-chip').textContent, /1 source/);
+  assert.equal(root.querySelector('[data-id="OW-13"] .source-chip'), null);
+  click('[data-id="OW-12"]'); click('[data-action="open-source"]');
+  change('#source-state', 'denied');
+  assert.equal(root.querySelector('[data-id="OW-12"] .source-chip'), null);
+  click('[data-action="close"]'); click('[data-action="close-inspector"]');
+  click('[data-id="OW-16"]'); change('#task-state', 'todo'); click('[data-action="save-state"]');
+  assert.equal(root.querySelector('[aria-label="Done"] .column-empty').textContent, 'Completed tasks appear here.');
+});

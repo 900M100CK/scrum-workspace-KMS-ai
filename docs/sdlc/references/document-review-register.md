@@ -1,9 +1,9 @@
 # Supporting document review register
 
 **Artifact ID:** DOC-REVIEW-REG-01\
-**Version/date:** 0.4 Draft · 26 October 2026\
+**Version/date:** 0.6 Draft · 26 October 2026\
 **Status:** Review planning with bounded author rechecks recorded below; no full document-type review or approval.\
-**Inputs:** [Development rules](../../development-rules.md) v1.5; [PREFLIGHT-01](../../agent-preflight-checklist.md) v0.1; [REG-00](../artifact-register.md) v0.63; [SDLC-INDEX-01](../README.md) v0.3; [SDLC workflow](../../../agents/WORKFLOW.md), unversioned working guide.\
+**Inputs:** [Development rules](../../development-rules.md) v1.5; [PREFLIGHT-01](../../agent-preflight-checklist.md) v0.1; [REG-00](../artifact-register.md) v0.65; [SDLC-INDEX-01](../README.md) v0.3; [SDLC workflow](../../../agents/WORKFLOW.md), unversioned working guide.\
 **Trace:** Supports navigation and review of existing BR-01–BR-15 / SC-01–SC-08 documentation; no new requirement, application slice or acceptance criterion.\
 **Owner role:** SDLC coordinator; review assignments remain unassigned.
 
@@ -68,3 +68,5 @@ Open decisions: no blocking decision for using this template; broader group assi
 Revision 0.3 updates the linked register version and historical correction anchors after the Studio experiment registration. Review assignments, findings and prior evidence remain unchanged.
 
 Revision 0.4 synchronizes the linked register version following owner selection of Studio. No review finding or assignment changes.
+
+Revision 0.5 synchronizes the linked register after Studio work-screen refinement; no review findings or assignments change.
