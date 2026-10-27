@@ -1,10 +1,28 @@
 {
-  "name": "scrum-workspace-ui-preview",
+  "name": "@sacw/web",
   "private": true,
   "type": "module",
-  "scripts": {
-    "start": "node preview-server.mjs",
-    "test": "node --test tests/*.test.mjs"
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=24"
   },
-  "engines": { "node": ">=24" }
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 5173 --strictPort",
+    "start": "vite --host 127.0.0.1 --port 5173 --strictPort",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4174 --strictPort",
+    "test": "node --test test/*.test.ts"
+  },
+  "dependencies": {
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "vite": "8.3.5",
+    "typescript": "6.0.3",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@types/node": "24.19.2"
+  }
 }

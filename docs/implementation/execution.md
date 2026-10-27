@@ -1,7 +1,7 @@
 # Agent execution protocol
 
 **Artifact ID:** IMPL-EXEC-01\
-**Version/date:** 0.4 Draft · 27 October 2026\
+**Version/date:** 0.5 Draft · 27 October 2026\
 **Status:** Execution guide subordinate to root rules and canonical specs.\
 **Inputs:** [source register](register.md); [decisions](decisions.md); SPEC-INDEX v0.4; ADR-0001–ADR-0025.\
 **Trace:** Existing BR-01–BR-14 / SC-01–SC-08.\
@@ -51,7 +51,7 @@ Share small technical utilities only when justified by implemented repetition. N
 
 Use Node 24+. Existing commands are in [package.json](../../package.json). `npm run context:lint`, `context:check`, `context:test` check the scaffold. `docs:lint`, `docs:test`, `contracts:test` require installed dependencies (`npm ci` when needed). Review existing dependency changes before installation; never overwrite unrelated lockfile work.
 
-Storage commands and destructive rollback cautions belong to the [runbook](../../infra/postgres/README.md). The [UI preview guide](../../apps/web/README.md) documents local preview checks. These are not live application acceptance. Add application build/test/run commands only with actual installed and verified entry points. Do not promise a nonexistent `npm test` or production launch command.
+Storage commands and destructive rollback cautions belong to the [runbook](../../infra/postgres/README.md). The [UI preview guide](../../design/prototype/README.md) documents local preview checks. These are not live application acceptance. The shared foundation now has actual root dev/typecheck/build/test commands documented in apps/web and services guides; these verify framework readiness only. Add later feature commands with actual installed and verified entry points. Do not promise a nonexistent `npm test` or production launch command.
 
 For each result record command, runtime/configuration, source revision or dirty-worktree digest, fixture/corpus identity, assertions and outcome. Record Not run explicitly. No commit is needed just to obtain evidence identity; do not invent a SHA. Retain failed results and distinguish later reruns.
 

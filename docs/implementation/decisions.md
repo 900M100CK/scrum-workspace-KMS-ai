@@ -1,9 +1,9 @@
 # Decision map for implementation
 
 **Artifact ID:** IMPL-DEC-01\
-**Version/date:** 0.4 Draft · 27 October 2026\
+**Version/date:** 0.5 Draft · 27 October 2026\
 **Status:** Index of existing decisions; no new acceptance.\
-**Inputs:** PRD-01 v0.9; ADR-0001–ADR-0025; OWNER-Q-01 v0.1; [TECH-STACK-01](../tech-stack.md) v1.5; [source register](register.md).\
+**Inputs:** PRD-01 v0.9; ADR-0001–ADR-0025; OWNER-Q-01 v0.1; [TECH-STACK-01](../tech-stack.md) v1.6; [source register](register.md).\
 **Trace:** BR-01–BR-14; SC-01–SC-08.\
 **Owner role:** Sequential development coordinator.
 
@@ -29,7 +29,7 @@ Owner-confirmed direction is neither implemented behaviour nor independent appro
 
 | Gate | Decision still required | Proposed input / affected tasks | Work that may proceed |
 | --- | --- | --- | --- |
-| D-01 application stack | Select framework/tooling, application DB client and tested versions; do not infer adoption from preview packages | OD-12; [TECH-STACK-01](../tech-stack.md) v1.5; [ADR-0003](../adr/0003-student-stack.md); SP-01.1, then all code packs | Record candidate versus installed versus tested/selected; verify compiler/plugin/runtime and OpenAPI/validator/serializer dialect compatibility. Decide bounded service-owned pools, same-client transactions and exact bigint handling. Preserve existing preview; no package adoption by this pack |
+| D-01 application stack | Select framework/tooling, application DB client and tested versions; do not infer adoption from preview packages | OD-12; [TECH-STACK-01](../tech-stack.md) v1.6; [ADR-0003](../adr/0003-student-stack.md); SP-01.1, then all code packs | Record candidate versus installed versus tested/selected; verify compiler/plugin/runtime and OpenAPI/validator/serializer dialect compatibility. Decide bounded service-owned pools, same-client transactions and exact bigint handling. Preserve existing preview; no package adoption by this pack |
 | D-02 identity/session | Identity verification, provisioning, expiry, cookie/CSRF behaviour and logout semantics | OD-09; SP-01.1–3; SP-02 scope tests | Prepare pre-provisioned synthetic-account acceptance inputs; no invented account-registration/reset scope |
 | D-03 capability provisioning | Who grants non-read capabilities and inspector rights, scope and removal semantics | OD-02/08; SP-02.1, SP-06.3, SP-13.1 | Explicit synthetic grants for tests; deny unknown actions. No role-name bypass or invented delegation UI |
 | D-04 UI read/projection design | Accept/reject Proposed projection/discovery mechanics needed for live UI | [ADR-0018](../adr/0018-operational-read-projections.md), [ADR-0019](../adr/0019-scoped-ui-discovery.md); SP-02–08/13 | Map existing wire contracts and fresh-client scenarios; SQL/shape checks do not accept design |
@@ -55,3 +55,7 @@ Prepare one reviewable batch for the next affected slice: exact question, source
 Record an actual owner response in the canonical owner-decision/ADR process with a persistent source, then reconcile downstream artifacts and this table. Silence, time, a successful schema test or the request to create this folder is not acceptance. Do not mark all gates resolved at once. New technical simplifications may change mechanisms only after showing which required guarantees remain and how they will be tested.
 
 Checklist: Pass for surfaced decisions/dependencies; Gap for the listed choices and runtime proof. Handoff: D-01/D-02 are the first preparation batch; D-06 does not block work implementation.
+
+## Bounded framework selection — 27 October 2026
+
+[OWNER-FRAMEWORK-01](../planning/framework-foundation-owner-2026-10-27.md) and [INIT-FRAMEWORK-01](features/framework-foundation/plan.md) supersede the earlier no-adoption preparation restriction only for the owner-directed framework foundation. React/Vite/TypeScript and Fastify/TypeScript packages are initialised and selected for the tested scaffold. Earlier gate descriptions retain their broader unimplemented driver/validator/auth/transport scope: D-02, D-07 and pg/session policy remain open. Do not wait for a repeated framework-choice approval to use the selected scaffold, or infer session/permission acceptance from liveness/build tests. The existing synthetic UI moved to design/prototype and remains the design reference.

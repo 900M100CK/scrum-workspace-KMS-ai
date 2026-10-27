@@ -1,9 +1,9 @@
 # Documentation reading routes
 
 **Artifact ID:** DOC-NAV-01\
-**Version/date:** 0.1 Draft · 27 October 2026\
+**Version/date:** 0.2 Draft · 27 October 2026\
 **Status:** Navigation only; source decisions and acceptance stay in their canonical artifacts.\
-**Inputs:** Development rules v1.5; AGENTS.md v1.7; existing directory indexes.\
+**Inputs:** Development rules v1.9; AGENTS.md v1.10; existing directory indexes.\
 **Trace:** Existing BR-01–BR-15 / SC-01–SC-08 navigation; no new FR/AC.\
 **Owner role:** Sequential development coordinator.
 
@@ -15,7 +15,7 @@
 | Start implementation | [Development rules](development-rules.md) → [pre-flight](agent-preflight-checklist.md) → [implementation entry](implementation/README.md) → the linked canonical [feature spec](../specs/README.md) |
 | Find decisions and their status | [ADR index](adr/README.md) → [implementation decision register](implementation/decisions.md) |
 | Review design and evidence gaps | [SDLC index](sdlc/README.md) → [artifact register](sdlc/artifact-register.md) → the relevant review, report or handoff |
-| Work on UI | [UX entry](sdlc/ui-ux-spec.md) → [reference desk](../references/README.md) → [web preview](../apps/web/README.md) |
+| Work on UI | [UX entry](sdlc/ui-ux-spec.md) → [reference desk](../references/README.md) → [design prototype](../design/prototype/README.md) |
 | Run checks or local storage | [Tooling map](../scripts/README.md) → [storage runbook](../infra/postgres/README.md) when needed |
 
 ## Folder ownership
@@ -42,3 +42,7 @@ organization does not establish application behaviour or independent acceptance.
 
 **Checklist:** Pass for bounded navigation and local link existence; no semantic acceptance claim.
 **Handoff:** Ready for navigation with existing source and runtime gaps retained.
+
+## Framework and design locations
+
+[apps/web](../apps/web/README.md) is the React application foundation. The preserved synthetic UI/UX is [design/prototype](../design/prototype/README.md); run it separately when implementing the approved design. See [OWNER-FRAMEWORK-01](planning/framework-foundation-owner-2026-10-27.md) for the bounded scaffold selection and remaining domain/security gates.

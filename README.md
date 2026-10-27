@@ -1,6 +1,6 @@
 # Scrum Workspace and AI Project KMS
 
-Solo capstone, target five months. This repository contains draft requirements/design/contracts, bounded feature specs, a context harness and an implemented PostgreSQL storage foundation. It does not yet run the application.
+Solo capstone, target five months. This repository contains draft requirements/design/contracts, bounded feature specs, a context harness and an implemented PostgreSQL storage foundation. Frontend/backend framework foundations now run; protected business features remain unimplemented.
 
 Start with [agent entry](AGENTS.md), [five-month MoSCoW plan](docs/planning/five-month-plan.md), [architecture](docs/architecture.md), [contracts](contracts/README.md) and [feature specs](specs/README.md). The [artifact register](docs/sdlc/artifact-register.md) records status and owner decisions.
 
@@ -9,7 +9,7 @@ Start with [agent entry](AGENTS.md), [five-month MoSCoW plan](docs/planning/five
 | Location | Responsibility |
 | --- | --- |
 | [docs/](docs/README.md) | Requirements, decisions, design and implementation planning; start with the reading routes |
-| [apps/web/](apps/web/README.md) | Synthetic UI preview and its own UI tests |
+| [apps/web/](apps/web/README.md) | React/Vite/TypeScript application foundation |
 | [services/](services/) | [Workspace](services/workspace/README.md) and [Knowledge](services/knowledge/README.md) ownership, migrations and SQL |
 | [contracts/](contracts/README.md), [specs/](specs/README.md), [eval/](eval/README.md) | Interfaces, bounded feature work and evaluation definitions |
 | [scripts/](scripts/README.md), [tests/](tests/) | Tooling and matching verification suites grouped by responsibility |
@@ -42,7 +42,7 @@ For an existing clean checkout, run `git submodule update --init --recursive` fi
 
 The upstream checklist commit stores templates at its root. Uncommitted grouped directories in a developer's nested working tree are not CI inputs; see the [template guide](agents/template-guide.md).
 
-ADR-0004's PostgreSQL/pgvector storage foundation is implemented by owner direction; application stack/provider choices remain Proposed. Acceptance remains unproven; ADR-0010 confirms the seven Core exceptions and ADR-0016 adds optional task search. Context checks are not API conformance, application security or retrieval evidence. See [evaluation plan](eval/README.md) for the separate 25-case research and 25-case safety suites.
+ADR-0004's PostgreSQL/pgvector storage foundation is implemented by owner direction; framework foundations are selected under OWNER-FRAMEWORK-01; provider and session/guard implementation choices remain Proposed. Acceptance remains unproven; ADR-0010 confirms the seven Core exceptions and ADR-0016 adds optional task search. Context checks are not API conformance, application security or retrieval evidence. See [evaluation plan](eval/README.md) for the separate 25-case research and 25-case safety suites.
 
 ## Run the local database
 
@@ -53,3 +53,7 @@ With Docker running, use `npm run db:init`, `npm run db:up`, then `npm run db:mi
 Run `npm ci`, then `npm run docs:lint` and `npm run docs:test` on Node 24+. Development-only dependencies are pinned in the lockfile; the context commands above remain dependency-free. CI runs both harnesses. Sources, native Draw.io pairs and current versions are registered in [diagram manifest](docs/sdlc/diagrams/manifest.json). Use `npm run docs:sync-metadata` to synchronize registered metadata and current-version tables; update both diagram representations for semantic changes. Unsupported types require an explicit adapter; historical snapshots remain intact. The docs:sync-permissions command regenerates only the two permission layouts with ELK; inspect renders after regeneration. These checks do not prove UI accessibility, permission enforcement or factual support.
 
 Current documentation maintenance: [17 October freshness review](docs/sdlc/documentation-freshness-2026-10-17.md), including remaining corrections and coverage limits.
+
+## Framework foundation and preserved prototype
+
+Use Node 24+, then npm ci. Run npm run dev:web (5173), npm run dev:workspace (3001), npm run dev:knowledge (3002), or npm run dev:prototype (4173) in separate terminals. npm run typecheck, npm run build, npm run test:foundation and npm run test:prototype verify their distinct layers. Each server binds localhost. See [web commands](apps/web/README.md), [design/prototype](design/prototype/README.md) and [owner-directed foundation record](docs/planning/framework-foundation-owner-2026-10-27.md). Prototype UI remains the product design reference; liveness and scaffold tests do not prove sessions, permissions, DB or AI functionality.

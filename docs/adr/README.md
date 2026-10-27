@@ -6,7 +6,7 @@ Updated 27 October 2026. Owner-confirmed direction is distinct from implemented 
 | --- | --- |
 | [0001: protected resource read policy](0001-protected-resource-read-policy.md) | Superseded in part by 0007/0009; remaining disclosure and whole-answer withholding safeguards are Proposed. |
 | [0002: minimal service boundaries](0002-minimal-microservices.md) | Proposed boundaries; microservices style owner-directed. Creation direction amended by 0011. |
-| [0003: student stack](0003-student-stack.md) | Proposed application framework. |
+| [0003: student stack](0003-student-stack.md) | Owner-directed framework foundation selected under OWNER-FRAMEWORK-01; domain/security mechanics unverified. |
 | [0004: owned PostgreSQL/pgvector storage](0004-knowledge-store.md) | Implemented storage foundation; application enforcement remains unimplemented. |
 | [0005: provider pilot](0005-ai-provider-pilot.md) | Proposed; no provider selected. |
 | [0006: permission handoff guard](0006-permission-handoff-guard.md) | Proposed implementation mechanics; scope clarified by owner-confirmed 0011. |

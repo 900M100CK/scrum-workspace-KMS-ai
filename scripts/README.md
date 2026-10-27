@@ -13,7 +13,7 @@ are unchanged; only their file locations changed on 27 October 2026.
 
 Shared pinned schema fixtures remain in [tests/fixtures/](../tests/fixtures/).
 The [concurrency declarations](../tests/concurrency/) remain separate and are
-not executed handler evidence. UI tests stay with [apps/web/](../apps/web/README.md).
+not executed handler evidence. Application foundation tests stay with [apps/web/](../apps/web/README.md); preserved synthetic UI tests live in [design/prototype](../design/prototype/README.md).
 
 ## Paths in older reports
 

@@ -1,9 +1,9 @@
 # Work plan register and template
 
 **Artifact ID:** IMPL-FEATURES-01\
-**Version/date:** 0.4 Draft · 27 October 2026\
+**Version/date:** 0.5 Draft · 27 October 2026\
 **Status:** Planning entry; no application feature accepted or implemented by this file.\
-**Inputs:** [Development rules](../../development-rules.md) v1.8; [implementation roadmap](../roadmap.md) v0.5; [PLAN-01](../../planning/five-month-plan.md) v0.4; [spec index](../../../specs/README.md) v0.4; [source register](../register.md).\
+**Inputs:** [Development rules](../../development-rules.md) v1.9; [implementation roadmap](../roadmap.md) v0.6; [PLAN-01](../../planning/five-month-plan.md) v0.4; [spec index](../../../specs/README.md) v0.4; [source register](../register.md).\
 **Trace:** Existing feature FR/AC/BR/SC through its canonical spec; no added scope.\
 **Owner role:** Sequential development coordinator.
 
@@ -79,3 +79,9 @@ Owner acceptance or independent review only if actually obtained:
 Use existing [execution states and evidence rules](../execution.md) and [handoff template](../handoff-template.md). A plan/task may be ready for authorised work while a separate dependency remains open; list the boundary explicitly. Do not mark the whole feature verified from preparation or a structural check.
 
 **Checklist:** Self-checked for the planning/register/template contract; runtime verification N/A because this file adds no handler. **Handoff:** start feature/fix/hotfix/test work through a saved or updated registered plan.
+
+## Shared foundation registration
+
+| Work plan | Parent | Next work |
+| --- | --- | --- |
+| [INIT-FRAMEWORK-01 v0.1](framework-foundation/plan.md) | M-01 / PLAN-01 Month 1; SP-01 prerequisite | INIT-01 through INIT-04; scaffold and prototype relocation, no protected business handler |

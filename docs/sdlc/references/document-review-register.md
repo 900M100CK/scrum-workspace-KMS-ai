@@ -1,9 +1,9 @@
 # Supporting document review register
 
 **Artifact ID:** DOC-REVIEW-REG-01\
-**Version/date:** 0.18 Draft · 27 October 2026\
+**Version/date:** 0.19 Draft · 27 October 2026\
 **Status:** Review planning with bounded author rechecks recorded below; no full document-type review or approval.\
-**Inputs:** [Development rules](../../development-rules.md) v1.8; [PREFLIGHT-01](../../agent-preflight-checklist.md) v0.1; [REG-00](../artifact-register.md) v0.77; [SDLC-INDEX-01](../README.md) v0.3; [SDLC workflow](../../../agents/WORKFLOW.md), unversioned working guide.\
+**Inputs:** [Development rules](../../development-rules.md) v1.9; [PREFLIGHT-01](../../agent-preflight-checklist.md) v0.1; [REG-00](../artifact-register.md) v0.78; [SDLC-INDEX-01](../README.md) v0.3; [SDLC workflow](../../../agents/WORKFLOW.md), unversioned working guide.\
 **Trace:** Supports navigation and review of existing BR-01–BR-15 / SC-01–SC-08 documentation; no new requirement, application slice or acceptance criterion.\
 **Owner role:** SDLC coordinator; review assignments remain unassigned.
 
@@ -96,3 +96,5 @@ Revision 0.16 synchronizes REG-00 v0.75 and development-rules v1.7 for planning 
 Revision 0.17 synchronizes REG-00 v0.76 after the owner-requested SP-01 branch switch and saved work plan registration. Review findings, assignments and acceptance states are unchanged.
 
 Revision 0.18 synchronizes REG-00 v0.77 and development-rules v1.8 for feature folders and individual SP-01 task files. Review findings, assignments and acceptance states are unchanged.
+
+Revision 0.19 synchronizes REG-00 v0.78 and development-rules v1.9 after owner-directed framework setup and prototype preservation. Framework result is author verification only; no historical finding, reviewer assignment or domain/security acceptance is changed.

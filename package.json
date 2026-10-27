@@ -21,9 +21,17 @@
     "docs:sync-permissions": "node scripts/docs/sync-permission-diagrams.mjs",
     "docs:sync-metadata": "node scripts/docs/docs-metadata.mjs",
     "contracts:test": "node --test tests/contracts/contract-schemas.test.mjs tests/contracts/handoff-bytes.test.mjs",
-    "contracts:storage:test": "node --test tests/storage/handoff-receipt-integration.test.mjs"
+    "contracts:storage:test": "node --test tests/storage/handoff-receipt-integration.test.mjs",
+    "dev:web": "npm run dev --workspace @sacw/web",
+    "dev:workspace": "npm run dev --workspace @sacw/workspace",
+    "dev:knowledge": "npm run dev --workspace @sacw/knowledge",
+    "dev:prototype": "npm start --workspace @sacw/prototype",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present",
+    "test:foundation": "npm run test --workspace @sacw/web && npm run test --workspace @sacw/workspace && npm run test --workspace @sacw/knowledge",
+    "test:prototype": "npm test --workspace @sacw/prototype"
   },
-  "description": "Specification/contract harness and PostgreSQL storage foundation; application handlers are not implemented.",
+  "description": "Context/storage harness, preserved synthetic prototype and frontend/backend framework foundation; protected business handlers remain unimplemented.",
   "devDependencies": {
     "@xmldom/xmldom": "0.9.12",
     "ajv": "8.20.0",
@@ -39,5 +47,11 @@
     "@excalidraw/excalidraw": "^0.18.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
-  }
+  },
+  "workspaces": [
+    "apps/web",
+    "services/workspace",
+    "services/knowledge",
+    "design/prototype"
+  ]
 }

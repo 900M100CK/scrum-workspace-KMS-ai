@@ -1,7 +1,7 @@
 # Dependency-based implementation roadmap
 
 **Artifact ID:** IMPL-ROADMAP-01\
-**Version/date:** 0.5 Draft · 27 October 2026\
+**Version/date:** 0.6 Draft · 27 October 2026\
 **Status:** Planning order, not completed work or scope acceptance.\
 **Inputs:** PRD-01 v0.9; SPEC-INDEX v0.4; PLAN-01 v0.4; [decisions](decisions.md); [task catalogue](tasks/README.md).\
 **Trace:** BR-01–BR-14; SC-01–SC-08.\
@@ -43,3 +43,7 @@ The task catalogue retains canonical spec dependencies. Within a spec, foundatio
 - No additional Must deferral, automatic graph, meeting AI, reports expansion or runtime multi-agent feature is introduced.
 
 Checklist: Pass for explicit sequence, capture interpretation and observable exits; Gap for all application milestone evidence. Handoff: select SP-01.1 from [tasks](tasks/README.md), following [execution](execution.md).
+
+## Shared framework prerequisite
+
+M-01 includes [INIT-FRAMEWORK-01](features/framework-foundation/plan.md): owner-directed frontend/two-service scaffolding on main and preservation of the synthetic UI under design/prototype. This bounded shared setup precedes protected SP-01 implementation; it does not close session or permission acceptance.

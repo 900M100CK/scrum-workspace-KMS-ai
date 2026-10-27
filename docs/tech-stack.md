@@ -1,12 +1,20 @@
 # Technology Stack Specification
 
 **Artifact ID:** TECH-STACK-01\
-**Version/Date:** 1.5 · 26 October 2026\
-**Status:** Draft application candidates; existing storage/harness and synthetic UI preview are distinct from unimplemented live application handlers\
+**Version/Date:** 1.6 · 27 October 2026\
+**Status:** Owner-selected framework foundation initialised; protected application mechanics and providers remain Proposed\
 **Context:** Solo 5-Month Capstone Project · Minimal Microservices Architecture\
 **Inputs:** [BRD](../docs/BRD.md) v1.0, [PRD-01](../docs/sdlc/PRD_SRS.md) v0.9, [SAD-03](../docs/architecture.md) v0.16, [ADR-0002](adr/0002-minimal-microservices.md), [ADR-0003](adr/0003-student-stack.md), [ADR-0004](adr/0004-knowledge-store.md), [ADR-0005](adr/0005-ai-provider-pilot.md), [ADR-0006](adr/0006-permission-handoff-guard.md), [ADR-0008](adr/0008-fixed-sprint-lifecycle.md), [ADR-0012](adr/0012-audit-visibility-and-durable-evidence.md), [OWNER-Q-01](planning/owner-decisions-2026-10-16.md), Proposed ADR-0018–ADR-0023; current package/lockfiles and [preview guide](../apps/web/README.md)
 
 ---
+
+## Current foundation selection — 27 October 2026
+
+[OWNER-FRAMEWORK-01](planning/framework-foundation-owner-2026-10-27.md) records the owner's framework-init instruction and [INIT-FRAMEWORK-01](implementation/features/framework-foundation/plan.md) scopes implementation. Verified foundation candidates are installed as exact workspace dependencies: React/react-dom 19.3.1, Vite 8.3.5, TypeScript 6.0.3 and Fastify 5.12.7, using Node 24.22.1. TypeScript 6 is the compatibility alternative in the inventory below; no beta/dual compiler or React compiler plugin is adopted. Root React 18 documentation tooling remains separate. Each app/service has dev/typecheck/build/test commands and services have liveness-only localhost startup. No pg driver, session/CSRF/KDF, permission/guard, provider or business handler is selected/implemented by this foundation.
+
+The existing UI/UX, styles, fonts, synthetic interactions and tests are preserved under [design/prototype](../design/prototype/README.md). [apps/web](../apps/web/README.md) is the new React app foundation; product UI migration is future slice work. Tailwind stays optional/unselected. No database/image/migration change is included.
+
+The 26 October official observations and candidate inventory below are retained as that dated planning baseline; their Proposed framework rows are superseded only for the bounded foundation described here. They remain candidate descriptions for unimplemented integrations, not evidence of protected runtime behaviour. Current run/verification details belong to the registered foundation result.
 
 ## 1. Executive Summary & Architectural Drivers
 
