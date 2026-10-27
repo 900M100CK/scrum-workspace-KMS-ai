@@ -1,7 +1,7 @@
 # Implementation source and artifact register
 
 **Artifact ID:** IMPL-REG-01\
-**Version/date:** 0.10 Draft · 27 October 2026\
+**Version/date:** 0.11 Draft · 27 October 2026\
 **Status:** Source snapshot and navigation, not approval or runtime evidence.\
 **Inputs:** REG-00; PRD-01 v0.9; SPEC-INDEX v0.4; PLAN-01 v0.4; SAD-03 v0.16; ADR-0001–ADR-0025.\
 **Trace:** Existing BR-01–BR-14 / SC-01–SC-08.\
@@ -38,7 +38,7 @@ Versions below are reading snapshots. Reopen the source before implementation. A
 
 ## Pack inventory
 
-Artifacts below are owned by the sequential development coordinator. IMPL-REG-01 is v0.10 Draft dated 27 October; IMPL-DEC-01 is v0.5 and IMPL-SP-01 is v0.6 dated 27 October; IMPL-ENTRY-01 and IMPL-TASKS-01 are v0.2 dated 27 October; IMPL-EXEC-01 is v0.5 and IMPL-ROADMAP-01 is v0.6 dated 27 October; IMPL-SP-11 and IMPL-SP-12 remain v0.2 dated 26 October; other original pack artifacts remain v0.1 dated 26 October. Inputs and trace are in each header. Handoff is preparation-ready with stated gaps, never approval. No handlers have been delivered by this pack.
+Artifacts below are owned by the sequential development coordinator. IMPL-REG-01 is v0.11 Draft dated 27 October; IMPL-DEC-01 is v0.5 and IMPL-SP-01 is v0.6 dated 27 October; IMPL-ENTRY-01 and IMPL-TASKS-01 are v0.2 dated 27 October; IMPL-EXEC-01 is v0.5 and IMPL-ROADMAP-01 is v0.6 dated 27 October; IMPL-SP-11 and IMPL-SP-12 remain v0.2 dated 26 October; other original pack artifacts remain v0.1 dated 26 October. Inputs and trace are in each header. Handoff is preparation-ready with stated gaps, never approval. No handlers have been delivered by this pack.
 
 | Artifact | Path | Dependency / purpose |
 | --- | --- | --- |
@@ -47,7 +47,7 @@ Artifacts below are owned by the sequential development coordinator. IMPL-REG-01
 | IMPL-DEC-01 | [decisions](decisions.md) | Current decisions and implementation gates |
 | IMPL-ROADMAP-01 (v0.6) | [roadmap](roadmap.md) | Milestones using existing slices and feature-plan backlinks |
 | IMPL-EXEC-01 (v0.5) | [execution](execution.md) | Agent workflow and saved feature-plan gate |
-| IMPL-FEATURES-01 (v0.5) | [work plan register/template](features/README.md) | Plan mode → saved plan → parent registration → small tasks → actual evidence; FEAT-SP01-01 registered under M-01 |
+| IMPL-FEATURES-01 (v0.6) | [work plan register/template](features/README.md) | Plan mode → saved plan → parent registration → small tasks → actual evidence; FEAT-SP01-01 registered under M-01 |
 | FEAT-SP01-01 (v0.2) | [session foundation work plan](features/sp-01-session-foundation/plan.md) | M-01 / PLAN-01 Month 1; 12 small tasks; SP01-P01 next, application adoption gated |
 | FEAT-SP01-ENTRY / SP01-P01–SP01-P12 (all v0.1) | [feature folder entry](features/sp-01-session-foundation/README.md); individual task links in [plan](features/sp-01-session-foundation/plan.md#tasks-and-acceptance) | Bounded executable task briefs; one authoritative parent status table, no new runtime pass |
 | IMPL-HANDOFF-01 | [handoff template](handoff-template.md) | Brief and result record |
@@ -75,4 +75,4 @@ Checklist: Pass for source ownership and planned registration. Gap for source-wi
 
 ## Shared framework foundation
 
-[INIT-FRAMEWORK-01 v0.1](features/framework-foundation/plan.md) and its README/INIT-01–INIT-04 v0.1 task files are registered for the owner-directed main scaffold, design/prototype preservation and GitHub publication. This is separate from SP-01 domain acceptance.
+[INIT-FRAMEWORK-01 v0.2](features/framework-foundation/plan.md) and its README/INIT-01–INIT-04 v0.2 task files are registered for the owner-directed main scaffold, design/prototype preservation and GitHub publication. This is separate from SP-01 domain acceptance.

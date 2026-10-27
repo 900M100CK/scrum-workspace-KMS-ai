@@ -1,8 +1,8 @@
 # Shared frontend and backend framework foundation
 
 **Artifact ID:** INIT-FRAMEWORK-01\
-**Version/date:** 0.1 Draft · 27 October 2026\
-**Status:** In progress; scaffold only, no session or protected business behaviour accepted.\
+**Version/date:** 0.2 Draft · 27 October 2026\
+**Status:** Foundation verified and published; no session or protected business behaviour accepted.\
 **Inputs:** TECH-STACK-01 v1.5 candidate inventory; ADR-0003 foundation selection; Proposed ADR-0024/0025; owner request in this chat to initialise frameworks on main, preserve UI as design/prototype, push to the confirmed GitHub remote and bring main back to the feature branch.\
 **Trace:** Preparation for SP-01/BR-01/10/SC-06 and future service slices, not executed AC coverage.\
 **Planning mode:** Unavailable; saved written planning gate applies.\
@@ -23,7 +23,7 @@ Coordinated allowed paths for this foundation: root package.json/package-lock.js
 | [INIT-01](tasks/INIT-01-preserve-and-register.md) | Commit feature documents; main uses saved shared plan; prototype move retains files/tests and actual current links | Owner authorisation | Verified; checkpoint 7113a82 and preserved 16 source/font/test files; result linked below |
 | [INIT-02](tasks/INIT-02-scaffold.md) | Exact framework tuple, separate web/two-service packages, runnable dev/typecheck/build/test, no protected domain handlers | INIT-01; actual registry/compatibility | Verified; local evidence in result below |
 | [INIT-03](tasks/INIT-03-verify-and-document.md) | Fresh-lock install, frontend production build/served response, real service HTTP smoke and failure/unknown-route checks, preserved prototype and context/docs/contracts checks | INIT-02 | Verified; local evidence in result below |
-| [INIT-04](tasks/INIT-04-publish-and-sync.md) | Commit verified main, normal push to confirmed origin, bring main into feature without losing checkpoint; record hashes and remaining gaps | INIT-03 and confirmed remote authorisation | In progress; local verification passed, publication pending |
+| [INIT-04](tasks/INIT-04-publish-and-sync.md) | Commit verified main, normal push to confirmed origin, bring main into feature without losing checkpoint; record hashes and remaining gaps | INIT-03 and confirmed remote authorisation | Verified; main and feature synced/pushed at 5b00fce; final metadata follows |
 
 Exact candidate selection follows npm metadata and supported compatibility on the actual Node 24 runtime. Keep the root documentation tools' React dependency distinct from app React. Styling uses existing design direction; Tailwind is optional and not selected just for init. A simple React entry is the new application foundation, while the old interactive synthetic UI stays runnable in design/prototype; porting product UI into real handlers is later feature work.
 
@@ -39,4 +39,8 @@ After completion, SP01-P01 reconciles its inventory with the selected scaffold; 
 
 ## Actual local result
 
-[INIT-FRAMEWORK-RESULT v0.1](../../../sdlc/reports/framework-foundation-2026-10-27.md) records exact packages, typecheck/build, 7 foundation tests, 20 prototype tests, actual built HTTP smoke and existing context/docs/contracts checks. INIT-04 still requires actual commit/push/feature synchronization. No protected business handler is verified.
+[INIT-FRAMEWORK-RESULT v0.2](../../../sdlc/reports/framework-foundation-2026-10-27.md) records exact packages, typecheck/build, 7 foundation tests, 20 prototype tests, actual built HTTP smoke and existing context/docs/contracts checks. INIT-04 completed: source commit 5b00fce was pushed on main and fast-forwarded/pushed to feature/sp-01-session-foundation. No protected business handler is verified.
+
+## Publication record
+
+Feature checkpoint 7113a82 saved plan/task work. Main source commit 5b00fcecbec4e23dbbccda67d182f7d6d214c615 was pushed to the confirmed origin; the feature then fast-forwarded to it and was pushed. No force push, storage mutation or domain implementation occurred. Revision 0.2 records this actual handoff; final metadata is synchronised by the same normal main-to-feature workflow.

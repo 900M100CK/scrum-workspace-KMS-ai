@@ -1,9 +1,9 @@
 # Framework foundation execution result
 
 **Artifact ID:** INIT-FRAMEWORK-RESULT\
-**Version/date:** 0.1 Draft · 27 October 2026\
-**Status:** Local foundation checks passed; initial publication pending. Protected business handlers verified: 0.\
-**Inputs:** [INIT-FRAMEWORK-01](../../implementation/features/framework-foundation/plan.md) v0.1; [OWNER-FRAMEWORK-01](../../planning/framework-foundation-owner-2026-10-27.md) v0.1; package/lockfile and new workspace sources; ADR-0003 v0.2, Proposed ADR-0024/0025.\
+**Version/date:** 0.2 Draft · 27 October 2026\
+**Status:** Local foundation checks passed; source published on main and synchronised to the feature branch. Protected business handlers verified: 0.\
+**Inputs:** [INIT-FRAMEWORK-01](../../implementation/features/framework-foundation/plan.md) v0.2; [OWNER-FRAMEWORK-01](../../planning/framework-foundation-owner-2026-10-27.md) v0.1; package/lockfile and new workspace sources; ADR-0003 v0.2, Proposed ADR-0024/0025.\
 **Trace:** M-01 / SP-01 preparation; BR-01/10; SC-06 relevance, not accepted domain coverage.\
 **Owner role:** Sequential implementer; no independent acceptance.
 
@@ -43,6 +43,10 @@ The first feature checkpoint push was rejected by automatic approval review beca
 
 No session/authentication, permission authority, guarded transport, actual pg transactions, database integration, provider/retrieval/evaluation, product UI port or deployment acceptance was run. Framework smoke cannot close SP-01 or ADR-0024/0025. SP01-P01 should reconcile the selected installed scaffold; later tasks keep their domain decisions and real negative/concurrency/DB/UI requirements.
 
-Checkpoint 7113a82 preserved the feature plan/task/rules before main setup. Current framework source/lockfile and report will be committed on main under INIT-04, pushed normally to the owner-confirmed origin and brought back to the feature branch. Publish no unrelated scratch patches, copied agents/checklists, secrets, node_modules/dist or pre-existing submodule edits. Record final commit/remote facts in the plan after actual completion.
+Checkpoint 7113a82 preserved the feature plan/task/rules before main setup. Framework source/lockfile and the initial report were committed as 5b00fce on main, pushed normally to the confirmed origin, and fast-forwarded/pushed onto the feature branch. Publish no unrelated scratch patches, copied agents/checklists, secrets, node_modules/dist or pre-existing submodule edits. Record final commit/remote facts in the plan after actual completion.
 
-**Checklist:** Author-verified foundation only; unrun protected/domain tests and pending publication explicit. **Handoff:** INIT-04, then the SP-01 feature's next bounded task. No independent review or application acceptance claimed.
+**Checklist:** Author-verified foundation only; unrun protected/domain tests explicit; source publication observed. **Handoff:** completed publication, then the SP-01 feature's next bounded task. No independent review or application acceptance claimed.
+
+## Actual publication — 27 October 2026
+
+Main and origin/main reached 5b00fcecbec4e23dbbccda67d182f7d6d214c615 after the successful normal push. feature/sp-01-session-foundation was then fast-forwarded from checkpoint 7113a82 to that source commit and pushed; Git confirmed matching local/remote source identities. Revision 0.2 records these executed facts. Final documentation metadata is committed/pushed through main and fast-forwarded again; it changes no tested framework source. GitHub Actions outcome is not claimed by local verification. Unrelated scratch files and the pre-existing checklist submodule modification remain local and uncommitted.

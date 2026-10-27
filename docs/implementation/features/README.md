@@ -1,7 +1,7 @@
 # Work plan register and template
 
 **Artifact ID:** IMPL-FEATURES-01\
-**Version/date:** 0.5 Draft · 27 October 2026\
+**Version/date:** 0.6 Draft · 27 October 2026\
 **Status:** Planning entry; no application feature accepted or implemented by this file.\
 **Inputs:** [Development rules](../../development-rules.md) v1.9; [implementation roadmap](../roadmap.md) v0.6; [PLAN-01](../../planning/five-month-plan.md) v0.4; [spec index](../../../specs/README.md) v0.4; [source register](../register.md).\
 **Trace:** Existing feature FR/AC/BR/SC through its canonical spec; no added scope.\
@@ -84,4 +84,4 @@ Use existing [execution states and evidence rules](../execution.md) and [handoff
 
 | Work plan | Parent | Next work |
 | --- | --- | --- |
-| [INIT-FRAMEWORK-01 v0.1](framework-foundation/plan.md) | M-01 / PLAN-01 Month 1; SP-01 prerequisite | INIT-01 through INIT-04; scaffold and prototype relocation, no protected business handler |
+| [INIT-FRAMEWORK-01 v0.2](framework-foundation/plan.md) | M-01 / PLAN-01 Month 1; SP-01 prerequisite | INIT-01 through INIT-04 verified; source 5b00fce published and synced, no protected business handler |
