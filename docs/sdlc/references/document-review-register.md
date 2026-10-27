@@ -1,9 +1,9 @@
 # Supporting document review register
 
 **Artifact ID:** DOC-REVIEW-REG-01\
-**Version/date:** 0.6 Draft · 26 October 2026\
+**Version/date:** 0.11 Draft · 27 October 2026\
 **Status:** Review planning with bounded author rechecks recorded below; no full document-type review or approval.\
-**Inputs:** [Development rules](../../development-rules.md) v1.5; [PREFLIGHT-01](../../agent-preflight-checklist.md) v0.1; [REG-00](../artifact-register.md) v0.65; [SDLC-INDEX-01](../README.md) v0.3; [SDLC workflow](../../../agents/WORKFLOW.md), unversioned working guide.\
+**Inputs:** [Development rules](../../development-rules.md) v1.5; [PREFLIGHT-01](../../agent-preflight-checklist.md) v0.1; [REG-00](../artifact-register.md) v0.70; [SDLC-INDEX-01](../README.md) v0.3; [SDLC workflow](../../../agents/WORKFLOW.md), unversioned working guide.\
 **Trace:** Supports navigation and review of existing BR-01–BR-15 / SC-01–SC-08 documentation; no new requirement, application slice or acceptance criterion.\
 **Owner role:** SDLC coordinator; review assignments remain unassigned.
 
@@ -47,6 +47,8 @@ The UI reference desk and native wireframe previews exist. Unchecked WF tasks ma
 
 | Review record ID | Queue ID | Source paths / reviewed versions | Reviewer / date | Checklist and trace | State | Findings / evidence link | Follow-up owner / next action |
 | --- | --- | --- | --- | --- | --- | --- | --- |
+| IMPL-REVIEW-01 | DR-05 / DR-08 / DR-09 / DR-10 / DR-12 (bounded portions only) | TECH-STACK-01 v1.4; IMPL-REG-01 / IMPL-DEC-01 / IMPL-SP-01 v0.2; other implementation packs v0.1; EVAL-01 v0.2; configuration/source hashes in report | Three owner-requested read-only agent passes, consolidated by coordinator / 26 October 2026 | Missing document versus missing registration/decision/task; existing BR-01–BR-14 / SC-01–SC-08 readiness; not a full workbook or source-wide review | Findings open | [Input review: IR-01–IR-06](../reviews/implementation-input-review-2026-10-26.md); no runtime or independent product acceptance | Architecture, API/data, UX/evaluation authors and coordinator: correct bounded sources; queue groups remain Not reviewed |
+| IMPL-CORR-01 | DR-05 / DR-08 / DR-09 / DR-10 / DR-12 (IR-01–IR-06 only) | TECH-STACK-01 v1.5; IMPL-REG-01/DEC-01/SP-01 v0.3; IMPL-SP-11/12 v0.2; original review snapshot retained | Author correction and bounded source recheck / 26 October 2026 | Explicit owner correction request; source/registration and runner-task gaps only; existing BR/SC scope | Rechecked | [Current correction disposition](../reviews/implementation-input-review-2026-10-26.md#current-correction-disposition--26-october-2026); no independent/runtime acceptance | Implementation owners: execute remaining runner, compatibility, guarded transport and evaluation gates |
 | DOC-CORR-01 | DR-08 | PREFLIGHT-01 v0.1; UC-02 v0.8; TEST-08 v0.21 | Sequential author / 25 October 2026 | B1/B2; retained authority, membership, evidence and evaluation checks | Rechecked | [Correction record](../artifact-register.md#historical-bounded-documentation-corrections--25-october-2026); EX/source assertions checked | Coordinator: remaining known-drift notes still need review |
 | DOC-CORR-02 | DR-05 / DR-12 | SAD-03 v0.16; UC-02 v0.8; UML-07 v0.20 | Sequential author / 25 October 2026 | B3–B6; ADR-0004 search selection, FR-70 table and branch-specific audit include | Rechecked | [Correction record](../artifact-register.md#historical-bounded-documentation-corrections--25-october-2026); structural checks only | Existing artifact owners: full semantic/rendered/runtime gaps retained |
 | DOC-CORR-03 | DR-06 | PLAN-01 / release-scope.json v0.4; PRD-01 v0.9 | Sequential author / 25 October 2026 | B7; existing ADR-0010/0016 scope and BR/PP/BO trace | Rechecked | [Correction record](../artifact-register.md#historical-bounded-documentation-corrections--25-october-2026); no release-priority change | Coordinator: capacity and application acceptance remain open |
@@ -70,3 +72,13 @@ Revision 0.3 updates the linked register version and historical correction ancho
 Revision 0.4 synchronizes the linked register version following owner selection of Studio. No review finding or assignment changes.
 
 Revision 0.5 synchronizes the linked register after Studio work-screen refinement; no review findings or assignments change.
+
+Revision 0.7 synchronizes the linked register after the implementation execution pack registration; existing review assignments and observations remain unchanged.
+
+Revision 0.8 synchronizes the linked register after explicit technology-stack input registration; no review findings or assignments change.
+
+Revision 0.9 records the bounded implementation-input review and synchronizes REG-00. Six findings remain open; prior corrections and whole-group queue states are unchanged.
+
+Revision 0.10 records the authorised IR-01–IR-06 documentation correction recheck and REG-00 synchronization. The original review row remains a dated snapshot; whole-group queue states and application/owner-decision gates are unchanged.
+
+Revision 0.11 synchronizes REG-00 v0.70 after SP-01.1 preparation, two Proposed ADRs and the reconciled external review. These are author-produced preparation artifacts and schema pre-evidence; this update assigns no independent review or acceptance and changes no historical finding disposition.

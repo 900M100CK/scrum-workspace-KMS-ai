@@ -96,6 +96,12 @@ input[type="checkbox"] { accent-color: var(--primary); }
 .filter-search input:focus-visible { outline: none; }
 .filter-button { min-height: 36px; padding: var(--space-xs) var(--space-sm); border: 1px solid var(--control); border-radius: 6px; background: var(--surface); font-size: 12px; }
 .filter-button.selected { background: var(--active); }
+.blocker-filter { display: inline-flex; align-items: center; gap: var(--space-xs); color: var(--blocked-text); background: var(--surface); border-color: var(--blocked-border); font-weight: 600; transition: transform var(--dur-micro) var(--ease-out),box-shadow var(--dur-micro) var(--ease-out); }
+.blocker-filter:hover { transform: translateY(-1px); box-shadow: 0 3px 10px var(--shadow-soft); }
+.blocker-filter.selected { color: var(--blocked-text); background: var(--blocked-bg); border-color: var(--blocked-border); box-shadow: inset 0 0 0 1px var(--blocked-border); }
+.blocked-count { display: inline-grid; place-items: center; min-width: 22px; min-height: 22px; padding-inline: var(--space-2xs); border-radius: 5px; color: var(--blocked-bg); background: var(--blocked-text); font-variant-numeric: tabular-nums; }
+.sprint-status { gap: var(--space-xs); min-height: 28px; padding-inline: var(--space-sm); border-color: var(--primary); border-radius: 999px; background: var(--primary); color: var(--primary-ink); font-weight: 600; }
+.sprint-status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
 
 /* Board and task cards */
 .board { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: var(--space-md); align-items: stretch; padding: var(--space-2xs); }
@@ -109,6 +115,7 @@ input[type="checkbox"] { accent-color: var(--primary); }
 .column-tasks { display: flex; flex-direction: column; gap: var(--space-sm); }
 .task-card { display: block; width: 100%; padding: var(--space-md); border: 1px solid var(--card-border); border-radius: 8px; background: var(--card-surface); color: var(--text); text-align: left; box-shadow: 0 2px 5px var(--shadow-soft); transition: transform var(--dur-micro) var(--ease-out),box-shadow var(--dur-micro) var(--ease-out),border-color var(--dur-micro) var(--ease-out); }
 .task-card:hover { transform: translateY(-1px); border-color: var(--control); box-shadow: 0 6px 14px -6px var(--shadow-dialog); }
+.task-card.is-blocked { border-color: var(--blocked-border); }
 .task-card.is-selected { border-color: var(--primary); box-shadow: 0 0 0 2px color-mix(in oklab,var(--primary) 28%,var(--clear)); }
 .task-top { display: flex; align-items: center; justify-content: space-between; gap: var(--space-xs); margin-bottom: var(--space-sm); }
 .task-key,.detail-key { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; letter-spacing: .03em; }
@@ -118,8 +125,16 @@ input[type="checkbox"] { accent-color: var(--primary); }
 .task-context { display: inline-flex; align-items: center; gap: var(--space-2xs); color: var(--muted); font-size: 12px; }
 .task-context svg { width: 13px; height: 13px; }
 .source-chip { color: var(--source-fg); background: var(--source-bg); border-radius: 999px; padding: var(--space-3xs) var(--space-xs); }
-.blocked-label { display: flex; align-items: flex-start; gap: var(--space-xs); margin-top: var(--space-sm); padding: var(--space-xs); border-left: 3px solid var(--warning); border-radius: 4px; background: var(--warning-bg); color: var(--warning); font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
+.blocked-label { display: flex; align-items: flex-start; gap: var(--space-xs); margin-top: var(--space-sm); padding: var(--space-xs); border: 0; border-left: 3px solid var(--blocked-border); border-radius: 4px; background: var(--blocked-bg); color: var(--blocked-text); font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
 .blocker-marker { display: inline-grid; place-items: center; width: 16px; height: 16px; margin-top: var(--space-3xs); border: 1px solid currentColor; border-radius: 50%; flex: none; font-size: 12px; font-weight: 600; }
+@media(prefers-reduced-motion:no-preference) {
+ .blocker-marker,.blocker-filter:not(.selected) .blocked-count { animation: blocker-pulse 1.6s var(--ease-out) 2; }
+}
+@keyframes blocker-pulse {
+ 0%,100% { transform: scale(1); box-shadow: 0 0 0 0 var(--clear); }
+ 35% { transform: scale(1.08); box-shadow: 0 0 0 5px color-mix(in oklab,var(--blocked-text) 15%,var(--clear)); }
+ 75% { box-shadow: 0 0 0 9px var(--clear); }
+}
 .column-empty { padding: var(--space-lg) var(--space-sm); border: 1px dashed var(--control); border-radius: 8px; color: var(--muted); text-align: center; font-size: 12px; }
 .board-footnote { display: flex; justify-content: space-between; gap: var(--space-md); margin-top: var(--space-step-20); padding-top: var(--space-sm); font-size: 12px; color: var(--muted); }
 

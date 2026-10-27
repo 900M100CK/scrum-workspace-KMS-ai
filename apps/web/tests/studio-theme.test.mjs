@@ -14,6 +14,7 @@ test('Light theme tokens retain readable surfaces, controls and primary action',
     const a = luminance(tokens[fg]), b = luminance(tokens[bg]);
     return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
   };
+  assert.ok(ratio('blocked-text', 'blocked-bg') >= 4.5, 'blocked-text/blocked-bg');
   for (const fg of ['text', 'muted', 'faint']) for (const bg of ['ground', 'workspace-surface', 'rail-surface', 'surface', 'column-surface', 'card-surface', 'raised', 'active']) assert.ok(ratio(fg, bg) >= 4.5, `${fg}/${bg}`);
   assert.ok(ratio('source-fg', 'source-bg') >= 4.5, 'source-fg/source-bg');
   for (const bg of ['primary', 'primary-hover']) assert.ok(ratio('primary-ink', bg) >= 4.5, bg);

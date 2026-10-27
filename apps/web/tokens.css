@@ -15,6 +15,7 @@
   --primary: #2d5142; --primary-hover: #234333; --primary-ink: #fafcf8; --accent: #315b46;
   --todo: #586b7b; --progress: #2766aa; --done: #326848; --progress-track: #cbd8c4;
   --warning: #79501d; --warning-bg: #f3ead8; --warning-border: #a28659;
+  --blocked-text: #7a4a0c; --blocked-bg: #fbf1dc; --blocked-border: #c58a2b;
   --negative: #a53731; --danger: #a53731;
   --avatar-bg: #e4e9dc; --avatar-fg: #3b5140;
   --source-fg: #254e69; --source-bg: #e7eef5;
@@ -32,6 +33,7 @@
   --primary: #b6d3a9; --primary-hover: #c7dfbd; --primary-ink: #17261b; --accent: #b6d3a9;
   --todo: #bac7d6; --progress: #8ebaff; --done: #93d4ae; --progress-track: #3f5646;
   --warning: #f4c477; --warning-bg: #352b1d; --warning-border: #937750;
+  --blocked-text: #f4c477; --blocked-bg: #3a2d17; --blocked-border: #b88a45;
   --negative: #ffaaa3; --danger: #ffaaa3;
   --avatar-bg: #354d3b; --avatar-fg: #e1edda;
   --source-fg: #bbd4fa; --source-bg: #273447;

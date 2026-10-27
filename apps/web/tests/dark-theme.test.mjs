@@ -15,6 +15,7 @@ test('dark theme tokens meet text and non-text contrast thresholds', () => {
     const values = [luminance(tokens[a]), luminance(tokens[b])];
     return (Math.max(...values) + 0.05) / (Math.min(...values) + 0.05);
   };
+  assert.ok(contrast('blocked-text', 'blocked-bg') >= 4.5, 'blocked-text/blocked-bg');
   for (const fg of ['text', 'muted', 'faint']) {
     for (const bg of ['ground', 'surface', 'column-surface', 'card-surface', 'active', 'raised']) {
       assert.ok(contrast(fg, bg) >= 4.5, `${fg}/${bg}: ${contrast(fg, bg).toFixed(2)}`);
