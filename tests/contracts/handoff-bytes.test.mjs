@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { loadContractSchemas } from '../scripts/contract-schemas.mjs';
-import { decodeCanonicalBase64, decodeManifestJson, sha256, verifyHandoffBytes } from '../scripts/verify-handoff-bytes.mjs';
+import { loadContractSchemas } from '../../scripts/contract-schemas.mjs';
+import { decodeCanonicalBase64, decodeManifestJson, sha256, verifyHandoffBytes } from '../../scripts/contracts/verify-handoff-bytes.mjs';
 
 const {validators}=await loadContractSchemas('knowledge');
 const base64=bytes=>Buffer.from(bytes).toString('base64');

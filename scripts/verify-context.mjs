@@ -2,9 +2,9 @@ import { readFile, access } from 'node:fs/promises';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import assert from 'node:assert/strict';
-import { validateResearchDefinitions } from './verify-research.mjs';
-import { regressionFixture } from './verify-regression.mjs';
-import { HTTP_METHODS, validateApiRouting } from './verify-api-routing.mjs';
+import { validateResearchDefinitions } from './context/verify-research.mjs';
+import { regressionFixture } from './context/verify-regression.mjs';
+import { HTTP_METHODS, validateApiRouting } from './context/verify-api-routing.mjs';
 
 export function parseRequirements(markdown) {
   const rows = [...markdown.matchAll(/^\| FR-(\d{2}) \| (.*?) \| (.*?) \| (.*?) \|$/gm)];

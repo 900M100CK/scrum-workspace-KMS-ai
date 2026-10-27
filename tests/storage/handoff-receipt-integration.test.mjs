@@ -4,9 +4,9 @@ import { randomBytes, randomUUID } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { spawn } from 'node:child_process';
-import { docker, image, migrate, root, sql, waitReady } from '../scripts/database.mjs';
-import { loadContractSchemas } from '../scripts/contract-schemas.mjs';
-import { sha256, verifyHandoffBytes } from '../scripts/verify-handoff-bytes.mjs';
+import { docker, image, migrate, root, sql, waitReady } from '../../scripts/database.mjs';
+import { loadContractSchemas } from '../../scripts/contract-schemas.mjs';
+import { sha256, verifyHandoffBytes } from '../../scripts/contracts/verify-handoff-bytes.mjs';
 
 const {validators}=await loadContractSchemas('knowledge');
 const container='kms-receipt-test-'+randomUUID();

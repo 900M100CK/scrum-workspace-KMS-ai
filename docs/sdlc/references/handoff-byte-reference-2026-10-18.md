@@ -1,14 +1,14 @@
 # Executable handoff byte-binding reference
 
 **Artifact ID:** HANDOFF-REF-01  
-**Version/date:** 0.3 Draft · 25 October 2026
+**Version/date:** 0.4 Draft · 27 October 2026
 **Status:** Local synthetic protocol reference; no application handler, durable store, permission decision, relay or runtime acceptance.  
 **Snapshot inputs (18 October 2026):** PRD-01 v0.9; SAD-03 v0.15; DATA-04 v0.11; Proposed ADR-0020 v0.3; Workspace OpenAPI v0.2.8 / Knowledge v0.2.9; TC-26.\
 **Trace:** BR-08–BR-10, BR-12, BR-14; FR-21/22/25/26/28/29/32/55/57/59/60; SC-02/03/05/06.
 
 ## Purpose and location
 
-[The reference checker](../../../scripts/verify-handoff-bytes.mjs) evaluates frozen manifest/payload binding rules against synthetic independent receipt/capture inputs. [Its tests](../../../tests/handoff-bytes.test.mjs) run with `npm run contracts:test` after `npm ci`. It uses the already selected Node development harness and development-only schema tooling; no application framework/provider is selected and no SP is marked implemented.
+[The reference checker](../../../scripts/contracts/verify-handoff-bytes.mjs) evaluates frozen manifest/payload binding rules against synthetic independent receipt/capture inputs. [Its tests](../../../tests/contracts/handoff-bytes.test.mjs) run with `npm run contracts:test` after `npm ci`. It uses the already selected Node development harness and development-only schema tooling; no application framework/provider is selected and no SP is marked implemented.
 
 The existing storage design needs exact byte validation before a committed record can be trusted at a handoff. This bounded prerequisite is now executable. Additive Knowledge manifest storage, Workspace nonexpiring claim/fence mapping and real guarded transport remain unimplemented; no migration, database or provider was started for this task.
 
@@ -45,3 +45,5 @@ Checklist: Pass for executed local byte-binding negatives; Gap for live preparat
 ## Input metadata reconciliation — 25 October 2026
 
 The original 18 October input versions are explicitly retained as a frozen snapshot. Prior review findings, commands and observed results are unchanged and have not been rerun by this metadata correction. Read current canonical sources before implementation.
+
+Revision 0.4 repairs checker/test navigation after repository organization. Snapshot inputs, protocol rules and historical execution evidence remain unchanged.

@@ -1,9 +1,9 @@
 # Supporting document review register
 
 **Artifact ID:** DOC-REVIEW-REG-01\
-**Version/date:** 0.11 Draft · 27 October 2026\
+**Version/date:** 0.13 Draft · 27 October 2026\
 **Status:** Review planning with bounded author rechecks recorded below; no full document-type review or approval.\
-**Inputs:** [Development rules](../../development-rules.md) v1.5; [PREFLIGHT-01](../../agent-preflight-checklist.md) v0.1; [REG-00](../artifact-register.md) v0.70; [SDLC-INDEX-01](../README.md) v0.3; [SDLC workflow](../../../agents/WORKFLOW.md), unversioned working guide.\
+**Inputs:** [Development rules](../../development-rules.md) v1.5; [PREFLIGHT-01](../../agent-preflight-checklist.md) v0.1; [REG-00](../artifact-register.md) v0.72; [SDLC-INDEX-01](../README.md) v0.3; [SDLC workflow](../../../agents/WORKFLOW.md), unversioned working guide.\
 **Trace:** Supports navigation and review of existing BR-01–BR-15 / SC-01–SC-08 documentation; no new requirement, application slice or acceptance criterion.\
 **Owner role:** SDLC coordinator; review assignments remain unassigned.
 
@@ -82,3 +82,7 @@ Revision 0.9 records the bounded implementation-input review and synchronizes RE
 Revision 0.10 records the authorised IR-01–IR-06 documentation correction recheck and REG-00 synchronization. The original review row remains a dated snapshot; whole-group queue states and application/owner-decision gates are unchanged.
 
 Revision 0.11 synchronizes REG-00 v0.70 after SP-01.1 preparation, two Proposed ADRs and the reconciled external review. These are author-produced preparation artifacts and schema pre-evidence; this update assigns no independent review or acceptance and changes no historical finding disposition.
+
+Revision 0.12 synchronizes REG-00 v0.71 after the owner-requested repository organization and DOC-NAV-01 entry. Review assignments, historical findings and acceptance states are unchanged.
+
+Revision 0.13 synchronizes REG-00 v0.72 after the wider reference follow-up. Review assignments and prior acceptance states remain unchanged.

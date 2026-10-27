@@ -147,16 +147,16 @@ async function main() {
     console.log(`
 NotebookLM Sync Utility
 Usage:
-  node scripts/notebooklm_sync.mjs --check
+  node scripts/notebooklm/notebooklm_sync.mjs --check
     Kiểm tra trạng thái xác thực Google / NotebookLM
 
-  node scripts/notebooklm_sync.mjs --auth
+  node scripts/notebooklm/notebooklm_sync.mjs --auth
     Mở trình duyệt Chrome để đăng nhập tài khoản Google vào NotebookLM
 
-  node scripts/notebooklm_sync.mjs --upload <NOTEBOOK_URL> [TARGET_DIR_OR_FILE]
+  node scripts/notebooklm/notebooklm_sync.mjs --upload <NOTEBOOK_URL> [TARGET_DIR_OR_FILE]
     Đẩy toàn bộ file tài liệu (.md, .mmd) lên notebook cụ thể
     Ví dụ:
-      node scripts/notebooklm_sync.mjs --upload "https://notebooklm.google.com/notebook/xxxxxxxx" docs
+      node scripts/notebooklm/notebooklm_sync.mjs --upload "https://notebooklm.google.com/notebook/xxxxxxxx" docs
     `);
     process.exit(0);
   }
@@ -171,7 +171,7 @@ Usage:
       if (health?.data?.authenticated) {
         console.log('✅ Đã xác thực thành công với Google NotebookLM.');
       } else {
-        console.log('⚠️ Chưa xác thực. Hãy chạy: node scripts/notebooklm_sync.mjs --auth');
+        console.log('⚠️ Chưa xác thực. Hãy chạy: node scripts/notebooklm/notebooklm_sync.mjs --auth');
         process.exitCode = 1;
       }
     } else if (command === '--auth') {

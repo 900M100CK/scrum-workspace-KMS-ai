@@ -1,11 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { parseRequirements, validateApi as validateApiContract, validateScope, validateSpecOwnership, verifyContext } from '../scripts/verify-context.mjs';
-import { validateResearchDefinitions } from '../scripts/verify-research.mjs';
-import { regressionFixture } from '../scripts/verify-regression.mjs';
-import { validateApiRouting } from '../scripts/verify-api-routing.mjs';
-const root = new URL('../', import.meta.url);
+import { parseRequirements, validateApi as validateApiContract, validateScope, validateSpecOwnership, verifyContext } from '../../scripts/verify-context.mjs';
+import { validateResearchDefinitions } from '../../scripts/context/verify-research.mjs';
+import { regressionFixture } from '../../scripts/context/verify-regression.mjs';
+import { validateApiRouting } from '../../scripts/context/verify-api-routing.mjs';
+const root = new URL('../../', import.meta.url);
 const readJson = async path => JSON.parse(await readFile(new URL(path, root), 'utf8'));
 const prd = await readFile(new URL('docs/sdlc/PRD_SRS.md', root), 'utf8');
 const requirements = parseRequirements(prd);

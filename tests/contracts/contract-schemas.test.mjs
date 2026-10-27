@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { loadContractSchemas, compileContractSchemas, loadOpenApiStructureValidator } from '../scripts/contract-schemas.mjs';
+import { loadContractSchemas, compileContractSchemas, loadOpenApiStructureValidator } from '../../scripts/contract-schemas.mjs';
 
 const knowledge = await loadContractSchemas('knowledge');
 const workspace = await loadContractSchemas('workspace');

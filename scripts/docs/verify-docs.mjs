@@ -5,7 +5,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { JSDOM } from 'jsdom';
 import { DOMParser } from '@xmldom/xmldom';
 import { adrIds, loadManifest, syncMetadata } from './docs-metadata.mjs';
-import { verifyDesignPair } from './design-diagrams.mjs';
+import { verifyDesignPair } from '../design-diagrams.mjs';
 
 // Mermaid's flowchart label sanitiser requires a DOM, even for parsing.
 const dom = new JSDOM('');
@@ -355,7 +355,7 @@ export async function verifyDocs(root) {
   return { diagrams: paired.length, artifacts: versions.size, nodes, edges, runtimeEvidence: 'not run' };
 }
 
-const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   try { console.log(JSON.stringify(await verifyDocs(root), null, 2)); }
   catch (error) { console.error(error.message); process.exitCode = 1; }

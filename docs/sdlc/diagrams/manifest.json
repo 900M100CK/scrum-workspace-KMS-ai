@@ -3,14 +3,14 @@
     {
       "id": "UML-07",
       "path": "docs/sdlc/diagrams/README.md",
-      "version": "0.20",
+      "version": "0.21",
       "adrs": [],
-      "date": "25 October 2026"
+      "date": "27 October 2026"
     },
     {
       "id": "REG-00",
       "path": "docs/sdlc/artifact-register.md",
-      "version": "0.70",
+      "version": "0.72",
       "adrs": []
     },
     {
@@ -428,7 +428,7 @@
         "ADR-0012"
       ],
       "kind": "design",
-      "purpose": "C4 Level 1 \u00e2\u20ac\u201d system context"
+      "purpose": "C4 Level 1 â€” system context"
     },
     {
       "id": "DGM-C4-02",
@@ -450,7 +450,7 @@
         "ADR-0012"
       ],
       "kind": "design",
-      "purpose": "C4 Level 2 \u00e2\u20ac\u201d applications and owned stores"
+      "purpose": "C4 Level 2 â€” applications and owned stores"
     },
     {
       "id": "DGM-SEQ-01",
@@ -562,7 +562,7 @@
         "ADR-0023"
       ],
       "kind": "design",
-      "purpose": "Workspace physical ERD \u00e2\u20ac\u201d owned schema"
+      "purpose": "Workspace physical ERD â€” owned schema"
     },
     {
       "id": "DGM-DATA-02",
@@ -585,7 +585,7 @@
         "ADR-0023"
       ],
       "kind": "design",
-      "purpose": "Knowledge physical ERD \u00e2\u20ac\u201d owned schema"
+      "purpose": "Knowledge physical ERD â€” owned schema"
     },
     {
       "id": "DGM-DATA-03",
@@ -609,7 +609,7 @@
         "ADR-0023"
       ],
       "kind": "design",
-      "purpose": "Logical evidence and command additions \u00e2\u20ac\u201d NOT applied schema"
+      "purpose": "Logical evidence and command additions â€” NOT applied schema"
     },
     {
       "id": "DGM-DEPLOY-01",
@@ -631,7 +631,7 @@
         "ADR-0011"
       ],
       "kind": "design",
-      "purpose": "Local development deployment \u00e2\u20ac\u201d configured and proposed"
+      "purpose": "Local development deployment â€” configured and proposed"
     },
     {
       "id": "DGM-DEV-01",
@@ -653,7 +653,7 @@
         "ADR-0012"
       ],
       "kind": "design",
-      "purpose": "Development view \u00e2\u20ac\u201d package ownership and adapter boundaries"
+      "purpose": "Development view â€” package ownership and adapter boundaries"
     }
   ],
   "schemaVersion": 2,

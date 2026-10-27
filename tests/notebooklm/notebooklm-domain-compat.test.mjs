@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { runInNewContext } from 'node:vm';
-import { patchAuthSource } from '../scripts/notebooklm-domain-compat.mjs';
+import { patchAuthSource } from '../../scripts/notebooklm/notebooklm-domain-compat.mjs';
 
 const upstreamCheck = 'currentUrl.startsWith("https://notebooklm.google.com/")';
 const fixture = `[${Array(4).fill(upstreamCheck).join(',')}]`;

@@ -6,9 +6,9 @@ import assert from 'node:assert/strict';
 import { parseMermaid } from './verify-docs.mjs';
 import { syncMetadata } from './docs-metadata.mjs';
 
-// Regenerate only the two explicitly split permission diagrams. Other diagrams
-// retain their manual geometry. Review actual renders after regeneration.
-const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+// Re-layout only the three flowcharts corrected by the 17 October review.
+// Explicit routes preserve editable native nodes; inspect exports after running.
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const elk = new ELK();
 const escape = value => String(value).replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('\n', '&#10;');
 function midpoint(route) {
@@ -23,8 +23,8 @@ function midpoint(route) {
   }
   return route.at(-1);
 }
-for (const name of ['permission-read-flow', 'permission-ai-checkpoints']) {
-  const path = resolve(root, 'docs/sdlc/diagrams/flowchart', name);
+for (const [group, name] of [['flowchart','permission-read-flow'], ['flowchart','docs-flow'], ['sitemap','application-sitemap']]) {
+  const path = resolve(root, 'docs/sdlc/diagrams', group, name);
   const text = await readFile(path + '.mmd', 'utf8');
   const graph = await parseMermaid(text);
   const header = text.match(/^%% (DGM-\S+) v([\d.]+)/m);
@@ -32,7 +32,8 @@ for (const name of ['permission-read-flow', 'permission-ai-checkpoints']) {
     id: 'root',
     layoutOptions: { 'elk.algorithm': 'layered', 'elk.direction': 'DOWN', 'elk.edgeRouting': 'ORTHOGONAL', 'elk.padding': '[top=160,left=60,bottom=60,right=60]', 'elk.spacing.nodeNode': '100', 'elk.layered.spacing.nodeNodeBetweenLayers': '110', 'elk.spacing.edgeNode': '40', 'elk.spacing.edgeEdge': '25', 'elk.layered.cycleBreaking.strategy': 'MODEL_ORDER', 'elk.layered.considerModelOrder.strategy': 'NODES_AND_EDGES' },
     children: graph.nodes.map(n => {
-      const width = 350, height = n.shape === 'diamond' ? 190 : Math.max(100, Math.ceil(n.label.length / 39) * 22 + 30);
+      const width = Math.max(350, ...n.label.split(/\s+/).map(word => word.length * 8 + 48));
+      const height = n.shape === 'diamond' ? 190 : Math.max(100, Math.ceil(n.label.length / Math.floor((width - 48) / 8)) * 22 + 30);
       return { id: n.id, width, height, layoutOptions: { 'elk.portConstraints': 'FIXED_POS' }, ports: [
         { id: n.id + '-out', x: width / 2, y: height, width: 0, height: 0, layoutOptions: { 'elk.port.side': 'SOUTH' } },
         { id: n.id + '-in', x: width / 2, y: 0, width: 0, height: 0, layoutOptions: { 'elk.port.side': 'NORTH' } },
@@ -44,7 +45,7 @@ for (const name of ['permission-read-flow', 'permission-ai-checkpoints']) {
   const mainPath = name === 'permission-ai-checkpoints'
     ? ['Start', 'Session', 'Member', 'QRead', 'PreModel', 'Buffer', 'PreAnswer', 'Valid', 'Answer', 'Citation', 'SourceFlow']
     : ['Start', 'Session', 'Member', 'Type', 'Doc', 'Classification', 'Grant', 'Allowed', 'View'];
-  mainPath.slice(1).forEach((id, i) => assert(positions.get(id).y > positions.get(mainPath[i]).y, 'Layout reversed main path at ' + id));
+  if (name === 'permission-read-flow') mainPath.slice(1).forEach((id, i) => assert(positions.get(id).y > positions.get(mainPath[i]).y, 'Layout reversed main path at ' + id));
   const meta = layout;
   const cells = ['<mxCell id="0"/>', '<mxCell id="1" parent="0"/>'];
   const sources = text.match(/^%% Sources: (.+)$/m)?.[1];

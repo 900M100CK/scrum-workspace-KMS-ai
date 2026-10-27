@@ -1,7 +1,7 @@
 # Central diagram index
 
 **Artifact ID:** UML-07
-**Version/date:** 0.20 Draft · 25 October 2026
+**Version/date:** 0.21 Draft · 27 October 2026
 **Status:** Draft; Ready for downstream inventory use; C4 primary views with a 4+1 coverage crosswalk are recommended; see the 17 October report for corrections and remaining design/implementation gates.
 **Source versions:** BRD English v1.0; PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; UX Docs v0.9 / sitemap v0.10 / personas v0.5 / matrix v0.11 / Board v0.10 / AI v0.9; ADR-0004 v0.2; ADR-0007–ADR-0017; Proposed ADR-0018–ADR-0023; PLAN-01 v0.4.
 
@@ -168,8 +168,8 @@ Current filesystem inspection found eight Draw.io files in the five type folders
 <!-- BEGIN GENERATED:artifact-versions -->
 | Artifact ID | Version | Canonical source |
 | --- | --- | --- |
-| UML-07 | v0.20 | [Source](README.md) |
-| REG-00 | v0.70 | [Source](../artifact-register.md) |
+| UML-07 | v0.21 | [Source](README.md) |
+| REG-00 | v0.72 | [Source](../artifact-register.md) |
 | SAD-03 | v0.16 | [Source](../../architecture.md) |
 | UX-PERM-MATRIX-02 | v0.11 | [Source](../../ux/permission-matrix.md) |
 | UX-PERSONAS-01 | v0.5 | [Source](../../ux/personas.md) |
@@ -207,13 +207,13 @@ Current filesystem inspection found eight Draw.io files in the five type folders
 
 ## Historical 17 October correction handoff
 
-See [DGM-REVIEW-03](review-2026-10-17.md). Corrected flowcharts can be laid out with `node scripts/layout-reviewed-diagrams.mjs`; use cases with `node scripts/layout-use-case.mjs`. Both replace the targeted native geometry and require a fresh visual review after use. C4/sequence/state/ERD sources are now registered in the current inventory; their original 17 October foundation/review reports remain dated evidence. Code-level detail still awaits implemented handlers.
+See [DGM-REVIEW-03](review-2026-10-17.md). Corrected flowcharts can be laid out with `node scripts/docs/layout-reviewed-diagrams.mjs`; use cases with `node scripts/docs/layout-use-case.mjs`. Both replace the targeted native geometry and require a fresh visual review after use. C4/sequence/state/ERD sources are now registered in the current inventory; their original 17 October foundation/review reports remain dated evidence. Code-level detail still awaits implemented handlers.
 
 ## Historical AI diagram reconciliation — 22 October 2026
 
 DGM-FLOW-01 v0.13 restores the native Draw.io page to the existing Mermaid graph: 28 semantic vertices and 42 directed labelled edges. It adds the missing document/operational citation choice, fresh operational reads, missing original observation, deliberate new-question and unknown-browser-outcome branches. The obsolete direct Click-to-document-only edge is replaced by the citation-kind decision. Existing semantic vertex IDs, matching edge IDs and visual styles are retained; the expanded graph is reflowed by the installed ELK layout engine. No requirement, endpoint or runtime behavior changes.
 
-Regenerate this page with `node scripts/sync-ai-diagram.mjs`, then run `npm run docs:sync-metadata` and the documentation checks. The script compares the complete node labels and directed labelled edge multiset before saving, so it cannot silently write a structurally incomplete conversion. Per-diagram dates in the manifest keep this correction from redating unrelated diagram sources.
+Regenerate this page with `node scripts/docs/sync-ai-diagram.mjs`, then run `npm run docs:sync-metadata` and the documentation checks. The script compares the complete node labels and directed labelled edge multiset before saving, so it cannot silently write a structurally incomplete conversion. Per-diagram dates in the manifest keep this correction from redating unrelated diagram sources.
 
 Inputs remain UX-FLOW-AI-03 v0.8, PRD-01 v0.9, UC-02 v0.7, SAD-03 v0.15 and the existing cited ADRs. Trace: BR-07–BR-10, BR-12–BR-14; SC-02/03/05–08; SP-09/10/12 design support only, with work-before-AI implementation order retained. Author checklist: exact graph parity and source-backed branching supplied; offline geometry validation and native PNG export/inspection performed. The final layout has no overlapping vertices or through-vertex routes in the validator, but 32 edge-crossing warnings and dense return/error routes remain. Inspect at readable zoom; no print-scale, usability, runtime or independent-review acceptance is claimed. Handoff: Ready for downstream design use with those visual and implementation limits; other RV-09 findings stay open.
 

@@ -6,7 +6,7 @@ import { syncMetadata } from './docs-metadata.mjs';
 
 // Route actor inheritance outside the system and audit includes in a dedicated
 // right-hand lane. Node positions are explicit, so changes require render review.
-const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const base = resolve(root, 'docs/sdlc/diagrams/use-case/use-case-diagram');
 const graph = await parseMermaid(await readFile(base + '.mmd', 'utf8'), {kind:'use-case'});
 const esc = s => s.replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;').replaceAll('>','&gt;');

@@ -117,7 +117,7 @@ export async function syncMetadata(root, { check = false } = {}) {
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
-  const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+  const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
   try { console.log(JSON.stringify(await syncMetadata(root, { check: process.argv.includes('--check') }), null, 2)); }
   catch (error) { console.error(error.message); process.exitCode = 1; }
 }

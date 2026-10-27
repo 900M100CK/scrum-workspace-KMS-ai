@@ -2,8 +2,8 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { fileURLToPath } from 'node:url';
 import { readFile, readdir } from 'node:fs/promises';
-import { parseMermaid, parseDrawio, compareGraphs, checkVersionTable, checkCurrentReferences, checkUnselectedSearchTerms, checkInputHeader, checkSourceAdrs, checkOperationRefs, checkLinkedInputVersions, verifyDocs } from '../scripts/verify-docs.mjs';
-import { adrIds, loadManifest, generatedOutputs } from '../scripts/docs-metadata.mjs';
+import { parseMermaid, parseDrawio, compareGraphs, checkVersionTable, checkCurrentReferences, checkUnselectedSearchTerms, checkInputHeader, checkSourceAdrs, checkOperationRefs, checkLinkedInputVersions, verifyDocs } from '../../scripts/docs/verify-docs.mjs';
+import { adrIds, loadManifest, generatedOutputs } from '../../scripts/docs/docs-metadata.mjs';
 
 const xml = `<mxfile><diagram><mxGraphModel><root>
 <mxCell id="0"/><mxCell id="1" parent="0"/>
@@ -12,12 +12,12 @@ const xml = `<mxfile><diagram><mxGraphModel><root>
 </root></mxGraphModel></diagram></mxfile>`;
 
 test('all registered docs and diagram pairs pass', async () => {
-  await verifyDocs(fileURLToPath(new URL('../', import.meta.url)));
+  await verifyDocs(fileURLToPath(new URL('../../', import.meta.url)));
 });
 
 test('preflight exception counts agree with current use-case definitions', async () => {
-  const cases = await readFile(new URL('../docs/sdlc/use-cases.md', import.meta.url), 'utf8');
-  const checklist = await readFile(new URL('../docs/agent-preflight-checklist.md', import.meta.url), 'utf8');
+  const cases = await readFile(new URL('../../docs/sdlc/use-cases.md', import.meta.url), 'utf8');
+  const checklist = await readFile(new URL('../../docs/agent-preflight-checklist.md', import.meta.url), 'utf8');
   const definitions = [...cases.matchAll(/^- \*\*EX-\d+[^\n]*/gm)];
   const withdrawn = definitions.filter(([line]) => /\(Withdrawn\)/i.test(line)).length;
   const recorded = checklist.match(/\| EX identities \| (\d+) \((\d+) active \+ (\d+) withdrawn:/);
@@ -26,7 +26,7 @@ test('preflight exception counts agree with current use-case definitions', async
 });
 
 test('architecture FR trace rows stay inside one continuous Markdown table', async () => {
-  const source = await readFile(new URL('../docs/architecture.md', import.meta.url), 'utf8');
+  const source = await readFile(new URL('../../docs/architecture.md', import.meta.url), 'utf8');
   const section = source.split('### 7.1 ')[1].split('### 7.2 ')[0];
   const all = [...section.matchAll(/^\| (FR-\d+) \|/gm)].map(([, id]) => id);
   const block = section.match(/^\| FR-\d+ \|[^\n]*(?:\n\| FR-\d+ \|[^\n]*)*/m)?.[0];
@@ -58,7 +58,7 @@ test('Sources contains every body ADR, including shorthand and ranges, not just 
 });
 
 test('manifest version/ADR changes propagate to all generated inventories and both diagram headers', async () => {
-  const root = fileURLToPath(new URL('../', import.meta.url));
+  const root = fileURLToPath(new URL('../../', import.meta.url));
   const manifest = await loadManifest(root);
   const changed = structuredClone(manifest);
   const inventory = changed.artifacts.find(a => a.id === 'UML-07');
@@ -80,14 +80,14 @@ test('manifest version/ADR changes propagate to all generated inventories and bo
 });
 
 test('AI checkpoint sources retain the unavailable, partial-answer and member-removal decisions', async () => {
-  const manifest = await loadManifest(fileURLToPath(new URL('../', import.meta.url)));
+  const manifest = await loadManifest(fileURLToPath(new URL('../../', import.meta.url)));
   const checkpoint = manifest.artifacts.find(a => a.id === 'DGM-FLOW-05');
   for (const required of ['ADR-0013', 'ADR-0015', 'ADR-0017']) assert(checkpoint.adrs.includes(required), 'Missing checkpoint decision: ' + required);
 });
 
 test('use-case associations are undirected; generalization/include retain direction and native UML style', async () => {
-  const source = await readFile(new URL('../docs/sdlc/diagrams/use-case/use-case-diagram.mmd', import.meta.url), 'utf8');
-  const native = await readFile(new URL('../docs/sdlc/diagrams/use-case/use-case-diagram.drawio', import.meta.url), 'utf8');
+  const source = await readFile(new URL('../../docs/sdlc/diagrams/use-case/use-case-diagram.mmd', import.meta.url), 'utf8');
+  const native = await readFile(new URL('../../docs/sdlc/diagrams/use-case/use-case-diagram.drawio', import.meta.url), 'utf8');
   const graph = await parseMermaid(source, { kind: 'use-case' });
   compareGraphs(graph, parseDrawio(native, { kind: 'use-case' }));
   const swap = (text, id) => text.replace(new RegExp('<mxCell\\b[^>]*id="' + id + '"[^>]*>'), tag => tag.replace(/source="([^"]+)"/, 'source="__swap__$1"').replace(/target="([^"]+)"/, (_, target) => 'target="' + tag.match(/source="([^"]+)"/)[1] + '"').replace(/source="__swap__[^"]+"/, 'source="' + tag.match(/target="([^"]+)"/)[1] + '"'));
@@ -155,30 +155,30 @@ test('current linked input aliases use target versions while snapshot evidence s
   checkLinkedInputVersions('**Snapshot inputs:** [PRD-01](PRD.md) v0.3', versions, 'fixture');
 });
 
-import { loadDesignModels, verifyDesignContent } from '../scripts/design-diagrams.mjs';
+import { loadDesignModels, verifyDesignContent } from '../../scripts/design-diagrams.mjs';
 
 test('design pairs reject reversed sequence handoffs and changed native multiplicities', async () => {
-  const root = fileURLToPath(new URL('../', import.meta.url));
+  const root = fileURLToPath(new URL('../../', import.meta.url));
   const models = await loadDesignModels(root);
   const sequence = models.find(d => d.id === 'DGM-SEQ-01');
-  const source = await readFile(new URL('../'+sequence.path+'.mmd', import.meta.url), 'utf8');
-  const native = await readFile(new URL('../'+sequence.path+'.drawio', import.meta.url), 'utf8');
+  const source = await readFile(new URL('../../'+sequence.path+'.mmd', import.meta.url), 'utf8');
+  const native = await readFile(new URL('../../'+sequence.path+'.drawio', import.meta.url), 'utf8');
   const reversed = source.replace('K->>KD:', 'KD->>K:');
   assert.notEqual(reversed, source);
   await assert.rejects(verifyDesignContent(sequence, reversed, native, async () => {}), /Mermaid drift/);
   const erd = models.find(d => d.id === 'DGM-DATA-01');
-  const erSource = await readFile(new URL('../'+erd.path+'.mmd', import.meta.url), 'utf8');
-  const erNative = await readFile(new URL('../'+erd.path+'.drawio', import.meta.url), 'utf8');
+  const erSource = await readFile(new URL('../../'+erd.path+'.mmd', import.meta.url), 'utf8');
+  const erNative = await readFile(new URL('../../'+erd.path+'.drawio', import.meta.url), 'utf8');
   const altered = erNative.replace('endArrow=ERzeroToMany', 'endArrow=ERmandOne');
   assert.notEqual(altered, erNative);
   await assert.rejects(verifyDesignContent(erd, erSource, altered, async () => {}), /native semantic\/route drift/);
 });
 
 test('physical diagram entity inventory matches owned CREATE TABLE definitions', async () => {
-  const root = fileURLToPath(new URL('../', import.meta.url));
+  const root = fileURLToPath(new URL('../../', import.meta.url));
   const models = await loadDesignModels(root);
   for (const [id, service] of [['DGM-DATA-01','workspace'],['DGM-DATA-02','knowledge']]) {
-    const directory = new URL('../services/'+service+'/migrations/', import.meta.url);
+    const directory = new URL('../../services/'+service+'/migrations/', import.meta.url);
     const names = (await readdir(directory)).filter(name=>name.endsWith('.up.sql')).sort();
     const ddl = (await Promise.all(names.map(name=>readFile(new URL(name,directory),'utf8')))).join('\n');
     const tables = [...ddl.matchAll(/CREATE TABLE\s+(?:IF NOT EXISTS\s+)?(?:(\w+)\.)?(\w+)/gi)]

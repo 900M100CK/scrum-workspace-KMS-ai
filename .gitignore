@@ -10,3 +10,9 @@ dist/
 # Local repository metadata backups; never publish.
 /.local-backups/
 /docs/.codex/config.toml
+
+# Local editor state, scratch work and Python bytecode.
+.obsidian/
+/.tmp/
+__pycache__/
+*.pyc

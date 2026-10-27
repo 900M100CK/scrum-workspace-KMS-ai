@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { createRequire } from 'node:module';
 import { pathToFileURL } from 'node:url';
-import '../scripts/notebooklm-domain-compat.mjs';
+import '../../scripts/notebooklm/notebooklm-domain-compat.mjs';
 
 // Opt-in integration check against the installed upstream package and Chrome.
 const entry = process.env.NOTEBOOKLM_MCP_ENTRY;

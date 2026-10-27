@@ -19,9 +19,9 @@ available in the observed local Node 22.23.0 installation.
 Run from the repository root:
 
 ```powershell
-node scripts/notebooklm_sync.mjs --auth
-node scripts/notebooklm_sync.mjs --check
-node scripts/notebooklm_sync.mjs --upload "https://notebook.google.com/notebook/<uuid>" docs
+node scripts/notebooklm/notebooklm_sync.mjs --auth
+node scripts/notebooklm/notebooklm_sync.mjs --check
+node scripts/notebooklm/notebooklm_sync.mjs --upload "https://notebook.google.com/notebook/<uuid>" docs
 ```
 
 Keep the login window open until setup finishes. Upstream setup resets its own
@@ -47,11 +47,11 @@ separate compatibility updates.
 Checks:
 
 ```powershell
-node --test tests/notebooklm-domain-compat.test.mjs
-node --check scripts/notebooklm_sync.mjs
+node --test tests/notebooklm/notebooklm-domain-compat.test.mjs
+node --check scripts/notebooklm/notebooklm_sync.mjs
 # Optional regression check using the installed MCP package and Chrome:
 $env:NOTEBOOKLM_MCP_ENTRY = '<absolute path to notebooklm-mcp/dist/index.js>'
-node --test tests/notebooklm-dialog.test.mjs
+node --test tests/notebooklm/notebooklm-dialog.test.mjs
 ```
 
 These checks cover URL compatibility and syntax, not a real Google login or

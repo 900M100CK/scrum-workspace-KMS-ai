@@ -8,7 +8,7 @@ import { parseMermaid, parseDrawio, compareGraphs } from './verify-docs.mjs';
 
 // Reconcile this source-backed page only. Retain cell identities, metadata and
 // visual styles; reflow the page because the missing branches change topology.
-const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const base = resolve(root, 'docs/sdlc/diagrams/flowchart/ai-qa-flow');
 const source = await readFile(base + '.mmd', 'utf8');
 const graph = await parseMermaid(source);

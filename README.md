@@ -4,6 +4,21 @@ Solo capstone, target five months. This repository contains draft requirements/d
 
 Start with [agent entry](AGENTS.md), [five-month MoSCoW plan](docs/planning/five-month-plan.md), [architecture](docs/architecture.md), [contracts](contracts/README.md) and [feature specs](specs/README.md). The [artifact register](docs/sdlc/artifact-register.md) records status and owner decisions.
 
+## Repository map
+
+| Location | Responsibility |
+| --- | --- |
+| [docs/](docs/README.md) | Requirements, decisions, design and implementation planning; start with the reading routes |
+| [apps/web/](apps/web/README.md) | Synthetic UI preview and its own UI tests |
+| [services/](services/) | [Workspace](services/workspace/README.md) and [Knowledge](services/knowledge/README.md) ownership, migrations and SQL |
+| [contracts/](contracts/README.md), [specs/](specs/README.md), [eval/](eval/README.md) | Interfaces, bounded feature work and evaluation definitions |
+| [scripts/](scripts/README.md), [tests/](tests/) | Tooling and matching verification suites grouped by responsibility |
+| [infra/postgres/](infra/postgres/README.md) | Local storage setup and runbook |
+| [references/](references/README.md) | UI source notes and rendered evidence |
+| [agents/](agents/WORKFLOW.md), `SDLC-Prompt-Checklist/` | Development workflow and pinned upstream templates |
+
+Use the named npm commands below as stable entry points. Historical reports may show the former flat `scripts/` and `tests/` paths; the [tooling map](scripts/README.md) explains their current locations. Keep one canonical document per topic and link to it instead of copying workflow or checklist folders into `docs/`.
+
 ## First implementation order
 
 1. SP-01 sessions → SP-02 project membership → SP-03 create task → SP-04 update/blockers. Capture business audit from the first mutation.
