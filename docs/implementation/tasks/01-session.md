@@ -1,7 +1,7 @@
 # SP-01: Use an authenticated session whose expiry and sign-out end protected access.
 
 **Artifact ID:** IMPL-SP-01\
-**Version/date:** 0.4 Draft · 27 October 2026\
+**Version/date:** 0.6 Draft · 27 October 2026\
 **Status:** SP-01.1 preparation In progress; application children Not started.\
 **Inputs:** [Canonical SP-01](../../../specs/001-session.md) v0.4; SPEC-INDEX v0.4; PRD-01 v0.9; [TECH-STACK-01](../../tech-stack.md) v1.5; [source register](../register.md); [decisions](../decisions.md); Proposed ADR-0024/0025.\
 **Trace:** FR-01, FR-36, FR-37, FR-68; BR-01, BR-10; SC-06.\
@@ -19,6 +19,8 @@
 - Allowed paths, copied from canonical spec: services/workspace/**, apps/web/**, tests/workspace/**. Re-read the current spec before edits. Shared contract/root-script/guard changes outside these paths need a recorded coordinated-spec scope update; this breakdown does not authorise them.
 
 ## Child steps
+
+Execute through the saved [FEAT-SP01-01 work plan](../features/sp-01-session-foundation/plan.md) on `feature/sp-01-session-foundation`. Its linked SP01-P01–P12 task files and parent status table maps to these four children; next is SP01-P01. This registration does not mark any new runtime result or accept the Proposed decisions.
 
 Select one child; copy its exact FR/AC assertions and prerequisites into the [brief](../handoff-template.md). A child can be preparation-only; no synthetic result closes runtime acceptance.
 

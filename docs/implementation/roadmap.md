@@ -1,7 +1,7 @@
 # Dependency-based implementation roadmap
 
 **Artifact ID:** IMPL-ROADMAP-01\
-**Version/date:** 0.1 Draft · 26 October 2026\
+**Version/date:** 0.5 Draft · 27 October 2026\
 **Status:** Planning order, not completed work or scope acceptance.\
 **Inputs:** PRD-01 v0.9; SPEC-INDEX v0.4; PLAN-01 v0.4; [decisions](decisions.md); [task catalogue](tasks/README.md).\
 **Trace:** BR-01–BR-14; SC-01–SC-08.\
@@ -21,6 +21,14 @@ Dependencies are gates, not dates. Keep all release Must ACs. Optional requireme
 | M-08 release verification | SP-12 with regressions from every pack | Must AC/SC coverage, reproducible evaluation, matched keyword baseline for improvement claims, known failures/limitations and dependency-specific fallback |
 
 ## Capture and dependency interpretation
+
+### Registered work plans
+
+The [work plan register](features/README.md) links feature, fix, hotfix and test plans to their PLAN-01 sections, canonical spec/pack children and milestones above. Keep each plan's detailed task statuses in its own task table. Registration adds no Must deferral, dependency reorder, decision acceptance or calendar change.
+
+| Milestone / parent | Child work plan | Scope / next task |
+| --- | --- | --- |
+| M-01 / PLAN-01 Month 1 | [FEAT-SP01-01 v0.2](features/sp-01-session-foundation/plan.md) | SP-01 session foundation; SP01-P01 next, 12 tasks from spike through owner gates to real handlers/UI/regression; no application acceptance |
 
 SP-11 is cross-cutting: its mutation-capture child accompanies every first mutation. Its AI evidence children are later, after work and knowledge prerequisites. SP-06's SP-11 dependency means applicable capture readiness, not completion of the entire AI manifest/inspection pipeline. SP-01 and SP-11 capture are co-delivered where session-producing operations require records; do not create a circular wait or defer audit.
 

@@ -1,6 +1,6 @@
 # Development rules
 
-Version 1.5 · 18 Oct 2026
+Version 1.8 · 27 Oct 2026
 Applies to **development agents**. It does not define the permissions of the application's runtime AI assistant (see §7).
 
 ## 1. Authority
@@ -124,6 +124,22 @@ Required tests: replacement, historical query, failed/retried indexing, stale ca
 - **Branch / commit:** no convention is set yet. Preserve the active branch; commit only when asked, using the agent's own identity and a `Co-Authored-By` byline.
 - **Roles:** one agent may play requirements, architect, implementer, reviewer and evaluator. Do not spawn parallel agents unless the owner asks. Do not claim independent review of your own work.
 - **Documentation agents:** profiles under `agents/` inherit this file. Follow `agents/WORKFLOW.md` for SDLC artifact order, handoffs, and review gates.
+
+### 11.1 Work planning gate
+
+Before feature work, bug fixes, hotfixes or standalone testing, use Plan mode to inspect the current requirements, spec/contracts, architecture, relevant decisions and existing implementation. Testing includes test design/authoring, test-only changes, exploratory checks and execution/regression campaigns. Planning precedes code, dependency/schema changes and standalone test execution. Checks already specified in an active task use that saved plan; no separate plan is required for each command or rerun. Platform instructions determine whether a mode switch is possible; a repository file cannot switch it. If Plan mode is unavailable, state that explicitly and complete the same written plan and registration before work. Do not claim the mode was used or bypass an approval that the platform/owner actually requires.
+
+Create one folder per feature or bounded standalone work item: `docs/implementation/features/<work-id>/`. Save its English plan as `plan.md`, provide a README entry and put each small task brief in `tasks/<task-id>-<slug>.md`, using the [work register/template](implementation/features/README.md). The plan links all task files and is the single source of mutable task status/result; task briefs link back to it and define their prerequisites, scope, assertions, verification and handoff. This same register/layout covers fixes, hotfixes and testing. Reuse the owning feature folder/plan for in-scope follow-up work; create a linked standalone folder only when needed, not a competing registry or duplicate plan. Small/urgent work may use short documents, but keeps the folder, plan, task and parent-registration structure; urgency removes no permission, audit or evidence requirement.
+
+Fix/hotfix plans record the observed failure, reproduction or available incident evidence, affected scope, minimal correction, regression assertion and remaining risks. Hotfix plans also record recovery/rollback where applicable and any deferred broader verification with a linked follow-up task before closure; known failing mandatory gates cannot be hidden as deferrals. Test plans record the target behaviour/requirements, environment/fixtures, commands, expected assertions, evidence destinations and failure-triage tasks. Preserve negative results; never rewrite expectations to make a run pass. All plan types link to their affected spec(s)/pack and master milestone; cross-cutting testing lists each affected parent.
+
+Every saved plan must define the observable goal/non-goals; source versions and FR/AC/BR/SC trace; parent canonical spec and implementation pack/child IDs; parent PLAN-01 section and implementation-roadmap milestone; decisions/dependencies; allowed paths and service ownership; failure, permission/version/citation/audit implications; exact acceptance assertions and actual or explicitly planned verification commands. A missing requirement/scope decision is surfaced rather than invented by the plan.
+
+Break the feature into small, stable-ID tasks that each have one reviewable outcome, prerequisites, allowed paths, acceptance assertions, meaningful verification and a result/handoff link. Preparation, implementation, integration and verification tasks may be separate. Keep mandatory cross-cutting capture and negative/concurrency/failure coverage with their producers. The task list must collectively cover the feature's applicable Must ACs; many small passing tasks cannot replace end-to-end acceptance.
+
+Before starting the first task, register the plan in `docs/implementation/features/README.md` and the central `docs/sdlc/artifact-register.md`; add its version to the implementation source register. Add a child-plan backlink under the relevant milestone in `docs/implementation/roadmap.md`. The feature plan links back to the roadmap and PLAN-01. This is registration under the existing large plan, not permission to rewrite its scope/dependencies or calendar. Record coordinated spec changes when proposed paths exceed the canonical allowed paths.
+
+Then execute ready tasks sequentially within the existing authorisation. Reopen the saved plan at each continuation, update task status with actual evidence and synchronise affected parent links/statuses. Do not create a new approval round for each ready child. Pause only the dependent task on a material missing decision, unmet prerequisite or failed gate; continue independent authorised tasks. Planning does not accept Proposed ADRs, grant runtime AI mutation authority, authorise parallel agents or allow automatic commits. Feature completion requires all applicable acceptance/integration checks, not only completed child rows.
 
 ## 12. Reporting (scale to the change)
 

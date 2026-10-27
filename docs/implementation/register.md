@@ -1,7 +1,7 @@
 # Implementation source and artifact register
 
 **Artifact ID:** IMPL-REG-01\
-**Version/date:** 0.4 Draft · 27 October 2026\
+**Version/date:** 0.9 Draft · 27 October 2026\
 **Status:** Source snapshot and navigation, not approval or runtime evidence.\
 **Inputs:** REG-00; PRD-01 v0.9; SPEC-INDEX v0.4; PLAN-01 v0.4; SAD-03 v0.16; ADR-0001–ADR-0025.\
 **Trace:** Existing BR-01–BR-14 / SC-01–SC-08.\
@@ -13,7 +13,7 @@ Versions below are reading snapshots. Reopen the source before implementation. A
 
 | Source | Snapshot / status | Use and dependent pack |
 | --- | --- | --- |
-| [AGENTS](../../AGENTS.md), [rules](../development-rules.md), [workflow](../../agents/WORKFLOW.md), [pre-flight](../agent-preflight-checklist.md) | AGENTS 1.7; rules 1.5; pre-flight 0.1; workflow unversioned | Authority/workflow for every pack; owner/platform instructions prevail |
+| [AGENTS](../../AGENTS.md), [rules](../development-rules.md), [workflow](../../agents/WORKFLOW.md), [pre-flight](../agent-preflight-checklist.md) | AGENTS 1.9; rules 1.8; pre-flight 0.1; workflow unversioned | Authority/workflow for every pack, including mandatory saved planning for features/fixes/hotfixes/testing; owner/platform instructions prevail |
 | [BRD entry](../BRD.md) → [full baseline](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md) | 1.0 Draft for business validation | Business scope; proposed addenda do not silently amend it |
 | [PRD](../sdlc/PRD_SRS.md) | PRD-01 0.9 Draft | Canonical FR/ACs, release gates, assumptions and ODs; all tasks |
 | [use cases](../sdlc/use-cases.md) | UC-02 0.8 Draft | Actor and alternate/failure flows; corresponding slice |
@@ -38,22 +38,27 @@ Versions below are reading snapshots. Reopen the source before implementation. A
 
 ## Pack inventory
 
-Artifacts below are owned by the sequential development coordinator. IMPL-REG-01, IMPL-DEC-01 and IMPL-SP-01 are v0.4 Draft dated 27 October; IMPL-ENTRY-01, IMPL-EXEC-01 and IMPL-TASKS-01 are v0.2 dated 27 October; IMPL-SP-11 and IMPL-SP-12 remain v0.2 dated 26 October; other original pack artifacts remain v0.1 dated 26 October. Inputs and trace are in each header. Handoff is preparation-ready with stated gaps, never approval. No handlers have been delivered by this pack.
+Artifacts below are owned by the sequential development coordinator. IMPL-REG-01 is v0.9 Draft dated 27 October; IMPL-DEC-01 remains v0.4 and IMPL-SP-01 is v0.6 dated 27 October; IMPL-ENTRY-01 and IMPL-TASKS-01 are v0.2 dated 27 October; IMPL-EXEC-01 is v0.4 and IMPL-ROADMAP-01 is v0.5 dated 27 October; IMPL-SP-11 and IMPL-SP-12 remain v0.2 dated 26 October; other original pack artifacts remain v0.1 dated 26 October. Inputs and trace are in each header. Handoff is preparation-ready with stated gaps, never approval. No handlers have been delivered by this pack.
 
 | Artifact | Path | Dependency / purpose |
 | --- | --- | --- |
 | IMPL-ENTRY-01 | [README](README.md) | Entry and reading order |
 | IMPL-REG-01 | [register](register.md) | Canonical source map |
 | IMPL-DEC-01 | [decisions](decisions.md) | Current decisions and implementation gates |
-| IMPL-ROADMAP-01 | [roadmap](roadmap.md) | Milestones using existing slices |
-| IMPL-EXEC-01 | [execution](execution.md) | Agent workflow and patterns |
+| IMPL-ROADMAP-01 (v0.5) | [roadmap](roadmap.md) | Milestones using existing slices and feature-plan backlinks |
+| IMPL-EXEC-01 (v0.4) | [execution](execution.md) | Agent workflow and saved feature-plan gate |
+| IMPL-FEATURES-01 (v0.4) | [work plan register/template](features/README.md) | Plan mode → saved plan → parent registration → small tasks → actual evidence; FEAT-SP01-01 registered under M-01 |
+| FEAT-SP01-01 (v0.2) | [session foundation work plan](features/sp-01-session-foundation/plan.md) | M-01 / PLAN-01 Month 1; 12 small tasks; SP01-P01 next, application adoption gated |
+| FEAT-SP01-ENTRY / SP01-P01–SP01-P12 (all v0.1) | [feature folder entry](features/sp-01-session-foundation/README.md); individual task links in [plan](features/sp-01-session-foundation/plan.md#tasks-and-acceptance) | Bounded executable task briefs; one authoritative parent status table, no new runtime pass |
 | IMPL-HANDOFF-01 | [handoff template](handoff-template.md) | Brief and result record |
 | IMPL-TASKS-01 | [task catalogue](tasks/README.md) | Maps all 13 packs to specs, tiers and dependencies |
-| IMPL-SP-01 (v0.4) | [session preparation](tasks/01-session.md) | SP-01.1 preparation In progress; remaining application children Not started |
-| IMPL-BRIEF-SP01-01 (v0.1) | [SP-01.1 brief](briefs/SP-01.1-session-foundation.md) | Contract-derived assertions; isolated experiment scope; separate schema/HTTP/DB/session evidence |
+| IMPL-SP-01 (v0.6) | [session preparation](tasks/01-session.md) | SP-01.1 preparation In progress; remaining application children Not started |
+| IMPL-BRIEF-SP01-01 (v0.2) | [SP-01.1 brief](briefs/SP-01.1-session-foundation.md) | Canonical contract assertions; links the detailed runtime plan; prior result remains a v0.1 snapshot |
+| IMPL-SPIKE-SP01-01 (v0.2) | [runtime spike brief](../../SP-01.1-spike-brief.md) | Corrected external brief: clock/renewal, barriers, serializer stages, pool discard, before/after manifests and scope; runtime Not run |
+| External preparation review (unversioned) | [original review](../../SP-01.1-prep-review.md) | Preserved author input; dispositions are in the revised spike and source register, not an executed independent review |
 | ADR-0024 / ADR-0025 (v0.1) | [backend proposal](../adr/0024-backend-session-foundation.md), [session proposal](../adr/0025-opaque-session-candidate.md) | D-01a/D-02 Proposed; frontend adoption and expiry policy remain open |
 | IMPL-IMPROVE-01 (v0.2) | [reconciled improvement report](improvement-report-techstack-to-sp.md) | Corrected external-review recommendations and dependency interpretation |
-| IMPL-PREP-SP01-01 (v0.1) | [dated preparation result](../sdlc/reports/SP-01.1-preparation-2026-10-27.md) | Executed schema pre-evidence; remaining runtime/owner gates explicit |
+| IMPL-PREP-SP01-01 (v0.2) | [dated preparation result](../sdlc/reports/SP-01.1-preparation-2026-10-27.md) | Original v0.1 execution evidence unchanged; input snapshot clarified after the plan revision; runtime/owner gates explicit |
 | IMPL-SP-11 / IMPL-SP-12 (v0.2) | [capture](tasks/11-audit-and-source-inspection.md); [evaluation](tasks/12-failure-and-evaluation.md) | Explicit protocol prerequisites and pre-pilot runner ownership |
 | IMPL-SP-02–IMPL-SP-10 / IMPL-SP-13 (v0.1) | Individual links in [task catalogue](tasks/README.md) | Spec-derived trace, operations, allowed paths and bounded child steps |
 

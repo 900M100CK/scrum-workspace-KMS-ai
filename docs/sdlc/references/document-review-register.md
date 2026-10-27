@@ -1,9 +1,9 @@
 # Supporting document review register
 
 **Artifact ID:** DOC-REVIEW-REG-01\
-**Version/date:** 0.13 Draft · 27 October 2026\
+**Version/date:** 0.18 Draft · 27 October 2026\
 **Status:** Review planning with bounded author rechecks recorded below; no full document-type review or approval.\
-**Inputs:** [Development rules](../../development-rules.md) v1.5; [PREFLIGHT-01](../../agent-preflight-checklist.md) v0.1; [REG-00](../artifact-register.md) v0.72; [SDLC-INDEX-01](../README.md) v0.3; [SDLC workflow](../../../agents/WORKFLOW.md), unversioned working guide.\
+**Inputs:** [Development rules](../../development-rules.md) v1.8; [PREFLIGHT-01](../../agent-preflight-checklist.md) v0.1; [REG-00](../artifact-register.md) v0.77; [SDLC-INDEX-01](../README.md) v0.3; [SDLC workflow](../../../agents/WORKFLOW.md), unversioned working guide.\
 **Trace:** Supports navigation and review of existing BR-01–BR-15 / SC-01–SC-08 documentation; no new requirement, application slice or acceptance criterion.\
 **Owner role:** SDLC coordinator; review assignments remain unassigned.
 
@@ -86,3 +86,13 @@ Revision 0.11 synchronizes REG-00 v0.70 after SP-01.1 preparation, two Proposed 
 Revision 0.12 synchronizes REG-00 v0.71 after the owner-requested repository organization and DOC-NAV-01 entry. Review assignments, historical findings and acceptance states are unchanged.
 
 Revision 0.13 synchronizes REG-00 v0.72 after the wider reference follow-up. Review assignments and prior acceptance states remain unchanged.
+
+Revision 0.14 synchronizes REG-00 v0.73 for the owner-authorised runtime spike brief corrections. The original external review is retained as author input; no historical finding, runtime result or review assignment is relabelled as independently accepted.
+
+Revision 0.15 synchronizes REG-00 v0.74 and development-rules v1.6 after the owner-requested feature planning gate. Existing findings, review assignments and acceptance states are unchanged.
+
+Revision 0.16 synchronizes REG-00 v0.75 and development-rules v1.7 for planning coverage of fixes/hotfixes/testing. Review findings, assignments and acceptance states are unchanged.
+
+Revision 0.17 synchronizes REG-00 v0.76 after the owner-requested SP-01 branch switch and saved work plan registration. Review findings, assignments and acceptance states are unchanged.
+
+Revision 0.18 synchronizes REG-00 v0.77 and development-rules v1.8 for feature folders and individual SP-01 task files. Review findings, assignments and acceptance states are unchanged.

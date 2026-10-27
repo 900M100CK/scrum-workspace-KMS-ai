@@ -1,13 +1,15 @@
 # Agent execution protocol
 
 **Artifact ID:** IMPL-EXEC-01\
-**Version/date:** 0.2 Draft · 27 October 2026\
+**Version/date:** 0.4 Draft · 27 October 2026\
 **Status:** Execution guide subordinate to root rules and canonical specs.\
 **Inputs:** [source register](register.md); [decisions](decisions.md); SPEC-INDEX v0.4; ADR-0001–ADR-0025.\
 **Trace:** Existing BR-01–BR-14 / SC-01–SC-08.\
 **Owner role:** Sequential development coordinator.
 
 ## One bounded step per turn
+
+For feature work, fixes, hotfixes and standalone testing, complete the [Plan mode and saved feature plan gate](../development-rules.md#111-work-planning-gate) before starting work. Use the [work register/template](features/README.md), register parent PLAN-01/spec/milestone links and small tasks, then execute ready child tasks from that file. A continuation reuses the existing feature plan; the current chat is not the only task record. If Plan mode is unavailable, disclose it and persist the same plan before coding; do not invent a mode switch. Existing feature/slice evidence and decision gates remain binding.
 
 1. Read the root rules/pre-flight and required local development skills before coding/review. Inspect branch, dirty work and actual implementation conventions. Preserve unrelated changes; no commit, push or parallel agents unless requested.
 2. Read the selected task pack, canonical spec, exact FR/AC rows, UC/EX flows and operation contracts. Record source versions. Verify Proposed dependencies against [decisions](decisions.md).
