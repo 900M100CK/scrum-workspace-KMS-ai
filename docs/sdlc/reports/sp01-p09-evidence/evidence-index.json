@@ -1,0 +1,29 @@
+{
+  "scope": "P09 actual handlers and independent P08 command follow-up; no private environment/TLS inputs",
+  "runs": {
+    "2026-10-28T04-03-15-162Z": {
+      "command-5.json": "994657fe19038170a50094f7c9583c3f276f563975b8156ddb99b53550d128f5",
+      "command-1.json": "bae193956fc24d814a50449c5fd8419b6a26d50c5c2e993c0fdc3a3f64a28382",
+      "command-6.json": "525c9530a3578723b822a0beb273f04e4f2b35205c26cea0de8ae6c92d64bd7b",
+      "command-2.json": "ecb2307b3f0a8f34c8acf933452f7b433b3580e885c645fe2d1a9d7cda6ee577",
+      "manifest-before.json": "fab91240f58a404b872dd54ad23c78b700ca2dc759a69933594d5dd9a336eae1",
+      "receipt.json": "130a1d3bda884319a9ab9be3f291b126e0cd8e4b5bb37654dbdde7471fe7a766",
+      "archive-receipt.json": "31e32985a988e0b2d0c70a0f124ee508d22a84fdd0630668a826ed79f1aad7bf",
+      "source.zip": "ef9519445037aab0a93588e4d8d13e3f9d4a98a45f219a8b4f86366fcd1c72dc",
+      "result.json": "25cbe5d7bdb01e7dddd0db720863418fa10d0ec15130f373ff29206e3a7fa262",
+      "command-7.json": "e69233055acfafaba421eae51063fdd14f94b4902cc6f3aa951631a5b2a2e9a1",
+      "command-3.json": "1e7931dc5783d76f7f0a37bb4a9c02767a54fc2d9039330a08a9b21219609fad",
+      "manifest-after.json": "fab91240f58a404b872dd54ad23c78b700ca2dc759a69933594d5dd9a336eae1",
+      "command-4.json": "5bd100c3ef34a1782afc1ad8b134cc8689795617d48898685d8eac570510faf9"
+    },
+    "2026-10-28T04-07-54-460Z": {
+      "manifest-after.json": "aa3e2d79c01cd7ca6047bf2f0b622a1ed3a301a947998edaa81d596dd9cfeb15",
+      "archive-receipt.json": "15cbea4115175e618b06ada6d4bebef5a7137fb4c229fdfe793fa234ba9092e9",
+      "source.zip": "6996d4ec79ac1389cc29ed0baa8a535cad5db3c860534475012d42cb6722c706",
+      "result.json": "654716fe9e8d4c590342bc80ba9dc77e680bdc203bc3914605a4d126d538d75a",
+      "command-1.json": "42c9b8bcb895bf6264d1dfe151b1ddbe98111e045aff0155c7f49f8aa22903b4",
+      "receipt.json": "68a9ea0c743cb1b2f9bc5e674e8a3bc7b421419d8f4e347ea79fe705daa5b8ee",
+      "manifest-before.json": "aa3e2d79c01cd7ca6047bf2f0b622a1ed3a301a947998edaa81d596dd9cfeb15"
+    }
+  }
+}

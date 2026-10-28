@@ -10,7 +10,7 @@
     {
       "id": "REG-00",
       "path": "docs/sdlc/artifact-register.md",
-      "version": "0.79",
+      "version": "0.86",
       "adrs": []
     },
     {
@@ -399,7 +399,7 @@
     {
       "id": "DATA-04",
       "path": "docs/sdlc/data-design.md",
-      "version": "0.12",
+      "version": "0.13",
       "adrs": []
     },
     {
@@ -543,7 +543,7 @@
       "id": "DGM-DATA-01",
       "path": "docs/sdlc/diagrams/data/workspace-erd.mmd",
       "drawio": "docs/sdlc/diagrams/data/workspace-erd.drawio",
-      "version": "0.3",
+      "version": "0.4",
       "origin": "DGM-DESIGN-01",
       "sources": [
         "PRD-01",
@@ -559,10 +559,13 @@
         "ADR-0012",
         "ADR-0017",
         "ADR-0018",
-        "ADR-0023"
+        "ADR-0023",
+        "ADR-0024",
+        "ADR-0025"
       ],
       "kind": "design",
-      "purpose": "Workspace physical ERD â€” owned schema"
+      "purpose": "Workspace physical ERD â€” owned schema",
+      "date": "28 October 2026"
     },
     {
       "id": "DGM-DATA-02",

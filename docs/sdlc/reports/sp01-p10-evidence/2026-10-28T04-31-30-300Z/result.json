@@ -1,0 +1,153 @@
+{
+  "runId": "2026-10-28T04-31-30-300Z",
+  "inputStable": true,
+  "commands": [
+    {
+      "name": "command-1.json",
+      "exitCode": 0,
+      "sha256": "b3f8c6cfe9c8173c0bc214163d75a8292061dbcd20700ad882c587d927043818"
+    },
+    {
+      "name": "command-2.json",
+      "exitCode": 0,
+      "sha256": "11fe5e912d2b0dfc5cd213ef5b5e9a661d903658d031cdd94b24bb2b8a83e529"
+    },
+    {
+      "name": "command-3.json",
+      "exitCode": 0,
+      "sha256": "0b1e5faee6e6ab00a94181c6b91ae46d1b6e7f1b96c335f1cad08be8c2fcef11"
+    },
+    {
+      "name": "command-4.json",
+      "exitCode": 0,
+      "sha256": "4ef29f5118ae7d518eb2521dd3a4b14a52fe45524d55f6c24baac4411e308f79"
+    },
+    {
+      "name": "command-5.json",
+      "exitCode": 0,
+      "sha256": "e73811113db65281445c1d6e015aa5558591de065b010664c9976ffd541af6a9"
+    },
+    {
+      "name": "command-6.json",
+      "exitCode": 0,
+      "sha256": "08e0168fb6867a7748d9999955f4841683ef840d8491faa0961ceb274794e40c"
+    },
+    {
+      "name": "command-7.json",
+      "exitCode": 0,
+      "sha256": "243405a1bd06940530f8c11fe8979abde2d078842a41e4c7872d35bb8b03f9d9"
+    },
+    {
+      "name": "command-8.json",
+      "exitCode": 0,
+      "sha256": "60392319160abfcb06441c0c334cc18fc04aa662781ee29582cd7ed306f5cf93"
+    },
+    {
+      "name": "command-9.json",
+      "exitCode": 0,
+      "sha256": "90d13d0020180b5fd73e3b8cd9916a15c3317ba4e9e84eb0fd9d0f38a4e2115d"
+    }
+  ],
+  "before": {
+    "path": "manifest-before.json",
+    "sha256": "c81e2bb4154d8eb5affb54ffb5c9584b69fb0a2294bf80abf85dc1876d11361f"
+  },
+  "after": {
+    "path": "manifest-after.json",
+    "sha256": "c81e2bb4154d8eb5affb54ffb5c9584b69fb0a2294bf80abf85dc1876d11361f"
+  },
+  "scope": "P10 GET/DELETE lifecycle and P08/P09 regressions; no browser/D-07 or deployment calibration acceptance",
+  "review": "Author verification only",
+  "sources": [
+    ".tmp/verify-p10.mjs",
+    "apps/web/dev/https.ts",
+    "apps/web/package.json",
+    "apps/web/test/app.test.ts",
+    "apps/web/test/https-proxy.test.ts",
+    "apps/web/test/https.test.ts",
+    "apps/web/tsconfig.json",
+    "apps/web/vite.config.ts",
+    "contracts/openapi/knowledge.openapi.json",
+    "contracts/openapi/workspace.openapi.json",
+    "infra/postgres/bootstrap.sh",
+    "infra/postgres/bootstrap.sql",
+    "package-lock.json",
+    "package.json",
+    "scripts/context/verify-api-routing.mjs",
+    "scripts/context/verify-regression.mjs",
+    "scripts/context/verify-research.mjs",
+    "scripts/contract-schemas.mjs",
+    "scripts/contracts/verify-handoff-bytes.mjs",
+    "scripts/database.mjs",
+    "scripts/design-diagrams.mjs",
+    "scripts/docs/docs-metadata.mjs",
+    "scripts/docs/layout-reviewed-diagrams.mjs",
+    "scripts/docs/layout-use-case.mjs",
+    "scripts/docs/sync-ai-diagram.mjs",
+    "scripts/docs/sync-permission-diagrams.mjs",
+    "scripts/docs/verify-docs.mjs",
+    "scripts/notebooklm/notebooklm-domain-compat.mjs",
+    "scripts/notebooklm/notebooklm_sync.mjs",
+    "scripts/verify-context.mjs",
+    "services/knowledge/migrations/001-store.down.sql",
+    "services/knowledge/migrations/001-store.up.sql",
+    "services/knowledge/migrations/002-current-revisions.down.sql",
+    "services/knowledge/migrations/002-current-revisions.up.sql",
+    "services/knowledge/migrations/003-handoff-store.down.sql",
+    "services/knowledge/migrations/003-handoff-store.up.sql",
+    "services/knowledge/package.json",
+    "services/knowledge/src/app.ts",
+    "services/knowledge/src/config.ts",
+    "services/knowledge/src/server.ts",
+    "services/knowledge/test/app.test.ts",
+    "services/knowledge/tsconfig.build.json",
+    "services/knowledge/tsconfig.json",
+    "services/workspace/migrations/001-store.down.sql",
+    "services/workspace/migrations/001-store.up.sql",
+    "services/workspace/migrations/002-registered-policy.down.sql",
+    "services/workspace/migrations/002-registered-policy.up.sql",
+    "services/workspace/migrations/003-work-location.down.sql",
+    "services/workspace/migrations/003-work-location.up.sql",
+    "services/workspace/migrations/004-protected-claims.down.sql",
+    "services/workspace/migrations/004-protected-claims.up.sql",
+    "services/workspace/migrations/005-session-foundation.down.sql",
+    "services/workspace/migrations/005-session-foundation.up.sql",
+    "services/workspace/migrations/006-session-lifecycle.down.sql",
+    "services/workspace/migrations/006-session-lifecycle.up.sql",
+    "services/workspace/package.json",
+    "services/workspace/src/app.ts",
+    "services/workspace/src/config.ts",
+    "services/workspace/src/server.ts",
+    "services/workspace/src/session/config.ts",
+    "services/workspace/src/session/database.ts",
+    "services/workspace/src/session/http.ts",
+    "services/workspace/src/session/kdf.ts",
+    "services/workspace/src/session/operator.ts",
+    "services/workspace/src/session/ports.ts",
+    "services/workspace/src/session/runtime.ts",
+    "services/workspace/src/session/schemas.ts",
+    "services/workspace/src/session/store.ts",
+    "services/workspace/test/app.test.ts",
+    "services/workspace/test/kdf.test.ts",
+    "services/workspace/test/session-config.test.ts",
+    "services/workspace/test/session-runtime.test.ts",
+    "services/workspace/tsconfig.build.json",
+    "services/workspace/tsconfig.json",
+    "tests/concurrency/guard.test.mjs",
+    "tests/context/context.test.mjs",
+    "tests/contracts/contract-schemas.test.mjs",
+    "tests/contracts/handoff-bytes.test.mjs",
+    "tests/docs/docs.test.mjs",
+    "tests/fixtures/openapi31/schema-2022-10-07.json",
+    "tests/notebooklm/notebooklm-dialog.test.mjs",
+    "tests/notebooklm/notebooklm-domain-compat.test.mjs",
+    "tests/storage.test.mjs",
+    "tests/storage/handoff-receipt-integration.test.mjs",
+    "tests/storage/handoff-storage.test.mjs",
+    "tests/workspace/fixture.mjs",
+    "tests/workspace/http.test.mjs",
+    "tests/workspace/lifecycle.test.mjs",
+    "tests/workspace/persistence.test.mjs",
+    "tsconfig.base.json"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "command": [
+    "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+    "ci",
+    "--ignore-scripts",
+    "--offline",
+    "--no-audit",
+    "--no-fund"
+  ],
+  "started": "2026-10-28T04:57:40.234Z",
+  "finished": "2026-10-28T04:57:41.788Z",
+  "exitCode": 4294963248,
+  "stdout": "",
+  "stderr": "npm error code EPERM\nnpm error syscall unlink\nnpm error path D:\\scrum-workspace-KMS-ai\\node_modules\\@rolldown\\binding-win32-x64-msvc\\rolldown-binding.win32-x64-msvc.node\nnpm error errno -4048\nnpm error [Error: EPERM: operation not permitted, unlink 'D:\\scrum-workspace-KMS-ai\\node_modules\\@rolldown\\binding-win32-x64-msvc\\rolldown-binding.win32-x64-msvc.node'] {\nnpm error   errno: -4048,\nnpm error   code: 'EPERM',\nnpm error   syscall: 'unlink',\nnpm error   path: 'D:\\\\scrum-workspace-KMS-ai\\\\node_modules\\\\@rolldown\\\\binding-win32-x64-msvc\\\\rolldown-binding.win32-x64-msvc.node'\nnpm error }\nnpm error\nnpm error The operation was rejected by your operating system.\nnpm error It's possible that the file was already in use (by a text editor or antivirus),\nnpm error or that you lack permissions to access it.\nnpm error\nnpm error If you believe this might be a permissions issue, please double-check the\nnpm error permissions of the file and its containing directories, or try running\nnpm error the command again as root/Administrator.\nnpm error A complete log of this run can be found in: C:\\Users\\MCK\\AppData\\Local\\npm-cache\\_logs\\2026-10-28T04_57_40_310Z-debug-0.log\n"
+}

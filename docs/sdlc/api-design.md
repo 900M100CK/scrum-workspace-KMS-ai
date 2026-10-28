@@ -1,9 +1,9 @@
 # API design — contract entry
 
 **Artifact ID:** API-05  
-**Version/date:** 0.17 Draft · 25 October 2026
+**Version/date:** 0.19 Draft · 28 October 2026
 **Status:** ADR-0007–ADR-0013 directions are owner-confirmed; transport implementation and independent review remain pending.
-**Inputs:** PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; DATA-04 v0.12; [contract pack](../../contracts/README.md) v0.19; ADR-0007–ADR-0017; Proposed ADR-0018.\; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022
+**Inputs:** PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; DATA-04 v0.13; [contract pack](../../contracts/README.md) v0.21; ADR-0007–ADR-0017; Proposed ADR-0018.\; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 The canonical payload/routes are the two OpenAPI files linked by the contract pack. Public consumers are the web UI; internal consumers are Workspace/Knowledge. Every operation has x-requirements, authenticated scope, resource parameters, explicit responses and mutation concurrency semantics. Context validation checks shape/trace only.
@@ -73,3 +73,11 @@ The Knowledge query get-handoff-manifest.sql now projects the existing StoredHan
 ## Input metadata reconciliation — 25 October 2026
 
 Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.
+
+## P09 session adapter — 28 October 2026
+
+Workspace v0.2.9 aligns the selected secure host-cookie name and declares bounded POST JSON transport errors 413/415. POST/GET /session have actual runtime/DB/HTTPS evidence in [P09 result](reports/SP-01-P09-http-2026-10-28.md); earlier unimplemented-handler statements describe prior stages. Explicit final object validation rejects extra output instead of silently projecting it. GET does not renew in this slice, and no project/document permission, UI/browser, logout or D-07 acceptance is implied. Operation count remains 66; Knowledge v0.2.9 is unchanged.
+
+## P10 bounded lifecycle implementation — 28 October 2026
+
+Workspace v0.2.10 documents GET idle renewal under the immutable absolute cap, secure cookie refresh and current-token DELETE with empty idempotent 204. Audit failure or unknown commit prevents success/cookie clearing; selected Origin/header and body constraints apply. [P10 evidence](reports/SP-01-P10-lifecycle-2026-10-28.md) is actual handler/DB evidence, not browser or D-07 acceptance. Operation inventory remains 66.

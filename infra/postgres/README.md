@@ -107,3 +107,11 @@ Upgrade rejects existing legacy protected_handoff rows rather than guessing thei
 ## Optional receipt integration check
 
 With installed development dependencies (npm ci), Node 24+ and Docker, run npm run contracts:storage:test for the isolated get-handoff-manifest.sql projection and byte-reference integration. This optional check uses Ajv development tooling; db:test remains dependency-free. The query binds independently validated actor/project/run/context/generations and canonicalizes PostgreSQL base64 line separators while preserving stored bytes. A matching row does not decide permissions or authorize another send. See HANDOFF-SQL-01 in docs/sdlc for evidence and limits.
+
+## Workspace 005 — owner-authorised P08 persistence
+
+Migration 005 adds private accounts, token digests, persistent clock health and authentication audit. db:migrate discovers it, but this task applied it only in disposable test databases. Upgrade refuses nonempty legacy Session rows; down refuses retained identities/audit/used-clock state. Do not clear data to bypass the guard. Existing 001–004 are unchanged. The clock begins unhealthy; explicit operator initialization/recovery and atomic session revocation/audit are required. See [the private operations guide](../../services/workspace/SESSION-OPERATIONS.md). Run npm run test:session:storage for owned role/failure/restart tests. No public login/logout handler, development upgrade or reset is implied.
+
+## P10 lifecycle audit extension
+
+Workspace migration 006 adds session_renewed/session_revoked to the authentication audit action constraint. Existing migrations 001–005 remain unchanged; 006 down refuses retained lifecycle events and never deletes them. P10 verification uses disposable storage only; no development migration is implied. Public session handlers now exist as described in [the HTTP guide](../../services/workspace/SESSION-HTTP.md); earlier stage notes retain their original execution scope.

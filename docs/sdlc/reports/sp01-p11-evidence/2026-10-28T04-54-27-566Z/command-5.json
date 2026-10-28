@@ -1,0 +1,13 @@
+{
+  "command": [
+    "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+    "run",
+    "test:session:ui"
+  ],
+  "started": "2026-10-28T04:54:55.123Z",
+  "finished": "2026-10-28T04:54:55.408Z",
+  "exitCode": 1,
+  "stdout": "\n> scrum-workspace-kms-context@0.1.0 test:session:ui\n> node --test --test-concurrency=1 tests/workspace/ui.test.mjs\n\nnode:internal/modules/package_json_reader:331\n  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);\n        ^\n\nError [ERR_MODULE_NOT_FOUND]: Cannot find package 'vite' imported from D:\\scrum-workspace-KMS-ai\\tests\\workspace\\ui.test.mjs\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    at packageResolve (node:internal/modules/esm/resolve:784:25)\n    at moduleResolve (node:internal/modules/esm/resolve:873:18)\n    at defaultResolve (node:internal/modules/esm/resolve:1006:11)\n    at #cachedDefaultResolve (node:internal/modules/esm/loader:705:20)\n    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:725:38)\n    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:763:56)\n    at #resolve (node:internal/modules/esm/loader:687:17)\n    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:607:35)\n    at ModuleJob.syncLink (node:internal/modules/esm/module_job:276:33) {\n  code: 'ERR_MODULE_NOT_FOUND'\n}\n\nNode.js v24.22.1\n✖ tests\\workspace\\ui.test.mjs (59.4722ms)\nℹ tests 1\nℹ suites 0\nℹ pass 0\nℹ fail 1\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 65.2188\n\n✖ failing tests:\n\ntest at tests\\workspace\\ui.test.mjs:1:1\n✖ tests\\workspace\\ui.test.mjs (59.4722ms)\n  'test failed'\n",
+  "stderr": ""
+}

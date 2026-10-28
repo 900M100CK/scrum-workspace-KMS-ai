@@ -1,9 +1,9 @@
 # Logical data and lifecycle design
 
 **Artifact ID:** DATA-04  
-**Version/date:** 0.12 Draft · 25 October 2026
+**Version/date:** 0.13 Draft · 28 October 2026
 **Status:** Draft for owner review; proposed policies/deferrals are not approved.
-**Inputs:** PRD-01 v0.9; UC-02 v0.8; [SAD-03](../architecture.md) v0.16; [logical entities](../../contracts/data-model.json) v0.8; owner-authorised ADR-0004 implementation; ADR-0007–ADR-0017.; Proposed ADR-0018.; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
+**Inputs:** PRD-01 v0.9; UC-02 v0.8; [SAD-03](../architecture.md) v0.16; [logical entities](../../contracts/data-model.json) v0.9; owner-authorised ADR-0004 implementation; ADR-0007–ADR-0017.; Proposed ADR-0018.; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; [ADR-0024](../adr/0024-backend-session-foundation.md); [ADR-0025](../adr/0025-opaque-session-candidate.md)
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 ## Ownership and relationships
@@ -143,3 +143,9 @@ New down scripts refuse nonempty protected records. Upgrade rejects legacy prote
 ## Input metadata reconciliation — 25 October 2026
 
 Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.
+
+## Owner-authorised P08 authentication storage — 28 October 2026
+
+Workspace 005 adds auth_account, session_token, auth_clock_state and append-only authentication_audit. Existing session holds effective expiry and references private account identity; immutable token metadata holds only digest and original absolute cap. Clock begins unhealthy and runtime cannot reset it. Operator recovery compares explicit attestation/preconditions and revokes all prior sessions with audit before restoring health; missing clock denies. Manual disable denies login and all existing sessions. No automatic account lockout or physical cleanup is selected. Authentication audit is private and project-independent; project audit entitlement grants no global account visibility.
+
+Existing 001–004 SQL bytes remain unchanged. Upgrade refuses nonempty legacy sessions; down refuses retained account/token/audit/used-clock state. Empty forward/reverse/reapply and actual runtime/operator-role negatives are tested on disposable PostgreSQL only; no development upgrade or HTTP authentication acceptance is implied. A narrowly scoped SECURITY DEFINER account-lock function with fixed search_path supplies row locking without granting runtime credential UPDATE. Logical JSON v0.9 and DGM-DATA-01 v0.4 reflect this owned slice. The [P08 design](../implementation/features/sp-01-session-foundation/p08-persistence-design.md) records scope and limitations; KDF deployment calibration and unobserved-clock intervals remain open, with ADRs Proposed. API/test-plan input metadata is synchronized to DATA-04 v0.13; no wire operation or planned acceptance assertion changes.

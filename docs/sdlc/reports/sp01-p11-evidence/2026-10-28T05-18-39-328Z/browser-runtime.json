@@ -1,0 +1,9 @@
+{
+  "url": "https://localhost:5181",
+  "container": "sp01-p08-test-738769743c05",
+  "execSessionId": 5888,
+  "tabId": "1",
+  "browser": "iab",
+  "disposition": "Built HTTPS preview retained for owner testing; synthetic credentials unchanged, initial user session signed out",
+  "cleanup": "Send stop followed by Enter to exec session 5888; helper removes only its validated task-owned fixture."
+}

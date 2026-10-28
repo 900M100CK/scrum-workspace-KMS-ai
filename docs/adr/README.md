@@ -1,6 +1,6 @@
 # Architecture decision index
 
-Updated 27 October 2026. Owner-confirmed direction is distinct from implemented and tested behaviour. No commit or independent review is implied by this index.
+Updated 28 October 2026. Owner-confirmed direction is distinct from implemented and tested behaviour. No commit or independent review is implied by this index.
 
 | Record | Current decision status |
 | --- | --- |
@@ -36,6 +36,6 @@ The [business review](../analyst/business-review-2026-10-13.md) records the sour
 
 [ADR-0023: immutable handoff storage](0023-immutable-handoff-storage.md) — v0.2 Proposed. Knowledge 003 stores immutable exact manifests and outcomes; Workspace 004 reserves permanent protected idempotency claims and append-only outcomes. Isolated SQL tests supplied; development migration, handlers/guard/relay and active-process enforcement remain pending.
 
-[ADR-0024: backend session foundation](0024-backend-session-foundation.md) — v0.1 Proposed. D-01a candidates and HTTP/schema/transaction compatibility gates for SP-01.1; separate frontend adoption, no application dependency selection.
+[ADR-0024: backend session foundation](0024-backend-session-foundation.md) — v0.5 Proposed for detailed mechanics. Selected shared framework foundation is retained; measured driver/validation recommendations and adoption limits are explicit.
 
-[ADR-0025: opaque session candidate](0025-opaque-session-candidate.md) — v0.1 Proposed. D-02 candidate, exact session contract and open expiry/provisioning/CSRF choices; no session migration or owner acceptance.
+[ADR-0025: opaque session candidate](0025-opaque-session-candidate.md) — v0.5: owner-confirmed session policy direction and bounded P08/P09/P10 implementation; detailed adoption Proposed. Measured clock fault/recovery and KDF candidates retain trusted-time and application evidence gates.

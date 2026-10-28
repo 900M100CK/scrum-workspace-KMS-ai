@@ -2,7 +2,7 @@
   "openapi": "3.1.1",
   "info": {
     "title": "Workspace service public facade and internal policy",
-    "version": "0.2.8",
+    "version": "0.2.10",
     "description": "Draft contract; policy/stack decisions remain proposed. Schema validation proves shape only."
   },
   "x-status": "Draft",
@@ -25,7 +25,7 @@
           "FR-01",
           "FR-36"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. Requires exact configured HTTPS Origin and X-SACW-Request: 1. Body validation rejects extra fields and coercion; responses use no-store. Token is delivered only through the secure host cookie.",
         "parameters": [],
         "responses": {
           "200": {
@@ -74,12 +74,32 @@
               }
             }
           },
+          "413": {
+            "description": "JSON request exceeds the configured 8192-byte body limit",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported request media type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
           "503": {
             "$ref": "#/components/responses/Unavailable"
           }
         },
         "security": [],
-        "x-policy-decision": "OD-09: local pre-provisioned credentials proposed; exact identity mechanism requires validation.",
+        "x-policy-decision": "Owner-selected pre-provisioned username credentials and secure same-origin opaque cookie; POST/GET/DELETE implemented in bounded P09/P10 scope, wider deployment and guard acceptance remain open.",
         "requestBody": {
           "required": true,
           "content": {
@@ -97,7 +117,7 @@
         "x-requirements": [
           "FR-37"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "Requires exact configured HTTPS Origin and X-SACW-Request: 1; no request body. Revokes only the current token with mandatory atomic audit before returning empty 204 and clearing the secure host cookie. Absent, malformed, unknown, expired or already revoked token is idempotent 204. DB/audit failure or unknown commit returns 503 without clearing the cookie or claiming confirmed logout. Revocation may reduce access while clock health is fault-latched; it cannot reset health. Responses use no-store.",
         "parameters": [],
         "responses": {
           "204": {
@@ -141,6 +161,26 @@
           },
           "503": {
             "$ref": "#/components/responses/Unavailable"
+          },
+          "413": {
+            "description": "JSON request exceeds the configured 8192-byte body limit",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported request media type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           }
         },
         "x-release-priority": "Must"
@@ -151,7 +191,7 @@
           "FR-01",
           "FR-68"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "Server derives identity only from the secure host cookie and current persisted state. GET renews only a strictly unexpired enabled session, never regresses the effective deadline or slides its immutable absolute cap. Successful response refreshes the same secure cookie from DB expiry. Missing, ambiguous, expired, revoked or disabled identity denies access. Responses use no-store. A request authorized before logout may already be in flight; session serialization is not a protected-content handoff guard.",
         "parameters": [],
         "responses": {
           "200": {
@@ -5164,7 +5204,7 @@
       "sessionCookie": {
         "type": "apiKey",
         "in": "cookie",
-        "name": "session"
+        "name": "__Host-sacw-session"
       },
       "serviceKey": {
         "type": "apiKey",

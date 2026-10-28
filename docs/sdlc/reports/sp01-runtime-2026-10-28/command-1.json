@@ -1,0 +1,19 @@
+{
+  "command": [
+    "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "D:\\scrum-workspace-KMS-ai\\node_modules\\typescript\\bin\\tsc",
+    "--noEmit",
+    "--strict",
+    "--skipLibCheck",
+    "--target",
+    "es2022",
+    "--module",
+    "nodenext",
+    "--moduleResolution",
+    "nodenext",
+    "D:\\scrum-workspace-KMS-ai\\.tmp\\sp01-foundation-2026-10-27\\runtime\\src\\toolchain.ts"
+  ],
+  "exitCode": 0,
+  "stdout": "",
+  "stderr": ""
+}

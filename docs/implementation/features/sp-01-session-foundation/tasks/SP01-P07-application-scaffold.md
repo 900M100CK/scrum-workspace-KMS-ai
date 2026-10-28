@@ -1,9 +1,9 @@
 # SP01-P07 — Selected application scaffold and commands
 
 **Artifact ID:** SP01-P07\
-**Version/date:** 0.1 Draft · 27 October 2026\
+**Version/date:** 0.8 Draft · 28 October 2026\
 **Status:** Task brief only; execution state and result are authoritative in the parent plan.\
-**Inputs:** [FEAT-SP01-01](../plan.md) v0.2; [canonical SP-01](../../../../../specs/001-session.md) v0.4; [canonical brief](../../../briefs/SP-01.1-session-foundation.md) v0.2; [runtime spike brief](../../../../../SP-01.1-spike-brief.md) v0.2; Proposed ADR-0024/0025.\
+**Inputs:** [FEAT-SP01-01](../plan.md) v0.9; [canonical SP-01](../../../../../specs/001-session.md) v0.5; [canonical brief](../../../briefs/SP-01.1-session-foundation.md) v0.4; [runtime spike brief](../../../../../SP-01.1-spike-brief.md) v0.2; Proposed ADR-0024/0025.\
 **Trace:** Parent SP-01.2; FR-01/36/37/68 and relevant ACs/TCs as mapped in the plan; BR-01/10; SC-06 relevance, not passed coverage.\
 **Owner role:** Sequential implementer.
 
@@ -12,16 +12,16 @@
 Read [parent plan and current state](../plan.md#tasks-and-acceptance), [execution rules](../../../execution.md), [root instructions](../../../../../AGENTS.md) and the exact contract/requirements linked by the parent. Do not start a gated task merely because this file exists.
 
 - Phase: application implementation; prerequisite decisions must be recorded.
-- Prerequisites: SP01-P06 actual D-01a/D-02 disposition and recorded coordinated path scope.
+- Prerequisites: SP01-P06 bounded owner disposition recorded in the parent plan. Scaffold/interfaces/local HTTPS may proceed; KDF/time/persistence adoption remains gated separately.
 - Allowed write scope: services/workspace/**, apps/web/**, tests/workspace/**. Root scripts/package/lockfile or other shared paths only after an explicit coordinated scope update.
 - Parent: PLAN-01 Month 1 / M-01; canonical pack child 01.2.
 - Guardrails: retain service ownership, current server-derived authority and mandatory applicable audit; no accepted-ADR edits, commits, external real-data transfers or parallel agents by this task.
 
 ## Work steps
 
-1. Re-read recorded selections and compatibility results; use the smallest observed working application tuple.
-2. Create service-local scaffold/config with bounded owned pools and domain/adapter separation.
-3. Wire actual application launch/typecheck/build/test commands only in permitted scope and execute them.
+1. Reuse the selected shared framework foundation. Add clock/password-verifier interfaces and validated configurable starting idle/absolute values; implement no concrete KDF or time algorithm.
+2. Add opt-in local HTTPS and a same-origin /api proxy to Workspace. Keep keys ignored, target loopback only, and test the actual transport before P11.
+3. Run existing launch/typecheck/build/foundation commands. Database pools/persistence and selected algorithms remain later gated work; no scaffold test claims session correctness.
 
 ## Acceptance assertions
 

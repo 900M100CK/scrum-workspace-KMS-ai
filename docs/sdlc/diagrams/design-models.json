@@ -1165,8 +1165,8 @@
       "title": "Workspace physical ERD — owned schema",
       "notation": "erd",
       "trace": "BR-01–BR-03, BR-06, BR-10–BR-12; SC-03/04/06",
-      "scope": "Schema through Workspace migration 004; development database upgrade not claimed. Selected columns; storage/service constraints are not end-user authority.",
-      "legend": "Relationship label names FK columns; ||--o{ means parent 1 to child 0..many. User IDs are opaque; no User table or cross-store FK. Session/idempotency have no project FK.",
+      "scope": "Schema through owner-authorised Workspace migration 005; development database upgrade not claimed. Selected columns; storage/service constraints are not end-user authority.",
+      "legend": "Relationship label names FK columns; ||--o{ means parent 1 to child 0..many. AuthAccount is private authentication storage; no cross-store FK. Session/idempotency/authentication audit have no project FK.",
       "adrs": [
         "ADR-0004",
         "ADR-0007",
@@ -1175,7 +1175,9 @@
         "ADR-0012",
         "ADR-0017",
         "ADR-0018",
-        "ADR-0023"
+        "ADR-0023",
+        "ADR-0024",
+        "ADR-0025"
       ],
       "nodes": [
         {
@@ -1201,7 +1203,7 @@
           "id": "session",
           "fields": [
             "uuid session_id PK",
-            "uuid user_id",
+            "uuid user_id FK",
             "boolean revoked",
             "timestamptz expires_at",
             "bigint revision"
@@ -1315,6 +1317,49 @@
             "timestamptz observed_at",
             "text enforcement_ref"
           ]
+        },
+        {
+          "id": "auth_account",
+          "fields": [
+            "uuid user_id PK",
+            "text username UK",
+            "text password_credential \"private encoded KDF\"",
+            "boolean disabled",
+            "bigint credential_revision"
+          ]
+        },
+        {
+          "id": "session_token",
+          "fields": [
+            "uuid session_id PK,FK",
+            "text token_digest UK",
+            "timestamptz created_at",
+            "timestamptz absolute_expires_at \"immutable cap\""
+          ]
+        },
+        {
+          "id": "auth_clock_state",
+          "fields": [
+            "boolean singleton PK",
+            "timestamptz last_observed",
+            "boolean healthy",
+            "bigint recovery_generation"
+          ]
+        },
+        {
+          "id": "authentication_audit",
+          "fields": [
+            "uuid event_id PK",
+            "text action",
+            "uuid actor_user_id",
+            "uuid entity_id",
+            "text operator_ref",
+            "text database_principal",
+            "timestamptz observed_at",
+            "bigint recovery_generation",
+            "uuid correlation_id",
+            "text evidence_ref"
+          ]
         }
       ],
       "edges": [
@@ -1395,6 +1440,18 @@
           "from": "idempotency_record",
           "to": "protected_handoff_outcome",
           "label": "actor operation key fence; append-only"
+        },
+        {
+          "from": "auth_account",
+          "to": "session",
+          "label": "user_id",
+          "card": "||--o{"
+        },
+        {
+          "from": "session",
+          "to": "session_token",
+          "label": "session_id",
+          "card": "||--||"
         }
       ]
     },

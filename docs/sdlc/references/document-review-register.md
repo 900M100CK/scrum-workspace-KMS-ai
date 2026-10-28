@@ -1,9 +1,9 @@
 # Supporting document review register
 
 **Artifact ID:** DOC-REVIEW-REG-01\
-**Version/date:** 0.20 Draft · 27 October 2026\
+**Version/date:** 0.27 Draft · 28 October 2026\
 **Status:** Review planning with bounded author rechecks recorded below; no full document-type review or approval.\
-**Inputs:** [Development rules](../../development-rules.md) v1.9; [PREFLIGHT-01](../../agent-preflight-checklist.md) v0.1; [REG-00](../artifact-register.md) v0.79; [SDLC-INDEX-01](../README.md) v0.3; [SDLC workflow](../../../agents/WORKFLOW.md), unversioned working guide.\
+**Inputs:** [Development rules](../../development-rules.md) v1.12; [PREFLIGHT-01](../../agent-preflight-checklist.md) v0.1; [REG-00](../artifact-register.md) v0.86; [SDLC-INDEX-01](../README.md) v0.3; [SDLC workflow](../../../agents/WORKFLOW.md), unversioned working guide.\
 **Trace:** Supports navigation and review of existing BR-01–BR-15 / SC-01–SC-08 documentation; no new requirement, application slice or acceptance criterion.\
 **Owner role:** SDLC coordinator; review assignments remain unassigned.
 
@@ -100,3 +100,31 @@ Revision 0.18 synchronizes REG-00 v0.77 and development-rules v1.8 for feature f
 Revision 0.19 synchronizes REG-00 v0.78 and development-rules v1.9 after owner-directed framework setup and prototype preservation. Framework result is author verification only; no historical finding, reviewer assignment or domain/security acceptance is changed.
 
 Revision 0.20 synchronizes REG-00 v0.79 after actual framework main/feature publication. Owner destination confirmation and author checks do not create independent review or domain acceptance.
+
+## Runtime evidence navigation update — 28 October 2026
+
+Revision 0.21 synchronizes current REG-00 v0.80 and the bounded SP-01 runtime/decision handoff. Laboratory results, retained failures and owner direction do not assign independent review or accept production policy.
+
+## P08 navigation update — 28 October 2026
+
+Revision 0.22 synchronizes REG-00 v0.81 for the owner-authorised P08 persistence/schema implementation. Actual runtime-role tests do not create independent review, deployment assurance or ADR acceptance.
+
+## P09 evidence navigation
+
+Revision 0.23 synchronizes REG-00 v0.82 for actual P09 handlers and retained runtime evidence. Author verification is separate from independent review and broader ADR/feature acceptance.
+
+## P10 evidence navigation
+
+Revision 0.24 links REG-00 v0.83 and bounded lifecycle evidence. Author verification is not independent review or feature/ADR acceptance.
+
+## P11 evidence navigation
+
+Revision 0.25 registers bounded UI/consumer evidence and a separate actual-browser certificate handoff. Author verification is not independent review or full acceptance.
+
+## P11 browser continuation — 28 October 2026
+
+The owner completed the certificate handoff. Actual keyboard login, reload/cookie reuse, navigation/back, server expiry and logout were observed; browser outcomes are retained in SP01-P11-RESULT v0.2. P12 and broader acceptance remain open. No independent approval is implied.
+
+## P12 integrated handoff — 28 October 2026
+
+See [P12 result](../reports/SP-01-P12-handoff-2026-10-28.md) for bounded integrated session/UI regression, owner local test feedback and screenshot evidence. AC-01/36/37/68 and applicable session producers/UI are mapped there; D-07, other protected features, full cross-browser/accessibility and deployment/formal ADR gates remain open. No new requirement or independent acceptance is inferred.

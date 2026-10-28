@@ -1,0 +1,13 @@
+{
+  "command": [
+    "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+    "run",
+    "test:session:http"
+  ],
+  "started": "2026-10-28T04:03:40.606Z",
+  "finished": "2026-10-28T04:03:54.401Z",
+  "exitCode": 0,
+  "stdout": "\n> scrum-workspace-kms-context@0.1.0 test:session:http\n> npm run build --workspace @sacw/workspace && node --test --test-concurrency=1 tests/workspace/http.test.mjs\n\n\n> @sacw/workspace@0.1.0 build\n> tsc -p tsconfig.build.json\n\n▶ P09 actual signIn/getSession handlers with owned PostgreSQL\n  ✔ invalid/excess/poisoned credential bodies reject before KDF or session writes without mutation (42.8367ms)\n  ✔ Origin/custom-header negatives do not reach credentials; configured transport errors have Error shape (4.756ms)\n  ✔ known wrong and unknown credentials run KDF and have identical generic failures with no session (1110.7393ms)\n  ✔ valid login commits session/audit, issues fresh secure host-only cookie and server request correlation (351.731ms)\n  ✔ GET actor comes only from cookie; forged headers/query/old cookie name do not grant identity (16.1797ms)\n  ✔ manual disable rejects current token and credentials with the same public failure (1206.1758ms)\n  ✔ real expired and revoked sessions deny GET with declared shape (436.9315ms)\n  ✔ real session audit failure rolls back and never sends a success cookie (448.2097ms)\n  ✔ DB read failures and unready clock return unavailable, never unrestricted success (847.3774ms)\n  ✔ KDF saturation maps to declared 503 without creating a session (26.4352ms)\n  ✔ actual captured normal/error logs omit password, cookie, URL and internal error canaries (1.5863ms)\n  ✔ actual trusted HTTPS verifies success wire shape and cookie expiry (533.9904ms)\n  ✔ invalid internal output is withheld before projection and drops already-prepared cookie (408.6856ms)\n  ✔ compiled server actually wires runtime credentials/origin and session routes (952.6743ms)\n✔ P09 actual signIn/getSession handlers with owned PostgreSQL (11916.2421ms)\nℹ {\"container\":\"sp01-p08-test-140f297b7f48\",\"image\":\"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966\",\"scope\":\"Actual P09 POST/GET plus real PostgreSQL; no logout/renewal/browser/D-07 acceptance\"}\nℹ tests 15\nℹ suites 0\nℹ pass 15\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 12181.6354\n",
+  "stderr": ""
+}

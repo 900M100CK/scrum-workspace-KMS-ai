@@ -1,0 +1,29 @@
+{
+  "capturedAfterRun": "2026-10-28T04:39:03.516982+00:00",
+  "scope": "Supplemental post-run scoped untracked inventory; before/after manifests and archives remain the execution identity",
+  "untrackedInputs": [
+    "apps/web/dev/https.ts",
+    "apps/web/test/https-proxy.test.ts",
+    "apps/web/test/https.test.ts",
+    "services/workspace/migrations/005-session-foundation.down.sql",
+    "services/workspace/migrations/005-session-foundation.up.sql",
+    "services/workspace/migrations/006-session-lifecycle.down.sql",
+    "services/workspace/migrations/006-session-lifecycle.up.sql",
+    "services/workspace/src/session/config.ts",
+    "services/workspace/src/session/database.ts",
+    "services/workspace/src/session/http.ts",
+    "services/workspace/src/session/kdf.ts",
+    "services/workspace/src/session/operator.ts",
+    "services/workspace/src/session/ports.ts",
+    "services/workspace/src/session/runtime.ts",
+    "services/workspace/src/session/schemas.ts",
+    "services/workspace/src/session/store.ts",
+    "services/workspace/test/kdf.test.ts",
+    "services/workspace/test/session-config.test.ts",
+    "services/workspace/test/session-runtime.test.ts",
+    "tests/workspace/fixture.mjs",
+    "tests/workspace/http.test.mjs",
+    "tests/workspace/lifecycle.test.mjs",
+    "tests/workspace/persistence.test.mjs"
+  ]
+}

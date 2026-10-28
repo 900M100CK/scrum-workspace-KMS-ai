@@ -1,0 +1,44 @@
+{
+  "kind": "Post-verification source snapshot and authored summary of actual tool outputs; not a before/after capture or raw command transcript",
+  "createdAt": "2026-10-28T02:50:52.869Z",
+  "node": "v24.22.1",
+  "head": "93d2e7efa5f33711be322a8376cd0468acad17e0",
+  "branch": "feature/sp-01-session-foundation",
+  "scopedDiffSha256": "1f45a2f88a436e1c4cd5a22d43af6c09868b4d7d122848d531eab6ba64da1019",
+  "inputs": {
+    "apps/web/vite.config.ts": "f8eb132fd8735aeb40f61223aef7749209cd9076a91e792f8e32f98821da3a73",
+    "apps/web/dev/https.ts": "c84aba2fa78612289153084c5382e4b9814be3a1bed02aee5aa44cb8faaa271a",
+    "apps/web/tsconfig.json": "2f859aa335342cbda41677242ba1d6ad70761b4eb686eb77f3a35e1535917fcd",
+    "apps/web/test/app.test.ts": "78a04ff4b60f5f3233fcb055fa37f0f4f0b869a3ba67d7c67eae434f172bb837",
+    "apps/web/test/https.test.ts": "4a1e48b8ed7e10ff5906caea1484561cf78663419ca3a3640ee2eb74420a467e",
+    "apps/web/test/https-proxy.test.ts": "098e7cb8caba4d1607ca5cb4b2562370d0338ca045e063538fa882f1c12e72bb",
+    "services/workspace/src/app.ts": "d4eef4a60d5fda3eda846c8a3436363de68a416f5b7979588b0301900f2e6871",
+    "services/workspace/src/session/ports.ts": "8bbb67921749dcd2a85a08b53cfdbbb263213a4962b3068ad4738c9493554967",
+    "services/workspace/src/session/config.ts": "3174a9a8beac20a748b4d1dc348753c65341fa2ff20c88124ff8e919a4d569eb",
+    "services/workspace/test/app.test.ts": "881b26c412a9af94eccf37bc067493a988e04bb28fe623dff501ecdea8c033b5",
+    "services/workspace/test/session-config.test.ts": "9d087372b510803232b320c2286b7ac432d29218e6e2fc6561c348ba62311e49",
+    "services/workspace/tsconfig.json": "21dc960147c48a0527f4f673f76300a81b602422bcdaa1b96d56ec3c7541c982",
+    "services/workspace/tsconfig.build.json": "4dc275594b42e319ec2c1e796acaa01397a727f2ebad4a20b0c8d1a70d01f8cd",
+    "package.json": "7a62ef4659051d09836231a625279ade6b368de6b524bb2aac1f0f18fe427b4e",
+    "package-lock.json": "a0a12a56dec3c39cb59a8d53912285a0d457fa358884daa87e342f60c9496b91"
+  },
+  "publicCertificateSha256": "a5b82446be600cb90bc5913565b18cf594bc996d9ff80e8a69125c349e1a1bd1",
+  "commands": [
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run test:foundation (SACW_DEV_TLS_KEY and SACW_DEV_TLS_CERT supplied)",
+      "exitCode": 0,
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "applicationHandlerBehavioursVerified": 0
+}

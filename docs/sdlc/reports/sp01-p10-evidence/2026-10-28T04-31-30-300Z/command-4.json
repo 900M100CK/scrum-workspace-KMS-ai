@@ -1,0 +1,13 @@
+{
+  "command": [
+    "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+    "run",
+    "test:foundation"
+  ],
+  "started": "2026-10-28T04:31:52.662Z",
+  "finished": "2026-10-28T04:31:56.631Z",
+  "exitCode": 0,
+  "stdout": "\n> scrum-workspace-kms-context@0.1.0 test:foundation\n> npm run test --workspace @sacw/web && npm run test --workspace @sacw/workspace && npm run test --workspace @sacw/knowledge\n\n\n> @sacw/web@0.1.0 test\n> node --test test/*.test.ts\n\n✔ the actual Vite-transformed React entry renders the unimplemented-session state (113.9755ms)\nThe request id \"D:\\scrum-workspace-KMS-ai\\.tmp\\local-https\\localhost.key\" is outside of Vite serving allow list.\n\n- D:/scrum-workspace-KMS-ai\n\nRefer to docs https://vite.dev/config/server-options.html#server-fs-allow for configurations and more details.\n\n✔ opt-in trusted local HTTPS serves UI and proxies the actual Workspace without exposing keys (211.2603ms)\n✔ development TLS is opt-in and incomplete or missing key material fails explicitly (0.9102ms)\nℹ tests 3\nℹ suites 0\nℹ pass 3\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 665.4614\n\n> @sacw/workspace@0.1.0 test\n> node --test test/*.test.ts\n\n✔ workspace liveness is separate from protected functionality (56.19ms)\n✔ invalid port never silently changes the listening address (0.4633ms)\n✔ real localhost HTTP serves liveness and conceals unknown routes (33.6949ms)\n✔ strong scrypt has explicit memory, unique salts and real correct/wrong/dummy work (1034.2025ms)\n✔ KDF admits exactly two jobs without an unbounded queue and later recovers (430.7222ms)\nℹ {\"kind\":\"local synthetic resource observation; not deployment calibration\",\"twoJobsAndLaterMilliseconds\":430.2817,\"fsReadDuringJobsMilliseconds\":1.2880999999999858,\"uvThreadpool\":\"Node default (4)\",\"maxResidentKiB\":325284}\n✔ session starting values are configurable without silently accepting invalid duration units (1.2071ms)\n✔ runtime configuration cannot silently use an operator or another database (0.7934ms)\nℹ tests 7\nℹ suites 0\nℹ pass 7\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 1582.5015\n\n> @sacw/knowledge@0.1.0 test\n> node --test test/*.test.ts\n\n✔ knowledge liveness is separate from protected functionality (82.1527ms)\n✔ invalid port never silently changes the listening address (0.4327ms)\n✔ real localhost HTTP serves liveness and conceals unknown routes (38.5293ms)\nℹ tests 3\nℹ suites 0\nℹ pass 3\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 296.2255\n",
+  "stderr": ""
+}

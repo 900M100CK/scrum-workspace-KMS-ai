@@ -109,7 +109,7 @@ The system diagram inventory aligns with Philippe Kruchten's 4+1 Architectural V
 | DGM-SEQ-02 | [Draw.io](sequence/document-creation.drawio) / [Mermaid](sequence/document-creation.mmd) | Workspace-first document creation and uncertain outcomes | ADR-0007, ADR-0009, ADR-0011, ADR-0012, ADR-0017 |
 | DGM-STATE-01 | [Draw.io](state/document-and-readiness.drawio) / [Mermaid](state/document-and-readiness.mmd) | Version lifecycle and independent processing states | ADR-0007, ADR-0009, ADR-0011, ADR-0013 |
 | DGM-STATE-02 | [Draw.io](state/sprint-task-allocation.drawio) / [Mermaid](state/sprint-task-allocation.mmd) | Sprint, task, allocation and blocker state projections | ADR-0008, ADR-0012, ADR-0014, ADR-0018 |
-| DGM-DATA-01 | [Draw.io](data/workspace-erd.drawio) / [Mermaid](data/workspace-erd.mmd) | Workspace physical ERD â€” owned schema | ADR-0004, ADR-0007, ADR-0008, ADR-0011, ADR-0012, ADR-0017, ADR-0018, ADR-0023 |
+| DGM-DATA-01 | [Draw.io](data/workspace-erd.drawio) / [Mermaid](data/workspace-erd.mmd) | Workspace physical ERD â€” owned schema | ADR-0004, ADR-0007, ADR-0008, ADR-0011, ADR-0012, ADR-0017, ADR-0018, ADR-0023, ADR-0024, ADR-0025 |
 | DGM-DATA-02 | [Draw.io](data/knowledge-erd.drawio) / [Mermaid](data/knowledge-erd.mmd) | Knowledge physical ERD â€” owned schema | ADR-0004, ADR-0009, ADR-0011, ADR-0012, ADR-0013, ADR-0023 |
 | DGM-DATA-03 | [Draw.io](data/handoff-logical-model.drawio) / [Mermaid](data/handoff-logical-model.mmd) | Logical evidence and command additions â€” NOT applied schema | ADR-0011, ADR-0012, ADR-0013, ADR-0020, ADR-0021, ADR-0022, ADR-0023 |
 | DGM-DEPLOY-01 | [Draw.io](deployment/local-development.drawio) / [Mermaid](deployment/local-development.mmd) | Local development deployment â€” configured and proposed | ADR-0002, ADR-0003, ADR-0004, ADR-0006, ADR-0011 |
@@ -169,7 +169,7 @@ Current filesystem inspection found eight Draw.io files in the five type folders
 | Artifact ID | Version | Canonical source |
 | --- | --- | --- |
 | UML-07 | v0.21 | [Source](README.md) |
-| REG-00 | v0.79 | [Source](../artifact-register.md) |
+| REG-00 | v0.86 | [Source](../artifact-register.md) |
 | SAD-03 | v0.16 | [Source](../../architecture.md) |
 | UX-PERM-MATRIX-02 | v0.11 | [Source](../../ux/permission-matrix.md) |
 | UX-PERSONAS-01 | v0.5 | [Source](../../ux/personas.md) |
@@ -190,7 +190,7 @@ Current filesystem inspection found eight Draw.io files in the five type folders
 | DGM-UC-01 | v0.5 | [Source](use-case/use-case-diagram.mmd) |
 | DGM-REVIEW-02 | v0.1 | [Source](review-2026-10-16.md) |
 | DGM-REVIEW-03 | v0.1 | [Source](review-2026-10-17.md) |
-| DATA-04 | v0.12 | [Source](../data-design.md) |
+| DATA-04 | v0.13 | [Source](../data-design.md) |
 | DGM-DESIGN-01 | v0.1 | [Source](design-foundation-2026-10-17.md) |
 | DGM-C4-01 | v0.1 | [Source](c4/system-context.mmd) |
 | DGM-C4-02 | v0.1 | [Source](c4/containers.mmd) |
@@ -198,7 +198,7 @@ Current filesystem inspection found eight Draw.io files in the five type folders
 | DGM-SEQ-02 | v0.1 | [Source](sequence/document-creation.mmd) |
 | DGM-STATE-01 | v0.1 | [Source](state/document-and-readiness.mmd) |
 | DGM-STATE-02 | v0.2 | [Source](state/sprint-task-allocation.mmd) |
-| DGM-DATA-01 | v0.3 | [Source](data/workspace-erd.mmd) |
+| DGM-DATA-01 | v0.4 | [Source](data/workspace-erd.mmd) |
 | DGM-DATA-02 | v0.2 | [Source](data/knowledge-erd.mmd) |
 | DGM-DATA-03 | v0.5 | [Source](data/handoff-logical-model.mmd) |
 | DGM-DEPLOY-01 | v0.1 | [Source](deployment/local-development.mmd) |

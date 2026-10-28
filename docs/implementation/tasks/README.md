@@ -1,17 +1,17 @@
 # Implementation task catalogue
 
 **Artifact ID:** IMPL-TASKS-01\
-**Version/date:** 0.2 Draft · 27 October 2026\
-**Status:** SP-01.1 preparation In progress; no implemented handlers or completed application steps.\
-**Inputs:** [SPEC-INDEX](../../../specs/README.md) v0.4; [machine index](../../../specs/index.json) v0.4; [release tiers](../../planning/release-scope.json) v0.4; [source register](../register.md).\
+**Version/date:** 0.3 Draft · 28 October 2026\
+**Status:** SP-01 has bounded implemented session/UI regression evidence; wider release gates remain open; other packs unimplemented.\
+**Inputs:** [SPEC-INDEX](../../../specs/README.md) v0.7; [machine index](../../../specs/index.json) v0.4; [release tiers](../../planning/release-scope.json) v0.4; [source register](../register.md).\
 **Trace:** Existing BR-01–BR-14 / SC-01–SC-08 through the linked spec FR/ACs.\
 **Owner role:** Sequential development coordinator.
 
-Read [entry](../README.md), [decisions](../decisions.md), [roadmap](../roadmap.md) and [execution](../execution.md) before selecting one child step. Every pack has four children; IDs are local work identifiers, not new FRs or public operations. SP-01.1 preparation is In progress with a linked result; the other 51 children remain Not started. No calendar or new deferral is introduced. FR-45 remains withdrawn; FR-35 remains outside this release.
+Read [entry](../README.md), [decisions](../decisions.md), [roadmap](../roadmap.md) and [execution](../execution.md) before selecting one child step. Every pack has four children; IDs are local work identifiers, not new FRs or public operations. SP-01 child dispositions are recorded in its pack and P12 handoff; the other 48 children remain Not started. No calendar or new deferral is introduced. FR-45 remains withdrawn; FR-35 remains outside this release.
 
 | Pack | Observable goal | Canonical dependencies | Requirement tiers | Pack status |
 | --- | --- | --- | --- | --- |
-| [SP-01](01-session.md) | Use an authenticated session whose expiry and sign-out end protected access. | None | Must: FR-01, FR-36, FR-37, FR-68 | Preparation In progress; [dated result](../../sdlc/reports/SP-01.1-preparation-2026-10-27.md); application Not started |
+| [SP-01](01-session.md) | Use an authenticated session whose expiry and sign-out end protected access. | None | Must: FR-01, FR-36, FR-37, FR-68 | Bounded SP-01 execution/evidence; see [P12](../../sdlc/reports/SP-01-P12-handoff-2026-10-28.md); release gates open |
 | [SP-02](02-project-membership.md) | Set the authorised project scope and remove membership without grant revival. | SP-01 | Must: FR-02, FR-03, FR-38, FR-39; Could: FR-64 | Not started |
 | [SP-03](03-create-task.md) | Persist one Story/Task/Bug in the correct authorised project and basic board state. | SP-02 | Must: FR-05 | Not started |
 | [SP-04](04-update-task.md) | Update a task without stale overwrite and retain blocker resolution evidence. | SP-03 | Must: FR-09, FR-40, FR-43, FR-44 | Not started |

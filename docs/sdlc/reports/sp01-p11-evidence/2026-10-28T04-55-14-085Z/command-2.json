@@ -1,0 +1,13 @@
+{
+  "command": [
+    "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+    "run",
+    "typecheck"
+  ],
+  "started": "2026-10-28T04:55:25.205Z",
+  "finished": "2026-10-28T04:55:29.600Z",
+  "exitCode": 0,
+  "stdout": "\n> scrum-workspace-kms-context@0.1.0 typecheck\n> npm run typecheck --workspaces --if-present\n\n\n> @sacw/web@0.1.0 typecheck\n> tsc --noEmit\n\n\n> @sacw/workspace@0.1.0 typecheck\n> tsc --noEmit\n\n\n> @sacw/knowledge@0.1.0 typecheck\n> tsc --noEmit\n\n",
+  "stderr": ""
+}

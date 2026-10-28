@@ -5,7 +5,8 @@ import { readPort } from '../src/config.ts';
 test('workspace liveness is separate from protected functionality', async t => {
  const app = buildApp(); t.after(() => app.close());
  assert.deepEqual((await app.inject('/healthz')).json(), {status:'ok',service:'workspace'});
- for (const url of ['/session','/projects','/internal/permissions']) {
+ assert.equal((await app.inject('/session')).statusCode,503);
+ for (const url of ['/projects','/internal/permissions']) {
   const response = await app.inject(url); assert.equal(response.statusCode,404);
   assert.deepEqual(response.json(),{code:'not_found',message:'Resource unavailable'});
  }
@@ -24,6 +25,6 @@ test('real localhost HTTP serves liveness and conceals unknown routes', async t 
  assert(address && typeof address !== 'string');
  const base = `http://127.0.0.1:${address.port}`;
  const health = await fetch(base+'/healthz'); assert.equal(health.status,200);
- const denied = await fetch(base+'/session'); assert.equal(denied.status,404);
- assert.deepEqual(await denied.json(),{code:'not_found',message:'Resource unavailable'});
+ const denied = await fetch(base+'/session'); assert.equal(denied.status,503);
+ assert.deepEqual(await denied.json(),{code:'access_unavailable',message:'Session unavailable',run_id:null});
 });

@@ -1,0 +1,62 @@
+{
+  "scope": "Closed P08 runs and separate laboratory restart; source archives exclude TLS/environment files",
+  "runs": {
+    "prep-restart": {
+      "hashes": {
+        "manifest-before.json": "24294ddcc39fa9299c05cc03883a83acdd3d99340050133cc630b311334c81e3",
+        "manifest-after.json": "24294ddcc39fa9299c05cc03883a83acdd3d99340050133cc630b311334c81e3",
+        "source.zip": "ef66767924f21fa37b8080f1050117bbb651d63d2318f56e2fe2ef5b87557d98",
+        "command-1.json": "d453ac91c7e3e7662c310f958dd7f8293148f153610974593c578477d7165c76",
+        "result.json": "c08b057d527cd785702def8337a247debbf63d8fab2733f7c0e73e40d38cd276",
+        "command-3.json": "f3d6926ccbbf44d2bdacfaac1eedab8992814a100a94eba3d5aa08a4dd52a164",
+        "command-2.json": "1bc7fa74d66fd91cc360251013285cb9919aaa91f9e0b176a6dce87608277646",
+        "archive-receipt.json": "f7b7b95cd271c7f5a28e1f1275656cc7c715d66c9374229aed10faee48cf613d",
+        "report.md": "8ec28c431db7096eec40c51de66ae61b903db17d2244a61d30c7e81e4b82d273",
+        "receipt.json": "1defce7991719fff8733e1d90db02760ab13bdba02e3176bdedc8fd297496e67"
+      },
+      "sourceInputs": 23
+    },
+    "2026-10-28T03-24-35-431Z": {
+      "hashes": {
+        "manifest-after.json": "9c2b1d978318df3104ef58cda4003f2279842fb7cd224a2167f7ca565d748034",
+        "source.zip": "ecbc7bdd27d0897d3dd0e82ef5fe857ad413d14ffa2ad5088b3e8651ff27dcbd",
+        "command-1.json": "fc84c33534bd6a2b0e96430a5d83bbb9d23ccb25baffcb3033d96a2097a86ede",
+        "result.json": "486c4d5c453206622a45720cea1a697ef673bf92524ab1890782f3f7a269d00e",
+        "manifest-before.json": "9c2b1d978318df3104ef58cda4003f2279842fb7cd224a2167f7ca565d748034",
+        "command-2.json": "1842178defc2abde419a0343a14aa6ab319769798fd5973f7cb7876926a894f0",
+        "archive-receipt.json": "a12db6d27c74f091697b3600fe0d34717918b7ae172ca2178a61b2af116aa542",
+        "receipt.json": "111aa647414bc5490e22d9b348d5c41e8760550c0de8bab9af2d42a311783da2"
+      },
+      "sourceInputs": 82
+    },
+    "2026-10-28T03-17-53-621Z": {
+      "hashes": {
+        "manifest-before.json": "c9f405cec49dcfb503b07401c9086f1a39e902f670dc7574cc05d8a2090341db",
+        "manifest-after.json": "c9f405cec49dcfb503b07401c9086f1a39e902f670dc7574cc05d8a2090341db",
+        "result.json": "8fb003b1744bb46ecc275fc143497f070781023883dc9b40188c0eedbe6d560c",
+        "source.zip": "5b15eaf3add5017806b672273bb081da3ee02607c47cd0ce4a7d41857805bdc5",
+        "command-1.json": "a9dffbfd6479db1c1ccbe8855c9f31654be4addc0f3ff1d27dac070d13f73c5c",
+        "command-5.json": "0ddcef1a36bccc8f37e2ad64917ae50cd480f2f18fb08c3300d93392433a42f9",
+        "command-4.json": "beac40efaaa92680a75dd5fb69940416e70713c9be2b1c4864c923dcf7e74835",
+        "command-3.json": "7df644ce0eabdecd62c7fd97e113c92ee49bea490ee5d70bbf4a3278dff9ae4c",
+        "command-6.json": "54ad18578e46cb75c4e94e654773f577d62cea87ede7ae8a771bae8a81367fdf",
+        "command-2.json": "6c260ba82ab09fd6a16a661f27ddf6fd2dd47a51cd6c3b710527dc167ff9a0a2",
+        "archive-receipt.json": "bd652e301118425b9589c45e618b6fa5a28b98956a732716e68da982b6af7e20",
+        "receipt.json": "411cd0c824f08763ae2c24226f73f998120bb25b9edc0b9ff2a2400a902f1a7c"
+      },
+      "sourceInputs": 82
+    },
+    "2026-10-28T03-22-09-757Z": {
+      "hashes": {
+        "manifest-after.json": "76eb213722ce87143d1009baa17cfa513d1a2433712e1a436359e27e6a50cb21",
+        "source.zip": "fb1ebcbbc928610e33d35dda26f84f7a678505736a72af00ad121a8a62bb39d0",
+        "command-1.json": "80daca791323adbb2225a559350a8a722ab9ef72d40ba7d52d63e36e8d7941d0",
+        "result.json": "085ff634e9ff2bfcb26d842b81dccd6d344de185b075f2e77ae3039c806e93f1",
+        "manifest-before.json": "76eb213722ce87143d1009baa17cfa513d1a2433712e1a436359e27e6a50cb21",
+        "archive-receipt.json": "45bb0739a83387c10ca87045f0027eef33f18f0038387f27ba2d8431a6d28a14",
+        "receipt.json": "4d3bfcb8b2fbacb66026f8a3c1b2cd506493774a6f50212167dc677a5666729c"
+      },
+      "sourceInputs": 82
+    }
+  }
+}

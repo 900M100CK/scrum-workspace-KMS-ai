@@ -24,3 +24,5 @@ Draft overview PNGs exported locally on 17 October 2026, except DGM-FLOW-01 v0.1
 | DGM-DATA-03 | [PNG](DGM-DATA-03.png) | [Draw.io](../data/handoff-logical-model.drawio) |
 | DGM-DEPLOY-01 | [PNG](DGM-DEPLOY-01.png) | [Draw.io](../deployment/local-development.drawio) |
 | DGM-DEV-01 | [PNG](DGM-DEV-01.png) | [Draw.io](../development/package-ownership.drawio) |
+
+DGM-DATA-01 PNG remains an earlier export and does not show Workspace 005. Its updated v0.4 editable Mermaid/Draw.io sources are authoritative; refreshed export/rendered review is not claimed by the P08 storage checks.

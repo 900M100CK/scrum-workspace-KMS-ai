@@ -1,9 +1,9 @@
 # Agent execution protocol
 
 **Artifact ID:** IMPL-EXEC-01\
-**Version/date:** 0.5 Draft · 27 October 2026\
+**Version/date:** 0.7 Draft · 28 October 2026\
 **Status:** Execution guide subordinate to root rules and canonical specs.\
-**Inputs:** [source register](register.md); [decisions](decisions.md); SPEC-INDEX v0.4; ADR-0001–ADR-0025.\
+**Inputs:** [source register](register.md); [decisions](decisions.md); SPEC-INDEX v0.7; ADR-0001–ADR-0025.\
 **Trace:** Existing BR-01–BR-14 / SC-01–SC-08.\
 **Owner role:** Sequential development coordinator.
 
@@ -62,3 +62,11 @@ Child steps use Not started → In progress → Implemented, not verified → Ve
 Update only affected task status rows and link a dated result; bump changed artifact versions and register them. Canonical verification tables receive their actual evidence without relabelling structural checks as runtime passes.
 
 Checklist: Pass for workflow and evidence rules; Gap for executable application commands/behaviour. Handoff: use one child step and [handoff template](handoff-template.md).
+
+## P10 input metadata — 28 October 2026
+
+Input versions synchronize the bounded session lifecycle update. Existing requirement, evaluation and UI assertions remain unchanged; no runtime acceptance is inferred from this metadata revision.
+
+## P12 integrated handoff — 28 October 2026
+
+See [P12 result](../sdlc/reports/SP-01-P12-handoff-2026-10-28.md) for bounded integrated session/UI regression, owner local test feedback and screenshot evidence. AC-01/36/37/68 and applicable session producers/UI are mapped there; D-07, other protected features, full cross-browser/accessibility and deployment/formal ADR gates remain open. No new requirement or independent acceptance is inferred.

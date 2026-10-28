@@ -1,9 +1,9 @@
 # Scenario and exception verification matrix
 
 **Artifact ID:** TEST-COVERAGE-01
-**Version/date:** 0.4 Draft · 25 October 2026
-**Inputs:** PRD-01 v0.9; UC-02 v0.8; TEST-08 v0.21; ADR-0007–ADR-0017.
-**Status:** Planned assertions, not executed application coverage or independent approval.
+**Version/date:** 0.9 Draft · 28 October 2026
+**Inputs:** PRD-01 v0.9; UC-02 v0.8; TEST-08 v0.22; ADR-0007–ADR-0017.
+**Status:** Planned assertions with bounded P09/P10/P11 measured subsets; no complete scenario or independent approval.
 
 ## Evidence rules
 
@@ -105,3 +105,23 @@ Test author owns fixtures/assertions; implementer owns runnable handler/consumer
 ## Input metadata reconciliation — 25 October 2026
 
 Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.
+
+## P09 measured subset — 28 October 2026
+
+See [P09 result](reports/SP-01-P09-http-2026-10-28.md) for real sign-in/current-session, actor-forgery and expired/disabled denial tests. TC-01 remains Partial: logout/renewal/UI and browser semantics are unrun. TC-18 is measured only for the P09 session-created producer and its owning audit rollback, not every mutation or protected handoff. SC-06 project/document/citation disclosure is not passed by a session result. Earlier scenario rows remain their planned whole-case scope.
+
+## Bounded P10 measured subset — 28 October 2026
+
+[P10 result](reports/SP-01-P10-lifecycle-2026-10-28.md) measures AC-37 at the GET session boundary after confirmed DELETE, strict idle/absolute server expiry for AC-68, renewal/logout interleavings and TC-18 atomic lifecycle audit rollback. TC-01/18 remain Partial: live UI/browser semantics, all protected operations/producers and D-07 guarded content handoff are not passed. The AC-68 UI sign-in prompt remains P11. Historical P09 paragraphs describe their earlier measured scope. No whole FR/SC/release row is marked Passed.
+
+## P11 measured UI subset — 28 October 2026
+
+[P11 result](reports/SP-01-P11-ui-2026-10-28.md) records actual React DOM over Workspace/PostgreSQL via same-origin HTTPS: generic failed sign-in, confirmed session, workspace navigation, dependency denial, expired-session sign-in prompting/state removal, logout and reload-style revalidation. Controller tests separately cover stale results, uncertain mutation, malformed output and request timeout; the local-expiry DOM case uses controlled time. TC-22/AC-68 observations are bounded DOM/live-consumer evidence. Actual browser keyboard/reload/Secure-cookie semantics remain a separate certificate-dependent gate; TC-01/18, D-07 and complete feature/release acceptance remain open.
+
+## P11 actual browser observations — 28 October 2026
+
+After owner TLS handoff, the in-app browser demonstrated Enter-key login, authenticated reload, workspace navigation/cross-document Back, actual DB-expiry denial with sign-in prompting/state removal, and logout followed by unauthenticated reload. See P11 result v0.2. These add bounded AC-37/68 and TC-22 observations; other browsers, comprehensive accessibility/usability, all protected operations and D-07 remain open. Earlier browser-pending statements are execution snapshots, not current status.
+
+## P12 integrated handoff — 28 October 2026
+
+See [P12 result](reports/SP-01-P12-handoff-2026-10-28.md) for bounded integrated session/UI regression, owner local test feedback and screenshot evidence. AC-01/36/37/68 and applicable session producers/UI are mapped there; D-07, other protected features, full cross-browser/accessibility and deployment/formal ADR gates remain open. No new requirement or independent acceptance is inferred.

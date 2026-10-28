@@ -1,0 +1,19 @@
+{
+  "browser-fixture-source.zip": "b8af0b76122d9e97ce51da17ca7c31d51556b2e202623b72f73a7fdca70dd9e1",
+  "browser-handoff.json": "fad1bb0eb9f652f3a4ee418699eea1715c4e0cdc13ecb3e54d161b9f58cf0b69",
+  "command-1.json": "b3c133dd0de0a3cb6d0cb0639fc45c58ade045e8c934a5ff4726dc8ac94622cd",
+  "command-2.json": "450b4f03b966b1159563b934557ae521b1120dd6e2e27b3a7b2d9b8325521fe5",
+  "command-3.json": "3988768a6926ce5c077ea748ba3b989bf4267c0179be0008a20e95962543127b",
+  "command-4.json": "c96bc136a3c842e90aa9b159fa6415beaf240f240eaaf4cba6422f1eac0c5ab9",
+  "command-5.json": "2112b3a32e9b5992903ffa77dc0850de4dc67f130b01650b4381f862b2d4f648",
+  "command-6.json": "49244eee18b3f635847d3c9f2b8eaf086d23c0bf91c33e56308e035be9a1778d",
+  "command-7.json": "1816ef3d9e0dfa93230072126cddf7230d4e2a37250a42488e5ac566e5ab67a8",
+  "command-8.json": "449bf61ca93608e5cacf763352f1288fee8af1544f57fdfe6ac4d72c85e97f4e",
+  "documentation-checks.json": "5d89a599198192bafecceba0b3034775411ee33cdf44def901c96b62c4d4626d",
+  "manifest-after.json": "f01a9b1f124d9bb3cde9ccb98da7fc22699faeed3d24b6878906f6a6253aee29",
+  "manifest-before.json": "f01a9b1f124d9bb3cde9ccb98da7fc22699faeed3d24b6878906f6a6253aee29",
+  "receipt.json": "8df844f89c7a581ed27d18fbdf8e84a24ce67723f4b9595fcac10496e77f02cb",
+  "result.json": "25cd4bd901a68a492cbcc9ce9a96a89ab5e9767d1493ff39f60485eeedab3160",
+  "source-attribution.json": "ffec2dd6c026e675b3090cda585b61de874362ecc5ce518edb41ed3ca888c02d",
+  "source.zip": "916b7ee06457a91c635b9880d2a981f6ecc0938b21b3b261974251ed3bc5b6db"
+}

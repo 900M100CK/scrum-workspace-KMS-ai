@@ -3,7 +3,7 @@
 **Artifact ID:** IMPL-IMPROVE-01\
 **Version/date:** 0.2 Draft · 27 October 2026\
 **Status:** Reconciled recommendations, not owner acceptance of stack or policy.\
-**Inputs:** Owner-supplied Claude report dated 27 October and subsequent rebuttal in this chat (external v1, not a registered repository artifact); TECH-STACK-01 v1.5; [decision map](decisions.md); [canonical specs](../../specs/README.md) v0.4; [Workspace contract](../../contracts/openapi/workspace.openapi.json) v0.2.8; Proposed ADR-0024/0025.\
+**Inputs:** Owner-supplied Claude report dated 27 October and subsequent rebuttal in this chat (external v1, not a registered repository artifact); TECH-STACK-01 v1.5; [decision map](decisions.md); [canonical specs](../../specs/README.md) v0.5; [Workspace contract](../../contracts/openapi/workspace.openapi.json) v0.2.8; Proposed ADR-0024/0025.\
 **Trace:** Existing BR-01–BR-14 / SC-01–SC-08; no Must deferral or added feature.\
 **Owner role:** Sequential documentation coordinator.
 

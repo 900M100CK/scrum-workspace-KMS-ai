@@ -1,0 +1,13 @@
+{
+  "command": [
+    "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+    "run",
+    "test:session:ui"
+  ],
+  "started": "2026-10-28T04:58:35.786Z",
+  "finished": "2026-10-28T04:58:43.794Z",
+  "exitCode": 0,
+  "stdout": "\n> scrum-workspace-kms-context@0.1.0 test:session:ui\n> node --test --test-concurrency=1 tests/workspace/ui.test.mjs\n\n▶ P11 actual React DOM with Workspace/PostgreSQL through same-origin HTTPS\n  ✔ initial reload checks server before showing sign-in; labels and autocomplete are explicit (97.7204ms)\n  ✔ wrong credentials show generic inline feedback and move focus without secret persistence (437.6917ms)\n  ✔ actual sign-in renders server-confirmed state through secure proxy and clears password (479.7794ms)\n  ✔ workspace navigation and reload-style controller recheck use real server state (64.5507ms)\n  ✔ dependency outage hides authenticated subtree immediately; recovery revalidates explicitly (59.4706ms)\n  ✔ actual expired DB session is denied on focus, clears workspace and requests sign-in (46.0095ms)\n  ✔ confirmed logout hides state, clears cookie and rejects old session after reload (347.9086ms)\n  ✔ controlled local expiry timer hides UI without making a renewal request (227.9112ms)\n✔ P11 actual React DOM with Workspace/PostgreSQL through same-origin HTTPS (7144.5043ms)\nℹ {\"image\":\"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966\",\"scope\":\"Actual React DOM + real Workspace/PostgreSQL through trusted-client HTTPS proxy; explicit simulated cookie jar, not browser cookie evidence; final timer case uses controlled transport\"}\nℹ tests 9\nℹ suites 0\nℹ pass 9\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 7800.1256\n",
+  "stderr": ""
+}

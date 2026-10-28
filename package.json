@@ -28,8 +28,12 @@
     "dev:prototype": "npm start --workspace @sacw/prototype",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "build": "npm run build --workspaces --if-present",
+    "test:session:storage": "node --test --test-concurrency=1 tests/workspace/persistence.test.mjs",
     "test:foundation": "npm run test --workspace @sacw/web && npm run test --workspace @sacw/workspace && npm run test --workspace @sacw/knowledge",
-    "test:prototype": "npm test --workspace @sacw/prototype"
+    "test:prototype": "npm test --workspace @sacw/prototype",
+    "test:session:ui": "npm run build --workspace @sacw/web && node --test --test-concurrency=1 tests/workspace/ui.test.mjs",
+    "test:session:lifecycle": "npm run build --workspace @sacw/workspace && node --test --test-concurrency=1 tests/workspace/lifecycle.test.mjs",
+    "test:session:http": "npm run build --workspace @sacw/workspace && node --test --test-concurrency=1 tests/workspace/http.test.mjs"
   },
   "description": "Context/storage harness, preserved synthetic prototype and frontend/backend framework foundation; protected business handlers remain unimplemented.",
   "devDependencies": {

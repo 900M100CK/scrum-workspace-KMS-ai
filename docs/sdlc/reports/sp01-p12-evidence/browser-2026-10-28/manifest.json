@@ -1,0 +1,37 @@
+{
+  "timezone": "Asia/Saigon",
+  "origin": "https://localhost:5181/#workspace",
+  "account": "Synthetic test fixture only",
+  "method": "Original CUA browser screenshots, no edited/composited/recorded video",
+  "ownerFeedback": "Owner reports feature tested OK and authorises screenshots/recording and commit/push",
+  "steps": [
+    {
+      "file": "01-signed-out.png",
+      "sha256": "071853f152305cce2bd74eac83dc0355ed9d5d8c7a575782b4833112b90cd9f3",
+      "width": 65536,
+      "height": 4292542531,
+      "capturedAt": "2026-10-28T05:31:18.186887+00:00"
+    },
+    {
+      "file": "02-authenticated.png",
+      "sha256": "38afcdc95c6083a58ed100104b3d9d28e3bebf3d2f414fe24f6b0ae8a6a0cd02",
+      "width": 65536,
+      "height": 4292542531,
+      "capturedAt": "2026-10-28T05:31:20.021795+00:00"
+    },
+    {
+      "file": "03-expired.png",
+      "sha256": "582db88a18486738296cb61120cda457cdb5867d8e4e80f8f3e272ad7ae0c73f",
+      "width": 65536,
+      "height": 4292542531,
+      "capturedAt": "2026-10-28T05:31:49.329159+00:00"
+    },
+    {
+      "file": "04-confirmed-logout.png",
+      "sha256": "35ef7293d8e0523a40737842f7aed0f9b7eb7bda4d4276137d1d816354873c85",
+      "width": 65536,
+      "height": 4292542531,
+      "capturedAt": "2026-10-28T05:31:51.518491+00:00"
+    }
+  ]
+}

@@ -1,0 +1,481 @@
+{
+  "runId": "2026-10-28T02-34-40-188Z",
+  "createdAt": "2026-10-28T02:34:50.052Z",
+  "inputStable": true,
+  "before": {
+    "path": ".tmp/sp01-foundation-2026-10-27/runtime/results/2026-10-28T02-34-40-188Z/manifest-before.json",
+    "sha256": "d662947943f22c88910be5ebf247fdb6308c25a90e75a658f03ceef2d93ca10b"
+  },
+  "after": {
+    "path": ".tmp/sp01-foundation-2026-10-27/runtime/results/2026-10-28T02-34-40-188Z/manifest-after.json",
+    "sha256": "d662947943f22c88910be5ebf247fdb6308c25a90e75a658f03ceef2d93ca10b"
+  },
+  "commands": [
+    {
+      "args": [
+        "D:\\scrum-workspace-KMS-ai\\node_modules\\typescript\\bin\\tsc",
+        "--noEmit",
+        "--strict",
+        "--skipLibCheck",
+        "--target",
+        "es2022",
+        "--module",
+        "nodenext",
+        "--moduleResolution",
+        "nodenext",
+        "D:\\scrum-workspace-KMS-ai\\.tmp\\sp01-foundation-2026-10-27\\runtime\\src\\toolchain.ts"
+      ],
+      "exitCode": 0,
+      "log": {
+        "path": ".tmp/sp01-foundation-2026-10-27/runtime/results/2026-10-28T02-34-40-188Z/command-1.json",
+        "sha256": "d453ac91c7e3e7662c310f958dd7f8293148f153610974593c578477d7165c76"
+      }
+    },
+    {
+      "args": [
+        "D:\\scrum-workspace-KMS-ai\\.tmp\\sp01-foundation-2026-10-27\\runtime\\src\\toolchain.ts"
+      ],
+      "exitCode": 0,
+      "log": {
+        "path": ".tmp/sp01-foundation-2026-10-27/runtime/results/2026-10-28T02-34-40-188Z/command-2.json",
+        "sha256": "1bc7fa74d66fd91cc360251013285cb9919aaa91f9e0b176a6dce87608277646"
+      }
+    },
+    {
+      "args": [
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/manifest.test.mjs",
+        "test/http.test.mjs",
+        "test/db.test.mjs",
+        "test/session.test.mjs"
+      ],
+      "exitCode": 0,
+      "log": {
+        "path": ".tmp/sp01-foundation-2026-10-27/runtime/results/2026-10-28T02-34-40-188Z/command-3.json",
+        "sha256": "580ae6f83a0e59ef68f5232ba065afec5899ea9cc1c8c77637864ef6a510a387"
+      }
+    }
+  ],
+  "applicationHandlerBehavioursVerified": 0,
+  "scope": "Laboratory adapters and disposable DB only",
+  "ownerSelection": null,
+  "review": "Not requested; author self-check only",
+  "clock": {
+    "strategy": "DB clock_timestamp sampled after FOR UPDATE; test seam after same lock",
+    "syntheticLimits": {
+      "idleSeconds": 60,
+      "absoluteSeconds": 300
+    },
+    "knownFailure": "Backstep revival remains unresolved"
+  },
+  "ledger": [
+    {
+      "id": "E-HTTP-01",
+      "applicability": "required unless explicitly optional below",
+      "state": "Run-passed",
+      "source": "test/http.test.mjs",
+      "subAssertions": [
+        "ok 3 - E-HTTP-01 exact routes respond through actual Fastify candidate"
+      ],
+      "limits": [
+        "TypeScript compile/direct-TS startup are separately executed; JavaScript HTTP fixture is not a TypeScript application adapter."
+      ]
+    },
+    {
+      "id": "E-HTTP-02",
+      "applicability": "required unless explicitly optional below",
+      "state": "Not run",
+      "source": "test/http.test.mjs",
+      "subAssertions": [
+        "ok 4 - E-HTTP-02 request rejects do not execute authentication; output shape is tested separately"
+      ],
+      "limits": [
+        "Malformed date-time handler output and all historical eight schema cases are not exhaustively mapped; request and output observations are partial.",
+        "Full experiment remains incomplete; passing subset is retained in subAssertions."
+      ],
+      "assertionSubsetState": "Run-passed"
+    },
+    {
+      "id": "E-HTTP-03",
+      "applicability": "required unless explicitly optional below",
+      "state": "Run-passed",
+      "source": "test/http.test.mjs",
+      "subAssertions": [
+        "ok 2 - E-HTTP-03 default-vs-intended negative control, with required username independent of extra keys"
+      ],
+      "limits": []
+    },
+    {
+      "id": "E-HTTP-04",
+      "applicability": "required unless explicitly optional below",
+      "state": "Run-passed",
+      "source": "test/http.test.mjs",
+      "subAssertions": [
+        "ok 5 - E-HTTP-04 literal dangerous keys do not modify prototypes"
+      ],
+      "limits": []
+    },
+    {
+      "id": "E-HTTP-05",
+      "applicability": "required unless explicitly optional below",
+      "state": "Run-passed",
+      "source": "test/http.test.mjs",
+      "subAssertions": [
+        "ok 6 - E-HTTP-05 credential type confusion rejected without coercion"
+      ],
+      "limits": []
+    },
+    {
+      "id": "E-HTTP-06",
+      "applicability": "required unless explicitly optional below",
+      "state": "Not run",
+      "source": "test/http.test.mjs",
+      "subAssertions": [
+        "ok 7 - E-HTTP-06 boundaries reflect actual minLength and no invented normalization policy"
+      ],
+      "limits": [
+        "Exact below/at/above configured body boundary and KDF input limit not fully exercised; no production max-length selected.",
+        "Full experiment remains incomplete; passing subset is retained in subAssertions."
+      ],
+      "assertionSubsetState": "Run-passed"
+    },
+    {
+      "id": "E-HTTP-07",
+      "applicability": "required unless explicitly optional below",
+      "state": "Run-passed",
+      "source": "test/http.test.mjs",
+      "subAssertions": [
+        "ok 8 - E-HTTP-07 preSerialization detects extra fields; normal serializer projection never sends them"
+      ],
+      "limits": []
+    },
+    {
+      "id": "E-HTTP-08",
+      "applicability": "required unless explicitly optional below",
+      "state": "Run-passed",
+      "source": "test/http.test.mjs",
+      "subAssertions": [
+        "ok 9 - E-HTTP-08 capture actual success/error logs without secret canaries"
+      ],
+      "limits": []
+    },
+    {
+      "id": "E-HTTP-09",
+      "applicability": "required unless explicitly optional below",
+      "state": "Run-passed",
+      "source": "test/http.test.mjs",
+      "subAssertions": [
+        "ok 10 - E-HTTP-09 actual trusted HTTPS observes secure scoped cookie and deletion attributes"
+      ],
+      "limits": [
+        "HTTPS header evidence only; browser Secure-cookie storage/send semantics not run."
+      ]
+    },
+    {
+      "id": "E-HTTP-10",
+      "applicability": "required unless explicitly optional below",
+      "state": "Not run",
+      "source": "test/http.test.mjs",
+      "subAssertions": [
+        "ok 11 - E-HTTP-10 chosen Origin plus custom-header policy rejects missing/wrong material"
+      ],
+      "limits": [
+        "POST policy exercised; missing/wrong CSRF on DELETE not separately exercised.",
+        "Full experiment remains incomplete; passing subset is retained in subAssertions."
+      ],
+      "assertionSubsetState": "Run-passed"
+    },
+    {
+      "id": "E-HTTP-11",
+      "applicability": "required unless explicitly optional below",
+      "state": "Run-passed",
+      "source": "test/http.test.mjs",
+      "subAssertions": [
+        "ok 12 - E-HTTP-11 no-store observed on actual success and denial responses"
+      ],
+      "limits": []
+    },
+    {
+      "id": "E-HTTP-12",
+      "applicability": "required unless explicitly optional below",
+      "state": "Run-passed",
+      "source": "test/http.test.mjs",
+      "subAssertions": [
+        "ok 13 - E-HTTP-12 unknown user and wrong password return identical public failure without sessions"
+      ],
+      "limits": []
+    },
+    {
+      "id": "E-HTTP-13",
+      "applicability": "required unless explicitly optional below",
+      "state": "Run-passed",
+      "source": "test/http.test.mjs",
+      "subAssertions": [
+        "ok 14 - E-HTTP-13 configured transport errors recorded as compatibility gaps, not contract adoption"
+      ],
+      "limits": []
+    },
+    {
+      "id": "E-DB-01",
+      "applicability": "required unless explicitly optional below",
+      "state": "Run-passed",
+      "source": "test/db.test.mjs",
+      "subAssertions": [
+        "    ok 1 - E-DB-01 forward, deterministic reapply and isolated rollback"
+      ],
+      "limits": []
+    },
+    {
+      "id": "E-DB-02",
+      "applicability": "required unless explicitly optional below",
+      "state": "Run-passed",
+      "source": "test/db.test.mjs",
+      "subAssertions": [
+        "    ok 2 - E-DB-02 digest-only persistence inspected with raw-token canary"
+      ],
+      "limits": []
+    },
+    {
+      "id": "E-DB-03",
+      "applicability": "required unless explicitly optional below",
+      "state": "Not run",
+      "source": "test/db.test.mjs",
+      "subAssertions": [
+        "    ok 3 - E-DB-03 synthetic audit failure rolls back owned insert"
+      ],
+      "limits": [
+        "Actual transaction rollback tested; HTTP Set-Cookie outcome with DB audit failure not integrated.",
+        "Full experiment remains incomplete; passing subset is retained in subAssertions."
+      ],
+      "assertionSubsetState": "Run-passed"
+    },
+    {
+      "id": "E-DB-04",
+      "applicability": "required unless explicitly optional below",
+      "state": "Run-passed",
+      "source": "test/db.test.mjs",
+      "subAssertions": [
+        "    ok 4 - E-DB-04 insert failure cannot commit synthetic success audit"
+      ],
+      "limits": []
+    },
+    {
+      "id": "E-DB-05",
+      "applicability": "Optional comparison / unresolved catalogue or owner policy",
+      "state": "Not run",
+      "source": "test/db.test.mjs",
+      "subAssertions": [],
+      "limits": [
+        "No disabled-account or separate failed-login auditing policy adopted by this spike. TC-01 locked-credential coverage remains required for application acceptance."
+      ]
+    },
+    {
+      "id": "E-DB-06",
+      "applicability": "required unless explicitly optional below",
+      "state": "Run-passed",
+      "source": "test/db.test.mjs",
+      "subAssertions": [
+        "    ok 5 - E-DB-06 success, throw and rollback-failure paths release or discard"
+      ],
+      "limits": []
+    },
+    {
+      "id": "E-DB-07",
+      "applicability": "required unless explicitly optional below",
+      "state": "Run-passed",
+      "source": "test/db.test.mjs",
+      "subAssertions": [
+        "    ok 6 - E-DB-07 bounded exhaustion settles then pool recovers"
+      ],
+      "limits": []
+    },
+    {
+      "id": "E-DB-08",
+      "applicability": "required unless explicitly optional below",
+      "state": "Run-passed",
+      "source": "test/db.test.mjs",
+      "subAssertions": [
+        "    ok 7 - E-DB-08 actual statement cancellation permits rollback and healthy reuse"
+      ],
+      "limits": []
+    },
+    {
+      "id": "E-DB-09",
+      "applicability": "required unless explicitly optional below",
+      "state": "Not run",
+      "source": "test/db.test.mjs",
+      "subAssertions": [
+        "    ok 8 - E-DB-09 terminate only probe backend; discard and later health"
+      ],
+      "limits": [
+        "Probe backend termination tested; COMMIT acknowledgement loss and whole-container failure not injected.",
+        "Full experiment remains incomplete; passing subset is retained in subAssertions."
+      ],
+      "assertionSubsetState": "Run-passed"
+    },
+    {
+      "id": "E-DB-10",
+      "applicability": "Optional comparison / unresolved catalogue or owner policy",
+      "state": "Not run",
+      "source": "test/db.test.mjs",
+      "subAssertions": [],
+      "limits": [
+        "No disabled-account or separate failed-login auditing policy adopted by this spike. TC-01 locked-credential coverage remains required for application acceptance."
+      ]
+    },
+    {
+      "id": "E-DB-11",
+      "applicability": "required unless explicitly optional below",
+      "state": "Run-passed",
+      "source": "test/db.test.mjs",
+      "subAssertions": [
+        "    ok 9 - E-DB-11 bigint is exact decimal string through pg and JSON"
+      ],
+      "limits": []
+    },
+    {
+      "id": "E-SESSION-01",
+      "applicability": "required unless explicitly optional below",
+      "state": "Run-passed",
+      "source": "test/session.test.mjs",
+      "subAssertions": [
+        "    ok 1 - E-SESSION-01 issue, resolve, renew, revoke and deny"
+      ],
+      "limits": []
+    },
+    {
+      "id": "E-SESSION-02",
+      "applicability": "required unless explicitly optional below",
+      "state": "Run-passed",
+      "source": "test/session.test.mjs",
+      "subAssertions": [
+        "    ok 2 - E-SESSION-02 bounded 100-token uniqueness and digest lookup"
+      ],
+      "limits": []
+    },
+    {
+      "id": "E-SESSION-03",
+      "applicability": "required unless explicitly optional below",
+      "state": "Run-passed",
+      "source": "test/session.test.mjs",
+      "subAssertions": [
+        "    ok 3 - E-SESSION-03 independent idle fixtures: before, equal, after"
+      ],
+      "limits": []
+    },
+    {
+      "id": "E-SESSION-04",
+      "applicability": "required unless explicitly optional below",
+      "state": "Run-passed",
+      "source": "test/session.test.mjs",
+      "subAssertions": [
+        "    ok 4 - E-SESSION-04 absolute cap never slides, equality denied"
+      ],
+      "limits": []
+    },
+    {
+      "id": "E-SESSION-05",
+      "applicability": "required unless explicitly optional below",
+      "state": "Run-passed",
+      "source": "test/session.test.mjs",
+      "subAssertions": [
+        "    ok 5 - E-SESSION-05 queued renewal samples after lock and cannot revive expiry"
+      ],
+      "limits": []
+    },
+    {
+      "id": "E-SESSION-06",
+      "applicability": "required unless explicitly optional below",
+      "state": "Run-passed",
+      "source": "test/session.test.mjs",
+      "subAssertions": [
+        "    ok 6 - E-SESSION-06 older arrival after newer renewal cannot decrease expiry"
+      ],
+      "limits": []
+    },
+    {
+      "id": "E-SESSION-07",
+      "applicability": "required unless explicitly optional below",
+      "state": "Run-passed",
+      "source": "test/session.test.mjs",
+      "subAssertions": [
+        "    ok 7 - E-SESSION-07 both logout/renew orders have observed SQL wait and committed receipts"
+      ],
+      "limits": []
+    },
+    {
+      "id": "E-SESSION-08",
+      "applicability": "required unless explicitly optional below",
+      "state": "Run-passed",
+      "source": "test/session.test.mjs",
+      "subAssertions": [
+        "    ok 8 - E-SESSION-08 idempotent logout preserves revocation time"
+      ],
+      "limits": []
+    },
+    {
+      "id": "E-SESSION-09",
+      "applicability": "required unless explicitly optional below",
+      "state": "Run-passed",
+      "source": "test/session.test.mjs",
+      "subAssertions": [
+        "    ok 9 - E-SESSION-09 old token stays denied after another issue"
+      ],
+      "limits": []
+    },
+    {
+      "id": "E-SESSION-10",
+      "applicability": "required unless explicitly optional below",
+      "state": "Run-passed",
+      "source": "test/session.test.mjs",
+      "subAssertions": [
+        "    ok 10 - E-SESSION-10 candidate allows two independently valid sessions"
+      ],
+      "limits": []
+    },
+    {
+      "id": "E-SESSION-11",
+      "applicability": "required unless explicitly optional below",
+      "state": "Not run",
+      "source": "test/session.test.mjs",
+      "subAssertions": [],
+      "limits": [
+        "Fresh random issuance exists in HTTP fixture; pre-login fixation request was not exercised."
+      ]
+    },
+    {
+      "id": "E-SESSION-12",
+      "applicability": "required unless explicitly optional below",
+      "state": "Run-failed",
+      "source": "test/session.test.mjs",
+      "subAssertions": [
+        "    ok 11 - E-SESSION-12 known limitation: DB-wall-time backstep can revive expired row after restart"
+      ],
+      "limits": [
+        "Negative control observed access revival after backward injected repository time, including new repository instance. No persistent clock regression guard. Real DB clock sanity passed; host clock was not modified. App skew, DB restart and precision extremes not fully tested."
+      ]
+    },
+    {
+      "id": "E-SESSION-13",
+      "applicability": "required unless explicitly optional below",
+      "state": "Run-passed",
+      "source": "test/session.test.mjs",
+      "subAssertions": [
+        "    ok 12 - E-SESSION-13 real scrypt configured work measured without latency-equality claim"
+      ],
+      "limits": []
+    },
+    {
+      "id": "E-SESSION-14",
+      "applicability": "Optional comparison / unresolved catalogue or owner policy",
+      "state": "Not run",
+      "source": "test/session.test.mjs",
+      "subAssertions": [],
+      "limits": [
+        "No disabled-account or separate failed-login auditing policy adopted by this spike. TC-01 locked-credential coverage remains required for application acceptance."
+      ]
+    }
+  ]
+}

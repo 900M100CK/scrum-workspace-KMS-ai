@@ -1,9 +1,9 @@
 # Documentation reading routes
 
 **Artifact ID:** DOC-NAV-01\
-**Version/date:** 0.2 Draft · 27 October 2026\
+**Version/date:** 0.5 Draft · 28 October 2026\
 **Status:** Navigation only; source decisions and acceptance stay in their canonical artifacts.\
-**Inputs:** Development rules v1.9; AGENTS.md v1.10; existing directory indexes.\
+**Inputs:** Development rules v1.12; AGENTS.md v1.13; existing directory indexes.\
 **Trace:** Existing BR-01–BR-15 / SC-01–SC-08 navigation; no new FR/AC.\
 **Owner role:** Sequential development coordinator.
 

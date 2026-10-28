@@ -1,9 +1,9 @@
 # SP01-P12 — Integrated SP-01 regression and evidence handoff
 
 **Artifact ID:** SP01-P12\
-**Version/date:** 0.1 Draft · 27 October 2026\
+**Version/date:** 0.8 Draft · 28 October 2026\
 **Status:** Task brief only; execution state and result are authoritative in the parent plan.\
-**Inputs:** [FEAT-SP01-01](../plan.md) v0.2; [canonical SP-01](../../../../../specs/001-session.md) v0.4; [canonical brief](../../../briefs/SP-01.1-session-foundation.md) v0.2; [runtime spike brief](../../../../../SP-01.1-spike-brief.md) v0.2; Proposed ADR-0024/0025.\
+**Inputs:** [FEAT-SP01-01](../plan.md) v0.9; [canonical SP-01](../../../../../specs/001-session.md) v0.5; [canonical brief](../../../briefs/SP-01.1-session-foundation.md) v0.4; [runtime spike brief](../../../../../SP-01.1-spike-brief.md) v0.2; Proposed ADR-0024/0025.\
 **Trace:** Parent SP-01.4; FR-01/36/37/68 and relevant ACs/TCs as mapped in the plan; BR-01/10; SC-06 relevance, not passed coverage.\
 **Owner role:** Sequential implementer.
 

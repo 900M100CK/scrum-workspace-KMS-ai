@@ -11,3 +11,17 @@ Workspace migration 004 reserves permanent protected_handoff idempotency claims 
 ## Framework commands
 
 Node 24+: from root use npm run dev:workspace for localhost 3001, npm run typecheck, npm run build and npm run test:foundation. From this package use npm start after build. PORT must be an integer from 1 to 65535; bind is 127.0.0.1. GET /healthz reports process liveness only; other routes return generic 404. It is not database/provider readiness or authentication. No DB connection/provider client is created by this scaffold.
+
+The earlier P07 stage adds session clock/password-verifier interfaces and `readSessionPolicy`, with configurable starting `SESSION_IDLE_SECONDS=1800` / `SESSION_ABSOLUTE_SECONDS=28800`. The reader validates configuration but is not connected to a handler yet. These values are owner-selected starting configuration, not risk-analysis findings. No runtime KDF/time algorithm, account lock/disable policy, session DB client or migration is adopted. See the web [same-origin HTTPS guide](../../apps/web/LOCAL-HTTPS.md); browser calls use /api while the service's draft route paths remain unchanged.
+
+## P08 private persistence
+
+P08 subsequently adds owner-authorised session persistence/KDF/operator adapters and additive migration 005. See [SESSION-OPERATIONS.md](SESSION-OPERATIONS.md) for role boundaries, initialization/recovery/manual disable, memory/libuv limits and refusal rules. Run npm run test:session:storage for real PostgreSQL tests. No adapter is wired into the infrastructure server; public authentication handlers remain unimplemented. The P07-only limits above describe the earlier stage. ADRs remain Proposed for broader verification and D-07 is unchanged.
+
+## P09 HTTP integration
+
+P09 subsequently wires POST/GET /session to the real store when the explicit runtime DB URL/origin are configured. Read [SESSION-HTTP.md](SESSION-HTTP.md) for startup, schema/cookie/error/logging policy and actual-handler tests. Earlier P07/P08 unimplemented-handler notes describe their execution stages. Missing runtime configuration now makes /session return 503; unrelated routes remain unimplemented. DELETE/renewal/UI and full SP-01 acceptance remain later tasks. No DB migration runs at startup.
+
+## P10 lifecycle integration
+
+GET now renews a strictly unexpired session within its immutable absolute cap; DELETE atomically revokes the current token/audit and clears the secure cookie on confirmed 204. See [SESSION-HTTP.md](SESSION-HTTP.md) and npm run test:session:lifecycle. Previous stage notes are historical; UI/browser/D-07 and full feature acceptance remain open. No startup migration or development upgrade was performed.

@@ -1,8 +1,8 @@
 {
   "artifactId": "DATA-04",
-  "version": "0.8",
+  "version": "0.9",
   "status": "Draft",
-  "storageDecision": "ADR-0004 foundation plus Workspace 003 work location, Knowledge 003 immutable handoffs and Workspace 004 permanent protected claims; isolated storage evidence is not handler or guard acceptance.",
+  "storageDecision": "ADR-0004 foundation plus Workspace 003 work location, Knowledge 003 immutable handoffs and Workspace 004 permanent protected claims; isolated storage evidence is not handler or guard acceptance. Workspace 005 owner-authorised session persistence and private authentication clock/audit; no public auth handler acceptance.",
   "entities": [
     {
       "name": "Project",
@@ -458,6 +458,78 @@
       ],
       "constraints": [
         "Composite foreign key binds the exact actor/protected_handoff/identity/fence; append-only observation does not prove external delivery or permit replay"
+      ]
+    },
+    {
+      "name": "AuthAccount",
+      "owner": "workspace",
+      "key": [
+        "user_id"
+      ],
+      "fields": [
+        "username",
+        "password_credential",
+        "disabled",
+        "credential_revision"
+      ],
+      "constraints": [
+        "Exact case-sensitive pre-provisioned username; runtime has no account/credential UPDATE",
+        "Manual disable invalidates existing sessions; no automatic failed-attempt lockout"
+      ]
+    },
+    {
+      "name": "SessionToken",
+      "owner": "workspace",
+      "key": [
+        "session_id"
+      ],
+      "fields": [
+        "token_digest",
+        "created_at",
+        "absolute_expires_at"
+      ],
+      "constraints": [
+        "Unique SHA-256 digest only; immutable token identity/absolute deadline",
+        "Existing Session effective expiry is bounded by this immutable absolute cap"
+      ]
+    },
+    {
+      "name": "AuthClockState",
+      "owner": "workspace",
+      "key": [
+        "singleton"
+      ],
+      "fields": [
+        "last_observed",
+        "healthy",
+        "recovery_generation"
+      ],
+      "constraints": [
+        "Initially unhealthy; observed regression latches fault",
+        "Runtime cannot clear fault; operator recovery revokes all old sessions with minimum audit atomically",
+        "Mitigation cannot establish elapsed time in unobserved intervals"
+      ]
+    },
+    {
+      "name": "AuthenticationAudit",
+      "owner": "workspace",
+      "key": [
+        "event_id"
+      ],
+      "fields": [
+        "action",
+        "actor_user_id",
+        "entity_id",
+        "operator_ref",
+        "database_principal",
+        "observed_at",
+        "recovery_generation",
+        "correlation_id",
+        "evidence_ref"
+      ],
+      "constraints": [
+        "Append-only private authentication events; no project-audit visibility implied",
+        "Never raw password/token/cookie, credential hash or token digest"
       ]
     }
   ],

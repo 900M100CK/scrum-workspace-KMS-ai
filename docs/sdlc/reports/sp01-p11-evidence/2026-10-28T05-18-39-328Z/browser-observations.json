@@ -1,0 +1,32 @@
+{
+  "recordedAt": "2026-10-28T05:20:39.642496+00:00",
+  "origin": "https://localhost:5181",
+  "browser": "Codex in-app browser",
+  "method": "Manual observed UI through CUA; no cookie values or browser security controls inspected/changed",
+  "scenarios": [
+    "Keyboard Enter login confirmed signed-in UI",
+    "Reload kept authenticated session",
+    "Workspace navigation and cross-document Back revalidated current session",
+    "Fixture-controlled DB expiry denied GET and removed workspace / prompted sign-in",
+    "Fresh login and confirmed logout; reload stayed signed out"
+  ],
+  "consoleErrorsOrWarningsInFinalObservation": [],
+  "assetProbeBeforeFix": {
+    "/favicon.ico": 404,
+    "/api/session without cookie": 401,
+    "/": 200
+  },
+  "buildOutputs": {
+    "favicon.svg": "479a38e6669685398667b54c0fe8b8406c64c41d7d06f46e0c562633fb271c60",
+    "index.html": "98875f4fb09a33b73b419f96933ba245ae361f140e4a1814778eb9e072bcc353",
+    "assets/index-21wVWhvI.css": "a9620964d382cf8a73ce524545f2cbab2fcfef202b8b786d30f8258e8e7612fc",
+    "assets/index-DhoepZBR.js": "601687109e39720ceabd07a5fb0b2007c599afe3d9577738b392fdee92e247b9"
+  },
+  "scope": "Observed local browser/cookie reuse, not full cross-browser/BFCache eligibility/accessibility/permission certification",
+  "finalTrustedClientProbe": {
+    "/favicon.svg": 200,
+    "/api/session without cookie": 401,
+    "/": 200,
+    "rootContainsViteDevClient": false
+  }
+}

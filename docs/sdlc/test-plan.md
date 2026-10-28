@@ -1,9 +1,9 @@
 # Minimum test and evidence plan
 
 **Artifact ID:** TEST-08
-**Version/date:** 0.21 Draft · 25 October 2026
+**Version/date:** 0.22 Draft · 28 October 2026
 **Status:** Planned application assertions; owner-confirmed policy direction, no release acceptance.
-**Inputs:** [PRD-01](PRD_SRS.md) v0.9; [UC-02](use-cases.md) v0.8; [SAD-03](../architecture.md) v0.16; DATA-04 v0.12; API-05 v0.17; ADR-0007 through ADR-0017; current UX/diagrams; [specs](../../specs/README.md); [evaluation](../../eval/README.md).; Proposed ADR-0018.; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
+**Inputs:** [PRD-01](PRD_SRS.md) v0.9; [UC-02](use-cases.md) v0.8; [SAD-03](../architecture.md) v0.16; DATA-04 v0.13; API-05 v0.19; ADR-0007 through ADR-0017; current UX/diagrams; [specs](../../specs/README.md); [evaluation](../../eval/README.md).; Proposed ADR-0018.; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
 **Author:** Development agent acting sequentially; no independent review claimed.
 
 ## Scope, levels and environment
@@ -158,3 +158,7 @@ The actual contracts:storage:test command passed seven results (six subtests plu
 ## Input metadata reconciliation — 25 October 2026
 
 Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.
+
+## P10 input metadata — 28 October 2026
+
+Input versions synchronize the bounded session lifecycle update. Existing requirement, evaluation and UI assertions remain unchanged; no runtime acceptance is inferred from this metadata revision.

@@ -1,0 +1,13 @@
+{
+  "command": [
+    "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+    "run",
+    "build"
+  ],
+  "started": "2026-10-28T05:18:43.608Z",
+  "finished": "2026-10-28T05:18:47.872Z",
+  "exitCode": 0,
+  "stdout": "\n> scrum-workspace-kms-context@0.1.0 build\n> npm run build --workspaces --if-present\n\n\n> @sacw/web@0.1.0 build\n> tsc --noEmit && vite build\n\nvite v8.3.5 building client environment for production...\ntransforming...\n✓ 17 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                   0.45 kB │ gzip:  0.31 kB\ndist/assets/index-21wVWhvI.css    2.24 kB │ gzip:  1.00 kB\ndist/assets/index-DhoepZBR.js   227.30 kB │ gzip: 71.15 kB\n\n✓ built in 131ms\n\n> @sacw/workspace@0.1.0 build\n> tsc -p tsconfig.build.json\n\n\n> @sacw/knowledge@0.1.0 build\n> tsc -p tsconfig.build.json\n\n",
+  "stderr": ""
+}

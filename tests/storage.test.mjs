@@ -41,7 +41,7 @@ test('ADR-0004 real PostgreSQL storage boundary', { timeout: 300000 }, async t =
       for (const service of ['workspace', 'knowledge']) {
         migrate(container, service);
         migrate(container, service);
-        assert.equal(sql(container, service, 'SELECT count(*) FROM _migrations.applied;').stdout.trim(), service === 'workspace' ? '4' : '3');
+        assert.equal(sql(container, service, 'SELECT count(*) FROM _migrations.applied;').stdout.trim(), service === 'workspace' ? '6' : '3');
       }
       sql(container, 'knowledge', "UPDATE _migrations.applied SET checksum = 'modified';");
       assert.throws(() => migrate(container, 'knowledge'), /checksum mismatch/);
@@ -285,7 +285,7 @@ test('ADR-0004 real PostgreSQL storage boundary', { timeout: 300000 }, async t =
       run('workspace', `UPDATE workspace.document_policy SET registry_state='pending' WHERE document_id=${q(401)};`);
       assert.throws(() => migrate(container, 'workspace'), /reconciliation of pending/);
       assert.equal(value(`SELECT registry_state FROM workspace.document_policy WHERE document_id=${q(401)};`, 'workspace'), 'pending');
-      assert.equal(sql(container, 'workspace', 'SELECT count(*) FROM _migrations.applied;').stdout.trim(), '2');
+      assert.equal(sql(container, 'workspace', 'SELECT count(*) FROM _migrations.applied;').stdout.trim(), '4');
       run('workspace', `UPDATE workspace.document_policy SET registry_state='active' WHERE document_id=${q(401)};`);
       migrate(container, 'workspace');
       migrate(container, 'workspace');

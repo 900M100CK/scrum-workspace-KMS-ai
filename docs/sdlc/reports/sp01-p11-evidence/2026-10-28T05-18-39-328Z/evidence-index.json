@@ -1,0 +1,16 @@
+{
+  "browser-observations.json": "baa0b61677d97ac02e8d4f3777ae996b757d74bf92501a9648b2ed345c43a5ff",
+  "browser-runtime.json": "ed940362de02b670ff9a185176d34dde06f4c58bc5c5f27d24c6264df0f011d6",
+  "browser-signed-out.png": "071853f152305cce2bd74eac83dc0355ed9d5d8c7a575782b4833112b90cd9f3",
+  "build-output.zip": "c41cad6a838070729b624b4f9bd45fc8a4a097401195b77f96380375e766e3c7",
+  "command-1.json": "6df00d9eeb322e4974b62c4321bf6c95457167a33461d9281b34226604543c19",
+  "command-2.json": "a77c36889be21c746aa33e7baefb3ab2dcb4ac831ed9bec90433b862334f1563",
+  "command-3.json": "b713509466657c1e298fa98fe97a6724642882fe9c3a264bd44cf0ebe5618ac1",
+  "command-4.json": "35c2533834feb33d3ef4e557ee2986d598981fc8902fdf59f6247d5282d45d40",
+  "documentation-checks.json": "48cd99650d462e497a6f4b617ae8948469b49945bee4f37f7df55f9dce3b21c9",
+  "manifest-after.json": "d43890fc3039d9aabb666a339237edd4c536a2a7cd174ec0ceb532e5af2ca6b8",
+  "manifest-before.json": "d43890fc3039d9aabb666a339237edd4c536a2a7cd174ec0ceb532e5af2ca6b8",
+  "receipt.json": "0a1935087f29b8f4eaa2171baee6222ab7ddd1848c17799367786857bbd94992",
+  "result.json": "8ad421720a46c741b7ff3ed535de4b3104ef18868a7b216a601aaafb355ddb33",
+  "source.zip": "6b1dbb23ae11dfdb3107486530e61954e4e43f7296a3ee2e8cf5fbd933b7e038"
+}

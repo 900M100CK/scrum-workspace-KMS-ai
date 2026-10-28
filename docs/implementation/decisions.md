@@ -1,7 +1,7 @@
 # Decision map for implementation
 
 **Artifact ID:** IMPL-DEC-01\
-**Version/date:** 0.5 Draft · 27 October 2026\
+**Version/date:** 0.9 Draft · 28 October 2026\
 **Status:** Index of existing decisions; no new acceptance.\
 **Inputs:** PRD-01 v0.9; ADR-0001–ADR-0025; OWNER-Q-01 v0.1; [TECH-STACK-01](../tech-stack.md) v1.6; [source register](register.md).\
 **Trace:** BR-01–BR-14; SC-01–SC-08.\
@@ -30,7 +30,7 @@ Owner-confirmed direction is neither implemented behaviour nor independent appro
 | Gate | Decision still required | Proposed input / affected tasks | Work that may proceed |
 | --- | --- | --- | --- |
 | D-01 application stack | Select framework/tooling, application DB client and tested versions; do not infer adoption from preview packages | OD-12; [TECH-STACK-01](../tech-stack.md) v1.6; [ADR-0003](../adr/0003-student-stack.md); SP-01.1, then all code packs | Record candidate versus installed versus tested/selected; verify compiler/plugin/runtime and OpenAPI/validator/serializer dialect compatibility. Decide bounded service-owned pools, same-client transactions and exact bigint handling. Preserve existing preview; no package adoption by this pack |
-| D-02 identity/session | Identity verification, provisioning, expiry, cookie/CSRF behaviour and logout semantics | OD-09; SP-01.1–3; SP-02 scope tests | Prepare pre-provisioned synthetic-account acceptance inputs; no invented account-registration/reset scope |
+| D-02 identity/session | Core bundle owner-confirmed; detailed KDF/time/recovery and account lock/disable mechanics still open | OD-09; ADR-0025 v0.2; SP-01.1–3; SP-02 scope tests | Bounded P07 scaffold/interfaces/config/local HTTPS may proceed; P08/P10 detailed persistence/algorithm gates remain; no registration/reset expansion |
 | D-03 capability provisioning | Who grants non-read capabilities and inspector rights, scope and removal semantics | OD-02/08; SP-02.1, SP-06.3, SP-13.1 | Explicit synthetic grants for tests; deny unknown actions. No role-name bypass or invented delegation UI |
 | D-04 UI read/projection design | Accept/reject Proposed projection/discovery mechanics needed for live UI | [ADR-0018](../adr/0018-operational-read-projections.md), [ADR-0019](../adr/0019-scoped-ui-discovery.md); SP-02–08/13 | Map existing wire contracts and fresh-client scenarios; SQL/shape checks do not accept design |
 | D-05 non-reading commands | Accept/reject opaque-precondition/minimal-receipt mechanics; preserve independent write/lifecycle authority | [ADR-0022](../adr/0022-opaque-document-command-preconditions.md); SP-06/07 | Inspect known-ID commands; no content prefill bypass |
@@ -59,3 +59,19 @@ Checklist: Pass for surfaced decisions/dependencies; Gap for the listed choices 
 ## Bounded framework selection — 27 October 2026
 
 [OWNER-FRAMEWORK-01](../planning/framework-foundation-owner-2026-10-27.md) and [INIT-FRAMEWORK-01](features/framework-foundation/plan.md) supersede the earlier no-adoption preparation restriction only for the owner-directed framework foundation. React/Vite/TypeScript and Fastify/TypeScript packages are initialised and selected for the tested scaffold. Earlier gate descriptions retain their broader unimplemented driver/validator/auth/transport scope: D-02, D-07 and pg/session policy remain open. Do not wait for a repeated framework-choice approval to use the selected scaffold, or infer session/permission acceptance from liveness/build tests. The existing synthetic UI moved to design/prototype and remains the design reference.
+
+## SP-01 owner disposition — 28 October 2026
+
+The owner selected pre-provisioned username accounts, opaque digest-backed independent sessions, same-origin secure cookie/Origin/header checks and configurable starting 30-minute idle / 8-hour absolute limits. These choices are recorded in ADR-0025 v0.2 and the P06 decision batch; do not reopen them. Detailed KDF/time/recovery mechanics remain Proposed. The owner expressly permits P07 scaffold/interfaces and local HTTPS while P08/P10 wait for the remaining gates. Account lock/disable policy is still unselected and TC-01 remains binding. No application schema extension, concrete KDF/time algorithm or D-07 acceptance follows from P07. See [P07 evidence](../sdlc/reports/SP-01-P07-scaffold-2026-10-28.md).
+
+## Bounded P08 disposition — 28 October 2026
+
+The owner selected manual account disable without automated lockout and authorised P08/schema 005 under the explicit memory/admission/libuv, private atomic recovery, fail-closed and honest-limitation conditions. [P08 design](features/sp-01-session-foundation/p08-persistence-design.md) v0.2 and [result](../sdlc/reports/SP-01-P08-persistence-2026-10-28.md) record disposition and evidence. No development migration, formal Accepted ADR or D-07 closure is implied; P09–P12 remain outside the bounded P08 approval.
+
+## P09 disposition — 28 October 2026
+
+The owner separately authorised P09 POST/GET handlers. Selected identity/cookie/Origin and explicit final schema validation are integrated with P08; no new policy, Accepted ADR or D-07 closure is inferred. Logout/renewal/UI remain later tasks.
+
+## P10 disposition — 28 October 2026
+
+The owner separately requested P10. Selected session lifecycle and additive audit migration 006 are implemented within that task; [P10 result](../sdlc/reports/SP-01-P10-lifecycle-2026-10-28.md) retains execution evidence. No formal ADR acceptance or D-07 closure.

@@ -47,7 +47,7 @@ test('isolated immutable handoff preparation and protected claim storage',{timeo
     await t.test('all owned migrations apply, repeat and reverse while protected stores are empty',()=>{
       for(const service of ['workspace','knowledge']) {
         migrate(container,service);migrate(container,service);
-        assert.equal(sql(container,service,'SELECT count(*) FROM _migrations.applied;').stdout.trim(),service==='workspace'?'4':'3');
+        assert.equal(sql(container,service,'SELECT count(*) FROM _migrations.applied;').stdout.trim(),service==='workspace'?'6':'3');
         migrate(container,service,'down');migrate(container,service);
       }
       run('knowledge',`INSERT INTO knowledge.execution(run_id,actor_id,project_id) VALUES ('${id(1)}','${id(2)}','${id(3)}');`);

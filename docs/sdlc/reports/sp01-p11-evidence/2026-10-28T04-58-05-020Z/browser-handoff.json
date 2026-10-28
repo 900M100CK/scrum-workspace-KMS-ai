@@ -1,0 +1,13 @@
+{
+  "recordedAt": "2026-10-28T05:02:21.889962+00:00",
+  "url": "https://localhost:5181",
+  "container": "sp01-p08-test-bee1aab79405",
+  "execSessionId": 35842,
+  "tabId": "1",
+  "browser": "iab",
+  "observation": "Privacy error / NET::ERR_CERT_AUTHORITY_INVALID; owner expanded Advanced but exception completion is not observed",
+  "ownerReply": "Owner will handle the browser warning",
+  "actualBrowserScenarios": "Not run",
+  "disposition": "Task-owned loopback fixture retained for owner TLS handoff; no OS trust/validation change",
+  "cleanup": "Send stop followed by Enter to the recorded exec session; helper closes Vite/Workspace and removes only its validated disposable container/volume."
+}

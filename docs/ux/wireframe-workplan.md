@@ -1,9 +1,9 @@
 # Core wireframe work plan and semantic state brief
 
 **Artifact ID:** UX-PLAN-01  
-**Version/date:** 0.2 Draft · 25 October 2026\
+**Version/date:** 0.3 Draft · 28 October 2026\
 **Status:** Planning/textual interaction brief; initial native frames and previews exist, while full WF acceptance and usability/runtime evidence remain open.\
-**Inputs:** PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; API-05 v0.17; UX-06 v0.13; UX-CHECK-01 v0.2; UX-HANDOFF-01 v0.9; current sitemap/permission/flow drafts.\
+**Inputs:** PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; API-05 v0.19; UX-06 v0.13; UX-CHECK-01 v0.2; UX-HANDOFF-01 v0.9; current sitemap/permission/flow drafts.\
 **Trace:** BR-01–BR-14; SC-01–SC-08; NFR-01–NFR-04; U03–U18/U20–U23 and B19 in the detailed checklist review.
 
 ## Scope and order
@@ -78,3 +78,7 @@ Checklist: Pass for ordered tasks, concrete Backlog/document command state varia
 ## Initial visual artifacts and remaining acceptance — 25 October 2026
 
 [UX-WF-EX-01](wireframes/README.md) supplies an editable scene and initial frame previews. This work plan still lacks complete acceptance evidence for the listed WF tasks, so its checkboxes remain unchecked. Artifact existence does not establish complete state variants, native Excalidraw rendering, responsive/accessibility/usability or runtime acceptance.
+
+## P10 input metadata — 28 October 2026
+
+Input versions synchronize the bounded session lifecycle update. Existing requirement, evaluation and UI assertions remain unchanged; no runtime acceptance is inferred from this metadata revision.

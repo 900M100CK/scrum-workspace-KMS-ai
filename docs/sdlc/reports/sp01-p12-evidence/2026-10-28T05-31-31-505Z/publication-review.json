@@ -1,0 +1,15 @@
+{
+  "scannedTextInputs": 1534,
+  "potentialMatches": 33,
+  "reviewedDisposition": "All matches are negative URL literals in services/workspace/test/session-runtime.test.ts, including repeated source-archive copies; no live private key, GitHub/provider token or live DB credential detected by this bounded scan.",
+  "exclusions": [
+    "SDLC-Prompt-Checklist dirty submodule",
+    "docs/agents",
+    "docs/SDLC-Prompt-Checklist",
+    "diagram-fixes-v2.patch",
+    "uc-review-fixes.patch",
+    "new.tree",
+    "structure.json",
+    "ignored local TLS/environment/runtime files"
+  ]
+}

@@ -1,7 +1,7 @@
 # Contract-first interface pack
 
 **Artifact ID:** CONTRACT-01  
-**Version/date:** 0.19 Draft · 25 October 2026
+**Version/date:** 0.21 Draft · 28 October 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0011 direction is owner-confirmed; remaining protocol/policy gaps and handler evidence are pending.\
 **Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [data design](../docs/sdlc/data-design.md); PLAN-01 v0.4.\; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
 **Author:** development agent acting sequentially; owner reviews business choices.
@@ -91,3 +91,11 @@ After npm ci, Node 24+ and Docker, npm run contracts:storage:test verifies the p
 ## Input metadata reconciliation — 25 October 2026
 
 Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.
+
+## P09 bounded session transport — 28 October 2026
+
+Workspace v0.2.9 synchronizes the selected __Host-sacw-session cookie name and declares POST /session Error responses for 413 (8192-byte JSON bound) and 415 (unsupported media). POST uses exact configured HTTPS Origin/custom header; POST/GET use no-store and exact Session/Error objects. Actual P09 handlers and owned PostgreSQL tests exist; DELETE/renewal/UI and D-07 acceptance remain later work. No operation count, FR, project/document scope or Knowledge wire behavior changes. See [P09 result](../docs/sdlc/reports/SP-01-P09-http-2026-10-28.md).
+
+## P10 session lifecycle — 28 October 2026
+
+Workspace v0.2.10 describes authenticated GET renewal/cookie refresh and idempotent empty DELETE 204 with Origin/header protection, no body and mandatory audit before cookie clearing. DELETE explicitly declares bounded 413/415 transport errors. Strict idle/absolute comparisons and no revival/regression are implemented in P10; unknown commit is 503 without a success cookie. No new operation, FR, Knowledge behavior or D-07 claim. See [P10 result](../docs/sdlc/reports/SP-01-P10-lifecycle-2026-10-28.md).

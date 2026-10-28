@@ -1,16 +1,16 @@
 # Functional and alternate-flow verification design
 
 **Artifact ID:** VERIFY-01
-**Version/date:** 0.5 Draft · 25 October 2026
-**Inputs:** PRD-01 v0.9; UC-02 v0.8; TEST-08 v0.21; ADR-0007 through ADR-0017; release-scope v0.2.
-**Status:** Analyst review of required observations; application execution Not run. No independent approval.
+**Version/date:** 0.10 Draft · 28 October 2026
+**Inputs:** PRD-01 v0.9; UC-02 v0.8; TEST-08 v0.22; ADR-0007 through ADR-0017; release-scope v0.2.
+**Status:** Verification design with bounded P09/P10 handler and P11 DOM/consumer evidence; complete application acceptance remains open. No independent approval.
 **Trace:** BR-01 through BR-15; SC-01 through SC-08 through TEST-COVERAGE-01.
 
 ## Interpretation
 
 Each row identifies the matching numbered AC, producing/consuming UC and an observation needed beyond a requirement ID. TC gates are in [the test plan](test-plan.md). [The scenario/exception matrix](test-coverage.md) covers SC/BR and EX branches; this document adds FR/AC, alternates and NFR checks. `Defined` means a test can be designed from the stated rule, not that code exists or passes. `Gap` retains an unresolved implementation/input decision. Optional and outside-release rows remain visible; the authoritative release gate stays 60 Must in release-scope.json, regardless of P0/P1 labels here.
 
-For every applicable mutation add authority denial, stale revision, replay, owning-state/audit atomicity and fresh-read assertions. For protected reads add current project/document scope and unknown/denied equivalence. These cross-cutting checks apply even when a row states only its distinctive observation. Real handler/consumer-provider/UI evidence is missing for every active row; existing storage/schema tests establish prerequisites only.
+For every applicable mutation add authority denial, stale revision, replay, owning-state/audit atomicity and fresh-read assertions. For protected reads add current project/document scope and unknown/denied equivalence. These cross-cutting checks apply even when a row states only its distinctive observation. Complete handler/consumer-provider/UI evidence remains missing; the bounded session subset below is now measured separately from storage/schema prerequisites.
 
 ## FR and matching AC matrix
 
@@ -51,7 +51,7 @@ For every applicable mutation add authority denial, stale revision, replay, owni
 | FR-33 / AC-33 | UC-12 main | TC-10 | For connection/timeout/budget failures, create/edit/board/start/complete/document read succeed independently and fresh reads confirm. Defined. |
 | FR-34 / AC-34 | UC-12 keyword | TC-10, TC-23 | Each failed AI dependency leaves same permitted exact-term source findable/openable without calling that dependency. Defined. |
 | FR-35 / AC-35 | No Core report UC | None | Enhanced/Wont; report definition unresolved and outside release. No invented report result or gate. |
-| FR-36 / AC-36 | UC-01 sign-in | TC-01 | Valid selected identity outcome creates session; invalid outcome does not. Identity mechanism remains OD-09. |
+| FR-36 / AC-36 | UC-01 sign-in | TC-01 | Valid selected identity outcome creates session; invalid outcome does not. Pre-provisioned identity direction selected; bounded P09 handlers measured below, complete flow remains open. |
 | FR-37 / AC-37 | UC-01 sign-out | TC-01 | Old session is unusable after sign-out; repeated sign-out cannot renew it. Defined. |
 | FR-38 / AC-38 | UC-02 add / Alt-1 | TC-03, TC-24 | New membership enables project-shared access, not restricted grant; re-add restores no old individual capability, grant or assignment. Defined. |
 | FR-39 / AC-39 | UC-02 remove | TC-03, TC-14 | Removal atomically invalidates every individually granted capability/read grant, clears current assignees, bumps task revisions and persists minimum audit; history survives, rejoin restores none, and last-manager removal rejects. Defined. |
@@ -83,7 +83,7 @@ For every applicable mutation add authority denial, stale revision, replay, owni
 | FR-65 / AC-65 | UC-06 Alt-3 | TC-20 | Optional owner/label edit leaves immutable version content and citation locators unchanged. Defined. |
 | FR-66 / AC-66 | UC-05 Alt-3 | TC-13, TC-21 | Optional Planned dates/goal edit persists valid values; invalid dates reject. Defined. |
 | FR-67 / AC-67 | UC-05 Alt-2 | TC-21 | Optional removal returns item to Product Backlog without deletion or Done transition. Defined. |
-| FR-68 / AC-68 | UC-01 EX-02 | TC-01, TC-22 | Expired session yields no protected result and asks sign-in; configurable duration remains OD-09. |
+| FR-68 / AC-68 | UC-01 EX-02 | TC-01, TC-22 | Expired session yields no protected result and asks sign-in; configurable starting limits selected. P09 server denial measured; UI prompt remains unrun. |
 | FR-69 / AC-69 | UC-12 EX-01 | TC-10, TC-18 | Each required AI dependency failure category returns no generated answer with recorded run/error; healthy operations survive. Defined. |
 | FR-70 / AC-70 | UC-08 Alt-5 | TC-25 | Owner-added Should: scoped title/description keyword search, independent of AI/Knowledge, with paging rechecks and no hidden counts. Defined by ADR-0016. |
 
@@ -155,3 +155,23 @@ TC-10/22: after terminal provider failure the editor permits deliberate new requ
 ## Input metadata reconciliation — 25 October 2026
 
 Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.
+
+## Bounded P09 application evidence — 28 October 2026
+
+[P09 result](reports/SP-01-P09-http-2026-10-28.md) records actual POST/GET handlers, owned PostgreSQL and trusted HTTPS. AC-01 is measured for cookie-bound actor despite forged client selectors; AC-36 for valid versus wrong/unknown/disabled auth and failed audit; AC-68 for server rejection of expired state. These are scoped observations, not full-case/FR acceptance. Logout/renewal/UI (including the AC-68 prompt), project/document scope, cross-service guards and deployment calibration remain unrun. No whole release row is marked Passed.
+
+## Bounded P10 measured subset — 28 October 2026
+
+[P10 result](reports/SP-01-P10-lifecycle-2026-10-28.md) measures AC-37 at the GET session boundary after confirmed DELETE, strict idle/absolute server expiry for AC-68, renewal/logout interleavings and TC-18 atomic lifecycle audit rollback. TC-01/18 remain Partial: live UI/browser semantics, all protected operations/producers and D-07 guarded content handoff are not passed. The AC-68 UI sign-in prompt remains P11. Historical P09 paragraphs describe their earlier measured scope. No whole FR/SC/release row is marked Passed.
+
+## P11 measured UI subset — 28 October 2026
+
+[P11 result](reports/SP-01-P11-ui-2026-10-28.md) records actual React DOM over Workspace/PostgreSQL via same-origin HTTPS: generic failed sign-in, confirmed session, workspace navigation, dependency denial, expired-session sign-in prompting/state removal, logout and reload-style revalidation. Controller tests separately cover stale results, uncertain mutation, malformed output and request timeout; the local-expiry DOM case uses controlled time. TC-22/AC-68 observations are bounded DOM/live-consumer evidence. Actual browser keyboard/reload/Secure-cookie semantics remain a separate certificate-dependent gate; TC-01/18, D-07 and complete feature/release acceptance remain open.
+
+## P11 actual browser observations — 28 October 2026
+
+After owner TLS handoff, the in-app browser demonstrated Enter-key login, authenticated reload, workspace navigation/cross-document Back, actual DB-expiry denial with sign-in prompting/state removal, and logout followed by unauthenticated reload. See P11 result v0.2. These add bounded AC-37/68 and TC-22 observations; other browsers, comprehensive accessibility/usability, all protected operations and D-07 remain open. Earlier browser-pending statements are execution snapshots, not current status.
+
+## P12 integrated handoff — 28 October 2026
+
+See [P12 result](reports/SP-01-P12-handoff-2026-10-28.md) for bounded integrated session/UI regression, owner local test feedback and screenshot evidence. AC-01/36/37/68 and applicable session producers/UI are mapped there; D-07, other protected features, full cross-browser/accessibility and deployment/formal ADR gates remain open. No new requirement or independent acceptance is inferred.

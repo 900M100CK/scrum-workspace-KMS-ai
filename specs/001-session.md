@@ -1,12 +1,12 @@
 # Establish and end a session
 
 **Artifact ID:** SP-01  
-**Version/date:** 0.4 Draft · 25 October 2026\
+**Version/date:** 0.5 Draft · 28 October 2026\
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
 **Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-01--establish-and-end-a-session); [contract pack](../contracts/README.md); PLAN-01 v0.4.\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
-**Status:** Unimplemented. **Target:** Month 1.  
+**Status:** Bounded session handlers/UI implemented with local regression and browser evidence; broader guarded-access/release acceptance remains open. **Target:** Month 1.\
 **Dependencies:** Context/contract baseline.   
 **Trace:** FR-01, FR-36, FR-37, FR-68; BR-01, BR-10; SC-06.
 
@@ -43,3 +43,7 @@ Uses the applicable owner-confirmed directions through ADR-0017 and OWNER-Q-01. 
 ## Input metadata reconciliation — 25 October 2026
 
 Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.
+
+## Bounded implementation evidence — 28 October 2026
+
+The owner reports their local feature test is OK. [P12 handoff](../docs/sdlc/reports/SP-01-P12-handoff-2026-10-28.md) maps actual credential/session identity, logout/expiry, atomic audit, race/failure and UI evidence for the existing ACs. This is no new requirement, Accepted ADR, project/document permission or D-07 guarded content-send acceptance. The feature remains Draft with those explicit release gates.

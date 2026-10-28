@@ -1,9 +1,9 @@
 %% Origin: docs/sdlc/diagrams/design-foundation-2026-10-17.md v0.1
-%% DGM-DATA-01 v0.3 Draft - 18 October 2026
-%% Sources: DGM-DESIGN-01 v0.1; PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; DATA-04 v0.12; ADR-0004; ADR-0007; ADR-0008; ADR-0011; ADR-0012; ADR-0017; ADR-0018; ADR-0023
+%% DGM-DATA-01 v0.4 Draft - 28 October 2026
+%% Sources: DGM-DESIGN-01 v0.1; PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; DATA-04 v0.13; ADR-0004; ADR-0007; ADR-0008; ADR-0011; ADR-0012; ADR-0017; ADR-0018; ADR-0023; ADR-0024; ADR-0025
 %% Trace: BR-01–BR-03, BR-06, BR-10–BR-12; SC-03/04/06
-%% Scope: Schema through Workspace migration 004; development database upgrade not claimed. Selected columns; storage/service constraints are not end-user authority.
-%% Legend: Relationship label names FK columns; ||--o{ means parent 1 to child 0..many. User IDs are opaque; no User table or cross-store FK. Session/idempotency have no project FK.
+%% Scope: Schema through owner-authorised Workspace migration 005; development database upgrade not claimed. Selected columns; storage/service constraints are not end-user authority.
+%% Legend: Relationship label names FK columns; ||--o{ means parent 1 to child 0..many. AuthAccount is private authentication storage; no cross-store FK. Session/idempotency/authentication audit have no project FK.
 erDiagram
     project {
         uuid project_id PK
@@ -20,7 +20,7 @@ erDiagram
     }
     session {
         uuid session_id PK
-        uuid user_id
+        uuid user_id FK
         boolean revoked
         timestamptz expires_at
         bigint revision
@@ -104,6 +104,37 @@ erDiagram
         timestamptz observed_at
         text enforcement_ref
     }
+    auth_account {
+        uuid user_id PK
+        text username UK
+        text password_credential "private encoded KDF"
+        boolean disabled
+        bigint credential_revision
+    }
+    session_token {
+        uuid session_id PK,FK
+        text token_digest UK
+        timestamptz created_at
+        timestamptz absolute_expires_at "immutable cap"
+    }
+    auth_clock_state {
+        boolean singleton PK
+        timestamptz last_observed
+        boolean healthy
+        bigint recovery_generation
+    }
+    authentication_audit {
+        uuid event_id PK
+        text action
+        uuid actor_user_id
+        uuid entity_id
+        text operator_ref
+        text database_principal
+        timestamptz observed_at
+        bigint recovery_generation
+        uuid correlation_id
+        text evidence_ref
+    }
     project ||--o{ membership : "project_id"
     project ||--o{ sprint : "project_id"
     project ||--o{ task : "project_id"
@@ -119,3 +150,5 @@ erDiagram
     sprint o|--o{ task : "project_id + location_sprint_id (deferred)"
     sprint_allocation o|--o| task : "location_sprint_id + task_id (deferred)"
     idempotency_record ||--o{ protected_handoff_outcome : "actor operation key fence; append-only"
+    auth_account ||--o{ session : "user_id"
+    session ||--|| session_token : "session_id"

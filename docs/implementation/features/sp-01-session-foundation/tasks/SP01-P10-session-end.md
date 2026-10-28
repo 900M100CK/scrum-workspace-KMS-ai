@@ -1,9 +1,9 @@
 # SP01-P10 — Real expiry, renewal and sign-out
 
 **Artifact ID:** SP01-P10\
-**Version/date:** 0.1 Draft · 27 October 2026\
+**Version/date:** 0.8 Draft · 28 October 2026\
 **Status:** Task brief only; execution state and result are authoritative in the parent plan.\
-**Inputs:** [FEAT-SP01-01](../plan.md) v0.2; [canonical SP-01](../../../../../specs/001-session.md) v0.4; [canonical brief](../../../briefs/SP-01.1-session-foundation.md) v0.2; [runtime spike brief](../../../../../SP-01.1-spike-brief.md) v0.2; Proposed ADR-0024/0025.\
+**Inputs:** [FEAT-SP01-01](../plan.md) v0.9; [canonical SP-01](../../../../../specs/001-session.md) v0.5; [canonical brief](../../../briefs/SP-01.1-session-foundation.md) v0.4; [runtime spike brief](../../../../../SP-01.1-spike-brief.md) v0.2; Proposed ADR-0024/0025.\
 **Trace:** Parent SP-01.3; FR-01/36/37/68 and relevant ACs/TCs as mapped in the plan; BR-01/10; SC-06 relevance, not passed coverage.\
 **Owner role:** Sequential implementer.
 
@@ -43,3 +43,7 @@ Session-ending behaviour evidence and remaining UI/guard limitations; no broader
 Save a dated result under docs/sdlc/reports/ using the [handoff template](../../../handoff-template.md); register it, then update this task's status/result cell in [plan.md](../plan.md). Keep mutable execution status in that one table, not a second checklist here. A task requiring a material new scope/policy decision pauses only the dependent work. The next ready task is selected by the parent dependency table; no automatic owner acceptance.
 
 **Checklist:** Self-checked for task scope/assertions and parent links; runtime evidence Not run at authoring.
+
+## Executed scope
+
+See [P10 result](../../../../sdlc/reports/SP-01-P10-lifecycle-2026-10-28.md) for actual assertions and limitations. The parent plan registers additive migration 006, root lifecycle command, existing storage regression count/rollback ordering and Workspace contract changes. No new dependency/table, original migration rewrite or Knowledge behavior change. Runtime uses only PostgreSQL clock time sampled after locks; a constructor-only test clock provides labelled microsecond boundary cases.

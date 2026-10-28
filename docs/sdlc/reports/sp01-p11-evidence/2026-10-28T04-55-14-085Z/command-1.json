@@ -1,0 +1,16 @@
+{
+  "command": [
+    "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+    "ci",
+    "--ignore-scripts",
+    "--offline",
+    "--no-audit",
+    "--no-fund"
+  ],
+  "started": "2026-10-28T04:55:14.184Z",
+  "finished": "2026-10-28T04:55:25.203Z",
+  "exitCode": 0,
+  "stdout": "\nadded 396 packages in 11s\n",
+  "stderr": "npm warn deprecated sliced@1.0.1: Unsupported\nnpm warn deprecated whatwg-encoding@3.1.1: Use @exodus/bytes instead for a more spec-conformant and faster implementation\n"
+}

@@ -1,9 +1,9 @@
 # Work plan register and template
 
 **Artifact ID:** IMPL-FEATURES-01\
-**Version/date:** 0.6 Draft · 27 October 2026\
+**Version/date:** 0.13 Draft · 28 October 2026\
 **Status:** Planning entry; no application feature accepted or implemented by this file.\
-**Inputs:** [Development rules](../../development-rules.md) v1.9; [implementation roadmap](../roadmap.md) v0.6; [PLAN-01](../../planning/five-month-plan.md) v0.4; [spec index](../../../specs/README.md) v0.4; [source register](../register.md).\
+**Inputs:** [Development rules](../../development-rules.md) v1.12; [implementation roadmap](../roadmap.md) v0.6; [PLAN-01](../../planning/five-month-plan.md) v0.4; [spec index](../../../specs/README.md) v0.7; [source register](../register.md).\
 **Trace:** Existing feature FR/AC/BR/SC through its canonical spec; no added scope.\
 **Owner role:** Sequential development coordinator.
 
@@ -13,7 +13,7 @@ Follow [the planning gate](../../development-rules.md#111-work-planning-gate) fo
 
 | Work plan ID / kind / file | Version / status | Parent PLAN-01 section / roadmap milestone | Canonical spec / pack children | Next ready task / result |
 | --- | --- | --- | --- | --- |
-| [FEAT-SP01-01 / feature / session foundation](sp-01-session-foundation/plan.md) / [folder entry](sp-01-session-foundation/README.md) | Plan v0.2 Draft; entry/task briefs v0.1; application gated | PLAN-01 Month 1 / M-01 | SP-01 / SP-01.1–01.4; applicable SP-11.1 capture | SP01-P01 next; all 12 task rows Not started, no new runtime result |
+| [FEAT-SP01-01 / feature / session foundation](sp-01-session-foundation/plan.md) / [folder entry](sp-01-session-foundation/README.md) | Plan v0.9 Draft; entry/task briefs v0.8; application gated | PLAN-01 Month 1 / M-01 | SP-01 / SP-01.1–01.4; applicable SP-11.1 capture | P01–P04 laboratory preparation verified with limits; P05 clock evidence partial; P06 core policy direction selected; bounded P07 interfaces/HTTPS verified; P08 verified with actual role/storage regression evidence; bounded P09 verified; bounded P10 verified; P11 bounded DOM/live/browser observations verified; P12 bounded regression/handoff executed; release gates open; see authoritative plan |
 
 For each new plan: replace the empty row with the actual ID/link, register the artifact centrally and in the [source register](../register.md), and add the roadmap backlink. Keep one canonical task table per feature. Parent rows reference it; they do not copy every task's mutable status.
 
@@ -85,3 +85,11 @@ Use existing [execution states and evidence rules](../execution.md) and [handoff
 | Work plan | Parent | Next work |
 | --- | --- | --- |
 | [INIT-FRAMEWORK-01 v0.2](framework-foundation/plan.md) | M-01 / PLAN-01 Month 1; SP-01 prerequisite | INIT-01 through INIT-04 verified; source 5b00fce published and synced, no protected business handler |
+
+## P11 browser continuation — 28 October 2026
+
+The owner completed the certificate handoff. Actual keyboard login, reload/cookie reuse, navigation/back, server expiry and logout were observed; browser outcomes are retained in SP01-P11-RESULT v0.2. P12 and broader acceptance remain open. No independent approval is implied.
+
+## P12 integrated handoff — 28 October 2026
+
+See [P12 result](../../sdlc/reports/SP-01-P12-handoff-2026-10-28.md) for bounded integrated session/UI regression, owner local test feedback and screenshot evidence. AC-01/36/37/68 and applicable session producers/UI are mapped there; D-07, other protected features, full cross-browser/accessibility and deployment/formal ADR gates remain open. No new requirement or independent acceptance is inferred.
