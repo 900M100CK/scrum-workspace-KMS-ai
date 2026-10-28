@@ -1,9 +1,9 @@
 # Supporting document review register
 
 **Artifact ID:** DOC-REVIEW-REG-01\
-**Version/date:** 0.27 Draft · 28 October 2026\
+**Version/date:** 0.28 Draft · 28 October 2026\
 **Status:** Review planning with bounded author rechecks recorded below; no full document-type review or approval.\
-**Inputs:** [Development rules](../../development-rules.md) v1.12; [PREFLIGHT-01](../../agent-preflight-checklist.md) v0.1; [REG-00](../artifact-register.md) v0.86; [SDLC-INDEX-01](../README.md) v0.3; [SDLC workflow](../../../agents/WORKFLOW.md), unversioned working guide.\
+**Inputs:** [Development rules](../../development-rules.md) v1.12; [PREFLIGHT-01](../../agent-preflight-checklist.md) v0.1; [REG-00](../artifact-register.md) v0.87; [SDLC-INDEX-01](../README.md) v0.3; [SDLC workflow](../../../agents/WORKFLOW.md), unversioned working guide.\
 **Trace:** Supports navigation and review of existing BR-01–BR-15 / SC-01–SC-08 documentation; no new requirement, application slice or acceptance criterion.\
 **Owner role:** SDLC coordinator; review assignments remain unassigned.
 
@@ -128,3 +128,7 @@ The owner completed the certificate handoff. Actual keyboard login, reload/cooki
 ## P12 integrated handoff — 28 October 2026
 
 See [P12 result](../reports/SP-01-P12-handoff-2026-10-28.md) for bounded integrated session/UI regression, owner local test feedback and screenshot evidence. AC-01/36/37/68 and applicable session producers/UI are mapped there; D-07, other protected features, full cross-browser/accessibility and deployment/formal ADR gates remain open. No new requirement or independent acceptance is inferred.
+
+## SP-02 preparation navigation
+
+REG-00 v0.87 registers the new feature plan/source review/owner proposal after the explicitly authorised SP-01 main merge. This is preparation and navigation, not SP-02 application or independent acceptance.

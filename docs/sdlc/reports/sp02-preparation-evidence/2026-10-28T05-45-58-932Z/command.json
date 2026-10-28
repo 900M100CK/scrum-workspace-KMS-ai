@@ -1,0 +1,10 @@
+{
+  "command": [
+    "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "--test",
+    "tests/workspace/sp02-contract-preparation.test.mjs"
+  ],
+  "exitCode": 0,
+  "stdout": "✔ SP02 preparation: CreateProject accepts descriptive inputs but rejects actor/authority/identity injection (1.1694ms)\n✔ SP02 preparation: AddMember requires a known-ID selector shape and a descriptive contract role (0.2741ms)\n✔ SP02 preparation: public Project/Member responses reject credential and grant inventories (0.3882ms)\n✔ SP02 preparation: actual operations declare idempotency/removal revision and distinct paging parameters (0.1731ms)\n✔ SP02 preparation: advisory action shape excludes unknown/internal operation names (0.5269ms)\n✔ SP02 preparation: retain known schema gaps as observations, not application permission passes (0.0956ms)\nℹ tests 6\nℹ suites 0\nℹ pass 6\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 322.3645\n",
+  "stderr": ""
+}

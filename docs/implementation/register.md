@@ -1,7 +1,7 @@
 # Implementation source and artifact register
 
 **Artifact ID:** IMPL-REG-01\
-**Version/date:** 0.18 Draft · 28 October 2026\
+**Version/date:** 0.19 Draft · 28 October 2026\
 **Status:** Source snapshot and navigation, not approval or runtime evidence.\
 **Inputs:** REG-00; PRD-01 v0.9; SPEC-INDEX v0.7; PLAN-01 v0.4; SAD-03 v0.16; ADR-0001–ADR-0025.\
 **Trace:** Existing BR-01–BR-14 / SC-01–SC-08.\
@@ -38,7 +38,7 @@ Versions below are reading snapshots. Reopen the source before implementation. A
 
 ## Pack inventory
 
-Artifacts below are owned by the sequential development coordinator. IMPL-REG-01 is v0.18 Draft dated 28 October; IMPL-DEC-01 is v0.9 and IMPL-SP-01 is v0.7 dated 27 October; IMPL-ENTRY-01 and IMPL-TASKS-01 are v0.2 dated 27 October; IMPL-EXEC-01 is v0.7 and IMPL-ROADMAP-01 is v0.6 dated 27 October; IMPL-SP-11 and IMPL-SP-12 remain v0.2 dated 26 October; other original pack artifacts remain v0.1 dated 26 October. Inputs and trace are in each header. Handoff is preparation-ready with stated gaps, never approval. No handlers have been delivered by this pack.
+Artifacts below are owned by the sequential development coordinator. IMPL-REG-01 is v0.19 Draft dated 28 October; IMPL-DEC-01 is v0.9 and IMPL-SP-01 is v0.7 dated 27 October; IMPL-ENTRY-01 and IMPL-TASKS-01 are v0.2 dated 27 October; IMPL-EXEC-01 is v0.7 and IMPL-ROADMAP-01 is v0.7 dated 27 October; IMPL-SP-11 and IMPL-SP-12 remain v0.2 dated 26 October; other original pack artifacts remain v0.1 dated 26 October. Inputs and trace are in each header. Handoff is preparation-ready with stated gaps, never approval. No handlers have been delivered by this pack.
 
 | Artifact | Path | Dependency / purpose |
 | --- | --- | --- |
@@ -47,7 +47,7 @@ Artifacts below are owned by the sequential development coordinator. IMPL-REG-01
 | IMPL-DEC-01 | [decisions](decisions.md) | Current decisions and implementation gates |
 | IMPL-ROADMAP-01 (v0.6) | [roadmap](roadmap.md) | Milestones using existing slices and feature-plan backlinks |
 | IMPL-EXEC-01 (v0.7) | [execution](execution.md) | Agent workflow and saved feature-plan gate |
-| IMPL-FEATURES-01 (v0.13) | [work plan register/template](features/README.md) | Plan mode → saved plan → parent registration → small tasks → actual evidence; FEAT-SP01-01 registered under M-01 |
+| IMPL-FEATURES-01 (v0.14) | [work plan register/template](features/README.md) | Plan mode → saved plan → parent registration → small tasks → actual evidence; FEAT-SP01-01 registered under M-01 |
 | FEAT-SP01-01 (v0.9) | [session foundation work plan](features/sp-01-session-foundation/plan.md) | M-01 / PLAN-01 Month 1; 12 small tasks; P01–P04 laboratory preparation verified with limits, P05 partial, P06 material decisions open |
 | FEAT-SP01-ENTRY / SP01-P01–SP01-P12 (all v0.8) | [feature folder entry](features/sp-01-session-foundation/README.md); individual task links in [plan](features/sp-01-session-foundation/plan.md#tasks-and-acceptance) | Bounded task briefs; execution status/results remain in the authoritative parent table |
 | IMPL-HANDOFF-01 | [handoff template](handoff-template.md) | Brief and result record |
@@ -98,3 +98,15 @@ The owner completed the certificate handoff. Actual keyboard login, reload/cooki
 See [P12 result](../sdlc/reports/SP-01-P12-handoff-2026-10-28.md) for bounded integrated session/UI regression, owner local test feedback and screenshot evidence. AC-01/36/37/68 and applicable session producers/UI are mapped there; D-07, other protected features, full cross-browser/accessibility and deployment/formal ADR gates remain open. No new requirement or independent acceptance is inferred.
 
 | SP01-P12-RESULT (v0.1) | [P12 result](../sdlc/reports/SP-01-P12-handoff-2026-10-28.md) | Bounded integrated regression, four original screenshots, owner local feedback and authorised publication; wider gates open |
+
+
+28 October: owner-authorised main merge/push verified at 52a10dd0bbdf76b173c2c2f387e6615def4312e9 after all SP-01 local gates passed; current branch codex/sp-02-project-membership starts there. Unrelated local work is retained; no new SP-02 commit/push authority inferred. IMPL-SP-02 v0.2 and IMPL-TASKS-01 v0.4 register preparation.
+
+
+## SP-02 registered artifacts
+
+| Artifact / version | Source | Reading purpose and limits |
+| --- | --- | --- |
+| FEAT-SP02-01 / FEAT-SP02-ENTRY / SP02-P01–P10 (all v0.1) | [SP-02 feature folder](features/sp-02-project-membership/README.md) | M-02/M-03 / PLAN-01 Month 1; canonical SP-02 v0.5; ten tasks; source review before selected implementation |
+| SP02-P01-REVIEW / SP02-DECISION-BATCH (v0.1) | [source review](features/sp-02-project-membership/p01-source-review.md); [owner proposal](features/sp-02-project-membership/decision-batch.md) | Concrete global authority/schema/audit/discovery gates; no permission adoption or SP-02 application pass |
+| SP02-P02-RESULT (v0.1) | [SP-02 preparation result](../sdlc/reports/SP-02-P02-preparation-2026-10-28.md) | Six actual-contract schema probes, stable source evidence and explicit zero SP-02 handler coverage; D-03 selected, D-04/design gates open |

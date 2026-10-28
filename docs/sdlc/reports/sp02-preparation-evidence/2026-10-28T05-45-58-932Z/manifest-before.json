@@ -1,0 +1,15 @@
+{
+  "head": "52a10dd0bbdf76b173c2c2f387e6615def4312e9",
+  "branch": "codex/sp-02-project-membership",
+  "node": "v24.22.1",
+  "files": {
+    "contracts/openapi/workspace.openapi.json": "6bae3da65ee83b4b64721b952d23a74fc3effa1503025c08220eedd5a0d4d225",
+    "scripts/contract-schemas.mjs": "9c438ee6c71376973b4df5e013ad9f3505bb1b99e6011ebd51e33634703f6703",
+    "tests/workspace/sp02-contract-preparation.test.mjs": "638cfdb8b39955602130fe6e30c5ab3789f3fddfe7ccb4ecf5d19eea76dd7803",
+    "tests/fixtures/openapi31/schema-2022-10-07.json": "da01ba28852cac0de53893797cb8d1942bc3b05084f526dcc216717dec314ed0",
+    "package.json": "7372bcfec6d12ab66adaa2accb7ccf92dbd58301c10e1d6266be6c1bddb06537",
+    "package-lock.json": "6e072931c56c6a2c7ab3ebc2a50a2b5e3247847e308c5b9ea4e98d5202bcb0f8",
+    ".tmp/verify-sp02-preparation.mjs": "072c3bd89ce2089218998c339359417dd53626119d158dce64ee1f3925e9fca9"
+  },
+  "scopedDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

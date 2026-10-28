@@ -1,9 +1,9 @@
 # SP-02: Set the authorised project scope and remove membership without grant revival.
 
 **Artifact ID:** IMPL-SP-02\
-**Version/date:** 0.1 Draft · 26 October 2026\
-**Status:** Breakdown only; all child steps Not started.\
-**Inputs:** [Canonical SP-02](../../../specs/002-project-membership.md) v0.5; SPEC-INDEX v0.4; PRD-01 v0.9; [source register](../register.md); [decisions](../decisions.md).\
+**Version/date:** 0.2 Draft · 28 October 2026\
+**Status:** SP-02.1 bounded source/contract preparation started; application children await material dispositions.\
+**Inputs:** [Canonical SP-02](../../../specs/002-project-membership.md) v0.5; SPEC-INDEX v0.7; PRD-01 v0.9; [source register](../register.md); [decisions](../decisions.md).\
 **Trace:** FR-02, FR-03, FR-38, FR-39, FR-64; BR-01, BR-10, BR-14; SC-06.\
 **Owner role:** Sequential implementer; no independent approval claimed.
 
@@ -62,3 +62,7 @@ Use [execution rules](../execution.md): real handlers/persisted state, relevant 
 Record command/runtime, source revision or dirty-worktree digest, fixture/config identity, asserted boundary, results/failed attempts, unrun checks and open decisions in a dated [handoff](../handoff-template.md). Link it from the child status row and update the [catalogue](README.md) when pack state changes.
 
 **Checklist/handoff:** Pass for bounded breakdown and canonical references; Gap for missing decisions and all application acceptance. Ready for preparation within these limits; no implementation, release completion or independent acceptance is claimed.
+
+## Registered execution — 28 October 2026
+
+[FEAT-SP02-01](../features/sp-02-project-membership/plan.md) v0.1 and its ten task briefs own current detailed statuses. SP02-P01 records source/contract gaps; P02 may prepare exact-schema negatives and owner choices without adoption. D-03 capability provisioning, D-04 discovery and the additive persistence/transaction design are material gates. Existing last-manager/removal/rejoin/initial-creator defaults are retained rather than reopened. No new dependency, migration, application handler or Accepted ADR is implied.
