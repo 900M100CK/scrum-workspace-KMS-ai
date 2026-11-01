@@ -1,0 +1,78 @@
+
+> scrum-workspace-kms-context@0.1.0 test:foundation
+> npm run test --workspace @sacw/web && npm run test --workspace @sacw/workspace && npm run test --workspace @sacw/knowledge
+
+
+> @sacw/web@0.1.0 test
+> node --test test/*.test.ts
+
+✔ the actual Vite-transformed React entry renders a locked checking state before server confirmation (157.9381ms)
+The request id "D:\scrum-workspace-KMS-ai\.tmp\local-https\localhost.key" is outside of Vite serving allow list.
+
+- D:/scrum-workspace-KMS-ai
+
+Refer to docs https://vite.dev/config/server-options.html#server-fs-allow for configurations and more details.
+
+✔ opt-in trusted local HTTPS serves UI and proxies the actual Workspace without exposing keys (214.3196ms)
+✔ development TLS is opt-in and incomplete or missing key material fails explicitly (0.9791ms)
+✔ session client uses only fixed same-origin cookie transport and exact credential fields (19.5049ms)
+✔ 401 is generic, unavailable bodies never reach UI, and malformed success fails closed (1.1385ms)
+✔ late GET and response-body completion cannot restore identity after logout (2.9562ms)
+✔ uncertain mutation hides current state without retrying or claiming logout success (0.5396ms)
+✔ expiry or canceled observations cannot restore protected state (0.4943ms)
+✔ a stalled request is aborted at the fixed timeout and leaves unavailable state (10004.7062ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10177.31
+
+> @sacw/workspace@0.1.0 test
+> node --test test/*.test.ts
+
+✖ workspace liveness is separate from protected functionality (80.6011ms)
+✔ invalid port never silently changes the listening address (1.1218ms)
+✔ real localhost HTTP serves liveness and conceals unknown routes (43.3764ms)
+✔ strong scrypt has explicit memory, unique salts and real correct/wrong/dummy work (1097.8185ms)
+✔ KDF admits exactly two jobs without an unbounded queue and later recovers (429.0502ms)
+ℹ {"kind":"local synthetic resource observation; not deployment calibration","twoJobsAndLaterMilliseconds":428.64059999999995,"fsReadDuringJobsMilliseconds":1.677500000000009,"uvThreadpool":"Node default (4)","maxResidentKiB":319396}
+✔ session starting values are configurable without silently accepting invalid duration units (1.2643ms)
+✔ runtime configuration cannot silently use an operator or another database (0.7529ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 6
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1647.8219
+
+✖ failing tests:
+
+test at test\app.test.ts:5:1
+✖ workspace liveness is separate from protected functionality (80.6011ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  503 !== 404
+
+      at TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/services/workspace/test/app.test.ts:10:50)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 503,
+    expected: 404,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path D:\scrum-workspace-KMS-ai\services\workspace
+npm error workspace @sacw/workspace@0.1.0
+npm error location D:\scrum-workspace-KMS-ai\services\workspace
+npm error command failed
+npm error command C:\Windows\system32\cmd.exe /d /s /c node --test test/*.test.ts

@@ -3,7 +3,10 @@ import assert from 'node:assert/strict';
 import { randomBytes, randomUUID } from 'node:crypto';
 import { resolve } from 'node:path';
 import { readFileSync } from 'node:fs';
-import { docker, image, migrate, root, sql, waitReady } from '../scripts/database.mjs';
+import { docker, image, migrate as migrateOwned, root, sql, waitReady } from '../scripts/database.mjs';
+
+// Retain this suite's original 006 Workspace schema snapshot. SP-02 suites exercise 007/008.
+const migrate=(container,service,direction='up')=>migrateOwned(container,service,direction,service==='workspace'?{through:'006'}:{});
 
 const id = number => `00000000-0000-4000-8000-${number.toString(16).padStart(12, '0')}`;
 const q = number => `'${id(number)}'`;

@@ -1,9 +1,9 @@
 # SP02-P09 — Consider optional FR-64 without delaying Must acceptance
 
 **Artifact ID:** SP02-P09\
-**Version/date:** 0.1 Draft · 28 October 2026\
+**Version/date:** 0.3 Draft · 1 November 2026\
 **Status:** Task brief; execution status belongs only to the parent plan.\
-**Inputs:** [FEAT-SP02-01](../plan.md) v0.1; [SP-02](../../../../../specs/002-project-membership.md) v0.5; PRD-01 v0.9; Workspace v0.2.10; ADR-0007/0017 and Proposed ADR-0019.\
+**Inputs:** [FEAT-SP02-01](../plan.md) v0.6; [SP-02](../../../../../specs/002-project-membership.md) v0.7; PRD-01 v0.9; Workspace v0.2.11; ADR-0007/0017 and Proposed ADR-0019.\
 **Trace:** SP-02.2; FR-02/03/38/39; FR-64 only if selected; BR-01/10/14; SC-06 relevance without acceptance.
 
 ## Scope and prerequisites

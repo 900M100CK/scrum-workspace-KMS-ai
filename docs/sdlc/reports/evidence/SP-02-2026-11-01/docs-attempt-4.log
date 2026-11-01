@@ -1,0 +1,7 @@
+
+> scrum-workspace-kms-context@0.1.0 docs:lint
+> node scripts/docs/verify-docs.mjs
+
+Current reference version drift in docs/sdlc/artifact-register.md: DATA-04
+
+'0.13' !== '0.14'

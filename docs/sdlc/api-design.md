@@ -1,9 +1,9 @@
 # API design — contract entry
 
 **Artifact ID:** API-05  
-**Version/date:** 0.19 Draft · 28 October 2026
+**Version/date:** 0.20 Draft · 1 November 2026
 **Status:** ADR-0007–ADR-0013 directions are owner-confirmed; transport implementation and independent review remain pending.
-**Inputs:** PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; DATA-04 v0.13; [contract pack](../../contracts/README.md) v0.21; ADR-0007–ADR-0017; Proposed ADR-0018.\; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022
+**Inputs:** PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; DATA-04 v0.14; [contract pack](../../contracts/README.md) v0.22; ADR-0007–ADR-0017; Proposed ADR-0018.\; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0026
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 The canonical payload/routes are the two OpenAPI files linked by the contract pack. Public consumers are the web UI; internal consumers are Workspace/Knowledge. Every operation has x-requirements, authenticated scope, resource parameters, explicit responses and mutation concurrency semantics. Context validation checks shape/trace only.
@@ -81,3 +81,11 @@ Workspace v0.2.9 aligns the selected secure host-cookie name and declares bounde
 ## P10 bounded lifecycle implementation — 28 October 2026
 
 Workspace v0.2.10 documents GET idle renewal under the immutable absolute cap, secure cookie refresh and current-token DELETE with empty idempotent 204. Audit failure or unknown commit prevents success/cookie clearing; selected Origin/header and body constraints apply. [P10 evidence](reports/SP-01-P10-lifecycle-2026-10-28.md) is actual handler/DB evidence, not browser or D-07 acceptance. Operation inventory remains 66.
+
+## SP-02 runtime boundary — 1 November 2026
+
+Workspace v0.2.11 implements createProject/getProject/listProjects/addMember/listMembers/removeMember and global/project getAllowedActions. No global directory, emails, optional editProject or future-resource action is exposed. Current server identity, enabled account/session, membership and explicit capability checks precede each protected response or mutation. Unknown/nonmember project reads are identical 404. Origin/request-header and bounded strict input/output validation apply; no response adds hidden account/capability data.
+
+Mutations atomically commit state, audit and permanent minimal original outcome. Unknown COMMIT/response loss is 503/uncertain, reconciled using the original operation/key/payload; current authority is rechecked before disclosure. UI refresh reads current state separately from historical replay. HMAC cursors bind actor, route, project/limit, relevant membership/capability generations, complete authorised projection and expiry; never login session identity. Invalid/foreign/changed-key cursor is 400; verified stale/expired cursor is 409; revoked scope is generic 404; unavailable key/DB is 503. listProjects has fixed 50-row pages, listMembers 1–100/default 50.
+
+Locks establish a database decision boundary through the local HTTP adapter; they do not prove exclusion through socket completion or Knowledge/provider D-07 handoff. [Execution evidence](reports/SP-02-execution-2026-10-31.md) distinguishes structural, actual handler, controlled future-writer, DOM and browser observations.

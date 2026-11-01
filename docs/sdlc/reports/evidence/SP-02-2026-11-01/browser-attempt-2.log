@@ -1,0 +1,35 @@
+✖ P08 isolated Microsoft Edge: real cookies, current UI, unknown outcome and reload (8780.9827ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9161.2515
+
+✖ failing tests:
+
+test at tests\workspace\project-browser.test.mjs:6:1
+✖ P08 isolated Microsoft Edge: real cookies, current UI, unknown outcome and reload (8780.9827ms)
+  route.fetch: self-signed certificate; if the root CA is installed locally, try running Node.js with --use-system-ca
+  Call log:
+  [2m  - → POST https://localhost:59754/api/projects[22m
+  [2m    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0[22m
+  [2m    - accept: */*[22m
+  [2m    - accept-encoding: gzip,deflate,br[22m
+  [2m    - content-type: application/json[22m
+  [2m    - cookie: __Host-sacw-session=[redacted synthetic fixture cookie][22m
+  [2m    - idempotency-key: 9de84dff-ad0b-45f7-9c6a-af4d1b5ea4c4[22m
+  [2m    - origin: https://localhost:59754[22m
+  [2m    - referer: https://localhost:59754/[22m
+  [2m    - x-sacw-request: 1[22m
+  [2m    - sec-ch-ua: "Not:A-Brand";v="8", "Chromium";v="156", "Microsoft Edge";v="156"[22m
+  [2m    - sec-ch-ua-mobile: ?0[22m
+  [2m    - sec-ch-ua-platform: "Windows"[22m
+  [2m    - content-length: 69[22m
+
+      at D:\scrum-workspace-KMS-ai\tests\workspace\project-browser.test.mjs:18:242 {
+    name: 'Error',
+    log: [ '  - → POST https://localhost:59754/api/projects', '    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0', '    - accept: */*', '    - accept-encoding: gzip,deflate,br', '    - content-type: application/json', '    - cookie: __Host-sacw-session=[redacted synthetic fixture cookie]', '    - idempotency-key: 9de84dff-ad0b-45f7-9c6a-af4d1b5ea4c4', '    - origin: https://localhost:59754', '    - referer: https://localhost:59754/', '    - x-sacw-request: 1', '    - sec-ch-ua: "Not:A-Brand";v="8", "Chromium";v="156", "Microsoft Edge";v="156"', '    - sec-ch-ua-mobile: ?0', '    - sec-ch-ua-platform: "Windows"', '    - content-length: 69' ]
+  }

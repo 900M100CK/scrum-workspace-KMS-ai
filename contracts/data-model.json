@@ -1,8 +1,8 @@
 {
   "artifactId": "DATA-04",
-  "version": "0.9",
+  "version": "0.10",
   "status": "Draft",
-  "storageDecision": "ADR-0004 foundation plus Workspace 003 work location, Knowledge 003 immutable handoffs and Workspace 004 permanent protected claims; isolated storage evidence is not handler or guard acceptance. Workspace 005 owner-authorised session persistence and private authentication clock/audit; no public auth handler acceptance.",
+  "storageDecision": "ADR-0004 foundation plus Workspace 003 work location, Knowledge 003 immutable handoffs and Workspace 004 permanent protected claims; isolated storage evidence is not handler or guard acceptance. Workspace 005 owner-authorised session persistence and private authentication clock/audit; no public auth handler acceptance. Workspace 007 adds immutable project origin and private explicit create authority/audit; separate 008 adds permanent minimal project-operation snapshots. Tested disposable storage/handlers do not authorise a development upgrade or D-07 transport acceptance.",
   "entities": [
     {
       "name": "Project",
@@ -14,7 +14,9 @@
         "name",
         "description",
         "revision",
-        "backlog_revision"
+        "backlog_revision",
+        "created_by",
+        "created_at"
       ]
     },
     {
@@ -290,7 +292,9 @@
         "payload_hash",
         "state",
         "result_ref",
-        "expires_at"
+        "expires_at",
+        "result_status",
+        "result_snapshot"
       ]
     },
     {
@@ -530,6 +534,37 @@
       "constraints": [
         "Append-only private authentication events; no project-audit visibility implied",
         "Never raw password/token/cookie, credential hash or token digest"
+      ]
+    },
+    {
+      "name": "GlobalProjectAuthority",
+      "owner": "workspace",
+      "key": [
+        "user_id"
+      ],
+      "fields": [
+        "can_create",
+        "revision"
+      ]
+    },
+    {
+      "name": "AuthorityProvisioningAudit",
+      "owner": "workspace",
+      "key": [
+        "event_id"
+      ],
+      "immutable": true,
+      "fields": [
+        "target_user_id",
+        "project_id",
+        "action",
+        "allowed",
+        "previous_revision",
+        "revision",
+        "operator_ref",
+        "reason",
+        "database_principal",
+        "recorded_at"
       ]
     }
   ],

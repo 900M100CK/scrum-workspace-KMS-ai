@@ -1165,7 +1165,7 @@
       "title": "Workspace physical ERD — owned schema",
       "notation": "erd",
       "trace": "BR-01–BR-03, BR-06, BR-10–BR-12; SC-03/04/06",
-      "scope": "Schema through owner-authorised Workspace migration 005; development database upgrade not claimed. Selected columns; storage/service constraints are not end-user authority.",
+      "scope": "Workspace schema through owner-authorised migrations 007/008, tested only in disposable PostgreSQL; development upgrade not claimed. Selected fields; database storage is not end-user authority.",
       "legend": "Relationship label names FK columns; ||--o{ means parent 1 to child 0..many. AuthAccount is private authentication storage; no cross-store FK. Session/idempotency/authentication audit have no project FK.",
       "adrs": [
         "ADR-0004",
@@ -1177,7 +1177,8 @@
         "ADR-0018",
         "ADR-0023",
         "ADR-0024",
-        "ADR-0025"
+        "ADR-0025",
+        "ADR-0026"
       ],
       "nodes": [
         {
@@ -1186,7 +1187,9 @@
             "uuid project_id PK",
             "text name",
             "bigint revision",
-            "bigint backlog_revision \"set and order generation\""
+            "bigint backlog_revision \"set and order generation\"",
+            "uuid created_by FK \"immutable creator\"",
+            "timestamptz created_at \"immutable server origin\""
           ]
         },
         {
@@ -1196,7 +1199,8 @@
             "uuid user_id PK",
             "boolean active",
             "bigint membership_generation",
-            "text role"
+            "text role",
+            "bigint revision \"safe integer API boundary\""
           ]
         },
         {
@@ -1302,7 +1306,9 @@
             "text state",
             "timestamptz expires_at",
             "uuid claim_fence \"protected only\"",
-            "uuid process_ref \"protected only\""
+            "uuid process_ref \"protected only\"",
+            "smallint result_status \"SP02 committed result\"",
+            "jsonb result_snapshot \"minimal immutable 201 fields\""
           ]
         },
         {
@@ -1359,6 +1365,29 @@
             "bigint recovery_generation",
             "uuid correlation_id",
             "text evidence_ref"
+          ]
+        },
+        {
+          "id": "global_project_authority",
+          "fields": [
+            "uuid user_id PK,FK",
+            "boolean can_create",
+            "bigint revision"
+          ]
+        },
+        {
+          "id": "authority_provisioning_audit",
+          "fields": [
+            "uuid event_id PK",
+            "uuid target_user_id FK",
+            "uuid project_id FK \"nullable\"",
+            "text action",
+            "boolean allowed",
+            "bigint previous_revision",
+            "bigint revision",
+            "text operator_ref",
+            "text database_principal",
+            "timestamptz recorded_at"
           ]
         }
       ],
@@ -1452,6 +1481,28 @@
           "to": "session_token",
           "label": "session_id",
           "card": "||--||"
+        },
+        {
+          "from": "auth_account",
+          "to": "project",
+          "label": "created_by"
+        },
+        {
+          "from": "auth_account",
+          "to": "global_project_authority",
+          "label": "user_id",
+          "card": "||--o|"
+        },
+        {
+          "from": "auth_account",
+          "to": "authority_provisioning_audit",
+          "label": "target_user_id"
+        },
+        {
+          "from": "project",
+          "to": "authority_provisioning_audit",
+          "label": "project_id nullable",
+          "card": "o|--o{"
         }
       ]
     },

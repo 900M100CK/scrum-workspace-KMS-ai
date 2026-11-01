@@ -1,9 +1,9 @@
 # Functional and alternate-flow verification design
 
 **Artifact ID:** VERIFY-01
-**Version/date:** 0.10 Draft · 28 October 2026
-**Inputs:** PRD-01 v0.9; UC-02 v0.8; TEST-08 v0.22; ADR-0007 through ADR-0017; release-scope v0.2.
-**Status:** Verification design with bounded P09/P10 handler and P11 DOM/consumer evidence; complete application acceptance remains open. No independent approval.
+**Version/date:** 0.11 Draft · 1 November 2026
+**Inputs:** PRD-01 v0.9; UC-02 v0.8; TEST-08 v0.23; ADR-0007 through ADR-0017; release-scope v0.2.
+**Status:** Verification design with bounded SP-01 and SP-02 handler/DOM/browser evidence; complete application acceptance remains open. No independent approval.
 **Trace:** BR-01 through BR-15; SC-01 through SC-08 through TEST-COVERAGE-01.
 
 ## Interpretation
@@ -175,3 +175,14 @@ After owner TLS handoff, the in-app browser demonstrated Enter-key login, authen
 ## P12 integrated handoff — 28 October 2026
 
 See [P12 result](reports/SP-01-P12-handoff-2026-10-28.md) for bounded integrated session/UI regression, owner local test feedback and screenshot evidence. AC-01/36/37/68 and applicable session producers/UI are mapped there; D-07, other protected features, full cross-browser/accessibility and deployment/formal ADR gates remain open. No new requirement or independent acceptance is inferred.
+
+## SP-02 bounded runtime observation — 1 November 2026
+
+| Requirement | Measured observation and source | Remaining boundary |
+| --- | --- | --- |
+| AC-02 | Explicit global create authority, persisted server creator/time, initial manager grant, same-key exact replay, changed-payload conflict, audit/outcome rollback, lost actual COMMIT acknowledgement; project-http/project-authority suites | No optional editProject or development deployment |
+| AC-03 | Only current-member project directory/direct reads, identical nonmember/unknown 404, current membership generation, foreign/stale/tampered cursor and relogin semantics; project-reads/cursor suites | Work/document reads remain future handler checks |
+| AC-38 | Known-account add/rejoin, descriptive roles grant no capabilities, minimal IDs/roles/revisions, original snapshot replay and no grant revival; membership-lifecycle suite | Future delegation beyond private explicit provisioning remains open |
+| AC-39 | Atomic membership/grant/read invalidation and current assignment clearing with task revisions/audit; last effective manager, concurrent removals, stale rejoin precondition, preserved state/history/other project; removal/concurrency suites | Actual SP-04/SP-06 producers must repeat SP02-F01 races; current SQL doubles labelled |
+
+UI/controller/actual HTTPS and isolated Edge evidence covers fresh current views, original-key unknown-result recovery across reload, keyboard confirmation, mobile overflow, permission removal clearing, real secure-cookie login/logout. [Execution report](reports/SP-02-execution-2026-10-31.md) contains exact commands, failures and limits. These are bounded observations, not whole TC/SC-06/D-07 or independent acceptance.

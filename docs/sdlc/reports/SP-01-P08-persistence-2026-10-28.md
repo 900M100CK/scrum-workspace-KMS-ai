@@ -1,9 +1,9 @@
 # P08 owned persistence, KDF and private operations result
 
 **Artifact ID:** SP01-P08-RESULT\
-**Version/date:** 0.2 Draft · 28 October 2026\
+**Version/date:** 0.3 Draft · 1 November 2026\
 **Status:** Bounded P08 implementation and affected regressions verified. Public authentication handler behaviours verified: 0.\
-**Inputs:** [FEAT-SP01-01](../../implementation/features/sp-01-session-foundation/plan.md) (execution snapshot v0.4); [P08 task](../../implementation/features/sp-01-session-foundation/tasks/SP01-P08-owned-persistence.md) (execution snapshot v0.3); [authorised design](../../implementation/features/sp-01-session-foundation/p08-persistence-design.md) v0.2; [ADR-0024](../../adr/0024-backend-session-foundation.md) (execution snapshot v0.3); [ADR-0025](../../adr/0025-opaque-session-candidate.md) (execution snapshot v0.3); DATA-04 v0.13.\
+**Inputs:** [FEAT-SP01-01](../../implementation/features/sp-01-session-foundation/plan.md) (execution snapshot v0.4); [P08 task](../../implementation/features/sp-01-session-foundation/tasks/SP01-P08-owned-persistence.md) (execution snapshot v0.3); [authorised design](../../implementation/features/sp-01-session-foundation/p08-persistence-design.md) v0.2; [ADR-0024](../../adr/0024-backend-session-foundation.md) (execution snapshot v0.3); [ADR-0025](../../adr/0025-opaque-session-candidate.md) (execution snapshot v0.3); DATA-04 (execution snapshot v0.13).\
 **Trace:** M-01 / SP-01.2 and applicable SP-11.1; FR-01/36/37/68, TC-01 and TC-18 relevance; no complete FR/AC or parent-pack acceptance.\
 **Owner role:** Sequential implementer; bounded P08/schema implementation authorised with owner conditions, no independent review or formal ADR acceptance.
 
@@ -57,3 +57,7 @@ Additional checks passed: docs:lint, docs:test 20/20, context:lint, context:chec
 **Checklist:** Author self-checked scope/roles/source attribution and preserved failures. **Review:** Not requested. **Unrun:** target-deployment KDF calibration, independently verified operating time, refreshed rendered ERD preview, public handlers/browser/guarded transport and complete SP-01 acceptance. No development migration, commit or push.
 
 Revision 0.2 only clarifies the original P08 execution input snapshots after P09 updated plan/task/ADR metadata. Original P08 measured results, source archives and limitations are unchanged.
+
+## Metadata note — 1 November 2026
+
+Revision 0.3 explicitly labels the original DATA-04 v0.13 input as an execution snapshot after the SP-02 data-design update. Original source captures, results and dates are unchanged; no new SP-01 execution is attributed to this historical report.

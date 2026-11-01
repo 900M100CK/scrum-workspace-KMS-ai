@@ -1,9 +1,9 @@
 # Decision map for implementation
 
 **Artifact ID:** IMPL-DEC-01\
-**Version/date:** 0.9 Draft · 28 October 2026\
+**Version/date:** 0.14 Draft · 1 November 2026\
 **Status:** Index of existing decisions; no new acceptance.\
-**Inputs:** PRD-01 v0.9; ADR-0001–ADR-0025; OWNER-Q-01 v0.1; [TECH-STACK-01](../tech-stack.md) v1.6; [source register](register.md).\
+**Inputs:** PRD-01 v0.9; ADR-0001–ADR-0026; OWNER-Q-01 v0.1; [TECH-STACK-01](../tech-stack.md) v1.6; [source register](register.md).\
 **Trace:** BR-01–BR-14; SC-01–SC-08.\
 **Owner role:** Sequential development coordinator.
 
@@ -26,6 +26,8 @@
 Owner-confirmed direction is neither implemented behaviour nor independent approval. The canonical documents retain the confirmation sources. Read them before changing a protected boundary.
 
 ## Open choices and bounded preparation
+
+31 October SP-02 disposition: [decision batch v0.5](features/sp-02-project-membership/decision-batch.md) records selected D-03 private explicit provisioning and bounded D-04 information scope. Detailed schema/transaction/paging adoption is proposed in [ADR-0026 v0.3](../adr/0026-project-membership-foundation.md), not accepted by generic continuation. Inspector/content/lifecycle delegation and other projection scopes in the table remain open. P03 depends on concrete schema disposition; P04 also needs the identified listProjects contract correction.
 
 | Gate | Decision still required | Proposed input / affected tasks | Work that may proceed |
 | --- | --- | --- | --- |
@@ -75,3 +77,7 @@ The owner separately authorised P09 POST/GET handlers. Selected identity/cookie/
 ## P10 disposition — 28 October 2026
 
 The owner separately requested P10. Selected session lifecycle and additive audit migration 006 are implemented within that task; [P10 result](../sdlc/reports/SP-01-P10-lifecycle-2026-10-28.md) retains execution evidence. No formal ADR acceptance or D-07 closure.
+
+## SP-02 bounded disposition — 1 November 2026
+
+The owner explicitly authorised corrected sequential implementation: P03A session transaction reuse, reduced 007/private bootstrap, separate 008 compact permanent outcomes, current scoped project/member/action handlers and UI with session-independent HMAC projection cursors. Actual SQL/HTTP/DOM/Edge evidence is in SP02-EXECUTION-RESULT v0.2. ADR-0026 remains Proposed; optional FR-64, D-07, development upgrade and wider acceptance are not selected by this disposition.

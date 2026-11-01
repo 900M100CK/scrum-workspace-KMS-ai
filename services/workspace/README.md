@@ -1,6 +1,6 @@
 # Workspace service scaffold
 
-Status: owned PostgreSQL migrations are implemented; Fastify/TypeScript infrastructure liveness exists, but no protected business handler or permission-authority implementation exists yet. See the [database runbook](../../infra/postgres/README.md). Own auth/session/policy and Scrum operations under the [architecture](../../docs/architecture.md) and [Workspace contract](../../contracts/openapi/workspace.openapi.json). Read the root agent entry and chosen feature spec before code.
+Status: owned PostgreSQL migrations are implemented; Fastify/TypeScript infrastructure liveness exists, and bounded session/project/membership handlers now exist; later business/guard slices remain unimplemented. See the [database runbook](../../infra/postgres/README.md). Own auth/session/policy and Scrum operations under the [architecture](../../docs/architecture.md) and [Workspace contract](../../contracts/openapi/workspace.openapi.json). Read the root agent entry and chosen feature spec before code.
 
 Domain modules: sessions, projects/memberships, backlog/tasks/blockers, Sprints, policy, gateway/guarded transport, observations and business audit. Only this service decides permissions. It writes only Workspace data; no Knowledge database import/write. Secrets are runtime inputs. Provider transport runs in a bounded lane distinct from ordinary work.
 
@@ -25,3 +25,7 @@ P09 subsequently wires POST/GET /session to the real store when the explicit run
 ## P10 lifecycle integration
 
 GET now renews a strictly unexpired session within its immutable absolute cap; DELETE atomically revokes the current token/audit and clears the secure cookie on confirmed 204. See [SESSION-HTTP.md](SESSION-HTTP.md) and npm run test:session:lifecycle. Previous stage notes are historical; UI/browser/D-07 and full feature acceptance remain open. No startup migration or development upgrade was performed.
+
+## Project and membership implementation — 1 November 2026
+
+See [the project runbook](PROJECTS.md) for private audited bootstrap/recovery, separate 007/008 migration cautions, cursor configuration and current verification commands. npm run test:projects exercises disposable SQL/HTTP/DOM negatives; browser evidence is separate. Optional editProject, Knowledge handlers and D-07 guarded transport are not implemented by SP-02.

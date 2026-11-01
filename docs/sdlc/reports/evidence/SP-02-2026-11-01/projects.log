@@ -1,0 +1,87 @@
+
+> scrum-workspace-kms-context@0.1.0 test:projects
+> node --test --test-concurrency=1 tests/workspace/project-authority.test.mjs tests/workspace/project-outcomes.test.mjs tests/workspace/project-http.test.mjs tests/workspace/project-cursor.test.mjs tests/workspace/project-reads.test.mjs tests/workspace/membership-lifecycle.test.mjs tests/workspace/membership-removal.test.mjs tests/workspace/project-concurrency.test.mjs tests/workspace/project-ui-controller.test.mjs tests/workspace/project-ui.test.mjs
+
+▶ P05/P06 actual membership lifecycle and current action authority
+  ✔ new memberships have exact revisions and role labels grant no capabilities (178.1329ms)
+  ✔ minimal member paging supplies removal revision and no email/history/permission inventory (132.8045ms)
+  ✔ addMember owns rejoin: fresh generation/revision and no old read/capability/assignment revival (117.7414ms)
+  ✔ unknown target and current scope failures disclose no account directory (63.7838ms)
+  ✔ real DB CHECK rejection maps to controlled conflict and creates no membership/audit (30.3833ms)
+✔ P05/P06 actual membership lifecycle and current action authority (5985.7567ms)
+▶ P06 actual atomic removal, retained history and no-revival replay
+  ✔ last manager rejection leaves membership, grants, tasks and business audit unchanged (19.8444ms)
+  ✔ removal co-commits all grant invalidation, task revision/unassignment and audit; history/other project stay (59.8951ms)
+  ✔ old removal replay never removes rejoined membership; stale new-key removal conflicts (106.4936ms)
+  ✔ audit and saved-outcome failures roll back removal completely (59.343ms)
+  ✔ task revision overflow rejects before any membership or grant changes (48.8883ms)
+  ✔ two manager removal requests serialize and cannot leave zero managers (61.4789ms)
+✔ P06 actual atomic removal, retained history and no-revival replay (5829.9246ms)
+▶ P03 additive 007/private authority and bootstrap on disposable PostgreSQL
+  ✔ 007 refuses ambiguous legacy project and retains original data/checksums (5206.1898ms)
+  ✔ empty 007 reverse/forward preserves SP-01 fault latch, audit and sessions (1804.7109ms)
+  ✔ runtime cannot bootstrap, access global provisioning audit or rewrite immutable evidence (32.8631ms)
+  ✔ explicit bootstrap/revoke/recovery, same-state no-op and expected revision are audited (128.8805ms)
+  ✔ private audit failure rolls back authority; disabled targets never bootstrap (63.4214ms)
+  ✔ project provisioning uses current membership and serialized last-manager rule (72.6519ms)
+  ✔ project origin and numeric revision bounds enforce DB constraints; unsafe down retains everything (18.76ms)
+  ✔ private CLI reads scoped authority through operator configuration without dumping secrets (323.1931ms)
+✔ P03 additive 007/private authority and bootstrap on disposable PostgreSQL (12312.171ms)
+ℹ {"schema":"007 only; no outcome/cursor table","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","oldMigrations":["001-store","002-registered-policy","003-work-location","004-protected-claims","005-session-foundation","006-session-lifecycle"],"sourceHash":"04e660547797da67eb806e241a0a71ed337aa98800ce86f088efe0c54fed72e5"}
+▶ P07 measured SQL barriers for actual handlers and labelled future-writer doubles
+  ✔ two actual manager-removal requests wait on the real shared lock, then leave one effective manager (114.9764ms)
+  ✔ controlled assignment SQL writer commits first; actual removal invalidates its result (107.3073ms)
+  ✔ controlled read-grant SQL writer commits first; actual removal invalidates its result (138.3975ms)
+  ✔ actual removal first makes controlled assignment SQL writer reject departed membership (118.5225ms)
+  ✔ actual removal first makes controlled read-grant SQL writer reject departed membership (87.72ms)
+  ✔ actual private grant queued before removal is invalidated, and a later grant cannot revive it (95.9469ms)
+  ✔ lost actual removal COMMIT acknowledgement reconciles old key without repeating mutation (198.7826ms)
+✔ P07 measured SQL barriers for actual handlers and labelled future-writer doubles (6231.1884ms)
+ℹ Assignment/read-grant writers above are controlled Workspace SQL protocol doubles. Actual SP-04/SP-06 handlers and D-07 protected transport remain follow-up SP02-F01; not measured here.
+✔ P04 actor/scope/generation/expiry cursor binding is stateless and rejects forgery (2.9947ms)
+▶ P04C real project create, exact replay and failure boundaries
+  ✔ denied, unauthenticated, forged/extra/blank inputs create no project (34.1062ms)
+  ✔ atomic creation persists server actor/time and only explicit initial capability (28.8627ms)
+  ✔ same/concurrent keys return original project once; changed payload conflicts (55.3795ms)
+  ✔ audit and outcome failures roll back the entire business transaction (98.0987ms)
+  ✔ lost COMMIT acknowledgement is unknown and same-key retry reconciles without a second create (51.1524ms)
+  ✔ current authority and membership are rechecked before old result disclosure (37.8143ms)
+  ✔ declared body bounds and final serializer reject untrusted/error shapes (40.5622ms)
+  ✔ actual trusted HTTPS transports a project response with no session cookie rewrite (57.4703ms)
+✔ P04C real project create, exact replay and failure boundaries (5725.3174ms)
+▶ P04B separate 008 durable compact outcomes
+  ✔ legacy outcome refusal, empty reverse/forward/repeat, separate 007 identity (8324.3174ms)
+  ✔ runtime saves original typed fields atomically and replays without reading current entities (44.6345ms)
+  ✔ null/malformed/extra snapshot fields and unsafe revisions cannot pass SQL three-valued checks (46.9897ms)
+  ✔ committed identity/result cannot change or expire; failed transaction retains no receipt (44.8641ms)
+  ✔ existing protected handoff claim keeps its original shape and no snapshot (5.8731ms)
+✔ P04B separate 008 durable compact outcomes (13419.5924ms)
+▶ P04 current project reads and full-projection watermarks
+  ✔ fixed 50-item pages expose only current memberships in stable order (46.0022ms)
+  ✔ unknown and foreign direct reads are indistinguishable; body actor claims do not apply (36.8512ms)
+  ✔ foreign actor/tampered cursor rejected; same actor relogin alone keeps a cursor valid (65.3739ms)
+  ✔ name changes and remove/rejoin generations invalidate complete projection watermark (71.2137ms)
+  ✔ missing or rotated server key fails closed without a cursor table (66.0253ms)
+  ✔ DB dependency failure is not empty success (30.1766ms)
+  ✔ session expiry during actual project lock wait is checked before output (343.3664ms)
+✔ P04 current project reads and full-projection watermarks (6006.9152ms)
+✔ unknown mutation survives reload with the exact original request; no automatic fresh key (18.7248ms)
+✔ permission denial on reconciliation does not claim an earlier unknown operation rolled back (0.3598ms)
+✔ stale read completion cannot restore a removed project or advisory actions (1.2644ms)
+✔ malformed protected data is withheld and blocked storage sends no mutation (0.5302ms)
+✔ a foreign actor cannot recover or display the saved operation payload (0.2677ms)
+▶ P08 actual React DOM + same-origin HTTPS + current 008 PostgreSQL
+  ✔ fresh directory/create/member views use real current IDs/revisions and explicit labels (357.1052ms)
+  ✔ add/remove are explicit; removal sends the displayed revision and preserves an effective manager (357.1732ms)
+  ✔ real committed response loss keeps original identity across component reload and never duplicates (157.3352ms)
+  ✔ outage and actual membership removal hide records/actions; no stale protected pane survives (150.1753ms)
+✔ P08 actual React DOM + same-origin HTTPS + current 008 PostgreSQL (6996.1517ms)
+ℹ Real HTTPS transport with explicit synthetic cookie jar; DOM checks do not claim browser cookie enforcement. Browser gate is separate.
+ℹ tests 64
+ℹ suites 0
+ℹ pass 64
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 65415.4381

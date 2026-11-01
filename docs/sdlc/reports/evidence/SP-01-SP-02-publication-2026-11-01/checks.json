@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-01",
+  "implementationSourceManifest": "../SP-02-2026-11-01/source-manifest.json",
+  "sourceArchiveVerified": true,
+  "commands": [
+    {
+      "command": "npm run context:lint",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run context:check",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run context:test",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run docs:lint",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run docs:test",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run contracts:test",
+      "exitCode": 0
+    }
+  ],
+  "kind": "Report/publication prerequisites only; no new runtime test run",
+  "verifiedRunnableInputs": 117
+}

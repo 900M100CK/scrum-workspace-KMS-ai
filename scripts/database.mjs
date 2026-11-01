@@ -32,10 +32,11 @@ export function sql(container, service, input, { runtime = false, password, allo
   return docker(args, { input, env: runtime ? { PGPASSWORD: password } : {}, allowFailure });
 }
 
-export function migrate(container, service, direction = 'up') {
+export function migrate(container, service, direction = 'up', { through } = {}) {
   if (!['workspace', 'knowledge'].includes(service) || !['up', 'down'].includes(direction)) throw new Error('Invalid migration target');
   const directory = resolve(root, `services/${service}/migrations`);
-  const names = readdirSync(directory).filter(name => /^\d{3}-[a-z-]+\.up\.sql$/.test(name)).sort();
+  if (through !== undefined && !/^\d{3}$/.test(through)) throw new Error('Invalid migration fixture ceiling');
+  const names = readdirSync(directory).filter(name => /^\d{3}-[a-z-]+\.up\.sql$/.test(name) && (through === undefined || name.slice(0,3) <= through)).sort();
   if (direction === 'down') names.reverse();
   for (const name of names) {
     const id = name.replace('.up.sql', '');

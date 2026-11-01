@@ -1,9 +1,9 @@
 # SP-02: Set the authorised project scope and remove membership without grant revival.
 
 **Artifact ID:** IMPL-SP-02\
-**Version/date:** 0.2 Draft · 28 October 2026\
-**Status:** SP-02.1 bounded source/contract preparation started; application children await material dispositions.\
-**Inputs:** [Canonical SP-02](../../../specs/002-project-membership.md) v0.5; SPEC-INDEX v0.7; PRD-01 v0.9; [source register](../register.md); [decisions](../decisions.md).\
+**Version/date:** 0.3 Draft · 1 November 2026\
+**Status:** Owner-authorised bounded implementation; current status and measured evidence belong to FEAT-SP02-01.\
+**Inputs:** [Canonical SP-02](../../../specs/002-project-membership.md) v0.7; SPEC-INDEX v0.8; PRD-01 v0.9; [source register](../register.md); [decisions](../decisions.md).\
 **Trace:** FR-02, FR-03, FR-38, FR-39, FR-64; BR-01, BR-10, BR-14; SC-06.\
 **Owner role:** Sequential implementer; no independent approval claimed.
 
@@ -22,12 +22,12 @@
 
 Select one child; copy its exact FR/AC assertions and prerequisites into the [brief](../handoff-template.md). A child can be preparation-only; no synthetic result closes runtime acceptance.
 
-| Child ID | Goal | Initial status / evidence |
+| Child ID | Goal | Bounded evidence pointer |
 | --- | --- | --- |
-| SP-02.1 | Resolve authority and read dependencies | Not started; no evidence |
-| SP-02.2 | Create and reconstruct projects/membership | Not started; no evidence |
-| SP-02.3 | Remove membership atomically | Not started; no evidence |
-| SP-02.4 | Verify scope, rollback and races | Not started; no evidence |
+| SP-02.1 | Resolve authority and read dependencies | See FEAT-SP02-01 and SP02-EXECUTION-RESULT; no whole-release acceptance |
+| SP-02.2 | Create and reconstruct projects/membership | See FEAT-SP02-01 and SP02-EXECUTION-RESULT; no whole-release acceptance |
+| SP-02.3 | Remove membership atomically | See FEAT-SP02-01 and SP02-EXECUTION-RESULT; no whole-release acceptance |
+| SP-02.4 | Verify scope, rollback and races | See FEAT-SP02-01 and SP02-EXECUTION-RESULT; no whole-release acceptance |
 
 ### SP-02.1 — Resolve authority and read dependencies
 
@@ -63,6 +63,10 @@ Record command/runtime, source revision or dirty-worktree digest, fixture/config
 
 **Checklist/handoff:** Pass for bounded breakdown and canonical references; Gap for missing decisions and all application acceptance. Ready for preparation within these limits; no implementation, release completion or independent acceptance is claimed.
 
-## Registered execution — 28 October 2026
+## Historical registered execution — 28 October 2026
 
 [FEAT-SP02-01](../features/sp-02-project-membership/plan.md) v0.1 and its ten task briefs own current detailed statuses. SP02-P01 records source/contract gaps; P02 may prepare exact-schema negatives and owner choices without adoption. D-03 capability provisioning, D-04 discovery and the additive persistence/transaction design are material gates. Existing last-manager/removal/rejoin/initial-creator defaults are retained rather than reopened. No new dependency, migration, application handler or Accepted ADR is implied.
+
+## Current bounded handoff — 1 November 2026
+
+[FEAT-SP02-01 v0.6](../features/sp-02-project-membership/plan.md) owns the P03A–P08/P10 verified bounded results. The [execution report](../../sdlc/reports/SP-02-execution-2026-10-31.md) maps actual AC-02/03/38/39 observations, native/browser failures and successful reruns. SP-03 is the next feature dependency. Optional FR-64, future actual SP02-F01 races, Knowledge/D-07 and formal/independent acceptance remain open.

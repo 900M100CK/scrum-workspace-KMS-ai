@@ -1,7 +1,7 @@
 # Create a project and manage membership
 
 **Artifact ID:** SP-02  
-**Version/date:** 0.5 Draft · 25 October 2026
+**Version/date:** 0.7 Draft · 1 November 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
 **Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-02--create-a-project-and-manage-membership); [contract pack](../contracts/README.md); PLAN-01 v0.4.\
 **Author:** development agent acting sequentially; owner reviews business choices.
@@ -55,3 +55,11 @@ Acceptance additions: a fresh client can page current members and obtain the rem
 ## Input metadata reconciliation — 25 October 2026
 
 Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.
+
+## Owner-authorised coordinated implementation — 31 October
+
+The owner authorised corrected sequential SP-02 execution under FEAT-SP02-01 v0.5. Additive Workspace contract v0.2.11 declares existing listProjects cursor 400/409 failures and bounded mutation-body 413/415 errors; no operation/requirement or response entity is added. Root test scripts, fixture migration ceiling and contract/data/API/source documentation are coordinated support paths. Canonical business implementation remains Workspace/web/tests; Knowledge is unchanged. P03A and 007 are separate from P04 replay migration 008. Optional FR-64 remains unselected. This is bounded authorisation, not whole-spec acceptance.
+
+## Bounded execution status — 1 November 2026
+
+Earlier unimplemented/test-pending paragraphs describe preparation snapshots. Current create/read/list/add/rejoin/remove/global-project action handlers and live UI exist, with current-schema disposable HTTP/PG and DOM/HTTPS negatives recorded in [FEAT-SP02-01](../docs/implementation/features/sp-02-project-membership/plan.md). Optional FR-64 is not selected. Browser trust/verification and final integrated evidence must pass separately before P08/P10 completion; no Knowledge handler, full SC-06, independent review or D-07 acceptance is inferred.

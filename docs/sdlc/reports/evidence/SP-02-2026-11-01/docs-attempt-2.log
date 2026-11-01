@@ -1,0 +1,7 @@
+
+> scrum-workspace-kms-context@0.1.0 docs:lint
+> node scripts/docs/verify-docs.mjs
+
+Input version drift in docs/sdlc/reports/SP-02-execution-2026-10-31.md: SP-02
+
+'0.5' !== '0.7'

@@ -1,7 +1,7 @@
 # Dependency-based implementation roadmap
 
 **Artifact ID:** IMPL-ROADMAP-01\
-**Version/date:** 0.7 Draft · 28 October 2026\
+**Version/date:** 0.13 Draft · 1 November 2026\
 **Status:** Planning order, not completed work or scope acceptance.\
 **Inputs:** PRD-01 v0.9; SPEC-INDEX v0.7; PLAN-01 v0.4; [decisions](decisions.md); [task catalogue](tasks/README.md).\
 **Trace:** BR-01–BR-14; SC-01–SC-08.\
@@ -29,7 +29,7 @@ The [work plan register](features/README.md) links feature, fix, hotfix and test
 | Milestone / parent | Child work plan | Scope / next task |
 | --- | --- | --- |
 | M-01 / PLAN-01 Month 1 | [FEAT-SP01-01 v0.9](features/sp-01-session-foundation/plan.md) | Bounded P12 session evidence merged to main at 52a10dd after owner instruction; formal ADR/deployment/D-07 and release limits remain open |
-| M-02/M-03 / PLAN-01 Month 1 | [FEAT-SP02-01 v0.1](features/sp-02-project-membership/plan.md) | Project/membership source review and bounded preparation; ten task briefs; D-03/D-04/schema gates before affected implementation |
+| M-02/M-03 / PLAN-01 Month 1 | [FEAT-SP02-01 v0.6](features/sp-02-project-membership/plan.md) | P02 feedback reconciliation; proposed session refactor P03A, reduced authority 007/P03, replay/paging design at P04 before public mutations; bounded sequential implementation owner-authorised |
 
 SP-11 is cross-cutting: its mutation-capture child accompanies every first mutation. Its AI evidence children are later, after work and knowledge prerequisites. SP-06's SP-11 dependency means applicable capture readiness, not completion of the entire AI manifest/inspection pipeline. SP-01 and SP-11 capture are co-delivered where session-producing operations require records; do not create a circular wait or defer audit.
 
@@ -48,3 +48,11 @@ Checklist: Pass for explicit sequence, capture interpretation and observable exi
 ## Shared framework prerequisite
 
 M-01 includes [INIT-FRAMEWORK-01](features/framework-foundation/plan.md): owner-directed frontend/two-service scaffolding on main and preservation of the synthetic UI under design/prototype. This bounded shared setup precedes protected SP-01 implementation; it does not close session or permission acceptance.
+
+## SP-02 bounded handoff — 1 November 2026
+
+FEAT-SP02-01 v0.6 records implemented and locally verified project/member handlers and UI. M-02 continues with SP-03/SP-04; M-03 still needs SP-05 plus future actual producer race reruns SP02-F01. No complete work flow/milestone or release acceptance is inferred from the SP-02 subset.
+
+## SP-01/SP-02 test and audit publication — 1 November 2026
+
+[PUB-SP01-SP02-01](features/sp-01-sp-02-test-audit-publication/plan.md) consolidates the two testing/audit reports and publishes the owner-authorised current branch. It does not add a milestone pass, implement SP-03 or merge to main.

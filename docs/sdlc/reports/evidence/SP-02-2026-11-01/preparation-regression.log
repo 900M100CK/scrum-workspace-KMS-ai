@@ -1,0 +1,14 @@
+✔ SP02 preparation: CreateProject accepts descriptive inputs but rejects actor/authority/identity injection (1.3906ms)
+✔ SP02 preparation: AddMember requires a known-ID selector shape and a descriptive contract role (0.3612ms)
+✔ SP02 preparation: public Project/Member responses reject credential and grant inventories (0.4217ms)
+✔ SP02 preparation: actual operations declare idempotency/removal revision and distinct paging parameters (0.1989ms)
+✔ SP02 preparation: advisory action shape excludes unknown/internal operation names (0.5752ms)
+✔ SP02 preparation: retain known schema gaps as observations, not application permission passes (0.0965ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 363.9458

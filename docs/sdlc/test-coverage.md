@@ -1,8 +1,8 @@
 # Scenario and exception verification matrix
 
 **Artifact ID:** TEST-COVERAGE-01
-**Version/date:** 0.9 Draft · 28 October 2026
-**Inputs:** PRD-01 v0.9; UC-02 v0.8; TEST-08 v0.22; ADR-0007–ADR-0017.
+**Version/date:** 0.10 Draft · 1 November 2026
+**Inputs:** PRD-01 v0.9; UC-02 v0.8; TEST-08 v0.23; ADR-0007–ADR-0017.
 **Status:** Planned assertions with bounded P09/P10/P11 measured subsets; no complete scenario or independent approval.
 
 ## Evidence rules
@@ -18,7 +18,7 @@
 | SC-03 | Query blocked work after ordered Open/Resolved events; compare fresh operational IDs/revisions/time, exclude out-of-project tasks and stale document claims | TC-08 | Not run |
 | SC-04 | Find past blocker plan and recorded resolution via history/links; keep plan distinct from confirmed outcome; exact citations remain labelled | TC-08, TC-09, TC-17 | Not run |
 | SC-05 | Save two immediate revisions; exactly one Current, old passages unchanged; current retrieval cannot return old content as current; exact old citation opens labelled history | TC-05, TC-06 | Storage prerequisites tested; handlers not run |
-| SC-06 | Cross-project, no-grant, revoked-author, removed/rejoined member and direct citation attempts deny protected content; scoped audit identity follows ADR-0012 without granting content access | TC-02–TC-04, TC-11, TC-15, TC-26 | Storage scope prerequisites tested; handlers not run |
+| SC-06 | Cross-project, no-grant, revoked-author, removed/rejoined member and direct citation attempts deny protected content; scoped audit identity follows ADR-0012 without granting content access | TC-02–TC-04, TC-11, TC-15, TC-26 | SP-02 project/member handler subset measured; full document/citation/provider scenario not run |
 | SC-07 | Ask an unrecorded decision with empty and related-but-insufficient evidence; explicit insufficient evidence, no fabricated rationale or hints about hidden sources | TC-09, TC-12 | Not run |
 | SC-08 | Inject provider connection failure, timeout and exhausted budget; question fails without generated answer; healthy work/Sprint/docs/keyword paths still succeed | TC-10, TC-14 | Not run |
 
@@ -125,3 +125,7 @@ After owner TLS handoff, the in-app browser demonstrated Enter-key login, authen
 ## P12 integrated handoff — 28 October 2026
 
 See [P12 result](reports/SP-01-P12-handoff-2026-10-28.md) for bounded integrated session/UI regression, owner local test feedback and screenshot evidence. AC-01/36/37/68 and applicable session producers/UI are mapped there; D-07, other protected features, full cross-browser/accessibility and deployment/formal ADR gates remain open. No new requirement or independent acceptance is inferred.
+
+## SP-02 bounded coverage — 1 November 2026
+
+AC-02/03/38/39 and BR-01/10/14 have actual Workspace project/member, audit/replay/removal/last-manager and UI failure observations linked in [verification](requirement-verification.md#sp-02-bounded-runtime-observation--1-november-2026) and [execution](reports/SP-02-execution-2026-10-31.md). TC-02/18/22/24 subsets are measured, not wholly Passed. SQL assignment/read-grant producer doubles are explicitly distinct from future SP-04/SP-06 handler evidence. No complete SC-06, Knowledge/citation/provider guard or independent acceptance.

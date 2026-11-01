@@ -1,9 +1,9 @@
 # Implementation task catalogue
 
 **Artifact ID:** IMPL-TASKS-01\
-**Version/date:** 0.4 Draft · 28 October 2026\
-**Status:** SP-01 has bounded implemented session/UI regression evidence; wider release gates remain open; other packs unimplemented.\
-**Inputs:** [SPEC-INDEX](../../../specs/README.md) v0.7; [machine index](../../../specs/index.json) v0.4; [release tiers](../../planning/release-scope.json) v0.4; [source register](../register.md).\
+**Version/date:** 0.5 Draft · 1 November 2026\
+**Status:** SP-01 has bounded implemented session/UI regression evidence; wider release gates remain open; SP-02 now has bounded project/member/UI evidence; later packs unimplemented.\
+**Inputs:** [SPEC-INDEX](../../../specs/README.md) v0.8; [machine index](../../../specs/index.json) v0.5; [release tiers](../../planning/release-scope.json) v0.4; [source register](../register.md).\
 **Trace:** Existing BR-01–BR-14 / SC-01–SC-08 through the linked spec FR/ACs.\
 **Owner role:** Sequential development coordinator.
 
@@ -28,3 +28,5 @@ Read [entry](../README.md), [decisions](../decisions.md), [roadmap](../roadmap.m
 SP-11.1 is co-delivered with the first required mutation record, rather than waiting for all of SP-11. SP-11 AI evidence steps follow work/doc foundations; inspection UI is SP-13. Optional rows do not become Must because they share a spec. The canonical contracts also declare supporting/internal operations; select and trace the necessary producer/consumer work during each child brief instead of inventing catalogue coverage from these lists.
 
 **Checklist/handoff:** Pass for all canonical slice/FR mappings and initial child IDs; Gap for decisions and runtime acceptance. Next preparation: SP-01.1 and the corresponding SP-11.1 capture brief. Update status only with actual evidence and version/register changes.
+
+1 November handoff: SP-02 bounded verification is recorded in its registered plan. SP-03 is next; no later feature is implemented or accepted by this index update.

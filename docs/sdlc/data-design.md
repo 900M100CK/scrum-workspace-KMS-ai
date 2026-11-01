@@ -1,9 +1,9 @@
 # Logical data and lifecycle design
 
 **Artifact ID:** DATA-04  
-**Version/date:** 0.13 Draft · 28 October 2026
+**Version/date:** 0.14 Draft · 1 November 2026
 **Status:** Draft for owner review; proposed policies/deferrals are not approved.
-**Inputs:** PRD-01 v0.9; UC-02 v0.8; [SAD-03](../architecture.md) v0.16; [logical entities](../../contracts/data-model.json) v0.9; owner-authorised ADR-0004 implementation; ADR-0007–ADR-0017.; Proposed ADR-0018.; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; [ADR-0024](../adr/0024-backend-session-foundation.md); [ADR-0025](../adr/0025-opaque-session-candidate.md)
+**Inputs:** PRD-01 v0.9; UC-02 v0.8; [SAD-03](../architecture.md) v0.16; [logical entities](../../contracts/data-model.json) v0.10; owner-authorised ADR-0004 implementation; ADR-0007–ADR-0017.; Proposed ADR-0018.; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; [ADR-0024](../adr/0024-backend-session-foundation.md); [ADR-0025](../adr/0025-opaque-session-candidate.md); Proposed ADR-0026
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 ## Ownership and relationships
@@ -149,3 +149,11 @@ Only input-version metadata is synchronized for the bounded architecture/UC/chec
 Workspace 005 adds auth_account, session_token, auth_clock_state and append-only authentication_audit. Existing session holds effective expiry and references private account identity; immutable token metadata holds only digest and original absolute cap. Clock begins unhealthy and runtime cannot reset it. Operator recovery compares explicit attestation/preconditions and revokes all prior sessions with audit before restoring health; missing clock denies. Manual disable denies login and all existing sessions. No automatic account lockout or physical cleanup is selected. Authentication audit is private and project-independent; project audit entitlement grants no global account visibility.
 
 Existing 001–004 SQL bytes remain unchanged. Upgrade refuses nonempty legacy sessions; down refuses retained account/token/audit/used-clock state. Empty forward/reverse/reapply and actual runtime/operator-role negatives are tested on disposable PostgreSQL only; no development upgrade or HTTP authentication acceptance is implied. A narrowly scoped SECURITY DEFINER account-lock function with fixed search_path supplies row locking without granting runtime credential UPDATE. Logical JSON v0.9 and DGM-DATA-01 v0.4 reflect this owned slice. The [P08 design](../implementation/features/sp-01-session-foundation/p08-persistence-design.md) records scope and limitations; KDF deployment calibration and unobserved-clock intervals remain open, with ADRs Proposed. API/test-plan input metadata is synchronized to DATA-04 v0.13; no wire operation or planned acceptance assertion changes.
+
+## SP-02 owned schema and replay — 1 November 2026
+
+Owner-authorised 007 adds immutable Project.created_by/created_at, private GlobalProjectAuthority and append-only AuthorityProvisioningAudit. Runtime may read global authority but cannot provision it or read the private provisioning audit. DB constraints bound Project/Membership/Task revisions to the JavaScript safe-integer maximum; handlers map constraint/overflow conflicts to controlled 409.
+
+Separate 008 extends existing Workspace idempotency_record with result_status/result_snapshot for createProject/addMember/removeMember. Consumed actor/operation/key/hash/status/reference and minimum original 201 Project/Member fields are immutable and retained indefinitely under the current API contract; removal stores 204 with no body. Snapshot retention includes owner-entered project name/description intentionally. No automatic pruning or privacy-deletion promise is introduced; a changed retention contract needs a separate decision. Existing protected_handoff records retain their shape.
+
+No cursor table/counter/cache is added. listProjects and listMembers compare keyed digests of complete canonical authorised projections and relevant authority generations under the existing clock/project lock protocol. Each page costs a full eligible projection read; capacity is unmeasured. Private audit rows and consumed outcomes block destructive down migrations; 007 never removes SP-01 clock-fault/session/audit state. Current-schema tests use disposable databases through 008; historic 006 storage/session fixtures remain labelled snapshots, not current-schema acceptance.

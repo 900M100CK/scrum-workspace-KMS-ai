@@ -33,9 +33,11 @@
     "test:prototype": "npm test --workspace @sacw/prototype",
     "test:session:ui": "npm run build --workspace @sacw/web && node --test --test-concurrency=1 tests/workspace/ui.test.mjs",
     "test:session:lifecycle": "npm run build --workspace @sacw/workspace && node --test --test-concurrency=1 tests/workspace/lifecycle.test.mjs",
-    "test:session:http": "npm run build --workspace @sacw/workspace && node --test --test-concurrency=1 tests/workspace/http.test.mjs"
+    "test:session:http": "npm run build --workspace @sacw/workspace && node --test --test-concurrency=1 tests/workspace/http.test.mjs",
+    "test:projects": "node --test --test-concurrency=1 tests/workspace/project-authority.test.mjs tests/workspace/project-outcomes.test.mjs tests/workspace/project-http.test.mjs tests/workspace/project-cursor.test.mjs tests/workspace/project-reads.test.mjs tests/workspace/membership-lifecycle.test.mjs tests/workspace/membership-removal.test.mjs tests/workspace/project-concurrency.test.mjs tests/workspace/project-ui-controller.test.mjs tests/workspace/project-ui.test.mjs",
+    "test:projects:browser": "node --test tests/workspace/project-browser.test.mjs"
   },
-  "description": "Context/storage harness, preserved synthetic prototype and frontend/backend framework foundation; protected business handlers remain unimplemented.",
+  "description": "Context/storage harness, synthetic prototype, session and bounded project/membership handlers with live UI; later business slices remain unimplemented.",
   "devDependencies": {
     "@xmldom/xmldom": "0.9.12",
     "ajv": "8.20.0",

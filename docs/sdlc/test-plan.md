@@ -1,9 +1,9 @@
 # Minimum test and evidence plan
 
 **Artifact ID:** TEST-08
-**Version/date:** 0.22 Draft · 28 October 2026
+**Version/date:** 0.23 Draft · 1 November 2026
 **Status:** Planned application assertions; owner-confirmed policy direction, no release acceptance.
-**Inputs:** [PRD-01](PRD_SRS.md) v0.9; [UC-02](use-cases.md) v0.8; [SAD-03](../architecture.md) v0.16; DATA-04 v0.13; API-05 v0.19; ADR-0007 through ADR-0017; current UX/diagrams; [specs](../../specs/README.md); [evaluation](../../eval/README.md).; Proposed ADR-0018.; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
+**Inputs:** [PRD-01](PRD_SRS.md) v0.9; [UC-02](use-cases.md) v0.8; [SAD-03](../architecture.md) v0.16; DATA-04 v0.14; API-05 v0.20; ADR-0007 through ADR-0017; current UX/diagrams; [specs](../../specs/README.md); [evaluation](../../eval/README.md).; Proposed ADR-0018.; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
 **Author:** Development agent acting sequentially; no independent review claimed.
 
 ## Scope, levels and environment
@@ -162,3 +162,7 @@ Only input-version metadata is synchronized for the bounded architecture/UC/chec
 ## P10 input metadata — 28 October 2026
 
 Input versions synchronize the bounded session lifecycle update. Existing requirement, evaluation and UI assertions remain unchanged; no runtime acceptance is inferred from this metadata revision.
+
+## SP-02 measured subset — 1 November 2026
+
+The registered SP-02 execution report maps current create/project/member/replay/discovery/removal/audit/failure checks to AC-02/03/38/39. These include actual disposable 008 PostgreSQL, HTTP, DOM/HTTPS and isolated Edge tests. TC-02/18/22/24 have measured bounded subsets, not whole-case acceptance. SP02-F01 actual future producer races, Knowledge/source/citation/provider and D-07 remain unrun. The original 006 storage/session suites retain explicit schema ceilings; new SP-02 suites exercise 007/008. No threshold, expected outcome or future required assertion is removed.

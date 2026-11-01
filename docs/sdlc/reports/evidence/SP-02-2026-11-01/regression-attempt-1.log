@@ -1,0 +1,110 @@
+Storage engine: 17.10 (Debian 17.10-1.pgdg12+1) pgvector: 0.8.2
+▶ ADR-0004 real PostgreSQL storage boundary
+  ✔ owned migrations apply, repeat safely, and detect checksum drift (6867.611ms)
+  ✔ runtime credentials cannot connect to the other database or administer schemas (2794.5517ms)
+  ✔ operational uniqueness and project foreign keys reject invalid persisted state (1512.7613ms)
+  ✔ current location survives completion, reopen, Done in Backlog and later allocation (3707.1276ms)
+  ✔ Backlog generation tracks set/order, not unrelated task content; rollback restores generation (2471.0884ms)
+  ✔ synthetic corpus and configurable embeddings persist with exact citation identities (1817.9986ms)
+  ✔ exact and keyword searches filter project AND document scope before ranking (3518.3456ms)
+  ✔ permission-scope refresh excludes revoked candidates without a copied ACL or answer cache (741.4656ms)
+  ✔ immediate revision preserves old evidence, excludes stale vectors, and allows keyword fallback (2750.0511ms)
+  ✔ second revision is atomic and old exact locators remain unchanged without Draft (2496.4829ms)
+  ✔ committed deletion excludes stale rows and cannot be undone by old jobs (1284ms)
+  ✔ policy upgrades preserve data on rollback and reject unreconciled legacy rows (9875.683ms)
+  ✔ reverse and forward migrations execute on the isolated synthetic database (6886.9517ms)
+  ✔ legacy completed history requires explicit revision-bound reconciliation (2265.0997ms)
+✔ ADR-0004 real PostgreSQL storage boundary (51585.662ms)
+▶ isolated immutable handoff preparation and protected claim storage
+  ✔ all owned migrations apply, repeat and reverse while protected stores are empty (9972.1429ms)
+  ✔ complete raw manifests persist immutable exact SHA-256 and receipt identity (1488.421ms)
+  ✔ missing, extra, null, malformed or conflicting evidence and typed bytes fail atomically (4380.8294ms)
+  ✔ manifest and outcome rollback/append-only rights preserve committed preparation (3059.459ms)
+  ✔ both purposes and empty-evidence preparation are stored without claiming transmission (749.5578ms)
+  ✔ fresh protected claims persist permanent fences; duplicates return none and ordinary idempotency stays separate (3638.6315ms)
+  ✔ concurrent duplicate claims produce exactly one newly committed fence (1535.0253ms)
+  ✔ Workspace outcomes bind the exact consumed fence and never enable replay (1650.3592ms)
+  ✔ nonempty reverse migrations refuse to erase evidence or consumed claim identities (1070.3114ms)
+  ✔ legacy reserved idempotency upgrade fails without inventing a fence or deleting the row (1067.5788ms)
+✔ isolated immutable handoff preparation and protected claim storage (31121.4767ms)
+▶ P09 actual signIn/getSession handlers with owned PostgreSQL
+  ✔ invalid/excess/poisoned credential bodies reject before KDF or session writes without mutation (55.9832ms)
+  ✔ Origin/custom-header negatives do not reach credentials; configured transport errors have Error shape (5.3511ms)
+  ✔ known wrong and unknown credentials run KDF and have identical generic failures with no session (1108.4295ms)
+  ✔ valid login commits session/audit, issues fresh secure host-only cookie and server request correlation (354.6286ms)
+  ✔ GET actor comes only from cookie; forged headers/query/old cookie name do not grant identity (19.8337ms)
+  ✔ manual disable rejects current token and credentials with the same public failure (1132.2056ms)
+  ✔ real expired and revoked sessions deny GET with declared shape (396.344ms)
+  ✔ real session audit failure rolls back and never sends a success cookie (400.2445ms)
+  ✔ DB read failures and unready clock return unavailable, never unrestricted success (803.8799ms)
+  ✔ KDF saturation maps to declared 503 without creating a session (31.5214ms)
+  ✔ actual captured normal/error logs omit password, cookie, URL and internal error canaries (0.6373ms)
+  ✔ actual trusted HTTPS verifies success wire shape and cookie expiry (465.8909ms)
+  ✔ invalid internal output is withheld before projection and drops already-prepared cookie (433.733ms)
+  ✔ compiled server actually wires runtime credentials/origin and session routes (1080.7539ms)
+✔ P09 actual signIn/getSession handlers with owned PostgreSQL (12993.9497ms)
+ℹ {"container":"sp01-p08-test-33cd5ced3562","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","scope":"Actual P09 POST/GET plus real PostgreSQL; no logout/renewal/browser/D-07 acceptance"}
+▶ P10 actual lifecycle handlers and PostgreSQL serialization
+  ✔ 006 empty reverse/forward/repeat preserves previous migration identity (2964.2791ms)
+  ✔ GET renews from DB deadline, preserves token, captures audit and refreshes secure cookie (77.4072ms)
+  ✔ idle boundary is strict at microsecond precision; expired GET cannot revive it (50.1442ms)
+  ✔ absolute cap never slides; equal/repeated/parallel renewal at cap writes no false mutation (64.5197ms)
+  ✔ parallel renewals produce one extension and one audit, with an immutable absolute deadline (41.8781ms)
+  ✔ DELETE checks Origin/header and absent body, including bounded transport errors (15.1472ms)
+  ✔ logout commits before empty 204, clears host cookie, denies old token and preserves independent session (50.1344ms)
+  ✔ expired logout is idempotent 204 and still durably revokes the known session (21.5564ms)
+  ✔ renew and revoke audit failures roll back state and suppress success cookies (51.8271ms)
+  ✔ logout-first and renewal-first reach actual SQL lock barriers; confirmed logout always wins future reads (147.4817ms)
+  ✔ renewal queued before expiry samples after its lock wait and cannot resurrect expired state (43.4718ms)
+  ✔ receipt loss after actual COMMIT returns 503 without cookie; no automatic retry or false logout confirmation (47.6043ms)
+  ✔ response corruption suppresses GET cookie rather than projecting leaked fields (37.8191ms)
+  ✔ real trusted HTTPS DELETE transmits an empty 204 and expiring Secure host cookie (92.3594ms)
+  ✔ observed backward time latches renewal denial after catch-up; audited logout remains possible (127.1681ms)
+  ✔ missing clock denies known logout; failed clock denies renewal but still permits audited revocation (75.3266ms)
+  ✔ DB privilege failure refuses logout; retained audit refuses destructive lifecycle rollback (15.9261ms)
+✔ P10 actual lifecycle handlers and PostgreSQL serialization (8722.7832ms)
+ℹ {"container":"sp01-p08-test-03cd388b09b7","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","scope":"Actual P10 GET/DELETE, owned PostgreSQL and HTTPS; injected time separated from real DB time; browser/D-07 not verified"}
+▶ P08 real PostgreSQL owned persistence and operator boundary
+  ✔ 005 forward/reapply/empty reverse/forward; nonempty legacy is refused without deletion (5932.243ms)
+  ✔ runtime cannot provision/disable accounts, rewrite audit, reset clock or reach Knowledge (257.1723ms)
+  ✔ initial clock unready withholds session; operator provisions and explicitly initializes (39.9805ms)
+  ✔ issue only binds current credential revision; digest-only storage and exact private credential lookup (246.4321ms)
+  ✔ required session audit failure rolls back every owned row and never returns token (26.4345ms)
+  ✔ immutable absolute deadline, missing token and expired/revoked state fail closed (65.2572ms)
+  ✔ manual disable rolls back with audit failure, then denies login and all existing sessions (80.8321ms)
+  ✔ actual observed clock backstep latches fault and survives real PostgreSQL restart (1434.1378ms)
+  ✔ recovery rejects stale/mismatched attestation; audit rollback preserves fault; all old tokens remain revoked (1330.2955ms)
+  ✔ missing clock row and read error do not authorize access (39.0151ms)
+  ✔ real cancellation, failed rollback discard and bounded later pool health (39.5645ms)
+  ✔ singleton contention is bounded and later requests recover; no throughput SLA (1055.4632ms)
+  ℹ {"lockTimeoutObservationMs":1037.2054000000007,"configuredLockTimeoutMs":1000,"poolWaiting":0}
+  ✔ disable-first and issue-first schedules observe SQL waits and cannot revive disabled access (147.3855ms)
+  ✔ injected receipt loss after actual COMMIT stays unknown, discards and never retries (30.4877ms)
+  ✔ actual private operator CLI provisions via stdin and reports state without secrets (1032.9992ms)
+  ✔ nonempty rollback refused, original migration bytes unchanged and bigint generation exact (21.8756ms)
+✔ P08 real PostgreSQL owned persistence and operator boundary (16702.9685ms)
+ℹ {"container":"sp01-p08-test-c6edf6656b6d","volume":"sp01-p08-test-c6edf6656b6d-data","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","postgres":"PostgreSQL 17.10 (Debian 17.10-1.pgdg12+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit","scope":"P08 adapters/operator/owned SQL only; no HTTP handlers","role":"workspace_app for runtime; workspace_owner for operator"}
+▶ P03A session validation uses caller transaction and preserves fault/rollback boundaries
+  ✔ caller rollback rolls back its own writes; token is not independently reissued (51.2288ms)
+  ✔ fault outcome commits latch and audit without entering the protected write branch (33.5657ms)
+✔ P03A session validation uses caller transaction and preserves fault/rollback boundaries (4846.1979ms)
+▶ P11 actual React DOM with Workspace/PostgreSQL through same-origin HTTPS
+  ✔ initial reload checks server before showing sign-in; labels and autocomplete are explicit (105.1958ms)
+  ✔ wrong credentials show generic inline feedback and move focus without secret persistence (290.3937ms)
+  ✔ actual sign-in renders server-confirmed state through secure proxy and clears password (414.1527ms)
+  ✔ workspace navigation and reload-style controller recheck use real server state (76.3143ms)
+  ✔ dependency outage hides authenticated subtree immediately; recovery revalidates explicitly (164.0594ms)
+  ✔ actual expired DB session is denied on focus, clears workspace and requests sign-in (57.307ms)
+  ✔ confirmed logout hides state, clears cookie and rejects old session after reload (456.9311ms)
+  ✔ built HTTPS preview serves its icon and bundled entry without a development WebSocket client (162.7405ms)
+  ✔ controlled local expiry timer hides UI without making a renewal request (233.1399ms)
+✔ P11 actual React DOM with Workspace/PostgreSQL through same-origin HTTPS (7491.4066ms)
+ℹ {"image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","scope":"Actual React DOM + real Workspace/PostgreSQL through trusted-client HTTPS proxy; explicit simulated cookie jar, not browser cookie evidence; final timer case uses controlled transport"}
+ℹ tests 89
+ℹ suites 0
+ℹ pass 89
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 135452.1769

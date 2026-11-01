@@ -4,6 +4,6 @@
 
 Inventory: UML-07 v0.21 · 27 October 2026. See the [central index](../README.md) and [design foundation](../design-foundation-2026-10-17.md) and [nine-pair correction review](../review-2026-10-17.md) for evidence and remaining gaps.
 
-- **DGM-DATA-01 v0.4 Draft**: [Draw.io](workspace-erd.drawio) · [Mermaid](workspace-erd.mmd). Workspace physical ERD â€” owned schema. ADRs: ADR-0004, ADR-0007, ADR-0008, ADR-0011, ADR-0012, ADR-0017, ADR-0018, ADR-0023, ADR-0024, ADR-0025.
+- **DGM-DATA-01 v0.5 Draft**: [Draw.io](workspace-erd.drawio) · [Mermaid](workspace-erd.mmd). Workspace physical ERD â€” owned schema. ADRs: ADR-0004, ADR-0007, ADR-0008, ADR-0011, ADR-0012, ADR-0017, ADR-0018, ADR-0023, ADR-0024, ADR-0025, ADR-0026.
 - **DGM-DATA-02 v0.2 Draft**: [Draw.io](knowledge-erd.drawio) · [Mermaid](knowledge-erd.mmd). Knowledge physical ERD â€” owned schema. ADRs: ADR-0004, ADR-0009, ADR-0011, ADR-0012, ADR-0013, ADR-0023.
 - **DGM-DATA-03 v0.5 Draft**: [Draw.io](handoff-logical-model.drawio) · [Mermaid](handoff-logical-model.mmd). Logical evidence and command additions â€” NOT applied schema. ADRs: ADR-0011, ADR-0012, ADR-0013, ADR-0020, ADR-0021, ADR-0022, ADR-0023.

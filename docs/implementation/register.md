@@ -1,9 +1,9 @@
 # Implementation source and artifact register
 
 **Artifact ID:** IMPL-REG-01\
-**Version/date:** 0.19 Draft · 28 October 2026\
+**Version/date:** 0.25 Draft · 1 November 2026\
 **Status:** Source snapshot and navigation, not approval or runtime evidence.\
-**Inputs:** REG-00; PRD-01 v0.9; SPEC-INDEX v0.7; PLAN-01 v0.4; SAD-03 v0.16; ADR-0001–ADR-0025.\
+**Inputs:** REG-00; PRD-01 v0.9; SPEC-INDEX v0.8; PLAN-01 v0.4; SAD-03 v0.16; ADR-0001–ADR-0026.\
 **Trace:** Existing BR-01–BR-14 / SC-01–SC-08.\
 **Owner role:** Sequential development coordinator.
 
@@ -38,16 +38,16 @@ Versions below are reading snapshots. Reopen the source before implementation. A
 
 ## Pack inventory
 
-Artifacts below are owned by the sequential development coordinator. IMPL-REG-01 is v0.19 Draft dated 28 October; IMPL-DEC-01 is v0.9 and IMPL-SP-01 is v0.7 dated 27 October; IMPL-ENTRY-01 and IMPL-TASKS-01 are v0.2 dated 27 October; IMPL-EXEC-01 is v0.7 and IMPL-ROADMAP-01 is v0.7 dated 27 October; IMPL-SP-11 and IMPL-SP-12 remain v0.2 dated 26 October; other original pack artifacts remain v0.1 dated 26 October. Inputs and trace are in each header. Handoff is preparation-ready with stated gaps, never approval. No handlers have been delivered by this pack.
+Artifacts below are owned by the sequential development coordinator. IMPL-REG-01 v0.23, IMPL-DEC-01 v0.13 and IMPL-ROADMAP-01 v0.11 are dated 31 October for the SP-02 design continuation. Other pack versions retain their existing source headers and execution snapshots. Inputs and trace are in each header. Handoff is preparation-ready with stated gaps, never approval; this source register supplies no handler evidence.
 
 | Artifact | Path | Dependency / purpose |
 | --- | --- | --- |
 | IMPL-ENTRY-01 | [README](README.md) | Entry and reading order |
 | IMPL-REG-01 | [register](register.md) | Canonical source map |
 | IMPL-DEC-01 | [decisions](decisions.md) | Current decisions and implementation gates |
-| IMPL-ROADMAP-01 (v0.6) | [roadmap](roadmap.md) | Milestones using existing slices and feature-plan backlinks |
+| IMPL-ROADMAP-01 (v0.11) | [roadmap](roadmap.md) | Milestones using existing slices and feature-plan backlinks |
 | IMPL-EXEC-01 (v0.7) | [execution](execution.md) | Agent workflow and saved feature-plan gate |
-| IMPL-FEATURES-01 (v0.14) | [work plan register/template](features/README.md) | Plan mode → saved plan → parent registration → small tasks → actual evidence; FEAT-SP01-01 registered under M-01 |
+| IMPL-FEATURES-01 (v0.18) | [work plan register/template](features/README.md) | Plan mode → saved plan → parent registration → small tasks → actual evidence; FEAT-SP01-01 registered under M-01 |
 | FEAT-SP01-01 (v0.9) | [session foundation work plan](features/sp-01-session-foundation/plan.md) | M-01 / PLAN-01 Month 1; 12 small tasks; P01–P04 laboratory preparation verified with limits, P05 partial, P06 material decisions open |
 | FEAT-SP01-ENTRY / SP01-P01–SP01-P12 (all v0.8) | [feature folder entry](features/sp-01-session-foundation/README.md); individual task links in [plan](features/sp-01-session-foundation/plan.md#tasks-and-acceptance) | Bounded task briefs; execution status/results remain in the authoritative parent table |
 | IMPL-HANDOFF-01 | [handoff template](handoff-template.md) | Brief and result record |
@@ -107,6 +107,15 @@ See [P12 result](../sdlc/reports/SP-01-P12-handoff-2026-10-28.md) for bounded in
 
 | Artifact / version | Source | Reading purpose and limits |
 | --- | --- | --- |
-| FEAT-SP02-01 / FEAT-SP02-ENTRY / SP02-P01–P10 (all v0.1) | [SP-02 feature folder](features/sp-02-project-membership/README.md) | M-02/M-03 / PLAN-01 Month 1; canonical SP-02 v0.5; ten tasks; source review before selected implementation |
-| SP02-P01-REVIEW / SP02-DECISION-BATCH (v0.1) | [source review](features/sp-02-project-membership/p01-source-review.md); [owner proposal](features/sp-02-project-membership/decision-batch.md) | Concrete global authority/schema/audit/discovery gates; no permission adoption or SP-02 application pass |
-| SP02-P02-RESULT (v0.1) | [SP-02 preparation result](../sdlc/reports/SP-02-P02-preparation-2026-10-28.md) | Six actual-contract schema probes, stable source evidence and explicit zero SP-02 handler coverage; D-03 selected, D-04/design gates open |
+| FEAT-SP02-01 / entry / P02 (v0.4); P04 (v0.3); P03 (v0.2); P03A/other tasks (v0.1) | [SP-02 feature folder](features/sp-02-project-membership/README.md) | M-02/M-03 / PLAN-01 Month 1; canonical SP-02 v0.5; resume P02 design preparation before selected implementation |
+| SP02-P01-REVIEW (v0.1) / SP02-DECISION-BATCH (v0.4) | [source review](features/sp-02-project-membership/p01-source-review.md); [owner proposal](features/sp-02-project-membership/decision-batch.md) | D-03 and bounded D-04 information scope selected; concrete schema adoption remains gated |
+| ADR-0026 (v0.3 Proposed) | [project/membership design](../adr/0026-project-membership-foundation.md) | Reconciled P03A/reduced 007 proposal; no cursor table; bounded replay/paging at P04 before public mutation; no adoption or runtime evidence |
+| SP02-P02-RESULT (v0.2; original execution unchanged) | [SP-02 preparation result](../sdlc/reports/SP-02-P02-preparation-2026-10-28.md) | Six historical actual-contract schema probes; plan input labelled as execution snapshot; no SP-02 handler coverage |
+
+1 November SP-02: FEAT-SP02-01/entry v0.6, decision batch v0.6, ADR-0026 v0.4, canonical SP-02 v0.7 and corrected child headers describe the bounded implementation. Current results live in SP02-EXECUTION-RESULT v0.2; original preparation/older session evidence retains its snapshot versions. Private operation guidance is services/workspace/PROJECTS.md v0.1.
+
+Final source/status pointers: source capture/checks are retained in the SP-02 evidence folder; registered parent catalogue IMPL-TASKS-01 v0.5 and machine SPEC-INDEX v0.5 distinguish the implemented bounded SP-01/SP-02 subsets from later unimplemented slices. Source table versions above remain historical reading snapshots unless explicitly updated.
+
+## SP-01/SP-02 testing/audit publication — 1 November 2026
+
+[PUB-SP01-SP02-01](features/sp-01-sp-02-test-audit-publication/plan.md) v0.1 registers the owner-authorised bounded report/check/commit/push sequence. [SP01-TEST-AUDIT-01](../sdlc/reports/SP-01-testing-audit-2026-11-01.md) v0.1 and [SP02-TEST-AUDIT-01](../sdlc/reports/SP-02-testing-audit-2026-11-01.md) v0.1 contain reproducible test commands, manual sheets, source/evidence maps and explicit limits. Existing measured source/results remain historical captures; no new runtime run or independent audit is claimed.

@@ -32,3 +32,12 @@ a[aria-current="page"] { font-weight: 700; }
 .skip-link:focus { top: 1rem; }
 .workspace-empty { padding-block: .5rem; }
 @media (max-width: 420px) { main { margin-top: 0; } .actions { flex-direction: column; } }
+
+.project-workspace form { margin-block: 1.5rem; padding-top: 1rem; border-top: 1px solid #ced9c7; }
+textarea, select { font: inherit; width: 100%; min-height: 2.8rem; padding: .7rem; color: inherit; background: #fff; border: 1px solid #637680; border-radius: .45rem; }
+textarea { min-height: 6rem; resize: vertical; }
+.project-list, .member-list { list-style: none; padding: 0; }
+.project-list li, .member-list li { padding-block: 1rem; border-bottom: 1px solid #ced9c7; }
+.member-list li { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; justify-content: space-between; }
+.member-id { overflow-wrap: anywhere; }
+.member-list li > div { min-width: 0; flex: 1 1 12rem; }

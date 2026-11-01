@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-01",
+  "browser": "156.0.4314.50",
+  "viewportChecks": [
+    [
+      1280,
+      900
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "realHttps": true,
+  "tlsBypass": false,
+  "personalProfile": false,
+  "checks": [
+    "secure HttpOnly SameSite Strict host-only session cookie",
+    "UI sign-in/create/add and native keyboard confirmation/cancel",
+    "lost committed response then reload and exact original-key reconciliation",
+    "one persisted create despite two POST requests",
+    "reload reconstructs current membership",
+    "current actor removal clears project/member controls",
+    "sign-out cookie deletion and reload denial"
+  ],
+  "pageErrors": []
+}

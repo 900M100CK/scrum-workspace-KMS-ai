@@ -2,7 +2,7 @@
   "openapi": "3.1.1",
   "info": {
     "title": "Workspace service public facade and internal policy",
-    "version": "0.2.10",
+    "version": "0.2.11",
     "description": "Draft contract; policy/stack decisions remain proposed. Schema validation proves shape only."
   },
   "x-status": "Draft",
@@ -159,9 +159,6 @@
               }
             }
           },
-          "503": {
-            "$ref": "#/components/responses/Unavailable"
-          },
           "413": {
             "description": "JSON request exceeds the configured 8192-byte body limit",
             "content": {
@@ -181,6 +178,9 @@
                 }
               }
             }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
           }
         },
         "x-release-priority": "Must"
@@ -283,6 +283,26 @@
               }
             }
           },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported media type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
           "503": {
             "$ref": "#/components/responses/Unavailable"
           }
@@ -304,7 +324,7 @@
         "x-requirements": [
           "FR-03"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. Current members only; order project_id ascending, fixed page size 50. Opaque authenticated cursors bind actor, route/filter/order/page size and complete authorised projection/membership/permission generation, not login-session identity. Recheck current authority on each page. Malformed/foreign/tampered or changed-key cursor returns 400; authenticated expired/changed dataset returns 409 with no items. No hidden totals; no-store. Missing required key/storage returns 503. See ADR-0026.",
         "parameters": [
           {
             "name": "cursor",
@@ -326,11 +346,31 @@
               }
             }
           },
+          "400": {
+            "description": "Invalid selector or cursor; no resource metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
           "401": {
             "$ref": "#/components/responses/Unauthenticated"
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Changed or expired projection; discard accumulated pages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           },
           "503": {
             "$ref": "#/components/responses/Unavailable"
@@ -458,6 +498,16 @@
               }
             }
           },
+          "400": {
+            "description": "Invalid extra selector",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
           "401": {
             "$ref": "#/components/responses/Unauthenticated"
           },
@@ -538,6 +588,26 @@
           },
           "409": {
             "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported media type",
             "content": {
               "application/json": {
                 "schema": {
@@ -731,6 +801,26 @@
           },
           "409": {
             "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported media type",
             "content": {
               "application/json": {
                 "schema": {

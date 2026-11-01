@@ -4,7 +4,10 @@ import { randomBytes, randomUUID, createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { spawn } from 'node:child_process';
-import { docker, image, migrate, root, sql, waitReady } from '../../scripts/database.mjs';
+import { docker, image, migrate as migrateOwned, root, sql, waitReady } from '../../scripts/database.mjs';
+
+// Retain this suite's original 006 Workspace schema snapshot. SP-02 suites exercise 007/008.
+const migrate=(container,service,direction='up')=>migrateOwned(container,service,direction,service==='workspace'?{through:'006'}:{});
 
 const container='kms-handoff-test-'+randomUUID();
 const passwords=Object.fromEntries(['POSTGRES_PASSWORD','WORKSPACE_DB_PASSWORD','KNOWLEDGE_DB_PASSWORD'].map(key=>[key,randomBytes(32).toString('hex')]));

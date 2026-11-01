@@ -65,8 +65,11 @@ export class WorkspaceSessionStore {
   return this.resolve(token,true,correlationId);
  }
  private async resolve(token:string,renew:boolean,correlationId?:string):Promise<SessionResult>{
+  return ownedTransaction(this.pool,'runtime',c=>this.inspectInTransaction(c,token,renew,correlationId));
+ }
+ /** Caller owns the transaction; typed denial commits a clock-fault latch without business effects. */
+ async inspectInTransaction(c:PoolClient,token:string,renew=false,correlationId?:string):Promise<SessionResult>{
   if(!validToken(token))return {kind:'unauthenticated'};
-  return ownedTransaction(this.pool,'runtime',async c=>{
    const clock=await clockLock(c);
    const hint=(await c.query('SELECT s.user_id,s.session_id FROM workspace.session s JOIN workspace.session_token t USING(session_id) WHERE t.token_digest=$1',[tokenDigest(token)])).rows[0];
    if(!hint)return {kind:'unauthenticated'};
@@ -81,7 +84,7 @@ export class WorkspaceSessionStore {
     if(updated){await audit(c,'session_renewed',hint.session_id,now,clock!.generation,null,null,hint.user_id,correlationId);return {kind:'authenticated',session:updated};}
    }
    return {kind:'authenticated',session:{sessionId:row.sessionId,userId:row.userId,expiresAt:row.expiresAt}};
-  });
+
  }
  async revoke(token:string,correlationId?:string):Promise<RevokeResult>{
   if(!validToken(token))return {kind:'signed_out'};

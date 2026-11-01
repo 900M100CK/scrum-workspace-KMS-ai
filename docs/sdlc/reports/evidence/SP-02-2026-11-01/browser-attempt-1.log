@@ -1,0 +1,22 @@
+✖ P08 isolated Microsoft Edge: real cookies, current UI, unknown outcome and reload (7310.1389ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7604.6654
+
+✖ failing tests:
+
+test at tests\workspace\project-browser.test.mjs:6:1
+✖ P08 isolated Microsoft Edge: real cookies, current UI, unknown outcome and reload (7310.1389ms)
+  page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://localhost:57389/
+  Call log:
+  [2m  - navigating to "https://localhost:57389/", waiting until "load"[22m
+
+      at TestContext.<anonymous> (D:\scrum-workspace-KMS-ai\tests\workspace\project-browser.test.mjs:13:13) {
+    name: 'Error',
+    log: [ '  - navigating to "https://localhost:57389/", waiting until "load"' ]
+  }

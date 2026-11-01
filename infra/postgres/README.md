@@ -115,3 +115,7 @@ Migration 005 adds private accounts, token digests, persistent clock health and 
 ## P10 lifecycle audit extension
 
 Workspace migration 006 adds session_renewed/session_revoked to the authentication audit action constraint. Existing migrations 001–005 remain unchanged; 006 down refuses retained lifecycle events and never deletes them. P10 verification uses disposable storage only; no development migration is implied. Public session handlers now exist as described in [the HTTP guide](../../services/workspace/SESSION-HTTP.md); earlier stage notes retain their original execution scope.
+
+## Workspace SP-02 — migrations 007 and separate 008
+
+The bounded project/membership implementation uses immutable project creator/time, private global authority/provisioning audit and safe revision bounds (007), followed by compact permanent project-operation outcomes on the existing store (008). Both were tested only in disposable databases. Legacy project/outcome reconciliation and nonempty down guards must be respected; no automatic migration, data reset or evidence deletion is authorised. 007 down never touches SP-01 clock-fault/session/audit state. See the [project operations runbook](../../services/workspace/PROJECTS.md). Historical db:test/session fixtures explicitly stop at 006; npm run test:projects covers the current schema through 008.

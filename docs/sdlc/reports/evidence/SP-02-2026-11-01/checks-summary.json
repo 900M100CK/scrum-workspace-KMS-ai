@@ -1,0 +1,22 @@
+[
+  {
+    "exitCode": 0,
+    "command": "npm run context:lint"
+  },
+  {
+    "exitCode": 0,
+    "command": "npm run context:check"
+  },
+  {
+    "exitCode": 0,
+    "command": "npm run context:test"
+  },
+  {
+    "exitCode": 0,
+    "command": "npm run docs:test"
+  },
+  {
+    "exitCode": 0,
+    "command": "npm run contracts:test"
+  }
+]

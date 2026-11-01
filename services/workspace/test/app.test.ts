@@ -6,7 +6,11 @@ test('workspace liveness is separate from protected functionality', async t => {
  const app = buildApp(); t.after(() => app.close());
  assert.deepEqual((await app.inject('/healthz')).json(), {status:'ok',service:'workspace'});
  assert.equal((await app.inject('/session')).statusCode,503);
- for (const url of ['/projects','/internal/permissions']) {
+ // SP-02 routes now exist but must fail closed without explicit runtime configuration.
+ const projects=await app.inject('/projects');assert.equal(projects.statusCode,503);
+ assert.deepEqual(projects.json(),{code:'access_unavailable',message:'Access unavailable',run_id:null});
+ assert.equal(projects.headers['cache-control'],'no-store');
+ for (const url of ['/projects/unknown/tasks','/internal/permissions']) {
   const response = await app.inject(url); assert.equal(response.statusCode,404);
   assert.deepEqual(response.json(),{code:'not_found',message:'Resource unavailable'});
  }

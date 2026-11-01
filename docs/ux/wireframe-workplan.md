@@ -1,9 +1,9 @@
 # Core wireframe work plan and semantic state brief
 
 **Artifact ID:** UX-PLAN-01  
-**Version/date:** 0.3 Draft · 28 October 2026\
+**Version/date:** 0.4 Draft · 1 November 2026\
 **Status:** Planning/textual interaction brief; initial native frames and previews exist, while full WF acceptance and usability/runtime evidence remain open.\
-**Inputs:** PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; API-05 v0.19; UX-06 v0.13; UX-CHECK-01 v0.2; UX-HANDOFF-01 v0.9; current sitemap/permission/flow drafts.\
+**Inputs:** PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; API-05 v0.20; UX-06 v0.13; UX-CHECK-01 v0.2; UX-HANDOFF-01 v0.9; current sitemap/permission/flow drafts.\
 **Trace:** BR-01–BR-14; SC-01–SC-08; NFR-01–NFR-04; U03–U18/U20–U23 and B19 in the detailed checklist review.
 
 ## Scope and order
@@ -82,3 +82,5 @@ Checklist: Pass for ordered tasks, concrete Backlog/document command state varia
 ## P10 input metadata — 28 October 2026
 
 Input versions synchronize the bounded session lifecycle update. Existing requirement, evaluation and UI assertions remain unchanged; no runtime acceptance is inferred from this metadata revision.
+
+1 November input-only reconciliation: API-05 v0.20 documents bounded live SP-02. Existing visual frames, workflow assertions and design-review/usability gaps are unchanged; runtime evidence is in the SP-02 plan, not inferred for these frames.

@@ -1,9 +1,9 @@
 # Work plan register and template
 
 **Artifact ID:** IMPL-FEATURES-01\
-**Version/date:** 0.14 Draft · 28 October 2026\
+**Version/date:** 0.20 Draft · 1 November 2026\
 **Status:** Planning entry; no application feature accepted or implemented by this file.\
-**Inputs:** [Development rules](../../development-rules.md) v1.12; [implementation roadmap](../roadmap.md) v0.7; [PLAN-01](../../planning/five-month-plan.md) v0.4; [spec index](../../../specs/README.md) v0.7; [source register](../register.md).\
+**Inputs:** [Development rules](../../development-rules.md) v1.13; [implementation roadmap](../roadmap.md) v0.13; [PLAN-01](../../planning/five-month-plan.md) v0.4; [spec index](../../../specs/README.md) v0.8; [source register](../register.md).\
 **Trace:** Existing feature FR/AC/BR/SC through its canonical spec; no added scope.\
 **Owner role:** Sequential development coordinator.
 
@@ -14,7 +14,9 @@ Follow [the planning gate](../../development-rules.md#111-work-planning-gate) fo
 | Work plan ID / kind / file | Version / status | Parent PLAN-01 section / roadmap milestone | Canonical spec / pack children | Next ready task / result |
 | --- | --- | --- | --- | --- |
 | [FEAT-SP01-01 / feature / session foundation](sp-01-session-foundation/plan.md) / [folder entry](sp-01-session-foundation/README.md) | Plan v0.9 Draft; entry/task briefs v0.8; application gated | PLAN-01 Month 1 / M-01 | SP-01 / SP-01.1–01.4; applicable SP-11.1 capture | P01–P04 laboratory preparation verified with limits; P05 clock evidence partial; P06 core policy direction selected; bounded P07 interfaces/HTTPS verified; P08 verified with actual role/storage regression evidence; bounded P09 verified; bounded P10 verified; P11 bounded DOM/live/browser observations verified; P12 bounded regression/handoff executed; release gates open; see authoritative plan |
-| [FEAT-SP02-01 / feature / project membership](sp-02-project-membership/plan.md) / [entry](sp-02-project-membership/README.md) | Plan/entry/tasks v0.1 Draft; preparation | PLAN-01 Month 1 / M-02 and M-03 | SP-02 / SP-02.1–02.4; co-delivered SP-11 capture | P01 review recorded; six P02 schema probes passed; D-03 selected; D-04/schema decisions remain open; no SP-02 handler accepted |
+| [FEAT-SP02-01 / feature / project membership](sp-02-project-membership/plan.md) / [entry](sp-02-project-membership/README.md) | Plan/entry v0.6; corrected task versions in their headers | PLAN-01 Month 1 / M-02 and M-03 | SP-02 / SP-02.1–02.4; co-delivered SP-11 capture | P03A–P08/P10 bounded implementation verified; optional P09 not selected; actual results/source identities in parent plan; future SP02-F01 and D-07 open |
+
+| [PUB-SP01-SP02-01 / reports and publication](sp-01-sp-02-test-audit-publication/plan.md) / [entry](sp-01-sp-02-test-audit-publication/README.md) | v0.1; owner-authorised | PLAN-01 Month 1 / M-01–M-03 | Existing SP-01/SP-02 evidence; no new feature | Two testing/audit reports, source/publication checks, current-branch commit/push; actual outcome reported after execution |
 
 For each new plan: replace the empty row with the actual ID/link, register the artifact centrally and in the [source register](../register.md), and add the roadmap backlink. Keep one canonical task table per feature. Parent rows reference it; they do not copy every task's mutable status.
 

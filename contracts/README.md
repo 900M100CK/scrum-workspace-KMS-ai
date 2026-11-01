@@ -1,7 +1,7 @@
 # Contract-first interface pack
 
 **Artifact ID:** CONTRACT-01  
-**Version/date:** 0.21 Draft · 28 October 2026
+**Version/date:** 0.22 Draft · 1 November 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0011 direction is owner-confirmed; remaining protocol/policy gaps and handler evidence are pending.\
 **Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [data design](../docs/sdlc/data-design.md); PLAN-01 v0.4.\; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
 **Author:** development agent acting sequentially; owner reviews business choices.
@@ -99,3 +99,7 @@ Workspace v0.2.9 synchronizes the selected __Host-sacw-session cookie name and d
 ## P10 session lifecycle — 28 October 2026
 
 Workspace v0.2.10 describes authenticated GET renewal/cookie refresh and idempotent empty DELETE 204 with Origin/header protection, no body and mandatory audit before cookie clearing. DELETE explicitly declares bounded 413/415 transport errors. Strict idle/absolute comparisons and no revival/regression are implemented in P10; unknown commit is 503 without a success cookie. No new operation, FR, Knowledge behavior or D-07 claim. See [P10 result](../docs/sdlc/reports/SP-01-P10-lifecycle-2026-10-28.md).
+
+## SP-02 bounded implementation — 1 November 2026
+
+Workspace OpenAPI v0.2.11 declares listProjects 400/409 cursor outcomes, strict getProject query validation and project-mutation 413/415 bounds. No operation or Project/Member schema was added. The live UI uses same-origin Workspace only; allowed actions are advisory. Actual project/member handlers, permanent compact replay and scoped HMAC paging have disposable PostgreSQL/HTTP evidence in [SP02 execution](../docs/sdlc/reports/SP-02-execution-2026-10-31.md). Missing cursor key/authority dependency fails closed. Optional editProject and all later business slices remain unimplemented. This does not establish D-07 guarded transport.

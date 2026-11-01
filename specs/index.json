@@ -1,6 +1,6 @@
 {
   "artifactId": "SPEC-INDEX",
-  "version": "0.4",
+  "version": "0.5",
   "status": "Draft",
   "slices": [
     {
@@ -21,7 +21,7 @@
         "signOut",
         "getSession"
       ],
-      "status": "Unimplemented"
+      "status": "Bounded session/UI implementation locally verified; wider acceptance open"
     },
     {
       "id": "SP-02",
@@ -41,6 +41,7 @@
       ],
       "operationIds": [
         "createProject",
+        "getProject",
         "listProjects",
         "addMember",
         "removeMember",
@@ -48,7 +49,7 @@
         "listMembers",
         "getAllowedActions"
       ],
-      "status": "Unimplemented"
+      "status": "Bounded project/membership/UI implementation locally verified; optional editProject not selected; wider acceptance open"
     },
     {
       "id": "SP-03",

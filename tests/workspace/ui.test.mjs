@@ -52,7 +52,7 @@ test('P11 actual React DOM with Workspace/PostgreSQL through same-origin HTTPS',
   await login();assert.equal(controller.getSnapshot().session.user_id,user);assert(document.querySelector('nav'));assert.equal(document.querySelector('form'),null);assert.equal(wire.some(r=>r.method==='POST'&&r.status===200&&r.secure&&r.httpOnly&&r.strict&&r.hostOnly),true);assert.equal(document.activeElement.id,'session-title');
  });
  await t.test('workspace navigation and reload-style controller recheck use real server state',async()=>{
-  await React.act(async()=>{dom.window.location.hash='#workspace';});await settle();assert.equal(controller.getSnapshot().phase,'authenticated');assert.match(document.body.textContent,/Projects, tasks and knowledge are being prepared/);
+  await React.act(async()=>{dom.window.location.hash='#workspace';});await settle();assert.equal(controller.getSnapshot().phase,'authenticated');assert.match(document.body.textContent,/Your projects/);
   const reloaded=new SessionController(transport);await reloaded.check();assert.equal(reloaded.getSnapshot().session.user_id,user);assert.equal(document.querySelectorAll('nav a[aria-current="page"]').length,1);
  });
  await t.test('dependency outage hides authenticated subtree immediately; recovery revalidates explicitly',async()=>{

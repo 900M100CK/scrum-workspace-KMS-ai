@@ -1,9 +1,9 @@
 # Core wireframes — Excalidraw
 
 **Artifact ID:** UX-WF-EX-01  
-**Version/date:** 0.4 Draft · 28 October 2026
+**Version/date:** 0.5 Draft · 1 November 2026
 **Status:** Editable visual author draft with synthetic data; no owner approval, independent review or application acceptance.  
-**Inputs:** BRD v1.0 through [stable entry](../../BRD.md); PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; UX-06 v0.13; [UX-BLUEPRINT-01 v1.6](../../sdlc/ui-ux-blueprint.md); [UX-PLAN-01 v0.3](../wireframe-workplan.md); UX-SITEMAP-03 v0.10; SP-03 v0.6; Workspace v0.2.8 / Knowledge v0.2.9 contracts; ADR-0007–ADR-0017 and Proposed ADR-0018–ADR-0023 as referenced by those design inputs.\
+**Inputs:** BRD v1.0 through [stable entry](../../BRD.md); PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; UX-06 v0.13; [UX-BLUEPRINT-01 v1.7](../../sdlc/ui-ux-blueprint.md); [UX-PLAN-01 v0.4](../wireframe-workplan.md); UX-SITEMAP-03 v0.10; SP-03 v0.6; Workspace v0.2.8 / Knowledge v0.2.9 contracts; ADR-0007–ADR-0017 and Proposed ADR-0018–ADR-0023 as referenced by those design inputs.\
 **Trace:** BR-01–BR-14; SC-01–SC-08 through the UC/TC mappings below. No new FR/AC, framework, service or permission policy.  
 **Author:** Sequential UX author.
 
@@ -63,3 +63,5 @@ Only dependent input-version metadata changed. Existing frame/design assertions 
 ## P12 dependent metadata — 28 October 2026
 
 Only input-version metadata follows the bounded SP-01 status/evidence reconciliation. Existing scope, visual sources and acceptance assertions are unchanged; no new design review or acceptance is implied.
+
+1 November metadata-only input reconciliation: blueprint/workplan source pointers updated; editable frame sources, previews and existing visual acceptance gaps remain unchanged.

@@ -1,0 +1,45 @@
+
+> scrum-workspace-kms-context@0.1.0 test:foundation
+> npm run test --workspace @sacw/web && npm run test --workspace @sacw/workspace && npm run test --workspace @sacw/knowledge
+
+
+> @sacw/web@0.1.0 test
+> node --test test/*.test.ts
+
+✔ the actual Vite-transformed React entry renders a locked checking state before server confirmation (156.8509ms)
+✖ opt-in trusted local HTTPS serves UI and proxies the actual Workspace without exposing keys (163.0845ms)
+✔ development TLS is opt-in and incomplete or missing key material fails explicitly (1.1283ms)
+✔ session client uses only fixed same-origin cookie transport and exact credential fields (19.4176ms)
+✔ 401 is generic, unavailable bodies never reach UI, and malformed success fails closed (1.1112ms)
+✔ late GET and response-body completion cannot restore identity after logout (3.1197ms)
+✔ uncertain mutation hides current state without retrying or claiming logout success (0.6176ms)
+✔ expiry or canceled observations cannot restore protected state (0.5492ms)
+✔ a stalled request is aborted at the fixed timeout and leaves unavailable state (10008.4551ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 8
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10182.9065
+
+✖ failing tests:
+
+test at test\https-proxy.test.ts:10:1
+✖ opt-in trusted local HTTPS serves UI and proxies the actual Workspace without exposing keys (163.0845ms)
+  Error: connect EACCES 127.0.0.1:59579
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:2021:16) {
+    errno: -4092,
+    code: 'EACCES',
+    syscall: 'connect',
+    address: '127.0.0.1',
+    port: 59579
+  }
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path D:\scrum-workspace-KMS-ai\apps\web
+npm error workspace @sacw/web@0.1.0
+npm error location D:\scrum-workspace-KMS-ai\apps\web
+npm error command failed
+npm error command C:\Windows\system32\cmd.exe /d /s /c node --test test/*.test.ts

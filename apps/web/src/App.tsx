@@ -1,5 +1,7 @@
 import {useEffect,useRef,useState,useSyncExternalStore} from 'react';
 import {SessionController} from './session.ts';
+import {ProjectWorkspace} from './ProjectWorkspace.tsx';
+import {ProjectController} from './projects.ts';
 
 export function App({controller:provided}:{controller?:SessionController}={}) {
  const [controller]=useState(()=>provided??new SessionController());
@@ -24,6 +26,7 @@ export function App({controller:provided}:{controller?:SessionController}={}) {
  useEffect(()=>{
   if(state.phase==='unavailable'||(state.phase==='signed-out'&&previousPhase.current==='signing-in'))feedback.current?.focus();
   else if(state.phase==='expired'||state.phase==='authenticated'||(state.phase==='signed-out'&&previousPhase.current==='signing-out'))heading.current?.focus();
+  if(state.phase==='signing-out')ProjectController.clearPending();
   previousPhase.current=state.phase;
  },[state.phase]);
  function signIn(event:React.SubmitEvent<HTMLFormElement>){
@@ -42,7 +45,7 @@ export function App({controller:provided}:{controller?:SessionController}={}) {
     <p className="feedback" role="status" aria-live="polite" tabIndex={-1} ref={feedback}>{state.message}</p>
     {state.session?<>
      <nav aria-label="Workspace"><a href="#session" aria-current={route!=='#workspace'?'page':undefined}>Your session</a><a href="#workspace" aria-current={route==='#workspace'?'page':undefined}>Workspace</a></nav>
-     {route==='#workspace'?<section className="workspace-empty" aria-labelledby="workspace-title" key={state.session.user_id}><p className="eyebrow">Workspace</p><h2 id="workspace-title">Room for what comes next.</h2><p>Projects, tasks and knowledge are being prepared. No project access has been granted by signing in.</p></section>:<p className="session-detail">Session available until <time dateTime={state.session.expires_at}>{new Intl.DateTimeFormat(undefined,{dateStyle:'medium',timeStyle:'short'}).format(new Date(state.session.expires_at))}</time></p>}
+     {route==='#workspace'?<ProjectWorkspace key={state.session.user_id} userId={state.session.user_id} onSessionLost={controller.expire}/>:<p className="session-detail">Session available until <time dateTime={state.session.expires_at}>{new Intl.DateTimeFormat(undefined,{dateStyle:'medium',timeStyle:'short'}).format(new Date(state.session.expires_at))}</time></p>}
      <div className="actions"><button className="primary" onClick={()=>void controller.signOut()}>Sign out</button><button onClick={()=>void controller.check()}>Check session</button></div>
     </>:<>
      {(state.phase==='signed-out'||state.phase==='expired'||state.phase==='signing-in')?<form onSubmit={signIn}>
@@ -55,7 +58,7 @@ export function App({controller:provided}:{controller?:SessionController}={}) {
      {busy?<p className="muted">Please wait while your session is confirmed.</p>:null}
     </>}
    </section>
-   <p className="scope-note">Sign-in is connected. Project and knowledge features are being prepared.</p>
+   <p className="scope-note">Projects and membership are connected. Task and knowledge features are being prepared.</p>
   </main>
  </>;
 }

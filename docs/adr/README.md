@@ -1,6 +1,6 @@
 # Architecture decision index
 
-Updated 28 October 2026. Owner-confirmed direction is distinct from implemented and tested behaviour. No commit or independent review is implied by this index.
+Updated 1 November 2026. Owner-confirmed direction is distinct from implemented and tested behaviour. No commit or independent review is implied by this index.
 
 | Record | Current decision status |
 | --- | --- |
@@ -24,9 +24,10 @@ Updated 28 October 2026. Owner-confirmed direction is distinct from implemented 
 
 The [business review](../analyst/business-review-2026-10-13.md) records the source conflicts and explicit owner clarifications. Older documents may still describe superseded proposals until the pending reconciliation is complete.
 
+[ADR-0026: project and membership foundation](0026-project-membership-foundation.md) — v0.4 Proposed. The owner authorised bounded sequential SP-02 implementation and disposable verification. Separate P03A/007/008, explicit private bootstrap/recovery, compact permanent outcomes, session-independent projection-bound HMAC cursors and actual lock order are recorded. Current results are in the SP-02 execution report; formal ADR/deployment, D-07 and independent acceptance remain open.
 [ADR-0018: operational read projections](0018-operational-read-projections.md) — v0.2 Proposed. Defines member-scoped Sprint associations, persisted current task location, blocker history, ordered paging, complete-list Backlog reorder and transactional completion counts for SYS-02. Migration 003 is verified in isolated storage tests; application verification remains pending. No new business permission or service.
 
-[ADR-0019: scoped UI discovery](0019-scoped-ui-discovery.md) — v0.3 Proposed. Minimal member/document/version lists, independent policy/grant reads and scoped action discovery for UX-R01/R02; delegation and runtime evidence remain open.
+[ADR-0019: scoped UI discovery](0019-scoped-ui-discovery.md) — v0.4 Proposed; pagination binds actor/scope/generations/dataset/expiry without login-session identity, after owner-directed consumer review. Minimal member/document/version lists, independent policy/grant reads and scoped action discovery for UX-R01/R02; delegation and runtime evidence remain open.
 
 [ADR-0020: manifest-bound AI transport](0020-manifest-bound-ai-transport.md) — v0.3 Proposed. Full immutable durable receipt, exact payload and mixed evidence for both purposes; additive storage and live TC-26 remain prerequisites.
 
