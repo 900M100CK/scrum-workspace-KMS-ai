@@ -39,7 +39,7 @@ Prior OWNER-Q-01 verification: combined Node 24.21.0 run `node --test tests/docs
 ## Current register and handoffs
 
 **Artifact ID:** REG-00
-**Version/date:** 0.93 Draft · 31 October 2026
+**Version/date:** 0.94 Draft · 2 November 2026
 **Status:** Draft; confirmed policy corrections in progress, full coverage and remaining decisions explicit.
 **Source versions:** Proposed ADR-0024/0025 for SP-01.1; [BRD stable entry](../BRD.md) → [English BRD v1.0](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md) and two Proposed addenda, [AGENTS.md v1.13](../../AGENTS.md), [workflow](../../agents/WORKFLOW.md), PRD-01 v0.9, UC-02 v0.8, SAD-03 v0.16 and ADR-0007–ADR-0017. Prior review inputs remain historical. Storage has measured test evidence; bounded session runtime evidence exists; interviews, pilot and full application acceptance remain absent.; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; Proposed ADR-0026
 
@@ -134,7 +134,7 @@ The BRD leaves architecture to design while AGENTS.md directs minimal microservi
 | Artifact ID | Version | Canonical source |
 | --- | --- | --- |
 | UML-07 | v0.21 | [Source](diagrams/README.md) |
-| REG-00 | v0.93 | [Source](artifact-register.md) |
+| REG-00 | v0.94 | [Source](artifact-register.md) |
 | SAD-03 | v0.16 | [Source](../architecture.md) |
 | UX-PERM-MATRIX-02 | v0.11 | [Source](../ux/permission-matrix.md) |
 | UX-PERSONAS-01 | v0.5 | [Source](../ux/personas.md) |
@@ -593,8 +593,14 @@ Dependent metadata: TEST-08 v0.23, VERIFY-01 v0.11 and TEST-COVERAGE-01 v0.10 re
 
 Bounded final result: P03A–P08/P10 verified locally; optional P09 not selected. IMPL-TASKS-01 v0.5 and machine spec index v0.5 point to the current bounded result. Reproducible commands, failed attempts, successful reruns, source/build identities and author-inspected media are retained with SP02-EXECUTION-RESULT v0.2. These do not close SP02-F01, D-07, full SC-06, formal ADR/deployment or independent acceptance.
 
-## SP-01/SP-02 testing and audit publication — 1 November 2026
+## Historical SP-01/SP-02 testing and audit publication — 1 November 2026
 
 REG-00 v0.93 registers [PUB-SP01-SP02-01 v0.1](../implementation/features/sp-01-sp-02-test-audit-publication/plan.md), its entry and three task briefs, [SP01-TEST-AUDIT-01 v0.1](reports/SP-01-testing-audit-2026-11-01.md) and [SP02-TEST-AUDIT-01 v0.1](reports/SP-02-testing-audit-2026-11-01.md). IMPL-FEATURES-01 v0.20, IMPL-REG-01 v0.25, IMPL-ROADMAP-01 v0.13 and DOC-REVIEW-REG-01 v0.34 provide dependent registration. Reports map already measured results to exact commands/sources and separate manual test sheets/open findings. No historical source capture, result, code or test expectation is rewritten by report consolidation.
 
 The owner explicitly authorises commit/push of related work to the existing origin on codex/sp-02-project-membership; no force push, main merge or development database upgrade. Unrelated submodule, local prompt copies, patches and scratch inventories remain excluded. Actual commit/remote verification is reported only after execution; reports are not independent audit approval or new runtime passes.
+
+## SP-03 planning and workflow registration — 2 November 2026
+
+REG-00 v0.94 registers [FEAT-SP03-01 v0.1](../implementation/features/sp-03-create-task/plan.md), entry/WBS v0.1, SP03-D01/D02 and SP03-P01–P09 v0.1. Parent: canonical SP-03 / existing IMPL-SP-03 children / PLAN-01 Month 1 / M-02; trace FR-05/AC-05, supporting BR-01/02/10/11/14. The parent table owns actual status/results. IMPL-FEATURES-01 v0.21, IMPL-REG-01 v0.26, IMPL-ROADMAP-01 v0.14, IMPL-EXEC-01 v0.8 and DOC-REVIEW-REG-01 v0.35 carry this bounded registration. SP03-WORKFLOW-01 v0.1 adds the source → draft plan → WBS/tasks → reconcile/register → one-task execution sequence in agents/WORKFLOW.md. No new product API, requirement, migration, runtime test, independent review, standard certification or accepted ADR is implied.
+
+This publication is based on committed dd69700e58d28e367f94833b85a6909a5faec1a5. Other local edits remain outside its selected commit. Source snapshots and template revision/pin mismatch are explicit in the plan; no prior measured evidence is relabelled or gitlink updated.

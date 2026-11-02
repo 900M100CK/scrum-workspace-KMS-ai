@@ -1,9 +1,9 @@
 # Supporting document review register
 
 **Artifact ID:** DOC-REVIEW-REG-01\
-**Version/date:** 0.34 Draft · 1 November 2026\
+**Version/date:** 0.35 Draft · 2 November 2026\
 **Status:** Review planning with bounded author rechecks recorded below; no full document-type review or approval.\
-**Inputs:** [Development rules](../../development-rules.md) v1.13; [PREFLIGHT-01](../../agent-preflight-checklist.md) v0.1; [REG-00](../artifact-register.md) v0.93; [SDLC-INDEX-01](../README.md) v0.3; [SDLC workflow](../../../agents/WORKFLOW.md), unversioned working guide.\
+**Inputs:** [Development rules](../../development-rules.md) v1.13; [PREFLIGHT-01](../../agent-preflight-checklist.md) v0.1; [REG-00](../artifact-register.md) v0.94; [SDLC-INDEX-01](../README.md) v0.3; [SDLC workflow](../../../agents/WORKFLOW.md), unversioned working guide.\
 **Trace:** Supports navigation and review of existing BR-01–BR-15 / SC-01–SC-08 documentation; no new requirement, application slice or acceptance criterion.\
 **Owner role:** SDLC coordinator; review assignments remain unassigned.
 
@@ -136,3 +136,7 @@ See [P12 result](../reports/SP-01-P12-handoff-2026-10-28.md) for bounded integra
 REG-00 v0.87 registers the new feature plan/source review/owner proposal after the explicitly authorised SP-01 main merge. This is preparation and navigation, not SP-02 application or independent acceptance.
 
 1 November report publication: registers two author-consolidated SP-01/SP-02 testing/audit reports and the bounded publication plan. Runtime counts retain their original dates/source captures; manual sheets are specified, not new passes. This does not assign an independent reviewer or close a review group.
+
+## SP-03 planning applicability
+
+The owner requested the three-template planning/task workflow and SP-03 documentation. Review FEAT-SP03-01/SP03-WBS-01/task briefs for source identity, bounded scope, Must-AC trace, decisions, task contracts and separate structural/runtime evidence. This is author verification only; independent review and workbook/standards certification remain unassigned/not run. Actual results live in the feature plan.

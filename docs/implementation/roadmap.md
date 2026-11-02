@@ -1,7 +1,7 @@
 # Dependency-based implementation roadmap
 
 **Artifact ID:** IMPL-ROADMAP-01\
-**Version/date:** 0.13 Draft · 1 November 2026\
+**Version/date:** 0.14 Draft · 2 November 2026\
 **Status:** Planning order, not completed work or scope acceptance.\
 **Inputs:** PRD-01 v0.9; SPEC-INDEX v0.7; PLAN-01 v0.4; [decisions](decisions.md); [task catalogue](tasks/README.md).\
 **Trace:** BR-01–BR-14; SC-01–SC-08.\
@@ -56,3 +56,7 @@ FEAT-SP02-01 v0.6 records implemented and locally verified project/member handle
 ## SP-01/SP-02 test and audit publication — 1 November 2026
 
 [PUB-SP01-SP02-01](features/sp-01-sp-02-test-audit-publication/plan.md) consolidates the two testing/audit reports and publishes the owner-authorised current branch. It does not add a milestone pass, implement SP-03 or merge to main.
+
+## SP-03 child plan — M-02 / PLAN-01 Month 1
+
+[FEAT-SP03-01 v0.1](features/sp-03-create-task/plan.md) refines [SP-03.1–03.4](tasks/03-create-task.md) into preparation, owned persistence/create/read/UI and mandatory verification deliverables. The owner authorised the plan/workflow/GitHub branch publication only in this turn. Follow the plan's single task table; P01 is the next future preparation task and P02 retains Proposed ADR-0018/D-04 gates. No milestone acceptance, implementation, calendar change or Must deferral.

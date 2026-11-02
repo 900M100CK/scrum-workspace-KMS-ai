@@ -1,0 +1,162 @@
+{
+  "artifact": "SP03 planning verification evidence",
+  "version": "0.1",
+  "date": "2026-11-02",
+  "node": "24.21.0",
+  "publication_base": "dd69700e58d28e367f94833b85a6909a5faec1a5",
+  "boundary": "documentation/context/link verification only; zero task handler behaviours; no runtime fixtures",
+  "working_tree": [
+    {
+      "command": "npm run context:lint",
+      "cwd": "D:\\scrum-workspace-KMS-ai",
+      "node": "24.21.0",
+      "exit_code": 0,
+      "duration_seconds": 7.0,
+      "log": "working-context-lint.log"
+    },
+    {
+      "command": "npm run context:check",
+      "cwd": "D:\\scrum-workspace-KMS-ai",
+      "node": "24.21.0",
+      "exit_code": 0,
+      "duration_seconds": 0.434,
+      "log": "working-context-check.log"
+    },
+    {
+      "command": "npm run context:test",
+      "cwd": "D:\\scrum-workspace-KMS-ai",
+      "node": "24.21.0",
+      "exit_code": 0,
+      "duration_seconds": 0.624,
+      "log": "working-context-test.log"
+    },
+    {
+      "command": "npm run docs:lint",
+      "cwd": "D:\\scrum-workspace-KMS-ai",
+      "node": "24.21.0",
+      "exit_code": 0,
+      "duration_seconds": 2.788,
+      "log": "working-docs-lint.log"
+    },
+    {
+      "command": "npm run docs:test",
+      "cwd": "D:\\scrum-workspace-KMS-ai",
+      "node": "24.21.0",
+      "exit_code": 0,
+      "duration_seconds": 3.046,
+      "log": "working-docs-test.log"
+    }
+  ],
+  "candidate_initial_attempt": [
+    {
+      "command": "npm run context:lint",
+      "environment": "selected publication candidate; committed baseline and pinned template archive",
+      "node": "24.21.0",
+      "exit_code": 1,
+      "duration_seconds": 1.247,
+      "log": "candidate-context-lint.log"
+    },
+    {
+      "command": "npm run context:check",
+      "environment": "selected publication candidate; committed baseline and pinned template archive",
+      "node": "24.21.0",
+      "exit_code": 1,
+      "duration_seconds": 0.229,
+      "log": "candidate-context-check.log"
+    },
+    {
+      "command": "npm run context:test",
+      "environment": "selected publication candidate; committed baseline and pinned template archive",
+      "node": "24.21.0",
+      "exit_code": 1,
+      "duration_seconds": 0.207,
+      "log": "candidate-context-test.log"
+    },
+    {
+      "command": "npm run docs:lint",
+      "environment": "selected publication candidate; committed baseline and pinned template archive",
+      "node": "24.21.0",
+      "exit_code": 1,
+      "duration_seconds": 0.234,
+      "log": "candidate-docs-lint.log"
+    },
+    {
+      "command": "npm run docs:test",
+      "environment": "selected publication candidate; committed baseline and pinned template archive",
+      "node": "24.21.0",
+      "exit_code": 1,
+      "duration_seconds": 0.222,
+      "log": "candidate-docs-test.log"
+    }
+  ],
+  "candidate_second_attempt": [
+    {
+      "command": "npm run context:lint",
+      "environment": "selected candidate with pinned template archive",
+      "node": "24.21.0",
+      "npm_cli": "existing system npm CLI executed by Node 24",
+      "exit_code": 0,
+      "duration_seconds": 4.916,
+      "log": "candidate-attempt-2-context-lint.log"
+    },
+    {
+      "command": "npm run context:check",
+      "environment": "selected candidate with pinned template archive",
+      "node": "24.21.0",
+      "npm_cli": "existing system npm CLI executed by Node 24",
+      "exit_code": 0,
+      "duration_seconds": 0.51,
+      "log": "candidate-attempt-2-context-check.log"
+    },
+    {
+      "command": "npm run context:test",
+      "environment": "selected candidate with pinned template archive",
+      "node": "24.21.0",
+      "npm_cli": "existing system npm CLI executed by Node 24",
+      "exit_code": 0,
+      "duration_seconds": 0.682,
+      "log": "candidate-attempt-2-context-test.log"
+    },
+    {
+      "command": "npm run docs:lint",
+      "environment": "selected candidate with pinned template archive",
+      "node": "24.21.0",
+      "npm_cli": "existing system npm CLI executed by Node 24",
+      "exit_code": 0,
+      "duration_seconds": 2.815,
+      "log": "candidate-attempt-2-docs-lint.log"
+    },
+    {
+      "command": "npm run docs:test",
+      "environment": "selected candidate with pinned template archive",
+      "node": "24.21.0",
+      "npm_cli": "existing system npm CLI executed by Node 24",
+      "exit_code": 0,
+      "duration_seconds": 3.069,
+      "log": "candidate-attempt-2-docs-test.log"
+    }
+  ],
+  "manual_checks": {
+    "task_briefs": 11,
+    "mandatory_sections_per_brief": 14,
+    "local_links_and_anchors_across_both_trees": 166,
+    "unrelated_preexisting_tracked_files_unchanged": 107,
+    "initial_index": "empty",
+    "candidate_template_contents": "archive of the unchanged parent-pinned revision; not the current local template checkout"
+  },
+  "failure_history": "Initial candidate npm CLI startup failed before running scripts with missing @npmcli/map-workspaces. Existing system npm CLI executed under the same Node 24 then passed all five requested aliases; no install/package change. Initial live docs lint linked workflow input v0.1 to local v0.2; input alias corrected.",
+  "unrun": [
+    "PostgreSQL",
+    "HTTP",
+    "DOM/browser",
+    "application build/typecheck",
+    "provider/evaluation",
+    "independent/standards review",
+    "fresh dependency installation"
+  ],
+  "publication": "Not claimed before commit/push; actual receipt is recorded after remote verification.",
+  "log_archive": {
+    "path": "planning-logs.zip",
+    "sha256": "7c67c7b6043b1330ce42eac3d61770a317c21b8919db00fb0d9485d2da078997"
+  }
+}

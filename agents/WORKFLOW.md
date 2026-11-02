@@ -50,3 +50,25 @@ Stages 4–7 can be revisited as interfaces mature. Do not call a downstream doc
 - For substantive changes to permissions, versions, citations, data, or service boundaries, follow the main rule's ADR and reporting requirements. Report checks run, gaps, and checks not run.
 
 Example invocation: “Use `AGENTS.md`, `agents/WORKFLOW.md`, `agents/01-prd-srs.md`, and `docs/BRD.md` to draft `docs/sdlc/PRD_SRS.md`. Read the complete BRD and the profile's prompt/checklist. Preserve BR/SC traceability and record open decisions.”
+
+## Feature planning, task breakdown and execution
+
+**Workflow extension:** SP03-WORKFLOW-01 v0.1 Draft · 2 November 2026. Owner-authorised project adaptation; not standards certification or runtime acceptance.
+
+Use the current canonical specifications under docs/sdlc/, their linked architecture/contracts, PLAN-01 and one bounded spec as inputs. Reuse the existing roadmap and registered feature folder; do not create another top-level project plan or relocate specifications to template example directories.
+
+| Gate | Template and purpose | Project output and exit condition |
+| --- | --- | --- |
+| 1. Source reconciliation | Read requirements, use case, design, contract, test trace, decisions and actual implementation | Record IDs, source versions/revisions, scope conflicts, prerequisites and permission/failure implications. A Proposed decision remains Proposed. |
+| 2. Draft development plan | development/DevPlan_ISO_24748_5_Prompt.md | docs/implementation/features/<work-id>/plan.md: observable goal/non-goals, parent milestone, ownership, allowed paths, risks, dependencies and acceptance strategy. |
+| 3. Deliverable/task breakdown | development/TaskBreakdown_ISO_21511_Prompt.md | breakdown.md contains WBS/dictionary, dependency order, estimates/basis and existing child-ID mapping; tasks/ contains one executable brief per stable task ID. |
+| 4. Reconcile and register | Recheck plan against the breakdown and every applicable Must AC | Register entry/plan/breakdown/task IDs in feature/source/central registers and roadmap before implementation. Keep the only mutable task-status table in plan.md; README, WBS and briefs link to it. |
+| 5. Execute one ready task | development/Implementation_Task_Prompt.md | Reopen plan/brief, verify actual inputs, implement within allowed paths, run specified checks, preserve failures and record result/handoff in the plan. Continue authorised ready children sequentially. |
+
+The three prompts above were inspected at template revision 6996dae13b2bfe31e77b5d90bb5eb24888a6a910 (v2.0 each). The parent gitlink 3c65f5cbefa7d69a75cadd89b177e3add8b400b0 has an older flat layout and does not supply these development prompts. Resolve against the actual tracked template tree and record its revision/digests; if unavailable, flag the dependent template review rather than inventing a path, copying local duplicates or changing the gitlink. The saved SP-03 plan is self-contained. This extension neither installs templates nor claims fresh-clone template availability.
+
+A task brief must specify one reviewable deliverable, objective/context, inputs and FR/AC/BR/SC trace, dependencies/gates, existing/planned file paths, closed allowed scope and non-goals, acceptance assertions, exact existing or explicitly planned commands, DoR/DoD, estimate/confidence/basis, risk, safe rollback, execution guardrails and result/handoff target. Split oversized tasks without moving mandatory negative/audit/concurrency coverage away from their producers. Preparation or a structural pass cannot close application acceptance.
+
+Project/owner/platform rules override template examples: use English artifacts and the owner's language in conversation; preserve IDs and the single project registry; do not infer scope, owner approval, dates, standards compliance, role permissions, automatic commits or agents. The template's default stop-on-dirty-tree, repeated approval and automatic-commit steps do not override an owner's explicit bounded authorization to preserve unrelated work and proceed. Pause only the dependent work on a material missing decision, unavailable prerequisite or failed required gate. Commit/push/review authority remains explicit and task-specific. Use Plan mode when available, otherwise disclose its absence and complete the same written gate.
+
+Use the task-specific implementation invocation: read AGENTS and this workflow, reopen <work-id>/plan.md and tasks/<task-id>.md, confirm the registered source/branch/path scope and DoR, execute only that ready task, run its actual commands, then update the plan's evidence and handoff. Do not introduce a separate mutable task index or a generic implementation-plan duplicate.

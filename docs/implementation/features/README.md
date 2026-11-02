@@ -1,9 +1,9 @@
 # Work plan register and template
 
 **Artifact ID:** IMPL-FEATURES-01\
-**Version/date:** 0.20 Draft · 1 November 2026\
+**Version/date:** 0.21 Draft · 2 November 2026\
 **Status:** Planning entry; no application feature accepted or implemented by this file.\
-**Inputs:** [Development rules](../../development-rules.md) v1.13; [implementation roadmap](../roadmap.md) v0.13; [PLAN-01](../../planning/five-month-plan.md) v0.4; [spec index](../../../specs/README.md) v0.8; [source register](../register.md).\
+**Inputs:** [Development rules](../../development-rules.md) v1.13; [implementation roadmap](../roadmap.md) v0.14; [PLAN-01](../../planning/five-month-plan.md) v0.4; [spec index](../../../specs/README.md) v0.8; [source register](../register.md).\
 **Trace:** Existing feature FR/AC/BR/SC through its canonical spec; no added scope.\
 **Owner role:** Sequential development coordinator.
 
@@ -97,3 +97,8 @@ The owner completed the certificate handoff. Actual keyboard login, reload/cooki
 
 See [P12 result](../../sdlc/reports/SP-01-P12-handoff-2026-10-28.md) for bounded integrated session/UI regression, owner local test feedback and screenshot evidence. AC-01/36/37/68 and applicable session producers/UI are mapped there; D-07, other protected features, full cross-browser/accessibility and deployment/formal ADR gates remain open. No new requirement or independent acceptance is inferred.
 
+## SP-03 planning registration — 2 November 2026
+
+| Work plan | Version / parent | Scope / status authority |
+| --- | --- | --- |
+| [FEAT-SP03-01](sp-03-create-task/plan.md) / [entry](sp-03-create-task/README.md) / [WBS](sp-03-create-task/breakdown.md) | Plan/entry/WBS v0.1; SP03-D01/D02/P01–P09 v0.1; PLAN-01 Month 1 / M-02 | Owner-authorised planning/workflow and selective branch publication only. Future runtime statuses and results live only in the parent plan. |

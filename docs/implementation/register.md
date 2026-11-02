@@ -1,7 +1,7 @@
 # Implementation source and artifact register
 
 **Artifact ID:** IMPL-REG-01\
-**Version/date:** 0.25 Draft · 1 November 2026\
+**Version/date:** 0.26 Draft · 2 November 2026\
 **Status:** Source snapshot and navigation, not approval or runtime evidence.\
 **Inputs:** REG-00; PRD-01 v0.9; SPEC-INDEX v0.8; PLAN-01 v0.4; SAD-03 v0.16; ADR-0001–ADR-0026.\
 **Trace:** Existing BR-01–BR-14 / SC-01–SC-08.\
@@ -119,3 +119,7 @@ Final source/status pointers: source capture/checks are retained in the SP-02 ev
 ## SP-01/SP-02 testing/audit publication — 1 November 2026
 
 [PUB-SP01-SP02-01](features/sp-01-sp-02-test-audit-publication/plan.md) v0.1 registers the owner-authorised bounded report/check/commit/push sequence. [SP01-TEST-AUDIT-01](../sdlc/reports/SP-01-testing-audit-2026-11-01.md) v0.1 and [SP02-TEST-AUDIT-01](../sdlc/reports/SP-02-testing-audit-2026-11-01.md) v0.1 contain reproducible test commands, manual sheets, source/evidence maps and explicit limits. Existing measured source/results remain historical captures; no new runtime run or independent audit is claimed.
+
+## SP-03 source registration — 2 November 2026
+
+[FEAT-SP03-01](features/sp-03-create-task/plan.md), [entry](features/sp-03-create-task/README.md), [SP03-WBS-01](features/sp-03-create-task/breakdown.md) and SP03-D01/D02/P01–P09 task briefs are v0.1 Draft. They refine SP-03.1–03.4 / FR-05 / AC-05 / PLAN-01 Month 1 / M-02. The plan freezes committed source versions at dd69700e58d28e367f94833b85a6909a5faec1a5 and distinguishes local uncommitted hashes. SP03-WORKFLOW-01 v0.1 and IMPL-EXEC-01 v0.8 adapt the three development templates to this project without runtime or independent acceptance. Current parent status/evidence, decisions and estimates belong only to the plan.
