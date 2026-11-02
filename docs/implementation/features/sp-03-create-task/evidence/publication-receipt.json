@@ -1,0 +1,18 @@
+{
+  "artifact": "SP03 initial branch publication receipt",
+  "version": "0.1",
+  "date": "2026-11-02",
+  "branch": "codex/sp-03-create-task",
+  "base": "dd69700e58d28e367f94833b85a6909a5faec1a5",
+  "published_commit": "65ec8078bacdc73421bd93155878a1090989bc00",
+  "push": "git push --set-upstream origin codex/sp-03-create-task exited 0; new branch created",
+  "remote_verification": {
+    "command": "git ls-remote --heads origin refs/heads/codex/sp-03-create-task",
+    "observed_sha": "65ec8078bacdc73421bd93155878a1090989bc00",
+    "local_HEAD": "65ec8078bacdc73421bd93155878a1090989bc00",
+    "match": true
+  },
+  "selected_commit_files": 25,
+  "scope": "planning/workflow/registration/synthetic evidence only; no runtime/source-spec/gitlink updates",
+  "follow_up": "This receipt is committed after observing the initial publication. The final receipt commit and its remote SHA are verified externally, without predicting a self-referential SHA."
+}

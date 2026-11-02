@@ -56,7 +56,7 @@ This is the only mutable status table. Briefs and WBS hold no independent execut
 | Task | Deliverable / canonical child | Dependencies / gates | Estimate / basis | Status / evidence |
 | --- | --- | --- | --- | --- |
 | [D01](tasks/SP03-D01-plan-and-workflow.md) | Registered plan, WBS, eleven briefs and workflow adaptation | Owner instruction / source inspection | Authoring budget 2–4 h; low confidence, documentation scope | Verified documentation outcome; bounded checks below |
-| [D02](tasks/SP03-D02-verify-and-publish.md) | Bounded checks and selected GitHub branch publication | D01 | Authoring budget 1–2 h; low confidence, no runtime suite | In progress; candidate/working checks passed, commit/push receipt pending |
+| [D02](tasks/SP03-D02-verify-and-publish.md) | Bounded checks and selected GitHub branch publication | D01 | Authoring budget 1–2 h; low confidence, no runtime suite | Verified bounded publication; actual receipt below; future P01 remains next |
 | [P01](tasks/SP03-P01-source-reconciliation.md) | Versioned source/FR-AC/permission/test map; SP-03.1 | Published source baseline; SP-02 evidence | 1–2 h; medium, existing sources | Not started; next preparation task after this publication |
 | [P02](tasks/SP03-P02-bounded-design.md) | Reviewable authority/transaction/read design and decision batch; SP-03.1 | P01; owner dispositions for G-01/G-03 where needed | 2–4 h; low, design gaps | Waiting for P01; decisions remain Proposed |
 | [P03](tasks/SP03-P03-owned-persistence.md) | Minimal owned persistence and rollback evidence; SP-03.2 | P02 and G-01/G-02/G-03 | 2–4 h; low, reuse 003/007/008 | Waiting for design |
@@ -100,7 +100,7 @@ Next: finish D01/D02 only; future P01 source preparation is the next implementat
 
 ## Execution evidence
 
-Checks and publication are Planned until actual results are appended here. No predicted commit SHA or remote success is recorded.
+Actual bounded results are recorded below. No task handler implementation, predicted SHA or independent approval is inferred.
 
 ## Source identity
 
@@ -134,7 +134,7 @@ D01 intermediate check: candidate metadata sync and docs lint passed. Initial wo
 
 ## D01/D02 bounded verification result — 2 November 2026
 
-D01 authored the plan, WBS/dictionary, eleven briefs and project workflow adaptation; future P01–P09 remain Not started or waiting on prerequisites. Independent review is unassigned. D02 is in progress until selected commit/push and remote comparison succeed.
+D01 authored the plan, WBS/dictionary, eleven briefs and project workflow adaptation; future P01–P09 remain Not started or waiting on prerequisites. Independent review is unassigned. D02 subsequently verified the initial selected commit/push and remote comparison; see the publication receipt below.
 
 [Check record](evidence/planning-checks.json) distinguishes working-tree checks from the exact selected publication candidate and retains failed attempts. [Captured logs](evidence/planning-logs.zip) include all five successful working-tree commands, the failed initial candidate npm startup attempts and all five successful candidate reruns. Node 24.21.0 was selected explicitly; dependencies already installed were reused. The candidate contains committed source baseline plus selected planning changes and the unchanged pinned template archive; this is not a clean dependency-install or full application reproduction.
 
@@ -154,3 +154,11 @@ Failure history is evidence, not erased: initial live docs lint exposed the revi
 Unrun: PostgreSQL, task/session/project HTTP/DOM/browser suites, application build/typecheck, provider/evaluation, fresh-install and independent/workbook standards review. This authoring change verifies zero task handler behaviours. Proposed decisions, full scenario/security/deployment and future SP02-F01/D-07 gates remain open. Final selected-diff/whitespace and publication receipt are recorded after actual verification, not predicted here.
 
 Selected-tree boundary check: staged blobs match the checked candidate in Git-normalized form. Initial raw-byte comparison encountered Windows CRLF materialization from git archive; comparison of Git blob hashes with only CRLF normalization confirmed every unselected parent file is unchanged. Baseline source digests above refer to raw committed blob bytes; local digests refer to observed local bytes. Scoped staged whitespace passed.
+
+## Publication receipt and final handoff
+
+The initial publication commit is 65ec8078bacdc73421bd93155878a1090989bc00 on codex/sp-03-create-task, based on dd69700e58d28e367f94833b85a6909a5faec1a5. `git push --set-upstream origin codex/sp-03-create-task` succeeded, and `git ls-remote --heads origin refs/heads/codex/sp-03-create-task` returned the exact same SHA as local HEAD. [Publication receipt](evidence/publication-receipt.json) preserves this actual observation. This final receipt is a normal follow-up documentation commit; its eventual SHA is verified in Git/remote output rather than predicted inside itself.
+
+The initial selected commit contains 25 planning/workflow/registration/evidence files only. Its staged blobs were checked against the candidate; 806 unselected parent files were unchanged after accounting for Windows archive CRLF materialization. Prior dirty source/spec/runtime/template/profile work was not included. Scoped staged whitespace passed. Full source identities and the unchanged template gitlink remain recorded above.
+
+Final pre-flight: owner-authorised scope and Git publication respected; source/FR-AC/BR-SC trace, single task-status authority, planned paths/commands, decision gates and actual-versus-planned evidence checked. D01/D02 documentation outcomes are verified; future P01–P09 remain unexecuted and retain their prerequisites. No application feature, cross-service write, accepted ADR/baseline change, deployment, dependency installation, independent review or parallel agent is implied. Next future work is P01 source reconciliation when requested. Unrelated prior edits remain in the working tree.
