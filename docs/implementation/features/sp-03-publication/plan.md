@@ -1,8 +1,8 @@
 # SP-03 verification, publication and merge plan
 
 **Artifact ID:** PUB-SP03-01\
-**Version/date:** 0.1 Draft · 3 November 2026\
-**Status:** Authorised; execution results belong to the task table below.\
+**Version/date:** 0.2 Draft · 3 November 2026\
+**Status:** Bounded verification, publication, fast-forward merge and branch deletion completed; wider release gates remain open.\
 **Inputs:** FEAT-SP03-01 v0.5; SP03-EXEC-01 v0.1; SP03-UI-01 v0.2; SP-03 v0.8; Workspace v0.2.12; Proposed ADR-0027 v0.2; PLAN-01 v0.4.\
 **Trace:** FR-05/AC-05; supporting FR-03/31/59; BR-01/02/10/11/14; UC-03 main/EX-01/EX-02; implementation pack SP-03.1–03.4.\
 **Planning mode:** Plan mode unavailable in this Default-mode session; equivalent written gate completed.\
@@ -23,7 +23,7 @@ Allowed paths: existing coordinated SP-03 source/contract/test/doc/evidence path
 | Task | Outcome / dependencies | Acceptance and commands | Status / result |
 | --- | --- | --- | --- |
 | [PUB03-T01](tasks/PUB03-T01-review-and-verify.md) | Inspect source, AC evidence and exact publication tree; depends on P09 handoff | Compare recorded SHA-256 inputs; inspect Task API/store/cursor/UI and connected callers; inspect additive 009 and failures. Verify candidate context/docs/contracts, typecheck/build, complete Task suite, session/project regressions and foundation/Edge when source or environment warrants. Keep commands/logs/failures and count boundaries. | Verified; actual commands/source comparison in the publication report |
-| [PUB03-T02](tasks/PUB03-T02-publish-and-merge.md) | Publish verified source and report; depends on T01 passing | Fetch origin; confirm main/head ancestry; inspect staged diff/secret paths/archives; commit with agent identity and Co-Authored-By; push feature branch; merge without force; push main; verify exact remote SHA before deleting branch. Preserve all unrelated bytes. | Ready after T01; remote receipts pending |
+| [PUB03-T02](tasks/PUB03-T02-publish-and-merge.md) | Publish verified source and report; depends on T01 passing | Fetch origin; confirm main/head ancestry; inspect staged diff/secret paths/archives; commit with agent identity and Co-Authored-By; push feature branch; merge without force; push main; verify exact remote SHA before deleting branch. Preserve all unrelated bytes. | Verified: source a8b3192 pushed, CI succeeded, main fast-forward confirmed, local/remote source branch deleted; report/evidence/merge-receipt.json |
 
 Synthetic disposable PostgreSQL fixtures only: historical session 006, project 007/008, Task 009. Reuse existing Node 24+, dependencies, trusted local HTTPS and isolated installed Edge/Playwright. No new package, personal browser profile or TLS bypass. Audit and replay failures must remain atomic; unknown outcome requires the original key; current access precedes disclosure. Source/version/citation/AI policy stays unchanged.
 

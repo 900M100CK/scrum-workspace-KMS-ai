@@ -1,0 +1,16 @@
+{
+  "initial_files": 928,
+  "changed_original_files": [
+    "docs/sdlc/references/document-review-register.md",
+    "docs/implementation/features/sp-03-publication/plan.md",
+    "docs/adr/README.md",
+    "docs/implementation/register.md",
+    "docs/sdlc/diagrams/manifest.json",
+    "docs/implementation/roadmap.md",
+    "docs/implementation/features/README.md",
+    "docs/sdlc/diagrams/README.md",
+    "docs/sdlc/artifact-register.md"
+  ],
+  "unexpected_changes": [],
+  "template_gitlink_preserved": true
+}

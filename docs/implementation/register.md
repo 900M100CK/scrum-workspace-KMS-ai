@@ -1,7 +1,7 @@
 # Implementation source and artifact register
 
 **Artifact ID:** IMPL-REG-01\
-**Version/date:** 0.34 Draft · 3 November 2026\
+**Version/date:** 0.35 Draft · 3 November 2026\
 **Status:** Source snapshot and navigation, not approval or runtime evidence.\
 **Inputs:** REG-00; PRD-01 v0.9; SPEC-INDEX v0.8; PLAN-01 v0.4; SAD-03 v0.16; ADR-0001–ADR-0026.\
 **Trace:** Existing BR-01–BR-14 / SC-01–SC-08.\
@@ -156,6 +156,10 @@ Planned SP03-EXEC-01 v0.1: docs/sdlc/reports/SP-03-2026-11-02-execution.md; WORK
 
 Current local reading sources: FEAT-SP03-01/entry/WBS 0.5, canonical SP-03 0.8, IMPL-SP-03 0.2 / IMPL-TASKS-01 0.6, Workspace 0.2.12, logical JSON 0.12, CONTRACT-01 0.24, API-05 0.22, DATA-04 0.16, TEST-08 0.24, TEST-COVERAGE-01 0.11 and VERIFY-01 0.12. SP03-UI-01 0.2 preserves its original 0.1 report snapshot and actual captures; SP03-EXEC-01/WORKSPACE-TASKS-01 are 0.1. Source status updates in AGENTS 1.15/rules 1.14 change no planning/permission authority. P09 final regression/audit results belong to the parent/report; do not infer acceptance from this registration. Older source/result sections remain historical observations and are not relabelled.
 
-## SP-03 publication follow-up — 3 November 2026
+## Historical SP-03 publication follow-up — 3 November 2026
 
 [PUB-SP03-01 v0.1](features/sp-03-publication/plan.md) registers bounded review/verification, selective publication, merge into main and deletion of the merged SP-03 branch under the owner instruction. Parent FEAT-SP03-01 / SP-03.1–03.4 / FR-05/AC-05 / PLAN-01 Month 1 / M-02. PUB03-T01/T02 v0.1 and PUB-SP03-ENTRY-01 v0.1 define the ready work; the publication plan owns actual results. Planned report SP03-PUB-REPORT-01 v0.1: docs/sdlc/reports/SP-03-publication-2026-11-03.md. No product scope, independent approval or deployment is implied.
+
+## SP-03 publication completion — 3 November 2026
+
+[PUB-SP03-01 v0.2](features/sp-03-publication/plan.md) and [SP03-PUB-REPORT-01 v0.2](../sdlc/reports/SP-03-publication-2026-11-03.md) record actual verification, source commit a8b3192, successful GitHub CI, confirmed fast-forward into main and deletion of both SP-03 source branches. Parent FR-05/AC-05 / SP-03.1–03.4 / PLAN-01 Month 1 / M-02 is unchanged. Unrelated working files and the template gitlink are preserved. No deployment, complete master milestone or independent approval.

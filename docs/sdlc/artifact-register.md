@@ -39,7 +39,7 @@ Prior OWNER-Q-01 verification: combined Node 24.21.0 run `node --test tests/docs
 ## Current register and handoffs
 
 **Artifact ID:** REG-00
-**Version/date:** 0.102 Draft · 2 November 2026
+**Version/date:** 0.103 Draft · 2 November 2026
 **Status:** Draft; confirmed policy corrections in progress, full coverage and remaining decisions explicit.
 **Source versions:** Proposed ADR-0024/0025 for SP-01.1; [BRD stable entry](../BRD.md) → [English BRD v1.0](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md) and two Proposed addenda, [AGENTS.md v1.13](../../AGENTS.md), [workflow](../../agents/WORKFLOW.md), PRD-01 v0.9, UC-02 v0.8, SAD-03 v0.16 and ADR-0007–ADR-0017. Prior review inputs remain historical. Storage has measured test evidence; bounded session runtime evidence exists; interviews, pilot and full application acceptance remain absent.; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; Proposed ADR-0026
 
@@ -134,7 +134,7 @@ The BRD leaves architecture to design while AGENTS.md directs minimal microservi
 | Artifact ID | Version | Canonical source |
 | --- | --- | --- |
 | UML-07 | v0.22 | [Source](diagrams/README.md) |
-| REG-00 | v0.102 | [Source](artifact-register.md) |
+| REG-00 | v0.103 | [Source](artifact-register.md) |
 | SAD-03 | v0.16 | [Source](../architecture.md) |
 | UX-PERM-MATRIX-02 | v0.11 | [Source](../ux/permission-matrix.md) |
 | UX-PERSONAS-01 | v0.5 | [Source](../ux/personas.md) |
@@ -641,6 +641,10 @@ Planned SP03-EXEC-01 v0.1: docs/sdlc/reports/SP-03-2026-11-02-execution.md; WORK
 
 Current local reading sources: FEAT-SP03-01/entry/WBS 0.5, canonical SP-03 0.8, IMPL-SP-03 0.2 / IMPL-TASKS-01 0.6, Workspace 0.2.12, logical JSON 0.12, CONTRACT-01 0.24, API-05 0.22, DATA-04 0.16, TEST-08 0.24, TEST-COVERAGE-01 0.11 and VERIFY-01 0.12. SP03-UI-01 0.2 preserves its original 0.1 report snapshot and actual captures; SP03-EXEC-01/WORKSPACE-TASKS-01 are 0.1. Source status updates in AGENTS 1.15/rules 1.14 change no planning/permission authority. P09 final regression/audit results belong to the parent/report; do not infer acceptance from this registration. Older source/result sections remain historical observations and are not relabelled.
 
-## SP-03 publication follow-up — 3 November 2026
+## Historical SP-03 publication follow-up — 3 November 2026
 
 REG-00 v0.102 registers [PUB-SP03-01 v0.1](../implementation/features/sp-03-publication/plan.md), PUB-SP03-ENTRY-01 v0.1, PUB03-T01/T02 v0.1 and planned [SP03-PUB-REPORT-01 v0.1](reports/SP-03-publication-2026-11-03.md). Parent FEAT-SP03-01 / SP-03.1–03.4 / FR-05/AC-05 / PLAN-01 Month 1 / M-02. Authorised verification and selective commit/push/merge/branch deletion only; actual outcomes belong to the plan/report. No independent acceptance or deployment.
+
+## SP-03 publication completion — 3 November 2026
+
+REG-00 v0.103 records [PUB-SP03-01 v0.2](../implementation/features/sp-03-publication/plan.md) and [SP03-PUB-REPORT-01 v0.2](reports/SP-03-publication-2026-11-03.md): actual local checks, source a8b3192 and successful remote CI, confirmed fast-forward to main, and local/remote SP-03 branch deletion. IMPL-FEATURES-01 v0.30, IMPL-REG-01 v0.35, IMPL-ROADMAP-01 v0.23 and DOC-REVIEW-REG-01 v0.44 carry the receipt. No independent/release/deployment acceptance or unrelated publication.

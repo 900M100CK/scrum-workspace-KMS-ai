@@ -1,0 +1,145 @@
+{
+  "id": 125776123610,
+  "name": "context",
+  "status": "completed",
+  "conclusion": "success",
+  "html_url": "https://github.com/900M100CK/scrum-workspace-KMS-ai/actions/runs/41593728483/job/125776123610",
+  "steps": [
+    {
+      "name": "Set up job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 1,
+      "started_at": "2026-11-03T07:03:03Z",
+      "completed_at": "2026-11-03T07:03:04Z"
+    },
+    {
+      "name": "Run actions/checkout@v7",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 2,
+      "started_at": "2026-11-03T07:03:04Z",
+      "completed_at": "2026-11-03T07:03:08Z"
+    },
+    {
+      "name": "Run actions/setup-node@v7",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 3,
+      "started_at": "2026-11-03T07:03:08Z",
+      "completed_at": "2026-11-03T07:03:09Z"
+    },
+    {
+      "name": "Run npm ci",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 4,
+      "started_at": "2026-11-03T07:03:09Z",
+      "completed_at": "2026-11-03T07:03:17Z"
+    },
+    {
+      "name": "Run npm run docs:lint",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 5,
+      "started_at": "2026-11-03T07:03:17Z",
+      "completed_at": "2026-11-03T07:03:19Z"
+    },
+    {
+      "name": "Run npm run docs:test",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 6,
+      "started_at": "2026-11-03T07:03:19Z",
+      "completed_at": "2026-11-03T07:03:22Z"
+    },
+    {
+      "name": "Run npm run context:lint",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 7,
+      "started_at": "2026-11-03T07:03:22Z",
+      "completed_at": "2026-11-03T07:03:22Z"
+    },
+    {
+      "name": "Run npm run context:check",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 8,
+      "started_at": "2026-11-03T07:03:22Z",
+      "completed_at": "2026-11-03T07:03:22Z"
+    },
+    {
+      "name": "Run npm run context:test",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 9,
+      "started_at": "2026-11-03T07:03:22Z",
+      "completed_at": "2026-11-03T07:03:23Z"
+    },
+    {
+      "name": "Run npm run typecheck",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 10,
+      "started_at": "2026-11-03T07:03:23Z",
+      "completed_at": "2026-11-03T07:03:30Z"
+    },
+    {
+      "name": "Run npm run build",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 11,
+      "started_at": "2026-11-03T07:03:30Z",
+      "completed_at": "2026-11-03T07:03:37Z"
+    },
+    {
+      "name": "Run npm run test:foundation",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 12,
+      "started_at": "2026-11-03T07:03:37Z",
+      "completed_at": "2026-11-03T07:03:52Z"
+    },
+    {
+      "name": "Run npm run test:prototype",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 13,
+      "started_at": "2026-11-03T07:03:52Z",
+      "completed_at": "2026-11-03T07:03:54Z"
+    },
+    {
+      "name": "Run npm run contracts:test",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 14,
+      "started_at": "2026-11-03T07:03:54Z",
+      "completed_at": "2026-11-03T07:03:56Z"
+    },
+    {
+      "name": "Post Run actions/setup-node@v7",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 27,
+      "started_at": "2026-11-03T07:03:56Z",
+      "completed_at": "2026-11-03T07:03:56Z"
+    },
+    {
+      "name": "Post Run actions/checkout@v7",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 28,
+      "started_at": "2026-11-03T07:03:56Z",
+      "completed_at": "2026-11-03T07:03:56Z"
+    },
+    {
+      "name": "Complete job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 29,
+      "started_at": "2026-11-03T07:03:56Z",
+      "completed_at": "2026-11-03T07:03:56Z"
+    }
+  ]
+}

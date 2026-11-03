@@ -1,0 +1,90 @@
+[
+  {
+    "name": "metadata",
+    "command": [
+      "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+      "scripts/docs/docs-metadata.mjs"
+    ],
+    "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+    "exit_code": 0,
+    "duration_seconds": 0.11,
+    "log": "metadata.log",
+    "counts": {
+      "tests": [],
+      "pass": [],
+      "fail": [],
+      "skipped": [],
+      "cancelled": []
+    }
+  },
+  {
+    "name": "context:check",
+    "command": [
+      "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+      "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+      "run",
+      "context:check"
+    ],
+    "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+    "exit_code": 0,
+    "duration_seconds": 1.16,
+    "log": "context-check.log",
+    "counts": {
+      "tests": [],
+      "pass": [],
+      "fail": [],
+      "skipped": [],
+      "cancelled": []
+    }
+  },
+  {
+    "name": "docs:lint",
+    "command": [
+      "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+      "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+      "run",
+      "docs:lint"
+    ],
+    "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+    "exit_code": 0,
+    "duration_seconds": 3.45,
+    "log": "docs-lint.log",
+    "counts": {
+      "tests": [],
+      "pass": [],
+      "fail": [],
+      "skipped": [],
+      "cancelled": []
+    }
+  },
+  {
+    "name": "docs:test",
+    "command": [
+      "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+      "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+      "run",
+      "docs:test"
+    ],
+    "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+    "exit_code": 0,
+    "duration_seconds": 3.39,
+    "log": "docs-test.log",
+    "counts": {
+      "tests": [
+        20
+      ],
+      "pass": [
+        20
+      ],
+      "fail": [
+        0
+      ],
+      "skipped": [
+        0
+      ],
+      "cancelled": [
+        0
+      ]
+    }
+  }
+]

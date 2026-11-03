@@ -1,9 +1,9 @@
 # SP-03 verification and publication report
 
 **Artifact ID:** SP03-PUB-REPORT-01\
-**Version/date:** 0.1 Draft · 3 November 2026\
-**Status:** Bounded verification passed; authorised publication/merge awaits actual remote receipts.\
-**Inputs:** [PUB-SP03-01](../../implementation/features/sp-03-publication/plan.md) v0.1; FEAT-SP03-01 v0.5; [implementation handoff](SP-03-2026-11-02-execution.md) v0.1; SP03-UI-01 v0.2.\
+**Version/date:** 0.2 Draft · 3 November 2026\
+**Status:** SP-03 source published and merged into main; remote/local SP-03 branch deleted. No deployment or independent approval.\
+**Inputs:** [PUB-SP03-01](../../implementation/features/sp-03-publication/plan.md) v0.2; FEAT-SP03-01 v0.5; [implementation handoff](SP-03-2026-11-02-execution.md) v0.1; SP03-UI-01 v0.2.\
 **Trace:** FR-05/AC-05, supporting FR-03/31/59; UC-03 main/EX-01/EX-02; PLAN-01 Month 1 / M-02.
 
 The owner authorised checking SP-03 and, if its bounded implementation is done, publishing to GitHub, merging into main and deleting the merged SP-03 branch. The initial branch was codex/sp-03-create-task at d6b8caf241603cdff4f9b7a2a491fc4e2e386453. Origin/main was dd69700e58d28e367f94833b85a6909a5faec1a5; remote SP-03 contained the earlier planning commits only.
@@ -37,8 +37,18 @@ Foundation and browser ran from the original root after exact source comparison:
 
 Review verdict: the bounded SP-03 implementation is ready for publication. No must-fix runtime defect was found in the inspected flow; this is author self-review, not independent approval. A stale ADR-index summary is corrected to reflect all three already recorded owner choices. The specification index receives only its SP-03 implementation status. No requirement or policy is added.
 
-Pending remote receipt: verified source commit, branch push, CI, merge SHA and branch deletion. Earlier P09 results remain historical evidence, not relabelled new runs.
+## Confirmed GitHub outcome
+
+- Source commit: [a8b31921038101d4d8e682032b13981e2421b228](https://github.com/900M100CK/scrum-workspace-KMS-ai/commit/a8b31921038101d4d8e682032b13981e2421b228), authored by Codex with the required Co-Authored-By trailer.
+- Feature push succeeded, and [GitHub Actions CI](https://github.com/900M100CK/scrum-workspace-KMS-ai/actions/runs/41593728483) completed successfully before merge. The job executed dependency installation, documentation/context/contract checks, typecheck, build, foundation and prototype checks on the committed tree. It does not run PostgreSQL Task/session/project or real Edge suites; those have the separate local evidence above.
+- main was fast-forwarded from dd69700e58d28e367f94833b85a6909a5faec1a5 to a8b31921038101d4d8e682032b13981e2421b228. A remote read confirmed that exact SHA before cleanup. No force-push, squash, destructive reset or merge conflict was involved.
+- Both origin/codex/sp-03-create-task and the local codex/sp-03-create-task branch were deleted after the confirmed merge. The active checkout is main. The separate SP-04 worktree/branch was not altered.
+- [Merge/deletion receipt](../../implementation/features/sp-03-publication/evidence/merge-receipt.json), [CI job/steps](../../implementation/features/sp-03-publication/evidence/github-ci.json) and [working-file preservation](../../implementation/features/sp-03-publication/evidence/working-preservation.json) record the outcome. All initially inventoried files outside the explicitly listed publication/documentation paths retain their bytes. Unrelated dirty/untracked work remains local and was not included in the selected commit.
+
+Receipt-only verification passed: context check, docs lint and docs tests 20/20, zero skips. [Receipt check capture](../../implementation/features/sp-03-publication/evidence/receipt-checks.json) and [logs](../../implementation/features/sp-03-publication/evidence/receipt-checks.zip) preserve the actual results.
+
+This v0.2 report and the plan/register status update are a documentation receipt after the source merge. Resolve their own publication commit from Git history; no self-referential SHA is predicted. Earlier P09 results remain historical evidence, not relabelled new runs.
 
 ## Limits
 
-No development/production DB migration, deployment, dependency/provider change, force-push or independent approval. D-07 protected source/socket handoff, SP02-F01 future update/document producer races, complete SC-01/06, load calibration, other browser engines, screen-reader certification and remote clean-install CI remain open. Formal Proposed ADR status is unchanged. Structural checks and test totals are not counts of distinct permission behaviours.
+No development/production DB migration, deployment, dependency/provider change, force-push or independent approval. D-07 protected source/socket handoff, SP02-F01 future update/document producer races, complete SC-01/06, load calibration, other browser engines, screen-reader certification remain open. Local installation was reused; the separate GitHub CI job performed its own dependency installation and the linked structural/build checks. Formal Proposed ADR status is unchanged. Structural checks and test totals are not counts of distinct permission behaviours.
