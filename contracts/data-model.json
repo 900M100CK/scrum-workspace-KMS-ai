@@ -1,8 +1,8 @@
 {
   "artifactId": "DATA-04",
-  "version": "0.10",
+  "version": "0.12",
   "status": "Draft",
-  "storageDecision": "ADR-0004 foundation plus Workspace 003 work location, Knowledge 003 immutable handoffs and Workspace 004 permanent protected claims; isolated storage evidence is not handler or guard acceptance. Workspace 005 owner-authorised session persistence and private authentication clock/audit; no public auth handler acceptance. Workspace 007 adds immutable project origin and private explicit create authority/audit; separate 008 adds permanent minimal project-operation snapshots. Tested disposable storage/handlers do not authorise a development upgrade or D-07 transport acceptance.",
+  "storageDecision": "ADR-0004 foundation plus Workspace 003 work location, Knowledge 003 immutable handoffs and Workspace 004 permanent protected claims; isolated storage evidence is not handler or guard acceptance. Workspace 005 owner-authorised session persistence and private authentication clock/audit; no public auth handler acceptance. Workspace 007 adds immutable project origin and private explicit create authority/audit; separate 008 adds permanent minimal project-operation snapshots. Tested disposable storage/handlers do not authorise a development upgrade or D-07 transport acceptance. SP-03 owner selected immutable Task.created_at and permanent original createTask result retention with current access checks; additive 009 and Task handlers now have bounded local evidence in FEAT-SP03-01. Logical schema checks alone remain distinct from permission/handler verification.",
   "entities": [
     {
       "name": "Project",
@@ -49,14 +49,16 @@
         "revision",
         "location_kind",
         "location_sprint_id",
-        "backlog_position"
+        "backlog_position",
+        "created_at"
       ],
       "constraints": [
         "location_kind = backlog: null Sprint reference, no allocated association; any task state allowed",
         "location_kind = sprint: same-project reference to an allocated association in Planned/Active Sprint",
         "location_kind = completed: Done task with same-project completed association and Completed Sprint",
         "Location references are deferred foreign keys; final state checked across task, allocation and Sprint writes",
-        "Completed associations remain immutable independently of current task location"
+        "Completed associations remain immutable independently of current task location",
+        "created_at is immutable server-recorded creation time; Task responses and original createTask outcomes preserve the same UTC millisecond timestamp; no fabricated legacy backfill"
       ]
     },
     {

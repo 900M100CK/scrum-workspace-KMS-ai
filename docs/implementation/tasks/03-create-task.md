@@ -1,9 +1,9 @@
 # SP-03: Persist one Story/Task/Bug in the correct authorised project and basic board state.
 
 **Artifact ID:** IMPL-SP-03\
-**Version/date:** 0.1 Draft · 26 October 2026\
-**Status:** Breakdown only; all child steps Not started.\
-**Inputs:** [Canonical SP-03](../../../specs/003-create-task.md) v0.6; SPEC-INDEX v0.4; PRD-01 v0.9; [source register](../register.md); [decisions](../decisions.md); ADR-0018 (see canonical status in decision register).\
+**Version/date:** 0.2 Draft · 2 November 2026\
+**Status:** Original child definitions retained; current execution state/evidence belongs to FEAT-SP03-01.\
+**Inputs:** [Canonical SP-03](../../../specs/003-create-task.md) v0.8; SPEC-INDEX v0.4; PRD-01 v0.9; [source register](../register.md); [decisions](../decisions.md); ADR-0018 (see canonical status in decision register).\
 **Trace:** FR-05; BR-02; SC-01.\
 **Owner role:** Sequential implementer; no independent approval claimed.
 
@@ -19,6 +19,8 @@
 - Allowed paths, copied from canonical spec: services/workspace/**, apps/web/**, tests/workspace/**. Re-read the current spec before edits. Shared contract/root-script/guard changes outside these paths need a recorded coordinated-spec scope update; this breakdown does not authorise them.
 
 ## Child steps
+
+The initial status observations below are the historical 26 October breakdown; read the registered feature plan for current state.
 
 Select one child; copy its exact FR/AC assertions and prerequisites into the [brief](../handoff-template.md). A child can be preparation-only; no synthetic result closes runtime acceptance.
 
@@ -62,3 +64,7 @@ Use [execution rules](../execution.md): real handlers/persisted state, relevant 
 Record command/runtime, source revision or dirty-worktree digest, fixture/config identity, asserted boundary, results/failed attempts, unrun checks and open decisions in a dated [handoff](../handoff-template.md). Link it from the child status row and update the [catalogue](README.md) when pack state changes.
 
 **Checklist/handoff:** Pass for bounded breakdown and canonical references; Gap for missing decisions and all application acceptance. Ready for preparation within these limits; no implementation, release completion or independent acceptance is claimed.
+
+## Current SP-03 handoff navigation
+
+[FEAT-SP03-01](../features/sp-03-create-task/plan.md) v0.5 is the only mutable status table. SP-03.1 maps to P01/P02/P03A source/contract preparation; SP-03.2 to P03B/P03C/P04 storage/author/atomic creation; SP-03.3 to P05/P06 current reads/UI; SP-03.4 to P07/P08/P09 controlled integration/browser/regression. [Actual execution report](../../sdlc/reports/SP-03-2026-11-02-execution.md) supplies assertion/source/command evidence. Initial all-Not-started observations above are not current status. Applied migrations and formal Proposed/release/independent boundaries are unchanged.

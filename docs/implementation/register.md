@@ -1,7 +1,7 @@
 # Implementation source and artifact register
 
 **Artifact ID:** IMPL-REG-01\
-**Version/date:** 0.26 Draft · 2 November 2026\
+**Version/date:** 0.34 Draft · 3 November 2026\
 **Status:** Source snapshot and navigation, not approval or runtime evidence.\
 **Inputs:** REG-00; PRD-01 v0.9; SPEC-INDEX v0.8; PLAN-01 v0.4; SAD-03 v0.16; ADR-0001–ADR-0026.\
 **Trace:** Existing BR-01–BR-14 / SC-01–SC-08.\
@@ -123,3 +123,39 @@ Final source/status pointers: source capture/checks are retained in the SP-02 ev
 ## SP-03 source registration — 2 November 2026
 
 [FEAT-SP03-01](features/sp-03-create-task/plan.md), [entry](features/sp-03-create-task/README.md), [SP03-WBS-01](features/sp-03-create-task/breakdown.md) and SP03-D01/D02/P01–P09 task briefs are v0.1 Draft. They refine SP-03.1–03.4 / FR-05 / AC-05 / PLAN-01 Month 1 / M-02. The plan freezes committed source versions at dd69700e58d28e367f94833b85a6909a5faec1a5 and distinguishes local uncommitted hashes. SP03-WORKFLOW-01 v0.1 and IMPL-EXEC-01 v0.8 adapt the three development templates to this project without runtime or independent acceptance. Current parent status/evidence, decisions and estimates belong only to the plan.
+
+## SP-03 P01 source reconciliation continuation
+
+[FEAT-SP03-01](features/sp-03-create-task/plan.md), entry/WBS and SP03-P01 brief v0.2 register this owner-authorised preparation. [SP03-P01-SOURCE-REVIEW](features/sp-03-create-task/source-review.md) v0.1 records current source/permission/test mapping and P02 gaps under SP-03.1 / PLAN-01 Month 1 / M-02. Original publication/task snapshots and measured evidence are unchanged; no runtime, independent approval, commit or push is authorized by this continuation.
+
+P01 handoff is recorded in FEAT-SP03-01 v0.2: source review and exact current/committed input identities, future producer/test mapping and P02 decision gaps. Follow the parent for actual status/results; no runtime acceptance or publication is implied.
+
+## SP-03 P02 bounded design registration
+
+FEAT-SP03-01/entry/SP03-WBS-01 v0.3 and SP03-P02 v0.2 resume owner-authorised design after P01. [SP03-DECISION-BATCH v0.1](features/sp-03-create-task/decision-batch.md) and [Proposed ADR-0027 v0.1](../adr/0027-task-creation-foundation.md) record mechanics, alternatives, pending/answered owner choices and future coordinated paths. SP03-P03A/P03B/P03C v0.1 split the P03 parent; exact amended task versions live in their headers. Parent: SP-03.1 / PLAN-01 Month 1 / M-02; no runtime, migration, public-schema edit, accepted ADR or independent approval.
+
+P02 task-version reconciliation: SP03-P03/P04/P05/P06/P07/P08/P09 v0.2 refine the frozen implementation seams and P03 aggregate; SP03-P03A/P03B/P03C v0.1 are the executable child dictionaries. SP03-P01 and P01 source/evidence remain unchanged. These versions record design only, not executed task status.
+
+### Historical SP-03 selected support continuation — 2 November 2026
+
+FEAT-SP03-01/entry/WBS v0.4 resumes all SP-03 tasks under the owner objective. SP03-DECISION-BATCH v0.2 and Proposed ADR-0027 v0.2 record all three actual owner choices; P02 preparation is complete. P03A v0.2 coordinates canonical SP-03 v0.7, Workspace v0.2.12, CONTRACT-01 v0.23, logical JSON v0.11, DATA-04 v0.15 and API-05 v0.21. Parent plan owns actual test/status evidence. No migration/handler or Git publication has occurred at this support checkpoint. Earlier source tables/results are dated snapshots, not relabelled runtime evidence.
+
+### Historical SP-03 foundation execution evidence — 2 November 2026
+
+FEAT-SP03-01 v0.4 now links actual P03A/P03B/P03C evidence and v0.2 child briefs. P03B adds only draft migration 009, internal task types/outcome adapter, explicit 009 fixture and storage tests; DGM-DATA-01 v0.6/model entry reflects Task.created_at. P03C extends the private operator/CLI and tests author grant/removal ordering. Parent plan is the only mutable task-status table; migration/contract/source versions and old captures are retained as dated identities. No task HTTP/UI/browser or whole-feature completion, development upgrade, Git publication or independent approval is claimed.
+
+### Historical SP-03 P08 evidence registration — 2 November 2026
+
+Planned SP03-UI-01 v0.1 at docs/sdlc/reports/SP-03-2026-11-02-ui.md and synthetic feature evidence/ui-2026-11-02/ screenshots/browser-summary are registered before writing. Parent FEAT-SP03-01 v0.4 owns actual readiness/results; P07 bounded integrated evidence is captured separately. No browser pass, certificate trust or independent acceptance is presumed.
+
+### Historical SP-03 P09 handoff registration — 2 November 2026
+
+Planned SP03-EXEC-01 v0.1: docs/sdlc/reports/SP-03-2026-11-02-execution.md; WORKSPACE-TASKS-01 v0.1: services/workspace/TASKS.md; registered feature p09/source identity/completion audit and unique browser rerun evidence subdirectories. Parent plan owns current results; this registration precedes writing and is not final acceptance. Final regressions/audit remain required.
+
+### SP-03 final handoff source registration — 2 November 2026
+
+Current local reading sources: FEAT-SP03-01/entry/WBS 0.5, canonical SP-03 0.8, IMPL-SP-03 0.2 / IMPL-TASKS-01 0.6, Workspace 0.2.12, logical JSON 0.12, CONTRACT-01 0.24, API-05 0.22, DATA-04 0.16, TEST-08 0.24, TEST-COVERAGE-01 0.11 and VERIFY-01 0.12. SP03-UI-01 0.2 preserves its original 0.1 report snapshot and actual captures; SP03-EXEC-01/WORKSPACE-TASKS-01 are 0.1. Source status updates in AGENTS 1.15/rules 1.14 change no planning/permission authority. P09 final regression/audit results belong to the parent/report; do not infer acceptance from this registration. Older source/result sections remain historical observations and are not relabelled.
+
+## SP-03 publication follow-up — 3 November 2026
+
+[PUB-SP03-01 v0.1](features/sp-03-publication/plan.md) registers bounded review/verification, selective publication, merge into main and deletion of the merged SP-03 branch under the owner instruction. Parent FEAT-SP03-01 / SP-03.1–03.4 / FR-05/AC-05 / PLAN-01 Month 1 / M-02. PUB03-T01/T02 v0.1 and PUB-SP03-ENTRY-01 v0.1 define the ready work; the publication plan owns actual results. Planned report SP03-PUB-REPORT-01 v0.1: docs/sdlc/reports/SP-03-publication-2026-11-03.md. No product scope, independent approval or deployment is implied.

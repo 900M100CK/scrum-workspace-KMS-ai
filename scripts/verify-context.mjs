@@ -144,6 +144,12 @@ export function validateWorkReads(api) {
   assert.deepEqual(schemas.Reorder.properties.expected_revision, schemas.TaskList.properties.backlog_revision, 'Reorder revision differs from public Backlog generation');
   assert.equal(api.paths['/projects/{project_id}/backlog-order'].post.responses['200'].content['application/json'].schema.$ref, '#/components/schemas/ReorderResult', 'Reorder needs a committed receipt');
   assert(schemas.Task.required.includes('work_location'), 'Reload cannot determine task location');
+  assert(schemas.Task.required.includes('created_at'), 'Task creation time is required by UC-03');
+  assert.equal(schemas.Task.properties.created_at?.format, 'date-time', 'Task creation time must be date-time');
+  assert.equal(schemas.Task.properties.created_at?.readOnly, true, 'Task creation time must be server-owned');
+  assert(!('created_at' in schemas.CreateTask.properties), 'Client cannot assert Task creation time');
+  for (const code of ['413', '415']) assert(api.paths['/projects/{project_id}/tasks'].post.responses[code], 'Task transport response missing: ' + code);
+  assert(api.paths['/tasks/{task_id}'].get.responses['400'], 'Task detail must reject invalid query shape');
   const locations = schemas.WorkLocation?.oneOf;
   assert.deepEqual(locations?.map(x => x.properties.kind.const), ['backlog', 'sprint', 'completed'], 'Work location must distinguish retained completion from Backlog');
   assert.equal(locations[0].properties.position.type, 'string', 'Backlog numeric precision must survive transport');

@@ -1,0 +1,53 @@
+{
+  "artifact": "SP03-P07 actual controlled integration",
+  "date": "2026-11-02",
+  "node": "24.21.0",
+  "commands": [
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "--test-concurrency=1",
+        "tests/workspace/task-storage.test.mjs",
+        "tests/workspace/task-http.test.mjs",
+        "tests/workspace/task-reads.test.mjs",
+        "tests/workspace/task-concurrency.test.mjs"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 47.8,
+      "log": "run-1793628518693692800.log"
+    },
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "--test-concurrency=1",
+        "tests/workspace/task-storage.test.mjs",
+        "tests/workspace/task-http.test.mjs",
+        "tests/workspace/task-reads.test.mjs",
+        "tests/workspace/task-concurrency.test.mjs"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 55.17,
+      "log": "run-1793628996608097000.log"
+    }
+  ],
+  "results": {
+    "final_storage_http_reads_concurrency": {
+      "tests": 41,
+      "pass": 41,
+      "skip": 0
+    }
+  },
+  "source_sha256": {
+    "tests/workspace/task-concurrency.test.mjs": "555a3859e2fe6f25a75a9a3a920c471f245c8bc099b4ddc0d8c3ac7bbd44e153",
+    "tests/workspace/task-fixture.mjs": "b68b4cba8386557c36045cef034a4b344d0f2be9df810f6218fcb04411db44da"
+  },
+  "decision_boundary": "Actual owned PostgreSQL transaction/clock and Project guards, measured using pg_stat_activity waits and paused actual producer queries",
+  "limitations": [
+    "No D-07 source/socket exclusion or complete SC-06 claim",
+    "No future SP-04/SP-06 handler claim",
+    "Controlled fixture numeric positions and Sprint/blocker states do not implement those mutation APIs",
+    "Task DOM/browser pending; no development upgrade, commit or independent review"
+  ]
+}

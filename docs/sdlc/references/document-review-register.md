@@ -1,9 +1,9 @@
 # Supporting document review register
 
 **Artifact ID:** DOC-REVIEW-REG-01\
-**Version/date:** 0.35 Draft · 2 November 2026\
+**Version/date:** 0.43 Draft · 3 November 2026\
 **Status:** Review planning with bounded author rechecks recorded below; no full document-type review or approval.\
-**Inputs:** [Development rules](../../development-rules.md) v1.13; [PREFLIGHT-01](../../agent-preflight-checklist.md) v0.1; [REG-00](../artifact-register.md) v0.94; [SDLC-INDEX-01](../README.md) v0.3; [SDLC workflow](../../../agents/WORKFLOW.md), unversioned working guide.\
+**Inputs:** [Development rules](../../development-rules.md) v1.13; [PREFLIGHT-01](../../agent-preflight-checklist.md) v0.1; [REG-00](../artifact-register.md) v0.102; [SDLC-INDEX-01](../README.md) v0.3; [SDLC workflow](../../../agents/WORKFLOW.md), unversioned working guide.\
 **Trace:** Supports navigation and review of existing BR-01–BR-15 / SC-01–SC-08 documentation; no new requirement, application slice or acceptance criterion.\
 **Owner role:** SDLC coordinator; review assignments remain unassigned.
 
@@ -140,3 +140,19 @@ REG-00 v0.87 registers the new feature plan/source review/owner proposal after t
 ## SP-03 planning applicability
 
 The owner requested the three-template planning/task workflow and SP-03 documentation. Review FEAT-SP03-01/SP03-WBS-01/task briefs for source identity, bounded scope, Must-AC trace, decisions, task contracts and separate structural/runtime evidence. This is author verification only; independent review and workbook/standards certification remain unassigned/not run. Actual results live in the feature plan.
+
+## Historical SP-03 selected support continuation — 2 November 2026
+
+Author verification only: FEAT-SP03-01 v0.4, decision batch/Proposed ADR-0027 v0.2 and P03A v0.2 record the owner-selected creation-time/retention choices and bounded coordinated source scope. API-05 v0.21, DATA-04 v0.15, Workspace v0.2.12, logical JSON v0.11, CONTRACT-01 v0.23 and canonical SP-03 v0.7 are local support revisions. Earlier P02 schema tests remain tests of their original contract snapshot. Actual new checks belong to the parent plan; no independent review, handler or migration acceptance is implied.
+
+### Historical SP-03 foundation execution evidence — 2 November 2026
+
+FEAT-SP03-01 v0.4 now links actual P03A/P03B/P03C evidence and v0.2 child briefs. P03B adds only draft migration 009, internal task types/outcome adapter, explicit 009 fixture and storage tests; DGM-DATA-01 v0.6/model entry reflects Task.created_at. P03C extends the private operator/CLI and tests author grant/removal ordering. Parent plan is the only mutable task-status table; migration/contract/source versions and old captures are retained as dated identities. No task HTTP/UI/browser or whole-feature completion, development upgrade, Git publication or independent approval is claimed.
+
+### SP-03 final handoff source registration — 2 November 2026
+
+Current local reading sources: FEAT-SP03-01/entry/WBS 0.5, canonical SP-03 0.8, IMPL-SP-03 0.2 / IMPL-TASKS-01 0.6, Workspace 0.2.12, logical JSON 0.12, CONTRACT-01 0.24, API-05 0.22, DATA-04 0.16, TEST-08 0.24, TEST-COVERAGE-01 0.11 and VERIFY-01 0.12. SP03-UI-01 0.2 preserves its original 0.1 report snapshot and actual captures; SP03-EXEC-01/WORKSPACE-TASKS-01 are 0.1. Source status updates in AGENTS 1.15/rules 1.14 change no planning/permission authority. P09 final regression/audit results belong to the parent/report; do not infer acceptance from this registration. Older source/result sections remain historical observations and are not relabelled.
+
+## SP-03 publication follow-up — 3 November 2026
+
+[PUB-SP03-01 v0.1](../../implementation/features/sp-03-publication/plan.md) registers bounded review/verification, selective publication, merge into main and deletion of the merged SP-03 branch under the owner instruction. Parent FEAT-SP03-01 / SP-03.1–03.4 / FR-05/AC-05 / PLAN-01 Month 1 / M-02. PUB03-T01/T02 v0.1 and PUB-SP03-ENTRY-01 v0.1 define the ready work; the publication plan owns actual results. Planned report SP03-PUB-REPORT-01 v0.1: docs/sdlc/reports/SP-03-publication-2026-11-03.md. No product scope, independent approval or deployment is implied.

@@ -1,0 +1,135 @@
+{
+  "artifact": "SP03-P04 actual create HTTP checks",
+  "date": "2026-11-02",
+  "node": "24.21.0",
+  "commands": [
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "typecheck"
+      ],
+      "exit_code": 2,
+      "duration_seconds": 6.09,
+      "log": "run-1793626770929051800.log"
+    },
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "--test-concurrency=1",
+        "tests/workspace/task-http.test.mjs"
+      ],
+      "exit_code": 1,
+      "duration_seconds": 6.73,
+      "log": "run-1793626887506662800.log"
+    },
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "--test-concurrency=1",
+        "tests/workspace/task-http.test.mjs"
+      ],
+      "exit_code": 1,
+      "duration_seconds": 6.78,
+      "log": "run-1793626912459337300.log"
+    },
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "--test-concurrency=1",
+        "tests/workspace/task-http.test.mjs",
+        "tests/workspace/task-authority.test.mjs"
+      ],
+      "exit_code": 1,
+      "duration_seconds": 14.22,
+      "log": "run-1793626953672674800.log"
+    },
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "typecheck"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 6.34,
+      "log": "run-1793626956135081400.log"
+    },
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "build"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 5.73,
+      "log": "run-1793626961950240700.log"
+    },
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "--test-concurrency=1",
+        "tests/workspace/task-http.test.mjs"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 7.21,
+      "log": "run-1793627025122889800.log"
+    },
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "--test-concurrency=1",
+        "tests/workspace/task-http.test.mjs",
+        "tests/workspace/task-storage.test.mjs",
+        "tests/workspace/task-authority.test.mjs"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 33.62,
+      "log": "run-1793627078072154600.log"
+    }
+  ],
+  "results": {
+    "final_foundation_storage_authority_http": {
+      "tests": 28,
+      "pass": 28,
+      "skip": 0
+    },
+    "task_http_only": {
+      "tests": 12,
+      "pass": 12,
+      "skip": 0
+    },
+    "typecheck": "passed",
+    "build": "passed",
+    "context": 45,
+    "docs": 20,
+    "contracts": 27
+  },
+  "source_sha256": {
+    "services/workspace/src/tasks/store.ts": "d0d8f8fe8cb731d01041647b1a1d72a7284da07f654a79df3752e66139323ba0",
+    "services/workspace/src/tasks/http.ts": "6779ca1da0025afad52d2a9e4c641bf7f39a5294057830ce9bdde2d660632368",
+    "services/workspace/src/app.ts": "275cf9898618db195924874274538ce16beed9c03689ba1221484c286f01478a",
+    "services/workspace/src/server.ts": "30c048568aacbfc27f44b49a60a0b05c42066e39ae041d37dcc5afebc94cae35",
+    "services/workspace/src/projects/store.ts": "34923139ad9f0347d5b49c63724b2d90cf42a8c909322b4e16adf3fa6cc808b2",
+    "services/workspace/src/projects/http.ts": "586b6ffc555c360f4f93c288270ac7cee4da8e61703c2c161b37cdebf9fbb059",
+    "tests/workspace/task-http.test.mjs": "225e2c3e3e3aa9f62b4a27e6cadb861306ab8d3c385ad87f5c4b737456b904de",
+    "tests/workspace/task-fixture.mjs": "c403350b7e3717b770a04622ac4f6593ebb8159257683f841fca3bb00a30a636"
+  },
+  "failures_retained": [
+    "Initial typecheck caught optional property/correlation type inference; corrected explicit types/internal empty operation set",
+    "Expired fixture initially violated existing deadline consistency; now uses a valid deadline and waits for actual expiry",
+    "Clock assertion used nonexistent faulted property; corrected to existing healthy=false; explicit recovery invalidates old sessions, so final HTTPS uses a fresh session"
+  ],
+  "limitations": [
+    "Task read/UI/browser pending",
+    "No development upgrade, commit/push or independent review",
+    "HTTPS client trusts the fixture certificate; no browser cookie enforcement claim"
+  ]
+}

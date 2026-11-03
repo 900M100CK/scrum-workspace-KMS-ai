@@ -1,0 +1,98 @@
+{
+  "artifact": "SP03-P02 bounded design check capture",
+  "version": "0.1",
+  "date": "2026-11-02",
+  "branch": "codex/sp-03-create-task",
+  "head": "d6b8caf241603cdff4f9b7a2a491fc4e2e386453",
+  "scope": "documentation and existing schema/harness checks; not a run of proposed handlers/migration/new contract",
+  "commands": [
+    {
+      "command": "npm run context:check",
+      "node": "24.21.0",
+      "npm_cli": "existing system CLI executed by Node 24",
+      "exit_code": 0,
+      "duration_seconds": 1.08,
+      "captured_log": "context-check.log"
+    },
+    {
+      "command": "npm run context:test",
+      "node": "24.21.0",
+      "npm_cli": "existing system CLI executed by Node 24",
+      "exit_code": 0,
+      "duration_seconds": 0.64,
+      "captured_log": "context-test.log"
+    },
+    {
+      "command": "npm run docs:lint",
+      "node": "24.21.0",
+      "npm_cli": "existing system CLI executed by Node 24",
+      "exit_code": 0,
+      "duration_seconds": 2.804,
+      "captured_log": "docs-lint.log"
+    },
+    {
+      "command": "npm run docs:test",
+      "node": "24.21.0",
+      "npm_cli": "existing system CLI executed by Node 24",
+      "exit_code": 0,
+      "duration_seconds": 3.119,
+      "captured_log": "docs-test.log"
+    },
+    {
+      "command": "npm run contracts:test",
+      "node": "24.21.0",
+      "npm_cli": "existing system CLI executed by Node 24",
+      "exit_code": 0,
+      "duration_seconds": 2.238,
+      "captured_log": "contracts-test.log"
+    }
+  ],
+  "owner_dispositions": {
+    "Q-01": "Owner selected private audited project-scoped backlog-author with no role/creator auto-grants or delegation UI.",
+    "Q-02": "Pending; no answer inferred.",
+    "Q-03": "Pending; no answer inferred."
+  },
+  "unrun": [
+    "application build/typecheck",
+    "PostgreSQL/migrations",
+    "HTTP",
+    "DOM/browser",
+    "provider/evaluation",
+    "independent security/standards review"
+  ],
+  "publication": "No P02 commit or push.",
+  "log_archive": {
+    "path": "p02-logs.zip",
+    "sha256": "3b585b9456eb7260e0d98d4e33e7ca0eb3be006a8362deff9ce44c3dfa7d3584"
+  },
+  "results": {
+    "context": {
+      "passed": 45,
+      "failed": 0,
+      "skipped": 0
+    },
+    "docs": {
+      "passed": 20,
+      "failed": 0,
+      "skipped": 0
+    },
+    "existing_contracts": {
+      "passed": 26,
+      "failed": 0,
+      "skipped": 0
+    },
+    "task_briefs": 14,
+    "links_and_anchors_before_final_evidence_links": 158,
+    "P01_source_inputs_unchanged": 49,
+    "unrelated_initial_tracked_files_preserved": 108,
+    "scoped_whitespace": "passed",
+    "head_index": "unchanged; no staged changes",
+    "new_runtime_behaviours_verified": 0
+  },
+  "P02_acceptance": {
+    "1_exact_lock_and_recheck_design": "authored, Proposed; not a runtime test",
+    "2_minimal_additive_storage_and_rollback_design": "authored, Proposed and conditional on owner dispositions",
+    "3_contract_and_coordinated_path_proposal": "authored; no actual schema/contract edit",
+    "4_owner_material_dispositions": "partial: Q-01 answered; Q-02/Q-03 pending, dependent implementation blocked"
+  }
+}

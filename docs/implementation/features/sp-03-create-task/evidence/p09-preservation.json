@@ -1,0 +1,294 @@
+{
+  "baseline": "all tracked file hashes before P03A; earlier unrelated untracked owner files were not written",
+  "unchanged_tracked": 759,
+  "changed_tracked": [
+    "AGENTS.md",
+    "README.md",
+    "apps/web/README.md",
+    "apps/web/src/App.tsx",
+    "apps/web/src/ProjectWorkspace.tsx",
+    "apps/web/src/styles.css",
+    "contracts/README.md",
+    "contracts/data-model.json",
+    "contracts/openapi/workspace.openapi.json",
+    "docs/development-rules.md",
+    "docs/implementation/features/README.md",
+    "docs/implementation/features/sp-03-create-task/README.md",
+    "docs/implementation/features/sp-03-create-task/breakdown.md",
+    "docs/implementation/features/sp-03-create-task/plan.md",
+    "docs/implementation/features/sp-03-create-task/tasks/SP03-P04-create-task.md",
+    "docs/implementation/features/sp-03-create-task/tasks/SP03-P05-task-reads.md",
+    "docs/implementation/features/sp-03-create-task/tasks/SP03-P06-task-ui.md",
+    "docs/implementation/features/sp-03-create-task/tasks/SP03-P07-permission-failure-races.md",
+    "docs/implementation/features/sp-03-create-task/tasks/SP03-P08-ui-browser-evidence.md",
+    "docs/implementation/features/sp-03-create-task/tasks/SP03-P09-regression-handoff.md",
+    "docs/implementation/register.md",
+    "docs/implementation/roadmap.md",
+    "docs/implementation/tasks/03-create-task.md",
+    "docs/implementation/tasks/README.md",
+    "docs/sdlc/api-design.md",
+    "docs/sdlc/artifact-register.md",
+    "docs/sdlc/data-design.md",
+    "docs/sdlc/diagrams/README.md",
+    "docs/sdlc/diagrams/c4/containers.drawio",
+    "docs/sdlc/diagrams/c4/containers.mmd",
+    "docs/sdlc/diagrams/c4/system-context.drawio",
+    "docs/sdlc/diagrams/c4/system-context.mmd",
+    "docs/sdlc/diagrams/data/README.md",
+    "docs/sdlc/diagrams/data/handoff-logical-model.drawio",
+    "docs/sdlc/diagrams/data/handoff-logical-model.mmd",
+    "docs/sdlc/diagrams/data/knowledge-erd.drawio",
+    "docs/sdlc/diagrams/data/knowledge-erd.mmd",
+    "docs/sdlc/diagrams/data/workspace-erd.drawio",
+    "docs/sdlc/diagrams/data/workspace-erd.mmd",
+    "docs/sdlc/diagrams/deployment/local-development.drawio",
+    "docs/sdlc/diagrams/deployment/local-development.mmd",
+    "docs/sdlc/diagrams/design-foundation-2026-10-17.md",
+    "docs/sdlc/diagrams/design-models.json",
+    "docs/sdlc/diagrams/development/package-ownership.drawio",
+    "docs/sdlc/diagrams/development/package-ownership.mmd",
+    "docs/sdlc/diagrams/manifest.json",
+    "docs/sdlc/diagrams/sequence/document-creation.drawio",
+    "docs/sdlc/diagrams/sequence/document-creation.mmd",
+    "docs/sdlc/diagrams/sequence/protected-handoff.drawio",
+    "docs/sdlc/diagrams/sequence/protected-handoff.mmd",
+    "docs/sdlc/diagrams/state/document-and-readiness.drawio",
+    "docs/sdlc/diagrams/state/document-and-readiness.mmd",
+    "docs/sdlc/diagrams/state/sprint-task-allocation.drawio",
+    "docs/sdlc/diagrams/state/sprint-task-allocation.mmd",
+    "docs/sdlc/evaluation-cases.md",
+    "docs/sdlc/references/document-review-register.md",
+    "docs/sdlc/requirement-verification.md",
+    "docs/sdlc/test-coverage.md",
+    "docs/sdlc/test-plan.md",
+    "docs/ux/wireframe-workplan.md",
+    "docs/ux/wireframes/README.md",
+    "scripts/verify-context.mjs",
+    "services/workspace/README.md",
+    "services/workspace/src/app.ts",
+    "services/workspace/src/projects/cli.ts",
+    "services/workspace/src/projects/http.ts",
+    "services/workspace/src/projects/operator.ts",
+    "services/workspace/src/projects/store.ts",
+    "services/workspace/src/server.ts",
+    "services/workspace/test/app.test.ts",
+    "specs/003-create-task.md",
+    "tests/context/context.test.mjs",
+    "tests/contracts/contract-schemas.test.mjs"
+  ],
+  "unexpected_changes": [],
+  "source_header_only_proofs": {
+    "docs/sdlc/diagrams/c4/containers.drawio": true,
+    "docs/sdlc/diagrams/c4/containers.mmd": true,
+    "docs/sdlc/diagrams/c4/system-context.drawio": true,
+    "docs/sdlc/diagrams/c4/system-context.mmd": true,
+    "docs/sdlc/diagrams/data/handoff-logical-model.drawio": true,
+    "docs/sdlc/diagrams/data/handoff-logical-model.mmd": true,
+    "docs/sdlc/diagrams/data/knowledge-erd.drawio": true,
+    "docs/sdlc/diagrams/data/knowledge-erd.mmd": true,
+    "docs/sdlc/diagrams/deployment/local-development.drawio": true,
+    "docs/sdlc/diagrams/deployment/local-development.mmd": true,
+    "docs/sdlc/diagrams/design-foundation-2026-10-17.md": true,
+    "docs/sdlc/diagrams/development/package-ownership.drawio": true,
+    "docs/sdlc/diagrams/development/package-ownership.mmd": true,
+    "docs/sdlc/diagrams/sequence/document-creation.drawio": true,
+    "docs/sdlc/diagrams/sequence/document-creation.mmd": true,
+    "docs/sdlc/diagrams/sequence/protected-handoff.drawio": true,
+    "docs/sdlc/diagrams/sequence/protected-handoff.mmd": true,
+    "docs/sdlc/diagrams/state/document-and-readiness.drawio": true,
+    "docs/sdlc/diagrams/state/document-and-readiness.mmd": true,
+    "docs/sdlc/diagrams/state/sprint-task-allocation.drawio": true,
+    "docs/sdlc/diagrams/state/sprint-task-allocation.mmd": true,
+    "docs/sdlc/evaluation-cases.md": true,
+    "docs/ux/wireframe-workplan.md": true,
+    "docs/ux/wireframes/README.md": true
+  },
+  "frozen_files": [
+    {
+      "path": "docs/adr/0001-protected-resource-read-policy.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/adr/0002-minimal-microservices.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/adr/0003-student-stack.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/adr/0004-knowledge-store.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/adr/0005-ai-provider-pilot.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/adr/0006-permission-handoff-guard.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/adr/0007-document-access-model.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/adr/0008-fixed-sprint-lifecycle.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/adr/0009-versions-without-draft.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/adr/0010-release-scope-and-capacity.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/adr/0011-document-creation-and-guard-scope.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/adr/0012-audit-visibility-and-durable-evidence.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/adr/0013-unavailable-citations-and-withheld-answers.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/adr/0014-multiple-sprint-allocation.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/adr/0015-partial-evidence-answers.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/adr/0016-optional-task-keyword-search.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/adr/0017-membership-removal-capabilities-and-assignees.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/adr/0018-operational-read-projections.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/adr/0019-scoped-ui-discovery.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/adr/0020-manifest-bound-ai-transport.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/adr/0021-scoped-inspection-and-missing-metrics.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/adr/0022-opaque-document-command-preconditions.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/adr/0023-immutable-handoff-storage.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/adr/0024-backend-session-foundation.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/adr/0025-opaque-session-candidate.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/adr/0026-project-membership-foundation.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/implementation/features/sp-03-create-task/evidence/planning-checks.json",
+      "unchanged": true
+    },
+    {
+      "path": "docs/implementation/features/sp-03-create-task/evidence/planning-logs.zip",
+      "unchanged": true
+    },
+    {
+      "path": "docs/implementation/features/sp-03-create-task/evidence/publication-receipt.json",
+      "unchanged": true
+    },
+    {
+      "path": "services/workspace/migrations/001-store.down.sql",
+      "unchanged": true
+    },
+    {
+      "path": "services/workspace/migrations/001-store.up.sql",
+      "unchanged": true
+    },
+    {
+      "path": "services/workspace/migrations/002-registered-policy.down.sql",
+      "unchanged": true
+    },
+    {
+      "path": "services/workspace/migrations/002-registered-policy.up.sql",
+      "unchanged": true
+    },
+    {
+      "path": "services/workspace/migrations/003-work-location.down.sql",
+      "unchanged": true
+    },
+    {
+      "path": "services/workspace/migrations/003-work-location.up.sql",
+      "unchanged": true
+    },
+    {
+      "path": "services/workspace/migrations/004-protected-claims.down.sql",
+      "unchanged": true
+    },
+    {
+      "path": "services/workspace/migrations/004-protected-claims.up.sql",
+      "unchanged": true
+    },
+    {
+      "path": "services/workspace/migrations/005-session-foundation.down.sql",
+      "unchanged": true
+    },
+    {
+      "path": "services/workspace/migrations/005-session-foundation.up.sql",
+      "unchanged": true
+    },
+    {
+      "path": "services/workspace/migrations/006-session-lifecycle.down.sql",
+      "unchanged": true
+    },
+    {
+      "path": "services/workspace/migrations/006-session-lifecycle.up.sql",
+      "unchanged": true
+    },
+    {
+      "path": "services/workspace/migrations/007-project-membership.down.sql",
+      "unchanged": true
+    },
+    {
+      "path": "services/workspace/migrations/007-project-membership.up.sql",
+      "unchanged": true
+    },
+    {
+      "path": "services/workspace/migrations/008-project-outcomes.down.sql",
+      "unchanged": true
+    },
+    {
+      "path": "services/workspace/migrations/008-project-outcomes.up.sql",
+      "unchanged": true
+    }
+  ],
+  "design_model_baseline_matches_git": true,
+  "only_planned_workspace_model_change": true,
+  "authority_rules_only_operational_deltas": {
+    "AGENTS.md": true,
+    "docs/development-rules.md": true
+  }
+}

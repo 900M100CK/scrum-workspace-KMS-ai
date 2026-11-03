@@ -1,10 +1,10 @@
 # SP03-P05 — Current-scoped task list/detail projections
 
 **Artifact ID:** SP03-P05\
-**Version/date:** 0.1 Draft · 2 November 2026\
+**Version/date:** 0.3 Draft · 2 November 2026\
 **Execution status:** Read the [parent plan](../plan.md#authoritative-task-and-execution-table); this brief has no independent mutable status.\
-**Inputs:** [FEAT-SP03-01](../plan.md) v0.1; publication source snapshots and template digests in that plan.\
-**Trace:** FR-05 / AC-05; supporting FR-03/31/50/59, BR-01/02/10/11/14; UC-03 main and EX-01/02; SC-01 subset only.
+**Inputs:** [FEAT-SP03-01](../plan.md) v0.4; [decision batch](../decision-batch.md) v0.2; Proposed ADR-0027 v0.2; original publication source identities remain snapshots.\
+**Trace:** FR-05 / AC-05; supporting FR-03/31/59, BR-01/02/10/11/14; FR-50 is contextual document-access scope only; UC-03 main and EX-01/02; SC-01 subset only.
 
 ## Objective
 
@@ -32,7 +32,7 @@ Dependencies: P02/P03/P04 and G-03 (finish-to-start). DoR: parent task is ready 
 
 - services/workspace/src/tasks/** (planned; read projections/cursor use only)
 - tests/workspace/task-reads.test.mjs (planned)
-- tests/workspace/task-cursor.test.mjs (planned only if P02 identifies independent new codec logic; existing codec reuse should not create duplicate tests)
+- Existing planned tasks/store.ts/http.ts and task-fixture.mjs after P04; reuse ProjectCursor unchanged, with no task-cursor module or duplicate pure codec suite
 
 Canonical future code scope is services/workspace/**, apps/web/** and tests/workspace/**. Existing files keep their current ownership. New names above are explicitly planned from canonical SP-03 and must be confirmed by P02 before use. Metadata/shared-path exceptions require the coordinated plan/spec registration before editing; a blanket path label is not authority to touch unrelated files.
 
@@ -91,3 +91,9 @@ Work sequentially in the authorized branch, within closed paths, with synthetic/
 Relevant open questions are the parent G-01–G-05 rows. Owner and due point are explicit prerequisite gates there, not invented calendar dates. P01 inventories; P02 proposes/disposes; dependent tasks wait. If this task reveals another material question, record its source and affected prerequisite before proceeding.
 
 Result destination: [parent execution evidence](../plan.md#execution-evidence) and, for future measured application work, the dated registered report named by the producing task. Handoff includes exact assertions met/unmet, source identity, current gates and next ready task. No separate mutable INDEX or implementation-plan duplicate.
+
+## P02 frozen traversal
+
+Use exact SQL position/task-ID order, full canonical projection digest and a Task UUID bookmark found by index after authenticated decode, not ID greater-than. Internal page size 50, TTL 300 and task-list-v1 scope bind actor/project/filter/order/membership and full projected dataset/backlog generation; no public limit or new cursor table/key ring. Verify numeric 2/10, descending/equal-position UUID cases, every projected field change, same-actor relogin, no items on stale/foreign/expired/unavailable/removed scope. Add listTasks to trusted implemented operation discovery only alongside its actual route.
+
+Actual execution inputs/disposition and producer results are in the parent plan. The Task HTTP registered-list expectation was coordinated when listTasks actually became implemented; original publication-only statements above are historical.

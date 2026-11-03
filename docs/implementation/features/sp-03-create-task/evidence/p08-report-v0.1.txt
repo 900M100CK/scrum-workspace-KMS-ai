@@ -1,0 +1,35 @@
+# SP-03 Task UI and browser evidence
+
+**Artifact ID:** SP03-UI-01\
+**Version/date:** 0.1 Draft · 2 November 2026\
+**Status:** Bounded author-verified DOM/browser results; no independent or release acceptance.\
+**Inputs:** [FEAT-SP03-01](../../implementation/features/sp-03-create-task/plan.md) v0.4; Workspace v0.2.12; canonical SP-03 v0.7; Proposed ADR-0027 v0.2.\
+**Trace:** FR-05/AC-05, supporting FR-03/31/59; UC-03 main/EX-01/EX-02; SP-03.3–SP-03.4 / PLAN-01 Month 1 / M-02.
+
+Task list/detail/create is nested in the existing Project workspace. Current capability discovery controls creation; no role-name grant, permission editor, automatic retry or Knowledge/provider call is added. Successful replay triggers a fresh current detail read; it does not display the historical receipt as current. Explicit sign-out clears saved Task input; expiry/current denial keeps an unknown creation unresolved until the same actor can check it.
+
+## Actual checks and evidence
+
+- Node 24.21.0, installed Playwright 1.62.1 and isolated headless Microsoft Edge 156.0.4314.58. Disposable PostgreSQL 17.10 uses the pinned pgvector image and explicit schema 009; the development database is unchanged.
+- `npm run build` passed. `node --test --test-concurrency=1 tests/workspace/task-ui.test.mjs`: 7/7, zero skips. This uses actual React DOM, HTTPS, handlers and PostgreSQL with a synthetic cookie jar.
+- `node --test tests/workspace/task-browser.test.mjs`: 1/1, zero skips. The installed runner is supplied through SACW_PLAYWRIGHT_MODULE; Node-side forwarding trusts only the existing public localhost certificate through NODE_EXTRA_CA_CERTS. Edge uses its default certificate verification, a temporary context and real Secure/HttpOnly/SameSite Strict host-only cookies. No personal profile, TLS bypass, certificate install or package install.
+- [Command/source capture](../../implementation/features/sp-03-create-task/evidence/p08-checks.json), [all attempts](../../implementation/features/sp-03-create-task/evidence/p08-logs.zip), [browser summary](../../implementation/features/sp-03-create-task/evidence/ui-2026-11-02/browser-summary.json), [desktop](../../implementation/features/sp-03-create-task/evidence/ui-2026-11-02/task-desktop.png) and [390px view](../../implementation/features/sp-03-create-task/evidence/ui-2026-11-02/task-mobile.png) are actual synthetic outputs.
+
+## Observed assertions
+
+| Assertion | Actual boundary and result |
+| --- | --- |
+| Empty/current list/detail and initial creation | DOM uses current API IDs/time/location and reads persisted changes after component reload; browser signs in and reconstructs Task detail after a real page reload. |
+| Native input/keyboard/focus | Blank title produces native validation and focus without a Task; keyboard reaches type/title/description/Create, submits successfully, and status feedback receives focus. Native labels and heading levels are checked in the current component. |
+| Original unknown result | The forwarding probe observes an actual 201 before discarding its response. Reload retains exact original key/body; denied replay stays unknown; after explicit restored authority, the same key returns the original receipt and a separate read displays later current content. Three attempts leave one Task. |
+| Loading/error/denied | DOM and real browser hide prior Task data while checking, after network failure, after author revoke and after actual membership removal. Disabled-session DOM check invokes session-loss handling. Pending input survives denial and is cleared on explicit browser sign-out. |
+| Cursor conflict | Actual API page becomes stale after an append; controller discards accumulation and loads the current first page. No synthetic in-memory list becomes truth. |
+| Responsive result | Author inspected both captured pages; default styling is preserved and a measured 390×844 viewport has no horizontal overflow. |
+
+Direct Task/state/page setup is controlled synthetic fixture data; it does not implement SP-04/Sprint/blocker mutation APIs. The existing taskUiFixture serves both DOM and browser, so a separate task-browser-fixture.mjs is unnecessary.
+
+## Failure history and review limits
+
+The first browser run inspected the database as soon as the recovery button appeared during transmission. That was not a completed unknown-result observation. The corrected test waits for the unknown status and checks a real forwarded 201 before response loss. Failure and rerun logs are retained; no prerequisite skip or assertion downgrade obtained the pass. P06 author review also corrected the new heading hierarchy and native whitespace-title validation within its allowed paths.
+
+UI review used the existing design and canonical local React guidance with the [Web Interface Guidelines](https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/command.md), retrieved 2 November 2026. The review checked native controls, feedback/focus and narrow content in this bounded flow; it is not a general accessibility certification. A new router, draft system, UI dependency or visual redesign is outside this slice. No all-browser, screen-reader, deployment/load, D-07 socket/source exclusion, full SC-01/SC-06 or independent-review claim. P09 must run complete specified regressions and finish traceability before SP-03 handoff.

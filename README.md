@@ -1,6 +1,6 @@
 # Scrum Workspace and AI Project KMS
 
-Solo capstone, target five months. This repository contains draft requirements/design/contracts, bounded feature specs, a context harness and an implemented PostgreSQL storage foundation. Frontend/backend framework foundations now run; protected business features remain unimplemented.
+Solo capstone, target five months. This repository contains draft requirements/design/contracts, bounded feature specs, a context harness and an implemented PostgreSQL storage foundation. Framework foundations and bounded session/project/Task creation/read handlers with live UI now exist; later task mutations, Knowledge and guarded AI features remain unimplemented.
 
 Start with [agent entry](AGENTS.md), [five-month MoSCoW plan](docs/planning/five-month-plan.md), [architecture](docs/architecture.md), [contracts](contracts/README.md) and [feature specs](specs/README.md). The [artifact register](docs/sdlc/artifact-register.md) records status and owner decisions.
 
@@ -57,3 +57,7 @@ Current documentation maintenance: [17 October freshness review](docs/sdlc/docum
 ## Framework foundation and preserved prototype
 
 Use Node 24+, then npm ci. Run npm run dev:web (5173), npm run dev:workspace (3001), npm run dev:knowledge (3002), or npm run dev:prototype (4173) in separate terminals. npm run typecheck, npm run build, npm run test:foundation and npm run test:prototype verify their distinct layers. Each server binds localhost. See [web commands](apps/web/README.md), [design/prototype](design/prototype/README.md) and [owner-directed foundation record](docs/planning/framework-foundation-owner-2026-10-27.md). Prototype UI remains the product design reference; liveness and scaffold tests do not prove sessions, permissions, DB or AI functionality.
+
+## SP-03 local implementation
+
+See [Task operations](services/workspace/TASKS.md), the [registered plan](docs/implementation/features/sp-03-create-task/plan.md) and [actual handoff](docs/sdlc/reports/SP-03-2026-11-02-execution.md). Task creation requires a separate private audited project grant; role labels do not grant it. Verification uses disposable data; runtime startup does not migrate or provision. Local changes are not a new GitHub publication.

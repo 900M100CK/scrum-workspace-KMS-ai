@@ -1,0 +1,83 @@
+{
+  "artifact": "SP03-P01 bounded documentation check evidence",
+  "version": "0.1",
+  "date": "2026-11-02",
+  "head": "d6b8caf241603cdff4f9b7a2a491fc4e2e386453",
+  "environment": "existing dirty working checkout; not remote/clean-clone evidence",
+  "scope": "source inspection and documentation checks; zero application handler behaviours",
+  "commands": [
+    {
+      "command": "npm run context:lint",
+      "node": "24.21.0",
+      "npm_cli": "existing system npm CLI executed by portable Node 24",
+      "exit_code": 0,
+      "duration_seconds": 1.104,
+      "captured_log": ".tmp/sp03-p01/context-lint.log"
+    },
+    {
+      "command": "npm run context:check",
+      "node": "24.21.0",
+      "npm_cli": "existing system npm CLI executed by portable Node 24",
+      "exit_code": 0,
+      "duration_seconds": 0.409,
+      "captured_log": ".tmp/sp03-p01/context-check.log"
+    },
+    {
+      "command": "npm run context:test",
+      "node": "24.21.0",
+      "npm_cli": "existing system npm CLI executed by portable Node 24",
+      "exit_code": 0,
+      "duration_seconds": 0.697,
+      "captured_log": ".tmp/sp03-p01/context-test.log"
+    },
+    {
+      "command": "npm run docs:lint",
+      "node": "24.21.0",
+      "npm_cli": "existing system npm CLI executed by portable Node 24",
+      "exit_code": 0,
+      "duration_seconds": 2.915,
+      "captured_log": ".tmp/sp03-p01/docs-lint.log"
+    },
+    {
+      "command": "npm run docs:test",
+      "node": "24.21.0",
+      "npm_cli": "existing system npm CLI executed by portable Node 24",
+      "exit_code": 0,
+      "duration_seconds": 3.475,
+      "captured_log": ".tmp/sp03-p01/docs-test.log"
+    }
+  ],
+  "unrun": [
+    "application build/typecheck",
+    "PostgreSQL/migrations",
+    "HTTP",
+    "DOM/browser",
+    "provider/evaluation",
+    "independent or standards review"
+  ],
+  "publication": "No P01 commit or push performed.",
+  "captured_log_archive": {
+    "path": "p01-logs.zip",
+    "sha256": "bd2bbb9414e2528e0ee53e6963a862b0bac25526a4c54d6b0418b953a2444905"
+  },
+  "results": {
+    "context_test": {
+      "passed": 45,
+      "failed": 0,
+      "skipped": 0
+    },
+    "docs_test": {
+      "passed": 20,
+      "failed": 0,
+      "skipped": 0
+    },
+    "source_identity_inputs": 49,
+    "metadata_only_requirement_design_body_comparisons": 8,
+    "unrelated_initial_tracked_files_preserved": 108,
+    "head_and_index": "unchanged; no staged changes",
+    "scoped_whitespace": "passed",
+    "p01_local_links_and_anchors_checked": 101,
+    "source_input_hashes_unchanged_at_handoff": 49,
+    "final_docs_lint": "passed after final result/status updates"
+  }
+}

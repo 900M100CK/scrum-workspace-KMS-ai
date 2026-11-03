@@ -1,8 +1,8 @@
 # Functional and alternate-flow verification design
 
 **Artifact ID:** VERIFY-01
-**Version/date:** 0.11 Draft · 1 November 2026
-**Inputs:** PRD-01 v0.9; UC-02 v0.8; TEST-08 v0.23; ADR-0007 through ADR-0017; release-scope v0.2.
+**Version/date:** 0.12 Draft · 2 November 2026
+**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.9; UC-02 v0.8; TEST-08 v0.24; ADR-0007 through ADR-0017; release-scope v0.2.
 **Status:** Verification design with bounded SP-01 and SP-02 handler/DOM/browser evidence; complete application acceptance remains open. No independent approval.
 **Trace:** BR-01 through BR-15; SC-01 through SC-08 through TEST-COVERAGE-01.
 
@@ -20,7 +20,7 @@ For every applicable mutation add authority denial, stale revision, replay, owni
 | FR-02 / AC-02 | UC-02 create | TC-13, TC-24 | Authorised creation persists stable project ID/name/creator; missing capability creates nothing. Defined. |
 | FR-03 / AC-03 | UC-02; work UCs | TC-02 | Nonmember direct project/work reads match unknown IDs; membership change affects renewed reads. Defined. |
 | FR-04 / AC-04 | UC-06 | TC-02 | Current member without restricted read grant receives neither content nor metadata. Defined. |
-| FR-05 / AC-05 | UC-03 main | TC-13, TC-19 | Exercise Story, Task and Bug creation; invalid type and unauthorised actor leave no item. Defined. |
+| FR-05 / AC-05 | UC-03 main | TC-13, TC-19 | Exercise Story, Task and Bug creation; invalid type and unauthorised actor leave no item. Bounded real handler/DOM/Edge evidence is linked in the SP-03 execution trace; no whole-application acceptance. |
 | FR-06 / AC-06 | UC-05 create | TC-13, TC-21 | Valid dates and goal create Planned Sprint; reversed dates fail before persistence. Defined. |
 | FR-07 / AC-07 | UC-05 allocate / Alt-1 | TC-07, TC-21 | Each selected item has its own allocation result; conflicting item does not undo valid allocations; exclusive current allocation survives races. ADR-0014 specifies separate keyed allocateTask calls aggregated by UI; lost outcomes reconcile per task. |
 | FR-08 / AC-08 | UC-05 start | TC-07, TC-21 | Planned starts with timestamp; Completed and second concurrent Active reject without state change. Defined. |
@@ -186,3 +186,18 @@ See [P12 result](reports/SP-01-P12-handoff-2026-10-28.md) for bounded integrated
 | AC-39 | Atomic membership/grant/read invalidation and current assignment clearing with task revisions/audit; last effective manager, concurrent removals, stale rejoin precondition, preserved state/history/other project; removal/concurrency suites | Actual SP-04/SP-06 producers must repeat SP02-F01 races; current SQL doubles labelled |
 
 UI/controller/actual HTTPS and isolated Edge evidence covers fresh current views, original-key unknown-result recovery across reload, keyboard confirmation, mobile overflow, permission removal clearing, real secure-cookie login/logout. [Execution report](reports/SP-02-execution-2026-10-31.md) contains exact commands, failures and limits. These are bounded observations, not whole TC/SC-06/D-07 or independent acceptance.
+
+## SP-03 bounded execution trace — 2 November 2026
+
+[SP-03 execution report](reports/SP-03-2026-11-02-execution.md), [UI report](reports/SP-03-2026-11-02-ui.md) and [registered plan](../implementation/features/sp-03-create-task/plan.md) distinguish source/SQL/HTTP/DOM/browser results and preserve failures. Current final counts belong to that report, not an inferred completion from this design matrix.
+
+| Required creation assertion | Producer and evidence boundary |
+| --- | --- |
+| AC-05 supported Story/Task/Bug content persists | P04 real Task HTTP + P08 DOM/Edge + P09 fresh current regression; stable ID/project, todo, null assignee, unblocked revision 1 and server time. |
+| AC-05 unsupported/invalid content makes no item | P04 invalid body/type/blank/title/extra identity/media/body-size matrix checks Task/generation/audit/outcome unchanged. |
+| AC-05 unauthorised or foreign creation denied | P03C explicit-author/private audit and P04/P07 current scope/authority/disabled/removal races; descriptive roles and forged actor headers cannot grant authority. |
+| UC-03 server timestamp, persisted read and audit | P03B immutable origin/outcome; P04 backlog-item-create actor/entity/time audit co-commits with Task/result; P05 fresh list/detail; P08 reload/current content. |
+| TC-18/19/22 replay, rollback, unknown outcome and outage | P03B/P04/P07 actual durable outcomes, loss after committed response, exact key/hash recovery, rollback/barriers; P06/P08 unknown/denied/outage UI. |
+| Current Backlog reconstruction and permission-aware reads | P05 107-row numeric/UUID/current-location/blocker/cursor/member tests; P07 read watermark/append schedule; P08 fresh first-page restart. |
+
+UC-03 EX-01 and EX-02 now have bounded creation evidence. EX-03/Alt-1 editing and Alt-2 reorder remain later SP-04/SP-05 scope. FR-50 is document classification, not Task creation. This does not close whole SC-01/SC-06, document/citation/provider/D-07 gates, SP02-F01 or independent/release acceptance. Historical scenarios and failures remain unchanged.

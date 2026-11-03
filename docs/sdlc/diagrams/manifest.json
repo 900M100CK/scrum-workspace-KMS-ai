@@ -3,16 +3,16 @@
     {
       "id": "UML-07",
       "path": "docs/sdlc/diagrams/README.md",
-      "version": "0.21",
+      "version": "0.22",
       "adrs": [],
-      "date": "27 October 2026"
+      "date": "3 November 2026"
     },
     {
       "id": "REG-00",
       "path": "docs/sdlc/artifact-register.md",
-      "version": "0.94",
+      "version": "0.102",
       "adrs": [],
-      "date": "1 November 2026"
+      "date": "3 November 2026"
     },
     {
       "id": "SAD-03",
@@ -400,9 +400,9 @@
     {
       "id": "DATA-04",
       "path": "docs/sdlc/data-design.md",
-      "version": "0.14",
+      "version": "0.16",
       "adrs": [],
-      "date": "1 November 2026"
+      "date": "2 November 2026"
     },
     {
       "id": "DGM-DESIGN-01",
@@ -545,7 +545,7 @@
       "id": "DGM-DATA-01",
       "path": "docs/sdlc/diagrams/data/workspace-erd.mmd",
       "drawio": "docs/sdlc/diagrams/data/workspace-erd.drawio",
-      "version": "0.5",
+      "version": "0.6",
       "origin": "DGM-DESIGN-01",
       "sources": [
         "PRD-01",
@@ -564,11 +564,12 @@
         "ADR-0023",
         "ADR-0024",
         "ADR-0025",
-        "ADR-0026"
+        "ADR-0026",
+        "ADR-0027"
       ],
       "kind": "design",
       "purpose": "Workspace physical ERD â€” owned schema",
-      "date": "1 November 2026"
+      "date": "2 November 2026"
     },
     {
       "id": "DGM-DATA-02",

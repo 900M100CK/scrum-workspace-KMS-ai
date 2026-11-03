@@ -1,6 +1,6 @@
 # Web application foundation
 
-React 19.3.1, Vite 8.3.5 and TypeScript 6.0.3 are initialised under the owner's 27 October framework instruction. The React entry now implements real session sign-in/current-session/sign-out through the Workspace proxy. Project, document and AI operations remain unimplemented. Vite uses its native TS/JSX transform; no React compiler/refresh plugin, styling framework or auth dependency was added for this foundation.
+React 19.3.1, Vite 8.3.5 and TypeScript 6.0.3 are initialised under the owner's 27 October framework instruction. The React entry now implements real session sign-in/current-session/sign-out through the Workspace proxy. Bounded project/member and Task creation/read UI is now connected; document/AI and later Task mutations remain unimplemented. Vite uses its native TS/JSX transform; no React compiler/refresh plugin, styling framework or auth dependency was added for this foundation.
 
 The existing UI/UX was preserved in [design/prototype](../../design/prototype/README.md). Its soft-green visual system, layout, interactions, fonts and tests are the design reference for subsequent product work; the new application does not silently claim those synthetic operations are live.
 
@@ -25,3 +25,7 @@ Run npm run test:session:ui for actual React DOM against Workspace/PostgreSQL th
 ## Projects and membership — 1 November 2026
 
 The existing green workspace view now uses live same-origin project/member/action APIs. Only current membership projects and minimal member IDs/descriptive roles/revisions are shown. Explicit actions remain advisory; each request checks server authority. Removal has an explicit confirmation and uses the displayed revision. Unknown mutation results retain one actor-bound pending request in tab session storage for original-key reconciliation, including after reload; no credential/token/fetched protected list is stored. Confirmed sign-out clears it; expiry hides the UI. npm run test:projects includes controller and live DOM/HTTPS checks; the separate project-browser suite uses an installed runner and owner-trusted TLS. See the [runbook](../../services/workspace/PROJECTS.md) and [execution report](../../docs/sdlc/reports/SP-02-execution-2026-10-31.md).
+
+## SP-03 Task creation and current reads — 2 November 2026
+
+See [Task operations](../../services/workspace/TASKS.md) and the registered SP-03 handoff for createTask/listTasks/getTask, current project authority, exact Backlog positions, immutable server time and original-key recovery. Prior foundation/stage notes above are historical. No role/creator auto-grant, public permission editor, Task mutation/Sprint/Knowledge handler or startup migration is added. Only disposable 009 is verified; existing 006/008 suites keep their ceilings. Browser acceptance is a separate installed-runner gate; local source changes are not automatically committed/published.

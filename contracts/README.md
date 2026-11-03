@@ -1,9 +1,9 @@
 # Contract-first interface pack
 
 **Artifact ID:** CONTRACT-01  
-**Version/date:** 0.22 Draft · 1 November 2026
+**Version/date:** 0.24 Draft · 2 November 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0011 direction is owner-confirmed; remaining protocol/policy gaps and handler evidence are pending.\
-**Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [data design](../docs/sdlc/data-design.md); PLAN-01 v0.4.\; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
+**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.9; [architecture](../docs/architecture.md); [data design](../docs/sdlc/data-design.md); PLAN-01 v0.4.\; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 ## Status and ownership
@@ -103,3 +103,13 @@ Workspace v0.2.10 describes authenticated GET renewal/cookie refresh and idempot
 ## SP-02 bounded implementation — 1 November 2026
 
 Workspace OpenAPI v0.2.11 declares listProjects 400/409 cursor outcomes, strict getProject query validation and project-mutation 413/415 bounds. No operation or Project/Member schema was added. The live UI uses same-origin Workspace only; allowed actions are advisory. Actual project/member handlers, permanent compact replay and scoped HMAC paging have disposable PostgreSQL/HTTP evidence in [SP02 execution](../docs/sdlc/reports/SP-02-execution-2026-10-31.md). Missing cursor key/authority dependency fails closed. Optional editProject and all later business slices remain unimplemented. This does not establish D-07 guarded transport.
+
+## SP-03 selected contract support — 2 November 2026
+
+Workspace v0.2.12 and logical model v0.11 add required read-only Task.created_at, preserving UC-03 server creation-time output without accepting client origin fields. Owner selected immutable server time and permanent consumed key/hash plus original Task 201 snapshot (including original title/description), with current access checked before replay. Existing project/member receipts are unchanged. Proposed ADR-0027 and FEAT-SP03-01 define the bounded mechanics; additive 009 and task handlers remain unimplemented at this support checkpoint.
+
+createTask declares 413/415 for bounded JSON/media rejection; getTask declares 400 for invalid query shape. No operation or permission is added. Task consumers must move together: strict older schemas may reject the required new field. Contract tests prove schema boundaries, not migration or HTTP authority. No legacy timestamp is inferred, no applied migration is edited and no development database upgrade is performed.
+
+## SP-03 current local handoff — 2 November 2026
+
+The registered SP-03 now implements createTask/listTasks/getTask and the existing-design Task UI against Workspace 0.2.12, logical model 0.12 and additive draft 009. See [execution evidence](../docs/sdlc/reports/SP-03-2026-11-02-execution.md) for final actual command results/source identity and limits. Prior support/checkpoint paragraphs above are historical stages; they do not mean these handlers are still absent. Business audit uses UC-03 backlog-item-create; durable replay operation remains createTask. Current access precedes original snapshot disclosure; creation time is immutable server time. No Task edit/reorder/Sprint/Knowledge/AI handler is added. Formal Proposed ADR/release/independent gates remain open; no development upgrade or new Git publication.

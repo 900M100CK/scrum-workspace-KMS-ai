@@ -16,7 +16,7 @@ async function main(){
   if(process.argv[2]==='state')result=await operator.state(text('user_id'),data.project_id===undefined?undefined:text('project_id'));
   else if(process.argv[2]==='global')result=await operator.global(text('user_id'),data.allowed as boolean,text('expected_revision'),operatorRef,text('reason'));
   else if(process.argv[2]==='project'){
-   const action=text('action');if(action!=='membership-manage'&&action!=='project-administrator')throw new Error('Unsupported action');
+   const action=text('action');if(action!=='membership-manage'&&action!=='project-administrator'&&action!=='backlog-author')throw new Error('Unsupported action');
    result=await operator.project(text('user_id'),text('project_id'),action,data.allowed as boolean,text('expected_revision'),operatorRef,text('reason'));
   }else throw new Error('Unknown command');
   process.stdout.write(JSON.stringify(result)+'\n');

@@ -1,0 +1,131 @@
+{
+  "artifact": "SP03-P03A actual support checks",
+  "date": "2026-11-02",
+  "node": "24.21.0",
+  "scope": "Local schema/documentation support only; no handler or migration evidence",
+  "commands": [
+    {
+      "command": "npm run context:lint",
+      "exit_code": 0,
+      "duration_seconds": 8.51,
+      "log": "context-lint-1793625563827136400.log"
+    },
+    {
+      "command": "npm run context:check",
+      "exit_code": 0,
+      "duration_seconds": 8.53,
+      "log": "context-check-1793625563850114200.log"
+    },
+    {
+      "command": "npm run context:test",
+      "exit_code": 0,
+      "duration_seconds": 8.75,
+      "log": "context-test-1793625564072314900.log"
+    },
+    {
+      "command": "npm run docs:lint",
+      "exit_code": 1,
+      "duration_seconds": 36.41,
+      "log": "docs-lint-1793625600232984900.log"
+    },
+    {
+      "command": "npm run docs:test",
+      "exit_code": 1,
+      "duration_seconds": 37.02,
+      "log": "docs-test-1793625600867481500.log"
+    },
+    {
+      "command": "npm run contracts:test",
+      "exit_code": 0,
+      "duration_seconds": 2.26,
+      "log": "contracts-test-1793625566336868200.log"
+    },
+    {
+      "command": "npm run docs:lint",
+      "exit_code": 1,
+      "duration_seconds": 2.6,
+      "log": "docs-lint-1793625624703733600.log"
+    },
+    {
+      "command": "npm run docs:test",
+      "exit_code": 1,
+      "duration_seconds": 4.02,
+      "log": "docs-test-1793625626117783800.log"
+    },
+    {
+      "command": "npm run docs:lint",
+      "exit_code": 1,
+      "duration_seconds": 3.76,
+      "log": "docs-lint-1793625647742583700.log"
+    },
+    {
+      "command": "npm run docs:test",
+      "exit_code": 1,
+      "duration_seconds": 4.23,
+      "log": "docs-test-1793625648214618400.log"
+    },
+    {
+      "command": "npm run docs:lint",
+      "exit_code": 1,
+      "duration_seconds": 3.91,
+      "log": "docs-lint-1793625676623859800.log"
+    },
+    {
+      "command": "npm run docs:test",
+      "exit_code": 1,
+      "duration_seconds": 4.23,
+      "log": "docs-test-1793625676941565000.log"
+    },
+    {
+      "command": "npm run docs:lint",
+      "exit_code": 1,
+      "duration_seconds": 4.67,
+      "log": "docs-lint-1793625688090696200.log"
+    },
+    {
+      "command": "npm run docs:test",
+      "exit_code": 1,
+      "duration_seconds": 4.88,
+      "log": "docs-test-1793625688306337200.log"
+    },
+    {
+      "command": "npm run docs:lint",
+      "exit_code": 1,
+      "duration_seconds": 4.62,
+      "log": "docs-lint-1793625716216968400.log"
+    },
+    {
+      "command": "npm run docs:test",
+      "exit_code": 1,
+      "duration_seconds": 4.92,
+      "log": "docs-test-1793625716515200400.log"
+    },
+    {
+      "command": "npm run docs:lint",
+      "exit_code": 0,
+      "duration_seconds": 4.54,
+      "log": "docs-lint-1793625730960820200.log"
+    },
+    {
+      "command": "npm run docs:test",
+      "exit_code": 0,
+      "duration_seconds": 4.78,
+      "log": "docs-test-1793625731197603600.log"
+    }
+  ],
+  "counts": {
+    "context": 45,
+    "docs": 20,
+    "contracts": 27,
+    "skipped": 0
+  },
+  "limitations": [
+    "Task strict-consumer coordinated update required; no old-client compatibility claim",
+    "DB/HTTP/browser unrun at P03A"
+  ],
+  "source_hashes": {
+    "contracts/openapi/workspace.openapi.json": "16110cb022aba48cccfb916b79b86e794b12796dfebf95f8933d1662f8f2c1d2",
+    "contracts/data-model.json": "85ac69ce5d3ff542cde650fd8eed98aba1632e0f0d05e45679d68704c27491cd",
+    "specs/003-create-task.md": "c558b4c8f31988cb7db220867725c749ff26b1f19561b44c7972de9cf2995375"
+  }
+}

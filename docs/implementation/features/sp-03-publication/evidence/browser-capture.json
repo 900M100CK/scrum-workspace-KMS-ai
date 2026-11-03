@@ -1,0 +1,7 @@
+{
+  "actual_execution_date": "2026-11-03",
+  "capture_directory": "browser/run-1793689108068-1f4f5fa7",
+  "original_test_report_date_field": "2026-11-02 is a fixed historical field in the unchanged test; command capture records actual new execution",
+  "command_run": "verify-1793689097326514600",
+  "source_equivalence": "source-validation.json"
+}

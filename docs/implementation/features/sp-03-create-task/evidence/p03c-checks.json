@@ -1,0 +1,65 @@
+{
+  "artifact": "SP03-P03C actual private authority checks",
+  "date": "2026-11-02",
+  "node": "24.21.0",
+  "commands": [
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "--test-concurrency=1",
+        "tests/workspace/task-authority.test.mjs"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 6.7,
+      "log": "run-1793626493371629300.log"
+    },
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "typecheck"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 6.58,
+      "log": "run-1793626520397804700.log"
+    },
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "test:projects"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 68.31,
+      "log": "run-1793626571772227500.log"
+    }
+  ],
+  "results": {
+    "task_authority": {
+      "tests": 8,
+      "pass": 8,
+      "skip": 0
+    },
+    "project_regression": {
+      "tests": 66,
+      "pass": 66,
+      "skip": 0
+    },
+    "typecheck": "passed"
+  },
+  "scope": "Private operator/CLI + disposable 009 grant/removal barriers; existing project regression retains 007/008 ceilings. No task handler/browser acceptance.",
+  "sources": {
+    "services/workspace/src/projects/operator.ts": "86ac65fdb3a1b464854c6ed643536b358bae8d15fa00491ebf127f81c5e9b403",
+    "services/workspace/src/projects/cli.ts": "14eb9be33cb35fcec1aeaeead22168b2f2a970c0411d91d3d4861508afcf5527",
+    "tests/workspace/task-authority.test.mjs": "b7516602ba73a2e552a6bd5e219f3666fd2aa01c824fd2b3352fe03036636d5b"
+  },
+  "limitations": [
+    "No public task route advertised yet",
+    "Task HTTP/DOM/browser pending",
+    "No development migration, commit or push",
+    "Self-authored evidence, not independent review"
+  ]
+}

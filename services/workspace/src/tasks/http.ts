@@ -1,0 +1,56 @@
+import type {FastifyInstance} from 'fastify';
+import cookie from '@fastify/cookie';
+import {readFileSync} from 'node:fs';
+import {createRequire} from 'node:module';
+import {Ajv2020} from 'ajv/dist/2020.js';
+import {SESSION_COOKIE,sessionOrigin} from '../session/http.ts';
+import {sessionValidators} from '../session/schemas.ts';
+import {ProjectFault,projectFailure} from '../projects/outcomes.ts';
+import type {WorkspaceTaskStore} from './store.ts';
+import type {CreateTask} from './types.ts';
+const addFormats=createRequire(import.meta.url)('ajv-formats') as typeof import('ajv-formats').default;
+const api=JSON.parse(readFileSync(new URL('../../../../contracts/openapi/workspace.openapi.json',import.meta.url),'utf8'));
+const ajv=new Ajv2020({strict:false,removeAdditional:false,coerceTypes:false,useDefaults:false});addFormats(ajv);
+ajv.addSchema({$id:'urn:sacw:tasks',components:api.components});
+export const taskValidators=Object.fromEntries(['CreateTask','Task','TaskList'].map(name=>[name,ajv.compile({$ref:`urn:sacw:tasks#/components/schemas/${name}`})]));
+export const TASK_OPERATIONS:ReadonlySet<'createTask'|'listTasks'>=new Set(['createTask','listTasks']);
+export interface TaskHttpOptions {tasks?:WorkspaceTaskStore;origin?:string}
+const responses=(status:number,name:string)=>Object.fromEntries([[status,{$ref:`urn:sacw:tasks#/components/schemas/${name}`}],...[400,401,403,404,409,413,415,503].map(n=>[n,{}])]);
+export async function registerTaskHttp(app:FastifyInstance,options:TaskHttpOptions){
+ await app.register(cookie);const origin=options.origin?sessionOrigin(options.origin):null;
+ app.setSerializerCompiler(({httpStatus,schema})=>{
+  const status=Number(httpStatus),validator=status>=400?sessionValidators.Error!:ajv.compile(schema as object);
+  return value=>{
+   if(status===404){if(JSON.stringify(value)!==JSON.stringify({code:'not_found',message:'Resource unavailable'}))throw Error('Invalid not-found output');}
+   else if(!validator(value))throw Error('Invalid task response');
+   return JSON.stringify(value);
+  };
+ });
+ app.addHook('onRequest',async(request,reply)=>{
+  reply.header('Cache-Control','no-store');
+  if(!options.tasks||!origin)throw new ProjectFault(503,'access_unavailable');
+  const fields=(request.headers.cookie??'').split(';').filter(v=>v.trim().split('=')[0]===SESSION_COOKIE);
+  if(fields.length!==1||!request.cookies[SESSION_COOKIE])throw new ProjectFault(401,'authentication_required');
+  if(!['GET','HEAD'].includes(request.method)&&(request.headers.origin!==origin||request.headers['x-sacw-request']!=='1'))throw new ProjectFault(403,'forbidden');
+ });
+ app.setErrorHandler((error,_request,reply)=>{
+  const native=error&&typeof error==='object'&&'statusCode' in error?Number(error.statusCode):0;
+  const fault=[400,413,415].includes(native)?new ProjectFault(native,'validation_failed'):projectFailure(error);
+  return reply.code(fault.status).send(fault.status===404?{code:'not_found',message:'Resource unavailable'}:{code:fault.code,message:fault.status===401?'Authentication required':fault.status===503?'Access unavailable':fault.status===409?'State conflict':'Request denied',run_id:null});
+ });
+ app.post('/projects/:project_id/tasks',{bodyLimit:8192,schema:{response:responses(201,'Task')}},async(request,reply)=>{
+  if(!taskValidators.CreateTask!(request.body)||Object.keys(request.query as object).length)throw new ProjectFault(400,'validation_failed');
+  const key=request.headers['idempotency-key'];if(typeof key!=='string'||!key)throw new ProjectFault(400,'validation_failed');
+  const result=await options.tasks!.create(request.cookies[SESSION_COOKIE]!, (request.params as {project_id:string}).project_id,request.body as CreateTask,key,request.id);
+  return reply.code(result.status).send(result.body);
+ });
+ app.get('/projects/:project_id/tasks',{schema:{response:responses(200,'TaskList')}},async request=>{
+  const q=request.query as Record<string,unknown>;
+  if(Object.keys(q).some(k=>!['cursor','location'].includes(k))||(q.cursor!==undefined&&(typeof q.cursor!=='string'||!q.cursor))||(q.location!==undefined&&!['all','backlog'].includes(q.location as string)))throw new ProjectFault(400,'validation_failed');
+  return options.tasks!.list(request.cookies[SESSION_COOKIE]!, (request.params as {project_id:string}).project_id,q.location as 'all'|'backlog'|undefined,q.cursor as string|undefined);
+ });
+ app.get('/tasks/:task_id',{schema:{response:responses(200,'Task')}},async request=>{
+  if(Object.keys(request.query as object).length)throw new ProjectFault(400,'validation_failed');
+  return options.tasks!.get(request.cookies[SESSION_COOKIE]!, (request.params as {task_id:string}).task_id);
+ });
+}

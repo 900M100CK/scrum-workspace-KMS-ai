@@ -1,10 +1,10 @@
 # SP03-P07 — Controlled task creation failure and race evidence
 
 **Artifact ID:** SP03-P07\
-**Version/date:** 0.1 Draft · 2 November 2026\
+**Version/date:** 0.3 Draft · 2 November 2026\
 **Execution status:** Read the [parent plan](../plan.md#authoritative-task-and-execution-table); this brief has no independent mutable status.\
-**Inputs:** [FEAT-SP03-01](../plan.md) v0.1; publication source snapshots and template digests in that plan.\
-**Trace:** FR-05 / AC-05; supporting FR-03/31/50/59, BR-01/02/10/11/14; UC-03 main and EX-01/02; SC-01 subset only.
+**Inputs:** [FEAT-SP03-01](../plan.md) (execution snapshot v0.4); [decision batch](../decision-batch.md) (execution snapshot v0.2); Proposed ADR-0027 (execution snapshot v0.2); original publication source identities remain snapshots.\
+**Trace:** FR-05 / AC-05; supporting FR-03/31/59, BR-01/02/10/11/14; FR-50 is contextual document-access scope only; UC-03 main and EX-01/02; SC-01 subset only.
 
 ## Objective
 
@@ -88,3 +88,9 @@ Work sequentially in the authorized branch, within closed paths, with synthetic/
 Relevant open questions are the parent G-01–G-05 rows. Owner and due point are explicit prerequisite gates there, not invented calendar dates. P01 inventories; P02 proposes/disposes; dependent tasks wait. If this task reveals another material question, record its source and affected prerequisite before proceeding.
 
 Result destination: [parent execution evidence](../plan.md#execution-evidence) and, for future measured application work, the dated registered report named by the producing task. Handoff includes exact assertions met/unmet, source identity, current gates and next ready task. No separate mutable INDEX or implementation-plan duplicate.
+
+## P02 design/path amendment
+
+Use the exact planned files/commands and owner dispositions in [decision batch](../decision-batch.md), sections 1/4/5. All Task consumers use the Q-02-selected schema; original result recovery follows Q-03, with current authority and no automatic fresh key. Default historical 006/008 fixtures remain; task fixture explicitly selects 009. Public discovery reflects registered handlers only. P03 is now an aggregate of P03A/P03B/P03C, not an additional producer run. Planned paths remain planned until implemented; no source/API/test change is authorized by this design amendment alone.
+
+Actual execution inputs, source corrections and handoff results are in the parent plan/P09 capture; original publication-only statements above are historical. No duplicate execution status is maintained here.

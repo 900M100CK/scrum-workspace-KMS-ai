@@ -1,0 +1,1290 @@
+{
+  "artifact": "SP03-P09 final command/source capture",
+  "date": "2026-11-02",
+  "scope": "Actual local bounded implementation/regressions; no development upgrade or new Git publication",
+  "commands": [
+    {
+      "name": "typecheck",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "typecheck"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793631608.6452267,
+      "duration_seconds": 7.25,
+      "log": "typecheck.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      },
+      "run": "run-1793631608512401200-acc68b54"
+    },
+    {
+      "name": "build",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "build"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793631615.8975081,
+      "duration_seconds": 6.84,
+      "log": "build.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      },
+      "run": "run-1793631608512401200-acc68b54"
+    },
+    {
+      "name": "context:lint",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "context:lint"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793631622.7423778,
+      "duration_seconds": 0.48,
+      "log": "context-lint.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      },
+      "run": "run-1793631608512401200-acc68b54"
+    },
+    {
+      "name": "context:check",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "context:check"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793631623.2243943,
+      "duration_seconds": 0.4,
+      "log": "context-check.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      },
+      "run": "run-1793631608512401200-acc68b54"
+    },
+    {
+      "name": "context:test",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "context:test"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793631623.628914,
+      "duration_seconds": 0.81,
+      "log": "context-test.log",
+      "counts": {
+        "tests": [
+          45
+        ],
+        "pass": [
+          45
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      },
+      "run": "run-1793631608512401200-acc68b54"
+    },
+    {
+      "name": "docs:lint",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "docs:lint"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793631624.4384913,
+      "duration_seconds": 3.34,
+      "log": "docs-lint.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      },
+      "run": "run-1793631608512401200-acc68b54"
+    },
+    {
+      "name": "docs:test",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "docs:test"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793631627.776046,
+      "duration_seconds": 3.33,
+      "log": "docs-test.log",
+      "counts": {
+        "tests": [
+          20
+        ],
+        "pass": [
+          20
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      },
+      "run": "run-1793631608512401200-acc68b54"
+    },
+    {
+      "name": "contracts:test",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "contracts:test"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793631631.1111083,
+      "duration_seconds": 1.51,
+      "log": "contracts-test.log",
+      "counts": {
+        "tests": [
+          27
+        ],
+        "pass": [
+          27
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      },
+      "run": "run-1793631608512401200-acc68b54"
+    },
+    {
+      "name": "test:projects",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "test:projects"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793631632.626461,
+      "duration_seconds": 74.4,
+      "log": "test-projects.log",
+      "counts": {
+        "tests": [
+          66
+        ],
+        "pass": [
+          66
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      },
+      "run": "run-1793631608512401200-acc68b54"
+    },
+    {
+      "name": "test:session:storage",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "test:session:storage"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793631707.024043,
+      "duration_seconds": 18.62,
+      "log": "test-session-storage.log",
+      "counts": {
+        "tests": [
+          17
+        ],
+        "pass": [
+          17
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      },
+      "run": "run-1793631608512401200-acc68b54"
+    },
+    {
+      "name": "test:session:http",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "test:session:http"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793631725.6432755,
+      "duration_seconds": 15.48,
+      "log": "test-session-http.log",
+      "counts": {
+        "tests": [
+          15
+        ],
+        "pass": [
+          15
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      },
+      "run": "run-1793631608512401200-acc68b54"
+    },
+    {
+      "name": "test:session:lifecycle",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "test:session:lifecycle"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793631741.1239178,
+      "duration_seconds": 13.62,
+      "log": "test-session-lifecycle.log",
+      "counts": {
+        "tests": [
+          18
+        ],
+        "pass": [
+          18
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      },
+      "run": "run-1793631608512401200-acc68b54"
+    },
+    {
+      "name": "test:session:ui",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "test:session:ui"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793631754.74011,
+      "duration_seconds": 12.55,
+      "log": "test-session-ui.log",
+      "counts": {
+        "tests": [
+          10
+        ],
+        "pass": [
+          10
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      },
+      "run": "run-1793631608512401200-acc68b54"
+    },
+    {
+      "name": "test:foundation",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "test:foundation"
+      ],
+      "exit_code": 1,
+      "started_epoch": 1793631767.2873886,
+      "duration_seconds": 13.69,
+      "log": "test-foundation.log",
+      "counts": {
+        "tests": [
+          9,
+          7
+        ],
+        "pass": [
+          9,
+          6
+        ],
+        "fail": [
+          0,
+          1
+        ],
+        "skipped": [
+          0,
+          0
+        ],
+        "cancelled": [
+          0,
+          0
+        ]
+      },
+      "run": "run-1793631608512401200-acc68b54"
+    },
+    {
+      "name": "test:foundation",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "test:foundation"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793632066.3024404,
+      "duration_seconds": 18.14,
+      "log": "test-foundation.log",
+      "counts": {
+        "tests": [
+          9,
+          7,
+          3
+        ],
+        "pass": [
+          9,
+          7,
+          3
+        ],
+        "fail": [
+          0,
+          0,
+          0
+        ],
+        "skipped": [
+          0,
+          0,
+          0
+        ],
+        "cancelled": [
+          0,
+          0,
+          0
+        ]
+      },
+      "run": "run-1793632064946483900-8a775d7d"
+    },
+    {
+      "name": "tasks",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "--test-concurrency=1",
+        "tests/workspace/task-storage.test.mjs",
+        "tests/workspace/task-authority.test.mjs",
+        "tests/workspace/task-http.test.mjs",
+        "tests/workspace/task-reads.test.mjs",
+        "tests/workspace/task-concurrency.test.mjs",
+        "tests/workspace/task-ui-controller.test.mjs",
+        "tests/workspace/task-ui.test.mjs"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793632084.438105,
+      "duration_seconds": 70.92,
+      "log": "tasks.log",
+      "counts": {
+        "tests": [
+          66
+        ],
+        "pass": [
+          66
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      },
+      "run": "run-1793632064946483900-8a775d7d"
+    },
+    {
+      "name": "browser",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "tests/workspace/task-browser.test.mjs"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793632155.3609903,
+      "duration_seconds": 17.01,
+      "log": "browser.log",
+      "counts": {
+        "tests": [
+          1
+        ],
+        "pass": [
+          1
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      },
+      "run": "run-1793632064946483900-8a775d7d"
+    },
+    {
+      "name": "browser",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "tests/workspace/task-browser.test.mjs"
+      ],
+      "exit_code": 1,
+      "started_epoch": 1793633452.699785,
+      "duration_seconds": 5.7,
+      "log": "browser.log",
+      "counts": {
+        "tests": [
+          1
+        ],
+        "pass": [
+          0
+        ],
+        "fail": [
+          1
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      },
+      "run": "run-1793633452571027500-fbc5e622"
+    },
+    {
+      "name": "browser",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "tests/workspace/task-browser.test.mjs"
+      ],
+      "exit_code": 1,
+      "started_epoch": 1793633697.9358153,
+      "duration_seconds": 15.57,
+      "log": "browser.log",
+      "counts": {
+        "tests": [
+          1
+        ],
+        "pass": [
+          0
+        ],
+        "fail": [
+          1
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      },
+      "run": "run-1793633697806508400-2387b71b"
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "typecheck"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793633782.6943917,
+      "duration_seconds": 9.21,
+      "log": "typecheck.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      },
+      "run": "run-1793633782608275800-e776542a"
+    },
+    {
+      "name": "build",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "build"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793633791.9061913,
+      "duration_seconds": 6.3,
+      "log": "build.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      },
+      "run": "run-1793633782608275800-e776542a"
+    },
+    {
+      "name": "browser",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "tests/workspace/task-browser.test.mjs"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793633798.224464,
+      "duration_seconds": 17.31,
+      "log": "browser.log",
+      "counts": {
+        "tests": [
+          1
+        ],
+        "pass": [
+          1
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      },
+      "run": "run-1793633782608275800-e776542a"
+    },
+    {
+      "name": "context:lint",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "context:lint"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793634283.7821279,
+      "duration_seconds": 6.61,
+      "log": "context-lint.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      },
+      "run": "run-1793634283662441100-9a3ae78c"
+    },
+    {
+      "name": "context:check",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "context:check"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793634290.390078,
+      "duration_seconds": 0.62,
+      "log": "context-check.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      },
+      "run": "run-1793634283662441100-9a3ae78c"
+    },
+    {
+      "name": "context:test",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "context:test"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793634291.0065844,
+      "duration_seconds": 1.0,
+      "log": "context-test.log",
+      "counts": {
+        "tests": [
+          45
+        ],
+        "pass": [
+          45
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      },
+      "run": "run-1793634283662441100-9a3ae78c"
+    },
+    {
+      "name": "docs:lint",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "docs:lint"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793634292.0077963,
+      "duration_seconds": 36.37,
+      "log": "docs-lint.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      },
+      "run": "run-1793634283662441100-9a3ae78c"
+    },
+    {
+      "name": "docs:test",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "docs:test"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793634328.3820403,
+      "duration_seconds": 3.99,
+      "log": "docs-test.log",
+      "counts": {
+        "tests": [
+          20
+        ],
+        "pass": [
+          20
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      },
+      "run": "run-1793634283662441100-9a3ae78c"
+    },
+    {
+      "name": "contracts:test",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "contracts:test"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793634332.3740509,
+      "duration_seconds": 1.4,
+      "log": "contracts-test.log",
+      "counts": {
+        "tests": [
+          27
+        ],
+        "pass": [
+          27
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      },
+      "run": "run-1793634283662441100-9a3ae78c"
+    },
+    {
+      "name": "docs:lint",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "docs:lint"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793634709.718156,
+      "duration_seconds": 4.36,
+      "log": "docs-lint.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      },
+      "run": "run-1793634709598034100-b5b638ce"
+    }
+  ],
+  "latest_results": {
+    "typecheck": {
+      "name": "typecheck",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "typecheck"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793633782.6943917,
+      "duration_seconds": 9.21,
+      "log": "typecheck.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      },
+      "run": "run-1793633782608275800-e776542a"
+    },
+    "build": {
+      "name": "build",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "build"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793633791.9061913,
+      "duration_seconds": 6.3,
+      "log": "build.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      },
+      "run": "run-1793633782608275800-e776542a"
+    },
+    "context:lint": {
+      "name": "context:lint",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "context:lint"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793634283.7821279,
+      "duration_seconds": 6.61,
+      "log": "context-lint.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      },
+      "run": "run-1793634283662441100-9a3ae78c"
+    },
+    "context:check": {
+      "name": "context:check",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "context:check"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793634290.390078,
+      "duration_seconds": 0.62,
+      "log": "context-check.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      },
+      "run": "run-1793634283662441100-9a3ae78c"
+    },
+    "context:test": {
+      "name": "context:test",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "context:test"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793634291.0065844,
+      "duration_seconds": 1.0,
+      "log": "context-test.log",
+      "counts": {
+        "tests": [
+          45
+        ],
+        "pass": [
+          45
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      },
+      "run": "run-1793634283662441100-9a3ae78c"
+    },
+    "docs:lint": {
+      "name": "docs:lint",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "docs:lint"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793634709.718156,
+      "duration_seconds": 4.36,
+      "log": "docs-lint.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      },
+      "run": "run-1793634709598034100-b5b638ce"
+    },
+    "docs:test": {
+      "name": "docs:test",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "docs:test"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793634328.3820403,
+      "duration_seconds": 3.99,
+      "log": "docs-test.log",
+      "counts": {
+        "tests": [
+          20
+        ],
+        "pass": [
+          20
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      },
+      "run": "run-1793634283662441100-9a3ae78c"
+    },
+    "contracts:test": {
+      "name": "contracts:test",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "contracts:test"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793634332.3740509,
+      "duration_seconds": 1.4,
+      "log": "contracts-test.log",
+      "counts": {
+        "tests": [
+          27
+        ],
+        "pass": [
+          27
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      },
+      "run": "run-1793634283662441100-9a3ae78c"
+    },
+    "test:projects": {
+      "name": "test:projects",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "test:projects"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793631632.626461,
+      "duration_seconds": 74.4,
+      "log": "test-projects.log",
+      "counts": {
+        "tests": [
+          66
+        ],
+        "pass": [
+          66
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      },
+      "run": "run-1793631608512401200-acc68b54"
+    },
+    "test:session:storage": {
+      "name": "test:session:storage",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "test:session:storage"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793631707.024043,
+      "duration_seconds": 18.62,
+      "log": "test-session-storage.log",
+      "counts": {
+        "tests": [
+          17
+        ],
+        "pass": [
+          17
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      },
+      "run": "run-1793631608512401200-acc68b54"
+    },
+    "test:session:http": {
+      "name": "test:session:http",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "test:session:http"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793631725.6432755,
+      "duration_seconds": 15.48,
+      "log": "test-session-http.log",
+      "counts": {
+        "tests": [
+          15
+        ],
+        "pass": [
+          15
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      },
+      "run": "run-1793631608512401200-acc68b54"
+    },
+    "test:session:lifecycle": {
+      "name": "test:session:lifecycle",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "test:session:lifecycle"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793631741.1239178,
+      "duration_seconds": 13.62,
+      "log": "test-session-lifecycle.log",
+      "counts": {
+        "tests": [
+          18
+        ],
+        "pass": [
+          18
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      },
+      "run": "run-1793631608512401200-acc68b54"
+    },
+    "test:session:ui": {
+      "name": "test:session:ui",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "test:session:ui"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793631754.74011,
+      "duration_seconds": 12.55,
+      "log": "test-session-ui.log",
+      "counts": {
+        "tests": [
+          10
+        ],
+        "pass": [
+          10
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      },
+      "run": "run-1793631608512401200-acc68b54"
+    },
+    "test:foundation": {
+      "name": "test:foundation",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "test:foundation"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793632066.3024404,
+      "duration_seconds": 18.14,
+      "log": "test-foundation.log",
+      "counts": {
+        "tests": [
+          9,
+          7,
+          3
+        ],
+        "pass": [
+          9,
+          7,
+          3
+        ],
+        "fail": [
+          0,
+          0,
+          0
+        ],
+        "skipped": [
+          0,
+          0,
+          0
+        ],
+        "cancelled": [
+          0,
+          0,
+          0
+        ]
+      },
+      "run": "run-1793632064946483900-8a775d7d"
+    },
+    "tasks": {
+      "name": "tasks",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "--test-concurrency=1",
+        "tests/workspace/task-storage.test.mjs",
+        "tests/workspace/task-authority.test.mjs",
+        "tests/workspace/task-http.test.mjs",
+        "tests/workspace/task-reads.test.mjs",
+        "tests/workspace/task-concurrency.test.mjs",
+        "tests/workspace/task-ui-controller.test.mjs",
+        "tests/workspace/task-ui.test.mjs"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793632084.438105,
+      "duration_seconds": 70.92,
+      "log": "tasks.log",
+      "counts": {
+        "tests": [
+          66
+        ],
+        "pass": [
+          66
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      },
+      "run": "run-1793632064946483900-8a775d7d"
+    },
+    "browser": {
+      "name": "browser",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "tests/workspace/task-browser.test.mjs"
+      ],
+      "exit_code": 0,
+      "started_epoch": 1793633798.224464,
+      "duration_seconds": 17.31,
+      "log": "browser.log",
+      "counts": {
+        "tests": [
+          1
+        ],
+        "pass": [
+          1
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      },
+      "run": "run-1793633782608275800-e776542a"
+    }
+  },
+  "source_identity": "source-inputs.json",
+  "source_scope_note": "Final typecheck/build/browser use current CSS and extended browser source. Earlier Task/session/project/foundation scopes predate only the Task-detail wrapping/extended browser probe; backend/controller/component implementation is unchanged. No claim that old evidence used the new visual test.",
+  "failure_history": [
+    "Initial foundation consumer expected 404 for a now-registered unconfigured Task route; strengthened to generic 503/no-store while retaining true unknown/internal 404",
+    "Resume probe failed before fixture startup because Docker was stopped; engine 29.3.1 revalidated",
+    "Real extended 390px probe reproduced overflow on a valid 512-character unbroken title; scoped h5 wrapping correction then current build/Edge passed"
+  ],
+  "unrun": [
+    "Fresh dependency install/clean clone",
+    "Other browser engines, screen-reader certification and deployment/load benchmark",
+    "Separate historical session/project browser campaigns beyond the current integrated Task Edge flow",
+    "Provider/retrieval/evaluation, full SC-01/SC-06/D-07 and future SP02-F01 handlers",
+    "Independent/release approval"
+  ]
+}

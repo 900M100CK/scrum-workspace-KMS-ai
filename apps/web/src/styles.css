@@ -40,4 +40,12 @@ textarea { min-height: 6rem; resize: vertical; }
 .project-list li, .member-list li { padding-block: 1rem; border-bottom: 1px solid #ced9c7; }
 .member-list li { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; justify-content: space-between; }
 .member-id { overflow-wrap: anywhere; }
+.task-workspace { margin-block: 1.5rem; padding-block: 1rem; border-block: 1px solid #ced9c7; }
+.task-list { list-style: none; padding: 0; }
+.task-list li { padding-block: 1rem; border-bottom: 1px solid #ced9c7; }
+.task-list button { max-width: 100%; overflow-wrap: anywhere; text-align: left; }
+.task-description { white-space: pre-wrap; }
+.task-detail h5 { overflow-wrap: anywhere; }
+.task-detail dd { margin: .3rem 0 1rem; overflow-wrap: anywhere; }
+.task-workspace label[for="task-location"] { display: block; margin-top: 1rem; }
 .member-list li > div { min-width: 0; flex: 1 1 12rem; }

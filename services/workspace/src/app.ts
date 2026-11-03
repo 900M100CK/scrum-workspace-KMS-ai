@@ -6,7 +6,9 @@ import {registerSessionHttp} from './session/http.ts';
 import type {SessionHttpOptions} from './session/http.ts';
 import {registerProjectHttp} from './projects/http.ts';
 import type {ProjectHttpOptions} from './projects/http.ts';
-export function buildApp(options:SessionHttpOptions&ProjectHttpOptions&{tls?:ServerOptions;logStream?:Writable}={}) {
+import {registerTaskHttp,TASK_OPERATIONS} from './tasks/http.ts';
+import type {TaskHttpOptions} from './tasks/http.ts';
+export function buildApp(options:SessionHttpOptions&ProjectHttpOptions&TaskHttpOptions&{tls?:ServerOptions;logStream?:Writable}={}) {
  const app = Fastify({
   ...(options.tls?{https:options.tls}:{}),
   logger: options.logStream?{level:'info',stream:options.logStream,serializers:{req:(request:{method:string})=>({method:request.method}),res:(response:{statusCode:number})=>({statusCode:response.statusCode})},redact:['req.headers.cookie','req.body.password','res.headers["set-cookie"]']}:false,
@@ -20,7 +22,8 @@ export function buildApp(options:SessionHttpOptions&ProjectHttpOptions&{tls?:Ser
   return reply.code(status).send({code:status===503?'access_unavailable':'validation_failed',message:status===503?'Session unavailable':'Invalid request',run_id:null});
  });
  app.register(async scope=>registerSessionHttp(scope,options));
- app.register(async scope=>registerProjectHttp(scope,options));
+ app.register(async scope=>registerProjectHttp(scope,{...options,taskOperations:options.tasks?TASK_OPERATIONS:new Set()}));
+ app.register(async scope=>registerTaskHttp(scope,options));
  app.get('/healthz', async () => ({ status: 'ok', service: 'workspace' }));
  app.setNotFoundHandler((_request, reply) => reply.code(404).send({ code: 'not_found', message: 'Resource unavailable' }));
  return app;

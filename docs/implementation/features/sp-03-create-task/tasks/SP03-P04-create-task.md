@@ -1,10 +1,10 @@
 # SP03-P04 — Authorized atomic createTask and exact reconciliation
 
 **Artifact ID:** SP03-P04\
-**Version/date:** 0.1 Draft · 2 November 2026\
+**Version/date:** 0.3 Draft · 2 November 2026\
 **Execution status:** Read the [parent plan](../plan.md#authoritative-task-and-execution-table); this brief has no independent mutable status.\
-**Inputs:** [FEAT-SP03-01](../plan.md) v0.1; publication source snapshots and template digests in that plan.\
-**Trace:** FR-05 / AC-05; supporting FR-03/31/50/59, BR-01/02/10/11/14; UC-03 main and EX-01/02; SC-01 subset only.
+**Inputs:** [FEAT-SP03-01](../plan.md) v0.4; [decision batch](../decision-batch.md) v0.2; Proposed ADR-0027 v0.2; original publication source identities remain snapshots.\
+**Trace:** FR-05 / AC-05; supporting FR-03/31/59, BR-01/02/10/11/14; FR-50 is contextual document-access scope only; UC-03 main and EX-01/02; SC-01 subset only.
 
 ## Objective
 
@@ -33,6 +33,8 @@ Dependencies: P03; resolved G-04 (finish-to-start). DoR: parent task is ready un
 - services/workspace/src/tasks/** (planned; create/store/schema/http only)
 - services/workspace/src/app.ts, config.ts, server.ts (existing; bounded task wiring only)
 - tests/workspace/task-http.test.mjs (planned)
+- services/workspace/src/projects/store.ts and http.ts: trusted registered createTask discovery seam from the decision batch only; no client-supplied operation set
+- tests/workspace/task-fixture.mjs: wire the actual task store/routes for this producer
 
 Canonical future code scope is services/workspace/**, apps/web/** and tests/workspace/**. Existing files keep their current ownership. New names above are explicitly planned from canonical SP-03 and must be confirmed by P02 before use. Metadata/shared-path exceptions require the coordinated plan/spec registration before editing; a blanket path label is not authority to touch unrelated files.
 
@@ -92,3 +94,9 @@ Work sequentially in the authorized branch, within closed paths, with synthetic/
 Relevant open questions are the parent G-01–G-05 rows. Owner and due point are explicit prerequisite gates there, not invented calendar dates. P01 inventories; P02 proposes/disposes; dependent tasks wait. If this task reveals another material question, record its source and affected prerequisite before proceeding.
 
 Result destination: [parent execution evidence](../plan.md#execution-evidence) and, for future measured application work, the dated registered report named by the producing task. Handoff includes exact assertions met/unmet, source identity, current gates and next ready task. No separate mutable INDEX or implementation-plan duplicate.
+
+## P02 frozen implementation seam
+
+Use planned tasks/store.ts and http.ts plus P03B types.ts/outcomes.ts, task-http.test.mjs and the existing task-fixture.mjs. Existing app.ts/server.ts wire the optional task store and the shared pool/session/cursor key; no config.ts or new environment variable. Existing projects/store.ts/http.ts accept only a trusted default-empty implemented-task-operation set supplied by buildApp from task HTTP TASK_OPERATIONS. P04 advertises createTask only when that handler exists; P05 later adds listTasks. Current project-only fixtures advertise neither. Gate Q-02/Q-03 and coordinated P03A support remain prerequisites. Exact transaction, output/replay/input/body rules and unknown-COMMIT assertions are in ADR-0027.
+
+Current execution is under the full-feature owner objective and recorded selected directions; original publication-only statements describe historical authoring. Parent plan/evidence owns actual results. No config.ts change was needed.

@@ -1,6 +1,6 @@
 # Development rules
 
-Version 1.13 · 1 Nov 2026
+Version 1.14 · 2 Nov 2026
 Applies to **development agents**. It does not define the permissions of the application's runtime AI assistant (see §7).
 
 ## 1. Authority
@@ -30,7 +30,7 @@ Rules:
 The owner-directed React/Vite/TypeScript and Fastify/TypeScript framework foundation is selected under [OWNER-FRAMEWORK-01](planning/framework-foundation-owner-2026-10-27.md); provider, session and guard mechanics remain Proposed. PostgreSQL/pgvector storage is selected and implemented under ADR-0004; storage tests do not prove application enforcement. The Node context harness exists independently; its actual commands are in root `AGENTS.md` and `package.json`. Add application commands only after installation and verification:
 
 - Runtime: Node 24+ for the harness and storage runner; application foundations use the owner-selected tuple; service mechanics still require their own evidence.
-- Context checks: `npm run context:lint`, `context:check`, `context:test` (dependency-free). Documentation checks: `npm ci`, then `npm run docs:lint` and `docs:test`. Contract checks: `npm run contracts:test` (after `npm ci`). Storage commands and rollback cautions: [storage runbook](../infra/postgres/README.md). Framework commands: npm run dev:web/dev:workspace/dev:knowledge/dev:prototype (separate commands), typecheck, build, test:foundation and test:prototype. See package guides for exact commands. Workspace POST/GET /session handlers exist with explicit runtime configuration; GET renewal and DELETE logout exist; the live session UI is implemented with a separate browser verification gate; bounded SP-02 project/membership handlers and live UI now exist; later business/Knowledge/guard handlers remain unimplemented. npm run test:projects and the separate installed-runner browser procedure are documented in services/workspace/PROJECTS.md. P08/P09/P10/P11 tests are test:session:storage, test:session:http, test:session:lifecycle and test:session:ui; follow services/workspace/SESSION-HTTP.md for local TLS and disposable tests.
+- Context checks: `npm run context:lint`, `context:check`, `context:test` (dependency-free). Documentation checks: `npm ci`, then `npm run docs:lint` and `docs:test`. Contract checks: `npm run contracts:test` (after `npm ci`). Storage commands and rollback cautions: [storage runbook](../infra/postgres/README.md). Framework commands: npm run dev:web/dev:workspace/dev:knowledge/dev:prototype (separate commands), typecheck, build, test:foundation and test:prototype. See package guides for exact commands. Workspace POST/GET /session handlers exist with explicit runtime configuration; GET renewal and DELETE logout exist; the live session UI is implemented with a separate browser verification gate; bounded SP-02 project/membership and SP-03 Task create/read handlers with live UI now exist; later task mutation/Knowledge/guard handlers remain unimplemented. npm run test:projects and the separate installed-runner browser procedure are documented in services/workspace/PROJECTS.md. P08/P09/P10/P11 tests are test:session:storage, test:session:http, test:session:lifecycle and test:session:ui; follow services/workspace/SESSION-HTTP.md for local TLS and disposable tests.
 - Repo layout: root `AGENTS.md` is the concise entry and points to this full development-rules document. `docs/BRD.md` links full editions in `docs/baseline/`; `docs/sdlc/` contains requirements/register and stage entries; `docs/architecture.md` is the design source; `docs/planning/` contains the five-month MoSCoW plan; `contracts/`, `specs/`, `services/`, `apps/web/` and `eval/` contain the contract/context scaffold. `agents/` and `SDLC-Prompt-Checklist/` retain their workflow roles/templates. Paths in this document are workspace-relative.
 
 Verify uncertain API details against the installed version or official docs.
@@ -165,3 +165,7 @@ Files changed:
 Report behaviours verified separately from structural/schema/SQL checks passed (see [checklist §1b](agent-preflight-checklist.md#1b-scope-control-check-before-adding-anything)).
 
 Always state checks that were **not** run. Update diagrams and docs when the real flow changes. No secrets, unrestricted source content or fabricated evidence in code, logs or reports.
+
+## SP-03 execution navigation — 2 November 2026
+
+[Task operations](../services/workspace/TASKS.md) records explicit 009 synthetic verification, private backlog-author provisioning and permanent original-result recovery. Existing session/project fixture ceilings remain 006/008. This navigation/status update changes no authority, planning, scope or permission rule. Startup never migrates; no development upgrade or automatic commit is implied.

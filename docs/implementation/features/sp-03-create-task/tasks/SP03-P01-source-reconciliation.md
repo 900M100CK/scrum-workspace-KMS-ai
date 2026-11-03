@@ -1,10 +1,10 @@
 # SP03-P01 — Source and AC/permission/test reconciliation
 
 **Artifact ID:** SP03-P01\
-**Version/date:** 0.1 Draft · 2 November 2026\
+**Version/date:** 0.2 Draft · 2 November 2026\
 **Execution status:** Read the [parent plan](../plan.md#authoritative-task-and-execution-table); this brief has no independent mutable status.\
-**Inputs:** [FEAT-SP03-01](../plan.md) v0.1; publication source snapshots and template digests in that plan.\
-**Trace:** FR-05 / AC-05; supporting FR-03/31/50/59, BR-01/02/10/11/14; UC-03 main and EX-01/02; SC-01 subset only.
+**Inputs:** [FEAT-SP03-01](../plan.md) v0.2 for this continuation; original task-definition/source snapshots and template digests remain recorded in the plan.\
+**Trace:** FR-05 / AC-05; supporting FR-03/31/59, BR-01/02/10/11/14; FR-50 is contextual document classification only; UC-03 main and EX-01/02; SC-01 subset only.
 
 ## Objective
 
@@ -25,7 +25,7 @@ Out of scope: unrelated refactoring, requirement/API expansion, task editing/reo
 
 Read the parent source/decision/acceptance sections, canonical SP-03, current FR-05/AC-05 and UC-03, existing Workspace OpenAPI, relevant owned migrations/code and affected tests. Read AGENTS, development-rules, pre-flight and workflow before editing; do not execute from this summary alone. Reconcile actual source versions before starting; parent snapshots are not a claim that later patches were reviewed.
 
-Dependencies: Published plan; SP-02 evidence (finish-to-start). DoR: parent task is ready under actual authorization, relevant G-01–G-05 resolved with recorded evidence, allowed paths/commands/fixtures confirmed, and an observable deliverable plus safe recovery identified. A brief is not implementation authority. Material gaps block only dependent work, with independent preparation continuing.
+Dependencies: Published plan; SP-02 evidence (finish-to-start). DoR: parent task is ready under actual authorization, G-01–G-05 inspected as source-review subjects; resolution belongs to P02 and is not a prerequisite for this preparation task, allowed paths/commands/fixtures confirmed, and an observable deliverable plus safe recovery identified. A brief is not implementation authority. Material gaps block only dependent work, with independent preparation continuing.
 
 ## Files and components touched
 

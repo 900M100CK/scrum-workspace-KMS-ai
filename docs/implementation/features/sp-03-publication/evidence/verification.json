@@ -1,0 +1,1070 @@
+{
+  "date": "2026-11-03",
+  "node": "24.21.0",
+  "commands": [
+    {
+      "run": "verify-1793688338408399500",
+      "name": "metadata",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "scripts/docs/docs-metadata.mjs"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 0,
+      "duration_seconds": 0.59,
+      "log": "metadata.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      }
+    },
+    {
+      "run": "verify-1793688338408399500",
+      "name": "context:lint",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "context:lint"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 0,
+      "duration_seconds": 7.31,
+      "log": "context-lint.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      }
+    },
+    {
+      "run": "verify-1793688338408399500",
+      "name": "context:check",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "context:check"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 0,
+      "duration_seconds": 0.85,
+      "log": "context-check.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      }
+    },
+    {
+      "run": "verify-1793688338408399500",
+      "name": "context:test",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "context:test"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 0,
+      "duration_seconds": 0.75,
+      "log": "context-test.log",
+      "counts": {
+        "tests": [
+          45
+        ],
+        "pass": [
+          45
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      }
+    },
+    {
+      "run": "verify-1793688338408399500",
+      "name": "docs:lint",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "docs:lint"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 1,
+      "duration_seconds": 31.41,
+      "log": "docs-lint.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      }
+    },
+    {
+      "run": "verify-1793688409595465400",
+      "name": "metadata",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "scripts/docs/docs-metadata.mjs"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 0,
+      "duration_seconds": 0.27,
+      "log": "metadata.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      }
+    },
+    {
+      "run": "verify-1793688409595465400",
+      "name": "docs:lint",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "docs:lint"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 1,
+      "duration_seconds": 3.89,
+      "log": "docs-lint.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      }
+    },
+    {
+      "run": "verify-1793688423864018800",
+      "name": "metadata",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "scripts/docs/docs-metadata.mjs"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 0,
+      "duration_seconds": 0.2,
+      "log": "metadata.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      }
+    },
+    {
+      "run": "verify-1793688423864018800",
+      "name": "docs:lint",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "docs:lint"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 1,
+      "duration_seconds": 3.33,
+      "log": "docs-lint.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      }
+    },
+    {
+      "run": "verify-1793688467837929000",
+      "name": "metadata",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "scripts/docs/docs-metadata.mjs"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 0,
+      "duration_seconds": 0.46,
+      "log": "metadata.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      }
+    },
+    {
+      "run": "verify-1793688467837929000",
+      "name": "docs:lint",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "docs:lint"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 1,
+      "duration_seconds": 3.73,
+      "log": "docs-lint.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      }
+    },
+    {
+      "run": "verify-1793688507045082700",
+      "name": "metadata",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "scripts/docs/docs-metadata.mjs"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 0,
+      "duration_seconds": 0.2,
+      "log": "metadata.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      }
+    },
+    {
+      "run": "verify-1793688507045082700",
+      "name": "docs:lint",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "docs:lint"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 1,
+      "duration_seconds": 3.4,
+      "log": "docs-lint.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      }
+    },
+    {
+      "run": "verify-1793688528811806600",
+      "name": "metadata",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "scripts/docs/docs-metadata.mjs"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 0,
+      "duration_seconds": 0.28,
+      "log": "metadata.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      }
+    },
+    {
+      "run": "verify-1793688528811806600",
+      "name": "docs:lint",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "docs:lint"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 1,
+      "duration_seconds": 4.28,
+      "log": "docs-lint.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      }
+    },
+    {
+      "run": "verify-1793688563869094500",
+      "name": "metadata",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "scripts/docs/docs-metadata.mjs"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 0,
+      "duration_seconds": 0.3,
+      "log": "metadata.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      }
+    },
+    {
+      "run": "verify-1793688563869094500",
+      "name": "docs:lint",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "docs:lint"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 1,
+      "duration_seconds": 3.86,
+      "log": "docs-lint.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      }
+    },
+    {
+      "run": "verify-1793688606105188800",
+      "name": "metadata",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "scripts/docs/docs-metadata.mjs"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 0,
+      "duration_seconds": 0.2,
+      "log": "metadata.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      }
+    },
+    {
+      "run": "verify-1793688606105188800",
+      "name": "docs:lint",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "docs:lint"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 0,
+      "duration_seconds": 4.02,
+      "log": "docs-lint.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      }
+    },
+    {
+      "run": "verify-1793688606105188800",
+      "name": "docs:test",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "docs:test"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 0,
+      "duration_seconds": 3.19,
+      "log": "docs-test.log",
+      "counts": {
+        "tests": [
+          20
+        ],
+        "pass": [
+          20
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      }
+    },
+    {
+      "run": "verify-1793688606105188800",
+      "name": "contracts:test",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "contracts:test"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 0,
+      "duration_seconds": 2.27,
+      "log": "contracts-test.log",
+      "counts": {
+        "tests": [
+          27
+        ],
+        "pass": [
+          27
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      }
+    },
+    {
+      "run": "verify-1793688606105188800",
+      "name": "typecheck",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 2,
+      "duration_seconds": 7.97,
+      "log": "typecheck.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      }
+    },
+    {
+      "run": "verify-1793688660744068400",
+      "name": "typecheck",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 0,
+      "duration_seconds": 6.45,
+      "log": "typecheck.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      }
+    },
+    {
+      "run": "verify-1793688660744068400",
+      "name": "build",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "build"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 0,
+      "duration_seconds": 6.22,
+      "log": "build.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      }
+    },
+    {
+      "run": "verify-1793688693410314400",
+      "name": "test:projects",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "test:projects"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 1,
+      "duration_seconds": 64.78,
+      "log": "test-projects.log",
+      "counts": {
+        "tests": [
+          60
+        ],
+        "pass": [
+          57
+        ],
+        "fail": [
+          3
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      }
+    },
+    {
+      "run": "verify-1793688796677067400",
+      "name": "test:projects",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "test:projects"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 0,
+      "duration_seconds": 62.35,
+      "log": "test-projects.log",
+      "counts": {
+        "tests": [
+          64
+        ],
+        "pass": [
+          64
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      }
+    },
+    {
+      "run": "verify-1793688796677067400",
+      "name": "test:session:storage",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "test:session:storage"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 0,
+      "duration_seconds": 16.19,
+      "log": "test-session-storage.log",
+      "counts": {
+        "tests": [
+          17
+        ],
+        "pass": [
+          17
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      }
+    },
+    {
+      "run": "verify-1793688796677067400",
+      "name": "test:session:http",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "test:session:http"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 0,
+      "duration_seconds": 11.54,
+      "log": "test-session-http.log",
+      "counts": {
+        "tests": [
+          15
+        ],
+        "pass": [
+          15
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      }
+    },
+    {
+      "run": "verify-1793688796677067400",
+      "name": "test:session:lifecycle",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "test:session:lifecycle"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 0,
+      "duration_seconds": 10.19,
+      "log": "test-session-lifecycle.log",
+      "counts": {
+        "tests": [
+          18
+        ],
+        "pass": [
+          18
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      }
+    },
+    {
+      "run": "verify-1793688796677067400",
+      "name": "test:session:ui",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "test:session:ui"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 0,
+      "duration_seconds": 9.62,
+      "log": "test-session-ui.log",
+      "counts": {
+        "tests": [
+          10
+        ],
+        "pass": [
+          10
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      }
+    },
+    {
+      "run": "verify-1793688796677067400",
+      "name": "test:foundation",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "test:foundation"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 1,
+      "duration_seconds": 10.86,
+      "log": "test-foundation.log",
+      "counts": {
+        "tests": [
+          9
+        ],
+        "pass": [
+          8
+        ],
+        "fail": [
+          1
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      }
+    },
+    {
+      "run": "verify-1793688966443279300",
+      "name": "test:foundation",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "test:foundation"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai",
+      "exit_code": 0,
+      "duration_seconds": 13.66,
+      "log": "test-foundation.log",
+      "counts": {
+        "tests": [
+          9,
+          7,
+          3
+        ],
+        "pass": [
+          9,
+          7,
+          3
+        ],
+        "fail": [
+          0,
+          0,
+          0
+        ],
+        "skipped": [
+          0,
+          0,
+          0
+        ],
+        "cancelled": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "run": "verify-1793688982016041400",
+      "name": "tasks",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "--test-concurrency=1",
+        "tests/workspace/task-storage.test.mjs",
+        "tests/workspace/task-authority.test.mjs",
+        "tests/workspace/task-http.test.mjs",
+        "tests/workspace/task-reads.test.mjs",
+        "tests/workspace/task-concurrency.test.mjs",
+        "tests/workspace/task-ui-controller.test.mjs",
+        "tests/workspace/task-ui.test.mjs"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 0,
+      "duration_seconds": 54.49,
+      "log": "tasks.log",
+      "counts": {
+        "tests": [
+          66
+        ],
+        "pass": [
+          66
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      }
+    },
+    {
+      "run": "verify-1793688982016041400",
+      "name": "browser",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "tests/workspace/task-browser.test.mjs"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 1,
+      "duration_seconds": 37.56,
+      "log": "browser.log",
+      "counts": {
+        "tests": [
+          1
+        ],
+        "pass": [
+          0
+        ],
+        "fail": [
+          1
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      }
+    },
+    {
+      "run": "verify-1793689058487033300",
+      "name": "test:prototype",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "test:prototype"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 1,
+      "duration_seconds": 2.9,
+      "log": "test-prototype.log",
+      "counts": {
+        "tests": [
+          20
+        ],
+        "pass": [
+          19
+        ],
+        "fail": [
+          1
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      }
+    },
+    {
+      "run": "verify-1793689075155433600",
+      "name": "test:prototype",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "test:prototype"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 0,
+      "duration_seconds": 1.92,
+      "log": "test-prototype.log",
+      "counts": {
+        "tests": [
+          20
+        ],
+        "pass": [
+          20
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      }
+    },
+    {
+      "run": "verify-1793689097326514600",
+      "name": "browser",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "tests/workspace/task-browser.test.mjs"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai",
+      "exit_code": 0,
+      "duration_seconds": 14.43,
+      "log": "browser.log",
+      "counts": {
+        "tests": [
+          1
+        ],
+        "pass": [
+          1
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      }
+    },
+    {
+      "run": "verify-1793689201147350200",
+      "name": "context:lint",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "context:lint"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 0,
+      "duration_seconds": 1.22,
+      "log": "context-lint.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      }
+    },
+    {
+      "run": "verify-1793689201147350200",
+      "name": "context:check",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "context:check"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 0,
+      "duration_seconds": 0.5,
+      "log": "context-check.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      }
+    },
+    {
+      "run": "verify-1793689201147350200",
+      "name": "context:test",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "context:test"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 0,
+      "duration_seconds": 0.87,
+      "log": "context-test.log",
+      "counts": {
+        "tests": [
+          45
+        ],
+        "pass": [
+          45
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      }
+    },
+    {
+      "run": "verify-1793689201147350200",
+      "name": "docs:lint",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "docs:lint"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 0,
+      "duration_seconds": 3.4,
+      "log": "docs-lint.log",
+      "counts": {
+        "tests": [],
+        "pass": [],
+        "fail": [],
+        "skipped": [],
+        "cancelled": []
+      }
+    },
+    {
+      "run": "verify-1793689201147350200",
+      "name": "docs:test",
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "docs:test"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+      "exit_code": 0,
+      "duration_seconds": 3.31,
+      "log": "docs-test.log",
+      "counts": {
+        "tests": [
+          20
+        ],
+        "pass": [
+          20
+        ],
+        "fail": [
+          0
+        ],
+        "skipped": [
+          0
+        ],
+        "cancelled": [
+          0
+        ]
+      }
+    }
+  ],
+  "dependency_setup": "Existing installation reused via directory junctions; no fresh npm ci claim",
+  "template_pin": "3c65f5cbefa7d69a75cadd89b177e3add8b400b0; exported for candidate structural checks",
+  "candidate_path": "D:\\scrum-workspace-KMS-ai\\.tmp\\sp03-publication\\candidate",
+  "foundation_browser_boundary": "Actual root runtime/test sources equal candidate; .tmp export intentionally denied by existing Vite protection"
+}

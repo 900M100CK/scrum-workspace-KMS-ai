@@ -1,0 +1,417 @@
+{
+  "artifact": "SP03-P01 inspected source identity",
+  "version": "0.1",
+  "date": "2026-11-02",
+  "branch": "codex/sp-03-create-task",
+  "head": "d6b8caf241603cdff4f9b7a2a491fc4e2e386453",
+  "boundary": "Static inspection and source/body comparison only; no application test or independent approval",
+  "sources": [
+    {
+      "path": "docs/baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md",
+      "observed_header": "unversioned",
+      "committed_header": "unversioned",
+      "local_sha256": "3195aefb50314c1a5a3ff7d31c505ffc083142752cf6184a754da7c5f61d4925",
+      "committed_sha256": "3195aefb50314c1a5a3ff7d31c505ffc083142752cf6184a754da7c5f61d4925",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "docs/sdlc/PRD_SRS.md",
+      "observed_header": "0.10 Draft \u00b7 2 November 2026",
+      "committed_header": "0.9 Draft \u00b7 17 October 2026",
+      "local_sha256": "b0b013d3237cf4eb71a0c074a444c8e4ce12831ddd8b9457479a0692fd0ef8ab",
+      "committed_sha256": "69817a71cd6e0a3b932d8125ba9f0e8c5271e879f05d7963e6347042cd577b78",
+      "content_equal_ignoring_CRLF": false
+    },
+    {
+      "path": "docs/sdlc/use-cases.md",
+      "observed_header": "0.8.1 Draft \u00b7 2 November 2026",
+      "committed_header": "0.8 Draft \u00b7 25 October 2026",
+      "local_sha256": "29475d6da902b1b3bbebae65e822cbc4c4292d122149f6c29d0cd6e154bbf616",
+      "committed_sha256": "94893d95512ca787fd150b202f18fbc849617d182e64341af5637de2b39f6c3e",
+      "content_equal_ignoring_CRLF": false
+    },
+    {
+      "path": "docs/architecture.md",
+      "observed_header": "0.16.1 Draft \u00b7 2 November 2026",
+      "committed_header": "0.16 Draft \u00b7 25 October 2026",
+      "local_sha256": "a99772633e51ce45cfa7301c41c39032b23a78dd8b941df9fe09345d8b943b05",
+      "committed_sha256": "882ad715b4b6d43a7d42c3bb0bbe63fb5905a42520c38e8919bfee0fa6ae6ecd",
+      "content_equal_ignoring_CRLF": false
+    },
+    {
+      "path": "docs/sdlc/data-design.md",
+      "observed_header": "0.14.1 Draft \u00b7 2 November 2026",
+      "committed_header": "0.14 Draft \u00b7 1 November 2026",
+      "local_sha256": "68ca283d2b6c743b8bc2df623ce49609766f542a6b892f679adb474a7696d0bf",
+      "committed_sha256": "e03833d233d787845cde702032fee4db9cba2f2c59bd641f62373c18da234675",
+      "content_equal_ignoring_CRLF": false
+    },
+    {
+      "path": "docs/sdlc/api-design.md",
+      "observed_header": "0.20.1 Draft \u00b7 2 November 2026",
+      "committed_header": "0.20 Draft \u00b7 1 November 2026",
+      "local_sha256": "e00d67a8f68304e5ca8b996db427c75c1297ae97b1b86ed9501881f0f8add5ff",
+      "committed_sha256": "69c787b55b86f2add09e937abad9332fb4b425121039adff0b413d36711df92c",
+      "content_equal_ignoring_CRLF": false
+    },
+    {
+      "path": "docs/sdlc/ui-ux-spec.md",
+      "observed_header": "0.13.1 Draft \u00b7 2 November 2026",
+      "committed_header": "0.13 Draft \u00b7 25 October 2026",
+      "local_sha256": "95a801a8ab96fe3a7d432df69414e94b1aa6abf7f77beddb37218e896150328e",
+      "committed_sha256": "2727d269ae678d159b9aeb2601c6805a7cb8ce370b9b45d8f24f12531a486c7a",
+      "content_equal_ignoring_CRLF": false
+    },
+    {
+      "path": "docs/sdlc/ui-ux-blueprint.md",
+      "observed_header": "1.7.1 Draft \u00b7 2 November 2026",
+      "committed_header": "1.7 Draft \u00b7 1 November 2026",
+      "local_sha256": "9985246ea7f05c523f6902758c1087f4f3563e2b842f38b9ae7a75ac469304d4",
+      "committed_sha256": "d31ffaed97e599d6c20df998b7b05e001a7b88ff8e65f2432d528d3318374eae",
+      "content_equal_ignoring_CRLF": false
+    },
+    {
+      "path": "docs/ux/permission-matrix.md",
+      "observed_header": "0.11.1 Draft \u00b7 2 November 2026",
+      "committed_header": "0.11 Draft \u00b7 25 October 2026",
+      "local_sha256": "a7e06f471adb20c5b6244a9a8dc5e3f91f7a4934b6cab8d3cf551b98feda2c53",
+      "committed_sha256": "387dad6ec3178a7f38f8b8e8ade0077a1802d7fb764019b2306322cefba009ae",
+      "content_equal_ignoring_CRLF": false
+    },
+    {
+      "path": "docs/ux/flows/board-flow.md",
+      "observed_header": "0.10.1 Draft \u00b7 2 November 2026",
+      "committed_header": "0.10 Draft \u00b7 25 October 2026",
+      "local_sha256": "0bf0948b87497a4c5373ae5c6939ee15d00da455a4b6ffa0ae4ae1be18819c20",
+      "committed_sha256": "a1bb1f1607890135f88697b63d62bd650ec74e7d26331205972eb11e9e16e990",
+      "content_equal_ignoring_CRLF": false
+    },
+    {
+      "path": "docs/sdlc/test-plan.md",
+      "observed_header": "0.23.1 Draft \u00b7 2 November 2026",
+      "committed_header": "0.23 Draft \u00b7 1 November 2026",
+      "local_sha256": "727db68c774b06724428d605b50da9b5ded8b1827ca07100c4a88d6a05d1cbe4",
+      "committed_sha256": "03e396cfcee3c5cb17fd7a5974bcaa3b8c7ea285607e25fd087b2954cf112884",
+      "content_equal_ignoring_CRLF": false
+    },
+    {
+      "path": "docs/sdlc/test-coverage.md",
+      "observed_header": "0.10.1 Draft \u00b7 2 November 2026",
+      "committed_header": "0.10 Draft \u00b7 1 November 2026",
+      "local_sha256": "d7ef26579f2e2da9f7fad53957046e3492ef49526539d5f1de5f646c5dbc4cd1",
+      "committed_sha256": "051209756347d7c4f32fd78c2d2c72b28b6e1658687f8ab47b6877d4087be940",
+      "content_equal_ignoring_CRLF": false
+    },
+    {
+      "path": "docs/sdlc/requirement-verification.md",
+      "observed_header": "0.11.1 Draft \u00b7 2 November 2026",
+      "committed_header": "0.11 Draft \u00b7 1 November 2026",
+      "local_sha256": "e4bf25dde65bc1a4e51988b5f3b6f2cf3877deb57a709094f8015c7c20a71b0b",
+      "committed_sha256": "64fb0a41e70c16de369a5b7147b0dab3c56c5f34c762ff0b0120e66cfef8eaa5",
+      "content_equal_ignoring_CRLF": false
+    },
+    {
+      "path": "docs/planning/five-month-plan.md",
+      "observed_header": "0.4 Draft \u00b7 25 October 2026",
+      "committed_header": "0.4 Draft \u00b7 25 October 2026",
+      "local_sha256": "33eef3af5de2dd269d24b42fc5837abc64fb11b152da0444fa371ad10cad5efe",
+      "committed_sha256": "33eef3af5de2dd269d24b42fc5837abc64fb11b152da0444fa371ad10cad5efe",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "specs/003-create-task.md",
+      "observed_header": "0.6.1 Draft \u00b7 2 November 2026",
+      "committed_header": "0.6 Draft \u00b7 25 October 2026",
+      "local_sha256": "dc3c2ec1ec44e8a1ec1cae87ed3c2dad120e511b1f72aa04e1a6e44db03436fb",
+      "committed_sha256": "1140d36fc074d68c1118c3a61d99e856c452da918b51c8188b95de782d5d4c9b",
+      "content_equal_ignoring_CRLF": false
+    },
+    {
+      "path": "docs/implementation/tasks/03-create-task.md",
+      "observed_header": "0.1 Draft \u00b7 26 October 2026",
+      "committed_header": "0.1 Draft \u00b7 26 October 2026",
+      "local_sha256": "81edb27a73db6d0ff66658cd1f08b1f4de0782bbb26b8158b43745073d415a31",
+      "committed_sha256": "81edb27a73db6d0ff66658cd1f08b1f4de0782bbb26b8158b43745073d415a31",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "docs/implementation/decisions.md",
+      "observed_header": "0.14 Draft \u00b7 1 November 2026",
+      "committed_header": "0.14 Draft \u00b7 1 November 2026",
+      "local_sha256": "beb3b83a4e5990b96bf2d97731e8ebd80942fceeb70570e16279d0f2c7cfb898",
+      "committed_sha256": "1293156f82054f904617689ee96cf0581fccfd0a4b484c52be28ea9ab6821cc3",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "docs/adr/0007-document-access-model.md",
+      "observed_header": "0.1 \u00b7 13 October 2026",
+      "committed_header": "0.1 \u00b7 13 October 2026",
+      "local_sha256": "6a6d913df26e54fb86821b2ee4eefa7240b969edccf5637407e5659f3c9e87cb",
+      "committed_sha256": "6a6d913df26e54fb86821b2ee4eefa7240b969edccf5637407e5659f3c9e87cb",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "docs/adr/0018-operational-read-projections.md",
+      "observed_header": "0.2 Proposed \u00b7 18 October 2026",
+      "committed_header": "0.2 Proposed \u00b7 18 October 2026",
+      "local_sha256": "e2a8f053652923376661d572993f8c70b3a9cd95ecdfa272a6da878a44e7a738",
+      "committed_sha256": "e2a8f053652923376661d572993f8c70b3a9cd95ecdfa272a6da878a44e7a738",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "docs/adr/0019-scoped-ui-discovery.md",
+      "observed_header": "0.4 Proposed \u00b7 31 October 2026",
+      "committed_header": "0.4 Proposed \u00b7 31 October 2026",
+      "local_sha256": "67f13286ce0fa2d29b035ee796a9a32ca5034b4657280f95ba699a3928966492",
+      "committed_sha256": "26c75fb2a5f14d9bafebce4ad07595699d77d9b59589dd239a2196b7c31ed262",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "docs/adr/0026-project-membership-foundation.md",
+      "observed_header": "0.4 Proposed \u00b7 1 November 2026",
+      "committed_header": "0.4 Proposed \u00b7 1 November 2026",
+      "local_sha256": "98faa4926b30ea3ea634524c52c190b411f22b3c3b24ab29883946ba3f5f9bda",
+      "committed_sha256": "1313ee8d750f700268461d4ef3c602108d596cf438a8b7a1b08fab4612399056",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "contracts/openapi/workspace.openapi.json",
+      "observed_header": "0.2.11",
+      "committed_header": "0.2.11",
+      "local_sha256": "36244b33701655cde4b894821350693d3feaccac8406c6a85afef8bf55f2cc38",
+      "committed_sha256": "2eecf511a576b66282ebc8c591d51119222f3fd4b6967ce2658049a7c5555eaf",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "contracts/data-model.json",
+      "observed_header": "0.10",
+      "committed_header": "0.10",
+      "local_sha256": "dd562a23cc2d2947e50be769d89546d55d7f4fa35dc17d41d88952a2777f59d8",
+      "committed_sha256": "c0a7254347e1a252db83b622ad882e7b9272f4df429156e3e2b9042d21f8c7a4",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "services/workspace/src/app.ts",
+      "observed_header": "unversioned",
+      "committed_header": "unversioned",
+      "local_sha256": "79d9bfe5adce07dcb8db82abef4baf30c988c8edb430dd1676f61f374803557f",
+      "committed_sha256": "ac33da5788ea3805d6547b935e89d54f559015e183cfe9bcd9989a896f780034",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "services/workspace/src/projects/operator.ts",
+      "observed_header": "unversioned",
+      "committed_header": "unversioned",
+      "local_sha256": "b32e836fbf09ae5d9c0d418853610029580b5facf6f291a7ba9433bdbb48fdf5",
+      "committed_sha256": "106ce6d74a81d0bb761309c6e0e3e1fc9b548f9ec5166419ebb04fdbaadd64ba",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "services/workspace/src/projects/cli.ts",
+      "observed_header": "unversioned",
+      "committed_header": "unversioned",
+      "local_sha256": "07f2a05b479db65d6a56989cecf79c7d2ab9b1007f1439e7c4bad1e3dec198a3",
+      "committed_sha256": "9858ee955c5415543a8f5fc8b4b3d8688031f8c42c337dcb91b895dd13959ce6",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "services/workspace/src/projects/store.ts",
+      "observed_header": "unversioned",
+      "committed_header": "unversioned",
+      "local_sha256": "b7b112ca50f34e3a149880523a00468a8a418268584e63838b73e6d9f466d271",
+      "committed_sha256": "63654510a12a84d42575dab53de310547ff325b4b36af1585325b5788207281d",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "services/workspace/src/projects/http.ts",
+      "observed_header": "unversioned",
+      "committed_header": "unversioned",
+      "local_sha256": "d3faafe95b696d0ad3b18cad7bab63c6471dbf72ce66e5a290bbfd3825d7ca60",
+      "committed_sha256": "c651eb92015eda8b592c1ca72afd4ba1e43090dcf8cb0ab7754abc17cfd0a753",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "services/workspace/src/projects/outcomes.ts",
+      "observed_header": "unversioned",
+      "committed_header": "unversioned",
+      "local_sha256": "57c954a7a871de99c3a1babdf6a3b58b6592dc1aab1d759319cd35e5ab7e245c",
+      "committed_sha256": "546bb153554e377b87b490fe3c8b3b1359864c65709f54f43e5eaad8eaccae2d",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "services/workspace/src/projects/cursor.ts",
+      "observed_header": "unversioned",
+      "committed_header": "unversioned",
+      "local_sha256": "2fdeae26addde86ebc9503951e98d3bc25d8873860440437635683ba21cea237",
+      "committed_sha256": "82712dc9370bcbfe67b77c593f47d63381bfe8d0c7a4dae9a49d3a99f61ca0d5",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "services/workspace/src/session/store.ts",
+      "observed_header": "unversioned",
+      "committed_header": "unversioned",
+      "local_sha256": "9195b3d6cfb935ad6d5542ca64ccc5fecc0e1f7cea79651f5525398dfb7279ac",
+      "committed_sha256": "813d155b471442a13fbb5fb945ab3edf78023ff6f803816155471384af35f380",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "services/workspace/src/session/database.ts",
+      "observed_header": "unversioned",
+      "committed_header": "unversioned",
+      "local_sha256": "a94c2df12b2815ef4b93e71f386d0e4e8831f12a1c32931d13a2db1292afa489",
+      "committed_sha256": "b84ff7477d6c7c3fdab4e35bfe121ac548923aabbe5f203fed8026e5005c50e7",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "services/workspace/migrations/001-store.up.sql",
+      "observed_header": "unversioned",
+      "committed_header": "unversioned",
+      "local_sha256": "9898406f45069f652b2ada98a0415353d5e7c0916df974dc5ff015b25403f269",
+      "committed_sha256": "9898406f45069f652b2ada98a0415353d5e7c0916df974dc5ff015b25403f269",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "services/workspace/migrations/003-work-location.up.sql",
+      "observed_header": "unversioned",
+      "committed_header": "unversioned",
+      "local_sha256": "e73b8af5f4cae23ee0368cf0577d881d0a2560a133a69b2fa38876b060a6727c",
+      "committed_sha256": "e73b8af5f4cae23ee0368cf0577d881d0a2560a133a69b2fa38876b060a6727c",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "services/workspace/migrations/007-project-membership.up.sql",
+      "observed_header": "unversioned",
+      "committed_header": "unversioned",
+      "local_sha256": "cb7216447397b9ef4104230725e5037a4fba12971976507cf29f396c412481f6",
+      "committed_sha256": "04e660547797da67eb806e241a0a71ed337aa98800ce86f088efe0c54fed72e5",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "services/workspace/migrations/008-project-outcomes.up.sql",
+      "observed_header": "unversioned",
+      "committed_header": "unversioned",
+      "local_sha256": "91f6fa1c4654341d485be0b5ed226380b0e4b06f29c94fe196631e2e3fe4e6a2",
+      "committed_sha256": "47e0470817560da2eced0a67c6d7bb6d229d88dbc3f8ddba4ab14ad861ab0223",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "apps/web/src/App.tsx",
+      "observed_header": "unversioned",
+      "committed_header": "unversioned",
+      "local_sha256": "4dea0a95b1b266852a1da3181c0b45e520a31e22eaf8b545b65f8f70a10f630b",
+      "committed_sha256": "6b9de60a8be0bf92225a7c6cc2b2ec2a2bd11682c25b8c21c2aa0e3ee2d22509",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "apps/web/src/ProjectWorkspace.tsx",
+      "observed_header": "unversioned",
+      "committed_header": "unversioned",
+      "local_sha256": "0eb45a01b36e5dc9fb2f1806a85b5b86318fe41d500a034a2f84a2cebb0bd3e2",
+      "committed_sha256": "e522642f5ebd9dbd886dd3f9df0383faf588a87ab5d142da301c73d994e8317f",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "apps/web/src/projects.ts",
+      "observed_header": "unversioned",
+      "committed_header": "unversioned",
+      "local_sha256": "d93289b081046719030fab594a2167c29dd896936c71d5250f913a6701ca703b",
+      "committed_sha256": "9e820199bd09ecff9fdcafc471389f2177e18a235cd16cb4591c272c3bd8008c",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "tests/workspace/project-http.test.mjs",
+      "observed_header": "unversioned",
+      "committed_header": "unversioned",
+      "local_sha256": "96251f59964b34ec2ba75f7243709486bca56125d7aea8a4209be7bbad42e884",
+      "committed_sha256": "e0864f885286c2a1e556d4e48e0a7becb78dccea8fa8591fb9c186819de07985",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "tests/workspace/project-authority.test.mjs",
+      "observed_header": "unversioned",
+      "committed_header": "unversioned",
+      "local_sha256": "85e8b40346efdb6022fc5d5c0aa9f4309351955752c84a01a1aed6ed982f8d10",
+      "committed_sha256": "4c766b0a64af0f42d90c531330be3903f7628943e4d1cea4627fc3ae876bf278",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "tests/workspace/project-outcomes.test.mjs",
+      "observed_header": "unversioned",
+      "committed_header": "unversioned",
+      "local_sha256": "c23c7b1c1df07b7db1fd6b484b242093ba338589fcc04c1451d05f7f0dca965c",
+      "committed_sha256": "beeda5a5331acd9875f816b11ebbf0df6f2039291a29ed4e29dafe2ca0b86c98",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "tests/workspace/membership-lifecycle.test.mjs",
+      "observed_header": "unversioned",
+      "committed_header": "unversioned",
+      "local_sha256": "4db39903c1f8909dba45312a297f1c156a778c42013da594d518cf9843421c7d",
+      "committed_sha256": "089edc144632293905f79e5d4646d368af471b6be3823966598950d6438d3f1c",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "tests/workspace/project-reads.test.mjs",
+      "observed_header": "unversioned",
+      "committed_header": "unversioned",
+      "local_sha256": "eb702400217c6ac01edcdacb66409b3b79f07dafede99441909d43d3599240d0",
+      "committed_sha256": "41a95b9fc4a6c7be595ea01bd02771a4c55adec1ebc35d4698cfd9a81bc72119",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "tests/workspace/project-concurrency.test.mjs",
+      "observed_header": "unversioned",
+      "committed_header": "unversioned",
+      "local_sha256": "9d0f2bacb6d3cca0757a7c9e3dbac5203587169aac38090cadb215c03844af7b",
+      "committed_sha256": "1560644bdef1453d3e56f6dffdef4581cdb4a76b0408882847324c6cc49969cb",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "tests/workspace/project-cursor.test.mjs",
+      "observed_header": "unversioned",
+      "committed_header": "unversioned",
+      "local_sha256": "545f3702c6e03e928e153bada87e8f8454429b00c303ab6097e4b70d62be2d17",
+      "committed_sha256": "e0ebef7cb87ef37f5bbd0fb7fa47366a136fb5481b95b0e7c930771e9441d12a",
+      "content_equal_ignoring_CRLF": false
+    },
+    {
+      "path": "tests/workspace/fixture.mjs",
+      "observed_header": "unversioned",
+      "committed_header": "unversioned",
+      "local_sha256": "f464041f29aac80125784869d8df43f4a96af3911813e59e6433e7d6a52ea09b",
+      "committed_sha256": "8667df12afb4a02e0d31d13c9ffaa2e72e7180532e92c367cb11d26c3801f67b",
+      "content_equal_ignoring_CRLF": true
+    },
+    {
+      "path": "docs/sdlc/reports/SP-02-testing-audit-2026-11-01.md",
+      "observed_header": "0.2.1 Draft \u00b7 2 November 2026",
+      "committed_header": "0.1 Draft \u00b7 1 November 2026",
+      "local_sha256": "a48a70037d03666c8f1affb6bd1ea76aa7845c85922fb6087ad230ef05c8a626",
+      "committed_sha256": "a26b284649f4807ac3340e93c0a7fcc9b50230f7a42e54e1587a9a3dea42c753",
+      "content_equal_ignoring_CRLF": false
+    },
+    {
+      "path": "docs/sdlc/reports/SP-02-execution-2026-10-31.md",
+      "observed_header": "0.3.1 Draft \u00b7 2 November 2026",
+      "committed_header": "0.2 Draft \u00b7 1 November 2026",
+      "local_sha256": "e09d111fad2e172a78ea870cb9fabb0902cd077340970825f2dcbd1fb857916a",
+      "committed_sha256": "35fe7a1bc688b09ee42e1312a1169c5b44f0ec1b0592b7fda3104523181792f3",
+      "content_equal_ignoring_CRLF": false
+    }
+  ],
+  "requirement_design_bodies_equal_after_excluding_metadata": [
+    "docs/sdlc/PRD_SRS.md",
+    "docs/sdlc/use-cases.md",
+    "docs/architecture.md",
+    "docs/sdlc/data-design.md",
+    "docs/sdlc/api-design.md",
+    "docs/sdlc/ui-ux-spec.md",
+    "docs/sdlc/test-plan.md",
+    "specs/003-create-task.md"
+  ],
+  "notes": [
+    "Raw SHA-256 hashes include observed line endings. Equality classification ignores CRLF only.",
+    "Uncommitted task cursor tests include earlier boundary additions; P01 does not execute or relabel them.",
+    "SP-02 reports retain their original measured evidence; current report input-label patches are not new runtime runs."
+  ]
+}

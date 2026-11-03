@@ -12,7 +12,7 @@ const ajv=new Ajv2020({strict:false,removeAdditional:false,coerceTypes:false,use
 ajv.addSchema({$id:'urn:sacw:projects',components:api.components});
 export const projectValidators=Object.fromEntries(['CreateProject','AddMember','Project','ProjectList','Member','MemberList','AllowedActions'].map(name=>[name,ajv.compile({$ref:`urn:sacw:projects#/components/schemas/${name}`})]));
 const responses=(status:number,name:string)=>Object.fromEntries([[status,{$ref:`urn:sacw:projects#/components/schemas/${name}`}],...[400,401,403,404,409,413,415,503].map(n=>[n,{}])]);
-export interface ProjectHttpOptions {projects?:WorkspaceProjectStore;origin?:string}
+export interface ProjectHttpOptions {projects?:WorkspaceProjectStore;origin?:string;taskOperations?:ReadonlySet<'createTask'|'listTasks'>}
 export async function registerProjectHttp(app:FastifyInstance,options:ProjectHttpOptions){
  await app.register(cookie);const origin=options.origin?sessionOrigin(options.origin):null;
  app.setSerializerCompiler(({httpStatus,schema})=>{
@@ -77,6 +77,6 @@ export async function registerProjectHttp(app:FastifyInstance,options:ProjectHtt
   if(Object.keys(q).some(k=>!['resource_kind',...ids].includes(k))||typeof kind!=='string'||!['global','project','task','sprint','document','version','link','run'].includes(kind)||Object.values(q).some(v=>typeof v!=='string'||!v))throw new ProjectFault(400,'validation_failed');
   const supplied=ids.filter(k=>q[k]!==undefined),expected=kind==='global'?[]:kind==='project'?['project_id']:kind==='version'?['project_id','document_id','version_id']:['project_id','resource_id'];
   if(supplied.sort().join(',')!==expected.sort().join(','))throw new ProjectFault(400,'validation_failed');
-  return options.projects!.actions(request.cookies[SESSION_COOKIE]!,kind,q.project_id as string|undefined);
+  return options.projects!.actions(request.cookies[SESSION_COOKIE]!,kind,q.project_id as string|undefined,options.taskOperations);
  });
 }

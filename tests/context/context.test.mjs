@@ -194,6 +194,11 @@ test('fresh-client work contracts retain location, allocation history and blocke
   validateApi(original, requirements);
   for (const [mutate, message] of [
     [api => { api.components.schemas.Task.required = api.components.schemas.Task.required.filter(x => x !== 'work_location'); }, /task location/],
+    [api => { api.components.schemas.Task.required = api.components.schemas.Task.required.filter(x => x !== 'created_at'); }, /creation time/],
+    [api => { api.components.schemas.Task.properties.created_at.readOnly = false; }, /server-owned/],
+    [api => { api.components.schemas.CreateTask.properties.created_at = {type:'string'}; }, /Client cannot assert/],
+    [api => { delete api.paths['/projects/{project_id}/tasks'].post.responses['415']; }, /transport response/],
+    [api => { delete api.paths['/tasks/{task_id}'].get.responses['400']; }, /invalid query/],
     [api => { delete api.paths['/sprints/{sprint_id}/items'].get; }, /Sprint membership/],
     [api => { delete api.paths['/tasks/{task_id}/blockers'].get; }, /Blocker history/],
     [api => { api.components.schemas.SprintItem.required = ['task']; }, /allocation history/],

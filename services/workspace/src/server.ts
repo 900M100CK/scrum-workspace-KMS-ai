@@ -3,8 +3,10 @@ import { readPort } from './config.ts';
 import {sessionRuntime} from './session/runtime.ts';
 import {WorkspaceProjectStore} from './projects/store.ts';
 import {cursorKey} from './projects/cursor.ts';
+import {WorkspaceTaskStore} from './tasks/store.ts';
 const session=sessionRuntime(process.env);
-const app = buildApp(session?{store:session.store,origin:session.origin,projects:new WorkspaceProjectStore(session.pool,session.store,cursorKey(process.env.SACW_PROJECT_CURSOR_KEY))}:{});
+const key=session?cursorKey(process.env.SACW_PROJECT_CURSOR_KEY):null;
+const app = buildApp(session?{store:session.store,origin:session.origin,projects:new WorkspaceProjectStore(session.pool,session.store,key),tasks:new WorkspaceTaskStore(session.pool,session.store,key)}:{});
 app.addHook('onClose',async()=>{if(session)await session.pool.end();});
 for (const signal of ['SIGINT', 'SIGTERM'] as const) process.once(signal, () => { void app.close().catch(() => { process.exitCode = 1; }); });
 try {

@@ -1,10 +1,10 @@
 # SP03-P02 — Bounded task authority, persistence and read design
 
 **Artifact ID:** SP03-P02\
-**Version/date:** 0.1 Draft · 2 November 2026\
+**Version/date:** 0.2 Draft · 2 November 2026\
 **Execution status:** Read the [parent plan](../plan.md#authoritative-task-and-execution-table); this brief has no independent mutable status.\
-**Inputs:** [FEAT-SP03-01](../plan.md) v0.1; publication source snapshots and template digests in that plan.\
-**Trace:** FR-05 / AC-05; supporting FR-03/31/50/59, BR-01/02/10/11/14; UC-03 main and EX-01/02; SC-01 subset only.
+**Inputs:** [FEAT-SP03-01](../plan.md) v0.3; [P01 review](../source-review.md) v0.1; original publication/task-definition snapshots remain historical inputs.\
+**Trace:** FR-05 / AC-05; supporting FR-03/31/59, BR-01/02/10/11/14; FR-50 is contextual document-access scope only; UC-03 main and EX-01/02; SC-01 subset only.
 
 ## Objective
 
@@ -26,7 +26,7 @@ Out of scope: unrelated refactoring, requirement/API expansion, task editing/reo
 
 Read the parent source/decision/acceptance sections, canonical SP-03, current FR-05/AC-05 and UC-03, existing Workspace OpenAPI, relevant owned migrations/code and affected tests. Read AGENTS, development-rules, pre-flight and workflow before editing; do not execute from this summary alone. Reconcile actual source versions before starting; parent snapshots are not a claim that later patches were reviewed.
 
-Dependencies: P01 (finish-to-start); owner dispositions for material policy choices. DoR: parent task is ready under actual authorization, relevant G-01–G-05 resolved with recorded evidence, allowed paths/commands/fixtures confirmed, and an observable deliverable plus safe recovery identified. A brief is not implementation authority. Material gaps block only dependent work, with independent preparation continuing.
+Dependencies: P01 (finish-to-start); owner dispositions for material policy choices. DoR: parent task is ready under actual authorization, P01 completed and G-01–G-05 ready for design/disposition; implementation resolution is not a circular prerequisite for drafting P02, allowed paths/commands/fixtures confirmed, and an observable deliverable plus safe recovery identified. A brief is not implementation authority. Material gaps block only dependent work, with independent preparation continuing.
 
 ## Files and components touched
 

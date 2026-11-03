@@ -29,3 +29,7 @@ GET now renews a strictly unexpired session within its immutable absolute cap; D
 ## Project and membership implementation — 1 November 2026
 
 See [the project runbook](PROJECTS.md) for private audited bootstrap/recovery, separate 007/008 migration cautions, cursor configuration and current verification commands. npm run test:projects exercises disposable SQL/HTTP/DOM negatives; browser evidence is separate. Optional editProject, Knowledge handlers and D-07 guarded transport are not implemented by SP-02.
+
+## SP-03 Task creation and current reads — 2 November 2026
+
+See [Task operations](TASKS.md) and the registered SP-03 handoff for createTask/listTasks/getTask, current project authority, exact Backlog positions, immutable server time and original-key recovery. Prior foundation/stage notes above are historical. No role/creator auto-grant, public permission editor, Task mutation/Sprint/Knowledge handler or startup migration is added. Only disposable 009 is verified; existing 006/008 suites keep their ceilings. Browser acceptance is a separate installed-runner gate; local source changes are not automatically committed/published.

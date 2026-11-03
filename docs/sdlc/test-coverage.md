@@ -1,8 +1,8 @@
 # Scenario and exception verification matrix
 
 **Artifact ID:** TEST-COVERAGE-01
-**Version/date:** 0.10 Draft · 1 November 2026
-**Inputs:** PRD-01 v0.9; UC-02 v0.8; TEST-08 v0.23; ADR-0007–ADR-0017.
+**Version/date:** 0.11 Draft · 2 November 2026
+**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.9; UC-02 v0.8; TEST-08 v0.24; ADR-0007–ADR-0017.
 **Status:** Planned assertions with bounded P09/P10/P11 measured subsets; no complete scenario or independent approval.
 
 ## Evidence rules
@@ -129,3 +129,18 @@ See [P12 result](reports/SP-01-P12-handoff-2026-10-28.md) for bounded integrated
 ## SP-02 bounded coverage — 1 November 2026
 
 AC-02/03/38/39 and BR-01/10/14 have actual Workspace project/member, audit/replay/removal/last-manager and UI failure observations linked in [verification](requirement-verification.md#sp-02-bounded-runtime-observation--1-november-2026) and [execution](reports/SP-02-execution-2026-10-31.md). TC-02/18/22/24 subsets are measured, not wholly Passed. SQL assignment/read-grant producer doubles are explicitly distinct from future SP-04/SP-06 handler evidence. No complete SC-06, Knowledge/citation/provider guard or independent acceptance.
+
+## SP-03 bounded execution trace — 2 November 2026
+
+[SP-03 execution report](reports/SP-03-2026-11-02-execution.md), [UI report](reports/SP-03-2026-11-02-ui.md) and [registered plan](../implementation/features/sp-03-create-task/plan.md) distinguish source/SQL/HTTP/DOM/browser results and preserve failures. Current final counts belong to that report, not an inferred completion from this design matrix.
+
+| Required creation assertion | Producer and evidence boundary |
+| --- | --- |
+| AC-05 supported Story/Task/Bug content persists | P04 real Task HTTP + P08 DOM/Edge + P09 fresh current regression; stable ID/project, todo, null assignee, unblocked revision 1 and server time. |
+| AC-05 unsupported/invalid content makes no item | P04 invalid body/type/blank/title/extra identity/media/body-size matrix checks Task/generation/audit/outcome unchanged. |
+| AC-05 unauthorised or foreign creation denied | P03C explicit-author/private audit and P04/P07 current scope/authority/disabled/removal races; descriptive roles and forged actor headers cannot grant authority. |
+| UC-03 server timestamp, persisted read and audit | P03B immutable origin/outcome; P04 backlog-item-create actor/entity/time audit co-commits with Task/result; P05 fresh list/detail; P08 reload/current content. |
+| TC-18/19/22 replay, rollback, unknown outcome and outage | P03B/P04/P07 actual durable outcomes, loss after committed response, exact key/hash recovery, rollback/barriers; P06/P08 unknown/denied/outage UI. |
+| Current Backlog reconstruction and permission-aware reads | P05 107-row numeric/UUID/current-location/blocker/cursor/member tests; P07 read watermark/append schedule; P08 fresh first-page restart. |
+
+UC-03 EX-01 and EX-02 now have bounded creation evidence. EX-03/Alt-1 editing and Alt-2 reorder remain later SP-04/SP-05 scope. FR-50 is document classification, not Task creation. This does not close whole SC-01/SC-06, document/citation/provider/D-07 gates, SP02-F01 or independent/release acceptance. Historical scenarios and failures remain unchanged.

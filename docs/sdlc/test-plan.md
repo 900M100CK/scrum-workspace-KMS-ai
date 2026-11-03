@@ -1,9 +1,9 @@
 # Minimum test and evidence plan
 
 **Artifact ID:** TEST-08
-**Version/date:** 0.23 Draft · 1 November 2026
+**Version/date:** 0.24 Draft · 2 November 2026
 **Status:** Planned application assertions; owner-confirmed policy direction, no release acceptance.
-**Inputs:** [PRD-01](PRD_SRS.md) v0.9; [UC-02](use-cases.md) v0.8; [SAD-03](../architecture.md) v0.16; DATA-04 v0.14; API-05 v0.20; ADR-0007 through ADR-0017; current UX/diagrams; [specs](../../specs/README.md); [evaluation](../../eval/README.md).; Proposed ADR-0018.; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
+**Inputs:** Proposed ADR-0027 v0.2; [PRD-01](PRD_SRS.md) v0.9; [UC-02](use-cases.md) v0.8; [SAD-03](../architecture.md) v0.16; DATA-04 v0.16; API-05 v0.22; ADR-0007 through ADR-0017; current UX/diagrams; [specs](../../specs/README.md); [evaluation](../../eval/README.md).; Proposed ADR-0018.; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
 **Author:** Development agent acting sequentially; no independent review claimed.
 
 ## Scope, levels and environment
@@ -166,3 +166,18 @@ Input versions synchronize the bounded session lifecycle update. Existing requir
 ## SP-02 measured subset — 1 November 2026
 
 The registered SP-02 execution report maps current create/project/member/replay/discovery/removal/audit/failure checks to AC-02/03/38/39. These include actual disposable 008 PostgreSQL, HTTP, DOM/HTTPS and isolated Edge tests. TC-02/18/22/24 have measured bounded subsets, not whole-case acceptance. SP02-F01 actual future producer races, Knowledge/source/citation/provider and D-07 remain unrun. The original 006 storage/session suites retain explicit schema ceilings; new SP-02 suites exercise 007/008. No threshold, expected outcome or future required assertion is removed.
+
+## SP-03 bounded execution trace — 2 November 2026
+
+[SP-03 execution report](reports/SP-03-2026-11-02-execution.md), [UI report](reports/SP-03-2026-11-02-ui.md) and [registered plan](../implementation/features/sp-03-create-task/plan.md) distinguish source/SQL/HTTP/DOM/browser results and preserve failures. Current final counts belong to that report, not an inferred completion from this design matrix.
+
+| Required creation assertion | Producer and evidence boundary |
+| --- | --- |
+| AC-05 supported Story/Task/Bug content persists | P04 real Task HTTP + P08 DOM/Edge + P09 fresh current regression; stable ID/project, todo, null assignee, unblocked revision 1 and server time. |
+| AC-05 unsupported/invalid content makes no item | P04 invalid body/type/blank/title/extra identity/media/body-size matrix checks Task/generation/audit/outcome unchanged. |
+| AC-05 unauthorised or foreign creation denied | P03C explicit-author/private audit and P04/P07 current scope/authority/disabled/removal races; descriptive roles and forged actor headers cannot grant authority. |
+| UC-03 server timestamp, persisted read and audit | P03B immutable origin/outcome; P04 backlog-item-create actor/entity/time audit co-commits with Task/result; P05 fresh list/detail; P08 reload/current content. |
+| TC-18/19/22 replay, rollback, unknown outcome and outage | P03B/P04/P07 actual durable outcomes, loss after committed response, exact key/hash recovery, rollback/barriers; P06/P08 unknown/denied/outage UI. |
+| Current Backlog reconstruction and permission-aware reads | P05 107-row numeric/UUID/current-location/blocker/cursor/member tests; P07 read watermark/append schedule; P08 fresh first-page restart. |
+
+UC-03 EX-01 and EX-02 now have bounded creation evidence. EX-03/Alt-1 editing and Alt-2 reorder remain later SP-04/SP-05 scope. FR-50 is document classification, not Task creation. This does not close whole SC-01/SC-06, document/citation/provider/D-07 gates, SP02-F01 or independent/release acceptance. Historical scenarios and failures remain unchanged.

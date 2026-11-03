@@ -1,6 +1,10 @@
 # Architecture decision index
 
-Updated 1 November 2026. Owner-confirmed direction is distinct from implemented and tested behaviour. No commit or independent review is implied by this index.
+**Artifact ID:** ADR-INDEX-01\
+**Version/date:** 0.2 Draft · 3 November 2026\
+**Inputs:** Existing ADR entries below; Proposed ADR-0027 v0.2; no change to existing decisions.
+
+Updated 3 November 2026. Owner-confirmed direction is distinct from implemented and tested behaviour. No commit or independent review is implied by this index.
 
 | Record | Current decision status |
 | --- | --- |
@@ -40,3 +44,5 @@ The [business review](../analyst/business-review-2026-10-13.md) records the sour
 [ADR-0024: backend session foundation](0024-backend-session-foundation.md) — v0.5 Proposed for detailed mechanics. Selected shared framework foundation is retained; measured driver/validation recommendations and adoption limits are explicit.
 
 [ADR-0025: opaque session candidate](0025-opaque-session-candidate.md) — v0.5: owner-confirmed session policy direction and bounded P08/P09/P10 implementation; detailed adoption Proposed. Measured clock fault/recovery and KDF candidates retain trusted-time and application evidence gates.
+
+[ADR-0027: bounded task creation](0027-task-creation-foundation.md) — v0.2 Proposed. The owner selected private audited backlog-author, immutable server Task.created_at and permanent original-result retention. Bounded 009/create/read/UI verification is recorded in FEAT-SP03-01 and the SP-03 reports. Formal ADR/release/independent acceptance remains open; no other ADR adoption is implied.

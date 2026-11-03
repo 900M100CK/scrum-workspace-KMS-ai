@@ -1,0 +1,63 @@
+{
+  "artifact": "SP03-P05 actual read/cursor checks",
+  "date": "2026-11-02",
+  "node": "24.21.0",
+  "commands": [
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "--test-concurrency=1",
+        "tests/workspace/task-reads.test.mjs",
+        "tests/workspace/task-http.test.mjs"
+      ],
+      "exit_code": 1,
+      "duration_seconds": 14.59,
+      "log": "run-1793627367234154200.log"
+    },
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "typecheck"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 6.16,
+      "log": "run-1793627402546985700.log"
+    },
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "--test-concurrency=1",
+        "tests/workspace/task-reads.test.mjs",
+        "tests/workspace/task-http.test.mjs"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 14.2,
+      "log": "run-1793627432745677200.log"
+    }
+  ],
+  "results": {
+    "task_reads_and_http": {
+      "tests": 23,
+      "pass": 23,
+      "skip": 0
+    },
+    "typecheck": "passed",
+    "contracts": 27
+  },
+  "source_sha256": {
+    "services/workspace/src/tasks/store.ts": "f93ff470284070f4e80037c4e3a88d00378f03d97a43030fdf6a193e6fb6fd3d",
+    "services/workspace/src/tasks/http.ts": "75ddcde72e4c516cf2f9d0a56cf196827417576e96a1bb3cbd6fbebd5fdd79b8",
+    "tests/workspace/task-reads.test.mjs": "40efdba332b0a8be21ebbd90b5c052447729590edd6787e716c24471a693089a",
+    "tests/workspace/task-http.test.mjs": "62ae874240fadd7dc929d39dc2e2c7b86f86616d11bd3e40c5aef031bb569869"
+  },
+  "failure_retained": "Initial test compared opaque cursor bytes issued at different deadlines; corrected to compare items/generation and validate cross-use between implicit/explicit all scope. No runtime cursor assertion weakened.",
+  "limitations": [
+    "Full eligible projection is hashed each page; no scalability benchmark",
+    "Project guard assumes cooperating owned writers; no D-07 socket/send guarantee",
+    "Task UI/browser pending; no development migration/publication/independent acceptance"
+  ]
+}

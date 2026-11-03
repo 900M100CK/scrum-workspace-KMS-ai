@@ -1,0 +1,109 @@
+{
+  "artifact": "SP03-P06 controller/build checkpoint",
+  "date": "2026-11-02",
+  "node": "24.21.0",
+  "commands": [
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "typecheck"
+      ],
+      "exit_code": 2,
+      "duration_seconds": 6.9,
+      "log": "run-1793627905583070200.log"
+    },
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "typecheck"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 6.03,
+      "log": "run-1793627958148317800.log"
+    },
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "tests/workspace/task-ui-controller.test.mjs"
+      ],
+      "exit_code": 1,
+      "duration_seconds": 0.19,
+      "log": "run-1793628029617694900.log"
+    },
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "build"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 6.48,
+      "log": "run-1793628036166952600.log"
+    },
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "tests/workspace/task-ui-controller.test.mjs",
+        "tests/workspace/project-ui-controller.test.mjs"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 0.2,
+      "log": "run-1793628126554814000.log"
+    },
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "typecheck"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 6.27,
+      "log": "run-1793628132907034400.log"
+    },
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "build"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 6.84,
+      "log": "run-1793628229742896100.log"
+    }
+  ],
+  "results": {
+    "task_controller": 9,
+    "task_and_project_controllers": {
+      "tests": 14,
+      "pass": 14,
+      "skip": 0
+    },
+    "typecheck": "passed",
+    "build": "passed"
+  },
+  "source_sha256": {
+    "apps/web/src/tasks.ts": "37fea6427da5456f1cd4f1c63db2d249d82f20911dd9d2fe337cc2c0700745e2",
+    "apps/web/src/TaskWorkspace.tsx": "5e40927154b228a7ade49b6264e3531eb7c27d8bf2eae24c2bc47f948e130d3a",
+    "apps/web/src/ProjectWorkspace.tsx": "944fbb0924d3d4ee0a49bfaa207c37531260895486f859449ceb2d8f2512a320",
+    "apps/web/src/App.tsx": "f1ed9dead32ae278d4369c599ec5e01e094ea9f10401196e02469bfe59e0c825",
+    "apps/web/src/styles.css": "6abf95c674d4465dabb3973c645fbd6251745b61511c61c500dfe0bf6900281d",
+    "tests/workspace/task-ui-controller.test.mjs": "6d6fa773004ecc7e0da848c2f180af57ce7df442aa3ed241114e9caa41b6e4d2"
+  },
+  "failures_retained": [
+    "Initial browser string.isWellFormed usage exceeded current TS lib; replaced with existing standard text encoder/decoder round-trip without changing target/dependencies",
+    "One test expected only word unconfirmed; now accepts equivalent not confirmed while still asserting retained exact operation identity and no duplicate write"
+  ],
+  "limitations": [
+    "DOM/browser and rendered accessibility verification pending P08; P06 not fully verified by unit/build checks alone",
+    "No Task mutation beyond creation, dependency, visual redesign, commit or independent review"
+  ]
+}

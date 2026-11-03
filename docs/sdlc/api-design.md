@@ -1,9 +1,9 @@
 # API design — contract entry
 
 **Artifact ID:** API-05  
-**Version/date:** 0.20 Draft · 1 November 2026
+**Version/date:** 0.22 Draft · 2 November 2026
 **Status:** ADR-0007–ADR-0013 directions are owner-confirmed; transport implementation and independent review remain pending.
-**Inputs:** PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; DATA-04 v0.14; [contract pack](../../contracts/README.md) v0.22; ADR-0007–ADR-0017; Proposed ADR-0018.\; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0026
+**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; DATA-04 v0.16; [contract pack](../../contracts/README.md) v0.24; ADR-0007–ADR-0017; Proposed ADR-0018.\; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0026
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 The canonical payload/routes are the two OpenAPI files linked by the contract pack. Public consumers are the web UI; internal consumers are Workspace/Knowledge. Every operation has x-requirements, authenticated scope, resource parameters, explicit responses and mutation concurrency semantics. Context validation checks shape/trace only.
@@ -89,3 +89,13 @@ Workspace v0.2.11 implements createProject/getProject/listProjects/addMember/lis
 Mutations atomically commit state, audit and permanent minimal original outcome. Unknown COMMIT/response loss is 503/uncertain, reconciled using the original operation/key/payload; current authority is rechecked before disclosure. UI refresh reads current state separately from historical replay. HMAC cursors bind actor, route, project/limit, relevant membership/capability generations, complete authorised projection and expiry; never login session identity. Invalid/foreign/changed-key cursor is 400; verified stale/expired cursor is 409; revoked scope is generic 404; unavailable key/DB is 503. listProjects has fixed 50-row pages, listMembers 1–100/default 50.
 
 Locks establish a database decision boundary through the local HTTP adapter; they do not prove exclusion through socket completion or Knowledge/provider D-07 handoff. [Execution evidence](reports/SP-02-execution-2026-10-31.md) distinguishes structural, actual handler, controlled future-writer, DOM and browser observations.
+
+## SP-03 selected contract support — 2 November 2026
+
+Workspace v0.2.12 and logical model v0.11 add required read-only Task.created_at, preserving UC-03 server creation-time output without accepting client origin fields. Owner selected immutable server time and permanent consumed key/hash plus original Task 201 snapshot (including original title/description), with current access checked before replay. Existing project/member receipts are unchanged. Proposed ADR-0027 and FEAT-SP03-01 define the bounded mechanics; additive 009 and task handlers remain unimplemented at this support checkpoint.
+
+createTask declares 413/415 for bounded JSON/media rejection; getTask declares 400 for invalid query shape. No operation or permission is added. Task consumers must move together: strict older schemas may reject the required new field. Contract tests prove schema boundaries, not migration or HTTP authority. No legacy timestamp is inferred, no applied migration is edited and no development database upgrade is performed.
+
+## SP-03 current local handoff — 2 November 2026
+
+The registered SP-03 now implements createTask/listTasks/getTask and the existing-design Task UI against Workspace 0.2.12, logical model 0.12 and additive draft 009. See [execution evidence](reports/SP-03-2026-11-02-execution.md) for final actual command results/source identity and limits. Prior support/checkpoint paragraphs above are historical stages; they do not mean these handlers are still absent. Business audit uses UC-03 backlog-item-create; durable replay operation remains createTask. Current access precedes original snapshot disclosure; creation time is immutable server time. No Task edit/reorder/Sprint/Knowledge/AI handler is added. Formal Proposed ADR/release/independent gates remain open; no development upgrade or new Git publication.

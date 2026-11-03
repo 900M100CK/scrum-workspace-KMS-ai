@@ -10,7 +10,13 @@ test('workspace liveness is separate from protected functionality', async t => {
  const projects=await app.inject('/projects');assert.equal(projects.statusCode,503);
  assert.deepEqual(projects.json(),{code:'access_unavailable',message:'Access unavailable',run_id:null});
  assert.equal(projects.headers['cache-control'],'no-store');
- for (const url of ['/projects/unknown/tasks','/internal/permissions']) {
+ // Registered SP-03 routes are unavailable until explicitly configured, independently of liveness.
+ for (const url of ['/projects/unknown/tasks','/tasks/unknown']) {
+  const response=await app.inject(url);assert.equal(response.statusCode,503);
+  assert.deepEqual(response.json(),{code:'access_unavailable',message:'Access unavailable',run_id:null});
+  assert.equal(response.headers['cache-control'],'no-store');
+ }
+ for (const url of ['/tasks/unknown/updates','/internal/permissions']) {
   const response = await app.inject(url); assert.equal(response.statusCode,404);
   assert.deepEqual(response.json(),{code:'not_found',message:'Resource unavailable'});
  }

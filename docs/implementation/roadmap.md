@@ -1,7 +1,7 @@
 # Dependency-based implementation roadmap
 
 **Artifact ID:** IMPL-ROADMAP-01\
-**Version/date:** 0.14 Draft · 2 November 2026\
+**Version/date:** 0.22 Draft · 3 November 2026\
 **Status:** Planning order, not completed work or scope acceptance.\
 **Inputs:** PRD-01 v0.9; SPEC-INDEX v0.7; PLAN-01 v0.4; [decisions](decisions.md); [task catalogue](tasks/README.md).\
 **Trace:** BR-01–BR-14; SC-01–SC-08.\
@@ -59,4 +59,20 @@ FEAT-SP02-01 v0.6 records implemented and locally verified project/member handle
 
 ## SP-03 child plan — M-02 / PLAN-01 Month 1
 
-[FEAT-SP03-01 v0.1](features/sp-03-create-task/plan.md) refines [SP-03.1–03.4](tasks/03-create-task.md) into preparation, owned persistence/create/read/UI and mandatory verification deliverables. The owner authorised the plan/workflow/GitHub branch publication only in this turn. Follow the plan's single task table; P01 is the next future preparation task and P02 retains Proposed ADR-0018/D-04 gates. No milestone acceptance, implementation, calendar change or Must deferral.
+[FEAT-SP03-01 v0.5](features/sp-03-create-task/plan.md) maps SP-03.1–03.4 to the registered implementation and measured evidence. All three material owner choices are recorded; current results belong only to the parent plan and actual handoff. No master milestone, calendar, Must deferral, independent acceptance or new Git publication is implied.
+
+### Historical SP-03 selected support continuation — 2 November 2026
+
+FEAT-SP03-01/entry/WBS v0.4 resumes all SP-03 tasks under the owner objective. SP03-DECISION-BATCH v0.2 and Proposed ADR-0027 v0.2 record all three actual owner choices; P02 preparation is complete. P03A v0.2 coordinates canonical SP-03 v0.7, Workspace v0.2.12, CONTRACT-01 v0.23, logical JSON v0.11, DATA-04 v0.15 and API-05 v0.21. Parent plan owns actual test/status evidence. No migration/handler or Git publication has occurred at this support checkpoint. Earlier source tables/results are dated snapshots, not relabelled runtime evidence.
+
+### Historical SP-03 foundation execution evidence — 2 November 2026
+
+FEAT-SP03-01 v0.4 now links actual P03A/P03B/P03C evidence and v0.2 child briefs. P03B adds only draft migration 009, internal task types/outcome adapter, explicit 009 fixture and storage tests; DGM-DATA-01 v0.6/model entry reflects Task.created_at. P03C extends the private operator/CLI and tests author grant/removal ordering. Parent plan is the only mutable task-status table; migration/contract/source versions and old captures are retained as dated identities. No task HTTP/UI/browser or whole-feature completion, development upgrade, Git publication or independent approval is claimed.
+
+### SP-03 final handoff source registration — 2 November 2026
+
+Current local reading sources: FEAT-SP03-01/entry/WBS 0.5, canonical SP-03 0.8, IMPL-SP-03 0.2 / IMPL-TASKS-01 0.6, Workspace 0.2.12, logical JSON 0.12, CONTRACT-01 0.24, API-05 0.22, DATA-04 0.16, TEST-08 0.24, TEST-COVERAGE-01 0.11 and VERIFY-01 0.12. SP03-UI-01 0.2 preserves its original 0.1 report snapshot and actual captures; SP03-EXEC-01/WORKSPACE-TASKS-01 are 0.1. Source status updates in AGENTS 1.15/rules 1.14 change no planning/permission authority. P09 final regression/audit results belong to the parent/report; do not infer acceptance from this registration. Older source/result sections remain historical observations and are not relabelled.
+
+## SP-03 publication follow-up — 3 November 2026
+
+[PUB-SP03-01 v0.1](features/sp-03-publication/plan.md) registers bounded review/verification, selective publication, merge into main and deletion of the merged SP-03 branch under the owner instruction. Parent FEAT-SP03-01 / SP-03.1–03.4 / FR-05/AC-05 / PLAN-01 Month 1 / M-02. PUB03-T01/T02 v0.1 and PUB-SP03-ENTRY-01 v0.1 define the ready work; the publication plan owns actual results. Planned report SP03-PUB-REPORT-01 v0.1: docs/sdlc/reports/SP-03-publication-2026-11-03.md. No product scope, independent approval or deployment is implied.

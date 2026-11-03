@@ -1,9 +1,9 @@
 # Logical data and lifecycle design
 
 **Artifact ID:** DATA-04  
-**Version/date:** 0.14 Draft · 1 November 2026
+**Version/date:** 0.16 Draft · 2 November 2026
 **Status:** Draft for owner review; proposed policies/deferrals are not approved.
-**Inputs:** PRD-01 v0.9; UC-02 v0.8; [SAD-03](../architecture.md) v0.16; [logical entities](../../contracts/data-model.json) v0.10; owner-authorised ADR-0004 implementation; ADR-0007–ADR-0017.; Proposed ADR-0018.; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; [ADR-0024](../adr/0024-backend-session-foundation.md); [ADR-0025](../adr/0025-opaque-session-candidate.md); Proposed ADR-0026
+**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.9; UC-02 v0.8; [SAD-03](../architecture.md) v0.16; [logical entities](../../contracts/data-model.json) v0.12; owner-authorised ADR-0004 implementation; ADR-0007–ADR-0017.; Proposed ADR-0018.; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; [ADR-0024](../adr/0024-backend-session-foundation.md); [ADR-0025](../adr/0025-opaque-session-candidate.md); Proposed ADR-0026
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 ## Ownership and relationships
@@ -157,3 +157,17 @@ Owner-authorised 007 adds immutable Project.created_by/created_at, private Globa
 Separate 008 extends existing Workspace idempotency_record with result_status/result_snapshot for createProject/addMember/removeMember. Consumed actor/operation/key/hash/status/reference and minimum original 201 Project/Member fields are immutable and retained indefinitely under the current API contract; removal stores 204 with no body. Snapshot retention includes owner-entered project name/description intentionally. No automatic pruning or privacy-deletion promise is introduced; a changed retention contract needs a separate decision. Existing protected_handoff records retain their shape.
 
 No cursor table/counter/cache is added. listProjects and listMembers compare keyed digests of complete canonical authorised projections and relevant authority generations under the existing clock/project lock protocol. Each page costs a full eligible projection read; capacity is unmeasured. Private audit rows and consumed outcomes block destructive down migrations; 007 never removes SP-01 clock-fault/session/audit state. Current-schema tests use disposable databases through 008; historic 006 storage/session fixtures remain labelled snapshots, not current-schema acceptance.
+
+## SP-03 selected contract support — 2 November 2026
+
+Workspace v0.2.12 and logical model v0.11 add required read-only Task.created_at, preserving UC-03 server creation-time output without accepting client origin fields. Owner selected immutable server time and permanent consumed key/hash plus original Task 201 snapshot (including original title/description), with current access checked before replay. Existing project/member receipts are unchanged. Proposed ADR-0027 and FEAT-SP03-01 define the bounded mechanics; additive 009 and task handlers remain unimplemented at this support checkpoint.
+
+createTask declares 413/415 for bounded JSON/media rejection; getTask declares 400 for invalid query shape. No operation or permission is added. Task consumers must move together: strict older schemas may reject the required new field. Contract tests prove schema boundaries, not migration or HTTP authority. No legacy timestamp is inferred, no applied migration is edited and no development database upgrade is performed.
+
+## SP-03 additive 009 storage implementation checkpoint
+
+New 009 adds finite millisecond Task.created_at with an immutable-origin trigger, a strict typed permanent original createTask result branch alongside unchanged project/member/protected branches, a private audited backlog-author action and unique active project-author index. Upgrade refuses all existing Task rows, createTask identities or author grants before DDL; no guessed legacy origin. Empty-compatible down restores the exact prior 008 constraint/function and refuses retained task/history/outcome/author/audit data. Applied 001–008 remain byte-identical. Only disposable storage tests have exercised 009; the development database remains unchanged and task HTTP/UI handlers remain pending. Workspace ERD v0.6 adds the actual origin field without adding an entity or relationship.
+
+## SP-03 current local handoff — 2 November 2026
+
+The registered SP-03 now implements createTask/listTasks/getTask and the existing-design Task UI against Workspace 0.2.12, logical model 0.12 and additive draft 009. See [execution evidence](reports/SP-03-2026-11-02-execution.md) for final actual command results/source identity and limits. Prior support/checkpoint paragraphs above are historical stages; they do not mean these handlers are still absent. Business audit uses UC-03 backlog-item-create; durable replay operation remains createTask. Current access precedes original snapshot disclosure; creation time is immutable server time. No Task edit/reorder/Sprint/Knowledge/AI handler is added. Formal Proposed ADR/release/independent gates remain open; no development upgrade or new Git publication.

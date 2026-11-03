@@ -1,8 +1,8 @@
 %% Origin: docs/sdlc/diagrams/design-foundation-2026-10-17.md v0.1
-%% DGM-DATA-01 v0.5 Draft - 1 November 2026
-%% Sources: DGM-DESIGN-01 v0.1; PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; DATA-04 v0.14; ADR-0004; ADR-0007; ADR-0008; ADR-0011; ADR-0012; ADR-0017; ADR-0018; ADR-0023; ADR-0024; ADR-0025; ADR-0026
+%% DGM-DATA-01 v0.6 Draft - 2 November 2026
+%% Sources: DGM-DESIGN-01 v0.1; PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; DATA-04 v0.16; ADR-0004; ADR-0007; ADR-0008; ADR-0011; ADR-0012; ADR-0017; ADR-0018; ADR-0023; ADR-0024; ADR-0025; ADR-0026; ADR-0027
 %% Trace: BR-01–BR-03, BR-06, BR-10–BR-12; SC-03/04/06
-%% Scope: Workspace schema through owner-authorised migrations 007/008, tested only in disposable PostgreSQL; development upgrade not claimed. Selected fields; database storage is not end-user authority.
+%% Scope: Workspace schema through selected additive migration 009, tested only in disposable PostgreSQL; development upgrade not claimed. Selected fields; database storage is not end-user authority.
 %% Legend: Relationship label names FK columns; ||--o{ means parent 1 to child 0..many. AuthAccount is private authentication storage; no cross-store FK. Session/idempotency/authentication audit have no project FK.
 erDiagram
     project {
@@ -43,6 +43,7 @@ erDiagram
         bigint revision
         text location_kind "backlog sprint completed"
         uuid location_sprint_id FK "nullable current pointer independent of history"
+        timestamptz created_at "immutable server creation time"
     }
     sprint_allocation {
         uuid sprint_id PK,FK

@@ -1,0 +1,115 @@
+{
+  "artifact": "SP03-P08 actual DOM/browser verification",
+  "date": "2026-11-02",
+  "commands": [
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "--test-concurrency=1",
+        "tests/workspace/task-ui.test.mjs"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 12.79,
+      "log": "run-1793629204751006700.log"
+    },
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "tests/workspace/task-browser.test.mjs"
+      ],
+      "exit_code": 1,
+      "duration_seconds": 13.39,
+      "log": "run-1793629365598613400.log"
+    },
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "build"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 13.06,
+      "log": "run-1793629578799002900.log"
+    },
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "tests/workspace/task-browser.test.mjs"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 18.23,
+      "log": "run-1793629668738353800.log"
+    }
+  ],
+  "environment": {
+    "date": "2026-11-02",
+    "node": "v24.21.0",
+    "runner": "installed Playwright 1.62.1",
+    "browser": "156.0.4314.58",
+    "database_version": "17.10 (Debian 17.10-1.pgdg12+1)",
+    "image": "pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966",
+    "viewportChecks": [
+      [
+        1280,
+        900
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "realHttps": true,
+    "tlsBypass": false,
+    "personalProfile": false,
+    "checks": [
+      "real secure HttpOnly Strict host-only cookie and UI login",
+      "native blank-title validation/focus and keyboard type/title/description/create",
+      "fresh reload reads persisted Task detail",
+      "lost committed response, denied original replay and same-key recovery after explicit restore",
+      "original receipt never presented as current after later controlled content change",
+      "one Task for three original-key POST attempts",
+      "loading/error/unknown/denied panes withhold protected content",
+      "narrow viewport has no horizontal overflow",
+      "actual member removal denies pending replay",
+      "explicit sign-out clears pending input and cookie; reload denies protected content"
+    ],
+    "pageErrors": []
+  },
+  "results": {
+    "dom": {
+      "tests": 7,
+      "pass": 7,
+      "skip": 0
+    },
+    "edge": {
+      "tests": 1,
+      "pass": 1,
+      "skip": 0
+    },
+    "build": "passed"
+  },
+  "source_sha256": {
+    "apps/web/src/tasks.ts": "37fea6427da5456f1cd4f1c63db2d249d82f20911dd9d2fe337cc2c0700745e2",
+    "apps/web/src/TaskWorkspace.tsx": "130da6fe1055358a6cbb1286cba2f2729e64b5076a77bbd5d6796f3e4f823e64",
+    "apps/web/src/ProjectWorkspace.tsx": "944fbb0924d3d4ee0a49bfaa207c37531260895486f859449ceb2d8f2512a320",
+    "apps/web/src/App.tsx": "f1ed9dead32ae278d4369c599ec5e01e094ea9f10401196e02469bfe59e0c825",
+    "apps/web/src/styles.css": "6abf95c674d4465dabb3973c645fbd6251745b61511c61c500dfe0bf6900281d",
+    "tests/workspace/task-ui-fixture.mjs": "f3341407f0207d14f539fff8cb16b0422f9aae7e9782414add9401bde8c62d65",
+    "tests/workspace/task-ui.test.mjs": "daaa2d585a2163dc33563b16c0430c3850b7b88486aae0ad768ef79fe9f4fd6a",
+    "tests/workspace/task-browser.test.mjs": "fccdcd28dfe109b1b07aa024587ca32aee2adcc8e6bce06469e9b1f813077370"
+  },
+  "author_visual_inspection": [
+    "task-desktop.png: existing design preserved; current detail and creation form readable",
+    "task-mobile.png: native controls and identifiers fit 390px; no horizontal overflow assertion passed"
+  ],
+  "failure_retained": "First browser probe queried Task count while pending recovery button was visible during the in-flight POST. Corrected wait to the actual unknown-result status and asserted the forwarded response was 201 before dropping it. No application expectation weakened.",
+  "limitations": [
+    "One installed Edge version; no all-browser or assistive-technology certification",
+    "DOM uses a simulated cookie jar; real browser cookie assertions are separate",
+    "No production upgrade, provider/retrieval/deployment or independent review"
+  ]
+}

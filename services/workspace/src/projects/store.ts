@@ -128,7 +128,7 @@ export class WorkspaceProjectStore {
    const result={status:204,body:null,projectId};await saveOutcome(c,actor,'removeMember',key,hash,result);return result;
   });
  }
- async actions(token:string,kind:string,id?:string){
+ async actions(token:string,kind:string,id?:string,taskOperations:ReadonlySet<'createTask'|'listTasks'>=new Set()){
   return this.transaction(token,async(c,actor,guard)=>{
    let operations:string[];
    if(kind==='global'){
@@ -138,6 +138,8 @@ export class WorkspaceProjectStore {
     const access=await projectAccess(c,actor,id!);id=access.project.project_id;
     operations=['getAllowedActions','getProject','listMembers'];
     if((await c.query("SELECT 1 FROM workspace.capability_grant WHERE project_id=$1 AND subject_id=$2 AND resource_kind='project' AND resource_id=$1 AND action='membership-manage' AND valid LIMIT 1",[id,actor])).rowCount)operations.push('addMember','removeMember');
+    if(taskOperations.has('listTasks'))operations.push('listTasks');
+    if(taskOperations.has('createTask')&&(await c.query("SELECT 1 FROM workspace.capability_grant WHERE project_id=$1 AND subject_id=$2 AND resource_kind='project' AND resource_id=$1 AND action='backlog-author' AND valid LIMIT 1",[id,actor])).rowCount)operations.push('createTask');
    }else throw missing();
    if(!await guard())return null;
    return {resource_kind:kind,project_id:kind==='global'?null:id,resource_id:null,document_id:null,version_id:null,allowed_operations:operations.sort()};

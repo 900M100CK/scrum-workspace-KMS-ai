@@ -1,5 +1,6 @@
 import {useEffect,useRef,useState,useSyncExternalStore} from 'react';
 import {ProjectController,type Member} from './projects.ts';
+import {TaskWorkspace} from './TaskWorkspace.tsx';
 
 export function ProjectWorkspace({userId,onSessionLost,controller:provided}:{userId:string;onSessionLost:()=>void;controller?:ProjectController}){
  const [controller]=useState(()=>provided??new ProjectController(userId,onSessionLost));
@@ -21,7 +22,8 @@ export function ProjectWorkspace({userId,onSessionLost,controller:provided}:{use
    {state.projectCursor?<button onClick={()=>void controller.moreProjects()}>More projects</button>:null}
    {state.global.includes('createProject')?<form onSubmit={create} autoComplete="off"><h3>Create a project</h3><label htmlFor="project-name">Name</label><input id="project-name" name="name" maxLength={200} required disabled={locked}/><label htmlFor="project-description">Description</label><textarea id="project-description" name="description" maxLength={4000} disabled={locked}/><button className="primary" disabled={locked}>Create project</button></form>:null}
   </>:null}
-  {state.project?<section aria-labelledby="selected-project-title"><h3 id="selected-project-title">{state.project.name}</h3><p>{state.project.description}</p><p className="muted">Project revision {state.project.revision}</p><h3>Members</h3>
+  {state.project?<section aria-labelledby="selected-project-title"><h3 id="selected-project-title">{state.project.name}</h3><p>{state.project.description}</p><p className="muted">Project revision {state.project.revision}</p>
+   {state.actions.includes('listTasks')?<TaskWorkspace key={state.project.project_id} userId={userId} projectId={state.project.project_id} onSessionLost={onSessionLost}/>:null}<h3>Members</h3>
    <ul className="member-list">{state.members.map(m=><li key={m.user_id}><div><span className="member-id" translate="no">{m.user_id}</span><p className="muted">{m.role.replaceAll('_',' ')} · revision {m.revision}</p></div>{state.actions.includes('removeMember')?<button disabled={locked} aria-label={'Remove member '+m.user_id} onClick={()=>setRemoving(m)}>Remove</button>:null}</li>)}</ul>
    {removing?<div className="removal-confirmation" role="group" aria-label="Confirm member removal"><p>Remove member <span translate="no">{removing.user_id}</span>? This revokes individual access and clears current task assignments. Rejoining does not restore old grants.</p><button disabled={locked} onClick={()=>void controller.remove(removing)}>Confirm removal</button><button disabled={locked} onClick={()=>setRemoving(null)}>Cancel removal</button></div>:null}
    {state.memberCursor?<button disabled={state.busy} onClick={()=>void controller.moreMembers()}>More members</button>:null}

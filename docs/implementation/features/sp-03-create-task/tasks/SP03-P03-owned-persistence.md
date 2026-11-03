@@ -1,10 +1,12 @@
 # SP03-P03 — Owned task creation persistence with safety evidence
 
 **Artifact ID:** SP03-P03\
-**Version/date:** 0.1 Draft · 2 November 2026\
+**Version/date:** 0.2 Draft · 2 November 2026\
 **Execution status:** Read the [parent plan](../plan.md#authoritative-task-and-execution-table); this brief has no independent mutable status.\
-**Inputs:** [FEAT-SP03-01](../plan.md) v0.1; publication source snapshots and template digests in that plan.\
-**Trace:** FR-05 / AC-05; supporting FR-03/31/50/59, BR-01/02/10/11/14; UC-03 main and EX-01/02; SC-01 subset only.
+**Inputs:** [FEAT-SP03-01](../plan.md) v0.3; [decision batch](../decision-batch.md) v0.1; Proposed ADR-0027 v0.1; original publication source identities remain snapshots.\
+**Trace:** FR-05 / AC-05; supporting FR-03/31/59, BR-01/02/10/11/14; FR-50 is contextual document-access scope only; UC-03 main and EX-01/02; SC-01 subset only.
+
+**Task kind:** Aggregation parent; execute P03A/P03B/P03C individually, not this work package as one oversized task.
 
 ## Objective
 
@@ -29,13 +31,7 @@ Dependencies: P02 and G-01/G-02/G-03 resolved (finish-to-start). DoR: parent tas
 
 ## Files and components touched
 
-- services/workspace/migrations/009-task-creation.up.sql and 009-task-creation.down.sql (planned provisional names; P02 must confirm next unused migration identity)
-- services/workspace/src/tasks/** (planned; owned task persistence only)
-- services/workspace/src/projects/operator.ts and cli.ts (existing; explicit bounded create-authority support only if selected in P02)
-- tests/workspace/task-storage.test.mjs (planned)
-- tests/workspace/fixture.mjs (existing; opt-in new task schema ceiling, preserve older ceilings)
-
-Canonical future code scope is services/workspace/**, apps/web/** and tests/workspace/**. Existing files keep their current ownership. New names above are explicitly planned from canonical SP-03 and must be confirmed by P02 before use. Metadata/shared-path exceptions require the coordinated plan/spec registration before editing; a blanket path label is not authority to touch unrelated files.
+This aggregate changes no runtime file directly. Execute the closed paths in [P03A contract support](SP03-P03A-contract-support.md), [P03B storage/outcomes](SP03-P03B-task-storage-outcomes.md) and [P03C audited author provisioning](SP03-P03C-author-provisioning.md). Parent plan/brief coordination only; no default fixture/old migration edit. Read the decision batch for the exact proposed shared-path amendment and pending owner dispositions.
 
 ## Implementation guidance
 
@@ -71,7 +67,7 @@ For every check record command, source/fixture/config identity, actual result, f
 
 ## Estimate, risks and mitigation
 
-Rough budget: 2–4 engineer-hours, low confidence; basis is the existing session/project pattern and the bounded deliverable, not measured elapsed time or an owner calendar commitment. Split before execution if the work exceeds one reviewable result or its four-hour upper estimate; keep mandatory producer checks with the split producers. Do not invent capacity or dates.
+Aggregate budget: 4–8 engineer-hours from P03A 1–2, P03B 2–4 and P03C 1–2; low confidence, not a measured elapsed time or calendar promise. Execute each leaf separately; do not count or implement this aggregate twice. Split before execution if the work exceeds one reviewable result or its four-hour upper estimate; keep mandatory producer checks with the split producers. Do not invent capacity or dates.
 
 Primary risk: acting on an unresolved design/source/fixture or treating a structural pass as runtime acceptance. Mitigation: enforce readiness gates, preserve negative evidence and escalate only the missing material choice to the owner. Dependency failures deny access without fabricated output.
 
@@ -92,3 +88,7 @@ Work sequentially in the authorized branch, within closed paths, with synthetic/
 Relevant open questions are the parent G-01–G-05 rows. Owner and due point are explicit prerequisite gates there, not invented calendar dates. P01 inventories; P02 proposes/disposes; dependent tasks wait. If this task reveals another material question, record its source and affected prerequisite before proceeding.
 
 Result destination: [parent execution evidence](../plan.md#execution-evidence) and, for future measured application work, the dated registered report named by the producing task. Handoff includes exact assertions met/unmet, source identity, current gates and next ready task. No separate mutable INDEX or implementation-plan duplicate.
+
+## P02 design refinement
+
+P03A → P03B → P03C preserves canonical SP-03.2. Q-02/Q-03 pending dispositions block the affected children. Source/schema support must precede new handler behaviour; audited author support must precede creation authority. Producer negative checks remain in each leaf. Parent verification requires all applicable child assertions, not merely their document completion.

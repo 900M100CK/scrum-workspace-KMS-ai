@@ -1,0 +1,9 @@
+{
+  "observed_epoch": 1793634678.0795293,
+  "local_head": "d6b8caf241603cdff4f9b7a2a491fc4e2e386453",
+  "remote_planning_head": "d6b8caf241603cdff4f9b7a2a491fc4e2e386453",
+  "pinned_template_gitlink": "3c65f5cbefa7d69a75cadd89b177e3add8b400b0",
+  "active_local_template_revision": "6996dae13b2bfe31e77b5d90bb5eb24888a6a910",
+  "index_paths": [],
+  "scope": "Original planning publication unchanged; runtime working-tree changes are not committed/pushed"
+}

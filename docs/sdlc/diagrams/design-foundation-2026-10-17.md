@@ -3,7 +3,7 @@
 **Artifact ID:** DGM-DESIGN-01
 **Version/date:** 0.1 Draft · 17 October 2026
 **Status:** Author design/review; no independent approval or runtime acceptance.
-**Inputs:** BRD English v1.0; PRD-01 v0.9; UC-02 v0.6; SAD-03 v0.12; DATA-04 v0.6; DATA-FIT-01 v0.3; Workspace OpenAPI v0.2.2 / Knowledge v0.2.3; migrations 001+002 of each store; infra/postgres/compose.yaml; ADR-0002–ADR-0017; PLAN-01 v0.3; specs SP-04–SP-11.
+**Inputs:** BRD English v1.0; PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; DATA-04 v0.16; DATA-FIT-01 v0.6; Workspace OpenAPI v0.2.2 / Knowledge v0.2.3; migrations 001+002 of each store; infra/postgres/compose.yaml; ADR-0002–ADR-0017; PLAN-01 v0.3; specs SP-04–SP-11.
 **Trace:** BR-01–BR-14; SC-01–SC-08; no release-scope change.
 **Owner role:** Sequential documentation author and reviewer.
 **Handoff:** Ready for downstream design use with stated gaps; diagram-first design package; implementation remains separate and must resolve the explicit protocol/retention/stack gaps below.

@@ -2,7 +2,7 @@ import {randomUUID} from 'node:crypto';
 import type {Pool,PoolClient} from 'pg';
 import {ownedTransaction} from '../session/database.ts';
 
-export type ProjectCapability='membership-manage'|'project-administrator';
+export type ProjectCapability='membership-manage'|'project-administrator'|'backlog-author';
 const reference=(value:string)=>{if(typeof value!=='string'||!value.trim()||Buffer.byteLength(value)>1024)throw new Error('Operator reference/reason required');};
 const revision=(value:string)=>{if(!/^(0|[1-9]\d{0,18})$/.test(value))throw new Error('Expected revision required');};
 async function start(c:PoolClient,userId:string){
@@ -36,7 +36,7 @@ export class WorkspaceProjectOperator {
   });
  }
  async project(userId:string,projectId:string,action:ProjectCapability,allowed:boolean,expected:string,operatorRef:string,reason:string){
-  reference(operatorRef);reference(reason);revision(expected);if(!['membership-manage','project-administrator'].includes(action)||typeof allowed!=='boolean')throw new Error('Explicit supported action required');
+  reference(operatorRef);reference(reason);revision(expected);if(!['membership-manage','project-administrator','backlog-author'].includes(action)||typeof allowed!=='boolean')throw new Error('Explicit supported action required');
   return ownedTransaction(this.pool,'operator',async c=>{
    await start(c,userId);
    if(!(await c.query('SELECT project_id FROM workspace.project WHERE project_id=$1 FOR UPDATE',[projectId])).rowCount)throw new Error('Project unavailable');

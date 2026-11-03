@@ -1,0 +1,130 @@
+{
+  "artifact": "SP03-P03B actual storage/build checks",
+  "date": "2026-11-02",
+  "node": "24.21.0",
+  "commands": [
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "--test-concurrency=1",
+        "tests/workspace/task-storage.test.mjs",
+        "tests/workspace/project-outcomes.test.mjs"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 32.28,
+      "log": "run-1793626066022085000.log"
+    },
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "typecheck"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 11.94,
+      "log": "run-1793626067742505800.log"
+    },
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "build"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 6.16,
+      "log": "run-1793626073981014100.log"
+    },
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "--test-concurrency=1",
+        "tests/workspace/task-storage.test.mjs"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 19.2,
+      "log": "run-1793626233605807000.log"
+    },
+    {
+      "command": [
+        "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "--test-concurrency=1",
+        "tests/workspace/task-storage.test.mjs",
+        "tests/workspace/project-outcomes.test.mjs"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 32.09,
+      "log": "run-1793626359095847200.log"
+    }
+  ],
+  "documentation_commands": [
+    {
+      "command": "npm run docs:lint",
+      "exit_code": 1,
+      "duration_seconds": 5.01,
+      "log": "docs-lint-1793626150621364600.log"
+    },
+    {
+      "command": "npm run docs:test",
+      "exit_code": 1,
+      "duration_seconds": 5.39,
+      "log": "docs-test-1793626151008702500.log"
+    },
+    {
+      "command": "npm run docs:lint",
+      "exit_code": 0,
+      "duration_seconds": 5.01,
+      "log": "docs-lint-1793626198696317900.log"
+    },
+    {
+      "command": "npm run docs:test",
+      "exit_code": 0,
+      "duration_seconds": 5.38,
+      "log": "docs-test-1793626199070062200.log"
+    }
+  ],
+  "scope": "Disposable PostgreSQL only; task HTTP/UI not implemented",
+  "storage_result": "Final task-storage plus existing project-outcomes 14/14, zero skips; includes parent results",
+  "typecheck": "passed",
+  "build": "passed",
+  "docs_result": "20/20, zero skips after reproducible diagram model update",
+  "historical_migration_sha256": {
+    "services/workspace/migrations/001-store.down.sql": "87b75aeef1c2cbc79a289995e3fd9f54b135ccc092c332f88508c64a78518091",
+    "services/workspace/migrations/001-store.up.sql": "9898406f45069f652b2ada98a0415353d5e7c0916df974dc5ff015b25403f269",
+    "services/workspace/migrations/002-registered-policy.down.sql": "44af53e26c892b062169b7f0e0c4c559eb29c17273a0d3da03722af73ff8d657",
+    "services/workspace/migrations/002-registered-policy.up.sql": "cff0d0cdca9f3cc98be5443bac579c0351bfc2d301d383dda531f2c966f27040",
+    "services/workspace/migrations/003-work-location.down.sql": "9d491c64a6867c89dd1ad0b9b2d181306257f5ce0fabadf3ff6b951541ec7888",
+    "services/workspace/migrations/003-work-location.up.sql": "e73b8af5f4cae23ee0368cf0577d881d0a2560a133a69b2fa38876b060a6727c",
+    "services/workspace/migrations/004-protected-claims.down.sql": "15c0409a04bbf4b33b3f27033299ebf802115333e3162a3ed19099105ecdc6f3",
+    "services/workspace/migrations/004-protected-claims.up.sql": "dd2c6d4a4d751725058821ddaee169e7ba9939aab081ea93bbff7912cf0edfbc",
+    "services/workspace/migrations/005-session-foundation.down.sql": "f3742814e2eec71ee3de1400b8de37faf745eecac6c55166a16c7698cb015f71",
+    "services/workspace/migrations/005-session-foundation.up.sql": "3e356a0fcb28a0458be0cd6dfb696939475bb99cde263503da78f491e2611df6",
+    "services/workspace/migrations/006-session-lifecycle.down.sql": "46df2f4e13b3b7125b3453bc118fac7e4ab1dc1676cc17b78e017ac8fc0d7e15",
+    "services/workspace/migrations/006-session-lifecycle.up.sql": "e6db051fea6bb3664753c9feb2d6d4c033bb4de2c3db049c976f891237233ccf",
+    "services/workspace/migrations/007-project-membership.down.sql": "bc44be793a5c9f9a60f1a6c73c5599914263f54b5199585cba1209e4b9d0bdad",
+    "services/workspace/migrations/007-project-membership.up.sql": "cb7216447397b9ef4104230725e5037a4fba12971976507cf29f396c412481f6",
+    "services/workspace/migrations/008-project-outcomes.down.sql": "7119952201851d2fe645563fbffbee52c2aa48389dde91289f59be7b744d4bca",
+    "services/workspace/migrations/008-project-outcomes.up.sql": "91f6fa1c4654341d485be0b5ed226380b0e4b06f29c94fe196631e2e3fe4e6a2"
+  },
+  "new_source_sha256": {
+    "services/workspace/migrations/009-task-creation.up.sql": "24ff61006fddf17e172f30fb5e6267b27f5616aca46da25d4f89d801a4fe8b0f",
+    "services/workspace/migrations/009-task-creation.down.sql": "4f9de6edfd2cdef411f2e7785ed9a7b19cbf141019d50046c7e993f67f83e0ee",
+    "services/workspace/src/tasks/types.ts": "0a9b265752263f9b94de9376e3376d4635bb3360041f801a3dfef51a5ab796dd",
+    "services/workspace/src/tasks/outcomes.ts": "ddfd21efef8936b9ebe2c43b843dcd2531b50c53243ee1d0216ddfed0a66c14d",
+    "tests/workspace/task-storage.test.mjs": "142ff4764e469be625774d5015a4657eac86ccaec57fc73f0d52bb89cde523f3",
+    "tests/workspace/task-fixture.mjs": "b3c148178b460b9667e91d2fe7ca861fa379b3b6c4195f1db8a8c19073357e8b"
+  },
+  "failures_retained": [
+    "First negative matrix included valid nullable assignee_id; corrected the test input, not the contract",
+    "Pair-only ERD edit failed reproducibility; coordinated model path then updated and regenerated that pair"
+  ],
+  "limitations": [
+    "No development migration",
+    "No task HTTP/DOM/browser evidence",
+    "Storage helpers do not authorize replay; future callers must check current authority"
+  ]
+}

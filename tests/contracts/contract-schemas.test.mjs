@@ -16,6 +16,17 @@ function expect(service, name, data, valid) {
   assert.deepEqual(data, original, 'Validation must not repair or mutate payloads');
 }
 
+test('Task requires a valid server creation time while create input rejects origin and authority fields', () => {
+  const task={task_id:'t',project_id:'p',type:'story',title:'Synthetic task',description:'',state:'todo',assignee_id:null,blocked:false,revision:1,work_location:{kind:'backlog',position:'1'},created_at:'2026-11-02T00:00:00.123Z'};
+  expect(workspace,'Task',task,true);
+  const missing=copy(task);delete missing.created_at;expect(workspace,'Task',missing,false);
+  for(const created_at of [null,1,'yesterday','2026-02-30T00:00:00Z']) expect(workspace,'Task',{...task,created_at},false);
+  expect(workspace,'Task',{...task,created_by:'client'},false);
+  for(const type of ['story','task','bug']) expect(workspace,'CreateTask',{type,title:'Synthetic task'},true);
+  for(const field of ['created_at','created_by','project_id','actor_id','permissions','work_location','state','revision']) expect(workspace,'CreateTask',{type:'task',title:'Synthetic task',[field]:task[field]??'client'},false);
+  expect(workspace,'CreateTask',{type:'epic',title:'Synthetic task'},false);
+});
+
 test('both complete contract documents pass the pinned OpenAPI 3.1 structure check', () => {
   for (const {api} of [knowledge,workspace]) {
     const original=copy(api);
