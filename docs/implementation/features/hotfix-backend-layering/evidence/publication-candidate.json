@@ -1,0 +1,520 @@
+{
+  "base": "6b837fd52e01709f72bfe2de6cb96f0e9cc52653",
+  "target": "main",
+  "remote": "origin/main",
+  "tracked_scope_count": 70,
+  "links_checked": 794,
+  "files_before_candidate_manifest": [
+    {
+      "path": "docs/architecture.md",
+      "sha256": "bef9ef16cd76ab648e947254b47718272472b05e1ff208c9ad540e6e71b485f6"
+    },
+    {
+      "path": "docs/implementation/features/README.md",
+      "sha256": "346de9a1df4085b6746c4af3df3227e77b32a471e032d357618c2b9aca14ec53"
+    },
+    {
+      "path": "docs/implementation/register.md",
+      "sha256": "0f9cd356500d2e27e394521e17239747b0eee46c24b92780da5b299898adfe00"
+    },
+    {
+      "path": "docs/implementation/roadmap.md",
+      "sha256": "0db2dc92e8ad39a3d1b007288e8267e19635feb89e1b66a794a6ade1fb79c736"
+    },
+    {
+      "path": "docs/sdlc/SAD.md",
+      "sha256": "87d7584c145eb83921ea4412d60408815b835e777e29e83dc7ec683e2833d4fe"
+    },
+    {
+      "path": "docs/sdlc/api-design.md",
+      "sha256": "eafec0055bc4e4b3cc55776d150a65049609cc4bcf69498efe0ee5321a49ec39"
+    },
+    {
+      "path": "docs/sdlc/artifact-register.md",
+      "sha256": "3d4798d25a978ab238a04df8f4e50573188d6a0397e61965e75cab1f6c1bc5c4"
+    },
+    {
+      "path": "docs/sdlc/data-design.md",
+      "sha256": "f330ac9d5e7234ebb9d653d555fabf4f5348ab4625e25a26885bdc053766783e"
+    },
+    {
+      "path": "docs/sdlc/diagrams/README.md",
+      "sha256": "990f1a47996f1fee03e97cbee922ceabd115071a626404549ab69601da4cbbaf"
+    },
+    {
+      "path": "docs/sdlc/diagrams/architecture/README.md",
+      "sha256": "f3e9688d1fbbaa8eb4350c77ef11483085388594e3e2030519175f1b65f0d81b"
+    },
+    {
+      "path": "docs/sdlc/diagrams/architecture/service-composition.drawio",
+      "sha256": "b77bb005bb9fd65323ecca1612bd987a5fb06b7f3f967d1073fc58d977f3763c"
+    },
+    {
+      "path": "docs/sdlc/diagrams/architecture/service-composition.mmd",
+      "sha256": "7c3f68f00090cb3b09afbd4950b8e709eb01fdb99b2bc628b852701fa4691c0f"
+    },
+    {
+      "path": "docs/sdlc/diagrams/c4/README.md",
+      "sha256": "1d4f63d32226703ce57c2ac29ff5fcbee08ca7543911f19a6ffaf01fe22ea3ee"
+    },
+    {
+      "path": "docs/sdlc/diagrams/c4/containers.drawio",
+      "sha256": "cf622abdbeb33f1905870b8c38af9c77e1b843c25de4555386dad695eed3adf2"
+    },
+    {
+      "path": "docs/sdlc/diagrams/c4/containers.mmd",
+      "sha256": "b607d0842596b096e48b7898a8be69352fcd85a3a78132976b8b35f0d4885e88"
+    },
+    {
+      "path": "docs/sdlc/diagrams/c4/system-context.drawio",
+      "sha256": "5065c303cc60a12c5c36093106a274cc476b07571a889f3536d60e28eea66bbd"
+    },
+    {
+      "path": "docs/sdlc/diagrams/c4/system-context.mmd",
+      "sha256": "d78f2f41dca9f8a60d39642b0d492c1c220de98c3f894e73f0e832dd42402c5d"
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/README.md",
+      "sha256": "27556a8e3431eaaba3da3050eab8631c1e4989398ff0883c7f2dcad3a0f6a162"
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/handoff-logical-model.drawio",
+      "sha256": "1a9b4d8c0241ddfe05436dbcc9ccf45058015569367c89b9e591784d07e34049"
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/handoff-logical-model.mmd",
+      "sha256": "36df768cf7cd1f868fe4a487979f38abc4985eb805fa24879c7423d17510dd9e"
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/knowledge-erd.drawio",
+      "sha256": "d38aa2d78ea6b2645132e99f115c3eca2e5aa03b60ee6f598a2a1e0ef3afb2c3"
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/knowledge-erd.mmd",
+      "sha256": "8d51ae437a354e34346c56e73edf612a66b04521f358efe674ee1e614006d3e7"
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/workspace-erd.drawio",
+      "sha256": "21ef8edc4bb7e43f1e7170e50933f9796e9384abd2c63409052b87daa274856b"
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/workspace-erd.mmd",
+      "sha256": "a880a546f509aebad392707793c302eea8f892ee46f2b7ef3d2102b9ae934bb9"
+    },
+    {
+      "path": "docs/sdlc/diagrams/deployment/README.md",
+      "sha256": "e901512a000066a35863a371a00c4735f8d7600ab84c5e8cdc61ee72251f1198"
+    },
+    {
+      "path": "docs/sdlc/diagrams/deployment/local-development.drawio",
+      "sha256": "63c5a101d20a9d073ffc974aee51c8dbb1e1a956a4314ced91f10a8a8f986658"
+    },
+    {
+      "path": "docs/sdlc/diagrams/deployment/local-development.mmd",
+      "sha256": "d6269a9eacb135169cae9ff6f700ac022da19c469cb79e34088b15061551d34f"
+    },
+    {
+      "path": "docs/sdlc/diagrams/development/README.md",
+      "sha256": "afa1a3cb20d783d62e1f074b671af6ac2e15c72078c2843b01d920b1745b0b1d"
+    },
+    {
+      "path": "docs/sdlc/diagrams/development/package-ownership.drawio",
+      "sha256": "f6e563c07e3dc3e1e09137c7a7123f89ce8d7845b4320b213cd50128480fad0e"
+    },
+    {
+      "path": "docs/sdlc/diagrams/development/package-ownership.mmd",
+      "sha256": "7d4e17a920b7b948dc17dd31882e1a0289a8bea120b87beb0af5ee0dde9fc40b"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/README.md",
+      "sha256": "20b210f3ccd624adaab93be208631c91be7e15f20ddba86d28ca929097749d03"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/ai-qa-flow.drawio",
+      "sha256": "e1883bf941c17b9b1c50fb936e18add3e7365a43adf8d707c220cec0b55f8b48"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/ai-qa-flow.mmd",
+      "sha256": "1a520cc7f66f37ae339b60c21d0b99de3b010957f544c991ffea933ced84a1ed"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/board-flow.drawio",
+      "sha256": "ed52b0c7c366aece8ed39f5edba9b28c9f07df4037f2211e15e9d9bf2b6b5942"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/board-flow.mmd",
+      "sha256": "4bf99860f480d178793038703b07ecd3fd624fda7a37abc4c8c604782666b398"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/docs-flow.drawio",
+      "sha256": "5db18188f99b74cecf3adc9852ed0c74e8f5cf1a8b9e8dbb60c3728d439810cb"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/docs-flow.mmd",
+      "sha256": "e0eb3345babf3cede6db1be6f8d4e3c876a1469395b77d86c36d00dde7a43964"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.drawio",
+      "sha256": "817ed3f5c6192c12e185f9cbcc25a573410cc4dfd2c87968335912c2ba8eb032"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.mmd",
+      "sha256": "3a2d61f6aa1d9dea9a48edefc0879e39378285cdef20a81e10d523c2478958eb"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/permission-read-flow.drawio",
+      "sha256": "3d1678c3838572f8029532de72fd039dd596cc2e2de9ca1cedd6db3df717b9eb"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/permission-read-flow.mmd",
+      "sha256": "637e2bdcf156f1ab3d125556452995c279daad0726e9f7e185ec942856a20f2a"
+    },
+    {
+      "path": "docs/sdlc/diagrams/manifest.json",
+      "sha256": "6e8ad385fd40a988f333f439dbac1ab15a2403d1b7433025d727080754a153f1"
+    },
+    {
+      "path": "docs/sdlc/diagrams/sequence/README.md",
+      "sha256": "887215111206c3454ef9db4df73884eb335bdf4c3330371ceb2a2e76ca5c6b8a"
+    },
+    {
+      "path": "docs/sdlc/diagrams/sequence/document-creation.drawio",
+      "sha256": "16f03d383a4a0edaeb9cb958e0045fb1f540417a8aef20223963c443a255117c"
+    },
+    {
+      "path": "docs/sdlc/diagrams/sequence/document-creation.mmd",
+      "sha256": "23135f0c4e6a9c0c7219ab6a205fbd922c8aef6e08310d22080e684c85295d11"
+    },
+    {
+      "path": "docs/sdlc/diagrams/sequence/protected-handoff.drawio",
+      "sha256": "be6dd9a0ee0493f03db517f20c12d5e41930267928f0c6535a205ad4a2f0bfb2"
+    },
+    {
+      "path": "docs/sdlc/diagrams/sequence/protected-handoff.mmd",
+      "sha256": "a3a94bc889d28443d41189cfad4475aed0ee7ba6478be4c5e40a94eee9d55184"
+    },
+    {
+      "path": "docs/sdlc/diagrams/sitemap/README.md",
+      "sha256": "001e075b4f3063f67581197a02d3b7bb2f621fdb9d9d6218809e2dc63d2df970"
+    },
+    {
+      "path": "docs/sdlc/diagrams/sitemap/application-sitemap.drawio",
+      "sha256": "900629fac61f4462b20c7cf526ec637900e22944053006e77f0807e49f33141a"
+    },
+    {
+      "path": "docs/sdlc/diagrams/sitemap/application-sitemap.mmd",
+      "sha256": "ef816621fbf0f0062ab84393c7b92a7e7550fa84b0d757e8fdc3cad3b76e93d2"
+    },
+    {
+      "path": "docs/sdlc/diagrams/state/README.md",
+      "sha256": "371751b382f404cd82567eaca1a7e46ae775a5d263e74800eca777a50c69fc50"
+    },
+    {
+      "path": "docs/sdlc/diagrams/state/document-and-readiness.drawio",
+      "sha256": "f2210b26544ea89ec49df03d21f346cc91da8854711d919bfaa8b11707eca2c5"
+    },
+    {
+      "path": "docs/sdlc/diagrams/state/document-and-readiness.mmd",
+      "sha256": "e7164507f548e3fba48e6c16a7f13103b7ceec0e25cc47aefa50255f22912313"
+    },
+    {
+      "path": "docs/sdlc/diagrams/state/sprint-task-allocation.drawio",
+      "sha256": "b9319e5d979d7598a94ede89b754c26e0baa03d22f3eda16416a2afbe197be0f"
+    },
+    {
+      "path": "docs/sdlc/diagrams/state/sprint-task-allocation.mmd",
+      "sha256": "5088652a2154c12f92e920af29b0bd69d9c32cb21b7c4a754f789c2d486b4e57"
+    },
+    {
+      "path": "docs/sdlc/diagrams/use-case/README.md",
+      "sha256": "d9f1c739d6de84f055d318b0363981a9102f4ea980622151beedceebad155b35"
+    },
+    {
+      "path": "docs/sdlc/diagrams/use-case/use-case-diagram.drawio",
+      "sha256": "dc91624efb102c53c31fe069b14931847a8f8c6a6dd4a4756bc3b3c1befc9c66"
+    },
+    {
+      "path": "docs/sdlc/diagrams/use-case/use-case-diagram.mmd",
+      "sha256": "04db575888a7790ce063c09ee7ab63c95e1bafb971ac1e9fce34d74d14f68126"
+    },
+    {
+      "path": "docs/sdlc/diagrams/user-journey/README.md",
+      "sha256": "8f7824889815fee4e05b77638bca924a284f12e3b3183e5ac6d364196faece7f"
+    },
+    {
+      "path": "docs/sdlc/diagrams/user-journey/core-user-journeys.drawio",
+      "sha256": "f648186334b90052e7a2b993f834ffa435389e895f584ca49cbd214c65a9153d"
+    },
+    {
+      "path": "docs/sdlc/diagrams/user-journey/core-user-journeys.mmd",
+      "sha256": "193dbc9e479b7232f00f84ed611e6ba2e90f7f838c1a0f20ca93562883747d7c"
+    },
+    {
+      "path": "docs/sdlc/evaluation-cases.md",
+      "sha256": "d28864151c6d2e9b81bf5f1b8049a20b604b3eaec3dbbda17f6752206178b50f"
+    },
+    {
+      "path": "docs/sdlc/references/document-review-register.md",
+      "sha256": "6503241cd931267b75082d1fc0709150abb268ccf89b012979990d4a59cd3189"
+    },
+    {
+      "path": "docs/sdlc/requirement-verification.md",
+      "sha256": "d1172a99d206fe05122de844c869bc856e136608d3f633661e5012b1c1a872b6"
+    },
+    {
+      "path": "docs/sdlc/test-coverage.md",
+      "sha256": "c4b2e18b1b8ac5a8eb12ea4a9fee6a45ab8f4356f5b0b36f5c2db0889688702a"
+    },
+    {
+      "path": "docs/sdlc/test-plan.md",
+      "sha256": "9dcf32a3cf490711e8bd6008065cf25f3244b3cdf33be1f3ccc5b674b3f7919f"
+    },
+    {
+      "path": "docs/sdlc/ui-ux-blueprint.md",
+      "sha256": "f7ec8274884def724ddc915a083b6bf4bded7ea8882c05017ad24220b28a7636"
+    },
+    {
+      "path": "docs/sdlc/ui-ux-spec.md",
+      "sha256": "6ca49e81e60ed23d1783a0e25db068190a06e49d9e76d6deeee6cd383be9232f"
+    },
+    {
+      "path": "docs/ux/wireframe-workplan.md",
+      "sha256": "f16ceb3a8eda510829c77c3b979788c0bdb17003a0f3b78783c38a62f285723e"
+    },
+    {
+      "path": "docs/ux/wireframes/README.md",
+      "sha256": "084d95896ecbc61f7d6ee3bd0cd0141a052064538caab1d7ceea6bc1ad68e1d1"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/breakdown.md",
+      "sha256": "6ce85ba4c771bc6c3463f6840eb24ae7865f69dde5d1a555e32101dd5b2880cd"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/after-edit-checks.json",
+      "sha256": "085a60469393fe4d5f2477d5a68e9489b2c770447a3ada66fa3aa90941f76ab5"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/after-edit-context-check.log",
+      "sha256": "fd41c9e1ea2a551a05db5a83545f2091a1cb61e2304cbb26995c07b4044535ca"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/after-edit-context-lint.log",
+      "sha256": "2875584bbbea4294d4db8fcdfca8de0ea8f04c235234b8a371e08df1f8601f78"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/after-edit-context-test.log",
+      "sha256": "a7ce592452edc7dcea6cb0a8f2af01a44e04751d53005b324d2b7140af30bc20"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/after-edit-docs-lint.log",
+      "sha256": "bdec06812384c6b88264b1a64583d6bde6840fde38c58c7cce727c94703a9fd3"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/after-edit-docs-test.log",
+      "sha256": "f9aa0bff9722d28f038cf076194e61138dfe96227c93e9997f8f06da2f54f367"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/baseline-checks.json",
+      "sha256": "90d0c4702e47269f90a1a9a9e52f40716a4f8ab6f0b45e9ca286a74c523da568"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/baseline-context-check.log",
+      "sha256": "fd41c9e1ea2a551a05db5a83545f2091a1cb61e2304cbb26995c07b4044535ca"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/baseline-context-lint.log",
+      "sha256": "2875584bbbea4294d4db8fcdfca8de0ea8f04c235234b8a371e08df1f8601f78"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/baseline-context-test.log",
+      "sha256": "ea1cca3ad15cc9af486fc374d6ca1dffd160f0459ddb48be331ad94958856240"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/baseline-docs-lint.log",
+      "sha256": "bdec06812384c6b88264b1a64583d6bde6840fde38c58c7cce727c94703a9fd3"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/baseline-docs-test.log",
+      "sha256": "5fd9361c4e548bd0d852037c03d0eb2d6cd044a6f30a992855a4be78d1e4ea0c"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/before-images.json",
+      "sha256": "68673b1eceda2a71ba91240347eaad7b7f0c3fc0d7f96d4aeb737e0dd5ba43b4"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/f01-before-images.json",
+      "sha256": "f3331412b47c6ba445c8074846bbfe6f8a1905282504764732f378740bbdf7b9"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/f01-checks.json",
+      "sha256": "6fe9285a0c89794b404fd79ec38acb3827c1b78c2118db21b215bf85fd40d288"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/f01-closure-checks.json",
+      "sha256": "b311d55befc9205d5b32cc35856900e8d7cc5226c0d214c5bfe955dbe7940653"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/f01-closure-context-check.log",
+      "sha256": "d4b042a0db63f7887ed4678f5564f5842fbb0cf01325ab343761662fa85f6228"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/f01-closure-docs-lint.log",
+      "sha256": "bdec06812384c6b88264b1a64583d6bde6840fde38c58c7cce727c94703a9fd3"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/f01-context-check.log",
+      "sha256": "d4b042a0db63f7887ed4678f5564f5842fbb0cf01325ab343761662fa85f6228"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/f01-context-lint.log",
+      "sha256": "2875584bbbea4294d4db8fcdfca8de0ea8f04c235234b8a371e08df1f8601f78"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/f01-context-test.log",
+      "sha256": "4751e6d3a0212163e48e9c3469c011f9feb17e0bef9e0f692aba76d2c4046bf5"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/f01-docs-lint.log",
+      "sha256": "bdec06812384c6b88264b1a64583d6bde6840fde38c58c7cce727c94703a9fd3"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/f01-docs-test.log",
+      "sha256": "87f9f898ce97d361e2d22e117e80f18af26d2cb9a484972ed29edc2cc75fc9e3"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/f01-links-attempt1.json",
+      "sha256": "02ba7c763c0760d5af5fd0cf01bf1b71d57d37c6dd44c7aebcf5f60986608f44"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/f01-preservation.json",
+      "sha256": "577de6b2a67412f84065443e5c74fb52182f3632a315f78429017d8a796133a8"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/final-checks.json",
+      "sha256": "ed977a314c531fbd81b33ee8ab909d71d60a7b4a7aaae6d388d5ec22a1778b76"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/final-context-check.log",
+      "sha256": "d4b042a0db63f7887ed4678f5564f5842fbb0cf01325ab343761662fa85f6228"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/final-context-lint.log",
+      "sha256": "2875584bbbea4294d4db8fcdfca8de0ea8f04c235234b8a371e08df1f8601f78"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/final-context-test.log",
+      "sha256": "949655b0c21800a1a5018da54b8b661acad91c0ef3695a17ec08d9160be6aba4"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/final-docs-lint.log",
+      "sha256": "bdec06812384c6b88264b1a64583d6bde6840fde38c58c7cce727c94703a9fd3"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/final-docs-test.log",
+      "sha256": "0faf81b268ca8cec91d2eb2851dc8976faa7d43f66e6c433793e1c517eac3da1"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/final-whitespace.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/handoff-checks.json",
+      "sha256": "591c0abc69fd6d7903d69fbc261052ccc1f2a4b1e5ed9eda38ee92331c7a97a2"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/handoff-context-check.log",
+      "sha256": "d4b042a0db63f7887ed4678f5564f5842fbb0cf01325ab343761662fa85f6228"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/handoff-docs-lint.log",
+      "sha256": "bdec06812384c6b88264b1a64583d6bde6840fde38c58c7cce727c94703a9fd3"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/metadata-scope.json",
+      "sha256": "5c59f142afa71f63b59be5ed8cbcd4abf6e66b4b43e490a9382659a35d18870e"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/npm-ci-node24.log",
+      "sha256": "52927d4109a6de4c4ce8f58ca0df74ac3a762c30ac7970ad54dee3630c7e29db"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/preservation-attempt1.json",
+      "sha256": "8e9ec92f04ae3ca62ac339cf3c57d94fc1542d50ae7ce11357932d2dcdfdd168"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/preservation.json",
+      "sha256": "c82adee6adda29be3c6a98bfca01c5807be3e5b43bd98ceb878ad256f932cb07"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/publication-checks.json",
+      "sha256": "1d6bff5f664f554ac025697d94f1a4b9e3a0d104aac2fd92ee3da625327013a6"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/publication-context-check.log",
+      "sha256": "d4b042a0db63f7887ed4678f5564f5842fbb0cf01325ab343761662fa85f6228"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/publication-context-lint.log",
+      "sha256": "2875584bbbea4294d4db8fcdfca8de0ea8f04c235234b8a371e08df1f8601f78"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/publication-context-test.log",
+      "sha256": "773a99831fc31bec42a169ad011f0c5f2fb669548e601d759e9fd67d6433eaad"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/publication-docs-lint.log",
+      "sha256": "bdec06812384c6b88264b1a64583d6bde6840fde38c58c7cce727c94703a9fd3"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/publication-docs-test.log",
+      "sha256": "8a1a79ec0dc4126c0abe48bfe17711d7d52676927e8304cba9ae3f5415aabc08"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/run-checks.py",
+      "sha256": "47a82b112cc9ee775d24e9b1928ded0692fd5be594fedc300b91a127f8c2482e"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/setup.json",
+      "sha256": "3db260ab7cdb28ebfa3771d4cf67ef6f2159c5d7dc7bbbe8221155454d936cc9"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/evidence/source-inputs.json",
+      "sha256": "fd0afbd4228538b2b44e7d5133eaf0788bdaac8cd98a463201d3eb67d6ee4b48"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/handoff.md",
+      "sha256": "c1070605bca20fad41c42eeac2fe82c6765b166c62828034bf53891ea61f6a54"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/plan.md",
+      "sha256": "f07d0b2dc46b8cff9b583486c36a49e010a0307863bdac3c5287c19bee62b99b"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/README.md",
+      "sha256": "0fb5c647f22c9eb4297d67ae3f593d1db43037b8cc76f03ff52c01e028e930bb"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/tasks/HF42-F01-source-link.md",
+      "sha256": "f219818cb7e7528166b845cdf0c66280ca7e0fd72614b723b365818d11ce5082"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/tasks/HF42-P01-publication.md",
+      "sha256": "73e4d40547c139fdbeb2f4f788e680292383b3a976dfd0f390f7250f83f5903e"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/tasks/HF42-T01-register.md",
+      "sha256": "f748c8cea11984d100e079021824071fedf593603cad87661ce8c8971f3caf42"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/tasks/HF42-T02-layering.md",
+      "sha256": "8980e7065faf9527f246834a4ded54a73962753181a0619125b6a32fe3a20b6a"
+    },
+    {
+      "path": "docs/implementation/features/hotfix-backend-layering/tasks/HF42-T03-verification.md",
+      "sha256": "a167bd560c276a20b991f363ccef35bfc58bd6759cd731087ea9149eae8a6f99"
+    }
+  ],
+  "runtime_changed": false,
+  "author": "Codex <codex@openai.com>",
+  "evidence_logs_explicitly_included": true
+}

@@ -39,9 +39,9 @@ Prior OWNER-Q-01 verification: combined Node 24.21.0 run `node --test tests/docs
 ## Current register and handoffs
 
 **Artifact ID:** REG-00
-**Version/date:** 0.103 Draft · 2 November 2026
+**Version/date:** 0.106 Draft · 4 November 2026
 **Status:** Draft; confirmed policy corrections in progress, full coverage and remaining decisions explicit.
-**Source versions:** Proposed ADR-0024/0025 for SP-01.1; [BRD stable entry](../BRD.md) → [English BRD v1.0](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md) and two Proposed addenda, [AGENTS.md v1.13](../../AGENTS.md), [workflow](../../agents/WORKFLOW.md), PRD-01 v0.9, UC-02 v0.8, SAD-03 v0.16 and ADR-0007–ADR-0017. Prior review inputs remain historical. Storage has measured test evidence; bounded session runtime evidence exists; interviews, pilot and full application acceptance remain absent.; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; Proposed ADR-0026
+**Source versions:** Proposed ADR-0024/0025 for SP-01.1; [BRD stable entry](../BRD.md) → [English BRD v1.0](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md) and two Proposed addenda, [AGENTS.md v1.13](../../AGENTS.md), [workflow](../../agents/WORKFLOW.md), PRD-01 v0.9, UC-02 v0.8, SAD-03 v0.17 and ADR-0007–ADR-0017. Prior review inputs remain historical. Storage has measured test evidence; bounded session runtime evidence exists; interviews, pilot and full application acceptance remain absent.; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; Proposed ADR-0026
 
 | Stage/ID | Path | Owner role | Version/status | Inputs/dependencies | Planned BR/SC coverage | Open decisions |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -53,7 +53,7 @@ Prior OWNER-Q-01 verification: combined Node 24.21.0 run `node --test tests/docs
 | Session folder entry and small tasks / FEAT-SP01-ENTRY; SP01-P01–SP01-P12 | [entry](../implementation/features/sp-01-session-foundation/README.md); [task files linked from plan](../implementation/features/sp-01-session-foundation/plan.md#tasks-and-acceptance) | Sequential implementer | All v0.8 Draft | FEAT-SP01-01 v0.9; canonical SP-01 and spike inputs | Existing session ACs and applicable TC-18/22; no scope addition | Each task has dependencies, write scope, steps, assertions and handoff; execution state/results stay in the parent plan |
 | Development entry / feature planning | [AGENTS.md](../../AGENTS.md); [development rules](../development-rules.md#111-work-planning-gate); [feature register/template](../implementation/features/README.md) | Owner-directed development workflow | AGENTS 1.13; development rules 1.12; IMPL-FEATURES-01 v0.14 Draft | PLAN-01 v0.4; canonical specs; IMPL-ROADMAP-01 v0.7; IMPL-EXEC-01 v0.7 | Existing feature FR/AC/BR/SC planning only; no product scope change | Features/fixes/hotfixes/testing require Plan mode when available, a saved plan with parent registration and small tasks before coding; no feature runtime acceptance |
 | Repository navigation / DOC-NAV-01 | [docs/README.md](../README.md); [tooling map](../../scripts/README.md) | Sequential development coordinator | 0.5 Draft | Development rules v1.12; AGENTS.md v1.13; existing canonical indexes | Existing BR-01–BR-15 / SC-01–SC-08 navigation only | Location-only tooling/test refactor; runtime and independent acceptance unchanged |
-| Implementation navigation / IMPL-ENTRY-01; IMPL-REG-01; IMPL-DEC-01; IMPL-ROADMAP-01; IMPL-EXEC-01; IMPL-HANDOFF-01; IMPL-TASKS-01; IMPL-SP-01–IMPL-SP-13 | [docs/implementation/README.md](../implementation/README.md); [pack register](../implementation/register.md); [task catalogue](../implementation/tasks/README.md) | Sequential development coordinator | IMPL-REG-01 v0.19 / IMPL-DEC-01 v0.9 / IMPL-SP-01 v0.7; IMPL-EXEC-01 v0.7; IMPL-ROADMAP-01 v0.7; IMPL-TASKS-01 v0.4; IMPL-ENTRY-01 / IMPL-SP-11/12 v0.2; others v0.1 Draft | PRD-01 v0.9; SPEC-INDEX v0.7; PLAN-01 v0.4; SAD-03 v0.16; current contracts, UX and ADR-0001–ADR-0025 | Existing BR-01–BR-14 / SC-01–SC-08 through canonical specs; no added scope | SP-01 bounded execution/handoff has evidence; other 48 children Not started; Proposed gates open, no application acceptance |
+| Implementation navigation / IMPL-ENTRY-01; IMPL-REG-01; IMPL-DEC-01; IMPL-ROADMAP-01; IMPL-EXEC-01; IMPL-HANDOFF-01; IMPL-TASKS-01; IMPL-SP-01–IMPL-SP-13 | [docs/implementation/README.md](../implementation/README.md); [pack register](../implementation/register.md); [task catalogue](../implementation/tasks/README.md) | Sequential development coordinator | IMPL-REG-01 v0.19 / IMPL-DEC-01 v0.9 / IMPL-SP-01 v0.7; IMPL-EXEC-01 v0.7; IMPL-ROADMAP-01 v0.7; IMPL-TASKS-01 v0.4; IMPL-ENTRY-01 / IMPL-SP-11/12 v0.2; others v0.1 Draft | PRD-01 v0.9; SPEC-INDEX v0.7; PLAN-01 v0.4; SAD-03 v0.17; current contracts, UX and ADR-0001–ADR-0025 | Existing BR-01–BR-14 / SC-01–SC-08 through canonical specs; no added scope | SP-01 bounded execution/handoff has evidence; other 48 children Not started; Proposed gates open, no application acceptance |
 | Session preparation / IMPL-BRIEF-SP01-01; IMPL-PREP-SP01-01 | [brief](../implementation/briefs/SP-01.1-session-foundation.md); [result](reports/SP-01.1-preparation-2026-10-27.md) | Sequential implementer | Brief v0.4; result v0.3 Draft clarifies historical v0.1 execution inputs | SP-01 v0.4; PRD v0.9; Workspace v0.2.8; historical stack/ADR snapshots | FR-01/36/37/68; BR-01/10; SC-06 | Original schema pre-evidence unchanged; newer runtime result and bounded P07 result are registered separately below |
 | Session runtime experiment plan / IMPL-SPIKE-SP01-01 | [detailed spike brief](../../SP-01.1-spike-brief.md); [external review input](../../SP-01.1-prep-review.md) | Sequential preparation author | Brief v0.2 Draft; external review unversioned and unchanged | IMPL-BRIEF-SP01-01 v0.2; current session contract; Proposed ADR-0024/0025 | FR-01/36/37/68; BR-01/10; SC-06 relevance only | 38 revised experiment IDs, runtime Not run; no dependency, clock policy or owner acceptance |
 | Session foundation candidates / ADR-0024; ADR-0025 | [backend](../adr/0024-backend-session-foundation.md); [opaque sessions](../adr/0025-opaque-session-candidate.md) | Architect | Both v0.5 Proposed | ADR-0003; PRD v0.9; canonical session contract and brief | FR-01/36/37/68; BR-01/10; SC-06 | Core framework/session policy selected; bounded P08/P09/P10 implemented; UI, deployment calibration, D-07 and formal ADR acceptance remain open |
@@ -74,12 +74,12 @@ Prior OWNER-Q-01 verification: combined Node 24.21.0 run `node --test tests/docs
 | 1 / PRD-01 | `docs/sdlc/PRD_SRS.md` | PRD/SRS author | 0.9 Draft; 69 active FRs plus withdrawn FR-45 | BRD v1.0; ADR-0007-0017; owner clarifications | BR-01–BR-15; SC-01–SC-08 mapped | Remaining decisions as recorded in PRD; 60 Must retained |
 | Architecture policy / ADR-0001 | `docs/adr/0001-protected-resource-read-policy.md` | Architect role | 0.3 Superseded in part; remaining safeguards Proposed | BRD v1.0, PRD-01 (historical v0.4 input), owner review | BR-01, BR-05, BR-08, BR-10, BR-12, BR-14; SC-05, SC-06 | OD-02, OD-04; enforcement design remains Stage 3 |
 | 2 / UC-02 | docs/sdlc/use-cases.md | Use-case author | 0.8 Draft | PRD-01 v0.9; owner-confirmed ADRs | BR-01–BR-14; SC-01–SC-08 | Delegation/retention and runtime exception execution |
-| 3 / SAD-03 | docs/architecture.md; docs/sdlc/SAD.md entry | Architect | SAD-03 v0.16; SAD-03-ENTRY v0.15 Draft | Current PRD/use cases; Proposed ADR-0018–ADR-0023 | BR-01–BR-14; SC-01–SC-08 | Isolated handoff storage supplied; active process/guard/adapter evidence open |
-| Architecture reference / TECH-STACK-01 | `docs/tech-stack.md` | Architect | v1.6; owner-selected framework foundation, prototype and unimplemented protected mechanics separated | SAD-03 v0.16; ADR-0004 v0.2; official-source check 26 October; existing slice/algorithm mapping | BR-07, BR-08, BR-13; SC-02, SC-08 | Framework foundation selected; session/guard/provider/DB-adapter and pilot evidence remain open |
-| 4 / DATA-04 | docs/sdlc/data-design.md; contracts/data-model.json | Data designer | DATA-04 v0.16 Draft; logical model v0.10 | SAD-03 v0.16; confirmed policy and corrective Proposed ADRs | BR-01–BR-14; SC-01–SC-08 | Applied storage foundation distinct from unimplemented logical additions |
-| 5 / API-05 | docs/sdlc/api-design.md; contracts/ | API designer | API-05 v0.20; Workspace v0.2.11 / Knowledge v0.2.9; 66 operations | DATA-04 v0.16; SAD-03 v0.16; Proposed ADR-0018–ADR-0023 | BR-01–BR-14; SC-01–SC-08 | Handler/consumer-provider/access tests and unimplemented opaque token/receipt handlers |
+| 3 / SAD-03 | docs/architecture.md; docs/sdlc/SAD.md entry | Architect | SAD-03 v0.17; SAD-03-ENTRY v0.16 Draft | Current PRD/use cases; Proposed ADR-0018–ADR-0023 | BR-01–BR-14; SC-01–SC-08 | Isolated handoff storage supplied; active process/guard/adapter evidence open |
+| Architecture reference / TECH-STACK-01 | `docs/tech-stack.md` | Architect | v1.6; owner-selected framework foundation, prototype and unimplemented protected mechanics separated | SAD-03 v0.17; ADR-0004 v0.2; official-source check 26 October; existing slice/algorithm mapping | BR-07, BR-08, BR-13; SC-02, SC-08 | Framework foundation selected; session/guard/provider/DB-adapter and pilot evidence remain open |
+| 4 / DATA-04 | docs/sdlc/data-design.md; contracts/data-model.json | Data designer | DATA-04 v0.16.1 Draft; logical model v0.10 | SAD-03 v0.17; confirmed policy and corrective Proposed ADRs | BR-01–BR-14; SC-01–SC-08 | Applied storage foundation distinct from unimplemented logical additions |
+| 5 / API-05 | docs/sdlc/api-design.md; contracts/ | API designer | API-05 v0.20; Workspace v0.2.11 / Knowledge v0.2.9; 66 operations | DATA-04 v0.16.1; SAD-03 v0.17; Proposed ADR-0018–ADR-0023 | BR-01–BR-14; SC-01–SC-08 | Handler/consumer-provider/access tests and unimplemented opaque token/receipt handlers |
 | 6 / UX-06 | docs/sdlc/ui-ux-spec.md; docs/ux/ | UX designer | UX-06 v0.13; Board v0.10, AI v0.9, Docs v0.9, sitemap v0.10, matrix v0.11, personas v0.5 | Current PRD/use cases/SAD and contract drafts | BR-01–BR-14; SC-01–SC-08 | Token/receipt handlers, visual tokens/viewports, usability/accessibility and application evidence |
-| 7 / UML-07 | `docs/sdlc/diagrams/README.md`; five type folders; `docs/sdlc/diagrams/review-2026-10-16.md`; historical `review.md` | Diagram author | UML-07 v0.22; DGM-REVIEW-02 v0.1; current versions below | Current UC/UX/SAD sources and owner-confirmed direction | BR-01–BR-14; SC-01–SC-08 as applicable | RV-09 rendered routing/readability and full semantic review |
+| 7 / UML-07 | `docs/sdlc/diagrams/README.md`; five type folders; `docs/sdlc/diagrams/review-2026-10-16.md`; historical `review.md` | Diagram author | UML-07 v0.25; DGM-REVIEW-02 v0.1; current versions below | Current UC/UX/SAD sources and owner-confirmed direction | BR-01–BR-14; SC-01–SC-08 as applicable | RV-09 rendered routing/readability and full semantic review |
 | 8 / TEST-08 | docs/sdlc/test-plan.md; test-coverage.md; requirement-verification.md; eval/ | Test author | TEST-08 v0.22; TEST-COVERAGE-01 v0.9; VERIFY-01 v0.10; EVAL-CASES-ENTRY v0.7 | Current PRD/use cases/specs/corrective contracts | BR-01–BR-14; SC-01–SC-08 planned | Bounded P09/P10 session evidence exists; full application/permission/guard/provider evaluation acceptance remains open |
 | 9 / SPEC-REVIEW-01 (Stage alias REVIEW-09) | docs/sdlc/spec-review.md | Sequential reviewer | 0.30 Draft; original v0.4 history preserved | Snapshot inputs retained in source; no execution or review rerun | BR-01–BR-15; SC-01–SC-08 | Bounded handoff, owner-policy gaps and all runtime acceptance |
 | Budget checkpoint / PROGRESS-01 | docs/sdlc/reports/progress-report-2026-10-18.md | Coordinator / author | 0.2 Draft | Correction queue and executed evidence; account 5% observation | BR-01–BR-14; SC-01–SC-08 | Budget-stop reporting complete; application, owner and rendered UI gates remain open |
@@ -133,41 +133,41 @@ The BRD leaves architecture to design while AGENTS.md directs minimal microservi
 <!-- BEGIN GENERATED:artifact-versions -->
 | Artifact ID | Version | Canonical source |
 | --- | --- | --- |
-| UML-07 | v0.22 | [Source](diagrams/README.md) |
-| REG-00 | v0.103 | [Source](artifact-register.md) |
-| SAD-03 | v0.16 | [Source](../architecture.md) |
+| UML-07 | v0.25 | [Source](diagrams/README.md) |
+| REG-00 | v0.106 | [Source](artifact-register.md) |
+| SAD-03 | v0.17 | [Source](../architecture.md) |
 | UX-PERM-MATRIX-02 | v0.11 | [Source](../ux/permission-matrix.md) |
 | UX-PERSONAS-01 | v0.5 | [Source](../ux/personas.md) |
 | UX-SITEMAP-03 | v0.10 | [Source](../ux/sitemap.md) |
 | UX-FLOW-AI-03 | v0.9 | [Source](../ux/flows/ai-qa-flow.md) |
 | UX-FLOW-BOARD-01 | v0.10 | [Source](../ux/flows/board-flow.md) |
 | UX-FLOW-DOCS-02 | v0.9 | [Source](../ux/flows/docs-flow.md) |
-| DGM-ARCH-01 | v0.9 | [Source](diagrams/architecture/service-composition.mmd) |
-| DGM-SITE-01 | v0.8 | [Source](diagrams/sitemap/application-sitemap.mmd) |
-| DGM-FLOW-01 | v0.13 | [Source](diagrams/flowchart/ai-qa-flow.mmd) |
-| DGM-FLOW-02 | v0.7 | [Source](diagrams/flowchart/board-flow.mmd) |
-| DGM-FLOW-03 | v0.9 | [Source](diagrams/flowchart/docs-flow.mmd) |
-| DGM-FLOW-04 | v0.9 | [Source](diagrams/flowchart/permission-read-flow.mmd) |
-| DGM-FLOW-05 | v0.4 | [Source](diagrams/flowchart/permission-ai-checkpoints.mmd) |
-| DGM-JOURNEY-01 | v0.4 | [Source](diagrams/user-journey/core-user-journeys.mmd) |
+| DGM-ARCH-01 | v0.9.1 | [Source](diagrams/architecture/service-composition.mmd) |
+| DGM-SITE-01 | v0.8.1 | [Source](diagrams/sitemap/application-sitemap.mmd) |
+| DGM-FLOW-01 | v0.13.1 | [Source](diagrams/flowchart/ai-qa-flow.mmd) |
+| DGM-FLOW-02 | v0.7.1 | [Source](diagrams/flowchart/board-flow.mmd) |
+| DGM-FLOW-03 | v0.9.1 | [Source](diagrams/flowchart/docs-flow.mmd) |
+| DGM-FLOW-04 | v0.9.1 | [Source](diagrams/flowchart/permission-read-flow.mmd) |
+| DGM-FLOW-05 | v0.4.1 | [Source](diagrams/flowchart/permission-ai-checkpoints.mmd) |
+| DGM-JOURNEY-01 | v0.4.1 | [Source](diagrams/user-journey/core-user-journeys.mmd) |
 | PRD-01 | v0.9 | [Source](PRD_SRS.md) |
 | UC-02 | v0.8 | [Source](use-cases.md) |
-| DGM-UC-01 | v0.5 | [Source](diagrams/use-case/use-case-diagram.mmd) |
+| DGM-UC-01 | v0.5.1 | [Source](diagrams/use-case/use-case-diagram.mmd) |
 | DGM-REVIEW-02 | v0.1 | [Source](diagrams/review-2026-10-16.md) |
 | DGM-REVIEW-03 | v0.1 | [Source](diagrams/review-2026-10-17.md) |
-| DATA-04 | v0.16 | [Source](data-design.md) |
+| DATA-04 | v0.16.1 | [Source](data-design.md) |
 | DGM-DESIGN-01 | v0.1 | [Source](diagrams/design-foundation-2026-10-17.md) |
-| DGM-C4-01 | v0.1 | [Source](diagrams/c4/system-context.mmd) |
-| DGM-C4-02 | v0.1 | [Source](diagrams/c4/containers.mmd) |
-| DGM-SEQ-01 | v0.2 | [Source](diagrams/sequence/protected-handoff.mmd) |
-| DGM-SEQ-02 | v0.1 | [Source](diagrams/sequence/document-creation.mmd) |
-| DGM-STATE-01 | v0.1 | [Source](diagrams/state/document-and-readiness.mmd) |
-| DGM-STATE-02 | v0.2 | [Source](diagrams/state/sprint-task-allocation.mmd) |
-| DGM-DATA-01 | v0.6 | [Source](diagrams/data/workspace-erd.mmd) |
-| DGM-DATA-02 | v0.2 | [Source](diagrams/data/knowledge-erd.mmd) |
-| DGM-DATA-03 | v0.5 | [Source](diagrams/data/handoff-logical-model.mmd) |
-| DGM-DEPLOY-01 | v0.1 | [Source](diagrams/deployment/local-development.mmd) |
-| DGM-DEV-01 | v0.1 | [Source](diagrams/development/package-ownership.mmd) |
+| DGM-C4-01 | v0.1.1 | [Source](diagrams/c4/system-context.mmd) |
+| DGM-C4-02 | v0.1.1 | [Source](diagrams/c4/containers.mmd) |
+| DGM-SEQ-01 | v0.2.1 | [Source](diagrams/sequence/protected-handoff.mmd) |
+| DGM-SEQ-02 | v0.1.1 | [Source](diagrams/sequence/document-creation.mmd) |
+| DGM-STATE-01 | v0.1.1 | [Source](diagrams/state/document-and-readiness.mmd) |
+| DGM-STATE-02 | v0.2.1 | [Source](diagrams/state/sprint-task-allocation.mmd) |
+| DGM-DATA-01 | v0.6.1 | [Source](diagrams/data/workspace-erd.mmd) |
+| DGM-DATA-02 | v0.2.1 | [Source](diagrams/data/knowledge-erd.mmd) |
+| DGM-DATA-03 | v0.5.1 | [Source](diagrams/data/handoff-logical-model.mmd) |
+| DGM-DEPLOY-01 | v0.1.1 | [Source](diagrams/deployment/local-development.mmd) |
+| DGM-DEV-01 | v0.1.1 | [Source](diagrams/development/package-ownership.mmd) |
 <!-- END GENERATED:artifact-versions -->
 
 ## Historical Verification inventory update - 14 October 2026
@@ -647,4 +647,28 @@ REG-00 v0.102 registers [PUB-SP03-01 v0.1](../implementation/features/sp-03-publ
 
 ## SP-03 publication completion — 3 November 2026
 
-REG-00 v0.103 records [PUB-SP03-01 v0.2](../implementation/features/sp-03-publication/plan.md) and [SP03-PUB-REPORT-01 v0.2](reports/SP-03-publication-2026-11-03.md): actual local checks, source a8b3192 and successful remote CI, confirmed fast-forward to main, and local/remote SP-03 branch deletion. IMPL-FEATURES-01 v0.30, IMPL-REG-01 v0.35, IMPL-ROADMAP-01 v0.23 and DOC-REVIEW-REG-01 v0.44 carry the receipt. No independent/release/deployment acceptance or unrelated publication.
+REG-00 v0.106 records [PUB-SP03-01 v0.2](../implementation/features/sp-03-publication/plan.md) and [SP03-PUB-REPORT-01 v0.2](reports/SP-03-publication-2026-11-03.md): actual local checks, source a8b3192 and successful remote CI, confirmed fast-forward to main, and local/remote SP-03 branch deletion. IMPL-FEATURES-01 v0.30, IMPL-REG-01 v0.35, IMPL-ROADMAP-01 v0.23 and DOC-REVIEW-REG-01 v0.44 carry the receipt. No independent/release/deployment acceptance or unrelated publication.
+
+
+## Backend layering hotfix registration — 4 November 2026
+
+[HOTFIX-BACKEND-42-01 v0.1](../implementation/features/hotfix-backend-layering/plan.md), [entry](../implementation/features/hotfix-backend-layering/README.md), [breakdown](../implementation/features/hotfix-backend-layering/breakdown.md) and HF42-T01–T03 register owner-authorised §4.2 documentation clarification, PLAN-01 Month 1 / M-02–M-03 / SP-03–SP-04 support. No runtime evidence, additional requirement, architecture-pattern conformance or independent acceptance.
+
+
+## Backend layering current metadata scope — 4 November 2026
+
+SAD-03 v0.17 / SAD-03-ENTRY v0.16 clarify §4.2 only. Current metadata versions are recorded in the [exact version map](../implementation/features/hotfix-backend-layering/evidence/metadata-scope.json); dependent document edits are header/version/date only, diagram changes are generated headers/titles and indexes only. Historical source snapshots and graph semantics are preserved. This supports SP-03/SP-04, not a new feature or independent acceptance.
+
+Backend layering bounded result: [HOTFIX-BACKEND-42-RESULT v0.1](../implementation/features/hotfix-backend-layering/handoff.md) records implemented §4.2, preserved SP-04 checkout/source boundaries and five passing npm gates. Overall acceptance remains open for inherited local-source-link gap HF42-F01; no runtime evidence or automatic integration. Parent plan owns task status.
+
+
+## HF42-F01 owner-authorised continuation — 4 November 2026
+
+[HOTFIX-BACKEND-42-01 v0.2](../implementation/features/hotfix-backend-layering/plan.md) registers the explicitly requested Stage 6 profile source-link correction and bounded current metadata reconciliation. Same PLAN-01 Month 1 / M-02–M-03 support; no runtime or design change. Original gap evidence is retained; parent plan owns status/results.
+
+HF42-F01 current result: [HOTFIX-BACKEND-42-01 v0.2](../implementation/features/hotfix-backend-layering/plan.md) closes the explicitly authorised source-link correction with five passing npm gates, no missing local targets and preserved prior failures. Bounded documentation author verification only; no runtime, independent acceptance or integration. HOTFIX-BACKEND-42-RESULT is now v0.2.
+
+
+## Backend layering publication authorisation — 4 November 2026
+
+[HOTFIX-BACKEND-42-01 v0.3](../implementation/features/hotfix-backend-layering/plan.md) registers HF42-P01 for the owner-requested exact-scope commit and fast-forward integration/publication into main. Same PLAN-01 Month1 / M-02–M-03 parent; no code/design expansion, force push, branch deletion, runtime or independent acceptance. Actual final Git refs are reported after execution.

@@ -1,8 +1,8 @@
 # Functional and alternate-flow verification design
 
 **Artifact ID:** VERIFY-01
-**Version/date:** 0.12 Draft · 2 November 2026
-**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.9; UC-02 v0.8; TEST-08 v0.24; ADR-0007 through ADR-0017; release-scope v0.2.
+**Version/date:** 0.12.1 Draft · 4 November 2026
+**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.9; UC-02 v0.8; TEST-08 v0.24.1; ADR-0007 through ADR-0017; release-scope v0.2.
 **Status:** Verification design with bounded SP-01 and SP-02 handler/DOM/browser evidence; complete application acceptance remains open. No independent approval.
 **Trace:** BR-01 through BR-15; SC-01 through SC-08 through TEST-COVERAGE-01.
 

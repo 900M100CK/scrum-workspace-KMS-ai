@@ -1,7 +1,7 @@
 # Architecture for the five-month capstone
 
 **Artifact ID:** SAD-03
-**Version/date:** 0.16 Draft · 25 October 2026
+**Version/date:** 0.17 Draft · 4 November 2026
 **Status:** Draft for owner review; organized into 4+1 views; ADR-0007–ADR-0017 directions are owner-confirmed; implementation and remaining policy details are unverified.\
 **Inputs:** [BRD](BRD.md) v1.0; [PRD](sdlc/PRD_SRS.md) v0.9; [use cases](sdlc/use-cases.md) v0.8; [delivery plan](planning/five-month-plan.md) v0.4; [ADR-0004](adr/0004-knowledge-store.md) v0.2; ADR-0007–ADR-0017; AGENTS rules; owner confirmation to retain minimal microservices. Input-number reconciliation does not establish full semantic or runtime acceptance.; Proposed ADR-0018–ADR-0023
 **Author:** development agent acting sequentially; owner reviews business choices.
@@ -291,10 +291,27 @@ scrum-workspace-KMS-ai/
 └── tests/                       # Automated test suites & contract assertions
 ```
 
-### 4.2 Module Layering and Invariants
+### 4.2 Module Layering and Implementation Conventions
+
+**Organisation and current structure.** Workspace code is organised by feature, including session, projects and tasks. In the inspected Project and Task paths, Fastify HTTP adapters call transaction-script-style application services with embedded SQL. Read queries, cursor fingerprinting and pagination also reside in these stores. “Store” remains the implementation name; this structure does not establish conformance to Clean Architecture, Hexagonal Architecture, DDD or CQRS. This is a source-structure description, not new runtime acceptance.
+
+**Transaction responsibilities.** The database runner `ownedTransaction` manages connection acquisition, transaction boundaries, local timeouts, database-role validation and uncertain commit outcomes. `WorkspaceProjectStore.transaction` supplies authenticated actor context and a session-revalidation guard. Each operation callback explicitly sequences its required locks, authority checks, idempotency handling and business effects.
+
+For Task creation within an existing Project, the callback acquires Project access through `projectAccess`, checks creation authority, looks up the original outcome, and revalidates the session before replay disclosure or the first business write. Task state, business audit and the immutable original outcome commit atomically. A database trigger advances `backlog_revision` within that transaction. Project creation and membership mutations have operation-specific sequences; this Task sequence is not a universal mutation template. The callback calls `projectAccess` explicitly; the transaction wrapper does not automatically acquire a Project lock.
+
+**Denial semantics.** A recorded session denial returns without business writes, allowing required authentication-state changes, such as a clock-fault latch, to commit before the wrapper raises the recorded fault. `null` alone is not a rollback signal. The current callback type permits an unexpected `null` without a recorded denial; this is an extension risk, not an observed failing execution. A thrown callback error takes the rollback path; a failure after COMMIT is sent is classified as an uncertain outcome.
+
+**Known limits.** Project-scoped reads using `projectAccess` acquire a Project `FOR UPDATE` lock and may serialize competing requests. Task lists load and fingerprint the full eligible ordered projection before returning pages of 50 items. These mechanisms have bounded verification; no scalability claim is made.
+
+**Dependency and ownership rules.** The original layering invariants remain binding:
+
 1. **Domain Independence:** Business domain logic inside `services/workspace/` and `services/knowledge/` must have no dependency on UI frameworks or concrete LLM provider SDKs.
-2. **No Shared Code Writing to Databases:** No shared library may execute database writes. Database access code is strictly private to each service.
-3. **One-Way Dependency Flow:** UI depends on Gateway contracts; Gateway depends on Service contracts; Services depend on domain models. Knowledge never imports Workspace internal modules.
+2. **No Shared Code Writing to Databases:** No shared library may execute database writes. Database access code is strictly private to each service; no service writes another service’s database.
+3. **One-Way Dependency Flow:** UI depends on Gateway contracts; Gateway depends on Service contracts; Services depend on domain models. Knowledge never imports Workspace internal modules or duplicates its permission policy.
+
+**Evolution.** No immediate structural refactor is required. A shared capability-query helper may be considered within the owning SP-04 plan when concrete reuse warrants it. Actions-discovery separation and transaction-runner extraction remain possible future changes. Knowledge workflows require their own design for remote calls, durable evidence and guarded handoffs; they must not be forced into one transaction spanning services.
+
+**Source anchors.** At base commit `6b837fd`, see [Task HTTP registration](../services/workspace/src/tasks/http.ts) (`registerTaskHttp`), [Task store](../services/workspace/src/tasks/store.ts) (`WorkspaceTaskStore.create/get/list`), [Project store](../services/workspace/src/projects/store.ts) (`transaction`, `projectAccess`), [database runner](../services/workspace/src/session/database.ts) (`ownedTransaction`), [session inspection](../services/workspace/src/session/store.ts) (`inspectInTransaction`), [immutable Task outcomes](../services/workspace/src/tasks/outcomes.ts) (`taskOutcome`, `saveTaskOutcome`), [Backlog trigger](../services/workspace/migrations/003-work-location.up.sql) (`advance_backlog_revision`) and [Task verification limits](../services/workspace/TASKS.md). No live handler, database, provider or concurrency test was rerun for this documentation clarification.
 
 ### 4.3 Build, Lint and Verification Standards
 - **Runtime:** Node.js 24+ LTS.
@@ -539,3 +556,8 @@ Knowledge migration 003 stores complete immutable manifest/evidence JSON and exa
 ## Editorial reconciliation — 25 October 2026
 
 Version 0.16 corrects the deployment sketch to English full-text search (GIN) plus independent pgvector discovery, restores FR-70 inside the traceability table and updates its PRD source label. This aligns existing ADR-0004 and PRD-01 wording; no service boundary, requirement, permission policy or application behavior changes. Full downstream semantic and runtime acceptance remain open.
+
+
+## Backend layering clarification — 4 November 2026
+
+[HOTFIX-BACKEND-42-01](implementation/features/hotfix-backend-layering/plan.md) clarifies the inspected Workspace structure, transaction and denial responsibilities and known read/pagination limits in §4.2. Metadata reconciliation is separate from runtime evidence; no handler, policy, service boundary or accepted decision changes.

@@ -1,8 +1,8 @@
 # Scenario and exception verification matrix
 
 **Artifact ID:** TEST-COVERAGE-01
-**Version/date:** 0.11 Draft · 2 November 2026
-**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.9; UC-02 v0.8; TEST-08 v0.24; ADR-0007–ADR-0017.
+**Version/date:** 0.11.1 Draft · 4 November 2026
+**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.9; UC-02 v0.8; TEST-08 v0.24.1; ADR-0007–ADR-0017.
 **Status:** Planned assertions with bounded P09/P10/P11 measured subsets; no complete scenario or independent approval.
 
 ## Evidence rules

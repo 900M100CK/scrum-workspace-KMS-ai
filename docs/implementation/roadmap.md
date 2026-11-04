@@ -1,7 +1,7 @@
 # Dependency-based implementation roadmap
 
 **Artifact ID:** IMPL-ROADMAP-01\
-**Version/date:** 0.23 Draft · 3 November 2026\
+**Version/date:** 0.25.1 Draft · 4 November 2026\
 **Status:** Planning order, not completed work or scope acceptance.\
 **Inputs:** PRD-01 v0.9; SPEC-INDEX v0.7; PLAN-01 v0.4; [decisions](decisions.md); [task catalogue](tasks/README.md).\
 **Trace:** BR-01–BR-14; SC-01–SC-08.\
@@ -80,3 +80,22 @@ Current local reading sources: FEAT-SP03-01/entry/WBS 0.5, canonical SP-03 0.8, 
 ## SP-03 publication completion — 3 November 2026
 
 [PUB-SP03-01 v0.2](features/sp-03-publication/plan.md) and [SP03-PUB-REPORT-01 v0.2](../sdlc/reports/SP-03-publication-2026-11-03.md) record actual verification, source commit a8b3192, successful GitHub CI, confirmed fast-forward into main and deletion of both SP-03 source branches. Parent FR-05/AC-05 / SP-03.1–03.4 / PLAN-01 Month 1 / M-02 is unchanged. Unrelated working files and the template gitlink are preserved. No deployment, complete master milestone or independent approval.
+
+
+## M-02/M-03 documentation child — 4 November 2026
+
+[HOTFIX-BACKEND-42-01 v0.1](features/hotfix-backend-layering/plan.md) supports PLAN-01 Month 1 and the existing SP-03/SP-04 packs through a bounded backend layering clarification. No milestone order, acceptance, calendar or runtime scope change. Task results belong to that plan.
+
+Backend layering bounded result: [HOTFIX-BACKEND-42-RESULT v0.1](features/hotfix-backend-layering/handoff.md) records implemented §4.2, preserved SP-04 checkout/source boundaries and five passing npm gates. Overall acceptance remains open for inherited local-source-link gap HF42-F01; no runtime evidence or automatic integration. Parent plan owns task status.
+
+
+## HF42-F01 owner-authorised continuation — 4 November 2026
+
+[HOTFIX-BACKEND-42-01 v0.2](features/hotfix-backend-layering/plan.md) registers the explicitly requested Stage 6 profile source-link correction and bounded current metadata reconciliation. Same PLAN-01 Month 1 / M-02–M-03 support; no runtime or design change. Original gap evidence is retained; parent plan owns status/results.
+
+HF42-F01 current result: [HOTFIX-BACKEND-42-01 v0.2](features/hotfix-backend-layering/plan.md) closes the explicitly authorised source-link correction with five passing npm gates, no missing local targets and preserved prior failures. Bounded documentation author verification only; no runtime, independent acceptance or integration. HOTFIX-BACKEND-42-RESULT is now v0.2.
+
+
+## Backend layering publication authorisation — 4 November 2026
+
+[HOTFIX-BACKEND-42-01 v0.3](features/hotfix-backend-layering/plan.md) registers HF42-P01 for the owner-requested exact-scope commit and fast-forward integration/publication into main. Same PLAN-01 Month1 / M-02–M-03 parent; no code/design expansion, force push, branch deletion, runtime or independent acceptance. Actual final Git refs are reported after execution.

@@ -1,9 +1,9 @@
 # API design — contract entry
 
 **Artifact ID:** API-05  
-**Version/date:** 0.22 Draft · 2 November 2026
+**Version/date:** 0.22.1 Draft · 4 November 2026
 **Status:** ADR-0007–ADR-0013 directions are owner-confirmed; transport implementation and independent review remain pending.
-**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; DATA-04 v0.16; [contract pack](../../contracts/README.md) v0.24; ADR-0007–ADR-0017; Proposed ADR-0018.\; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0026
+**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.17; DATA-04 v0.16.1; [contract pack](../../contracts/README.md) v0.24; ADR-0007–ADR-0017; Proposed ADR-0018.\; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0026
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 The canonical payload/routes are the two OpenAPI files linked by the contract pack. Public consumers are the web UI; internal consumers are Workspace/Knowledge. Every operation has x-requirements, authenticated scope, resource parameters, explicit responses and mutation concurrency semantics. Context validation checks shape/trace only.

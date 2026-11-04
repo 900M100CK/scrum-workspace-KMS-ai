@@ -1,0 +1,12 @@
+{
+  "gap": "HF42-F01",
+  "resolved_link": "../../agents/06-ui-ux.md",
+  "links_checked": 788,
+  "missing_links": [],
+  "ui_body_and_frames_unchanged": true,
+  "source_checkout_digest_unchanged": true,
+  "source_checkout_digest": "a3259080c58dded46df74e88fdb96fa05592acedb53c75f841b5408fa1972066",
+  "whitespace_exit_code": 0,
+  "whitespace_output": "",
+  "old_failure_evidence_preserved": true
+}

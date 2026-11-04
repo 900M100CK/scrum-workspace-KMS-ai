@@ -1,0 +1,161 @@
+{
+  "commit": "6b837fd52e01709f72bfe2de6cb96f0e9cc52653",
+  "sources": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "abe442a298ea1478ab365a607058617e2aa0cf80d413e7248c283c6b5b7b8512",
+      "version_header": null
+    },
+    {
+      "path": "docs/development-rules.md",
+      "sha256": "f25e0f20e037b993efbf7cb24cd82555a4bf14360535f45eb7e33344422fc5ea",
+      "version_header": null
+    },
+    {
+      "path": "docs/agent-preflight-checklist.md",
+      "sha256": "c1dca33779dbcd0e9e84a62a2b2048f272fc08185c020b19657e1c1adbea9534",
+      "version_header": "0.1 Draft \u00b7 25 October 2026\\"
+    },
+    {
+      "path": "agents/WORKFLOW.md",
+      "sha256": "fb10406fb35021d227d8f29d52aaf6c9c5b5864a5f66f43b9808a15b93014d0c",
+      "version_header": null
+    },
+    {
+      "path": "docs/BRD.md",
+      "sha256": "7c083790a3f790e3b8ae369cb92bd51ef6bead5ed196e1f8330f144103596a5b",
+      "version_header": null
+    },
+    {
+      "path": "docs/baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md",
+      "sha256": "b2f6e5b05b8fcf59d2a08ae822c81679a8437b86e3555f40dd21662f7718d0c3",
+      "version_header": "** 1.0 \u2014 Draft for business validation"
+    },
+    {
+      "path": "docs/sdlc/PRD_SRS.md",
+      "sha256": "3bfbddafc0a5488afa1ec5ef29d06648adf67c00ebb532534abe747c5e07925e",
+      "version_header": "0.9 Draft \u00b7 17 October 2026\\"
+    },
+    {
+      "path": "docs/planning/five-month-plan.md",
+      "sha256": "36ab17ddd0d694e269590e8f9f542cc13cb13c593c6221680b3690403dd123da",
+      "version_header": "0.4 Draft \u00b7 25 October 2026\\"
+    },
+    {
+      "path": "docs/architecture.md",
+      "sha256": "cc89ae3c4df29e055ee601f3207933109ace492a2093bc4380275d8a412371a1",
+      "version_header": "0.16 Draft \u00b7 25 October 2026"
+    },
+    {
+      "path": "docs/sdlc/SAD.md",
+      "sha256": "96e6c04aa09c159df536102561c85e434d5432d141865aeed0beb4575c36c8b1",
+      "version_header": "0.15 Draft \u00b7 25 October 2026"
+    },
+    {
+      "path": "docs/adr/0002-minimal-microservices.md",
+      "sha256": "abbfa18d33e11d9f5ec47e110d83dc211bedf6041e79c9a0c958a0e8d26f9cc1",
+      "version_header": "0.1 Draft \u00b7 8 October 2026"
+    },
+    {
+      "path": "specs/003-create-task.md",
+      "sha256": "b37dd97ac55b941cf7dd78558bc3791f46da24fc09385af108a7e50aaad85ad3",
+      "version_header": "0.8 Draft \u00b7 2 November 2026"
+    },
+    {
+      "path": "specs/004-update-task.md",
+      "sha256": "c370574344de120dabe0ac998ba51e8f15842c0c136f49f657a13f29500e4345",
+      "version_header": "0.7 Draft \u00b7 25 October 2026"
+    },
+    {
+      "path": "docs/implementation/tasks/03-create-task.md",
+      "sha256": "b5f6a9c474258ea1e25607197cac6a066bb5a7f5e8c95b21656b266adabc725f",
+      "version_header": "0.2 Draft \u00b7 2 November 2026\\"
+    },
+    {
+      "path": "docs/implementation/tasks/04-update-task.md",
+      "sha256": "bdc6301e610eaaa0bfa33bc8296bc986b2c34dc7cf2152507b2a124be2f3cc01",
+      "version_header": "0.1 Draft \u00b7 26 October 2026\\"
+    },
+    {
+      "path": "services/workspace/src/session/database.ts",
+      "sha256": "a94c2df12b2815ef4b93e71f386d0e4e8831f12a1c32931d13a2db1292afa489",
+      "version_header": null
+    },
+    {
+      "path": "services/workspace/src/session/store.ts",
+      "sha256": "9195b3d6cfb935ad6d5542ca64ccc5fecc0e1f7cea79651f5525398dfb7279ac",
+      "version_header": null
+    },
+    {
+      "path": "services/workspace/src/projects/store.ts",
+      "sha256": "34923139ad9f0347d5b49c63724b2d90cf42a8c909322b4e16adf3fa6cc808b2",
+      "version_header": null
+    },
+    {
+      "path": "services/workspace/src/tasks/store.ts",
+      "sha256": "cd6473845ed8f7309fd7f3ea3cc7659417667a59508f1e395a1e82c4e7d3a3bb",
+      "version_header": null
+    },
+    {
+      "path": "services/workspace/src/tasks/http.ts",
+      "sha256": "c2b80c17817943e5bae6cc53c54e90b69af523d820810e8dbe4b7005bc35ca3b",
+      "version_header": null
+    },
+    {
+      "path": "services/workspace/src/tasks/outcomes.ts",
+      "sha256": "f4b658aca2bb7ff708189f18719e14d3d5bc3718ee982e9ad6cbdab404b945e5",
+      "version_header": null
+    },
+    {
+      "path": "services/workspace/src/app.ts",
+      "sha256": "275cf9898618db195924874274538ce16beed9c03689ba1221484c286f01478a",
+      "version_header": null
+    },
+    {
+      "path": "services/workspace/migrations/003-work-location.up.sql",
+      "sha256": "b0c4919576bbaeba73bb7e54f7e3cc16329986fdd2ed2bb8a8379aeec1c70e72",
+      "version_header": null
+    },
+    {
+      "path": "services/workspace/TASKS.md",
+      "sha256": "af0360c9d04fa651bcebc7bff4c6fcda367d24cd84a40e1207cb9e4acf08ecb6",
+      "version_header": "0.1 Draft \u00b7 2 November 2026\\"
+    },
+    {
+      "path": "docs/implementation/features/README.md",
+      "sha256": "4d328a42292713419402e04033d27fdbfcf5d12704abd3dcf13db8e022c5cb81",
+      "version_header": "0.30 Draft \u00b7 3 November 2026\\"
+    },
+    {
+      "path": "docs/implementation/register.md",
+      "sha256": "c048810b4651e9f41e8635e32371e8a28a092e7e39cc475e1ad833bfac92a0a5",
+      "version_header": "0.35 Draft \u00b7 3 November 2026\\"
+    },
+    {
+      "path": "docs/implementation/roadmap.md",
+      "sha256": "89992895f866542a0e9aa238cbaed39d46996a0edf29c80e419ce12b1bb69ade",
+      "version_header": "0.23 Draft \u00b7 3 November 2026\\"
+    },
+    {
+      "path": "docs/sdlc/artifact-register.md",
+      "sha256": "9ec5640bcfecd1a0b265221ffb452b34dbb902d5aa49de6e6357a9e2c0921249",
+      "version_header": "0.103 Draft \u00b7 2 November 2026"
+    },
+    {
+      "path": "docs/sdlc/diagrams/manifest.json",
+      "sha256": "529acaa791ff14b07162d9de01cf97c2e5b37e6f1d676eb92eb255638a2bd2cf",
+      "version_header": null
+    },
+    {
+      "path": "docs/sdlc/diagrams/README.md",
+      "sha256": "e980009df88641846bf6260a57dce2f8a6d427b1d1425eecf22c052a977b3dd1",
+      "version_header": "0.22 Draft \u00b7 27 October 2026"
+    }
+  ],
+  "source_checkout_before": {
+    "root": "D:\\scrum-workspace-KMS-ai",
+    "branch": "codex/sp-04",
+    "digest": "a3259080c58dded46df74e88fdb96fa05592acedb53c75f841b5408fa1972066",
+    "files": 352
+  }
+}

@@ -1,14 +1,14 @@
 # Architecture — stable SDLC entry
 
 **Artifact ID:** SAD-03-ENTRY
-**Version/date:** 0.15 Draft · 25 October 2026
+**Version/date:** 0.16 Draft · 4 November 2026
 **Status:** Draft; recorded owner-confirmed directions apply, while remaining choices and runtime acceptance are open.
-**Inputs:** SAD-03 v0.16; PRD-01 v0.9; PLAN-01 v0.4; ADR-0004 v0.2; ADR-0007–ADR-0017.; Proposed ADR-0018–ADR-0023
+**Inputs:** SAD-03 v0.17; PRD-01 v0.9; PLAN-01 v0.4; ADR-0004 v0.2; ADR-0007–ADR-0017.; Proposed ADR-0018–ADR-0023
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 Read [the complete architecture](../architecture.md). It is the single design source; this entry preserves the workflow path without duplicating design.
 
-The canonical artifact is **SAD-03 v0.15**; this pointer is **SAD-03-ENTRY v0.14**. Stage 3 owns both under the [workflow](../../agents/WORKFLOW.md). ADR-0004's owner-authorised storage foundation has executable migrations and database tests; application implementation and the explicitly listed remaining decisions are still pending.
+The canonical artifact is **SAD-03 v0.17**; this pointer is **SAD-03-ENTRY v0.16**. Stage 3 owns both under the [workflow](../../agents/WORKFLOW.md). ADR-0004's owner-authorised storage foundation has executable migrations and database tests; application implementation and the explicitly listed remaining decisions are still pending.
 
 ## 4+1 Architectural View Model Organization
 
@@ -35,3 +35,8 @@ The [diagram foundation](diagrams/design-foundation-2026-10-17.md) uses C4 Conte
 ## Input metadata reconciliation — 25 October 2026
 
 Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.
+
+
+## Backend layering clarification — 4 November 2026
+
+Canonical SAD-03 v0.17 expands §4.2 with the owner-requested implementation description and preserves existing dependency invariants. [Hotfix plan](../implementation/features/hotfix-backend-layering/plan.md) records source identities, checks and limits. No runtime acceptance or architecture-pattern conformance is implied.

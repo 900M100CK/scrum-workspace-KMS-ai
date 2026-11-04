@@ -1,9 +1,9 @@
 # Logical data and lifecycle design
 
 **Artifact ID:** DATA-04  
-**Version/date:** 0.16 Draft · 2 November 2026
+**Version/date:** 0.16.1 Draft · 4 November 2026
 **Status:** Draft for owner review; proposed policies/deferrals are not approved.
-**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.9; UC-02 v0.8; [SAD-03](../architecture.md) v0.16; [logical entities](../../contracts/data-model.json) v0.12; owner-authorised ADR-0004 implementation; ADR-0007–ADR-0017.; Proposed ADR-0018.; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; [ADR-0024](../adr/0024-backend-session-foundation.md); [ADR-0025](../adr/0025-opaque-session-candidate.md); Proposed ADR-0026
+**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.9; UC-02 v0.8; [SAD-03](../architecture.md) v0.17; [logical entities](../../contracts/data-model.json) v0.12; owner-authorised ADR-0004 implementation; ADR-0007–ADR-0017.; Proposed ADR-0018.; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; [ADR-0024](../adr/0024-backend-session-foundation.md); [ADR-0025](../adr/0025-opaque-session-candidate.md); Proposed ADR-0026
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 ## Ownership and relationships

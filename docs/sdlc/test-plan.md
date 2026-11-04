@@ -1,9 +1,9 @@
 # Minimum test and evidence plan
 
 **Artifact ID:** TEST-08
-**Version/date:** 0.24 Draft · 2 November 2026
+**Version/date:** 0.24.1 Draft · 4 November 2026
 **Status:** Planned application assertions; owner-confirmed policy direction, no release acceptance.
-**Inputs:** Proposed ADR-0027 v0.2; [PRD-01](PRD_SRS.md) v0.9; [UC-02](use-cases.md) v0.8; [SAD-03](../architecture.md) v0.16; DATA-04 v0.16; API-05 v0.22; ADR-0007 through ADR-0017; current UX/diagrams; [specs](../../specs/README.md); [evaluation](../../eval/README.md).; Proposed ADR-0018.; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
+**Inputs:** Proposed ADR-0027 v0.2; [PRD-01](PRD_SRS.md) v0.9; [UC-02](use-cases.md) v0.8; [SAD-03](../architecture.md) v0.17; DATA-04 v0.16.1; API-05 v0.22.1; ADR-0007 through ADR-0017; current UX/diagrams; [specs](../../specs/README.md); [evaluation](../../eval/README.md).; Proposed ADR-0018.; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023
 **Author:** Development agent acting sequentially; no independent review claimed.
 
 ## Scope, levels and environment

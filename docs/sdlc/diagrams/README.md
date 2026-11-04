@@ -1,9 +1,9 @@
 # Central diagram index
 
 **Artifact ID:** UML-07
-**Version/date:** 0.22 Draft · 27 October 2026
+**Version/date:** 0.25 Draft · 4 November 2026
 **Status:** Draft; Ready for downstream inventory use; C4 primary views with a 4+1 coverage crosswalk are recommended; see the 17 October report for corrections and remaining design/implementation gates.
-**Source versions:** BRD English v1.0; PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; UX Docs v0.9 / sitemap v0.10 / personas v0.5 / matrix v0.11 / Board v0.10 / AI v0.9; ADR-0004 v0.2; ADR-0007–ADR-0017; Proposed ADR-0018–ADR-0023; PLAN-01 v0.4.
+**Source versions:** BRD English v1.0; PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.17; UX Docs v0.9 / sitemap v0.10 / personas v0.5 / matrix v0.11 / Board v0.10 / AI v0.9; ADR-0004 v0.2; ADR-0007–ADR-0017; Proposed ADR-0018–ADR-0023; PLAN-01 v0.4.
 
 ## Historical Diagram-first design foundation — 17 October 2026
 
@@ -168,41 +168,41 @@ Current filesystem inspection found eight Draw.io files in the five type folders
 <!-- BEGIN GENERATED:artifact-versions -->
 | Artifact ID | Version | Canonical source |
 | --- | --- | --- |
-| UML-07 | v0.22 | [Source](README.md) |
-| REG-00 | v0.103 | [Source](../artifact-register.md) |
-| SAD-03 | v0.16 | [Source](../../architecture.md) |
+| UML-07 | v0.25 | [Source](README.md) |
+| REG-00 | v0.106 | [Source](../artifact-register.md) |
+| SAD-03 | v0.17 | [Source](../../architecture.md) |
 | UX-PERM-MATRIX-02 | v0.11 | [Source](../../ux/permission-matrix.md) |
 | UX-PERSONAS-01 | v0.5 | [Source](../../ux/personas.md) |
 | UX-SITEMAP-03 | v0.10 | [Source](../../ux/sitemap.md) |
 | UX-FLOW-AI-03 | v0.9 | [Source](../../ux/flows/ai-qa-flow.md) |
 | UX-FLOW-BOARD-01 | v0.10 | [Source](../../ux/flows/board-flow.md) |
 | UX-FLOW-DOCS-02 | v0.9 | [Source](../../ux/flows/docs-flow.md) |
-| DGM-ARCH-01 | v0.9 | [Source](architecture/service-composition.mmd) |
-| DGM-SITE-01 | v0.8 | [Source](sitemap/application-sitemap.mmd) |
-| DGM-FLOW-01 | v0.13 | [Source](flowchart/ai-qa-flow.mmd) |
-| DGM-FLOW-02 | v0.7 | [Source](flowchart/board-flow.mmd) |
-| DGM-FLOW-03 | v0.9 | [Source](flowchart/docs-flow.mmd) |
-| DGM-FLOW-04 | v0.9 | [Source](flowchart/permission-read-flow.mmd) |
-| DGM-FLOW-05 | v0.4 | [Source](flowchart/permission-ai-checkpoints.mmd) |
-| DGM-JOURNEY-01 | v0.4 | [Source](user-journey/core-user-journeys.mmd) |
+| DGM-ARCH-01 | v0.9.1 | [Source](architecture/service-composition.mmd) |
+| DGM-SITE-01 | v0.8.1 | [Source](sitemap/application-sitemap.mmd) |
+| DGM-FLOW-01 | v0.13.1 | [Source](flowchart/ai-qa-flow.mmd) |
+| DGM-FLOW-02 | v0.7.1 | [Source](flowchart/board-flow.mmd) |
+| DGM-FLOW-03 | v0.9.1 | [Source](flowchart/docs-flow.mmd) |
+| DGM-FLOW-04 | v0.9.1 | [Source](flowchart/permission-read-flow.mmd) |
+| DGM-FLOW-05 | v0.4.1 | [Source](flowchart/permission-ai-checkpoints.mmd) |
+| DGM-JOURNEY-01 | v0.4.1 | [Source](user-journey/core-user-journeys.mmd) |
 | PRD-01 | v0.9 | [Source](../PRD_SRS.md) |
 | UC-02 | v0.8 | [Source](../use-cases.md) |
-| DGM-UC-01 | v0.5 | [Source](use-case/use-case-diagram.mmd) |
+| DGM-UC-01 | v0.5.1 | [Source](use-case/use-case-diagram.mmd) |
 | DGM-REVIEW-02 | v0.1 | [Source](review-2026-10-16.md) |
 | DGM-REVIEW-03 | v0.1 | [Source](review-2026-10-17.md) |
-| DATA-04 | v0.16 | [Source](../data-design.md) |
+| DATA-04 | v0.16.1 | [Source](../data-design.md) |
 | DGM-DESIGN-01 | v0.1 | [Source](design-foundation-2026-10-17.md) |
-| DGM-C4-01 | v0.1 | [Source](c4/system-context.mmd) |
-| DGM-C4-02 | v0.1 | [Source](c4/containers.mmd) |
-| DGM-SEQ-01 | v0.2 | [Source](sequence/protected-handoff.mmd) |
-| DGM-SEQ-02 | v0.1 | [Source](sequence/document-creation.mmd) |
-| DGM-STATE-01 | v0.1 | [Source](state/document-and-readiness.mmd) |
-| DGM-STATE-02 | v0.2 | [Source](state/sprint-task-allocation.mmd) |
-| DGM-DATA-01 | v0.6 | [Source](data/workspace-erd.mmd) |
-| DGM-DATA-02 | v0.2 | [Source](data/knowledge-erd.mmd) |
-| DGM-DATA-03 | v0.5 | [Source](data/handoff-logical-model.mmd) |
-| DGM-DEPLOY-01 | v0.1 | [Source](deployment/local-development.mmd) |
-| DGM-DEV-01 | v0.1 | [Source](development/package-ownership.mmd) |
+| DGM-C4-01 | v0.1.1 | [Source](c4/system-context.mmd) |
+| DGM-C4-02 | v0.1.1 | [Source](c4/containers.mmd) |
+| DGM-SEQ-01 | v0.2.1 | [Source](sequence/protected-handoff.mmd) |
+| DGM-SEQ-02 | v0.1.1 | [Source](sequence/document-creation.mmd) |
+| DGM-STATE-01 | v0.1.1 | [Source](state/document-and-readiness.mmd) |
+| DGM-STATE-02 | v0.2.1 | [Source](state/sprint-task-allocation.mmd) |
+| DGM-DATA-01 | v0.6.1 | [Source](data/workspace-erd.mmd) |
+| DGM-DATA-02 | v0.2.1 | [Source](data/knowledge-erd.mmd) |
+| DGM-DATA-03 | v0.5.1 | [Source](data/handoff-logical-model.mmd) |
+| DGM-DEPLOY-01 | v0.1.1 | [Source](deployment/local-development.mmd) |
+| DGM-DEV-01 | v0.1.1 | [Source](development/package-ownership.mmd) |
 <!-- END GENERATED:artifact-versions -->
 
 ## Historical 17 October correction handoff
