@@ -1,12 +1,12 @@
 # Feature specifications and execution rules
 
 **Artifact ID:** SPEC-INDEX  
-**Version/date:** 0.9 Draft · 3 November 2026\
+**Version/date:** 0.8.2 Draft · 3 November 2026\
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
-**Inputs:** PRD-01 v0.9; [PLAN-01](../docs/planning/five-month-plan.md); [architecture](../docs/architecture.md); [contracts](../contracts/README.md).\
+**Inputs:** PRD-01 v0.10.1; [PLAN-01](../docs/planning/five-month-plan.md); [architecture](../docs/architecture.md); [contracts](../contracts/README.md).\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
-Read AGENTS and full rules, then one spec/contract. All 13 specs remain Draft; SP-01 has a bounded POST/GET/DELETE session implementation with renewal/logout; UI and bounded integrated regression have local evidence; wider release/guard acceptance remains open. SP-02 now has bounded project/member handlers and live UI; its evidence is recorded in the registered SP-02 plan. SP-03 now has bounded Task create/list/detail handlers and live UI with measured local evidence in FEAT-SP03-01. Later feature handlers remain unimplemented. Shared contracts have one editing owner at a time. No agents are spawned by this plan. Context checks are available; actual session persistence/HTTP tests are wired; see the registered SP-01 feature plan.
+Read AGENTS and full rules, then one spec/contract. All 13 specs remain Draft; SP-01 has a bounded POST/GET/DELETE session implementation with renewal/logout; UI and bounded integrated regression have local evidence; wider release/guard acceptance remains open. SP-02 now has bounded project/member handlers and live UI; its evidence is recorded in the registered SP-02 plan. Other feature handlers are unimplemented. Shared contracts have one editing owner at a time. No agents are spawned by this plan. Context checks are available; actual session persistence/HTTP tests are wired; see the registered SP-01 feature plan.
 
 | ID | Goal | Dependencies | Month |
 | --- | --- | --- | --- |

@@ -1,0 +1,30 @@
+[
+  {
+    "name": "metadata",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "scripts/docs/docs-metadata.mjs"
+    ],
+    "exit_code": 0,
+    "tail": "{\n  \"checked\": 66,\n  \"changed\": []\n}\n"
+  },
+  {
+    "name": "docs-lint",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "scripts/docs/verify-docs.mjs"
+    ],
+    "exit_code": 1,
+    "tail": "Linked input version drift in docs/sdlc/references/document-review-register.md: ../artifact-register.md\n\n'0.115' !== '0.117'\n\n"
+  },
+  {
+    "name": "docs-test",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "--test",
+      "tests/docs/docs.test.mjs"
+    ],
+    "exit_code": 1,
+    "tail": "atest cited ADR and current input versions (0.5092ms)\n\u2714 real Mermaid parser rejects invalid syntax (6.2195ms)\n\u2714 flowchart adapter compares labels, direction and parallel-edge counts (23.0301ms)\n\u2714 invalid XML and dangling/undirected edges fail closed (2.0456ms)\n\u2714 current version drift and missing rows fail; historical versions are allowed (0.7787ms)\n\u2714 journey actors and scores are compared, not merely grammar-checked (11.4736ms)\n\u2714 current prose references cannot disagree with headers while historical snapshots can (0.4821ms)\n\u2714 current linked input aliases use target versions while snapshot evidence stays historical (0.6498ms)\n\u2714 design pairs reject reversed sequence handoffs and changed native multiplicities (218.9446ms)\n\u2714 physical diagram entity inventory matches owned CREATE TABLE definitions (5.6045ms)\n\u2139 tests 20\n\u2139 suites 0\n\u2139 pass 19\n\u2139 fail 1\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 3763.5436\n\n\u2716 failing tests:\n\ntest at tests\\docs\\docs.test.mjs:14:1\n\u2716 all registered docs and diagram pairs pass (684.6231ms)\n  AssertionError [ERR_ASSERTION]: Linked input version drift in docs/sdlc/references/document-review-register.md: ../artifact-register.md\n  \n  '0.115' !== '0.117'\n  \n      at checkLinkedInputVersions (file:///D:/scrum-workspace-KMS-ai/scripts/docs/verify-docs.mjs:249:42)\n      at verifyDocs (file:///D:/scrum-workspace-KMS-ai/scripts/docs/verify-docs.mjs:306:5)\n      at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/docs/docs.test.mjs:15:3)\n      at async Test.run (node:internal/test_runner/test:1409:7)\n      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {\n    generatedMessage: false,\n    code: 'ERR_ASSERTION',\n    actual: '0.115',\n    expected: '0.117',\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n"
+  }
+]

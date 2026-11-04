@@ -1,9 +1,9 @@
 # User Flow: Scrum Board & Task Management
 
 **Artifact ID:** UX-FLOW-BOARD-01\
-**Version/date:** 0.10 Draft · 25 October 2026
+**Version/date:** 0.10.2 Draft · 3 November 2026
 **Status:** Owner-confirmed policy direction; UI/diagram/runtime evidence pending.\
-**Sources:** PRD-01 v0.9; UC-02 v0.8 (UC-04/UC-05); SAD-03 v0.16; Workspace OpenAPI v0.2.8; ADR-0007/0008 v0.3/0011; OWNER-Q-01.\
+**Sources:** PRD-01 v0.10.1; UC-02 v0.8.2 (UC-04/UC-05); SAD-03 v0.16.2; Workspace OpenAPI v0.2.8; ADR-0007/0008 v0.3/0011; OWNER-Q-01.\
 **Trace:** BR-01–BR-03, BR-06, BR-10, BR-11, BR-13; FR-03, FR-08, FR-09, FR-17, FR-31, FR-33, FR-39, FR-42–FR-44, FR-59, FR-68; SC-01, SC-03, SC-04, SC-06, SC-08.
 
 ## 1. Main flow

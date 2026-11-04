@@ -1,0 +1,11 @@
+
+> scrum-workspace-kms-context@0.1.0 docs:lint
+> node scripts/docs/verify-docs.mjs
+
+{
+  "diagrams": 20,
+  "artifacts": 35,
+  "nodes": 324,
+  "edges": 365,
+  "runtimeEvidence": "not run"
+}

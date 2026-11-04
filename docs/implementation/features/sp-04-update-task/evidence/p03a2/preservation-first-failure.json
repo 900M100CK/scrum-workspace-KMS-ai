@@ -1,0 +1,6 @@
+{
+  "exit": 1,
+  "observed_assertion": "Expected raw protected drift [] but found 40 generated Mermaid/Draw.io metadata paths after docs:sync-metadata.",
+  "classification": "The first ad-hoc preservation assertion incorrectly included permitted generated diagram metadata in byte-identical sources. Graph preservation must instead verify only generated header/title source-version differences; raw graph files were not claimed byte-identical.",
+  "original_tool_output": "Reported by exec cell source-scope assertion on 3 November 2026; no reconstructed stderr is presented."
+}

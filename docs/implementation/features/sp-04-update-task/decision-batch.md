@@ -1,0 +1,109 @@
+# SP-04 bounded design and owner decision batch
+
+**Artifact ID:** SP04-DECISION-BATCH\
+**Version/date:** 0.4 Draft · 3 November 2026\
+**Status:** D-01/D-02/D-03 policy directions selected by the owner; detailed mechanics remain proposed and unimplemented. No migration or runtime acceptance.\
+**Inputs:** [FEAT-SP04-01](plan.md) v0.8; [owner dispositions](owner-decisions.md) v0.1 and actual response record; [P01 map](source-review.md) v0.2; [P02 findings](reviews/p02-codex-disposition.md) v0.1; [AG03 reconciliation](reviews/ag03-codex-disposition.md) v0.1; actual Workspace v0.2.12, Task types/stores and migrations 001–009. Antigravity design/report v0.2 are [preserved receipt snapshots](evidence/ag03-received-snapshots.json), not relabelled results.\
+**Trace:** SP-04.1–04.2 / FR-09/40/43/44; supporting FR-03/31/59/68; BR-01/02/03/06/10/11/14; UC-03 content edit and UC-04 main/Alt-1/Alt-2/EX-01–04; TC-07/08/14/16/18/19/22; PLAN-01 Month 1 / M-02–M-03.
+
+## 1. Material owner choices
+
+The owner explicitly selected the three directions below in this chat on 3 November 2026; see [actual response data](evidence/owner-responses-2026-11-03.json). Implementation obligations preserve existing requirements and do not imply blanket or formal ADR acceptance.
+
+| ID | Recommendation and consequence | Alternative | Actual owner disposition |
+| --- | --- | --- | --- |
+| D-01 Edit/action authority | Four explicit project-scoped actions: task-edit, task-state, task-assign, task-blocker. Current membership and the exact action are required; creator/role/member labels grant nothing. Edit remains Backlog-only. Existing create-only backlog-author does not automatically gain edit. | Reusing backlog-author for edits was offered but not selected. No coarse task-mutate or implicit role right is added. | Owner selected separate edit authority; selected design maps it to four separate action names. See SP04-OWNER-01 D-01. |
+| D-02 Disabled assignee | A new assignment requires current same-project membership and an enabled target account. Unknown/nonmember/disabled targets yield the same bounded 400 validation_failed after current Task/action access checks. Null unassign needs no target-account eligibility check. | Membership-only target eligibility was offered but not selected. | Owner selected rejection of disabled assignees, including accounts whose membership remains active. See D-02. |
+| D-03 New mutation original-result retention | Retain consumed actor/operation/key/hash and immutable original Task 200 or Blocker 201 indefinitely, with no key recycling. Task snapshots include title/description; current read/action authority is rechecked before every replay. Extends the already selected createTask pattern to new mutations. | A different retention policy was offered but not selected. No current-row substitution, automatic purge or consumed-key recycling. | Owner selected indefinite original results as in SP-03, with Task title/description and current replay authority explicitly disclosed. See D-03. |
+
+Infrastructure/permission lookup failures remain generic 503, not invalid-assignee 400. Unknown and inaccessible Task/project targets remain indistinguishable generic 404; current disabled/expired actor sessions follow existing authentication rules. No account directory is added.
+
+## 2. Existing storage and authority boundaries
+
+Workspace alone owns its data and current permission decisions. Reuse ownedTransaction, WorkspaceSessionStore.inspectInTransaction, WorkspaceProjectStore.transaction, exact safe-number codecs and existing Project/Task projections. No Knowledge writes, provider calls or network waits occur inside these transactions.
+
+Applied migrations 001–009 stay byte-identical. A future additive migration is designed and tested separately after the selected decisions, never copied from the archived v0.1/v0.2 SQL blueprint. This design intentionally states exact obligations rather than presenting an unexecuted approximation as executable DDL.
+
+For the selected new action set:
+
+- Extend private operator/CLI and its append-only authority audit under workspace_owner, with current enabled membership, expected grant revision, reason/operator provenance and atomic audit. Runtime may invalidate rights on removal, but must not issue or revive a valid selected grant.
+- Enforce that issue/revival boundary at the database as well as the CLI. Preserve existing grant protections, define one-current-project/subject/action uniqueness, and refuse unprovenanced legacy rows rather than adopting or deleting them.
+- Preserve removal invalidation/rejoin semantics; no automatic capability or assignment restoration. Do not add a last-task-author rule.
+- Extend getAllowedActions for an exact resolved Task and project with current read scope. Advertise only registered operations whose current capability and applicable current business context permit them. Discovery is advisory; every mutation/replay rechecks authority. Invalid/foreign selectors and missing/denied targets retain existing contract responses. Do not expose grant inventories.
+
+## 3. Transaction protocol: replay and new writes are different branches
+
+This preserves the current removeMember target-account-before-Project order while avoiding a stale-assignee prerequisite on committed replay.
+
+1. The existing wrapper validates the current actor through clock row FOR UPDATE, actor account and actor session locks. Read an internal Task-to-project hint and an internal actor/operation/key outcome hint without disclosing either. Validate request shape/hash canonically; no client actor claim is accepted.
+2. **Existing-outcome branch:** resolve the requested current Task/project read scope and exact selected action capability before revealing any original result. Validate actor/operation/key/payload hash, typed receipt, route Task and owning project identity. Lock/validate current Project as required, then final same-client session/time guard. Return the original retained result without applying new-write revision, old-assignee eligibility or current placement checks. Never restore a historical assignee/state. A separate fresh getTask supplies current UI state. A revoked caller capability or lost current membership denies replay, even if the caller can still read the Task.
+3. **Absent-outcome new assignment:** acquire the non-null target account before Project, then current caller membership/action, target membership and Task locks, matching current cooperating removeMember/private writers. An unknown target account is an internal eligibility result, not a global identity error before caller scope is checked. Only decide invalid-assignee after authorising the requested Task/action.
+4. **Other new mutations:** Project access/action checks precede Task locking; multi-Task writers retain stable Task ID order. Recheck the scoped original outcome at the stable boundary if necessary before any write preconditions. The common clock serializes current cooperating writers; this is not an absolute deadlock guarantee or a new distributed protocol.
+5. After all relevant waits, use the existing guard false/typed-null denial path before any business mutation. WorkspaceProjectStore.transaction commits a clock-fault latch/authentication audit only when actually produced, then raises the generic denial outside the transaction. Do not throw inside the transaction in a way that erases that durable fault evidence. Not every expired/missing/revoked session creates a fault audit.
+6. For a genuinely new operation, check exact current expected_revision and safe increment bounds, selected target eligibility, Backlog content-edit boundary, state/placement rules and no-op conditions. Stale input cannot overwrite newer work. Mutation, minimum business audit and original outcome commit together; failure rolls back business effects.
+7. A lost COMMIT/HTTP acknowledgement stays unknown. Recover only the same actor/operation/key/body under current authority; no fresh automatic key. Distinguish receipt acknowledgement from a current-state read. Current read rules are not D-07 socket/source-send proof.
+
+## 4. Typed original results and additive migration obligations
+
+Preserve the exact semantics of every existing 009 branch: createProject 201 Project, addMember 201 Member, removeMember 204/null snapshot, createTask 201 Task. Preserve state=committed, infinity expiry, canonical hash/nonempty key/reference, original shape checks and unknown/protected-handoff operation behaviour. Do not introduce an undeclared helper or weaken an old branch while extending new ones.
+
+Selected new operations: editTask/setTaskState/setAssignee store original 200 Task with result_ref=task_id; recordBlocker stores original 201 Blocker with result_ref=event_id. Bind the actual Task/project/actor/operation identities at the owning producer and replay boundary; a Blocker has Task identity but no public project field. Receipts are immutable historical results, not constraints requiring the Task still to have that historical state today.
+
+Total validators must match current response schemas and semantic storage exactly:
+
+- Task has exactly task_id/project_id/type/title/description/state/assignee_id/blocked/revision/work_location/created_at, with explicit JSON types, valid UUIDs/enums, safe positive integer revision, nullable assignee, valid original immutable millisecond UTC creation time, and no extra fields.
+- WorkLocation exact alternatives: Backlog has only kind+position; Sprint has only kind+sprint_id; Completed has only kind+sprint_id and an appropriate historical done state. Sprint/completed never require or emit a position field. Backlog position remains a finite exact decimal string compatible with PostgreSQL numeric, not a JavaScript float.
+- Blocker has exactly event_id/task_id/status/description/outcome/actor_id/recorded_at/sequence. Validate explicit types, server actor/event/Task identity, nonempty description, nullable string outcome, valid server timestamp and safe positive integer sequence. Its timestamp must round-trip the actual wire serialization; do not impose an invented three-digit precision incompatible with the selected event projection or historical event input. Event ordering uses sequence, never time.
+- Reject missing/wrong/extra/null-ambiguous fields, unsafe casts, invalid dates/UUIDs, invalid location combinations and unsafe integer limits with a total boolean and explicit IS TRUE enforcement. Do not validate an old receipt against mutable live-state equality.
+- Extend OLD-or-NEW protected-operation immutability and correct DELETE/UPDATE trigger returns. Preserve existing semantics for other operation kinds. Define required function privileges/search paths without granting runtime ownership/DDL authority.
+
+Migration preparation must refuse ambiguous existing new-operation keys, unprovenanced selected grants/audits or other unsupported legacy semantic data; no guessed backfill or evidence deletion. Down must refuse retained new grants (including invalidated ones), authority/business audit, new outcomes/events or other dependent semantics. Empty-compatible reverse restores exact 009 functions/constraints; protect applied migrations and historical 006/008/009 fixture ceilings. The explicit new-schema disposable suite must prove forward/reverse/repeat and retained-data refusal before runtime acceptance.
+
+## 5. Conflict, no-op, hashing and visible UI
+
+Keep Error/Task/Blocker response schemas. Candidate source reconciliation: stale new writes return 409 state_conflict without ad-hoc current_revision; the client separately reads current getTask. A confirmed Blocker 201 returns only the event; the UI separately refreshes Task/history for current blocked/revision. Coordinate UC-04 wording before implementation; do not add fields silently.
+
+A new empty/same-value EditTask, same-state request or same-assignee request may produce a business no-op after current authority, revision and applicable write preconditions. Retain its original 200 Task snapshot atomically under D-03, with no Task revision bump or fake business-change audit. This does not suppress required authentication fault evidence. Later committed replay returns the original no-op result, not whatever is currently stored.
+
+RecordBlocker is different: every distinct valid original operation appends, including Open after Open and Resolved without a prior Open. Same original identity replays once. Every new event increments Task revision; guard both revision and sequence upper bounds before writing. No event sequence or audit leak after rollback.
+
+Hash canonical operation/route Task/input/expected revision, preserving exact valid text and missing-field semantics. Edit omission means leave unchanged; explicit null for its nonnullable fields is invalid. Define equivalent defaults explicitly (for example omitted blocker outcome becomes null); do not use arbitrary object property order or treat semantically different requests as equal. Reject unsupported types/extra fields/media/body before deriving authority from any client field.
+
+Preserve actor-bound pending-operation recovery, explicit-sign-out clearing, current denial/outage pane clearing, stale-request cancellation and keyboard/focus behaviour. A historical original result is never displayed as current Task state. UI choices preserve current design; no router/framework/redesign is introduced.
+
+## 6. Exact state, placement, history and audit rules
+
+For ordinary work allow direct transitions among todo/in_progress/done. For a Done Task currently at completed Sprint location, requested todo **or** in_progress has effective state=todo, location_kind=backlog, location_sprint_id=null. Under Project lock append at max(current Backlog backlog_position)+1, bump Task revision and let existing 003 trigger advance backlog_revision. Never query a nonexistent Task.position column, manually double-increment Backlog generation or rewrite the retained completed allocation/Sprint. No mutable Task timestamp is added; created_at remains immutable.
+
+Blocker sequence is max(sequence)+1 under the cooperating Project/Task boundary, bounded by 9007199254740991; do not claim collision freedom against writers ignoring the protocol. Preserve append-only events and highest-sequence truth. Task revision advances for every committed distinct event even when blocked stays unchanged. Record event time once from the server; do not add a Task updated_at field.
+
+History pages use ascending sequence and current member/Task read authority per page, not audit-read. Reuse bounded HMAC cursor patterns: actor/project/task/route/order/page size/membership generation and complete projected event dataset identity; choose existing fixed page size 50/default TTL 300 seconds unless a coordinated reason requires change. Malformed/foreign tokens return generic 400; verified stale/expired/missing bookmarks return 409 without items. Discard accumulated pages and restart. A different login session for the same current actor does not alone invalidate the cursor. Recheck current session/time before return; no cached allow or protected history fallback on dependency failure.
+
+Minimum audit is co-committed for every actual change: edit content identity/change, state before/after, assignment before/after, blocker event identity/status/sequence, and reopen placement before/after. Use unambiguous bounded structured references or retained immutable identities; a delimiter-concatenated raw title is not a robust encoding, and a digest is not evidence of recoverable content without its retained source. Bind any content reference to an exact retained version/outcome identity when reconstruction is claimed. Keep business audit permissions separate from operational Task/history reads. No scheduler, estimates, chart history subsystem or optional report implementation is added.
+
+## 7. Small producer slices and coordinated support
+
+All steps below are Planned and need exact current briefs/scope before execution. No command is claimed installed or run solely by listing it.
+
+| Slice | One deliverable | Producer-linked meaningful verification |
+| --- | --- | --- |
+| P03A | First bounded transport support: 413/415 for four new mutations and coordinated metadata/support-path registration only | Context/docs/contracts checks; semantic API delta exactly eight response additions plus metadata; no policy/requirement-body or runtime edit. See the assigned small brief. |
+| P03A2 | Selected policy/source alignment and C01–C03 UC wording before storage/permission producers | Refine exact PRD/UC/spec/data/API/ADR path scope and assertions before execution. Record selected policy and bounded Proposed mechanics separately; no new FR/priority or BRD edit. |
+| P03B | Additive selected schema and typed immutable result adapter | Actual disposable new-schema forward/reverse/repeat, old operation regression, malformed/NULL/unsafe receipt denial, immutability, legacy/refusal and audit/result failure boundaries. |
+| P03C | Selected private authority tooling and exact Task action discovery | DB runtime issue/revival rejection, operator current membership/revision/audit, removal/rejoin, no role bypass, advisory versus final action checks. |
+| P03D1 | Backlog content edit | Actual rights/Backlog boundary, stale revision, no-op original result, original-key replay after later change, malformed input, audit/result rollback and unknown acknowledgement. |
+| P03D2 | State/reopen | All direct transitions, both completed-Sprint reopen targets to Backlog/todo, exact position/revision/generation, retained history and producer-specific permission/expiry/replay/failure. |
+| P03D3 | Assignment | Member/null and selected disabled-target rule, bounded invalid target, same-value/replay, actual removeMember in both lock orders and post-wait expiry; no departed assignment resurrection. |
+| P04 | Blocker append and current scoped history | Repeated/retrospective events, append-once replay, safe bounds/revisions, actual concurrency/rollback and current-authority stale/foreign/expired paging. Split append/read if needed for one small deliverable. |
+| P05 | Connected current-design mutation/history UI | DOM/live integration and separate installed-runner browser evidence; refresh, keyboard, current action scope, conflict, unknown original-key recovery and denial/outage clearing. |
+| P06 | Additional cross-producer concurrency/failure integration | Adds to, not replaces, permission/audit/replay/failure checks already required with each producer. |
+| P07 | Bounded integrated regression/source handoff | Exact AC/UC trace, actual Node/TLS/fixture/source identities and failed attempts; typecheck/build, relevant session/project/Task/DOM/browser regressions and honest unrun limits. |
+| P08 | Actual SP-05 producer integration | Real completeSprint/allocateTask versus reopening races; fixture SQL alone does not close whole SP-04 acceptance. |
+
+Canonical future code paths remain services/workspace/**, apps/web/** and tests/workspace/**. Shared contract/logical model/spec/use-case/ADR/registry/root-runner support requires a recorded coordinated scope and owning brief before editing. Preserve the two-service ownership, historical schema ceilings and unrelated dirty work. No commit, push, valuable-data migration, external transfer, chart/load-balancing feature or new dependency follows from this design.
+
+## 8. Current verification and handoff
+
+The received Antigravity v0.2 documents are preserved as receipts. Codex's v0.3 correction is documentation/source reconciliation only; technical obligations above are unexecuted until their actual producer checks. Earlier P01 context tests are structural evidence, not requirement or runtime acceptance. No new application, DB, SQL, browser, concurrency, load, provider or evaluation result is claimed.
+
+Actual D-01/D-02/D-03 responses are recorded; no further approval is needed for these settled choices. The pre-disposition v0.3 document is preserved under evidence/p02-design-before-owner-v0.3.txt. P02 design preparation closes with the owner directions; no implementation/runtime result is inferred. P03A is the next assigned small transport-support task; P03A2 policy/UC source alignment must precede P03B permission/storage producers. All remain unexecuted until their actual outputs/checks are returned; the parent plan owns status.

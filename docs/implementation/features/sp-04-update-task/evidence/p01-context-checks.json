@@ -1,0 +1,34 @@
+[
+  {
+    "name": "version",
+    "command": "node --version",
+    "exit_code": 0,
+    "started_utc": "2026-11-03T12:20:10.9192159Z",
+    "duration_seconds": 0.1850619,
+    "log": "evidence/p01-version.log"
+  },
+  {
+    "name": "context-lint",
+    "command": "node --check scripts/verify-context.mjs",
+    "exit_code": 0,
+    "started_utc": "2026-11-03T12:20:11.1090494Z",
+    "duration_seconds": 0.0474725,
+    "log": "evidence/p01-context-lint.log"
+  },
+  {
+    "name": "context-check",
+    "command": "node scripts/verify-context.mjs",
+    "exit_code": 0,
+    "started_utc": "2026-11-03T12:20:11.1565922Z",
+    "duration_seconds": 0.1139767,
+    "log": "evidence/p01-context-check.log"
+  },
+  {
+    "name": "context-test",
+    "command": "node --test tests/context/context.test.mjs",
+    "exit_code": 0,
+    "started_utc": "2026-11-03T12:20:11.2706147Z",
+    "duration_seconds": 0.3658627,
+    "log": "evidence/p01-context-test.log"
+  }
+]

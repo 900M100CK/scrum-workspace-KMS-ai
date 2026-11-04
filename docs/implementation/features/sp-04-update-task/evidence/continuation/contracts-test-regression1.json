@@ -1,0 +1,11 @@
+{
+  "name": "contracts-test",
+  "command": [
+    "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+    "run",
+    "contracts:test"
+  ],
+  "exit_code": 0,
+  "tail": "uire exactly one valid concurrency selector (1.3875ms)\n\u2714 mutation receipts acknowledge only the command and applicable version identity (0.5539ms)\n\u2714 both transport purposes validate complete mixed-evidence manifest shape (8.6818ms)\n\u2714 work location alternatives stay separate and reorder revisions stay exact strings (1.1507ms)\n\u2714 strict base64 rejects permissive decoder inputs, nonzero padding bits and byte overrun (4.9598ms)\n\u2714 manifest JSON rejects duplicate decoded keys, malformed UTF-8 and trailing data (1.7284ms)\n\u2714 numeric revision/count parsing rejects rounding and accepts exact integer equivalents (1.9819ms)\n\u2714 native-serialized nested JSON survives the duplicate-key token walk unchanged (3.9581ms)\n\u2714 both purposes bind exact bytes and full mixed evidence without granting send authority (15.21ms)\n\u2714 authoritative receipt, identity and destination mismatches fail before any binding result (8.2255ms)\n\u2714 manifest hashing preserves raw whitespace, order and Unicode bytes (4.0615ms)\n\u2714 payload digest and byte count reject even semantically equivalent reserialization (3.0327ms)\n\u2714 uncited changed, omitted, duplicate and cross-project evidence cannot hide behind a valid document citation (3.5142ms)\n\u2714 answer citations and claim references bind exact prepared source identities (7.2572ms)\n\u2714 typed/byte disagreement and numeric precision loss are rejected despite valid schema shapes (2.1102ms)\n\u2714 zero-evidence insufficiency retains exact no-answer state without fabricated sources (0.6351ms)\n\u2139 tests 27\n\u2139 suites 0\n\u2139 pass 27\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 1430.9143\n"
+}

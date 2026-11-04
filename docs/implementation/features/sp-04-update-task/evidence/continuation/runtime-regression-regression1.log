@@ -1,0 +1,341 @@
+▶ P09 actual signIn/getSession handlers with owned PostgreSQL
+  ✔ invalid/excess/poisoned credential bodies reject before KDF or session writes without mutation (52.2731ms)
+  ✔ Origin/custom-header negatives do not reach credentials; configured transport errors have Error shape (5.9608ms)
+  ✔ known wrong and unknown credentials run KDF and have identical generic failures with no session (1126.853ms)
+  ✔ valid login commits session/audit, issues fresh secure host-only cookie and server request correlation (402.2746ms)
+  ✔ GET actor comes only from cookie; forged headers/query/old cookie name do not grant identity (54.3253ms)
+  ✔ manual disable rejects current token and credentials with the same public failure (1177.5703ms)
+  ✔ real expired and revoked sessions deny GET with declared shape (437.9096ms)
+  ✔ real session audit failure rolls back and never sends a success cookie (391.991ms)
+  ✔ DB read failures and unready clock return unavailable, never unrestricted success (760.2091ms)
+  ✔ KDF saturation maps to declared 503 without creating a session (60.053ms)
+  ✔ actual captured normal/error logs omit password, cookie, URL and internal error canaries (0.3894ms)
+  ✔ actual trusted HTTPS verifies success wire shape and cookie expiry (479.6195ms)
+  ✔ invalid internal output is withheld before projection and drops already-prepared cookie (449.6999ms)
+  ✔ compiled server actually wires runtime credentials/origin and session routes (1380.7014ms)
+✔ P09 actual signIn/getSession handlers with owned PostgreSQL (16191.9821ms)
+ℹ {"container":"sp01-p08-test-913b15f0637a","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","scope":"Actual P09 POST/GET plus real PostgreSQL; no logout/renewal/browser/D-07 acceptance"}
+▶ P10 actual lifecycle handlers and PostgreSQL serialization
+  ✔ 006 empty reverse/forward/repeat preserves previous migration identity (3234.2308ms)
+  ✔ GET renews from DB deadline, preserves token, captures audit and refreshes secure cookie (72.9144ms)
+  ✔ idle boundary is strict at microsecond precision; expired GET cannot revive it (48.2546ms)
+  ✔ absolute cap never slides; equal/repeated/parallel renewal at cap writes no false mutation (82.3922ms)
+  ✔ parallel renewals produce one extension and one audit, with an immutable absolute deadline (67.1595ms)
+  ✔ DELETE checks Origin/header and absent body, including bounded transport errors (21.9781ms)
+  ✔ logout commits before empty 204, clears host cookie, denies old token and preserves independent session (77.6702ms)
+  ✔ expired logout is idempotent 204 and still durably revokes the known session (37.6002ms)
+  ✔ renew and revoke audit failures roll back state and suppress success cookies (96.0931ms)
+  ✔ logout-first and renewal-first reach actual SQL lock barriers; confirmed logout always wins future reads (163.934ms)
+  ✔ renewal queued before expiry samples after its lock wait and cannot resurrect expired state (42.9977ms)
+  ✔ receipt loss after actual COMMIT returns 503 without cookie; no automatic retry or false logout confirmation (64.2256ms)
+  ✔ response corruption suppresses GET cookie rather than projecting leaked fields (73.8522ms)
+  ✔ real trusted HTTPS DELETE transmits an empty 204 and expiring Secure host cookie (98.1929ms)
+  ✔ observed backward time latches renewal denial after catch-up; audited logout remains possible (84.1966ms)
+  ✔ missing clock denies known logout; failed clock denies renewal but still permits audited revocation (63.9182ms)
+  ✔ DB privilege failure refuses logout; retained audit refuses destructive lifecycle rollback (18.6113ms)
+✔ P10 actual lifecycle handlers and PostgreSQL serialization (9587.0333ms)
+ℹ {"container":"sp01-p08-test-297384f9aba0","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","scope":"Actual P10 GET/DELETE, owned PostgreSQL and HTTPS; injected time separated from real DB time; browser/D-07 not verified"}
+▶ P05/P06 actual membership lifecycle and current action authority
+  ✔ new memberships have exact revisions and role labels grant no capabilities (155.2049ms)
+  ✔ minimal member paging supplies removal revision and no email/history/permission inventory (103.5681ms)
+  ✔ addMember owns rejoin: fresh generation/revision and no old read/capability/assignment revival (122.3231ms)
+  ✔ unknown target and current scope failures disclose no account directory (75.4289ms)
+  ✔ real DB CHECK rejection maps to controlled conflict and creates no membership/audit (31.509ms)
+✔ P05/P06 actual membership lifecycle and current action authority (6226.4549ms)
+▶ P06 actual atomic removal, retained history and no-revival replay
+  ✔ last manager rejection leaves membership, grants, tasks and business audit unchanged (27.8044ms)
+  ✔ removal co-commits all grant invalidation, task revision/unassignment and audit; history/other project stay (78.2029ms)
+  ✔ old removal replay never removes rejoined membership; stale new-key removal conflicts (98.7248ms)
+  ✔ audit and saved-outcome failures roll back removal completely (90.9643ms)
+  ✔ task revision overflow rejects before any membership or grant changes (32.9228ms)
+  ✔ two manager removal requests serialize and cannot leave zero managers (76.1434ms)
+✔ P06 actual atomic removal, retained history and no-revival replay (6318.7122ms)
+▶ P08 real PostgreSQL owned persistence and operator boundary
+  ✔ 005 forward/reapply/empty reverse/forward; nonempty legacy is refused without deletion (6100.6545ms)
+  ✔ runtime cannot provision/disable accounts, rewrite audit, reset clock or reach Knowledge (269.7758ms)
+  ✔ initial clock unready withholds session; operator provisions and explicitly initializes (47.098ms)
+  ✔ issue only binds current credential revision; digest-only storage and exact private credential lookup (305.8065ms)
+  ✔ required session audit failure rolls back every owned row and never returns token (25.6898ms)
+  ✔ immutable absolute deadline, missing token and expired/revoked state fail closed (54.9179ms)
+  ✔ manual disable rolls back with audit failure, then denies login and all existing sessions (85.6409ms)
+  ✔ actual observed clock backstep latches fault and survives real PostgreSQL restart (1442.6235ms)
+  ✔ recovery rejects stale/mismatched attestation; audit rollback preserves fault; all old tokens remain revoked (1528.8264ms)
+  ✔ missing clock row and read error do not authorize access (71.6544ms)
+  ✔ real cancellation, failed rollback discard and bounded later pool health (45.2129ms)
+  ✔ singleton contention is bounded and later requests recover; no throughput SLA (1047.9166ms)
+  ℹ {"lockTimeoutObservationMs":1019.5880000000016,"configuredLockTimeoutMs":1000,"poolWaiting":0}
+  ✔ disable-first and issue-first schedules observe SQL waits and cannot revive disabled access (147.8017ms)
+  ✔ injected receipt loss after actual COMMIT stays unknown, discards and never retries (24.8919ms)
+  ✔ actual private operator CLI provisions via stdin and reports state without secrets (1086.084ms)
+  ✔ nonempty rollback refused, original migration bytes unchanged and bigint generation exact (20.1908ms)
+✔ P08 real PostgreSQL owned persistence and operator boundary (17479.06ms)
+ℹ {"container":"sp01-p08-test-f3f9c156b3b8","volume":"sp01-p08-test-f3f9c156b3b8-data","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","postgres":"PostgreSQL 17.10 (Debian 17.10-1.pgdg12+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit","scope":"P08 adapters/operator/owned SQL only; no HTTP handlers","role":"workspace_app for runtime; workspace_owner for operator"}
+▶ P03 additive 007/private authority and bootstrap on disposable PostgreSQL
+  ✔ 007 refuses ambiguous legacy project and retains original data/checksums (5450.6511ms)
+  ✔ empty 007 reverse/forward preserves SP-01 fault latch, audit and sessions (1992.8419ms)
+  ✔ runtime cannot bootstrap, access global provisioning audit or rewrite immutable evidence (50.3166ms)
+  ✔ explicit bootstrap/revoke/recovery, same-state no-op and expected revision are audited (74.06ms)
+  ✔ private audit failure rolls back authority; disabled targets never bootstrap (60.0685ms)
+  ✔ project provisioning uses current membership and serialized last-manager rule (77.2388ms)
+  ✔ project origin and numeric revision bounds enforce DB constraints; unsafe down retains everything (30.266ms)
+  ✔ private CLI reads scoped authority through operator configuration without dumping secrets (413.56ms)
+✔ P03 additive 007/private authority and bootstrap on disposable PostgreSQL (13116.4319ms)
+ℹ {"schema":"007 only; no outcome/cursor table","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","oldMigrations":["001-store","002-registered-policy","003-work-location","004-protected-claims","005-session-foundation","006-session-lifecycle"],"sourceHash":"cb7216447397b9ef4104230725e5037a4fba12971976507cf29f396c412481f6"}
+▶ P07 measured SQL barriers for actual handlers and labelled future-writer doubles
+  ✔ two actual manager-removal requests wait on the real shared lock, then leave one effective manager (163.2453ms)
+  ✔ controlled assignment SQL writer commits first; actual removal invalidates its result (153.9343ms)
+  ✔ controlled read-grant SQL writer commits first; actual removal invalidates its result (106.7871ms)
+  ✔ actual removal first makes controlled assignment SQL writer reject departed membership (93.5944ms)
+  ✔ actual removal first makes controlled read-grant SQL writer reject departed membership (86.5751ms)
+  ✔ actual private grant queued before removal is invalidated, and a later grant cannot revive it (133.8531ms)
+  ✔ lost actual removal COMMIT acknowledgement reconciles old key without repeating mutation (123.4204ms)
+✔ P07 measured SQL barriers for actual handlers and labelled future-writer doubles (6651.9748ms)
+ℹ Assignment/read-grant writers above are controlled Workspace SQL protocol doubles. Actual SP-04/SP-06 handlers and D-07 protected transport remain follow-up SP02-F01; not measured here.
+✔ P04 actor/scope/generation/expiry cursor binding is stateless and rejects forgery (2.9483ms)
+✔ cursor TTL bounds reject invalid configuration and enforce both valid limits (0.8845ms)
+✔ cursor key requires canonical base64 including the exact padding for 32 bytes (0.7593ms)
+▶ P04C real project create, exact replay and failure boundaries
+  ✔ denied, unauthenticated, forged/extra/blank inputs create no project (44.5445ms)
+  ✔ atomic creation persists server actor/time and only explicit initial capability (37.2087ms)
+  ✔ same/concurrent keys return original project once; changed payload conflicts (64.6117ms)
+  ✔ audit and outcome failures roll back the entire business transaction (74.4833ms)
+  ✔ lost COMMIT acknowledgement is unknown and same-key retry reconciles without a second create (53.7621ms)
+  ✔ current authority and membership are rechecked before old result disclosure (48.3105ms)
+  ✔ declared body bounds and final serializer reject untrusted/error shapes (63.0192ms)
+  ✔ actual trusted HTTPS transports a project response with no session cookie rewrite (85.5436ms)
+✔ P04C real project create, exact replay and failure boundaries (6220.372ms)
+▶ P04B separate 008 durable compact outcomes
+  ✔ legacy outcome refusal, empty reverse/forward/repeat, separate 007 identity (8638.3306ms)
+  ✔ runtime saves original typed fields atomically and replays without reading current entities (60.9901ms)
+  ✔ null/malformed/extra snapshot fields and unsafe revisions cannot pass SQL three-valued checks (53.4706ms)
+  ✔ committed identity/result cannot change or expire; failed transaction retains no receipt (58.9088ms)
+  ✔ existing protected handoff claim keeps its original shape and no snapshot (10.4976ms)
+✔ P04B separate 008 durable compact outcomes (14018.6202ms)
+▶ P04 current project reads and full-projection watermarks
+  ✔ fixed 50-item pages expose only current memberships in stable order (81.7508ms)
+  ✔ unknown and foreign direct reads are indistinguishable; body actor claims do not apply (68.3056ms)
+  ✔ foreign actor/tampered cursor rejected; same actor relogin alone keeps a cursor valid (104.82ms)
+  ✔ name changes and remove/rejoin generations invalidate complete projection watermark (89.2825ms)
+  ✔ missing or rotated server key fails closed without a cursor table (143.6411ms)
+  ✔ DB dependency failure is not empty success (20.7555ms)
+  ✔ session expiry during actual project lock wait is checked before output (347.0264ms)
+✔ P04 current project reads and full-projection watermarks (6631.5312ms)
+✔ unknown mutation survives reload with the exact original request; no automatic fresh key (22.9957ms)
+✔ permission denial on reconciliation does not claim an earlier unknown operation rolled back (0.4568ms)
+✔ stale read completion cannot restore a removed project or advisory actions (1.3395ms)
+✔ malformed protected data is withheld and blocked storage sends no mutation (0.5558ms)
+✔ a foreign actor cannot recover or display the saved operation payload (0.2859ms)
+▶ P08 actual React DOM + same-origin HTTPS + current 008 PostgreSQL
+  ✔ fresh directory/create/member views use real current IDs/revisions and explicit labels (302.2925ms)
+  ✔ add/remove are explicit; removal sends the displayed revision and preserves an effective manager (417.3124ms)
+  ✔ real committed response loss keeps original identity across component reload and never duplicates (233.614ms)
+  ✔ outage and actual membership removal hide records/actions; no stale protected pane survives (188.6642ms)
+✔ P08 actual React DOM + same-origin HTTPS + current 008 PostgreSQL (7638.6065ms)
+ℹ Real HTTPS transport with explicit synthetic cookie jar; DOM checks do not claim browser cookie enforcement. Browser gate is separate.
+▶ SP04 actual assignment, current eligibility and removal races
+  ✔ scope/action before target eligibility and strict shape (159.8584ms)
+  ✔ enabled member/null assignment, no-op, exact historical replay and stale conflict (165.8476ms)
+  ✔ update/audit/outcome failure rolls back with recoverable same key (328.4562ms)
+  ✔ assign-first actual SQL schedule then removal clears assignment and replay never restores it (236.8519ms)
+  ✔ remove-first actual producer blocks assignment; rejoin restores no current assignment (180.7528ms)
+  ✔ concurrent assignments and duplicate keys; overflow and authority revocation (211.5634ms)
+  ✔ post-lock session expiry rejects new assignment (506.0457ms)
+✔ SP04 actual assignment, current eligibility and removal races (8863.71ms)
+▶ P03C private audited backlog authors and controlled membership ordering
+  ✔ creator and descriptive roles do not grant authors; explicit grant/revoke is private, revisioned and co-audited (87.6315ms)
+  ✔ runtime cannot provision, revive or read private audit; unknown/nonmember/disabled/empty reason are denied (87.1325ms)
+  ✔ private audit insert failure rolls back the author grant and keeps its old revision (37.9787ms)
+  ✔ real removal invalidates authors and same-role rejoin restores none; unsupported operations stay unadvertised (88.856ms)
+  ✔ actual grant commits first behind a SQL barrier; waiting removal invalidates that grant (106.6215ms)
+  ✔ actual removal commits first behind a SQL barrier; waiting grant rejects departed membership (105.3563ms)
+  ✔ private CLI accepts author grant/revoke with audited reason and emits no database configuration (748.5906ms)
+✔ P03C private audited backlog authors and controlled membership ordering (7244.4233ms)
+▶ SP04 append-only blocker commands and scoped history pages
+  ✔ history needs membership not audit/action; commands require exact authority; strict validation (77.7558ms)
+  ✔ retrospective resolution, repeated Open and later Resolved append every distinct event; sequence is truth (525.8973ms)
+  ✔ event/task/audit/outcome faults roll back entire append and retry uses original identity (789.8688ms)
+  ✔ concurrent writes conflict; duplicate keys append once; default outcome canonicalizes null (228.5436ms)
+  ✔ ascending pages bind actor/task/full dataset; current login survives but stale/foreign/malformed fails (2552.0923ms)
+  ✔ expired signed cursors, missing signing key and removal/rejoin deny or invalidate history (256.7164ms)
+  ✔ revision and sequence upper bounds reject writes; revoked replay denies (196.7577ms)
+  ✔ actual history read wait rechecks session before returning any page (523.3286ms)
+✔ SP04 append-only blocker commands and scoped history pages (11564.338ms)
+▶ P07 observed SQL schedules on actual Task producers and current authority
+  ✔ two authorized appends queued at a real barrier keep both exact numeric positions and two generation increments (270.2354ms)
+  ✔ same actor/key queued together creates one outcome/task/audit; changed payload conflicts (130.2919ms)
+  ✔ actual create decision first; queued revoke then blocks replay disclosure (185.9759ms)
+  ✔ actual create decision first; queued remove then blocks replay disclosure (244.6275ms)
+  ✔ actual revoke decision first; queued create sees current denial and writes nothing (89.3605ms)
+  ✔ actual remove decision first; queued create sees current denial and writes nothing (159.8404ms)
+  ✔ a guarded page decision precedes queued append; next page rejects the old full-projection watermark (204.4976ms)
+  ✔ one rollback producer alongside a successful append has no partial audit/outcome/generation; exact failed key can reconcile (181.5506ms)
+  ✔ actual account disable decision first; queued current session cannot create or replay its old result (145.9783ms)
+✔ P07 observed SQL schedules on actual Task producers and current authority (7941.7878ms)
+ℹ Decision boundary: actual owned PostgreSQL transaction/clock and Project guards. No source/socket exclusion, future SP-04/SP-06 handler or complete SC-06 claim.
+▶ SP04-P03D1 actual Backlog edit, recovery, rollback and authority schedules
+  ✔ explicit action only; cross-project/nonmember/missing identities conceal existence (135.7329ms)
+  ✔ strict shape/media/origin/header/text/body bounds make no change (64.694ms)
+  ✔ confirmed edit persists exact text, audit and original200; omission preserves description; changed hash conflicts (252.1715ms)
+  ✔ empty and same-value no-ops retain their own200 without revision/audit; missing and empty fields hash differently (138.5278ms)
+  ✔ new edits reject non-Backlog placement; retained replay bypasses current placement and revision (153.0142ms)
+  ✔ safe revision ceiling permits no-op but refuses increment (124.0833ms)
+  ✔ task UPDATE, audit and outcome faults roll back every business effect (339.9296ms)
+  ✔ same-revision competing edits have one winner; concurrent duplicate key writes once (225.9023ms)
+  ✔ edit-first actual lock schedule commits once then current revoked authority denies replay (125.3033ms)
+  ✔ revoke-first actual producer denies waiting new edit and original replay (114.0868ms)
+  ✔ actual removal before edit denies the former member and rejoin restores no edit grant (184.8123ms)
+  ✔ live discovery advertises only implemented edit with current authority and clears after revoke (56.7701ms)
+  ✔ session expiry during a paused actual read withholds edit before business writes (538.0451ms)
+✔ SP04-P03D1 actual Backlog edit, recovery, rollback and authority schedules (8872.0071ms)
+ℹ {"fixture":"sp01-p08-test-36a7f8aabad2","volume":"sp01-p08-test-36a7f8aabad2-data","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","ceiling":"010"}
+▶ P04 real task HTTP, explicit authority and atomic exact-key recovery
+  ✔ creator/manager/role labels alone deny; malformed/foreign/unknown targets and unauthenticated requests disclose no data (138.4111ms)
+  ✔ strict input, same-origin, bounded JSON/media and empty keys reject without a task or successful evidence (18.1367ms)
+  ✔ story/task/bug persist exact initial projection, server time and audit with one Backlog increment (109.0561ms)
+  ✔ forged actor/project headers cannot replace authenticated actor or target scope in persisted audit (31.7988ms)
+  ✔ same concurrent key returns original once, normalizes omitted description and project UUID case; changed request conflicts (158.1244ms)
+  ✔ task/storage/audit/outcome faults roll back task, Backlog generation and evidence with generic errors (118.0159ms)
+  ✔ lost COMMIT acknowledgement is unknown, then original-key recovery creates no second task (69.5974ms)
+  ✔ current authority blocks replay; removal/rejoin restores no grant and only a new explicit grant permits old result (180.9065ms)
+  ✔ only registered operations are advertised to actual authors; final serializer rejects malformed date-time or extra output (209.255ms)
+  ✔ session expires during the actual Project lock wait and is rechecked before first Task write (365.8114ms)
+  ✔ expired and disabled sessions and a faulted clock withhold success without partial task writes (198.6001ms)
+  ✔ trusted HTTPS transports the actual Task response without replacing its secure session cookie (99.7179ms)
+✔ P04 real task HTTP, explicit authority and atomic exact-key recovery (7783.0591ms)
+▶ SP04-P03C private Task action grants and exact Task discovery
+  ✔ create/creator/member roles imply no mutation action; live HTTP returns exact read target and registered handlers only (84.2506ms)
+  ✖ four independent private grants have issue-ID provenance, revisioned revoke/regrant, and audited no-op/stale semantics (313.0368ms)
+  ✔ future registry projection checks independent rights and Backlog edit context without claiming those handlers exist (94.5678ms)
+  ✔ missing/foreign/nonmember targets conceal identity and malformed or asserted selectors fail bounded validation (124.2993ms)
+  ✔ disabled/nonmember/unknown targets, unsupported actions and ordinary runtime cannot provision or inspect private audit (80.8444ms)
+  ✔ unprovenanced selected rows are retained and rejected even for an apparent no-op (78.8117ms)
+  ✔ failed private audit persistence rolls back grant issuance (46.7245ms)
+  ✔ actual removal invalidates all four actions; rejoin restores none and explicit regrant keeps provenance (160.2508ms)
+  ✔ both actual grant/removal lock orderings preserve revocation without deadlock or grant resurrection (243.5015ms)
+  ✔ private CLI supports selected grant/revoke/state and generic failure without configuration disclosure (1549.5015ms)
+  ✔ required authority failure withholds discovery; app without Task handlers advertises no Task endpoint (112.4736ms)
+  ✔ session expiry during an observed Project lock wait withholds allowed operations (336.8215ms)
+✖ SP04-P03C private Task action grants and exact Task discovery (9744.5549ms)
+ℹ {"fixture":"sp01-p08-test-9800b933815b","volume":"sp01-p08-test-9800b933815b-data","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","postgres":"17.10 (Debian 17.10-1.pgdg12+1)","ceiling":"010"}
+▶ SP04-P03B additive010 mutation storage, real roles and permanent originals
+  ✔ legacy keys, invalidated grants, history and both audits refuse before DDL and preserve seeded rows (74.5212ms)
+  ✔ upgrade/repeat/reverse/reapply preserve009 receipts, definitions and prior checksums (7966.2633ms)
+  ✔ each retained mutation receipt/grant/audit/event independently refuses destructive down (99.5838ms)
+  ✔ total SQL validators reject NULL, every missing/extra/wrong field, unsafe values and malformed placement/time (475.7513ms)
+  ✔ all valid Task locations/states and Blocker UTC precisions/nullable outcome retain exact wire snapshots (68.719ms)
+  ✔ new-operation status/hash/key/state/expiry/ref constraints and OLD/NEW immutability are enforced (218.6415ms)
+  ✔ actor/operation/key/hash/Task/project/event binding rejects cross-scope replay without current-state substitution (199.3618ms)
+  ✔ private action scope/uniqueness, runtime issue/revival/rewrite denial and real member removal/rejoin (260.6756ms)
+  ✔ physical blocker history rejects unsafe sequence and nonfinite time before any wire serialization (18.5734ms)
+  ✔ Task/event/audit/result writes roll back together on audit or outcome persistence failure (33.3466ms)
+  ✔ lost real COMMIT acknowledgement is unknown, with one durable original and no current-state replacement (35.8978ms)
+  ✔ old project/member/createTask and protected-handoff branches still function and old SQL checksums match (35.6759ms)
+✔ SP04-P03B additive010 mutation storage, real roles and permanent originals (15635.806ms)
+ℹ {"fixture":"sp01-p08-test-845139c6bfe0","volume":"sp01-p08-test-845139c6bfe0-data","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","postgres":"17.10 (Debian 17.10-1.pgdg12+1)","ceiling":"explicit009 ->010"}
+✔ each mutation uses exact target actions, persists original identity before sending and refreshes current state after historical receipt (30.5616ms)
+✔ conflicts refresh separately, never automatically issue a new key; denial/outage retain recovery and clear content (5.0655ms)
+✔ foreign actor, malformed stored input and missing exact action cannot issue mutations; logout clears recovery (1.4055ms)
+✔ a confirmed write followed by unavailable current reads never presents its historical receipt as current (1.0696ms)
+▶ SP04 real mutation DOM over HTTPS and disposable010
+  ✔ native labelled forms perform actual persisted edit/state/assignment/blocker updates (992.1474ms)
+  ✔ stale revision conflict refreshes current detail without overwriting a later actual producer (236.579ms)
+  ✔ lost committed edit recovers same body/key and displays a fresh later state, not old receipt (301.3313ms)
+  ✔ denial and outage remove protected panes and forms; current authority refresh removes revoked controls (312.8686ms)
+✔ SP04 real mutation DOM over HTTPS and disposable010 (9417.271ms)
+▶ P05 real scoped Task reconstruction and actor/projection-bound numeric paging
+  ✔ fresh detail exposes immutable creation time, current location and highest committed blocker sequence (108.0539ms)
+  ✔ 50-item pages preserve numeric position then UUID across descending IDs/equal positions, and all uses UUID order (353.655ms)
+  ✔ unknown/foreign/nonmember reads share generic 404 and invalid selectors cannot assert scope (70.5647ms)
+  ✔ cursor binds actor/filter and current projection while same-actor relogin remains valid (193.0433ms)
+  ✔ highest blocker changes invalidate projection without advancing Backlog set/order generation (82.4552ms)
+  ✔ verified expired or absent bookmark returns conflict without a partial page, never an implicit restart (74.4879ms)
+  ✔ missing/rotated key or database faults fail closed; detail still needs no cursor key (232.2831ms)
+  ✔ removed membership denies old cursor; same-role rejoin invalidates its generation without author revival (183.5892ms)
+  ✔ post-wait session expiry withholds protected page (356.2286ms)
+  ✔ post-wait session expiry withholds protected detail (336.6183ms)
+✔ P05 real scoped Task reconstruction and actor/projection-bound numeric paging (8489.135ms)
+▶ SP04 state handler and completed placement persistence
+  ✔ explicit authority, concealed foreign targets and strict request validation (80.2632ms)
+  ✔ all direct transitions and no-ops; stale and changed-input retries preserve state (1872.5918ms)
+  ✔ both completed reopen targets normalize atomically, append exact numeric position and preserve allocation (190.8563ms)
+  ✔ audit/outcome/update faults roll back and original-key retries recover; overflow rejects change (433.9299ms)
+  ✔ concurrent revision writes have one winner; duplicate requests commit once; revoked replay denies (206.3817ms)
+  ✔ session expiry after actual Task lock withholds mutation (518.5578ms)
+✔ SP04 state handler and completed placement persistence (9782.4419ms)
+▶ P03B additive 009 task origins, permanent typed results and safe refusal
+  ✔ legacy task, key and any author grant each refuse before DDL without removing rows (7026.1871ms)
+  ✔ forward, repeated upgrade and empty-compatible reverse preserve old migrations and project receipts (7315.0045ms)
+  ✔ each retained result, author grant, author audit or task business audit independently blocks down (44.453ms)
+  ✔ typed original Task outcome binds task identity and project snapshot, with immutable indefinite retention (80.5766ms)
+  ✔ total SQL validation rejects missing/null/extra/type/origin/location/revision errors (233.4762ms)
+  ✔ immutable server origin and complete rollback preserve generation/task/audit/result atomicity (61.1493ms)
+  ✔ existing project/member/protected result shapes and owner-only author audit stay intact (42.1551ms)
+✔ P03B additive 009 task origins, permanent typed results and safe refusal (20433.4534ms)
+✔ unknown task creation survives reload with exact actor/body/key; confirmed replay refreshes current details (22.8603ms)
+✔ denied/expired/conflicting reconciliation retains uncertainty and hides protected data; no new key is generated (1.1649ms)
+✔ foreign actor or malformed recovery storage cannot reveal/replay saved request input (0.7398ms)
+✔ only current advisory create authority and valid bounded supported input permit a persisted mutation (1.1205ms)
+✔ blocked or silently discarded browser storage sends no mutation while current reads still work (0.7203ms)
+✔ late reads cannot restore a revoked task, list or advisory create controls (0.5902ms)
+✔ cursor conflict discards previous pages and loads a fresh first page without stale accumulation (0.77ms)
+✔ malformed, wrong-project and secret-bearing protected output is withheld; malformed 201 preserves original recovery identity (1.603ms)
+✔ explicit sign-out cleanup removes the stored operation while expiry alone retains it for the same actor (0.4239ms)
+▶ P08 real Task React DOM with HTTPS and disposable 009 PostgreSQL
+  ✔ empty/create/detail uses real server IDs/time/location and accessible native fields/feedback (355.2082ms)
+  ✔ fresh component reload and current detail reconstruct persisted state rather than an earlier receipt (388.0784ms)
+  ✔ real changed cursor discards accumulated pages and reconstructs the current first page (281.2663ms)
+  ✔ real committed response loss survives component reload with exact original request and one stored Task (283.7838ms)
+  ✔ outage and actual author revoke clear protected panes and keep an earlier result uncertain (370.9451ms)
+  ✔ actual membership removal and disabled session withhold task UI and notify session loss (152.5552ms)
+✔ P08 real Task React DOM with HTTPS and disposable 009 PostgreSQL (8713.6615ms)
+ℹ Actual HTTPS/API/PG with a synthetic cookie jar and React DOM. Browser cookie/TLS/profile enforcement is a separate gate. Direct state/Sprint data setup is a fixture, not an update API claim.
+▶ P11 actual React DOM with Workspace/PostgreSQL through same-origin HTTPS
+  ✔ initial reload checks server before showing sign-in; labels and autocomplete are explicit (101.263ms)
+  ✔ wrong credentials show generic inline feedback and move focus without secret persistence (360.7863ms)
+  ✔ actual sign-in renders server-confirmed state through secure proxy and clears password (321.2972ms)
+  ✔ workspace navigation and reload-style controller recheck use real server state (104.7682ms)
+  ✔ dependency outage hides authenticated subtree immediately; recovery revalidates explicitly (79.7042ms)
+  ✔ actual expired DB session is denied on focus, clears workspace and requests sign-in (61.3045ms)
+  ✔ confirmed logout hides state, clears cookie and rejects old session after reload (380.3195ms)
+  ✔ built HTTPS preview serves its icon and bundled entry without a development WebSocket client (111.9726ms)
+  ✔ controlled local expiry timer hides UI without making a renewal request (236.821ms)
+✔ P11 actual React DOM with Workspace/PostgreSQL through same-origin HTTPS (7924.3667ms)
+ℹ {"image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","scope":"Actual React DOM + real Workspace/PostgreSQL through trusted-client HTTPS proxy; explicit simulated cookie jar, not browser cookie evidence; final timer case uses controlled transport"}
+ℹ tests 265
+ℹ suites 0
+ℹ pass 263
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 264765.3808
+
+✖ failing tests:
+
+test at tests\workspace\task-mutation-authority.test.mjs:36:10
+✖ four independent private grants have issue-ID provenance, revisioned revoke/regrant, and audited no-op/stale semantics (313.0368ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      'editTask',
+  +   'recordBlocker',
+  +   'setAssignee',
+      'setTaskState',
+  -   'setAssignee',
+  -   'recordBlocker'
+    ]
+  
+      at TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-authority.test.mjs:47:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-authority.test.mjs:36:2)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'editTask', 'recordBlocker', 'setAssignee', 'setTaskState' ],
+    expected: [ 'editTask', 'setTaskState', 'setAssignee', 'recordBlocker' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

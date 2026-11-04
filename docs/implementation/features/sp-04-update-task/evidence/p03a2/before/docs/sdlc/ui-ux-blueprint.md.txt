@@ -1,0 +1,480 @@
+# UI/UX and web frontend design blueprint
+
+**Artifact ID:** UX-BLUEPRINT-01  
+**Version/date:** 1.7.1 Draft · 2 November 2026
+**Status:** Corrected author draft for bounded wireframe/design work; visual tokens remain candidates. Not owner approval, independent review or application readiness.  
+**Template basis:** Local IEEE 1016-2009 Blueprint and UI/UX prompts/checklists; no standards-conformance claim.  
+**Inputs:** [PRD-01 v0.10](PRD_SRS.md); [UC-02 v0.8.1](use-cases.md); [SAD-03 v0.16.1](../architecture.md); [UX-06 v0.13.1](ui-ux-spec.md); [UX-CHECK-01 v0.2](reviews/ui-ux-checklist-review-2026-10-18.md); [UX-HANDOFF-01 v0.9](handoffs/ui-ux-handoff-2026-10-18.md); [UX-PLAN-01 v0.4.1](../ux/wireframe-workplan.md); Workspace OpenAPI v0.2.8; Knowledge OpenAPI v0.2.9; Logical Data Model v0.8; ADR-0004; ADR-0007–ADR-0017; Proposed ADR-0018–ADR-0023; [BRD English v1.0](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md); [PLAN-01 v0.4](../planning/five-month-plan.md); [Stage 6 profile](../agents/06-ui-ux.md); [SP-01 v0.5.1](../../specs/001-session.md).
+**Trace:** BR-01–BR-14; SC-01–SC-08; NFR-01–NFR-09 through PRD/Test Plan; Blueprint B02–B20 and UI/UX U02–U23.
+
+## 1. Context and subject
+
+### 1.1 Identification and authority
+
+Scrum Workspace with AI-Assisted Knowledge Management System (KMS), UI/UX design v1.3 Draft, 23 October 2026. Author role: Stage 6 UI/UX author. This document translates UX-06 into screen, component and interaction briefs. UX-06 remains the consolidated entry; SAD, PRD and contracts remain their canonical sources. Templates and author proposals cannot change product scope or select a framework/provider.
+
+#### Revision History
+
+| Version | Date | Author | Description of Changes |
+|---|---|---|---|
+| v0.1 | 2026-10-18 | UI/UX Author | Initial checklist analysis and handoff boundaries (UX-CHECK-01, UX-HANDOFF-01). |
+| v1.0 | 2026-10-19 | UI/UX Author | Full IEEE 1016-2009 Blueprint creation integrating 8 design views, component catalogs, state dynamics, and complete checklist dispositions. |
+| v1.1 | 2026-10-20 | UI/UX Author | Reconciled with upstream SAD-03 gateway boundaries (Trust Boundary 1 & 4), explicit Proposed ADR-0018–0023 labeling, canonical UX-SITEMAP-03 routes, claim-level badges (FR-24), UX constraints matrix completion, and UX-CHECK-01 checklist reconciliation notes. |
+| v1.2 | 2026-10-21 | UI/UX Author | Preserved v1.1 gateway/routes; corrected actors, contract bindings, state/trace errors, visual evidence claims and sequential construction briefs. |
+| v1.3 | 2026-10-23 | UI/UX Author | Bound task placement to Task.work_location and exposed optional run summary from the answer independently of Audit navigation; existing contracts and Proposed designs unchanged. |
+
+
+### 1.2 Boundaries
+
+```mermaid
+flowchart TB
+    Browser["Browser presentation UI - apps/web"]
+    subgraph Workspace["Workspace service"]
+        GW["Authenticated gateway / session context"]
+        Work["Projects, Scrum and permission authority"]
+        Relay["Guarded provider relay"]
+    end
+    subgraph Knowledge["Knowledge service"]
+        Docs["Immutable documents and versions"]
+        Evidence["Keyword/vector retrieval, evidence and citation validation"]
+    end
+    Provider["Unselected embedding / generation provider"]
+    Browser -->|Authenticated public contracts| GW
+    GW --> Work
+    GW -->|Authenticated internal calls| Docs
+    GW -->|Authenticated internal calls| Evidence
+    Evidence -.->|Prepared evidence and protected handoff coordination| Relay
+    Relay -->|Guarded exact payload transport| Provider
+```
+
+Workspace owns permission decisions and provider transport; Knowledge owns documents, retrieval, answer preparation and provenance. Each service writes only its own database. Browser access to Knowledge public paths is proxied/guarded through Workspace; there is no browser/provider or database connection. Internal identity and actor context require service authentication, not an assumed trusted loopback network. Generation waiting is outside the handoff guard. Full evidence-set access/validity checks and frozen-byte handoffs are server responsibilities; UI visibility is not enforcement.
+
+PostgreSQL/pgvector storage is selected under ADR-0004. Application framework, rendering model, identity mechanism, provider and hosting remain open decisions; SAD ports/topology are candidates. Proposed ADR-0018–ADR-0023 supply draft mechanisms, not accepted implementation authority. The v1.1 gateway and canonical sitemap corrections are retained.
+
+### 1.3 Constraints and assumptions
+
+- One student implements the capstone over a relative five-month plan; submission April 2027. Kickoff, weekly capacity and feasibility remain unmeasured. Product actors remain a team with scoped capabilities.
+- Retain the original 60 release Must. FR-27/49/62/70 are Should, FR-64–67 Could, FR-35 outside this release, FR-45 Withdrawn. Enhanced reports and Future Work remain excluded.
+- Runtime AI is read-only; authorised humans use normal mutations. No saved conversations/answer store, global user directory, role editor, new service or automatic runtime agent is added.
+- Provider failure leaves work, documents and keyword operations usable while their own services/current authority are healthy. Knowledge failure affects docs/search; Workspace/authority failure denies affected protected operations. Semantic readiness is separate from keyword availability.
+- Desktop-first layouts and smaller inspection viewports are candidates. Browser/device targets, numeric timing/resource/target-size budgets and visual acceptance remain open in WF-09. Previous unvalidated numeric budgets are withdrawn.
+
+## 2. Stakeholders and concerns
+
+### 2.1 Actors and capabilities
+
+Follow BRD §7, PRD §2 and [personas](../ux/personas.md). Personas are synthetic illustrations, not interviewed users. Solo development does not imply a single-user product.
+
+| Responsibility | Primary journey | Authority boundary |
+| --- | --- | --- |
+| Product Owner | Create/order Backlog; find rationale | Accountability does not grant restricted-source read |
+| Scrum Master | Sprint lifecycle and blockers | Scoped action authority required |
+| Developer / QA | Update work, follow evidence, maintain content | Content-write and content-read are separate |
+| Viewer / stakeholder | Inspect permitted project information | No blanket mutation or inspection entitlement |
+| Workspace Admin / document access manager | Membership or document policy management | Neither grants blanket restricted reads; membership and document management are separate |
+| Audit / trace inspector | Inspect permitted changes or AI execution | Independent audit/trace entitlements; source access separately checked |
+| Student developer / evaluator | Implement, review and assess | Development/review responsibilities confer no runtime access |
+
+Current session identifies the actor. Project AND document scopes apply before context/delivery; unknown authority denies. Descriptive Member.role never provisions capabilities. Additional non-read delegation remains OD-02/OD-08. Scoped audit-read may disclose actor/action/entity-ID/time under ADR-0012 while protected title/content/before-after stay redacted; trace-read inherits no such exception.
+
+### 2.2 Concern-to-design mapping
+
+| Concern | Required design response | Views / planned checks |
+| --- | --- | --- |
+| CON-01 work/knowledge navigation | Preserve team journeys and exact scoped controls | §3.1/3.2/3.6; WF-01–06 |
+| CON-02 evidence integrity | Exact document/version/passage or operational observation; full-evidence server checks | §3.4/3.5/3.7; WF-07 |
+| CON-03 outage continuity | Dependency-specific failure and healthy independent fallback | §1.3/3.4/3.7; TC-12 |
+| CON-04 fact/synthesis/uncertainty | Claim labels, supported partials, explicit insufficiency/conflict | §3.2/3.6/3.7; TC-04/09/10 |
+| CON-05 concurrent writes | Pending/confirmed/rejected/unknown outcomes and same-identity reconciliation | §3.3/3.4/3.8; WF-02/03/05 |
+| CON-06 accessible interaction | Labelled keyboard alternatives, focus containment/return, text with colour | §3.6/4.1; WF-09 rendered review pending |
+
+### 2.3 Quality scenarios and constraints
+
+| Scenario | Planned acceptance observation (not measured evidence) |
+| --- | --- |
+| Complete Backlog reorder | A member gathers one full generation; pending, confirmed receipt, 409 and lost response differ; TC-07/WF-02 inspect BL-01–BL-10. No response-time claim. |
+| Keyboard Board and dialogs | A member uses labelled state controls without drag; focus enters/returns meaningfully, remains contained in an open modal and can exit by closing. Rendered checks pending. |
+| AI failure | No generated answer on provider/embedding/budget/persistence failure. Preserve safe input and keyword navigation when healthy; authority/Knowledge failure has separate feedback. |
+| Citation reload | Without delivered observation context show Original observation unavailable; label a renewed current entity read separately. No reconstruction from URL/cache. |
+
+Native labels, logical focus, visible focus, field-associated errors and status text are design requirements. Empty success differs from failed authority/dependencies; loading cannot display cached protected content before renewed checks. No hidden title/count/cause appears on denial. Destructive actions explain effects and require explicit confirmation; 409 requires reconsideration. Timings, contrast ratios, touch sizes, zoom/overflow, density and device support need actual rendered evidence; no WCAG claim is made here.
+
+## 3. Design views
+
+### 3.1 Composition view
+
+Symbolic modules describe responsibilities, not an adopted UI framework/component library.
+
+| Module | Responsibility | Declared operations |
+| --- | --- | --- |
+| Auth/shell | Session, project context and clearing protected display | signIn, signOut, getSession, listProjects, getAllowedActions |
+| Projects/members | Capability-gated creation and membership; no role editor | createProject, getProject, listMembers, addMember, removeMember; optional editProject |
+| Backlog/Sprint planning | Work creation/order, fixed lifecycle, independent allocation outcomes | createTask, listTasks, reorderBacklog, createSprint, listSprints, getSprint, listSprintItems, allocateTask, startSprint, completeSprint |
+| Board/task | Direct states, assignee, ordered blockers and current placement | getTask, editTask, setTaskState, setAssignee, listBlockerEvents, recordBlocker |
+| Documents/history | Read-filtered list, creation, exact versions and readiness | listDocuments, createDocument, getDocument, listVersions, getVersion, getReadiness |
+| Independent access/actions | Known-ID policy or non-reading command surface | getDocumentPolicy, listDocumentReadGrants, setClassification, grantDocumentRead, revokeDocumentRead, getAllowedActions, getDocumentCommandPrecondition, reviseDocument, archiveVersion, deleteDocument; optional editDocumentMetadata |
+| Search/relationships | Permitted document keyword search and explicit links | keywordSearch, listLinks, createLink; optional searchTasks/removeLink |
+| AI/citation inspector | Buffered answer and both citation kinds | askQuestion, openCitation, getVersion; renewed getProject/getSprint/getTask |
+| Audit/trace | Separate audit, trace and optional summary authorities | listAudit, getTrace; optional getRetrievalSummary |
+
+Multi-select Sprint allocation is one allocateTask request/key/result per task, not a bulk transaction (ADR-0014). First human work/document journeys precede AI. Keep fixed Planned → Active → Completed Sprint lifecycle, one Active Sprint/project and direct task state transitions.
+
+### 3.2 Logical view
+
+| View model | Contract source / invariant |
+| --- | --- |
+| Session/project context | Session and exact-scope AllowedActions; descriptive roles grant no authority |
+| Work card | Task.state/revision and Task.work_location: kind=backlog uses position; kind=sprint or completed uses sprint_id. These are API fields, not logical-model location_kind/location_sprint_id; completion history cannot derive current placement |
+| Document list/history | DocumentSummary/VersionSummary; nullable Current pointer; Current/Superseded/Archived separate from semantic_readiness |
+| Answer | QuestionResult union with server-controlled claims, citations and missing_components where applicable |
+| Document citation | kind=document, source_id, document_id, version_id, passage_id; no invented offset locator |
+| Operational citation | kind=operational, source_id, entity_kind, entity_id, observed_at, observation_revision |
+| Command context | Exact action/target, original scoped operation identity/payload and either known revision or opaque precondition_token |
+
+These are UI projections of existing schemas, not alternate HTTP definitions or added fields. Full evidence validity and claim support are distinct from locator structure.
+
+### 3.3 Dependency view
+
+```mermaid
+flowchart LR
+    Views["UI views and interaction state"] --> Adapters["HTTP adapters - framework unselected"]
+    Adapters --> Workspace["Workspace public contract v0.2.8"]
+    Adapters --> Knowledge["Knowledge public contract v0.2.9 via gateway"]
+    Workspace --> Authority["Server current scoped authority"]
+    Knowledge --> Authority
+```
+
+No copied permission rules or direct DB/provider access. Discovery controls affordances; every server operation rechecks current authority and business preconditions. Failure clears stale allowed actions/protected output; browser caches never become unrestricted fallback. Application stack remains Proposed.
+
+### 3.4 Interaction view
+
+#### 3.4.1 Work mutation
+
+```mermaid
+sequenceDiagram
+    actor Member
+    participant UI as Board
+    participant GW as Workspace gateway
+    Member->>UI: Choose Done with pointer or keyboard
+    UI->>UI: Mark pending and preserve original key/payload
+    UI->>GW: POST /tasks/{task_id}/state with state=done and expected_revision
+    alt Confirmed commit
+        GW-->>UI: 200 Task with revision
+        UI-->>Member: Confirm result and renew permitted placement
+    else Stale request rejected
+        GW-->>UI: 409 Conflict
+        UI-->>Member: Reload permitted state and reconsider
+    else Response lost
+        UI-->>Member: Outcome unknown - no fresh-key replay
+    end
+```
+
+getTask is GET /tasks/{task_id}. setTaskState accepts todo/in_progress/done, not display labels. Reopening work from a Completed Sprint preserves completion history and returns it to Backlog in To Do; it does not reopen the Sprint. Member removal/rejoin never restores former restricted grants or delegated capabilities. Membership removal guards the last effective membership manager and invalidates grants/current assignees transactionally under existing policy.
+
+#### 3.4.2 Buffered AI and document citation
+
+```mermaid
+sequenceDiagram
+    actor Member
+    participant UI as Drawer and inspector
+    participant GW as Workspace gateway
+    participant KN as Knowledge
+    Member->>UI: Submit one question
+    UI->>GW: POST /knowledge/questions
+    GW->>KN: Authenticated scoped question
+    Note over GW,KN: Persist exact manifests and validate whole evidence set before guarded delivery
+    KN-->>GW: Validated result or declared failure
+    GW-->>UI: Buffered permitted result or error
+    Member->>UI: Open document citation
+    UI->>GW: GET /knowledge/citations/{document_id}/{version_id}/{passage_id}
+    GW->>KN: Renew current scope for exact locator
+    KN-->>GW: Permitted passage or declared error
+    GW-->>UI: Passage/version or generic error
+```
+
+Before provider input and answer delivery, server guards check the entire evidence set including uncited context, exact committed manifests/bytes, current access and validity. Invalid/revoked evidence withholds the original draft; removing chips/sentences is insufficient. Client validation cannot replace these checks. getVersion is a separate exact-version read; never substitute Current or invented offsets. Verified unavailable identity requires ADR-0013's surviving read policy, exposes no excerpt, and otherwise returns the same generic 404.
+
+#### 3.4.3 Operational observation
+
+Preserve delivered operational locator/time/revision only as ephemeral answer context. Renew getProject/getSprint/getTask to show permitted current state with a separate label. Reload/direct navigation without that context shows **Original observation unavailable**. URL/current values/browser storage cannot recreate authoritative history; no saved-answer/status endpoint is added.
+
+Unknown and inaccessible reads return identical 404 `{"code":"not_found","message":"Resource unavailable"}`. Do not distinguish hidden existence or revocation cause. Clear protected output on expiry, denial or unknown authority; authority/dependency failure is not empty success. Already delivered information cannot be recalled. A 403 action denial is applicable only where the contract permits it for a known readable resource; never use it to distinguish an inaccessible read.
+
+### 3.5 Information view
+
+| State | Lifetime / constraints |
+| --- | --- |
+| Authenticated session | Mechanism remains OD-09; server identity authoritative; clear protected display/actions on sign-out/expiry/lost scope |
+| Route/filter selectors | URLs select resources/views, never confer authority or reconstruct observations |
+| Safe user-entered drafts | Ephemeral local form state; never refill protected old content after revocation |
+| Preconditions | Opaque precondition_token binds actor/session/project/action/document/known version; consumed on commit, grants neither read nor action authority |
+| Answer/observation | Ephemeral view memory only; no persisted answer/history feature |
+| Operation identity | Preserve original scoped key/payload for reconciliation where available; lost context leaves explicit uncertainty |
+
+| Operation | Exact wire constraints |
+| --- | --- |
+| createTask | Required type=story/task/bug and nonempty title; optional description. No priority field, UUID requirement or invented length maximum; use setAssignee separately. |
+| setTaskState | state=todo/in_progress/done and numeric expected_revision, with scoped Idempotency-Key |
+| reorderBacklog | Full unique task_ids and decimal-string expected_revision; ReorderResult returns project_id/backlog_revision |
+| reviseDocument | content and content_format=text/markdown; exactly one known numeric expected_revision or matching precondition_token. Minimal 201 DocumentMutationReceipt, not content-bearing Version. |
+| archive/delete | Already-known exact version for archive; lifecycle authority separate from manage-access/read. Receipt or delete 204 grants no content-read. |
+
+OpenAPI controls required fields, additionalProperties, headers, exact error unions and bounds. Non-reading commands cannot prefill hidden title/content/history/current pointer; acquire only the selected action's precondition. After 409 reconsider the command with renewed permitted data/preconditions. Timeout is unknown, not proof of rollback; preserve the original identity/payload rather than obtain a fresh token/key and blindly resubmit.
+
+### 3.6 Interface view
+
+#### 3.6.1 Candidate tokens
+
+Preserved from v1.1 as WF-09 design input only. This selects no framework/library/icon package or accepted device target. Contrast, rendering, timing and accessibility measurements are **Not run**. Former numerical contrast claims were unsupported and are withdrawn. Font size/line-height pairs are notation to translate into valid CSS, not an implemented stylesheet.
+
+```css
+:root {
+  /* Color Palette - Modern Clean SaaS / Workspace */
+  --color-primary-50: #eff6ff;
+  --color-primary-500: #2563eb; /* Primary Brand / Active CTA */
+  --color-primary-600: #1d4ed8;
+  --color-primary-700: #1e40af;
+
+  /* Neutral Slate Palette */
+  --color-slate-50: #f8fafc;  /* App Background */
+  --color-slate-100: #f1f5f9; /* Surface Background / Card Hover */
+  --color-slate-200: #e2e8f0; /* Default Border */
+  --color-slate-300: #cbd5e1; /* Subtle Border */
+  --color-slate-600: #475569; /* Secondary / Meta Text */
+  --color-slate-900: #0f172a; /* Primary Heading / Body Text */
+
+  /* Semantic Feedback Tokens */
+  --color-success-bg: #dcfce7;
+  --color-success-text: #15803d; /* Committed / Ready / Done / Fact */
+  --color-warning-bg: #fef3c7;
+  --color-warning-text: #b45309; /* Superseded / Partial / Blocked / Uncertainty */
+  --color-danger-bg: #fee2e2;
+  --color-danger-text: #b91c1c;  /* Conflict / Withheld / Denied */
+  --color-info-bg: #e0f2fe;
+  --color-info-text: #0369a1;    /* Processing / Info / Synthesis */
+
+  /* 8pt Baseline Spacing Grid */
+  --space-1: 4px;   /* Sub-grid (icon margins, compact padding) */
+  --space-2: 8px;   /* Tight element gap */
+  --space-3: 12px;  /* Component internal padding */
+  --space-4: 16px;  /* Standard container padding */
+  --space-6: 24px;  /* Section gap */
+  --space-8: 32px;  /* Modal / Layout header gap */
+
+  /* Typography Scale */
+  --font-family-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif;
+  --font-family-mono: ui-monospace, SFMono-Regular, "Cascadia Code", monospace;
+
+  --text-xs: 12px/16px;
+  --text-sm: 13px/18px;
+  --text-base: 14px/20px; /* Standard Body */
+  --text-md: 16px/24px;   /* H3 / Subtitles */
+  --text-lg: 20px/28px;   /* H2 */
+  --text-xl: 24px/32px;   /* H1 Page Title */
+
+  /* Focus & Elevation */
+  --focus-ring: 0 0 0 2px #ffffff, 0 0 0 4px #2563eb;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+```
+
+#### 3.6.2 Screen/route bindings
+
+Follow [sitemap](../ux/sitemap.md) and [UX-PLAN-01](../ux/wireframe-workplan.md); route selectors below are UI paths, not HTTP operation paths. Parameter aliases mean the exact selected resource ID. Every protected surface needs loading, successful-empty, denied and dependency variants as applicable.
+
+| Surface / UI route | Operations / required states |
+| --- | --- |
+| Sign-in/projects: /login, /projects | signIn/signOut/getSession/listProjects/createProject; expired, generic invalid credentials, empty versus failed list |
+| Members: /p/:projectId/settings/members | listMembers/addMember/removeMember/getAllowedActions; stale page/revision, last-manager conflict, no revived grants on rejoin |
+| Settings: /p/:projectId/settings/general | getProject; FR-64 Could editProject only if implemented/allowed |
+| Backlog: /p/:projectId/backlog | listTasks/reorderBacklog/listSprints/getSprint/listSprintItems/allocateTask; complete versus partial generation, per-task outcomes, BL-01–10 |
+| Board/task: /p/:projectId/board, /p/:projectId/tasks/:taskId | getTask/editTask/setTaskState/setAssignee/listBlockerEvents/recordBlocker; no Active Sprint versus filtered empty, keyboard alternative, conflict/reopen/unknown |
+| Explorer/detail/history: /p/:projectId/docs, /p/:projectId/docs/:docId, /p/:projectId/docs/:docId/history | listDocuments/createDocument/getDocument/listVersions/getVersion/getReadiness; nullable Current, archived-only, semantic-failed, exact historical labels |
+| Access/actions: /p/:projectId/docs/:docId/manage, /p/:projectId/docs/:docId/actions | getDocumentPolicy/listDocumentReadGrants and exact scoped commands from §3.1; independent read/write/lifecycle/manage, DC-01–10 |
+| Search: /p/:projectId/search | keywordSearch/listLinks/createLink; permitted endpoint navigation, cursor errors; searchTasks FR-70 Should only if implemented/allowed |
+| AI: /p/:projectId/ai | askQuestion; §3.7 result/failure states, safe prompt retained |
+| Answer retrieval summary: inline panel in /p/:projectId/ai | Run-scoped getAllowedActions, then FR-27 Should getRetrievalSummary for the exact answer run when implemented/allowed; current permitted-answer-reader entitlement, independent of audit-read/trace-read; generic 404 on denied/unknown/revoked run, generic 503 on authority/dependency failure with no cached summary |
+| Citation: /p/:projectId/citations/:docId/:versionId/:passageId | openCitation/getVersion; exact permitted identity/validity, unavailable without excerpt, generic denied |
+| Observation: /p/:projectId/observations/:entityKind/:entityId | getProject/getSprint/getTask; original observation versus renewed current; missing original context after reload |
+| Audit: /p/:projectId/audit | listAudit/getTrace; scoped audit-read or trace-read respectively, redaction and honest metrics |
+
+Version action discovery supplies exact project/document/version IDs and validates the echoed pair. Offer the optional retrieval-summary control on its answer without traversing the Audit route gate. Run-scoped discovery evaluates summary and trace controls independently; the server rechecks each operation's current entitlement and source access at open/handoff. Summary rights do not confer trace-read, and audit-read/trace-read do not confer summary rights. Omit denied source details and dependent query/validation data without hidden counts or rank gaps. Pagination must never reveal hidden totals or counts.
+
+### 3.7 State dynamics view
+
+#### 3.7.1 AI results
+
+```mermaid
+stateDiagram-v2
+    [*] --> Idle
+    Idle --> Loading: Deliberate submit
+    Loading --> Answered: HTTP 200 answered
+    Loading --> Partial: HTTP 200 partially_answered
+    Loading --> Insufficient: HTTP 200 insufficient_evidence
+    Loading --> Conflict: HTTP 200 conflict
+    Loading --> Withheld: HTTP 503 answer_withheld
+    Loading --> DependencyFailure: Declared dependency error
+    Loading --> UnknownOutcome: Response lost or timeout
+    Withheld --> Idle: Deliberate new question
+    DependencyFailure --> Idle: Deliberate retry
+    UnknownOutcome --> Idle: Explicit new intent subject to server quarantine
+```
+
+Partial contains supported claims/citations and explicit missing_components without hidden-source hints. Conflict is a 200 answer category, distinct from stale mutation 409. Withheld contains exactly code answer_withheld and message Unable to provide this answer; no generated text, run/source IDs or detailed cause. Other declared failures contain no draft. No automatic resend after unknown responses; new user intent cannot override server quarantine. A stale health badge cannot permanently disable the editor. Closing citation inspection restores its original result category/focus.
+
+#### 3.7.2 Version lifecycle
+
+```mermaid
+stateDiagram-v2
+    [*] --> Current: First save commits
+    Current --> Superseded: New immutable Current revision commits atomically
+    Current --> Archived: Authorised archive
+    Superseded --> Archived: Authorised archive
+```
+
+This models one immutable version; revision creates a different Current version and preserves old locators. No product Draft, publish or restore operation exists. Document deletion is independently authorised and does not require an already Archived version. Exact unavailable-locator policy follows ADR-0013; physical retention remains OD-04. Semantic readiness pending/ready/failed is orthogonal. Ordinary retrieval uses permitted Current; history is explicit and labelled.
+
+### 3.8 Algorithm view
+
+#### 3.8.1 Full Backlog reorder (Proposed ADR-0018)
+
+1. Gather all listTasks(location=backlog) pages through next_cursor=null at one backlog_revision string. Reject filtered subsets; paging 409 discards the accumulated generation.
+2. Enable reorder only when complete and current scoped discovery includes reorderBacklog. Check equal length, uniqueness and exact set equality locally; server remains authoritative.
+3. Preserve scoped Idempotency-Key and payload `{task_ids: fullPermutation, expected_revision: capturedBacklogRevision}`. POST /projects/{project_id}/backlog-order.
+4. On 200 acknowledge ReorderResult then renew permitted current state. A replay receipt may describe an earlier commit; response.backlog_revision is not proof of the current snapshot. Never assume +1.
+5. On 409 discard stale pages/order, reload and require reconsideration. No automatic reapplication.
+6. On lost response show Outcome unknown; reconcile the same original key/payload if available. No fresh-key blind retry, inferred rollback or invented status endpoint. Lost context retains uncertainty.
+7. Clear protected rows/actions on expiry, denial or unknown authority. Dependency failure differs from empty success. WF-02/BL-01–10 specify frame variants.
+
+#### 3.8.2 Metrics
+
+For each permitted metric independently: measured zero renders 0 ms/0 tokens; unavailable renders Not measured; not_performed renders Not performed. Preserve each metric's actual unit and stage/status. Failed execution may have measured duration. Scope/dependency failure clears protected output and renders generic failure, not empty success or zero. Do not expose hidden rank gaps/counts; structure validation does not establish claim support (Proposed ADR-0021).
+
+## 4. Elements and resources
+
+### 4.1 Symbolic component catalog
+
+Names describe design responsibilities, not selected JSX or an implemented library. Candidate colours in §3.6 require rendered checks; use text with status.
+
+| Element | Required input / behaviour | Draft variants |
+| --- | --- | --- |
+| Backlog item/list | Task/location/revision, complete-generation flag and scoped action | Default/focus/selected/incomplete/pending/conflict/unknown/denied |
+| Board column/state control | todo/in_progress/done, permitted tasks, keyboard alternative | Normal/drop/empty/focus/pending/rejected |
+| Answer card / claim label | Declared result union, fact/synthesis/uncertainty, missing components | Four success categories; separate withheld/dependency/unknown |
+| Citation inspector | Exact document or operational locator, independent renewed read | Permitted exact/historical/unavailable/generic denial/missing original context |
+| Independent document action | Exact action/known target, matching token or known revision, original key | Loading/allowed/precondition/submitting/receipt/conflict/unknown/unavailable |
+| Dependency alert | Actual service/request outcome | Nonblocking degraded/failure; never disable healthy independent work |
+| Audit/trace table | Independently entitled projection and metric states | Redacted, measured zero, unavailable, not performed, failure; no hidden counts |
+
+### 4.2 Resource evidence gap
+
+Bundle/memory/DOM size, list density, animation, debounce, pagination size and latency need a chosen stack and representative rendered measurements. Earlier numerical budgets were unvalidated proposals and are withdrawn as release gates. WF-09 records device, data volume, observations and proposed grounded targets; no performance result is established here.
+
+## 5. Rationale and decisions
+
+| Existing source | Design dependency / limitation |
+| --- | --- |
+| ADR-0007–0017 | Scoped capabilities, fixed Sprint/direct moves, immutable Current revisions, independent allocation outcomes, retention/access and whole-evidence withholding remain binding owner-confirmed directions |
+| Proposed ADR-0018 | Operational projections and full-generation reorder; no handler enforcement claimed |
+| Proposed ADR-0019 | Scoped discovery; exact resource/version binding; no client-side permission authority |
+| Proposed ADR-0020 | Exact manifest/byte binding at server handoffs; does not prove claim support or prompt-injection resistance |
+| Proposed ADR-0021 | Scoped inspection and honest missing metrics |
+| Proposed ADR-0022 | Non-reading action preconditions/minimal receipts; manage-access alone does not grant lifecycle/content-write |
+| Proposed ADR-0023 | Immutable preparation/outcome and protected-claim storage mapping with isolated SQL evidence; no handler/fence/guard/relay acceptance |
+
+Unvalidated token streaming is excluded because server validation/guarded delivery must precede exposure. Fresh-key automatic mutation retries are excluded because timeout can follow a commit; same-identity reconciliation is different from deliberate new intent. UI may colocate AI and keyword navigation if their modes/results/failure paths remain clear; no new prohibition on a shared search box is introduced. Document and operational citation kinds come from PRD FR-25/26 and the existing contract union, not ADR-0023.
+
+## 6. Traceability and verification
+
+Design navigation below does not assert complete AC/NFR coverage. [VERIFY-01](requirement-verification.md), [test coverage](test-coverage.md) and PRD control exact assertions. Harness/schema/byte tests do not prove sessions, permission enforcement, claim support or rendered UI behaviour.
+
+| Business requirement | FR / scenario anchors | Design / future UI checks |
+| --- | --- | --- |
+| BR-01 projects/membership | FR-01, FR-36, FR-37, FR-68, FR-02, FR-64 (optional), FR-38, FR-39, FR-03, FR-04, FR-50, FR-51, FR-52, FR-59, FR-70 (optional); SC-06 | §2.1/3.6; WF-01; TC-01/03/24 |
+| BR-02 Backlog/Sprint | FR-05, FR-40, FR-41, FR-06, FR-66 (optional), FR-07, FR-67 (optional), FR-08, FR-42 | §3.1/3.8; WF-02; TC-07/19/21 |
+| BR-03 work updates/blockers | FR-09, FR-43, FR-44; SC-03/04 | §3.4.1; WF-03; TC-08/16/22 |
+| BR-04 knowledge ownership/organisation | FR-10, FR-62 (optional), FR-65 (optional) | §3.5/3.6; WF-04/05; TC-15/20 |
+| BR-05 immutable validity | FR-11, FR-12, FR-15, FR-61, FR-19, FR-47; SC-05 | §3.4.2/3.7.2; WF-04/07; TC-05/06 |
+| BR-06 relationships | FR-44, FR-16, FR-49 (optional), FR-17; SC-01/04 | §3.1/3.6; WF-06; TC-17/23 |
+| BR-07 permitted search | FR-18, FR-53, FR-63, FR-19, FR-47, FR-20, FR-70 (optional), FR-34; SC-01/04/08 | §1.3/3.6; WF-06; TC-17/23/25 |
+| BR-08 supported answers/insufficiency/conflict | FR-53, FR-21, FR-22, FR-60, FR-46, FR-23, FR-54, FR-24, FR-28, FR-30; SC-02/07 | §3.4.2/3.7.1; WF-07; TC-04/09/10 |
+| BR-09 operational state | FR-25, FR-26; SC-03 | §3.4.3; WF-03/07; TC-08 |
+| BR-10 access across all surfaces | FR-01, FR-37, FR-68, FR-39, FR-03, FR-04, FR-50, FR-51, FR-52, FR-14, FR-17, FR-20, FR-59, FR-21, FR-26, FR-28, FR-55, FR-29, FR-30, FR-56, FR-58; SC-06 | §2.1/3.4/3.5; WF-01/04/05/07/08; TC-03/13/18/24 |
+| BR-11 audit | FR-31, FR-56 | §3.1/3.6; WF-08; TC-11/18 |
+| BR-12 inspection | FR-61, FR-60, FR-46, FR-27 (optional), FR-55, FR-32, FR-57, FR-58 | §3.4.2/3.8.2; WF-07/08; TC-04/11/18 |
+| BR-13 continuity | FR-70 (optional), FR-33, FR-69, FR-34; SC-08 | §1.3/2.3/3.7.1; WF-06/07; TC-12 |
+| BR-14 archive/delete/removed access | FR-39, FR-52, FR-13, FR-48, FR-14, FR-15, FR-61; SC-05/06 | §3.5/3.7.2; WF-04/05; TC-06/13/20 |
+
+BR-15/FR-35 reports remain excluded; FR-27 summary and FR-70 task search remain Should. NFR-01–NFR-09 follow PRD/Test Plan without new thresholds. All listed UI checks remain Not run.
+
+## 7. Local checklist disposition
+
+Both local workbooks are templates. Specified means text exists; Gap names missing design/evidence; N/A gives its scope reason. Author corrections do not close historical UX-CHECK-01 findings or establish standards conformance/independent approval.
+
+| Blueprint workbook rows | Disposition / evidence |
+| --- | --- |
+| B02 scope; B03 context; B04 stakeholders; B05 concerns | Specified §1–2; interviews and runtime enforcement Gap |
+| B06 composition; B07 logical; B08 dependency | Specified §3.1–3.3; implementation Gap |
+| B09 interaction; B10 information; B11 interface; B12 state | Specified §3.4–3.7/contracts; rendered/browser/server verification Gap |
+| B13 algorithm; B14 element attributes | Specified §3.8/4.1; execution evidence Gap |
+| B15 resource allocation | Gap: no measured/accepted budget (§4.2) |
+| B16 decisions; B17 alternatives; B18 assumptions | Specified §1.3/5; Proposed ADR dependencies remain open |
+| B19 traceability | Specified navigation §6; exact per-AC/NFR design completeness/evidence Gap |
+| B20 completeness | Gap: all Must controls/frames/handlers are not designed and verified |
+
+| UI/UX workbook rows | Disposition / evidence |
+| --- | --- |
+| U02 personas; U03 IA; U04 flows | Specified §2/3.4/3.6 and canonical UX; interview/three-click claims Gap |
+| U05 grid; U06 breakpoints; U07 hierarchy | Candidate tokens; rendered/device acceptance Gap |
+| U08 components; U09 palette; U10 type; U11 icons | Textual proposals §3.6/4.1; maintained library/icon choice/rendering Gap |
+| U12 contrast; U13 touch targets | Gap: rendered measurements/confirmed device standard absent |
+| U14 keyboard; U15 recovery | Semantic requirements specified; actual focus/keyboard/confirmation checks Gap |
+| U16 visibility; U17 empty; U18 micro-interactions | Semantic states specified; rendering/timing Gap |
+| U19 charts | N/A: Enhanced/complex charts excluded |
+| U20 density | Gap: representative audit/trace/list layouts not rendered |
+| U21 asset export | N/A for textual handoff; Mermaid/Draw.io sources are not UI asset-export evidence |
+| U22 redlining | Candidate token notation supplied; frame measurements/redlines Gap |
+| U23 states | Semantic states specified; full component visuals Gap |
+
+## 8. Handoff and bounded construction plan
+
+Ready for bounded draft design/wireframing with stated gaps. Existing Proposed ADR-0018–0023 dependencies require owner resolution before implementation treats them as accepted. Identity, framework/provider, additional delegation, retention and device choices remain open. No runtime gate is closed by this correction.
+
+### 8.1 Common brief for a fresh session
+
+Read root AGENTS, development rules/pre-flight, Stage 6 profile/workflow and current headers of BRD, PRD, UC, SAD, UX-06, UX-HANDOFF-01 and UX-PLAN-01. Each step below names its own functional sources; no prior conversation is required. Preserve active branch/unrelated work. No commit unless asked. One agent works sequentially; owner instructions prohibit parallel agents.
+
+For each surface supply readable/loading/empty/generic denial/dependency/conflict/unknown variants as applicable and explain omissions. Use exact operation IDs and synthetic content. Shared contract/schema edits require a separately bounded change. Update versions/register and outcomes; never claim UI evidence from context/docs checks. No application build command currently exists.
+
+### 8.2 Sequential design steps
+
+| Step / dependency | Cold-start sources and allowed outputs | Acceptance / validation / recovery |
+| --- | --- | --- |
+| UX-S1 / none | WF-01/02; PRD FR-01/02/05–08/36–39; UC-01/02/03/05; SP-01/02/03/05; Workspace session/project/member/work/Sprint contracts; UX-PLAN BL-01–10. Allowed: docs/ux/**, this blueprint and artifact-register. | Supply session/projects/members and Backlog/Sprint variants, complete-generation reorder and independent allocation outcomes. Inspect exact operation/schema/error bindings and all BL variants. No handler AC marked Passed. Revise/revert only owned draft hunks if rejected. |
+| UX-S2 / S1 | WF-03–06; PRD FR-09–20/40/43/44/47/48/50–52/59/61/63; UC-04/06–08; SP-04/06–08; board/docs/permission flows, both contracts, UX-PLAN DC-01–10. Same documentation paths allowed. | Specify direct/reopen placement, immutable history, non-reading commands/access and links/keyword; no hidden prefill or invented archive-current lookup. Optional task search remains Should. Inspect all DC/failure variants and exact bindings. Recover by revising only this step's owned changes. |
+| UX-S3 / S2 | WF-07/08; PRD FR-21–34/46/53–58/60/69 (FR-27 optional); UC-09–13; SP-09–13; AI flow/inspection schemas and Proposed ADR-0020/21/23. Same documentation paths allowed. | Supply four 200 results, 503 withheld, dependency/unknown, both citation kinds, independent audit/trace/summary controls and honest metrics. Validate whole-evidence server boundary in text; no saved-answer/status API. Compare exact unions/locators/errors. Revise only owned draft hunks on rejection. |
+| UX-S4 / starts with S1; finishes after S3 | WF-09, UX-06, all semantic variants, candidate tokens §3.6, PRD NFRs. Allowed docs/ux/** plus blueprint/register. Any app implementation needs its own authorised spec paths and selected framework. | Produce local rendered drafts if requested; record browser/device, keyboard/focus/contrast/overflow/density observations before proposing measured targets. Keep visual rows Gap until checked. No external publication implied. Revise only generated assets/draft hunks owned by this step if rejected. |
+
+S1 → S2 → S3 keeps work/doc fallback before AI. S4 iterates across them; visual polish does not block the first walking skeleton. These are documentation/design steps, not adoption of an unchosen stack or a new feature.
+
+### 8.3 Verification, review and mutation protocol
+
+Each step records source versions, exact FR/UC/TC anchors, allowed/changed paths, decisions, checks run and checks not run. Run context:lint/check/test and docs:lint/test on the resulting draft; failures remain explicit and structural success proves no handler behaviour. Add application checks only when actual entry points exist; inspect rendered drafts before any usability/accessibility claim.
+
+Record any step split/insert/skip with date, reason, affected acceptance and downstream dependencies. A skip cannot defer a Must without OD-11. Rollback means reverting only owned step changes, preserving other edits; it never means resetting the shared working tree. Reviewer findings name the source/correction owner. Author validation is not independent approval. The blueprint skill's delegated adversarial review is not run because the owner's no-parallel-agent instruction takes precedence.
+
+## Input metadata reconciliation — 25 October 2026
+
+Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.
+
+## P10 input metadata — 28 October 2026
+
+Only dependent input-version metadata changed. Existing frame/design assertions and images are unchanged; no visual review, browser or runtime evidence is inferred.
+
+## P12 dependent metadata — 28 October 2026
+
+Only input-version metadata follows the bounded SP-01 status/evidence reconciliation. Existing scope, visual sources and acceptance assertions are unchanged; no new design review or acceptance is implied.
+
+1 November input-only reconciliation: UX-PLAN-01 v0.4 updates the API source pointer. This does not revise blueprint behavior, visual frames or establish their acceptance.

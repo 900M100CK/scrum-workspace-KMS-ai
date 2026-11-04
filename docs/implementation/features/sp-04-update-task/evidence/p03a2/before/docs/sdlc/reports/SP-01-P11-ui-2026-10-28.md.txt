@@ -1,0 +1,81 @@
+# P11 live session UI result
+
+**Artifact ID:** SP01-P11-RESULT\
+**Version/date:** 0.3 Draft · 28 October 2026\
+**Status:** Bounded UI/DOM/live integration and actual browser observations verified; P12 and full acceptance open.\
+**Inputs:** [FEAT-SP01-01](../../implementation/features/sp-01-session-foundation/plan.md) (execution snapshot v0.8); [P11 task](../../implementation/features/sp-01-session-foundation/tasks/SP01-P11-session-ui.md) (execution snapshot v0.7); [ADR-0024](../../adr/0024-backend-session-foundation.md) v0.5; [ADR-0025](../../adr/0025-opaque-session-candidate.md) v0.5; Workspace contract v0.2.10.\
+**Trace:** M-01 / SP-01.3; AC-01/36/37/68; applicable TC-01/22; BR-01/10 and SC-06 relevance without complete source-protection acceptance.\
+**Owner role:** Sequential implementer; continuation requested by owner. Author verification only; no independent approval.
+
+## Behavior and boundary
+
+React now uses real POST/GET/DELETE /api/session through the existing same-origin Workspace proxy. Startup, reload-style checks, focus, page-show, visibility return and hash navigation revalidate with the server. The selected custom request header and same-origin credentials are sent; no bearer token or client actor is created. Only exact successful Session objects are accepted. Unknown statuses, malformed output, redirects, network errors and the fixed ten-second request timeout leave unavailable state.
+
+Session UI state lives only in memory. Credentials are read from the submitted form and the password field is immediately cleared; no localStorage/sessionStorage credential, token or identity cache is added. Checks, logout, expiry and dependency failure remove the authenticated subtree before awaiting results. A generation counter plus request cancellation prevents delayed headers or response-body completion from restoring an old identity. Events do not duplicate an already active session check or interrupt a mutation.
+
+Successful login uses the server-confirmed session; invalid credentials show one generic message with focus moved to the feedback. Confirmed logout requires 204. Uncertain sign-in/sign-out does not claim success or automatically retry the mutation: the workspace is hidden and explicit session checking/sign-out is offered. Local expiry hides UI and asks for sign-in, without renewing in the background. The local clock can hide UI early; it never grants server access. PostgreSQL remains the server expiry authority.
+
+The small session/current-workspace surfaces reuse the preserved prototype's soft-green colors, serif heading treatment and restrained controls. Username/password labels, autocomplete, native form submission, skip link, live feedback, visible focus and narrow-screen layout are present. Project/task/knowledge operations remain explicitly unimplemented. Signing in grants no project/document capability. The synthetic prototype, its data and assets remain unchanged. No new component, routing, auth or testing dependency is adopted.
+
+## Actual verification
+
+The [final run](sp01-p11-evidence/2026-10-28T04-58-05-020Z/result.json) records Node 24.22.1, exact commands, HEAD/branch, scoped working-tree diff hash and stable before/after hashes for 93 runnable inputs. Source archive entries were verified against the manifest. Supplemental post-run untracked inventory is explicitly timestamped separately; evidence-index.json hashes the retained logs/manifests/archive. This is local working-tree evidence, not remote CI or clean-clone acceptance.
+
+| Command | Observed result |
+| --- | --- |
+| Fresh npm ci, offline, ignore-scripts | Passed after task-owned Vite released its native-library lock |
+| typecheck / build | Passed web and both services |
+| test:foundation | 19 passed across web/Workspace/Knowledge; includes six session-controller scenarios and existing TLS/runtime/KDF checks |
+| test:session:ui | 9 results passed: eight scenarios plus parent; seven scenarios use real React DOM and Workspace/PostgreSQL through trusted-client HTTPS, one local-expiry scenario uses controlled transport |
+| test:session:lifecycle | 18 passed; unchanged P10 server lifecycle regression |
+| test:session:http | 15 passed; actual P09 server and compiled-startup regression |
+| contracts:test | 26 passed |
+
+The DOM/live suite executes initial locked state, generic failed login/focus, successful server-bound login, hash navigation, reload-style current-session observation, dependency outage/state removal/recovery, actual expired DB session denial and sign-in prompting, confirmed logout and denied reuse. It uses React 19 resolved from apps/web, the actual Vite transform/proxy, workspace_app runtime role, private fixture provisioning and real mandatory server audit. The explicit Node cookie jar verifies wire attributes; it does not prove browser cookie storage/send. The final timer scenario verifies UI expiry with an explicitly controlled response rather than claiming production elapsed-time evidence.
+
+Controller tests separately verify fixed same-origin transport and credential shape, generic errors and strict output rejection including impossible calendar dates, stale-header/body races, uncertain mutation without retries, cancellation/expiry, and an actual stalled request aborted at the ten-second limit. SSR checks verify the initial locked checking state. DOM submit events and focus assertions are not real-browser keyboard results.
+
+## Retained failures and corrections
+
+- [First run](sp01-p11-evidence/2026-10-28T04-54-27-566Z/result.json): UI integration could not import Vite from the root. Vite belongs to apps/web; the runner now resolves it from that workspace without adding a root dependency.
+- [Second run](sp01-p11-evidence/2026-10-28T04-55-14-085Z/result.json): 4 of 9 Node results passed. The runner drained transport before jsdom's asynchronous hashchange had fired, leaving a request in flight and cascading state failures. A bounded event/transport completion barrier now waits for the actual navigation request; expected UI/authorization assertions were retained.
+- [Focused follow-up](sp01-p11-evidence/2026-10-28T04-56-40-761Z/result.json): 9/9 passed. Its complete source archive is retained before later timeout/calendar/check-dedup hardening.
+- [Clean-install attempt](sp01-p11-evidence/2026-10-28T04-57-40-115Z/result.json): Windows refused unlink of the Rolldown native library while the task-owned browser fixture was using it. The fixture was stopped cleanly, dependencies restored from the same lockfile and all final command groups passed. No user process was killed and no development data was reset.
+
+Each attempt retains its own stable manifests/source archive and command outcome. No failed attempt is rewritten as a pass. Backend source/migrations are unchanged by P11; no storage migration is run against development data.
+
+## Historical actual browser handoff
+
+The in-app browser opened https://localhost:5181 and reported NET::ERR_CERT_AUTHORITY_INVALID for the existing self-signed development certificate. Computer Use confirmation policy requires user handoff for bypassing a browser-generated security warning. The owner replied that they would handle the warning. A later read-only observation still showed the privacy interstitial; no exception, CA installation, certificate-validation disable or security bypass was performed by the agent.
+
+Actual browser sign-in, Secure-cookie storage/send, keyboard submission, reload/back navigation and responsive visual observations are pending until the page is accessible after the owner's trust decision. A trusted Node HTTPS client and simulated cookie jar do not close this gate. The task-owned fixture was restarted at the same origin after the clean install; final browser/resource disposition is recorded below before handoff.
+
+## Checklist and next task
+
+Karpathy/Ponytail and the project UI workflow were applied sequentially. Existing visual direction was preserved; no visual lead/redesign or shadcn installation was selected. React guidance was read from the canonical react-best-practices skill; UI checks used the [Web Interface Guidelines](https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/command.md) for labels, focus, feedback, forms and layout. This is author checking, not independent accessibility/usability approval.
+
+P11 has bounded DOM/live-consumer evidence and an open actual-browser gate. P12 integrated regression/handoff and whole-feature acceptance remain open. D-07 guarded protected-content handoff, later project/document capabilities, target-deployment KDF/time calibration and fully unobserved clock intervals remain unproved. No commit, push, dependency/backend policy change, development migration, prototype rewrite, parallel agent or external real-data transfer occurred.
+
+## Documentation/pre-flight checks
+
+Documentation/context prerequisites passed on Node 24.22.1: docs:lint, docs:test 20/20, context:lint, context:check and context:test 45/45; metadata check verifies 66 generated outputs. Exact logs are retained in [documentation-checks.json](sp01-p11-evidence/2026-10-28T04-58-05-020Z/documentation-checks.json). Pre-flight scope, server authority, data ownership, version snapshots, immutable evidence and unrun acceptance were rechecked before reporting. These prerequisites add no browser or guarded-handoff pass.
+
+## Historical browser/resource disposition
+
+The actual browser remains at the privacy interstitial; the owner expanded its details but exception completion was not observed. The task-owned loopback fixture at https://localhost:5181 is retained for that handoff, with synthetic disposable storage only. [browser-handoff.json](sp01-p11-evidence/2026-10-28T04-58-05-020Z/browser-handoff.json) records the exact resource/session identity and cleanup procedure; its helper source is archived separately. Actual browser scenarios remain Not run. The agent has not bypassed the warning or changed trust settings. P11 is not marked fully Verified. Backend source/migration bytes were compared with the retained final P10 archive and remain identical.
+
+## Actual browser diagnostic and verification — 28 October 2026
+
+The owner subsequently completed the certificate handoff. Before changes, an explicit trusted-client probe observed /favicon.ico 404, unauthenticated /api/session 401, and root HTML containing /@vite/client. Real browser Enter-key login succeeded. The 401 is required for missing/expired authentication; it was not removed or converted to success. The missing icon is now explicitly linked as /favicon.svg. The task-owned browser fixture now serves Vite built preview through the same HTTPS proxy, without a development client/WebSocket. Normal development mode is unchanged. An old development-client Back-Forward Cache console message does not establish that session authorization failed; no universal BFCache eligibility claim is made.
+
+The [follow-up run](sp01-p11-evidence/2026-10-28T05-18-39-328Z/result.json) retains stable hashes and a verified archive for 96 source inputs, plus build-output.zip and output hashes. Typecheck/build passed; foundation remains 19/19; UI integration is now 10/10 including a built HTTPS preview/asset/icon/no-development-client and unauthenticated-401 assertion. No backend source/migration/dependency changed, so unchanged P09/P10 evidence above is not relabelled as a new run.
+
+[Actual browser observations](sp01-p11-evidence/2026-10-28T05-18-39-328Z/browser-observations.json) record Enter login, authenticated reload (cookie reuse), workspace navigation, cross-document Back, fixture-controlled DB expiry denied by the server with workspace removal/sign-in prompting, and fresh login/logout followed by unauthenticated reload. The final console observation contained no error/warning entries. These are observed manual browser results, not automated test counts or all-browser/permission certification. A [signed-out screenshot](sp01-p11-evidence/2026-10-28T05-18-39-328Z/browser-signed-out.png) records the final visible state.
+
+The built fixture is retained at https://localhost:5181 for owner testing with unchanged synthetic credentials. [Current resource disposition](sp01-p11-evidence/2026-10-28T05-18-39-328Z/browser-runtime.json) supersedes the earlier fixture identity; its old disposable DB was cleaned up. Existing sessions were invalidated by that disposable-fixture restart. P11 is verified only in this bounded UI/browser scope; P12, full cross-browser/accessibility/usability, all project/document handlers and D-07 remain open. No browser warning was bypassed by the agent.
+
+Browser-follow-up documentation/context checks passed again (docs:test 20/20, context:test 45/45, lint/check and 66 metadata outputs); exact logs are retained in the follow-up documentation-checks.json. Final trusted-client probes confirmed /favicon.svg 200, root 200 without /@vite/client and /api/session 401 without a cookie. Source inputs remained identical to the follow-up manifest. The task-owned built preview remains available; P12 and the previously stated broader acceptance limits remain open.
+
+## P12 metadata note
+
+Revision 0.3 labels original P11 plan/task versions as execution snapshots. Earlier source archives, measured/browser results and their actual versions are unchanged.

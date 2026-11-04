@@ -1,0 +1,105 @@
+# Diagram corrections and architecture documentation recommendation
+
+**Artifact ID:** DGM-REVIEW-03  
+**Version/date:** 0.1.1 Draft · 2 November 2026
+**Status:** Author correction/review, not independent approval or application acceptance.  
+**Inputs:** PRD-01 (execution snapshot v0.9); UC-02 (execution snapshot v0.6); SAD-03 (execution snapshot v0.11); DATA-04 (execution snapshot v0.6); DATA-FIT-01 (execution snapshot v0.3); Workspace OpenAPI v0.2.2 / Knowledge v0.2.3; UX-PERM-MATRIX-02 (execution snapshot v0.6); UX-SITEMAP-03 (execution snapshot v0.5); UX-FLOW-DOCS-02 (execution snapshot v0.5); SPEC-INDEX (execution snapshot v0.4); ADR-0007–ADR-0017; registered diagram manifest.
+**Trace:** BR-01, BR-03–BR-05, BR-08–BR-14; SC-01–SC-08; FR-09/15/29/39/44/50–52/57/67/70.  
+**Owner role:** Documentation coordinator acting sequentially as source author, diagram author and reviewer.  
+**Handoff:** Ready for downstream planning with the implementation gates below; no handler or deployment is implemented by this revision.
+
+## 1. Recommendation: C4 primary views, 4+1 coverage
+
+**Proposed documentation choice:** Use C4 Context and Container diagrams as the principal architecture entry. Add focused sequence, state and ER diagrams for behavior/data. Retain the SAD's 4+1 sections as a coverage crosswalk and a useful academic narrative. Do not maintain two independently authored copies of the same architecture. This recommendation changes documentation organization, not the owner's two-service decision, scope, stack or accepted ADRs.
+
+C4 organizes structural views by zoom level; its author recommends using only levels that add value and says Context/Container suffice for many teams. Components are optional; a container is an application or data store, not necessarily a Docker container. See the primary [C4 diagram guide](https://c4model.com/diagrams), [component guidance](https://c4model.com/diagrams/component) and [container definition](https://c4model.com/abstractions/container).
+
+Kruchten's [original 4+1 paper](https://arxiv.org/abs/2006.04975) separates logical, process, development and physical concerns, tied together by scenarios. It is not obsolete because it predates C4. The two approaches answer different questions and are not a one-to-one mapping.
+
+For one engineer, five months and two services, the recommendation is to minimize duplicate maintenance while preserving concurrency/security detail. If the assessment rubric requires 4+1, present the existing SAD sections with this crosswalk and reuse the same figures:
+
+| Concern | Primary evidence / proposed figure | Limit |
+| --- | --- | --- |
+| System scope and external actors | New C4 Context | Identity/provider choices remain explicitly conditional; no invented integration |
+| Logical responsibilities | C4 Container plus focused ERD/domain model | Existing DGM-ARCH-01 is a composition sketch, not automatically a complete C4 diagram |
+| Process/concurrency | Existing AI/read flows plus handoff and creation sequences | A sequence must specify races, retries and failure, not just the happy path |
+| Development organization | SAD §4 and repository package map; C4 Component only when useful | Package ownership and runtime components are different concerns |
+| Physical environment | Deployment view for the actual target environment | Proposed ports/processes are not measured or deployed facts |
+| +1 scenarios | UC-01–UC-13 and SC-01–SC-08 → views → tests | A drawn path is not evidence that a scenario passed |
+
+N/A for now: manually maintained C4 Code diagrams and a complete second 4+1 picture set. They would duplicate evolving implementation detail. This report does not claim the planned C4/sequence/state/ERD figures already exist.
+
+## 2. Corrections and dispositions
+
+| Finding | Correction and source | Disposition / remaining limit |
+| --- | --- | --- |
+| Document actions were reachable only after content read | FLOW-03 chooses operation before readable listing; revise, lifecycle and manage-access accept known identity with their own capability. UX docs specify no prefill/content/history/readiness without separate read entitlement. SITE-01 has independent action routes. | Source/pair corrected; this does not create a metadata-listing bypass or new HTTP endpoint. Runtime tests pending. |
+| UC-04 treated membership as mutation authority | UC-04 now checks state-change, assignment or blocker capability. Work Operator is a capability specialization associated with UC-04. Viewer remains read-only by default. | Source/pair corrected; role-to-capability provisioning remains an existing open decision. |
+| Broad UC-08/12 audit includes suggested all reads require business mutation audit | Removed unconditional include arrows; textual relationship mutation/work mutation branches still require UC-11 audit. External identity actor is conditional on identity-provider selection. | Source/pair corrected without adding/removing release use cases or weakening mutation audit. |
+| Final protected-read check had no revoked result | FLOW-04 explicitly routes final denied/revoked to generic 404; success requires still-authorised AND available evidence. | Source/pair corrected; does not establish race enforcement. |
+| Search readiness conflated keyword and semantic paths | PRD AC-15, UC-08, UX docs and FLOW-03 distinguish semantic pending/ready/failed from keyword availability for committed, current, permitted passages. This matches the storage runbook's independent keyword behavior. | Clarification, not a new search feature; pending semantic content is not labelled semantic-ready. |
+| Search outage wording hid healthy task results | Sitemap separates document failure from healthy Workspace task search and labels FR-70 Should. | Source/pair corrected; optional task search does not become a release Must. |
+| SP-06/SP-10 index ownership contradicted contracts | SP-06 = both; SP-10 = workspace for the listed operations. SPEC-INDEX explains operation ownership versus Knowledge orchestration. Harness verifies declared service covers actual operation owners. | Corrected with a negative regression for each original defect. |
+| Stale manual register/review/terminal mapping | Current register reconciled; old review evidence explicitly dated. Matrix terminal mapping points to specified ADR-0013 behavior with runtime still pending. | Editorial correction; historical snapshots retained. |
+| Alternative technology assertions | Nine overlapping diagrams in diagrams-1 are canonical snapshots; remaining sketch labels remove adopted Next.js, fixed vector dimensions and hybrid/trigram adoption claims (both remain unselected). Generator refreshes shared snapshots from canonical sources. | Five alternative-only diagrams remain unverified and must not guide implementation. Their geometry, entity completeness and topology are not approved by label repair. |
+| RV-09 edges crossed use-case/document nodes/text | Rebuilt native routing; UML shapes/directions retained; native sources remain editable. | See current export evidence below. Print-scale usability and independent visual acceptance remain separate. |
+
+The previous [16 October review](review-2026-10-16.md) remains a historical evidence snapshot. Its render versions do not become current merely because a header changes.
+
+## 3. Registered set after correction
+
+| Diagram | Version | Current author assessment |
+| --- | --- | --- |
+| DGM-ARCH-01 | 0.9 | Suitable composition overview; exact/keyword branches separate; C4/deployment completeness not claimed |
+| DGM-SITE-01 | 0.6 | Independent management entry and separate task/document search scope |
+| DGM-FLOW-01 | 0.9 | Whole-evidence withholding, manifest-before-guard and exact citation direction retained |
+| DGM-FLOW-02 | 0.7 | Three board states, blocker events and completed-Sprint reopen behavior retained |
+| DGM-FLOW-03 | 0.8 | Independent capability actions and distinct semantic readiness |
+| DGM-FLOW-04 | 0.9 | Final revoked/denied branch explicit |
+| DGM-FLOW-05 | 0.4 | High-level checkpoints retained; one-use/unknown-transport sequence still needed |
+| DGM-JOURNEY-01 | 0.4 | Illustrative journeys, not measured usability evidence |
+| DGM-UC-01 | 0.5 | Capability actor, conditional branch audit and rerouted UML overview |
+
+## 4. Diagrams to create during the next design/implementation slices
+
+| Priority / timing | Diagram and question | Sources / acceptance focus |
+| --- | --- | --- |
+| Architecture entry | C4 Context and Container: who uses the system, which applications/stores communicate? | SAD §§1–2; two services; external provider candidate status; no copied permission authority |
+| Before protected AI relay implementation | Sequence: manifest persistence → one-use claim → final guarded validation → transport → append-only outcome; concurrent revoke, aborted and unknown outcomes | ADR-0011/0012; DATA-04; SP-09/11; TC-26; unknown transport must not trigger fresh-identity automatic resend |
+| Before SP-06 | Sequence: Workspace-first creation, Knowledge persistence, 201/202, same-key reconciliation and delayed commit | ADR-0011; UC-06; SP-06; fenced orphan cleanup remains unresolved and must be shown as a gap |
+| Before SP-07 | State machine: immutable version lifecycle and independent processing readiness | ADR-0009; AC-11/15/47/48; old jobs cannot revive retired evidence; no product Draft |
+| Before data additions | Owned-store ERD: implemented tables versus proposed manifests, outcome/claim linkage and retained citation identity | DATA-04; DATA-FIT-01; contracts/data-model.json; migrations; no cross-store FK/write |
+| With SP-05 | Sprint/Task/allocation state diagram: completed-Sprint reopen and Backlog return | ADR-0008; UC-04/05; completion history preserved; task state and allocation are distinct |
+| Before deployment | Environment-specific deployment diagram | SAD §5 and actual infrastructure config; ports/hosts/credentials and trust boundaries verified locally |
+
+Component diagrams are conditional on complexity revealed by handlers. No need to add a diagram for every entity or feature. These design outputs do not add product scope.
+
+## 5. Verification evidence
+
+Executed with portable Node 24.21.0:
+
+- `npm run context:lint` and `npm run context:check`: passed; 69 active requirements, 60 Must, two services, 56 operations and 13 specs. Scope counts are unchanged.
+- `npm run docs:lint`: passed; nine pairs, 22 registered artifacts (including this report), 174 nodes and 209 relations. This is the registered inventory, not the whole repository.
+- `node --test tests/context.test.mjs tests/docs.test.mjs`: 47 passed, zero failures/skips. Includes rejecting the original SP-06/SP-10 ownership errors. A first run exposed a layout-generated edge-ID change that prevented a UML negative fixture from mutating its target; stable edge identities were restored and the suite rerun successfully.
+- JavaScript layout-script syntax and both Python generator syntax checks: passed. Isolated alternative-generator smoke produced 14 native XML files and 14 Mermaid files; all native XML parsed. This is not semantic/visual acceptance of the five alternative-only views.
+- Fresh native Draw.io PNG exports for UC-01, FLOW-03, FLOW-04 and SITE-01: exit 0. Existing use-case SVG refreshed. The sandboxed desktop export initially failed; the authorized hidden local export succeeded. No document content was sent to an external renderer.
+
+Fresh PNGs are local diagnostic outputs under `.tmp/review-diagrams/2026-10-17/`; the retained [use-case SVG](use-case/use-case-diagram.svg) can be viewed with the editable pair. See [export hashes](review-2026-10-17-evidence.json) for the exact native sources and output files reviewed. Author inspection found the prior use-case/document through-node routes removed; document endpoint labels now fit their boxes and the entry precedes the operation branches. The document overview remains large and has crossing/return routes; it should be viewed at readable zoom or split into focused sequences for publication. RV-09's specific through-node defect is corrected in this author review; independent/print-scale acceptance remains open.
+
+The harness verifies registered structure, selected references and negative fixtures, not authorization correctness, content support or transport atomicity. Source input-header reconciliation is editorial and does not claim full re-review of every downstream document.
+
+No application handlers, provider calls, database changes, database integration suite, user study or independent review were run for this correction. No commit was created.
+
+## 6. Checklist, open decisions and handoff
+
+| Checklist concern | Result | Evidence / limitation |
+| --- | --- | --- |
+| Source trace and paired graph semantics | Pass when structural checks below pass | Nine registered pairs; new diagrams remain a backlog |
+| UML use-case boundary/actors/relations | Author checked | 13 goal-level use cases, native actor/ellipse shapes, association/generalization/include styles; conditional branch audit stays textual |
+| Formal UML activity compliance | N/A | Existing workflow figures are flowcharts, not claimed UML Activity diagrams with full token/fork/join semantics |
+| Layout | Author export review below | No independent or print-scale acceptance inferred |
+| Operational/current evidence and permission guard | Gap | Handler transactions, transport race tests and TC-26 remain absent |
+| Uncertain creation cleanup and purge retention | Gap | No safe cleanup/fencing or physical purge/tombstone implementation is invented here |
+| Full 4+1/C4 completeness | Gap | Crosswalk is a documentation recommendation, not completed views or implementation |
+
+Start application work with SP-01 → SP-02 → SP-03 → SP-04 and local SP-11 audit capture, following the existing spec dependency order. Resolve slice-specific proposed identity/stack choices before dependent implementation. Later document/AI work must meet the sequence, migration, permission and failure gates above. Do not wait for every optional diagram before starting the first bounded slice; do not interpret this report as authority to deploy or change product scope.

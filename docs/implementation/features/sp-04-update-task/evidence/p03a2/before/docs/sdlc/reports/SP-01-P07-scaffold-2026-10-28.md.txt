@@ -1,0 +1,44 @@
+# SP01-P07 scaffold, interfaces and local HTTPS result
+
+**Artifact ID:** SP01-SCAFFOLD-RESULT\
+**Version/date:** 0.2 Draft · 28 October 2026\
+**Status:** Bounded P07 verified; protected application handler behaviours verified: 0.\
+**Inputs:** [FEAT-SP01-01](../../implementation/features/sp-01-session-foundation/plan.md) (execution snapshot v0.3); [P07 brief](../../implementation/features/sp-01-session-foundation/tasks/SP01-P07-application-scaffold.md) (execution snapshot v0.2); [decision batch](../../implementation/features/sp-01-session-foundation/decision-batch.md) (execution snapshot v0.1); Proposed ADR-0024/0025 v0.2; OWNER-FRAMEWORK-01 v0.1.\
+**Trace:** M-01 / SP-01.2 preparation; FR-01/36/37/68 relevance, not session acceptance.\
+**Owner role:** Sequential implementer; owner explicitly permitted this bounded scaffold while detailed KDF/time/persistence gates remain open.
+
+## Change and authority
+
+The owner selected pre-provisioned username accounts, opaque digest-backed independent sessions, same-origin secure cookie with Origin/header checks, and configurable starting idle 30 minutes / absolute 8 hours. The later owner instruction explicitly permits P07 to add only scaffold/interfaces and local HTTPS, with no concrete KDF/time algorithm or schema extension. These are configuration starting points, not a risk-analysis conclusion. Account lock/disable policy is still unselected; TC-01 remains binding.
+
+Workspace now has `SessionClock` and `PasswordVerifier` ports and an independent `readSessionPolicy` configuration reader. The ports have no runtime adapter; the reader is not connected to an unimplemented handler. It accepts overrides and rejects invalid/unsafe durations or idle greater than absolute. No crypto, pg, production clock-health logic or new migration was added to the application.
+
+The existing Vite foundation now optionally reads server-only TLS key/certificate paths from SACW_DEV_TLS_KEY / SACW_DEV_TLS_CERT. Both must be set together; unreadable inputs fail explicitly. The `/api` proxy strips the contract server base and sends to the fixed loopback Workspace target. Regex prefix matching avoids treating `/apievil` as API. No Knowledge browser target or permissive credentialed CORS was added. Vite's installed secret-deny patterns are retained, including credential/config/certificate formats, and `.tmp` is denied. Keys stay ignored; no CA was installed into OS/browser trust.
+
+The [local HTTPS guide](../../../apps/web/LOCAL-HTTPS.md) explains generation, start commands, explicit trust, browser limits and the difference between plain scaffold mode and HTTPS cookie integration. Existing prototype/design is unchanged.
+
+## Actual verification
+
+On Node 24.22.1, explicit Node/npm CLI with Node 24 first in PATH:
+
+| Command / observation | Actual result |
+| --- | --- |
+| npm run typecheck | Passed web, Workspace and Knowledge |
+| npm run build | Passed web and both service builds |
+| npm run test:foundation with both local TLS paths | 10 passed, 0 failed, 0 skipped: web 3, Workspace 4, Knowledge 3 |
+| Actual trusted HTTPS through Vite and isolated Workspace | UI 200; /api/healthz 200 with actual Workspace body; /api/session honest 404; private key via /@fs denied; /apievil was not proxied to Workspace |
+| Configuration negatives | Partial/missing TLS files rejected; invalid units/nonfinite/unsafe/contradictory durations rejected |
+
+TLS client trusted only the generated public local certificate; certificate verification was not disabled. The test uses an ephemeral Workspace port override and the actual configured proxy rewrite. The normal development target remains 127.0.0.1:3001. Without certificate variables, the opt-in HTTPS test reports a skip; this measured run supplied them and did execute it. There is no browser cookie-store test or successful login assertion. The expected Vite denied-key message was observed; no private key bytes appeared in test output.
+
+Source identity and authored command summary are retained in [P07-source.json](sp01-runtime-2026-10-28/P07-source.json). No application package/lockfile changed. Existing dirty submodule and unrelated user files remain intact; no commit/push occurred.
+
+## Remaining gates
+
+P07 is verified only for this owner-bounded scope; its originally broader pool requirement is deferred to the still-gated persistence task by the explicit owner instruction. P08/P10 still need detailed KDF/time/recovery and schema disposition; P09/P11/P12 depend on that implementation. Proposed recovery mitigation cannot observe every elapsed-time/backstep interval and has no deployed operator procedure. Disabled/locked-account policy, meaningful runtime rate limits and browser Secure-cookie/CSRF acceptance remain open. No parent pack or ADR is self-accepted.
+
+Final documentation/context checks also passed: docs:lint, docs:test (20), context:lint and context:check. The earlier contract suite passed 26; no contract was changed. These checks are separate from handler/browser acceptance.
+
+**Checklist:** Self-checked scope, actual HTTPS, negative tests and no application algorithm adoption. **Review:** Not requested. **Handoff:** [authoritative task table](../../implementation/features/sp-01-session-foundation/plan.md#tasks-and-acceptance); reuse recorded choices rather than reopening core policy selection.
+
+Revision 0.2 clarifies original execution input snapshots after the P08 continuation updated the plan/task/decision documents. Original P07 source identities and measured outcomes are unchanged.

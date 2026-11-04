@@ -1,10 +1,10 @@
 # UI/UX and web frontend design blueprint
 
 **Artifact ID:** UX-BLUEPRINT-01  
-**Version/date:** 1.7 Draft · 1 November 2026
+**Version/date:** 1.7.2 Draft · 3 November 2026
 **Status:** Corrected author draft for bounded wireframe/design work; visual tokens remain candidates. Not owner approval, independent review or application readiness.  
 **Template basis:** Local IEEE 1016-2009 Blueprint and UI/UX prompts/checklists; no standards-conformance claim.  
-**Inputs:** [PRD-01 v0.9](PRD_SRS.md); [UC-02 v0.8](use-cases.md); [SAD-03 v0.16](../architecture.md); [UX-06 v0.13](ui-ux-spec.md); [UX-CHECK-01 v0.2](reviews/ui-ux-checklist-review-2026-10-18.md); [UX-HANDOFF-01 v0.9](handoffs/ui-ux-handoff-2026-10-18.md); [UX-PLAN-01 v0.4](../ux/wireframe-workplan.md); Workspace OpenAPI v0.2.8; Knowledge OpenAPI v0.2.9; Logical Data Model v0.8; ADR-0004; ADR-0007–ADR-0017; Proposed ADR-0018–ADR-0023; [BRD English v1.0](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md); [PLAN-01 v0.4](../planning/five-month-plan.md); [Stage 6 profile](../agents/06-ui-ux.md); [SP-01 v0.5](../../specs/001-session.md).
+**Inputs:** [PRD-01 v0.10.1](PRD_SRS.md); [UC-02 v0.8.2](use-cases.md); [SAD-03 v0.16.2](../architecture.md); [UX-06 v0.13.2](ui-ux-spec.md); [UX-CHECK-01 v0.2](reviews/ui-ux-checklist-review-2026-10-18.md); [UX-HANDOFF-01 v0.9](handoffs/ui-ux-handoff-2026-10-18.md); [UX-PLAN-01 v0.4.2](../ux/wireframe-workplan.md); Workspace OpenAPI v0.2.8; Knowledge OpenAPI v0.2.9; Logical Data Model v0.8; ADR-0004; ADR-0007–ADR-0017; Proposed ADR-0018–ADR-0023; [BRD English v1.0](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md); [PLAN-01 v0.4](../planning/five-month-plan.md); [Stage 6 profile](../agents/06-ui-ux.md); [SP-01 v0.5.2](../../specs/001-session.md).
 **Trace:** BR-01–BR-14; SC-01–SC-08; NFR-01–NFR-09 through PRD/Test Plan; Blueprint B02–B20 and UI/UX U02–U23.
 
 ## 1. Context and subject

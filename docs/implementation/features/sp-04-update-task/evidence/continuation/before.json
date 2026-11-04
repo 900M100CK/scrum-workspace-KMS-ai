@@ -1,0 +1,7 @@
+{
+  "services/workspace/src/tasks/store.ts": "af81badc710716db6a9ed754626f157318f637720a3958a30fcf9684398c28f3",
+  "services/workspace/src/tasks/http.ts": "81a7bd19e995cbabb8beff3604ec9fd929f1e5e99559488a650f6d4546ec2f0e",
+  "services/workspace/src/tasks/types.ts": "8110bcce12c51db5f836fb9c54b4d543444ed3b8fe2dadff0df11f0642c91205",
+  "apps/web/src/tasks.ts": "37fea6427da5456f1cd4f1c63db2d249d82f20911dd9d2fe337cc2c0700745e2",
+  "apps/web/src/TaskWorkspace.tsx": "130da6fe1055358a6cbb1286cba2f2729e64b5076a77bbd5d6796f3e4f823e64"
+}

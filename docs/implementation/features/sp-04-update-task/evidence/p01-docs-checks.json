@@ -1,0 +1,18 @@
+[
+  {
+    "name": "docs-lint",
+    "command": "node scripts/docs/verify-docs.mjs",
+    "exit_code": 1,
+    "started_utc": "2026-11-03T12:20:10.9355174Z",
+    "duration_seconds": 33.217586,
+    "log": "evidence/p01-docs-lint.log"
+  },
+  {
+    "name": "docs-test",
+    "command": "node --test tests/docs/docs.test.mjs",
+    "exit_code": 1,
+    "started_utc": "2026-11-03T12:20:44.1564721Z",
+    "duration_seconds": 2.8063884,
+    "log": "evidence/p01-docs-test.log"
+  }
+]

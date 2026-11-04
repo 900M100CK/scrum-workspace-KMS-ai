@@ -1,0 +1,136 @@
+{
+  "artifact_id": "SP04-P03C-CHECKS",
+  "version": "0.1",
+  "date": "2026-11-04",
+  "timezone": "Asia/Saigon",
+  "node": "v24.21.0",
+  "branch": "codex/sp-04",
+  "head": "6b837fd52e01709f72bfe2de6cb96f0e9cc52653",
+  "source_scope": {
+    "captured": 926,
+    "changed_paths": [
+      "docs/implementation/features/README.md",
+      "docs/implementation/register.md",
+      "docs/implementation/roadmap.md",
+      "docs/sdlc/artifact-register.md",
+      "docs/sdlc/diagrams/README.md",
+      "docs/sdlc/diagrams/manifest.json",
+      "docs/sdlc/references/document-review-register.md",
+      "services/workspace/TASKS.md",
+      "services/workspace/src/projects/cli.ts",
+      "services/workspace/src/projects/http.ts",
+      "services/workspace/src/projects/operator.ts",
+      "services/workspace/src/projects/store.ts",
+      "services/workspace/src/tasks/http.ts"
+    ],
+    "unexpected_changes": [],
+    "protected_files_unchanged": 913,
+    "old_migrations_001_through_010_unchanged": true,
+    "wire_model_ADRs_old_tests_task_outcomes_and_UI_unchanged": true
+  },
+  "primary_sources": [
+    {
+      "path": "services/workspace/src/projects/operator.ts",
+      "bytes": 6491,
+      "sha256": "46f002ab8c39ffb677f7406e1e910062c9ed10d18aa0dfbbf4d7534d4bd11ccf"
+    },
+    {
+      "path": "services/workspace/src/projects/cli.ts",
+      "bytes": 1930,
+      "sha256": "54be771bb384621a9fd0bb8d919a4b41885883d96cfcac212b3f15dd2cf7f6a9"
+    },
+    {
+      "path": "services/workspace/src/projects/store.ts",
+      "bytes": 15512,
+      "sha256": "019b0cb4f0cea5e138abb1a632a53527cd6e529f3400d869599c9fdba62380b6"
+    },
+    {
+      "path": "services/workspace/src/projects/http.ts",
+      "bytes": 7792,
+      "sha256": "4655bdf69616ba8db393f023be083fb89b9d431eb0947fbb1c742298758bdece"
+    },
+    {
+      "path": "services/workspace/src/tasks/http.ts",
+      "bytes": 4696,
+      "sha256": "904c0d1267ed954902223e6c2b1dd588919d2f55d898acbbcf3b91ce543c50e3"
+    },
+    {
+      "path": "services/workspace/src/tasks/authority.ts",
+      "bytes": 1532,
+      "sha256": "016e1c08c412f2681243145a871f2b754deabb0f264a36b6c49f5fb2bbd12031"
+    },
+    {
+      "path": "tests/workspace/task-mutation-authority.test.mjs",
+      "bytes": 14330,
+      "sha256": "e9e894600994de0e9083eb005d9d8b55973ed75dd743fc419779509b3773a14a"
+    },
+    {
+      "path": "services/workspace/TASKS.md",
+      "bytes": 13668,
+      "sha256": "e481b5b4090eb710feaa19840814ee60063649a8da739a66d5906725a98eafeb"
+    }
+  ],
+  "actual_tests": {
+    "new_authority_first": {
+      "tests": 13,
+      "pass": 13,
+      "fail": 0,
+      "skipped": 0
+    },
+    "final_combined_regression": {
+      "tests": 43,
+      "pass": 43,
+      "fail": 0,
+      "skipped": 0
+    },
+    "context": {
+      "tests": 45,
+      "pass": 45,
+      "fail": 0,
+      "skipped": 0
+    },
+    "contracts": {
+      "tests": 27,
+      "pass": 27,
+      "fail": 0,
+      "skipped": 0
+    },
+    "docs": {
+      "tests": 20,
+      "pass": 20,
+      "fail": 0,
+      "skipped": 0
+    }
+  },
+  "execution_manifest": "executions.json",
+  "cleanup": "fixture-cleanup.json",
+  "limits": "New authority/private CLI/read-discovery and grant/removal races only. Synthetic future operation registries are policy projections, not mutation handlers. Current read/action replay, actual assignment/state/blocker handlers/races, UI/browser, SP-05/D-07 and formal/independent adoption remain open.",
+  "final_checks": [
+    {
+      "name": "metadata-check-last",
+      "executable": "C:\\Users\\MCK\\AppData\\Local\\Temp\\kms-node24\\node-v24.21.0-win-x64\\node.exe",
+      "args": [
+        "scripts/docs/docs-metadata.mjs",
+        "--check"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "docs-lint-last",
+      "executable": "C:\\Users\\MCK\\AppData\\Local\\Temp\\kms-node24\\node-v24.21.0-win-x64\\node.exe",
+      "args": [
+        "scripts/docs/verify-docs.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "whitespace-last",
+      "exit": 0
+    }
+  ],
+  "local_targets": {
+    "checked": 710,
+    "missing": [],
+    "anchors": "not browser-validated"
+  }
+}

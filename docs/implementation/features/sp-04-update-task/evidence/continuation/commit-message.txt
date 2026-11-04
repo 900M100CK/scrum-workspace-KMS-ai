@@ -1,0 +1,12 @@
+feat: implement SP-04 task mutations and blocker history
+
+Add current-authority edit, state/reopen, assignment and append-only blocker
+commands with immutable original-result recovery, audit and scoped history.
+Connect existing React Task views and retain disposable PG/HTTPS/DOM/Edge
+verification, original failures and focused regression corrections.
+
+Checkpoint the registered SP-04 sources and foundations without merging or
+publishing. Actual SP-05 completion/allocation integration remains open by
+explicit owner direction; no whole-feature or independent acceptance.
+
+Co-Authored-By: Codex <codex@openai.com>

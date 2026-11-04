@@ -39,33 +39,35 @@ Prior OWNER-Q-01 verification: combined Node 24.21.0 run `node --test tests/docs
 ## Current register and handoffs
 
 **Artifact ID:** REG-00
-**Version/date:** 0.103 Draft · 2 November 2026
+**Version/date:** 0.117 Draft · 4 November 2026
 **Status:** Draft; confirmed policy corrections in progress, full coverage and remaining decisions explicit.
-**Source versions:** Proposed ADR-0024/0025 for SP-01.1; [BRD stable entry](../BRD.md) → [English BRD v1.0](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md) and two Proposed addenda, [AGENTS.md v1.13](../../AGENTS.md), [workflow](../../agents/WORKFLOW.md), PRD-01 v0.9, UC-02 v0.8, SAD-03 v0.16 and ADR-0007–ADR-0017. Prior review inputs remain historical. Storage has measured test evidence; bounded session runtime evidence exists; interviews, pilot and full application acceptance remain absent.; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; Proposed ADR-0026
+**Source versions:** Proposed ADR-0024/0025 for SP-01.1; [BRD stable entry](../BRD.md) → [English BRD v1.0](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md) and two Proposed addenda, [AGENTS.md v1.13](../../AGENTS.md), [workflow](../../agents/WORKFLOW.md), PRD-01 v0.10.1, UC-02 v0.8.2, SAD-03 v0.16.2 and ADR-0007–ADR-0017. Prior review inputs remain historical. Storage has measured test evidence; bounded session runtime evidence exists; interviews, pilot and full application acceptance remain absent.; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; Proposed ADR-0026; Proposed ADR-0027 v0.1
 
 | Stage/ID | Path | Owner role | Version/status | Inputs/dependencies | Planned BR/SC coverage | Open decisions |
 | --- | --- | --- | --- | --- | --- | --- |
-| 0 / REG-00 | docs/sdlc/artifact-register.md | Coordinator | 0.87 Draft | Current requirements, corrective ADRs and queue | BR-01–BR-15; SC-01–SC-08 | Author corrections tracked separately from runtime acceptance |
+| Agent alignment work / AGENT-ALIGN-01; AGENT-ALIGN-ENTRY; AGENT-A01/A02 | [plan](../implementation/features/agents-sdlc-alignment/plan.md); [entry](../implementation/features/agents-sdlc-alignment/README.md); task briefs linked from plan | Sequential documentation maintainer | All v0.1 Draft; owner-authorised documentation maintenance | Current SDLC sources; AGENTS v1.14; development-rules v1.13; PLAN-01 Month 1 / M-02–M-03 | Existing BR-01–BR-15 / SC-01–SC-08 navigation; no new FR/AC | A01 authored; final docs checks passed; pre-existing PRD/template context-link gap retained in plan; no implementation or independent approval |
+| Development agent source map / AGENT-INDEX-01; AGENT-WORKFLOW-01; AGENT-PROFILES-01; AGENT-TEMPLATES-01 | [agents index](../../agents/README.md); [workflow](../../agents/WORKFLOW.md); 00–09 profiles linked from index; [template guide](../../agents/template-guide.md) | Sequential documentation maintainer | All v0.1 Draft | Current SDLC source headers and registered templates; AGENT-ALIGN-01 | Existing stage ownership and trace; no product scope change | Documentation-only routing; existing untracked docs/agents and modified template submodule preserved; clean-clone reproducibility unverified |
+| 0 / REG-00 | docs/sdlc/artifact-register.md | Coordinator | 0.99 Draft | Current requirements, corrective ADRs and queue | BR-01–BR-15; SC-01–SC-08 | Author corrections tracked separately from runtime acceptance |
 | Shared framework foundation / INIT-FRAMEWORK-01; INIT-FRAMEWORK-ENTRY; INIT-01–INIT-04 | [plan and task folder](../implementation/features/framework-foundation/README.md); apps/web; services/workspace; services/knowledge; [design/prototype](../../design/prototype/README.md) | Sequential implementer | Plan/entry/tasks v0.2; actual tuple in owner record | TECH-STACK-01 v1.6; OWNER-FRAMEWORK-01 v0.1; ADR-0003 v0.2; bounded shared scope | M-01 / SP-01 preparation, BR-01/10 and SC-06 relevance only | Framework startup/build/typecheck/liveness separate from all session/permission/DB/provider acceptance; source published/synced |
 | Owner framework selection / OWNER-FRAMEWORK-01 | [owner record](../planning/framework-foundation-owner-2026-10-27.md) | Owner direction recorded by implementer | 0.1 Draft; selected foundation | Explicit owner messages, current installed package/lockfile and foundation checks | Existing frontend/two-service design; no new domain scope | Identity, pg transaction/validator integration, guard and provider remain open; no independent acceptance |
 | Framework execution result / INIT-FRAMEWORK-RESULT | [result](reports/framework-foundation-2026-10-27.md) | Sequential implementer | 0.2 Draft; source published and synchronised | INIT-FRAMEWORK-01 v0.2; selected exact packages; new source/lockfile; OWNER-FRAMEWORK-01 v0.1 | Framework preparation for existing M-01 / SP-01 | 7 foundation, 20 prototype, 45 context, 26 contract and 20 docs tests; actual built HTTP smoke; zero protected business handlers verified |
-| Session feature work plan / FEAT-SP01-01 | [saved plan](../implementation/features/sp-01-session-foundation/plan.md); [work index](../implementation/features/README.md); [parent roadmap](../implementation/roadmap.md) | Sequential implementer | Plan v0.9 Draft; task briefs v0.8 | SP-01 v0.5; IMPL-SP-01 v0.7; runtime brief v0.2 / canonical brief v0.3; Proposed ADR-0024/0025 | FR-01/36/37/68; BR-01/10; SC-06 relevance | P01–P04 laboratory preparation verified with limits; P05 real restart added; bounded P08 owner-authorised and verified; bounded P09 verified; bounded P10 verified; P11 bounded UI/browser observations verified; P12 bounded regression/handoff executed; release gates open |
+| Session feature work plan / FEAT-SP01-01 | [saved plan](../implementation/features/sp-01-session-foundation/plan.md); [work index](../implementation/features/README.md); [parent roadmap](../implementation/roadmap.md) | Sequential implementer | Plan v0.9 Draft; task briefs v0.8 | SP-01 v0.5.2; IMPL-SP-01 v0.5.1; runtime brief v0.2 / canonical brief v0.3; Proposed ADR-0024/0025 | FR-01/36/37/68; BR-01/10; SC-06 relevance | P01–P04 laboratory preparation verified with limits; P05 real restart added; bounded P08 owner-authorised and verified; bounded P09 verified; bounded P10 verified; P11 bounded UI/browser observations verified; P12 bounded regression/handoff executed; release gates open |
 | Session folder entry and small tasks / FEAT-SP01-ENTRY; SP01-P01–SP01-P12 | [entry](../implementation/features/sp-01-session-foundation/README.md); [task files linked from plan](../implementation/features/sp-01-session-foundation/plan.md#tasks-and-acceptance) | Sequential implementer | All v0.8 Draft | FEAT-SP01-01 v0.9; canonical SP-01 and spike inputs | Existing session ACs and applicable TC-18/22; no scope addition | Each task has dependencies, write scope, steps, assertions and handoff; execution state/results stay in the parent plan |
 | Development entry / feature planning | [AGENTS.md](../../AGENTS.md); [development rules](../development-rules.md#111-work-planning-gate); [feature register/template](../implementation/features/README.md) | Owner-directed development workflow | AGENTS 1.13; development rules 1.12; IMPL-FEATURES-01 v0.14 Draft | PLAN-01 v0.4; canonical specs; IMPL-ROADMAP-01 v0.7; IMPL-EXEC-01 v0.7 | Existing feature FR/AC/BR/SC planning only; no product scope change | Features/fixes/hotfixes/testing require Plan mode when available, a saved plan with parent registration and small tasks before coding; no feature runtime acceptance |
 | Repository navigation / DOC-NAV-01 | [docs/README.md](../README.md); [tooling map](../../scripts/README.md) | Sequential development coordinator | 0.5 Draft | Development rules v1.12; AGENTS.md v1.13; existing canonical indexes | Existing BR-01–BR-15 / SC-01–SC-08 navigation only | Location-only tooling/test refactor; runtime and independent acceptance unchanged |
-| Implementation navigation / IMPL-ENTRY-01; IMPL-REG-01; IMPL-DEC-01; IMPL-ROADMAP-01; IMPL-EXEC-01; IMPL-HANDOFF-01; IMPL-TASKS-01; IMPL-SP-01–IMPL-SP-13 | [docs/implementation/README.md](../implementation/README.md); [pack register](../implementation/register.md); [task catalogue](../implementation/tasks/README.md) | Sequential development coordinator | IMPL-REG-01 v0.19 / IMPL-DEC-01 v0.9 / IMPL-SP-01 v0.7; IMPL-EXEC-01 v0.7; IMPL-ROADMAP-01 v0.7; IMPL-TASKS-01 v0.4; IMPL-ENTRY-01 / IMPL-SP-11/12 v0.2; others v0.1 Draft | PRD-01 v0.9; SPEC-INDEX v0.7; PLAN-01 v0.4; SAD-03 v0.16; current contracts, UX and ADR-0001–ADR-0025 | Existing BR-01–BR-14 / SC-01–SC-08 through canonical specs; no added scope | SP-01 bounded execution/handoff has evidence; other 48 children Not started; Proposed gates open, no application acceptance |
-| Session preparation / IMPL-BRIEF-SP01-01; IMPL-PREP-SP01-01 | [brief](../implementation/briefs/SP-01.1-session-foundation.md); [result](reports/SP-01.1-preparation-2026-10-27.md) | Sequential implementer | Brief v0.4; result v0.3 Draft clarifies historical v0.1 execution inputs | SP-01 v0.4; PRD v0.9; Workspace v0.2.8; historical stack/ADR snapshots | FR-01/36/37/68; BR-01/10; SC-06 | Original schema pre-evidence unchanged; newer runtime result and bounded P07 result are registered separately below |
+| Implementation navigation / IMPL-ENTRY-01; IMPL-REG-01; IMPL-DEC-01; IMPL-ROADMAP-01; IMPL-EXEC-01; IMPL-HANDOFF-01; IMPL-TASKS-01; IMPL-SP-01–IMPL-SP-13 | [docs/implementation/README.md](../implementation/README.md); [pack register](../implementation/register.md); [task catalogue](../implementation/tasks/README.md) | Sequential development coordinator | IMPL-REG-01 v0.19 / IMPL-DEC-01 v0.9 / IMPL-SP-01 v0.5.1; IMPL-EXEC-01 v0.7; IMPL-ROADMAP-01 v0.7; IMPL-TASKS-01 v0.4; IMPL-ENTRY-01 / IMPL-SP-11/12 v0.2; others v0.1 Draft | PRD-01 v0.10.1; SPEC-INDEX v0.8.1; PLAN-01 v0.4; SAD-03 v0.16.2; current contracts, UX and ADR-0001–ADR-0025 | Existing BR-01–BR-14 / SC-01–SC-08 through canonical specs; no added scope | SP-01 bounded execution/handoff has evidence; other 48 children Not started; Proposed gates open, no application acceptance |
+| Session preparation / IMPL-BRIEF-SP01-01; IMPL-PREP-SP01-01 | [brief](../implementation/briefs/SP-01.1-session-foundation.md); [result](reports/SP-01.1-preparation-2026-10-27.md) | Sequential implementer | Brief v0.4; result v0.3 Draft clarifies historical v0.1 execution inputs | SP-01 v0.5.2; PRD v0.9; Workspace v0.2.8; historical stack/ADR snapshots | FR-01/36/37/68; BR-01/10; SC-06 | Original schema pre-evidence unchanged; newer runtime result and bounded P07 result are registered separately below |
 | Session runtime experiment plan / IMPL-SPIKE-SP01-01 | [detailed spike brief](../../SP-01.1-spike-brief.md); [external review input](../../SP-01.1-prep-review.md) | Sequential preparation author | Brief v0.2 Draft; external review unversioned and unchanged | IMPL-BRIEF-SP01-01 v0.2; current session contract; Proposed ADR-0024/0025 | FR-01/36/37/68; BR-01/10; SC-06 relevance only | 38 revised experiment IDs, runtime Not run; no dependency, clock policy or owner acceptance |
 | Session foundation candidates / ADR-0024; ADR-0025 | [backend](../adr/0024-backend-session-foundation.md); [opaque sessions](../adr/0025-opaque-session-candidate.md) | Architect | Both v0.5 Proposed | ADR-0003; PRD v0.9; canonical session contract and brief | FR-01/36/37/68; BR-01/10; SC-06 | Core framework/session policy selected; bounded P08/P09/P10 implemented; UI, deployment calibration, D-07 and formal ADR acceptance remain open |
 | Reconciled improvement review / IMPL-IMPROVE-01 | [report](../implementation/improvement-report-techstack-to-sp.md) | Coordinator | v0.2 Draft, first repository edition | Owner-supplied external report and rebuttal; current contracts/packs; Proposed ADR-0024/0025 | Existing BR-01–BR-14 / SC-01–SC-08 | Corrected recommendations, retained canonical dependency order and full Must scope |
-| Implementation input review / IMPL-REVIEW-01 | [docs/sdlc/reviews/implementation-input-review-2026-10-26.md](reviews/implementation-input-review-2026-10-26.md) | Coordinator consolidating three owner-requested read-only reviewer passes | 0.2 Draft; documentation corrections author-rechecked, runtime open | Snapshot TECH-STACK-01 v1.4; IMPL-REG-01/DEC-01/SP-01 v0.2; other implementation packs v0.1; actual local configuration and canonical sources | Existing BR-01–BR-14 / SC-01–SC-08 readiness; bounded DR-05/08/09/10/12 | Six documentation corrections recorded; runner implementation, technology selection and runtime/independent acceptance still open |
-| Supporting review register / DOC-REVIEW-REG-01 | [docs/sdlc/references/document-review-register.md](references/document-review-register.md) | SDLC coordinator | 0.28 Draft | Development rules v1.12; pre-flight checklist; workflow; REG-00; SDLC index | Existing BR-01–BR-15 / SC-01–SC-08 documentation navigation only | Bounded corrections recorded; full document-type reviews remain unassigned |
+| Implementation input review / IMPL-REVIEW-01 | [docs/sdlc/reviews/implementation-input-review-2026-10-26.md](reviews/implementation-input-review-2026-10-26.md) | Coordinator consolidating three owner-requested read-only reviewer passes | 0.2 Draft; documentation corrections author-rechecked, runtime open | Snapshot TECH-STACK-01 v1.4; IMPL-REG-01/DEC-01/SP-01 v0.5.2; other implementation packs v0.1; actual local configuration and canonical sources | Existing BR-01–BR-14 / SC-01–SC-08 readiness; bounded DR-05/08/09/10/12 | Six documentation corrections recorded; runner implementation, technology selection and runtime/independent acceptance still open |
+| Supporting review register / DOC-REVIEW-REG-01 | [docs/sdlc/references/document-review-register.md](references/document-review-register.md) | SDLC coordinator | 0.57 Draft | Development rules v1.14; pre-flight checklist; AGENT-WORKFLOW-01 v0.2; REG-00 v0.117; SDLC index | Existing BR-01–BR-15 / SC-01–SC-08 documentation navigation only | Bounded corrections recorded; full document-type reviews remain unassigned |
 | Navigation / SDLC-INDEX-01 | [docs/sdlc/README.md](README.md) | SDLC coordinator | 0.5 Draft | Development rules; workflow; REG-00 | Existing documentation navigation only | Review register linked; source review and acceptance remain separate |
-| Excalidraw wireframes / UX-WF-EX-01 | [docs/ux/wireframes/README.md](../ux/wireframes/README.md); native scene and PNG/SVG previews | Sequential UX author | 0.4 Draft | UX-BLUEPRINT-01 v1.6; UX-PLAN-01 v0.3; UX-06 v0.13; current scoped contracts | BR-01–BR-14; SC-01–SC-08 through frame UC/TC mappings | Initial 12 desktop frames; native import, full BL/DC variants, responsive/accessibility/usability and runtime gates remain open |
+| Excalidraw wireframes / UX-WF-EX-01 | [docs/ux/wireframes/README.md](../ux/wireframes/README.md); native scene and PNG/SVG previews | Sequential UX author | 0.4 Draft | UX-BLUEPRINT-01 v1.7.2; UX-PLAN-01 v0.4.2; UX-06 v0.13.2; current scoped contracts | BR-01–BR-14; SC-01–SC-08 through frame UC/TC mappings | Initial 12 desktop frames; native import, full BL/DC variants, responsive/accessibility/usability and runtime gates remain open |
 | UI references / UI-REF-01; UI-REVIEW-01 | references/README.md; references/ui-review-2026-10-23.md | Sequential UI author | UI-REF-01 v0.5; UI-REVIEW-01 v0.1 historical | UX-BLUEPRINT-01 (snapshot 1.3); contracts; SP-01–04; Proposed stack/read designs | BR-01/02/03/10/12/13; SC-01/03/06/08 | Live stack/identity, application enforcement and independent acceptance remain open |
-| Soft green CSS system / UI-CSS-01 | references/ui-css-green-system-2026-10-26.md; apps/web/ | Sequential UI author | 0.1 Draft | UX-BLUEPRINT-01 v1.4; UI-REF-01 v0.5; owner CSS refinement | BR-01/02/03/10/13; SC-01/03/06/08 | Synthetic preview only; independent/runtime acceptance open |
-| Studio refinement / UI-REFINE-01 | references/studio-refinement-2026-10-26.md; apps/web/ | Sequential UI author | 0.1 Draft | UX-BLUEPRINT-01 v1.4; UI-REF-01 v0.5; owner comparison | BR-01/02/03/10/13; SC-01/03/06/08 | Local preview checks; independent/runtime acceptance open |
-| UI experiment / UI-STUDIO-01 | references/hallmark-studio-2026-10-25.md; apps/web/ | Sequential UI author | 0.1 Draft | UX-BLUEPRINT-01 v1.4; UI-REF-01 v0.5; Hallmark Studio reference | BR-01/02/03/10/13; SC-01/03/06/08 | Owner selected 26 October; independent/runtime acceptance open |
+| Soft green CSS system / UI-CSS-01 | references/ui-css-green-system-2026-10-26.md; apps/web/ | Sequential UI author | 0.1 Draft | UX-BLUEPRINT-01 v1.7.2; UI-REF-01 v0.5; owner CSS refinement | BR-01/02/03/10/13; SC-01/03/06/08 | Synthetic preview only; independent/runtime acceptance open |
+| Studio refinement / UI-REFINE-01 | references/studio-refinement-2026-10-26.md; apps/web/ | Sequential UI author | 0.1 Draft | UX-BLUEPRINT-01 v1.7.2; UI-REF-01 v0.5; owner comparison | BR-01/02/03/10/13; SC-01/03/06/08 | Local preview checks; independent/runtime acceptance open |
+| UI experiment / UI-STUDIO-01 | references/hallmark-studio-2026-10-25.md; apps/web/ | Sequential UI author | 0.1 Draft | UX-BLUEPRINT-01 v1.7.2; UI-REF-01 v0.5; Hallmark Studio reference | BR-01/02/03/10/13; SC-01/03/06/08 | Owner selected 26 October; independent/runtime acceptance open |
 | UI theme / UI-THEME-01 | references/ui-dark-theme-2026-10-24.md; apps/web/ | Sequential UI author | 0.1 Draft | UX-WF-EX-01 (snapshot 0.1); UX-BLUEPRINT-01 (snapshot 1.3); UI-REF-01 v0.4 | BR-01/02/03/10/13; SC-01/03/06/08 | Local theme, token tests and screenshots; independent/runtime acceptance open |
 | UI redesign / UI-REDESIGN-01 | references/ui-redesign-2026-10-24.md; apps/web/ | Sequential UI author | 0.1 Draft | UX-WF-EX-01 (snapshot 0.1); UI-REF-01 v0.3; existing contracts and Proposed stack | BR-01/02/03/06/10/13; SC-01/03/04/06/08 | Local rendered observations and DOM tests; live application and independent acceptance open |
 | UI wireframe implementation / UI-WORK-02 | references/ui-work-wireframe-2026-10-24.md; apps/web/ | Sequential UI author | 0.1 Draft | UX-WF-EX-01 (snapshot 0.1); UI-REF-01 v0.2; existing contracts; ADR-0008/0014; Proposed stack/read designs | BR-01/02/03/06/10/13; SC-01/03/04/06/08 | DOM/test evidence only; live security/transaction/runtime and fresh rendered acceptance open |
@@ -73,27 +75,27 @@ Prior OWNER-Q-01 verification: combined Node 24.21.0 run `node --test tests/docs
 | Development tooling / DEV-SKILLS-01 | agents/development-skills.md; .agents/skills/sources.json | Development agent | 0.2 Draft; five local skills plus routing for 13 user-level UI skills | AGENTS v1.7; development-rules v1.5; pinned upstream revisions in guide | Supports SP-01–04 presentation discipline; no new FR/AC or runtime evidence | Exact-path workflow is guidance, not global discovery control; adherence and design outcomes unmeasured |
 | 1 / PRD-01 | `docs/sdlc/PRD_SRS.md` | PRD/SRS author | 0.9 Draft; 69 active FRs plus withdrawn FR-45 | BRD v1.0; ADR-0007-0017; owner clarifications | BR-01–BR-15; SC-01–SC-08 mapped | Remaining decisions as recorded in PRD; 60 Must retained |
 | Architecture policy / ADR-0001 | `docs/adr/0001-protected-resource-read-policy.md` | Architect role | 0.3 Superseded in part; remaining safeguards Proposed | BRD v1.0, PRD-01 (historical v0.4 input), owner review | BR-01, BR-05, BR-08, BR-10, BR-12, BR-14; SC-05, SC-06 | OD-02, OD-04; enforcement design remains Stage 3 |
-| 2 / UC-02 | docs/sdlc/use-cases.md | Use-case author | 0.8 Draft | PRD-01 v0.9; owner-confirmed ADRs | BR-01–BR-14; SC-01–SC-08 | Delegation/retention and runtime exception execution |
-| 3 / SAD-03 | docs/architecture.md; docs/sdlc/SAD.md entry | Architect | SAD-03 v0.16; SAD-03-ENTRY v0.15 Draft | Current PRD/use cases; Proposed ADR-0018–ADR-0023 | BR-01–BR-14; SC-01–SC-08 | Isolated handoff storage supplied; active process/guard/adapter evidence open |
-| Architecture reference / TECH-STACK-01 | `docs/tech-stack.md` | Architect | v1.6; owner-selected framework foundation, prototype and unimplemented protected mechanics separated | SAD-03 v0.16; ADR-0004 v0.2; official-source check 26 October; existing slice/algorithm mapping | BR-07, BR-08, BR-13; SC-02, SC-08 | Framework foundation selected; session/guard/provider/DB-adapter and pilot evidence remain open |
-| 4 / DATA-04 | docs/sdlc/data-design.md; contracts/data-model.json | Data designer | DATA-04 v0.16 Draft; logical model v0.10 | SAD-03 v0.16; confirmed policy and corrective Proposed ADRs | BR-01–BR-14; SC-01–SC-08 | Applied storage foundation distinct from unimplemented logical additions |
-| 5 / API-05 | docs/sdlc/api-design.md; contracts/ | API designer | API-05 v0.20; Workspace v0.2.11 / Knowledge v0.2.9; 66 operations | DATA-04 v0.16; SAD-03 v0.16; Proposed ADR-0018–ADR-0023 | BR-01–BR-14; SC-01–SC-08 | Handler/consumer-provider/access tests and unimplemented opaque token/receipt handlers |
-| 6 / UX-06 | docs/sdlc/ui-ux-spec.md; docs/ux/ | UX designer | UX-06 v0.13; Board v0.10, AI v0.9, Docs v0.9, sitemap v0.10, matrix v0.11, personas v0.5 | Current PRD/use cases/SAD and contract drafts | BR-01–BR-14; SC-01–SC-08 | Token/receipt handlers, visual tokens/viewports, usability/accessibility and application evidence |
-| 7 / UML-07 | `docs/sdlc/diagrams/README.md`; five type folders; `docs/sdlc/diagrams/review-2026-10-16.md`; historical `review.md` | Diagram author | UML-07 v0.22; DGM-REVIEW-02 v0.1; current versions below | Current UC/UX/SAD sources and owner-confirmed direction | BR-01–BR-14; SC-01–SC-08 as applicable | RV-09 rendered routing/readability and full semantic review |
-| 8 / TEST-08 | docs/sdlc/test-plan.md; test-coverage.md; requirement-verification.md; eval/ | Test author | TEST-08 v0.22; TEST-COVERAGE-01 v0.9; VERIFY-01 v0.10; EVAL-CASES-ENTRY v0.7 | Current PRD/use cases/specs/corrective contracts | BR-01–BR-14; SC-01–SC-08 planned | Bounded P09/P10 session evidence exists; full application/permission/guard/provider evaluation acceptance remains open |
+| 2 / UC-02 | docs/sdlc/use-cases.md | Use-case author | 0.8 Draft | PRD-01 v0.10.1; owner-confirmed ADRs | BR-01–BR-14; SC-01–SC-08 | Delegation/retention and runtime exception execution |
+| 3 / SAD-03 | docs/architecture.md; docs/sdlc/SAD.md entry | Architect | SAD-03 v0.16.2; SAD-03-ENTRY v0.15.1 Draft | Current PRD/use cases; Proposed ADR-0018–ADR-0023 | BR-01–BR-14; SC-01–SC-08 | Isolated handoff storage supplied; active process/guard/adapter evidence open |
+| Architecture reference / TECH-STACK-01 | `docs/tech-stack.md` | Architect | v1.6; owner-selected framework foundation, prototype and unimplemented protected mechanics separated | SAD-03 v0.16.2; ADR-0004 v0.2; official-source check 26 October; existing slice/algorithm mapping | BR-07, BR-08, BR-13; SC-02, SC-08 | Framework foundation selected; session/guard/provider/DB-adapter and pilot evidence remain open |
+| 4 / DATA-04 | docs/sdlc/data-design.md; contracts/data-model.json | Data designer | DATA-04 v0.16.1 Draft; logical model v0.13 | SAD-03 v0.16.2; confirmed policy and corrective Proposed ADRs | BR-01–BR-14; SC-01–SC-08 | Applied storage foundation distinct from unimplemented logical additions |
+| 5 / API-05 | docs/sdlc/api-design.md; contracts/ | API designer | API-05 v0.23.1; Workspace v0.2.13 / Knowledge v0.2.9; 66 operations | DATA-04 v0.16.1; SAD-03 v0.16.2; Proposed ADR-0018–ADR-0023 | BR-01–BR-14; SC-01–SC-08 | Handler/consumer-provider/access tests and unimplemented opaque token/receipt handlers |
+| 6 / UX-06 | docs/sdlc/ui-ux-spec.md; docs/ux/ | UX designer | UX-06 v0.13.2; Board v0.10, AI v0.9, Docs v0.9, sitemap v0.10, matrix v0.11, personas v0.5 | Current PRD/use cases/SAD and contract drafts | BR-01–BR-14; SC-01–SC-08 | Token/receipt handlers, visual tokens/viewports, usability/accessibility and application evidence |
+| 7 / UML-07 | `docs/sdlc/diagrams/README.md`; five type folders; `docs/sdlc/diagrams/review-2026-10-16.md`; historical `review.md` | Diagram author | UML-07 v0.21.4; DGM-REVIEW-02 v0.1.1; current versions below | Current UC/UX/SAD sources and owner-confirmed direction | BR-01–BR-14; SC-01–SC-08 as applicable | RV-09 rendered routing/readability and full semantic review |
+| 8 / TEST-08 | docs/sdlc/test-plan.md; test-coverage.md; requirement-verification.md; eval/ | Test author | TEST-08 v0.24.1; TEST-COVERAGE-01 v0.11.1; VERIFY-01 v0.12.1; EVAL-CASES-ENTRY v0.8.1 | Current PRD/use cases/specs/corrective contracts | BR-01–BR-14; SC-01–SC-08 planned | Bounded P09/P10 session evidence exists; full application/permission/guard/provider evaluation acceptance remains open |
 | 9 / SPEC-REVIEW-01 (Stage alias REVIEW-09) | docs/sdlc/spec-review.md | Sequential reviewer | 0.30 Draft; original v0.4 history preserved | Snapshot inputs retained in source; no execution or review rerun | BR-01–BR-15; SC-01–SC-08 | Bounded handoff, owner-policy gaps and all runtime acceptance |
 | Budget checkpoint / PROGRESS-01 | docs/sdlc/reports/progress-report-2026-10-18.md | Coordinator / author | 0.2 Draft | Correction queue and executed evidence; account 5% observation | BR-01–BR-14; SC-01–SC-08 | Budget-stop reporting complete; application, owner and rendered UI gates remain open |
-| Concise handoff / PROGRESS-HANDOFF-01 | docs/sdlc/reports/progress-report-handoff-2026-10-18.md | Coordinator / author | 0.1 Draft | PROGRESS-01 v0.1; FIX-PLAN-01 (snapshot 0.20) | BR-01–BR-14; SC-01–SC-08 | Ready for downstream with runtime/UI gaps; no approval implied |
+| Concise handoff / PROGRESS-HANDOFF-01 | docs/sdlc/reports/progress-report-handoff-2026-10-18.md | Coordinator / author | 0.1 Draft | PROGRESS-01 v0.2; FIX-PLAN-01 (snapshot 0.20) | BR-01–BR-14; SC-01–SC-08 | Ready for downstream with runtime/UI gaps; no approval implied |
 | Wireframe plan / UX-PLAN-01 | docs/ux/wireframe-workplan.md | UX author | 0.2 Draft | Current Core sources and checklist gaps | BR-01–BR-14; SC-01–SC-08 | Initial native frames/previews exist; full WF variants and rendered/runtime acceptance remain open |
 | SQL projection / HANDOFF-SQL-01 | docs/sdlc/references/handoff-sql-projection-2026-10-18.md | Sequential storage/contract author | 0.2 Draft | Snapshot inputs retained in source; no execution or review rerun | BR-08–BR-10, BR-12, BR-14; SC-02/03/05/06 | Seven isolated integration results; current-authority/HTTP/guard/provider gates open |
 | Protocol reference / HANDOFF-REF-01 | docs/sdlc/references/handoff-byte-reference-2026-10-18.md | Sequential contract/test author | 0.4 Draft | Snapshot inputs retained in source; no execution or review rerun | BR-08–BR-10, BR-12, BR-14; SC-02/03/05/06 | Synthetic byte/evidence binding only; live SYS-01 gates remain open |
 | UX checklist / UX-CHECK-01 | docs/sdlc/reviews/ui-ux-checklist-review-2026-10-18.md | Sequential UX reviewer | 0.2 Draft | Snapshot inputs retained in source; no execution or review rerun | BR-01–BR-14; SC-01–SC-08 | No workbook approval; research, rendered UI and runtime gates remain open |
 | UI/UX Blueprint / UX-BLUEPRINT-01 | docs/sdlc/ui-ux-blueprint.md | UI/UX Designer / Author | 1.6 Draft | Local IEEE templates; UX-06, UX-PLAN-01, contracts v0.2.8/v0.2.9; Proposed ADR-0018–0023 | BR-01–BR-14; SC-01–SC-08 | Answer-local optional summary and API task placement aligned; visual/runtime/independent-review gaps open |
 | Handoff / UX-HANDOFF-01 | docs/sdlc/handoffs/ui-ux-handoff-2026-10-18.md | Coordinator / UX author | 0.9 Draft | Snapshot inputs retained in source; no execution or review rerun | BR-01–BR-14; SC-01–SC-08 | Wireframes may be drafted; runtime, owner and visual gates remain open |
-| 9 / SYS-REVIEW-01 | `docs/sdlc/system-consistency-review-2026-10-18.md` | Consistency reviewer | 0.1 Draft; targeted system review through obsidian_docs | PRD-01 v0.9; UC-02 (dated review snapshot); SAD-03 (dated review snapshot); DATA-04 (pre-correction snapshot); Workspace v0.2.2 / Knowledge v0.2.3; ADR-0012 / OWNER-Q-01 | BR-01–BR-14; SC-01–SC-08 scenario handoff | Two Blocking, two Important, one Minor new finding; existing UX findings remain open |
+| 9 / SYS-REVIEW-01 | `docs/sdlc/system-consistency-review-2026-10-18.md` | Consistency reviewer | 0.1 Draft; targeted system review through obsidian_docs | PRD-01 v0.10.1; UC-02 (dated review snapshot); SAD-03 (dated review snapshot); DATA-04 (pre-correction snapshot); Workspace v0.2.2 / Knowledge v0.2.3; ADR-0012 / OWNER-Q-01 | BR-01–BR-14; SC-01–SC-08 scenario handoff | Two Blocking, two Important, one Minor new finding; existing UX findings remain open |
 
 | Agent checklist / PREFLIGHT-01 | docs/agent-preflight-checklist.md | Development agent | 0.1 Draft | Current source assertions; historical review context | Existing permission/version/citation and evaluation safeguards | Remaining drift notes and runtime enforcement need separate review |
-| Delivery / PLAN-01 | docs/planning/five-month-plan.md; release-scope.json | Coordinator / requirements author | 0.4 Draft | PRD-01 v0.9; existing ADR-0010/0016 directions | Existing release scope; no priority change | Capacity and runtime acceptance remain open |
+| Delivery / PLAN-01 | docs/planning/five-month-plan.md; release-scope.json | Coordinator / requirements author | 0.4 Draft | PRD-01 v0.10.1; existing ADR-0010/0016 directions | Existing release scope; no priority change | Capacity and runtime acceptance remain open |
 
 All Must BRs (BR-01–BR-14) and all Core scenarios (SC-01–SC-08) have Stage 1, design and test owners. BR-15 remains Should/Enhanced. Planned status is not completion or approval.
 
@@ -133,15 +135,15 @@ The BRD leaves architecture to design while AGENTS.md directs minimal microservi
 <!-- BEGIN GENERATED:artifact-versions -->
 | Artifact ID | Version | Canonical source |
 | --- | --- | --- |
-| UML-07 | v0.22 | [Source](diagrams/README.md) |
-| REG-00 | v0.103 | [Source](artifact-register.md) |
-| SAD-03 | v0.16 | [Source](../architecture.md) |
-| UX-PERM-MATRIX-02 | v0.11 | [Source](../ux/permission-matrix.md) |
-| UX-PERSONAS-01 | v0.5 | [Source](../ux/personas.md) |
-| UX-SITEMAP-03 | v0.10 | [Source](../ux/sitemap.md) |
-| UX-FLOW-AI-03 | v0.9 | [Source](../ux/flows/ai-qa-flow.md) |
-| UX-FLOW-BOARD-01 | v0.10 | [Source](../ux/flows/board-flow.md) |
-| UX-FLOW-DOCS-02 | v0.9 | [Source](../ux/flows/docs-flow.md) |
+| UML-07 | v0.21.4 | [Source](diagrams/README.md) |
+| REG-00 | v0.117 | [Source](artifact-register.md) |
+| SAD-03 | v0.16.2 | [Source](../architecture.md) |
+| UX-PERM-MATRIX-02 | v0.11.2 | [Source](../ux/permission-matrix.md) |
+| UX-PERSONAS-01 | v0.5.2 | [Source](../ux/personas.md) |
+| UX-SITEMAP-03 | v0.10.1 | [Source](../ux/sitemap.md) |
+| UX-FLOW-AI-03 | v0.9.2 | [Source](../ux/flows/ai-qa-flow.md) |
+| UX-FLOW-BOARD-01 | v0.10.2 | [Source](../ux/flows/board-flow.md) |
+| UX-FLOW-DOCS-02 | v0.9.2 | [Source](../ux/flows/docs-flow.md) |
 | DGM-ARCH-01 | v0.9 | [Source](diagrams/architecture/service-composition.mmd) |
 | DGM-SITE-01 | v0.8 | [Source](diagrams/sitemap/application-sitemap.mmd) |
 | DGM-FLOW-01 | v0.13 | [Source](diagrams/flowchart/ai-qa-flow.mmd) |
@@ -150,13 +152,13 @@ The BRD leaves architecture to design while AGENTS.md directs minimal microservi
 | DGM-FLOW-04 | v0.9 | [Source](diagrams/flowchart/permission-read-flow.mmd) |
 | DGM-FLOW-05 | v0.4 | [Source](diagrams/flowchart/permission-ai-checkpoints.mmd) |
 | DGM-JOURNEY-01 | v0.4 | [Source](diagrams/user-journey/core-user-journeys.mmd) |
-| PRD-01 | v0.9 | [Source](PRD_SRS.md) |
-| UC-02 | v0.8 | [Source](use-cases.md) |
+| PRD-01 | v0.10.1 | [Source](PRD_SRS.md) |
+| UC-02 | v0.8.2 | [Source](use-cases.md) |
 | DGM-UC-01 | v0.5 | [Source](diagrams/use-case/use-case-diagram.mmd) |
-| DGM-REVIEW-02 | v0.1 | [Source](diagrams/review-2026-10-16.md) |
-| DGM-REVIEW-03 | v0.1 | [Source](diagrams/review-2026-10-17.md) |
-| DATA-04 | v0.16 | [Source](data-design.md) |
-| DGM-DESIGN-01 | v0.1 | [Source](diagrams/design-foundation-2026-10-17.md) |
+| DGM-REVIEW-02 | v0.1.1 | [Source](diagrams/review-2026-10-16.md) |
+| DGM-REVIEW-03 | v0.1.1 | [Source](diagrams/review-2026-10-17.md) |
+| DATA-04 | v0.16.1 | [Source](data-design.md) |
+| DGM-DESIGN-01 | v0.1.1 | [Source](diagrams/design-foundation-2026-10-17.md) |
 | DGM-C4-01 | v0.1 | [Source](diagrams/c4/system-context.mmd) |
 | DGM-C4-02 | v0.1 | [Source](diagrams/c4/containers.mmd) |
 | DGM-SEQ-01 | v0.2 | [Source](diagrams/sequence/protected-handoff.mmd) |
@@ -599,11 +601,75 @@ REG-00 v0.93 registers [PUB-SP01-SP02-01 v0.1](../implementation/features/sp-01-
 
 The owner explicitly authorises commit/push of related work to the existing origin on codex/sp-02-project-membership; no force push, main merge or development database upgrade. Unrelated submodule, local prompt copies, patches and scratch inventories remain excluded. Actual commit/remote verification is reported only after execution; reports are not independent audit approval or new runtime passes.
 
-## Historical SP-03 planning and workflow registration — 2 November 2026
+## Historical agent profile alignment — 2 November 2026
 
-REG-00 v0.94 registers [FEAT-SP03-01 v0.1](../implementation/features/sp-03-create-task/plan.md), entry/WBS v0.1, SP03-D01/D02 and SP03-P01–P09 v0.1. Parent: canonical SP-03 / existing IMPL-SP-03 children / PLAN-01 Month 1 / M-02; trace FR-05/AC-05, supporting BR-01/02/10/11/14. The parent table owns actual status/results. IMPL-FEATURES-01 v0.21, IMPL-REG-01 v0.26, IMPL-ROADMAP-01 v0.14, IMPL-EXEC-01 v0.8 and DOC-REVIEW-REG-01 v0.35 carry this bounded registration. SP03-WORKFLOW-01 v0.1 adds the source → draft plan → WBS/tasks → reconcile/register → one-task execution sequence in agents/WORKFLOW.md. No new product API, requirement, migration, runtime test, independent review, standard certification or accepted ADR is implied.
+REG-00 v0.94 registers AGENT-INDEX-01, AGENT-WORKFLOW-01, AGENT-PROFILES-01 (Stages 0–9), AGENT-TEMPLATES-01 and AGENT-ALIGN-01/ENTRY/A01/A02, all v0.1 Draft. IMPL-FEATURES-01 v0.21, IMPL-REG-01 v0.26, IMPL-ROADMAP-01 v0.14 and DOC-REVIEW-REG-01 v0.35 carry the bounded maintenance registration. Existing stage paths and unrelated workspace work are preserved. Actual documentation checks and known template-link failures are recorded in the saved plan; no product, baseline, ADR, independent review or runtime acceptance changes.
 
-This publication is based on committed dd69700e58d28e367f94833b85a6909a5faec1a5. Other local edits remain outside its selected commit. Source snapshots and template revision/pin mismatch are explicit in the plan; no prior measured evidence is relabelled or gitlink updated.
+## Historical cursor unit-test continuation — 2 November 2026
+
+REG-00 v0.96 registers [FEAT-SP02-01 v0.7](../implementation/features/sp-02-project-membership/plan.md), entry v0.7 and [SP02-T01 v0.1](../implementation/features/sp-02-project-membership/tasks/SP02-T01-cursor-boundaries.md) for owner-authorised constructor TTL, canonical key and expiry-minus-one unit tests. IMPL-FEATURES-01 v0.22, IMPL-REG-01 v0.27, IMPL-ROADMAP-01 v0.15 and DOC-REVIEW-REG-01 v0.37 coordinate the existing parent registration. Plan mode is unavailable; the written gate precedes test edits/execution. Actual results belong to the parent plan. No runtime, requirements, ADR acceptance, historical evidence, independent review or release gate is changed.
+
+SP02-EXECUTION-RESULT v0.3.1 and SP02-TEST-AUDIT-01 v0.2.1 label their original plan input as execution snapshot v0.6; prior measured evidence and failures remain unchanged.
+
+SP01-TEST-AUDIT-01 v0.2.1 likewise preserves its original SP-02 integration-report input as execution snapshot v0.2. Only linked-input metadata is clarified.
+
+## Historical PRD source-link repair — 2 November 2026
+
+REG-00 v0.96 registers AGENT-ALIGN-01/ENTRY v0.2 and AGENT-A03 v0.1 for the owner-authorised repair of obsolete flat PRD template source links. IMPL-FEATURES-01 v0.23, IMPL-REG-01 v0.28, IMPL-ROADMAP-01 v0.16 and DOC-REVIEW-REG-01 v0.37 coordinate registration. Plan mode is unavailable; written A03 gate precedes the fix. PRD and dependent version metadata may change, but requirements, original measured evidence, runtime behaviour and the user's template gitlink do not. Actual results belong to the saved plan.
+
+## A03 source-version metadata reconciliation
+
+PRD v0.10 changes only template links. Dependent inputs and patch versions below are synchronized for documentation checks; no requirement/design/contract behaviour or prior measured result is revised. Historical report/review input snapshots retain their original versions.
+
+| Artifact | Version | Path |
+| --- | --- | --- |
+| CONTRACT-01 | 0.22.1 | contracts/README.md |
+| SAD-03 | 0.16.1 | docs/architecture.md |
+| API-05 | 0.20.1 | docs/sdlc/api-design.md |
+| REG-00 | 0.96 | docs/sdlc/artifact-register.md |
+| DATA-04 | 0.14.1 | docs/sdlc/data-design.md |
+| DGM-DESIGN-01 | 0.1.1 | docs/sdlc/diagrams/design-foundation-2026-10-17.md |
+| UML-07 | 0.21.1 | docs/sdlc/diagrams/README.md |
+| DGM-REVIEW-02 | 0.1.1 | docs/sdlc/diagrams/review-2026-10-16.md |
+| DGM-REVIEW-03 | 0.1.1 | docs/sdlc/diagrams/review-2026-10-17.md |
+| EVAL-CASES-ENTRY | 0.8.1 | docs/sdlc/evaluation-cases.md |
+| PRD-01 | 0.10 | docs/sdlc/PRD_SRS.md |
+| DOC-REVIEW-REG-01 | 0.37 | docs/sdlc/references/document-review-register.md |
+| SP01-P12-RESULT | 0.1.1 | docs/sdlc/reports/SP-01-P12-handoff-2026-10-28.md |
+| SP01-TEST-AUDIT-01 | 0.2.1 | docs/sdlc/reports/SP-01-testing-audit-2026-11-01.md |
+| SP02-EXECUTION-RESULT | 0.3.1 | docs/sdlc/reports/SP-02-execution-2026-10-31.md |
+| SP02-TEST-AUDIT-01 | 0.2.1 | docs/sdlc/reports/SP-02-testing-audit-2026-11-01.md |
+| VERIFY-01 | 0.11.1 | docs/sdlc/requirement-verification.md |
+| SAD-03-ENTRY | 0.15.1 | docs/sdlc/SAD.md |
+| TEST-COVERAGE-01 | 0.10.1 | docs/sdlc/test-coverage.md |
+| TEST-08 | 0.23.1 | docs/sdlc/test-plan.md |
+| UX-BLUEPRINT-01 | 1.7.1 | docs/sdlc/ui-ux-blueprint.md |
+| UX-06 | 0.13.1 | docs/sdlc/ui-ux-spec.md |
+| UC-02 | 0.8.1 | docs/sdlc/use-cases.md |
+| UX-FLOW-AI-03 | 0.9.1 | docs/ux/flows/ai-qa-flow.md |
+| UX-FLOW-BOARD-01 | 0.10.1 | docs/ux/flows/board-flow.md |
+| UX-FLOW-DOCS-02 | 0.9.1 | docs/ux/flows/docs-flow.md |
+| UX-PERM-MATRIX-02 | 0.11.1 | docs/ux/permission-matrix.md |
+| UX-PERSONAS-01 | 0.5.1 | docs/ux/personas.md |
+| UX-SITEMAP-03 | 0.10.1 | docs/ux/sitemap.md |
+| UX-PLAN-01 | 0.4.1 | docs/ux/wireframe-workplan.md |
+| UX-WF-EX-01 | 0.5.1 | docs/ux/wireframes/README.md |
+| SP-01 | 0.5.1 | specs/001-session.md |
+| SP-02 | 0.7.1 | specs/002-project-membership.md |
+| SP-03 | 0.6.1 | specs/003-create-task.md |
+| SP-04 | 0.7.1 | specs/004-update-task.md |
+| SP-05 | 0.7.1 | specs/005-sprint-lifecycle.md |
+| SP-06 | 0.6.1 | specs/006-document-access.md |
+| SP-07 | 0.6.1 | specs/007-version-publication.md |
+| SP-08 | 0.4.1 | specs/008-linked-keyword-search.md |
+| SP-09 | 0.9.1 | specs/009-cited-question.md |
+| SP-10 | 0.5.1 | specs/010-current-work-question.md |
+| SP-11 | 0.10.1 | specs/011-audit-and-source-inspection.md |
+| SP-12 | 0.4.1 | specs/012-failure-and-evaluation.md |
+| SP-13 | 0.6.1 | specs/013-scoped-inspection.md |
+| SPEC-INDEX | 0.8.1 | specs/README.md |
+
+A03 final result: current-checkout context check passed, context tests 45/45 and docs tests 20/20 with zero skips; docs lint and scoped whitespace passed. The original failed runs remain historical. No application tests or clean-clone reproduction were run; template gitlink and unrelated user work are unchanged. See the canonical AGENT-ALIGN-01 A03 handoff.
 
 ## Historical SP-03 planning and workflow registration — 2 November 2026
 
@@ -641,10 +707,103 @@ Planned SP03-EXEC-01 v0.1: docs/sdlc/reports/SP-03-2026-11-02-execution.md; WORK
 
 Current local reading sources: FEAT-SP03-01/entry/WBS 0.5, canonical SP-03 0.8, IMPL-SP-03 0.2 / IMPL-TASKS-01 0.6, Workspace 0.2.12, logical JSON 0.12, CONTRACT-01 0.24, API-05 0.22, DATA-04 0.16, TEST-08 0.24, TEST-COVERAGE-01 0.11 and VERIFY-01 0.12. SP03-UI-01 0.2 preserves its original 0.1 report snapshot and actual captures; SP03-EXEC-01/WORKSPACE-TASKS-01 are 0.1. Source status updates in AGENTS 1.15/rules 1.14 change no planning/permission authority. P09 final regression/audit results belong to the parent/report; do not infer acceptance from this registration. Older source/result sections remain historical observations and are not relabelled.
 
-## Historical SP-03 publication follow-up — 3 November 2026
+## Historical SP-03 publication registration snapshot — 3 November 2026
 
 REG-00 v0.102 registers [PUB-SP03-01 v0.1](../implementation/features/sp-03-publication/plan.md), PUB-SP03-ENTRY-01 v0.1, PUB03-T01/T02 v0.1 and planned [SP03-PUB-REPORT-01 v0.1](reports/SP-03-publication-2026-11-03.md). Parent FEAT-SP03-01 / SP-03.1–03.4 / FR-05/AC-05 / PLAN-01 Month 1 / M-02. Authorised verification and selective commit/push/merge/branch deletion only; actual outcomes belong to the plan/report. No independent acceptance or deployment.
 
-## SP-03 publication completion — 3 November 2026
+## Historical Load-balancing discussion assessment — 3 November 2026
+
+[LB-ASSESS-01 v0.1](reports/load-balancing-assessment-2026-11-03.md) and its [selected source hashes](reports/load-balancing-assessment-2026-11-03.sources.json) record the owner-requested source assessment and Claude brainstorming brief at the SP-03 checkpoint. Owner role: sequential assessment author; independent reviewer unassigned. Inputs: SAD-03 v0.16.1, PLAN-01 v0.4, IMPL-ROADMAP-01 v0.22, existing SP-01–SP-03 implementation/evidence and Proposed ADR-0006. Trace: existing BR-01/10/11/12/13/14, SC-06/08; deployment choices affect M-01/M-02/M-04/M-06/M-08. This is a documentation-only discussion artifact, not a feature/test plan, new ADR adoption, runtime change, benchmark, release approval or external transmission. A future implementation/testing decision needs its registered written gate; existing publication work and historical evidence remain separate.
+
+## Historical SP-03 publication completion receipt — 3 November 2026
 
 REG-00 v0.103 records [PUB-SP03-01 v0.2](../implementation/features/sp-03-publication/plan.md) and [SP03-PUB-REPORT-01 v0.2](reports/SP-03-publication-2026-11-03.md): actual local checks, source a8b3192 and successful remote CI, confirmed fast-forward to main, and local/remote SP-03 branch deletion. IMPL-FEATURES-01 v0.30, IMPL-REG-01 v0.35, IMPL-ROADMAP-01 v0.23 and DOC-REVIEW-REG-01 v0.44 carry the receipt. No independent/release/deployment acceptance or unrelated publication.
+
+## Historical SP-04 main-based preparation registration — 3 November 2026
+
+[FEAT-SP04-01 v0.2](../implementation/features/sp-04-update-task/plan.md), FEAT-SP04-ENTRY v0.2, SP04-WBS-01 v0.2 and SP04-P01–P08 v0.2 register current branch codex/sp-04 at main 6b837fd. Parent PLAN-01 Month 1 / M-02–M-03 / SP-04 v0.7.1 / IMPL-SP-04 v0.1 / SP-04.1–04.4; FR-09/40/43/44 and supporting FR-31, BR-01/02/03/06/10/11/14, SC-03/04/06. Owner role: sequential implementer, independent reviewer unassigned. P01 source/design assessment is the only task currently requested. Parent plan owns actual checks and gaps; planned P01 source-review/evidence do not constitute runtime acceptance. Earlier separate SP-04 worktree is preserved; its implementation/results/decisions are not imported. IMPL-FEATURES-01 v0.31, IMPL-REG-01 v0.36, IMPL-ROADMAP-01 v0.24 and DOC-REVIEW-REG-01 v0.45 carry navigation only.
+
+P01 outputs registered under FEAT-SP04-01: SP04-P01-MAP v0.2 at source-review.md, selected hashes/check captures under evidence/, and [SP04-AG01 v0.2](../implementation/features/sp-04-update-task/tasks/AG01-source-crosscheck.md). The Antigravity brief is prepared for owner handoff, not dispatched/executed. Expected future result path reviews/antigravity-p01-review.md is not an existing pass or approval.
+
+## Historical SP-04 coordination assignment registration — 3 November 2026
+
+[FEAT-SP04-01 v0.3](../implementation/features/sp-04-update-task/plan.md), FEAT-SP04-ENTRY v0.3, [SP04-COORD-01 v0.1](../implementation/features/sp-04-update-task/COORDINATION.md) and [SP04-AG01 v0.3](../implementation/features/sp-04-update-task/tasks/AG01-source-crosscheck.md) record the owner-requested written assignment. Parent SP-04.1 / FR-09/40/43/44 and supporting FR-31 / PLAN-01 Month 1 / M-02–M-03. Antigravity may write one findings report; Codex owns shared artifacts/checks/integration. This is not an actual dispatch receipt, reviewed result, new implementation authority, independent acceptance or altered P01 evidence. Navigation: IMPL-FEATURES-01 v0.32, IMPL-REG-01 v0.37, IMPL-ROADMAP-01 v0.25, DOC-REVIEW-REG-01 v0.46.
+
+## Historical SP-04 AG01 receipt/correction registration — 3 November 2026
+
+[FEAT-SP04-01 v0.4](../implementation/features/sp-04-update-task/plan.md), FEAT-SP04-ENTRY v0.4, SP04-COORD-01 v0.2, preserved [SP04-AG01-RESULT v0.1](../implementation/features/sp-04-update-task/reviews/antigravity-p01-review.md), [SP04-AG01-DISPOSITION v0.1](../implementation/features/sp-04-update-task/reviews/ag01-codex-disposition.md) and [SP04-AG02 v0.1](../implementation/features/sp-04-update-task/tasks/AG02-evidence-correction.md) register actual review receipt and requested evidence correction. All 42 current selected sources match P01, but the report's 14 displayed prefixes fail raw/LF checks; AG01 is not accepted. A new SP04-AG01-RESULT v0.2 is planned at reviews/antigravity-p01-review-v0.2.md, not an existing result. Parent SP-04.1 / FR-09/40/43/44 and supporting FR-31 / PLAN-01 Month 1 / M-02–M-03 unchanged. IMPL-FEATURES-01 v0.33, IMPL-REG-01 v0.38, IMPL-ROADMAP-01 v0.26, DOC-REVIEW-REG-01 v0.47 carry navigation. No original-report edit, runtime fix/test, policy adoption or independent acceptance.
+
+## Historical SP-04 corrected source-check closure — 3 November 2026
+
+[FEAT-SP04-01 v0.5](../implementation/features/sp-04-update-task/plan.md), FEAT-SP04-ENTRY v0.5, SP04-COORD-01 v0.3, preserved [SP04-AG01-RESULT v0.2](../implementation/features/sp-04-update-task/reviews/antigravity-p01-review-v0.2.md) and [SP04-AG02-DISPOSITION v0.1](../implementation/features/sp-04-update-task/reviews/ag02-codex-final-disposition.md) register actual AG02 receipt and source-check closure with explicit citation errata. All 42 reported source hashes and two additional hashes match; both report versions remain unchanged. This does not claim every report citation is exact, a new runtime pass, policy acceptance or P02 implementation. Parent SP-04.1 / FR-09/40/43/44 and supporting FR-31 / PLAN-01 Month 1 / M-02–M-03 unchanged. Navigation: IMPL-FEATURES-01 v0.34, IMPL-REG-01 v0.39, IMPL-ROADMAP-01 v0.27, DOC-REVIEW-REG-01 v0.48.
+
+## Historical SP-04 P02 proposal receipt/correction — 3 November 2026
+
+[FEAT-SP04-01 v0.6](../implementation/features/sp-04-update-task/plan.md), FEAT-SP04-ENTRY v0.6, SP04-COORD-01 v0.4, SP04-P02 v0.4, received [SP04-DECISION-BATCH v0.1](../implementation/features/sp-04-update-task/decision-batch.md) / [SP04-P02-REPORT v0.1](../implementation/features/sp-04-update-task/reviews/p02-codex-report.md), [SP04-P02-DISPOSITION v0.1](../implementation/features/sp-04-update-task/reviews/p02-codex-disposition.md) and [SP04-AG03 v0.1](../implementation/features/sp-04-update-task/tasks/AG03-p02-design-correction.md) register proposal review and corrections R01–R07. Exact receipt bytes/hashes are preserved under feature evidence; reported test executions lack a P02 capture and are not independently credited. Proposed next outputs are decision-batch v0.2 and new P02 report v0.2, not existing accepted results. Parent SP-04.1–04.2 / FR-09/40/43/44 and supporting FR-03/31/59/68 / PLAN-01 Month 1 / M-02–M-03 unchanged. P02 is not complete/policy-selected; P03A/P03B unready. Navigation: IMPL-FEATURES-01 v0.35, IMPL-REG-01 v0.40, IMPL-ROADMAP-01 v0.28, DOC-REVIEW-REG-01 v0.49. No code/schema/contract/ADR change or implementation/runtime acceptance.
+
+## Historical SP-04 AG03 receipt and reconciled proposed design — 3 November 2026
+
+[FEAT-SP04-01 v0.7](../implementation/features/sp-04-update-task/plan.md), FEAT-SP04-ENTRY v0.7, SP04-COORD-01 v0.5, SP04-P02 v0.5, [SP04-DECISION-BATCH v0.3](../implementation/features/sp-04-update-task/decision-batch.md), preserved [SP04-P02-REPORT v0.2](../implementation/features/sp-04-update-task/reviews/p02-codex-report-v0.2.md) and [SP04-AG03-DISPOSITION v0.1](../implementation/features/sp-04-update-task/reviews/ag03-codex-disposition.md) register actual receipt and Codex corrections A01–A07. Received design/report v0.2 raw bytes are preserved under evidence/ag03-received-snapshots.json. No claim that all submitted draft issues were corrected by Antigravity or that SQL ran. Only material owner dispositions D-01/D-02/D-03 remain pending; no active external assignment or producer implementation. Parent SP-04.1–04.2 / FR-09/40/43/44 and supporting FR-03/31/59/68 / PLAN-01 Month 1 / M-02–M-03 unchanged. Navigation: IMPL-FEATURES-01 v0.36, IMPL-REG-01 v0.41, IMPL-ROADMAP-01 v0.29, DOC-REVIEW-REG-01 v0.50.
+
+## Historical SP-04 recorded owner choices and P03A assignment — 3 November 2026
+
+[FEAT-SP04-01 v0.8](../implementation/features/sp-04-update-task/plan.md), FEAT-SP04-ENTRY v0.8, SP04-COORD-01 v0.6, SP04-P02 v0.6, [SP04-DECISION-BATCH v0.4](../implementation/features/sp-04-update-task/decision-batch.md) and [SP04-OWNER-01 v0.1](../implementation/features/sp-04-update-task/owner-decisions.md) record actual D-01/D-02/D-03 replies: edit authority is separate from create, new assignees must be enabled current project members, and original mutation outcomes are retained indefinitely with current authority checks. P02 design preparation is complete; detailed mechanics remain Proposed and unimplemented. Parent SP-04.1–04.2 / FR-09/40/43/44, supporting FR-03/31/59/68 / PLAN-01 Month 1 / M-02–M-03 remain the trace.
+
+[SP04-P03A v0.1](../implementation/features/sp-04-update-task/tasks/P03A-contract-support.md) is the written Antigravity assignment for eight 413/415 response declarations across four future mutation operations and coordinated metadata only; manual delivery/execution is unconfirmed. [SP04-P03A2 v0.1](../implementation/features/sp-04-update-task/tasks/P03A2-policy-source-alignment.md) is planned policy-source alignment before P03B, not dispatched. Current navigation: IMPL-FEATURES-01 v0.37, IMPL-REG-01 v0.42, IMPL-ROADMAP-01 v0.30, DOC-REVIEW-REG-01 v0.51, REG-00 v0.110. No runtime, migration, test-result acceptance, new FR, priority change or whole-feature completion.
+
+## Historical SP-04 P03A receipt reconciliation — 3 November 2026
+
+[FEAT-SP04-01 v0.9](../implementation/features/sp-04-update-task/plan.md) registers [SP04-P03A-R v0.1](../implementation/features/sp-04-update-task/tasks/P03A-R-return-reconciliation.md) for the owner's returned [SP04-P03A-RESULT v0.1](../implementation/features/sp-04-update-task/reviews/p03a-contract-support.md). Trace SP-04.2 / FR-09/40/43/44 and supporting FR-03/31/59/68 / PLAN-01 Month 1 / M-02–M-03. Inputs: SP-04 v0.7.2, CONTRACT-01 v0.25, API-05 v0.23, Workspace v0.2.13. Preserve actual receipt, verify exact API delta and source hashes, record evidence limits and update parent status. No runtime or applied migration changes, independent approval or next-producer dispatch. P03A2 remains the planned source-alignment prerequisite before P03B.
+
+P03A receipt result: [SP04-P03A-DISPOSITION v0.1](../implementation/features/sp-04-update-task/reviews/p03a-codex-disposition.md) verifies the exact eight-entry delta, 42 Workspace / 24 Knowledge operations and 172/174 unchanged preserved paths (contract/README are expected changes). Source/report/failure-log/preregistration limits remain explicit; original return is preserved. FEAT-SP04-ENTRY v0.9 and SP04-COORD-01 v0.7 close the shared-write lease. No external task is active; P03A2 refinement/registration is next before dispatch/P03B, without another material policy-selection round. Structural checks are not runtime acceptance.
+
+## Historical SP-04 P03A2 registered source alignment — 3 November 2026
+
+[FEAT-SP04-01 v0.10](../implementation/features/sp-04-update-task/plan.md) and [SP04-P03A2 v0.2](../implementation/features/sp-04-update-task/tasks/P03A2-policy-source-alignment.md) register owner-requested sequential source alignment before storage/permission producers. Trace SP-04.1–04.2 / FR-09/40/43/44, supporting FR-03/31/59/68 / PLAN-01 Month 1 / M-02–M-03. Exact primary/support/metadata paths, initial versions, planned checks and preservation assertions are in the brief; source before-images are captured. Canonical support amendment precedes further primary edits. New ADR-0028 will remain Proposed; existing ADRs/baseline/OpenAPI/runtime/migrations/tests and requirement priorities stay unchanged. No independent/runtime acceptance or automatic P03B execution.
+
+P03A2 metadata scope clarification: four dated report input envelopes are explicitly classified Historical inputs with original reviewed versions/results retained; exact paths and before-image/body-preservation assertions are in SP04-P03A2 v0.2. No historical runtime evidence is upgraded to current acceptance.
+
+P03A2 actual result: [SP04-P03A2-RESULT v0.1](../implementation/features/sp-04-update-task/reviews/p03a2-source-alignment.md) and evidence/p03a2/checks.json close canonical source alignment under FEAT-SP04-01 v0.10 / SP04-P03A2 v0.2; entry v0.10 and coordination v0.8. Current sources: PRD-01 v0.10.1, UC-02 v0.8.2, DATA-04 v0.16.1, logical model v0.13, API-05 v0.23.1, CONTRACT-01 v0.25.1, SP-04 v0.7.3, TEST-08 v0.24.1, TEST-COVERAGE-01 v0.11.1 and VERIFY-01 v0.12.1. [ADR-0028 v0.1 Proposed](../adr/0028-task-mutation-authority-and-outcomes.md) is new bounded mechanics with explicit owner-policy provenance, not formal acceptance. Actual context45/45, contracts27/27, docs20/20 remain structural checks; protected runtime/wire/old ADR/baseline sources and graph content are preserved. Exact metadata-only propagation/frozen report envelope limits and failed attempts are recorded. Next P03B requires its own exact brief; no runtime, migration, new requirement/priority, independent approval or external dispatch.
+
+## Historical SP-04 P03B registered storage producer — 3 November 2026
+
+[FEAT-SP04-01 v0.11](../implementation/features/sp-04-update-task/plan.md) and [SP04-P03B v0.1](../implementation/features/sp-04-update-task/tasks/P03B-mutation-storage.md) register the owner's requested bounded additive010/types/storage-test producer after P03A2. Parent SP-04.2 / FR-09/40/43/44 and supporting FR-03/31/59/68 / PLAN-01 Month1 / M-02–M-03. Exact paths, selected design inputs, real disposable verification and refusal/preservation gates precede implementation. No Task handler/operator/UI change, applied migration edit, valuable-data upgrade, broad ADR adoption, external assignment or Git publication.
+
+P03B actual result — 4 November 2026: [SP04-P03B-RESULT v0.1](../implementation/features/sp-04-update-task/reviews/p03b-storage-result.md) verifies additive010/internal typed mutation outcomes/private grant guard under FEAT-SP04-01 v0.11 / SP04-P03B v0.1; entry v0.11, coordination v0.9, WORKSPACE-TASKS-01 v0.2. Actual disposable new storage13/13 and historical009 regression8/8, Workspace typecheck and context45/45/contracts27/27/docs20/20 pass with original failures preserved. Parent SP-04.2 / M-02–M-03 is unchanged; old applied SQL/create adapter/handlers/UI/wire/ADR/baseline remain preserved. No valuable-data upgrade or runtime end-user mutation/permission/HTTP acceptance. Next separately briefed P03C; actual SP-05 integration and whole-SP-04 gates remain open.
+
+## SP-04 P03C private authority/discovery producer — 4 November 2026
+
+[FEAT-SP04-01 v0.12](../implementation/features/sp-04-update-task/plan.md) and [SP04-P03C v0.1](../implementation/features/sp-04-update-task/tasks/P03C-task-authority-discovery.md) register owner-requested private selected Task actions and exact target discovery under SP-04.2 / M-02–M-03. Exact code/test/provenance/registered-operation scope and disposable verification precede edits. No001–010/wire/ADR/baseline/UI/root/dependency change or new mutation handler. Prior results remain bounded; no formal ADR/runtime end-user mutation acceptance.
+
+P03C actual result: [SP04-P03C-RESULT v0.1](../implementation/features/sp-04-update-task/reviews/p03c-authority-result.md) and evidence/p03c/checks.json verify private selected Task actions/provenance and exact registered-operation Task discovery under FEAT-SP04-01 v0.12; entry v0.12, coordination v0.10, WORKSPACE-TASKS-01 v0.3. New13/13 and combined43/43 real disposable authority/projectHTTP/storage regressions, Workspace typecheck and context45/45/contracts27/27/docs20/20 pass. Prior001–010/wire/model/ADR/baseline/old tests/UI remain preserved. Production exposes current getTask/read discovery only; no synthetic future registry is credited as a handler. Next separately briefed P03D1; whole-SP-04/SP-05/D-07/independent gates remain open.
+
+## Backend pattern discussion input — 4 November 2026
+
+[BRAIN-BACKEND-01 v0.1](../planning/backend-design-pattern-brainstorming-with-claude-2026-11-04.md) records owner-requested brainstorming material for Claude: inspected task HTTP/store composition, candidate internal patterns, invariant constraints, source links and a reusable discussion prompt. This is discussion input only, not a feature plan, Claude response, architecture decision, refactoring authority or runtime/independent acceptance. No canonical design, contract, migration or application behaviour is changed.
+
+### Backend pattern discussion follow-up — 4 November 2026
+
+[BRAIN-BACKEND-01 v0.2](../planning/backend-design-pattern-brainstorming-with-claude-2026-11-04.md) addresses the owner's requested focus on Claude evidence items 4 and 5: remaining Workspace/Knowledge slices and the current real-PostgreSQL/HTTP/concurrency versus controller-double/DOM/browser testing boundaries. It records the supplied preliminary response without adopting its recommendation; use-case transaction ownership versus the infrastructure runner remains a discussion question. Source inspection and local-link/whitespace checks only; no new runtime execution, pattern decision, refactoring or broader acceptance.
+
+### Backend pattern source reconciliation — 4 November 2026
+
+[BRAIN-BACKEND-01 v0.3](../planning/backend-design-pattern-brainstorming-with-claude-2026-11-04.md) reconciles the owner's second Claude response against Project/session transaction runners, Task outcome adapter, migration003 trigger and app child registrations. It corrects the original guard sequence sketch, distinguishes callback Project locking from session guard inspection and records normal-return denial/clock-state commit semantics. Narrow option B remains a proposal; no owner pattern decision, refactor, new runtime execution or independent acceptance.
+
+
+## SP-04 P03D1 Backlog edit registration — 4 November 2026
+
+[SP04-P03D1 v0.1](../implementation/features/sp-04-update-task/tasks/P03D1-backlog-edit.md) / FEAT-SP04-01 v0.13 registers the owner-requested next bounded existing editTask handler and real disposable verification, PLAN-01 Month1 / M-02–M-03 / FR-40/AC-40. Exact paths/commands/pre-images precede edits. No new operation/schema, later mutation/UI, broad ADR adoption or Git publication. Parent plan owns actual outcome.
+
+P03D1 bounded result: [SP04-P03D1-RESULT v0.1](../implementation/features/sp-04-update-task/reviews/p03d1-edit-result.md) under FEAT-SP04-01 v0.13 verifies Backlog editTask only; new14/14 and combined61/61 actual disposable Task assertions, Workspace typecheck, context45/45/contracts27/27/docs20/20. Prior failures/source limits preserved; no schema/wire/ADR adoption, edit UI, full-SP04/SP05/independent acceptance or Git publication. Next separately briefed state-change producer.
+
+
+## SP-04 owner-requested remaining implementation — 4 November 2026
+
+FEAT-SP04-01 v0.14 registers sequential P03D2/P03D3/P04–P07 remaining implementation and bounded commit before hotfix switch under the owning plan. Trace SP-04.2–04.4 / FR-09/40/43/44 / PLAN-01 Month1 / M-02–M-03. Exact paths/assertions and commands are saved before execution. Actual SP-05 P08 remains prerequisite, no Must deferral or complete-feature acceptance. No unrelated changes, push, deployment, new dependency or accepted ADR edit.
+
+## Database status inspection — 4 November 2026
+
+[DB-CHECK-01 v0.1](../implementation/features/database-status-check/plan.md) registers a bounded read-only operational check under PLAN-01 v0.4 Month 1 / M-01 / SP-01.1. Entry and DB01 task are v0.1. No startup, migration, data changes or application acceptance. See the plan for authoritative results.
+
+
+SP-04 bounded checkpoint outcome: [SP04-CONTINUATION-RESULT v0.1](../implementation/features/sp-04-update-task/reviews/continuation-result.md) / FEAT-SP04-01 v0.14 records actual commands/history/live UI, producer negatives, retained regression failures/focused corrections and final source identity. Canonical SP-04 v0.7.4 / IMPL-SP-04 v0.2 retain P08 actual SP-05 integration open under explicit owner direction. Same FR/AC/PLAN-01/M-02–M-03 trace; no whole-feature, Must deferral, independent approval or deployment. Local commit/switch is authorised; actual Git result is resolved from history, not predicted.

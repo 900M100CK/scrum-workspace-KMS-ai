@@ -7,13 +7,13 @@ import {SESSION_COOKIE,sessionOrigin} from '../session/http.ts';
 import {sessionValidators} from '../session/schemas.ts';
 import {ProjectFault,projectFailure} from '../projects/outcomes.ts';
 import type {WorkspaceTaskStore} from './store.ts';
-import type {CreateTask} from './types.ts';
+import type {CreateTask,EditTask,SetState,SetAssignee,RecordBlocker} from './types.ts';
 const addFormats=createRequire(import.meta.url)('ajv-formats') as typeof import('ajv-formats').default;
 const api=JSON.parse(readFileSync(new URL('../../../../contracts/openapi/workspace.openapi.json',import.meta.url),'utf8'));
 const ajv=new Ajv2020({strict:false,removeAdditional:false,coerceTypes:false,useDefaults:false});addFormats(ajv);
 ajv.addSchema({$id:'urn:sacw:tasks',components:api.components});
-export const taskValidators=Object.fromEntries(['CreateTask','Task','TaskList'].map(name=>[name,ajv.compile({$ref:`urn:sacw:tasks#/components/schemas/${name}`})]));
-export const TASK_OPERATIONS:ReadonlySet<'createTask'|'listTasks'>=new Set(['createTask','listTasks']);
+export const taskValidators=Object.fromEntries(['CreateTask','EditTask','SetState','SetAssignee','RecordBlocker','Blocker','BlockerEventList','Task','TaskList'].map(name=>[name,ajv.compile({$ref:`urn:sacw:tasks#/components/schemas/${name}`})]));
+export const TASK_OPERATIONS:ReadonlySet<'createTask'|'listTasks'|'getTask'|'editTask'|'setTaskState'|'setAssignee'|'recordBlocker'|'listBlockerEvents'>=new Set(['createTask','listTasks','getTask','editTask','setTaskState','setAssignee','recordBlocker','listBlockerEvents']);
 export interface TaskHttpOptions {tasks?:WorkspaceTaskStore;origin?:string}
 const responses=(status:number,name:string)=>Object.fromEntries([[status,{$ref:`urn:sacw:tasks#/components/schemas/${name}`}],...[400,401,403,404,409,413,415,503].map(n=>[n,{}])]);
 export async function registerTaskHttp(app:FastifyInstance,options:TaskHttpOptions){
@@ -48,6 +48,35 @@ export async function registerTaskHttp(app:FastifyInstance,options:TaskHttpOptio
   const q=request.query as Record<string,unknown>;
   if(Object.keys(q).some(k=>!['cursor','location'].includes(k))||(q.cursor!==undefined&&(typeof q.cursor!=='string'||!q.cursor))||(q.location!==undefined&&!['all','backlog'].includes(q.location as string)))throw new ProjectFault(400,'validation_failed');
   return options.tasks!.list(request.cookies[SESSION_COOKIE]!, (request.params as {project_id:string}).project_id,q.location as 'all'|'backlog'|undefined,q.cursor as string|undefined);
+ });
+ app.patch('/tasks/:task_id',{bodyLimit:8192,schema:{response:responses(200,'Task')}},async(request,reply)=>{
+  if(!taskValidators.EditTask!(request.body)||Object.keys(request.query as object).length)throw new ProjectFault(400,'validation_failed');
+  const key=request.headers['idempotency-key'];if(typeof key!=='string'||!key)throw new ProjectFault(400,'validation_failed');
+  const result=await options.tasks!.edit(request.cookies[SESSION_COOKIE]!, (request.params as {task_id:string}).task_id,request.body as EditTask,key,request.id);
+  return reply.code(result.status).send(result.body);
+ });
+ app.post('/tasks/:task_id/state',{bodyLimit:8192,schema:{response:responses(200,'Task')}},async(request,reply)=>{
+  if(!taskValidators.SetState!(request.body)||Object.keys(request.query as object).length)throw new ProjectFault(400,'validation_failed');
+  const key=request.headers['idempotency-key'];if(typeof key!=='string'||!key)throw new ProjectFault(400,'validation_failed');
+  const result=await options.tasks!.setState(request.cookies[SESSION_COOKIE]!, (request.params as {task_id:string}).task_id,request.body as SetState,key,request.id);
+  return reply.code(result.status).send(result.body);
+ });
+ app.post('/tasks/:task_id/assignee',{bodyLimit:8192,schema:{response:responses(200,'Task')}},async(request,reply)=>{
+  if(!taskValidators.SetAssignee!(request.body)||Object.keys(request.query as object).length)throw new ProjectFault(400,'validation_failed');
+  const key=request.headers['idempotency-key'];if(typeof key!=='string'||!key)throw new ProjectFault(400,'validation_failed');
+  const result=await options.tasks!.assign(request.cookies[SESSION_COOKIE]!, (request.params as {task_id:string}).task_id,request.body as SetAssignee,key,request.id);
+  return reply.code(result.status).send(result.body);
+ });
+ app.post('/tasks/:task_id/blockers',{bodyLimit:8192,schema:{response:responses(201,'Blocker')}},async(request,reply)=>{
+  if(!taskValidators.RecordBlocker!(request.body)||Object.keys(request.query as object).length)throw new ProjectFault(400,'validation_failed');
+  const key=request.headers['idempotency-key'];if(typeof key!=='string'||!key)throw new ProjectFault(400,'validation_failed');
+  const result=await options.tasks!.recordBlocker(request.cookies[SESSION_COOKIE]!, (request.params as {task_id:string}).task_id,request.body as RecordBlocker,key,request.id);
+  return reply.code(result.status).send(result.body);
+ });
+ app.get('/tasks/:task_id/blockers',{schema:{response:responses(200,'BlockerEventList')}},async request=>{
+  const q=request.query as Record<string,unknown>;
+  if(Object.keys(q).some(k=>k!=='cursor')||(q.cursor!==undefined&&(typeof q.cursor!=='string'||!q.cursor)))throw new ProjectFault(400,'validation_failed');
+  return options.tasks!.blockers(request.cookies[SESSION_COOKIE]!, (request.params as {task_id:string}).task_id,q.cursor as string|undefined);
  });
  app.get('/tasks/:task_id',{schema:{response:responses(200,'Task')}},async request=>{
   if(Object.keys(request.query as object).length)throw new ProjectFault(400,'validation_failed');

@@ -1,0 +1,32 @@
+
+> scrum-workspace-kms-context@0.1.0 docs:test
+> node --test tests/docs/docs.test.mjs
+
+✔ all registered docs and diagram pairs pass (1641.5ms)
+✔ preflight exception counts agree with current use-case definitions (2.5492ms)
+✔ architecture FR trace rows stay inside one continuous Markdown table (1.2676ms)
+✔ unselected retrieval mechanisms need explicit status in current text (1.7563ms)
+✔ Draw.io status belongs to its own label, not an unrelated cell on the same XML line (1.7654ms)
+✔ Sources contains every body ADR, including shorthand and ranges, not just the highest ID (2.0217ms)
+✔ manifest version/ADR changes propagate to all generated inventories and both diagram headers (41.7881ms)
+✔ AI checkpoint sources retain the unavailable, partial-answer and member-removal decisions (1.4102ms)
+✔ use-case associations are undirected; generalization/include retain direction and native UML style (98.3937ms)
+✔ operation references fail on facade path/ID or actual node label drift (0.9124ms)
+✔ input headers name the latest cited ADR and current input versions (1.1147ms)
+✔ real Mermaid parser rejects invalid syntax (5.4811ms)
+✔ flowchart adapter compares labels, direction and parallel-edge counts (16.3289ms)
+✔ invalid XML and dangling/undirected edges fail closed (1.8426ms)
+✔ current version drift and missing rows fail; historical versions are allowed (0.7469ms)
+✔ journey actors and scores are compared, not merely grammar-checked (5.5757ms)
+✔ current prose references cannot disagree with headers while historical snapshots can (0.6864ms)
+✔ current linked input aliases use target versions while snapshot evidence stays historical (0.519ms)
+✔ design pairs reject reversed sequence handoffs and changed native multiplicities (70.297ms)
+✔ physical diagram entity inventory matches owned CREATE TABLE definitions (4.8247ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3799.9097

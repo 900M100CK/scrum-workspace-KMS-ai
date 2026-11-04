@@ -1,0 +1,282 @@
+[
+  {
+    "path": "docs/sdlc/PRD_SRS.md",
+    "id": "PRD-01",
+    "from": "0.10",
+    "to": "0.10.1",
+    "kind": "primary"
+  },
+  {
+    "path": "docs/sdlc/use-cases.md",
+    "id": "UC-02",
+    "from": "0.8.1",
+    "to": "0.8.2",
+    "kind": "primary"
+  },
+  {
+    "path": "docs/sdlc/data-design.md",
+    "id": "DATA-04",
+    "from": "0.16",
+    "to": "0.16.1",
+    "kind": "primary"
+  },
+  {
+    "path": "docs/sdlc/api-design.md",
+    "id": "API-05",
+    "from": "0.23",
+    "to": "0.23.1",
+    "kind": "primary"
+  },
+  {
+    "path": "docs/sdlc/test-plan.md",
+    "id": "TEST-08",
+    "from": "0.24",
+    "to": "0.24.1",
+    "kind": "primary"
+  },
+  {
+    "path": "docs/sdlc/test-coverage.md",
+    "id": "TEST-COVERAGE-01",
+    "from": "0.11",
+    "to": "0.11.1",
+    "kind": "primary"
+  },
+  {
+    "path": "docs/sdlc/requirement-verification.md",
+    "id": "VERIFY-01",
+    "from": "0.12",
+    "to": "0.12.1",
+    "kind": "primary"
+  },
+  {
+    "path": "contracts/README.md",
+    "id": "CONTRACT-01",
+    "from": "0.25",
+    "to": "0.25.1",
+    "kind": "primary"
+  },
+  {
+    "path": "specs/004-update-task.md",
+    "id": "SP-04",
+    "from": "0.7.2",
+    "to": "0.7.3",
+    "kind": "primary"
+  },
+  {
+    "path": "docs/architecture.md",
+    "id": "SAD-03",
+    "from": "0.16.1",
+    "to": "0.16.2",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "docs/sdlc/artifact-register.md",
+    "id": "REG-00",
+    "from": "0.112",
+    "to": "0.112.1",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "docs/sdlc/evaluation-cases.md",
+    "id": "EVAL-CASES-ENTRY",
+    "from": "0.8.1",
+    "to": "0.8.2",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "docs/sdlc/references/document-review-register.md",
+    "id": "DOC-REVIEW-REG-01",
+    "from": "0.53",
+    "to": "0.53.1",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "docs/sdlc/reports/load-balancing-assessment-2026-11-03.md",
+    "id": "LB-ASSESS-01",
+    "from": "0.1",
+    "to": "0.1.1",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "docs/sdlc/SAD.md",
+    "id": "SAD-03-ENTRY",
+    "from": "0.15.1",
+    "to": "0.15.2",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "docs/sdlc/ui-ux-blueprint.md",
+    "id": "UX-BLUEPRINT-01",
+    "from": "1.7.1",
+    "to": "1.7.2",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "docs/sdlc/ui-ux-spec.md",
+    "id": "UX-06",
+    "from": "0.13.1",
+    "to": "0.13.2",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "specs/001-session.md",
+    "id": "SP-01",
+    "from": "0.5.1",
+    "to": "0.5.2",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "specs/002-project-membership.md",
+    "id": "SP-02",
+    "from": "0.7.1",
+    "to": "0.7.2",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "specs/003-create-task.md",
+    "id": "SP-03",
+    "from": "0.8",
+    "to": "0.8.1",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "specs/005-sprint-lifecycle.md",
+    "id": "SP-05",
+    "from": "0.7.1",
+    "to": "0.7.2",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "specs/006-document-access.md",
+    "id": "SP-06",
+    "from": "0.6.1",
+    "to": "0.6.2",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "specs/007-version-publication.md",
+    "id": "SP-07",
+    "from": "0.6.1",
+    "to": "0.6.2",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "specs/008-linked-keyword-search.md",
+    "id": "SP-08",
+    "from": "0.4.1",
+    "to": "0.4.2",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "specs/009-cited-question.md",
+    "id": "SP-09",
+    "from": "0.9.1",
+    "to": "0.9.2",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "specs/010-current-work-question.md",
+    "id": "SP-10",
+    "from": "0.5.1",
+    "to": "0.5.2",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "specs/011-audit-and-source-inspection.md",
+    "id": "SP-11",
+    "from": "0.10.1",
+    "to": "0.10.2",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "specs/012-failure-and-evaluation.md",
+    "id": "SP-12",
+    "from": "0.4.1",
+    "to": "0.4.2",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "specs/013-scoped-inspection.md",
+    "id": "SP-13",
+    "from": "0.6.1",
+    "to": "0.6.2",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "specs/README.md",
+    "id": "SPEC-INDEX",
+    "from": "0.8.1",
+    "to": "0.8.2",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "docs/ux/flows/ai-qa-flow.md",
+    "id": "UX-FLOW-AI-03",
+    "from": "0.9.1",
+    "to": "0.9.2",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "docs/ux/flows/board-flow.md",
+    "id": "UX-FLOW-BOARD-01",
+    "from": "0.10.1",
+    "to": "0.10.2",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "docs/ux/flows/docs-flow.md",
+    "id": "UX-FLOW-DOCS-02",
+    "from": "0.9.1",
+    "to": "0.9.2",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "docs/ux/permission-matrix.md",
+    "id": "UX-PERM-MATRIX-02",
+    "from": "0.11.1",
+    "to": "0.11.2",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "docs/ux/personas.md",
+    "id": "UX-PERSONAS-01",
+    "from": "0.5.1",
+    "to": "0.5.2",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "docs/ux/wireframe-workplan.md",
+    "id": "UX-PLAN-01",
+    "from": "0.4.1",
+    "to": "0.4.2",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "docs/ux/wireframes/README.md",
+    "id": "UX-WF-EX-01",
+    "from": "0.5.1",
+    "to": "0.5.2",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "docs/sdlc/reports/SP-03-2026-11-02-execution.md",
+    "id": "SP03-EXEC-01",
+    "from": "0.1",
+    "to": "0.1.1",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "docs/sdlc/reports/SP-03-2026-11-02-ui.md",
+    "id": "SP03-UI-01",
+    "from": "0.2",
+    "to": "0.2.1",
+    "kind": "input-version metadata only"
+  },
+  {
+    "path": "docs/sdlc/reports/SP-03-publication-2026-11-03.md",
+    "id": "SP03-PUB-REPORT-01",
+    "from": "0.2",
+    "to": "0.2.1",
+    "kind": "input-version metadata only"
+  }
+]

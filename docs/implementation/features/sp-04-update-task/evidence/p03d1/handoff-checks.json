@@ -1,0 +1,21 @@
+[
+  {
+    "command": "context:lint",
+    "exit_code": 0,
+    "log": "handoff-context-lint.log"
+  },
+  {
+    "command": "context:check",
+    "exit_code": 0,
+    "log": "handoff-context-check.log"
+  },
+  {
+    "command": "docs:lint",
+    "exit_code": 0,
+    "log": "handoff-docs-lint.log"
+  },
+  {
+    "command": "scoped git diff --check",
+    "exit_code": 0
+  }
+]

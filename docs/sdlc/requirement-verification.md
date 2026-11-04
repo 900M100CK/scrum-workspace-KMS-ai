@@ -1,8 +1,8 @@
 # Functional and alternate-flow verification design
 
 **Artifact ID:** VERIFY-01
-**Version/date:** 0.12 Draft · 2 November 2026
-**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.9; UC-02 v0.8; TEST-08 v0.24; ADR-0007 through ADR-0017; release-scope v0.2.
+**Version/date:** 0.12.1 Draft · 3 November 2026
+**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.10.1; UC-02 v0.8.2; TEST-08 v0.24.1; ADR-0007 through ADR-0017; release-scope v0.2.; Proposed ADR-0028 v0.1
 **Status:** Verification design with bounded SP-01 and SP-02 handler/DOM/browser evidence; complete application acceptance remains open. No independent approval.
 **Trace:** BR-01 through BR-15; SC-01 through SC-08 through TEST-COVERAGE-01.
 
@@ -55,11 +55,11 @@ For every applicable mutation add authority denial, stale revision, replay, owni
 | FR-37 / AC-37 | UC-01 sign-out | TC-01 | Old session is unusable after sign-out; repeated sign-out cannot renew it. Defined. |
 | FR-38 / AC-38 | UC-02 add / Alt-1 | TC-03, TC-24 | New membership enables project-shared access, not restricted grant; re-add restores no old individual capability, grant or assignment. Defined. |
 | FR-39 / AC-39 | UC-02 remove | TC-03, TC-14 | Removal atomically invalidates every individually granted capability/read grant, clears current assignees, bumps task revisions and persists minimum audit; history survives, rejoin restores none, and last-manager removal rejects. Defined. |
-| FR-40 / AC-40 | UC-03 Alt-1 | TC-07, TC-19 | Authorised edit visible after refresh; stale edit preserves newer content. Defined. |
+| FR-40 / AC-40 | UC-03 Alt-1 | TC-07, TC-19 | Separate edit grant plus current membership/read and Backlog placement; create/creator/role implies no edit. Refresh shows edits; new stale write conflicts. Retain original200 including title/description with current read/action replay after later revisions; revoked replay denied. Specified, not executed. |
 | FR-41 / AC-41 | UC-03 Alt-2 | TC-07, TC-19 | Move third item before first; read relative order and unchanged content, with stale/replay checks. Defined. |
 | FR-42 / AC-42 | UC-05 complete | TC-16, TC-21 | One atomic Completed/time plus unfinished To Do return, task revisions and audit; Done association preserved; rollback and same-key replay verified. Defined. |
-| FR-43 / AC-43 | UC-04 assignee | TC-13, TC-19 | Current member and unassigned persist; nonmember rejected; removal races assignment under serialization, clears current assignment and bumps revision while preserving history. Defined. |
-| FR-44 / AC-44 | UC-04 blocker / Alt-2 | TC-08 | Actor/time/history persist; Open-Resolved and Resolved-Open give correct latest status; no Open plan mistaken for outcome. Defined. |
+| FR-43 / AC-43 | UC-04 assignee | TC-13, TC-19 | Assignment grant plus enabled current same-project target or null; unknown/nonmember/foreign/disabled rejected uniformly after scope checks. Both removal-race orders clear assignees/revisions and preserve history; rejoin restores none. Current-authority original replay does not restore/revalidate historical target. Specified, not executed. |
+| FR-44 / AC-44 | UC-04 blocker / Alt-2 | TC-08 | Exact blocker action; actor/time/sequence/history persist with Task revision per distinct event and atomic audit/original201; repeated-key appends once. Open/Resolved highest-sequence truth, no plan mistaken for outcome; event201 then authorised current Task/history refresh. Permanent original replay rechecks current read/action. Specified, not executed. |
 | FR-45 / AC-45 | UC-07 withdrawn branch | None | Withdrawn under ADR-0009; immutable replacement assertions remain AC-11. |
 | FR-46 / AC-46 | UC-09 open citation | TC-05, TC-06 | Exact permitted passage/document/version matches saved citation; no silent redirect to newer version. Defined. |
 | FR-47 / AC-47 | UC-07 Alt-4 | TC-05, TC-23 | Explicit historical selection returns permitted historical labels; ordinary selection remains Current-only. Defined. |
@@ -201,3 +201,7 @@ UI/controller/actual HTTPS and isolated Edge evidence covers fresh current views
 | Current Backlog reconstruction and permission-aware reads | P05 107-row numeric/UUID/current-location/blocker/cursor/member tests; P07 read watermark/append schedule; P08 fresh first-page restart. |
 
 UC-03 EX-01 and EX-02 now have bounded creation evidence. EX-03/Alt-1 editing and Alt-2 reorder remain later SP-04/SP-05 scope. FR-50 is document classification, not Task creation. This does not close whole SC-01/SC-06, document/citation/provider/D-07 gates, SP02-F01 or independent/release acceptance. Historical scenarios and failures remain unchanged.
+
+## SP-04 P03A2 planned verification alignment — 3 November 2026
+
+Existing TC-07/08/13/14/16/18/19/22 and FR-09/40/43/44 trace now include [actual owner directions](../implementation/features/sp-04-update-task/owner-decisions.md) and [Proposed ADR-0028](../adr/0028-task-mutation-authority-and-outcomes.md). All new/refined assertions are Specified, not executed runtime results. Actual handler/DB/DOM/browser and SP-05 producer race evidence belongs to the future owning producers; source/schema passes close none of those gates. No test-case/EX/FR ID, priority, expected-answer fixture or historical result is changed.

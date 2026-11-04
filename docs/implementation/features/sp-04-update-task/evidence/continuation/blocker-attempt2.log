@@ -1,0 +1,18 @@
+▶ SP04 append-only blocker commands and scoped history pages
+  ✔ history needs membership not audit/action; commands require exact authority; strict validation (68.2816ms)
+  ✔ retrospective resolution, repeated Open and later Resolved append every distinct event; sequence is truth (397.9524ms)
+  ✔ event/task/audit/outcome faults roll back entire append and retry uses original identity (529.1775ms)
+  ✔ concurrent writes conflict; duplicate keys append once; default outcome canonicalizes null (165.7109ms)
+  ✔ ascending pages bind actor/task/full dataset; current login survives but stale/foreign/malformed fails (1713.6892ms)
+  ✔ expired signed cursors, missing signing key and removal/rejoin deny or invalidate history (212.1392ms)
+  ✔ revision and sequence upper bounds reject writes; revoked replay denies (143.3211ms)
+  ✔ actual history read wait rechecks session before returning any page (509.1292ms)
+✔ SP04 append-only blocker commands and scoped history pages (10181.3232ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10673.7748

@@ -1,0 +1,40 @@
+{
+  "artifact_id": "SP04-COORD-CHECKS",
+  "version": "0.1",
+  "date": "2026-11-03",
+  "timezone": "Asia/Saigon",
+  "branch": "codex/sp-04",
+  "head": "6b837fd52e01709f72bfe2de6cb96f0e9cc52653",
+  "node": "24.21.0",
+  "docs_lint": {
+    "command": "node scripts/docs/verify-docs.mjs",
+    "exit_code": 0,
+    "log": "evidence/coordination-docs-lint.log"
+  },
+  "metadata": {
+    "command": "node scripts/docs/docs-metadata.mjs --check",
+    "exit_code": 0,
+    "log": "evidence/coordination-metadata-final.log"
+  },
+  "local_links": {
+    "files": 4,
+    "targets": 38,
+    "missing": []
+  },
+  "whitespace": {
+    "exit_code": 0,
+    "log": "evidence/coordination-whitespace.log"
+  },
+  "preserved_source_paths": 174,
+  "changed_runtime_sources": [],
+  "antigravity": {
+    "assignment": "Written; ready for manual delivery",
+    "receipt": "Not confirmed",
+    "result_exists": false
+  },
+  "unrun": [
+    "No docs-test rerun; documentation-only update checked with docs lint/metadata/local targets",
+    "No application/build/DB/browser/concurrency/load/provider/evaluation checks",
+    "No external dispatch or independent acceptance"
+  ]
+}

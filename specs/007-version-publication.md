@@ -1,9 +1,9 @@
 # Revise and retire a knowledge version
 
 **Artifact ID:** SP-07  
-**Version/date:** 0.6 Draft · 18 October 2026
+**Version/date:** 0.6.2 Draft · 3 November 2026
 **Status:** Owner-confirmed lifecycle direction; handlers and full acceptance unimplemented.\
-**Inputs:** PRD-01 v0.9; ADR-0009/0011; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-07--revise-and-retire-a-knowledge-version); [contract pack](../contracts/README.md); PLAN-01.; Proposed ADR-0022
+**Inputs:** PRD-01 v0.10.1; ADR-0009/0011; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-07--revise-and-retire-a-knowledge-version); [contract pack](../contracts/README.md); PLAN-01.; Proposed ADR-0022
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 2.  

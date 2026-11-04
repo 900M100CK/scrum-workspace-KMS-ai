@@ -1,0 +1,28 @@
+✔ all registered docs and diagram pairs pass (993.4434ms)
+✔ preflight exception counts agree with current use-case definitions (1.2246ms)
+✔ architecture FR trace rows stay inside one continuous Markdown table (0.6768ms)
+✔ unselected retrieval mechanisms need explicit status in current text (0.9001ms)
+✔ Draw.io status belongs to its own label, not an unrelated cell on the same XML line (0.5018ms)
+✔ Sources contains every body ADR, including shorthand and ranges, not just the highest ID (0.5581ms)
+✔ manifest version/ADR changes propagate to all generated inventories and both diagram headers (13.9825ms)
+✔ AI checkpoint sources retain the unavailable, partial-answer and member-removal decisions (0.7519ms)
+✔ use-case associations are undirected; generalization/include retain direction and native UML style (45.3736ms)
+✔ operation references fail on facade path/ID or actual node label drift (0.5013ms)
+✔ input headers name the latest cited ADR and current input versions (0.3926ms)
+✔ real Mermaid parser rejects invalid syntax (3.1564ms)
+✔ flowchart adapter compares labels, direction and parallel-edge counts (8.2104ms)
+✔ invalid XML and dangling/undirected edges fail closed (0.6797ms)
+✔ current version drift and missing rows fail; historical versions are allowed (0.2798ms)
+✔ journey actors and scores are compared, not merely grammar-checked (4.4789ms)
+✔ current prose references cannot disagree with headers while historical snapshots can (0.2799ms)
+✔ current linked input aliases use target versions while snapshot evidence stays historical (0.1931ms)
+✔ design pairs reject reversed sequence handoffs and changed native multiplicities (56.5277ms)
+✔ physical diagram entity inventory matches owned CREATE TABLE definitions (4.9609ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3083.8604

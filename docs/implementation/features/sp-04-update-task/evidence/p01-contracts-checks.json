@@ -1,0 +1,8 @@
+{
+  "name": "contracts-test",
+  "command": "node --test tests/contracts/contract-schemas.test.mjs tests/contracts/handoff-bytes.test.mjs",
+  "exit_code": 0,
+  "started_utc": "2026-11-03T12:20:10.9158737Z",
+  "duration_seconds": 2.0587571,
+  "log": "evidence/p01-contracts-test.log"
+}

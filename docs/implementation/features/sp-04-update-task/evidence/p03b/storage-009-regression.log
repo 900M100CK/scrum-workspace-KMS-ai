@@ -1,0 +1,17 @@
+▶ P03B additive 009 task origins, permanent typed results and safe refusal
+  ✔ legacy task, key and any author grant each refuse before DDL without removing rows (6872.6197ms)
+  ✔ forward, repeated upgrade and empty-compatible reverse preserve old migrations and project receipts (6894.6807ms)
+  ✔ each retained result, author grant, author audit or task business audit independently blocks down (52.3624ms)
+  ✔ typed original Task outcome binds task identity and project snapshot, with immutable indefinite retention (83.4726ms)
+  ✔ total SQL validation rejects missing/null/extra/type/origin/location/revision errors (186.664ms)
+  ✔ immutable server origin and complete rollback preserve generation/task/audit/result atomicity (69.1378ms)
+  ✔ existing project/member/protected result shapes and owner-only author audit stay intact (50.9011ms)
+✔ P03B additive 009 task origins, permanent typed results and safe refusal (19934.4492ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 20388.7326

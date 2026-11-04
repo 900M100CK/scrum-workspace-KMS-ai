@@ -1,0 +1,49 @@
+✖ all registered docs and diagram pairs pass (684.6231ms)
+✔ preflight exception counts agree with current use-case definitions (3.084ms)
+✔ architecture FR trace rows stay inside one continuous Markdown table (2.105ms)
+✔ unselected retrieval mechanisms need explicit status in current text (1.1237ms)
+✔ Draw.io status belongs to its own label, not an unrelated cell on the same XML line (1.6627ms)
+✔ Sources contains every body ADR, including shorthand and ranges, not just the highest ID (1.5173ms)
+✔ manifest version/ADR changes propagate to all generated inventories and both diagram headers (36.5885ms)
+✔ AI checkpoint sources retain the unavailable, partial-answer and member-removal decisions (1.8994ms)
+✔ use-case associations are undirected; generalization/include retain direction and native UML style (153.3018ms)
+✔ operation references fail on facade path/ID or actual node label drift (0.9627ms)
+✔ input headers name the latest cited ADR and current input versions (0.5092ms)
+✔ real Mermaid parser rejects invalid syntax (6.2195ms)
+✔ flowchart adapter compares labels, direction and parallel-edge counts (23.0301ms)
+✔ invalid XML and dangling/undirected edges fail closed (2.0456ms)
+✔ current version drift and missing rows fail; historical versions are allowed (0.7787ms)
+✔ journey actors and scores are compared, not merely grammar-checked (11.4736ms)
+✔ current prose references cannot disagree with headers while historical snapshots can (0.4821ms)
+✔ current linked input aliases use target versions while snapshot evidence stays historical (0.6498ms)
+✔ design pairs reject reversed sequence handoffs and changed native multiplicities (218.9446ms)
+✔ physical diagram entity inventory matches owned CREATE TABLE definitions (5.6045ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 19
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3763.5436
+
+✖ failing tests:
+
+test at tests\docs\docs.test.mjs:14:1
+✖ all registered docs and diagram pairs pass (684.6231ms)
+  AssertionError [ERR_ASSERTION]: Linked input version drift in docs/sdlc/references/document-review-register.md: ../artifact-register.md
+  
+  '0.115' !== '0.117'
+  
+      at checkLinkedInputVersions (file:///D:/scrum-workspace-KMS-ai/scripts/docs/verify-docs.mjs:249:42)
+      at verifyDocs (file:///D:/scrum-workspace-KMS-ai/scripts/docs/verify-docs.mjs:306:5)
+      at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/docs/docs.test.mjs:15:3)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '0.115',
+    expected: '0.117',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

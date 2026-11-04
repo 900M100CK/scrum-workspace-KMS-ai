@@ -1,0 +1,71 @@
+# Current diagram consistency review
+
+**Artifact ID:** DGM-REVIEW-02
+**Version/date:** 0.1.1 Draft · 2 November 2026
+**Status:** Author review; not independent approval or runtime acceptance.
+**Inputs:** PRD-01 (execution snapshot v0.7); UC-02 (execution snapshot v0.5); SAD-03 (execution snapshot v0.10); ADR-0007–ADR-0017, including ADR-0008/0012 v0.3; OWNER-Q-01 v0.1; Workspace OpenAPI v0.2.2 / Knowledge v0.2.3; current diagram manifest.
+
+The [10 October review](review.md) remains an unchanged historical snapshot. Its old source versions, cell names and CLI startup failure are not current conclusions. This review starts with use cases, then checks the Logical, Process, Development and Physical views plus their SC-01–SC-08 scenarios. These flowcharts and architecture sketches are design projections; they do not supply every UML view or prove application enforcement.
+
+## Recheck of RV-01 through RV-08
+
+| Finding | Current disposition | Evidence and limit |
+| --- | --- | --- |
+| RV-01 | Source defect corrected | FLOW-01/05 show application sessions, scoped retrieval, buffered output, full evidence including uncited context, immutable manifests outside guard and exact guarded matching. No browser token streaming is selected. Permission/transport enforcement remains Not run. |
+| RV-02 | Source defect corrected | FLOW-03 creates immediate immutable Current revisions and separates unsaved editor text from stored versions. SITE-01 v0.5 removes the remaining product-Draft explorer label; source reads use current read permission, not content-write. |
+| RV-03 | Source defect corrected | Document/read/board flows use scoped capabilities and project-shared/restricted classification, generic unknown/denied reads and fail-closed authority. ADR-0017 membership invalidation and last-manager protection are specified; runtime tests remain Not run. |
+| RV-04 | Listed facade paths checked against current OpenAPI | Exact operation mapping is below and in manifest operationRefs. UI sitemap routes are browser routes, not HTTP contract paths. Public facade paths are relative to /api; revision/idempotency fields remain contract inputs rather than implied by the drawing. |
+| RV-05 | Prior missing-y/overlap defect corrected | Current architecture stores have explicit coordinates; the old WD/title overlap is absent. Structural and rendered evidence for this revision is recorded below. Small legend text and print-scale readability remain limits. |
+| RV-06 | Old CLI startup block no longer current | Local Draw.io exports succeeded during OWNER-Q-01 reconciliation. New metadata/sitemap renders are reviewed separately below. Successful export does not establish visual acceptance of the whole set. |
+| RV-07 | Canonical path retained; inventory coverage repaired | use-case/use-case-diagram is canonical. The verifier explicitly excluded its Mermaid file because its directed-flowchart adapter did not handle UML associations/generalization/include. No documented scope waiver was found. DGM-UC-01 is now registered with a relation-aware adapter; no filename exclusion remains. |
+| RV-08 | Illustration labels corrected; full trace still open | Persona/journey scores are labelled illustrative, not measured research; AI inspector examples are placeholders. Exact diagram/ADR inputs are generated. Full claim/transition-to-AC semantics, print-scale readability and runtime evidence remain separate review work. |
+
+## Remaining visual finding — RV-09
+
+The current native use-case render has association/include routes crossing other nodes or labels; FLOW-03 also has long automatically routed lines through text. These are existing geometry problems exposed by the newly complete inventory/render review, not evidence of incorrect UML relation direction. The use-case adapter additionally found that Mermaid sanitised literal `<<include>>` into an empty-looking label; both formats now use the standard `«include»` label in v0.4. SITE-01's corrected explorer label fits its existing box and architecture has no title/store overlap.
+
+RV-09 remains **open for visual acceptance**: Stage 7 must reroute use-case and document-flow edges and inspect print-scale output. FLOW-01 still spans a wide layout with long return routes; small architecture legend text also needs print-scale review. Metadata sync preserves geometry and does not claim to repair these layouts. The generic structural validator reported zero warnings for use cases/FLOW-03 despite the visible problems, demonstrating why its score cannot close RV-09.
+
+## API operation mapping (RV-04)
+
+| Diagram node(s) | Operation ID | Method and facade path |
+| --- | --- | --- |
+| FLOW-01 Start | askQuestion | POST /knowledge/questions |
+| FLOW-01 Citation | openCitation | GET /knowledge/citations/{document_id}/{version_id}/{passage_id} |
+| FLOW-02 Move | setTaskState | POST /tasks/{task_id}/state |
+| FLOW-02 Block | recordBlocker | POST /tasks/{task_id}/blockers |
+| FLOW-03 Create | createDocument | POST /knowledge/documents |
+| FLOW-03 Read | getDocument | GET /knowledge/documents/{document_id} |
+| FLOW-03 Revise | reviseDocument | POST /knowledge/documents/{document_id}/versions |
+| FLOW-03 Ready | getReadiness | GET /knowledge/documents/{document_id}/versions/{version_id}/readiness |
+| FLOW-03 Policy | setClassification | POST /documents/{document_id}/classification |
+| FLOW-03 Policy | grantDocumentRead | POST /documents/{document_id}/read-grants |
+| FLOW-03 Policy | revokeDocumentRead | DELETE /documents/{document_id}/read-grants/{user_id} |
+| FLOW-03 Retire | archiveVersion | POST /knowledge/documents/{document_id}/versions/{version_id}/archive |
+| FLOW-03 Retire | deleteDocument | DELETE /knowledge/documents/{document_id} |
+
+FLOW-03 Policy condenses the repeated /documents/{document_id} prefix for read-grant paths; Retire condenses the second HTTP action. The mapping records those expansions explicitly. Shape/path agreement does not prove gateway routing, authorisation, concurrency or consumer/provider compatibility.
+
+## Current consistency-review recheck
+
+| Earlier item | Present text | Disposition |
+| --- | --- | --- |
+| C-2 | UC-09 steps 5/8/9/10 check the full evidence set, persist per-handoff provenance and include partially_answered | Text corrected; handlers Not run |
+| C-3 | SAD-03 v0.10 has current FR wording, FR-70/SP-08, ADR-0007–0017, permission_revision and independent English full-text keyword path | Text corrected; complete architectural semantics still need review |
+| C-4 | PRD-01 v0.7 AC-22/60/23/24/38/39/43 inline; UC-02 removal and EX-04 explicit | Text corrected; accepted baseline and runtime enforcement not inferred |
+| T-1–T-6 | TC-09 partial/none/invalid outcomes, TC-07/21 mixed allocation, UC-02 EX-04 and TC-13/14 last-manager, BR mappings and VERIFY-01 observations exist | Assertions Specified; zero application passes claimed |
+| Q-1/Q-2 | OWNER-Q-01 and ADR-0008/0012 v0.3; FLOW-01/02/05 | Owner direction recorded; TC-26 and additive manifest storage/relay enforcement remain unimplemented |
+
+## Metadata and 4+1 coverage
+
+manifest.json is the source for registered artifact IDs, versions, canonical paths, origins, ADR sets and checked operation references. `npm run docs:sync-metadata` generates diagram headers/native titles, child indexes, central diagram inventory and both current-version tables. `docs:lint` checks generated output without writing. Typed use-case relations preserve UML meaning; an association is undirected, generalization points toward the parent actor, and include points toward UC-11.
+
+The use-case scenario view is now included in version and relation lint. ARCH-01 supplies Logical/Physical projections; FLOW-01–05 supply Process projections. The Development view remains described in SAD repository/layer sections, with no dedicated implementation-component diagram or handler evidence. No additional diagram is invented to imply complete 4+1 verification.
+
+## Verification and remaining handoff
+
+Node 24.21.0 metadata check is idempotent (35 checked outputs, no changes). Diagram lint checks 9 source pairs / 21 registered artifacts, with 172 native nodes (including the use-case boundary) and 207 relations. All 13 listed operation mappings passed against current OpenAPI. Lint rejects unregistered sources and generated-output drift. Tests verify manifest propagation; focused negative cases cover ADR omissions, native-label terminology status, operation mapping and typed UML relation direction/style.
+
+All nine Draw.io exports returned exit 0 and their overviews were inspected. Diagnostic images are `.tmp/review-diagrams/metadata-DGM-*.png`; structural-validator output is retained in `.tmp/review-diagrams/metadata-validation.json` (untracked diagnostics). Static validation returned zero errors; crossing warnings remain for FLOW-01 (15), FLOW-02 (1), FLOW-04 (2) and FLOW-05 (3). Those counts do not detect every rendered through-node route; RV-09 remains open. Architecture and sitemap have zero static errors/warnings.
+
+The combined Node 24.21.0 docs/context run passed 46/46 tests (15 docs, 31 context). Context lint/check, generator syntax and diff whitespace checks also passed; the Register records the same evidence. Application, database migration, provider, permission/concurrency and browser-handler tests were Not run. Handoff remains open for practical printing/readability, independent review, full transition/AC trace and runtime behaviour. Retain negative results; do not close those gaps from metadata checks.

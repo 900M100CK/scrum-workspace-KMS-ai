@@ -1,0 +1,139 @@
+▶ SP04 append-only blocker commands and scoped history pages
+  ✔ history needs membership not audit/action; commands require exact authority; strict validation (83.3649ms)
+  ✔ retrospective resolution, repeated Open and later Resolved append every distinct event; sequence is truth (447.5824ms)
+  ✔ event/task/audit/outcome faults roll back entire append and retry uses original identity (584.3487ms)
+  ✔ concurrent writes conflict; duplicate keys append once; default outcome canonicalizes null (220.3665ms)
+  ✖ ascending pages bind actor/task/full dataset; current login survives but stale/foreign/malformed fails (1782.1443ms)
+  ✖ expired signed cursors, missing signing key and removal/rejoin deny or invalidate history (126.0728ms)
+  ✔ revision and sequence upper bounds reject writes; revoked replay denies (155.1069ms)
+  ✔ actual history read wait rechecks session before returning any page (497.1666ms)
+✖ SP04 append-only blocker commands and scoped history pages (10302.0438ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 6
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10741.9565
+
+✖ failing tests:
+
+test at tests\workspace\task-blocker.test.mjs:50:10
+✖ ascending pages bind actor/task/full dataset; current login survives but stale/foreign/malformed fails (1782.1443ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+  -   2,
+  -   3,
+  -   4,
+  -   5,
+  -   6,
+  -   7,
+  -   8,
+  -   9,
+      10,
+      11,
+      12,
+      13,
+      14,
+  ...
+      19,
+  +   2,
+      20,
+      21,
+      22,
+      23,
+      24,
+  ...
+      29,
+  +   3,
+      30,
+      31,
+      32,
+      33,
+      34,
+  ...
+      39,
+  +   4,
+      40,
+      41,
+      42,
+      43,
+      44,
+  ...
+      49,
+  +   5,
+      50,
+  +   51,
+  +   52,
+  +   6,
+  +   7
+    ]
+  
+      at TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-blocker.test.mjs:52:94)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-blocker.test.mjs:50:2)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+      1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+      2, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
+      3, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39,
+      4, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49,
+      5, 50, 51, 52,  6,  7
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11,
+      12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
+      23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33,
+      34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+      45, 46, 47, 48, 49, 50
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\workspace\task-blocker.test.mjs:58:10
+✖ expired signed cursors, missing signing key and removal/rejoin deny or invalidate history (126.0728ms)
+  AssertionError [ERR_ASSERTION]: The validation function is expected to return "true". Received false
+  
+  Caught error:
+  
+  Error: Session persistence unavailable
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-blocker.test.mjs:64:3)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-blocker.test.mjs:58:2)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Session persistence unavailable
+        at ownedTransaction (file:///D:/scrum-workspace-KMS-ai/services/workspace/src/session/database.ts:28:9)
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async WorkspaceProjectStore.transaction (file:///D:/scrum-workspace-KMS-ai/services/workspace/src/projects/store.ts:31:16)
+        ... 5 lines matching cause stack trace ...
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+      [cause]: Error: access_unavailable
+          at file:///D:/scrum-workspace-KMS-ai/services/workspace/src/tasks/store.ts:148:132
+          at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+          at async ownedTransaction (file:///D:/scrum-workspace-KMS-ai/services/workspace/src/session/database.ts:24:16)
+          at async WorkspaceProjectStore.transaction (file:///D:/scrum-workspace-KMS-ai/services/workspace/src/projects/store.ts:31:16)
+          at async waitForActual (node:assert:646:5)
+          at async strict.rejects (node:assert:769:25)
+          at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-blocker.test.mjs:64:3)
+          at async Test.run (node:internal/test_runner/test:1409:7)
+          at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-blocker.test.mjs:58:2)
+          at async Test.run (node:internal/test_runner/test:1409:7)
+    },
+    operator: 'rejects',
+    diff: 'simple'
+  }

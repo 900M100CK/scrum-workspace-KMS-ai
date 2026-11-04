@@ -1,0 +1,305 @@
+# SP-04 bounded design and owner decision batch
+
+**Artifact ID:** SP04-DECISION-BATCH\
+**Version/date:** 0.2 Draft · 3 November 2026\
+**Status:** Proposed reviewable mechanics; all policy choices remain **Proposed** with unselected owner disposition. No implementation authority or runtime code edits. Execution status belongs solely to the parent plan.\
+**Inputs:** [FEAT-SP04-01](plan.md) v0.6; [Preserved v0.1 snapshot](evidence/p02-decision-batch-v0.1.txt); [SP04-P01-MAP](source-review.md) v0.2; [SP04-AG02-DISPOSITION](reviews/ag02-codex-final-disposition.md) v0.1; [SP04-P02-DISPOSITION](reviews/p02-codex-disposition.md) v0.1; current Workspace v0.2.12; migrations 001–009; canonical [SP-04](../../../../specs/004-update-task.md) v0.7.1; [UC-04](../../../sdlc/use-cases.md#L151-205).\
+**Trace:** SP-04.1–04.2, FR-09/AC-09, FR-40/AC-40, FR-43/AC-43, FR-44/AC-44; supporting FR-03/31/59/68, BR-01/02/03/06/10/11/14, UC-04 main/Alt-1/Alt-2/EX-01–04, TC-07/08/14/16/18/19/22, PLAN-01 Month 1 / M-02–M-03.
+
+---
+
+## 1. Concrete owner decisions and policy resolutions
+
+All items below represent reviewable design options. In accordance with project governance, they are recorded as **Proposed** and remain unselected until the project owner explicitly records a disposition.
+
+| Item | Proposed recommendation | Alternatives considered | Owner Disposition | Target task |
+|---|---|---|---|---|
+| **D-01 Action authority naming & provisioning** (C05 / R04) | Introduce four granular project capabilities in `workspace.capability_grant`: `'task-edit'`, `'task-state'`, `'task-assign'`, `'task-blocker'`. Issue/revocation enforced by DB trigger `protect_mutation_capability_provisioning` requiring `current_user = 'workspace_owner'` (runtime removal allowed). Caller must be an active project member (`membership.active = true`) **AND** hold the specific capability grant (`Work Operator` in UC-04). | Alternative A: Single coarse `'task-mutate'` capability.<br>Alternative B: Reuse existing `backlog-author` for Backlog content editing (`editTask` on Backlog items) and introduce separate capabilities only for state/assignment/blocker. | **Proposed (Unselected)** | P03C, P03D |
+| **D-02 Target assignee eligibility & disclosure** (AC-43 / C05 / R04) | Baseline requirement: Target assignee must be a current project member (`membership.active = true`). Proposed addition: Also check `NOT auth_account.disabled` at the transaction boundary. If target is invalid (nonexistent, nonmember, or disabled), return a single bounded error: `400 validation_failed`. Do not distinguish unknown vs nonmember vs disabled users, preventing account-existence disclosure outside the project. (404 is reserved strictly for nonexistent project/task). | Alternative: Check `membership.active` only (strict literal AC-43 text). | **Proposed (Unselected)** | P03D3 |
+| **D-03 Typed outcome storage & Migration 010** (Finding 1 / C05 / R01 / R02) | Additive migration `010-task-mutation-outcomes.up.sql`: Total boolean functions `valid_task_outcome_snapshot` (for HTTP 200 Task snapshots) and `valid_blocker_outcome_snapshot` (for HTTP 201 Blocker snapshots). Extend `project_outcome_shape` CHECK constraint preserving existing `createProject` (201), `addMember` (201), `removeMember` (204), and `createTask` (201) rules. Update `protect_project_outcome` trigger to check both OLD and NEW operations for all 8 operations. Rollback refused if any new semantic data exists. | Alternative: Unvalidated JSON snapshots or allowing NULL outcome snapshots (refuted by NFR-03/BR-02). | **Proposed (Unselected)** | P03B |
+| **D-04 Conflict response & current-state read** (C01 / C02) | On optimistic revision collision (`expected_revision !== task.revision`), emit `ProjectFault(409, 'state_conflict')` with standard `#/components/schemas/Error` body. Do not add ad-hoc `current_revision` property to 409 body. Client UI performs an authorized fresh `getTask` read upon receiving 409 to synchronize current state and revision. Similarly, `recordBlocker` 201 response returns `Blocker` event only; client reads fresh Task state separately. | Alternative: Inject ad-hoc fields into 409 or 201 responses (refuted: violates OpenAPI `additionalProperties: false` and risks permission leakage). | **Proposed (Unselected)** | P03A, P03D, P04 |
+| **D-05 Unknown outcomes & replay discipline** (C03 / R03) | Replay resolution strictly precedes new-write precondition checks. When request arrives with `Idempotency-Key`, server checks `idempotency_record`. If committed outcome exists: verify current read authority and return retained immutable outcome immediately, regardless of subsequent task revision or member removal. Client replay must preserve original `Idempotency-Key` and exact same request body. Never auto-retry with fresh key. | Alternative: Client generates new key on 503 (refuted: causes duplicate blocker events or invalid state jumps). | **Proposed (Unselected)** | P03B, P03D, P04 |
+| **D-06 Business no-ops, canonical hashing & bounds** (C06 / R03) | 1. Business no-ops: Empty `EditTask` (omitted title and description), same-value edit, same-value state, or same-value assignee retain a stable HTTP 200 Task snapshot co-committed in `idempotency_record`, but do **not** advance `task.revision` or emit `business_audit`. Subsequent replays return this stable snapshot.<br>2. Canonical hashing: Deterministic JSON serialization distinguishing omitted fields from explicit `null`.<br>3. Bounds: `wireRevision` enforces `1 <= revision <= 9007199254740991`. Blocker sequence enforces `1 <= sequence <= 9007199254740991`. | Alternative: Bump revision on empty edit (refuted: causes spurious optimistic collisions for concurrent viewers). | **Proposed (Unselected)** | P03B, P03D |
+| **D-07 Audit transition history** (FR-31 / UC-04 / R05) | Write atomic `business_audit` entries inside mutation transaction with structured references:<br>- `editTask`: `before_ref: 'title:<old>;description:<old_hash>;revision:<old>'`, `after_ref: 'title:<new>;description:<new_hash>;revision:<new>'`<br>- `setTaskState`: `before_ref: 'state:<old>;location:<old_kind>;revision:<old>'`, `after_ref: 'state:<new>;location:<new_kind>;revision:<new>'`<br>- `setAssignee`: `before_ref: 'assignee:<old_id|null>;revision:<old>'`, `after_ref: 'assignee:<new_id|null>;revision:<new>'`<br>- `recordBlocker`: `after_ref: 'event_id:<id>;status:<open|resolved>;sequence:<seq>'`<br>No standalone chart, scheduler, or estimate subsystem is added. | Alternative: Opaque `revision:N` only (refuted: cannot reconstruct historical state/assignee transitions). | **Proposed (Unselected)** | P03D, P04 |
+
+---
+
+## 2. Recommended technical baseline
+
+### 2.1 Complete transaction protocol and lock hierarchy
+
+Every task mutation executes within a single PostgreSQL transaction managed by `WorkspaceProjectStore.transaction` (`services/workspace/src/projects/store.ts`). Replay outcome verification strictly precedes new-write precondition checks:
+
+```mermaid
+flowchart TD
+    Step1["1. Singleton clock: auth_clock_state (FOR UPDATE via clockLock)"] --> Step2["2. Actor auth_account: lock_auth_account(actor_id)"]
+    Step2 --> Step3["3. Actor session: SELECT ... FROM session FOR UPDATE"]
+    Step3 --> Step4["4. Project row: SELECT ... FROM project FOR UPDATE (projectAccess)"]
+    Step4 --> Step5{"5. Idempotency Check:\nExisting committed outcome for\n(actor, operation, key)?"}
+    
+    Step5 -- "YES (Replay)" --> ReplayCheck["Verify payload_hash matches.\nVerify caller has current project read authority.\nawait guard() recheck session validity.\nRETURN retained immutable snapshot."]
+    
+    Step5 -- "NO (New Write)" --> Step6["6. Target auth_account (if setAssignee with non-null target):\nlock_auth_account(target_id)"]
+    Step6 --> Step7["7. Target membership (if setAssignee with non-null target):\nSELECT ... FROM membership FOR UPDATE"]
+    Step7 --> Step8["8. Target task row:\nSELECT ... FROM task WHERE task_id = $1 FOR UPDATE"]
+    Step8 --> Step9["9. Transaction Guard:\nawait guard() recheck session expiry after lock waits"]
+    Step9 --> Step10["10. Optimistic Concurrency Check:\nexpected_revision === task.revision\n(Throw 409 state_conflict if mismatch)"]
+    Step10 --> Step11["11. Preconditions & Business Validation:\nAssignee active, reopen rules, no-op detection"]
+    Step11 --> Step12["12. Business Execution:\nApply Task update (or no-op), increment revision,\nwrite business_audit, saveOutcome in idempotency_record"]
+```
+
+**Key Concurrency and Fault Invariants:**
+1. **Clock serialization:** Step 1 acquires the PostgreSQL row lock on `auth_clock_state`, serializing cooperating transactions across `services/workspace/`. This represents a bounded protocol observation for cooperating writers; it is not an untested claim of absolute deadlock immunity.
+2. **Session fault semantics (R05):** In `WorkspaceSessionStore.inspectInTransaction`, a clock fault or session denial commits the durable clock-fault latch and authentication audit record while withholding business effects. It does **not** erase or roll back the authentication fault evidence.
+3. **Replay precedence (R03):** Step 5 checks for an existing committed outcome *before* locking target accounts, before locking the task row, and before checking `expected_revision`. Replays of previously committed operations recover their original snapshot without being blocked by subsequent task revisions or target membership changes.
+4. **Post-wait guard:** Step 9 calls `await guard()`, re-evaluating session expiration after all lock waits. If expired, the transaction throws `ProjectFault(401/503)` before any business mutation or outcome write occurs.
+
+### 2.2 Additive Migration 010 specification (`010-task-mutation-outcomes.up.sql`)
+
+Migration 010 provides total boolean shape validation, extends outcome immutability, and establishes database-level authority issuance protection without regressing existing SP-02/SP-03 rules:
+
+```sql
+SET LOCAL search_path = workspace, pg_catalog;
+
+-- 1. Extend authority_provisioning_audit CHECK constraint
+ALTER TABLE authority_provisioning_audit
+  DROP CONSTRAINT authority_provisioning_audit_action_check,
+  ADD CONSTRAINT authority_provisioning_audit_action_check CHECK (
+    action IN (
+      'create-project',
+      'membership-manage',
+      'project-administrator',
+      'backlog-author',
+      'task-edit',
+      'task-state',
+      'task-assign',
+      'task-blocker'
+    )
+  );
+
+-- 2. DB-enforced issuance/revival protection for mutation capabilities (R04)
+CREATE OR REPLACE FUNCTION protect_mutation_capability_provisioning() RETURNS trigger
+LANGUAGE plpgsql AS $$
+BEGIN
+  IF NEW.action IN ('task-edit', 'task-state', 'task-assign', 'task-blocker')
+     AND NEW.valid AND current_user <> 'workspace_owner' THEN
+    RAISE EXCEPTION 'Task mutation capability provisioning requires private operator role' USING ERRCODE = '42501';
+  END IF;
+  RETURN NEW;
+END $$;
+
+CREATE TRIGGER private_mutation_capability
+  BEFORE INSERT OR UPDATE ON capability_grant
+  FOR EACH ROW EXECUTE FUNCTION protect_mutation_capability_provisioning();
+
+-- 3. Total boolean validator for Task HTTP 200 outcome snapshot (R02)
+CREATE OR REPLACE FUNCTION valid_task_outcome_snapshot(value jsonb, reference text) RETURNS boolean
+LANGUAGE plpgsql IMMUTABLE SET search_path = pg_catalog AS $$
+BEGIN
+  RETURN (
+    jsonb_typeof(value) = 'object'
+    AND value ?& ARRAY['task_id','project_id','type','title','description','state','assignee_id','blocked','revision','work_location','created_at']
+    AND value - ARRAY['task_id','project_id','type','title','description','state','assignee_id','blocked','revision','work_location','created_at'] = '{}'::jsonb
+    AND jsonb_typeof(value->'task_id') = 'string' AND value->>'task_id' = reference
+    AND (value->>'task_id')::uuid IS NOT NULL
+    AND jsonb_typeof(value->'project_id') = 'string' AND (value->>'project_id')::uuid IS NOT NULL
+    AND value->>'type' IN ('story','task','bug')
+    AND jsonb_typeof(value->'title') = 'string' AND length(btrim(value->>'title')) > 0
+    AND jsonb_typeof(value->'description') = 'string'
+    AND value->>'state' IN ('todo','in_progress','done')
+    AND (value->'assignee_id' = 'null'::jsonb OR (jsonb_typeof(value->'assignee_id') = 'string' AND (value->>'assignee_id')::uuid IS NOT NULL))
+    AND (value->'blocked' = 'true'::jsonb OR value->'blocked' = 'false'::jsonb)
+    AND jsonb_typeof(value->'revision') = 'number'
+    AND value->>'revision' ~ '^[1-9][0-9]*$' AND (value->>'revision')::numeric <= 9007199254740991
+    AND jsonb_typeof(value->'work_location') = 'object'
+    AND (
+      (
+        value->'work_location' ?& ARRAY['kind','position']
+        AND (value->'work_location') - ARRAY['kind','position'] = '{}'::jsonb
+        AND value->'work_location'->>'kind' = 'backlog'
+        AND jsonb_typeof(value->'work_location'->'position') = 'string'
+        AND value->'work_location'->>'position' ~ '^-?[0-9]+(\.[0-9]+)?$'
+      ) OR (
+        value->'work_location' ?& ARRAY['kind','sprint_id','position']
+        AND (value->'work_location') - ARRAY['kind','sprint_id','position'] = '{}'::jsonb
+        AND value->'work_location'->>'kind' IN ('sprint','completed')
+        AND jsonb_typeof(value->'work_location'->'sprint_id') = 'string'
+        AND (value->'work_location'->>'sprint_id')::uuid IS NOT NULL
+        AND jsonb_typeof(value->'work_location'->'position') = 'string'
+        AND value->'work_location'->>'position' ~ '^-?[0-9]+(\.[0-9]+)?$'
+      )
+    )
+    AND jsonb_typeof(value->'created_at') = 'string'
+    AND value->>'created_at' ~ '^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3}Z$'
+    AND to_char((value->>'created_at')::timestamptz AT TIME ZONE 'UTC','YYYY-MM-DD"T"HH24:MI:SS.MS"Z"') = value->>'created_at'
+  ) IS TRUE;
+EXCEPTION WHEN OTHERS THEN RETURN false;
+END $$;
+
+-- 4. Total boolean validator for Blocker HTTP 201 outcome snapshot (R02)
+CREATE OR REPLACE FUNCTION valid_blocker_outcome_snapshot(value jsonb, reference text) RETURNS boolean
+LANGUAGE plpgsql IMMUTABLE SET search_path = pg_catalog AS $$
+BEGIN
+  RETURN (
+    jsonb_typeof(value) = 'object'
+    AND value ?& ARRAY['event_id','task_id','status','description','outcome','actor_id','recorded_at','sequence']
+    AND value - ARRAY['event_id','task_id','status','description','outcome','actor_id','recorded_at','sequence'] = '{}'::jsonb
+    AND jsonb_typeof(value->'event_id') = 'string' AND value->>'event_id' = reference
+    AND (value->>'event_id')::uuid IS NOT NULL
+    AND jsonb_typeof(value->'task_id') = 'string' AND (value->>'task_id')::uuid IS NOT NULL
+    AND value->>'status' IN ('open','resolved')
+    AND jsonb_typeof(value->'description') = 'string'
+    AND (value->'outcome' = 'null'::jsonb OR jsonb_typeof(value->'outcome') = 'string')
+    AND jsonb_typeof(value->'actor_id') = 'string' AND (value->>'actor_id')::uuid IS NOT NULL
+    AND jsonb_typeof(value->'recorded_at') = 'string'
+    AND value->>'recorded_at' ~ '^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3}Z$'
+    AND to_char((value->>'recorded_at')::timestamptz AT TIME ZONE 'UTC','YYYY-MM-DD"T"HH24:MI:SS.MS"Z"') = value->>'recorded_at'
+    AND jsonb_typeof(value->'sequence') = 'number'
+    AND value->>'sequence' ~ '^[1-9][0-9]*$' AND (value->>'sequence')::numeric <= 9007199254740991
+  ) IS TRUE;
+EXCEPTION WHEN OTHERS THEN RETURN false;
+END $$;
+
+-- 5. Extend project_outcome_shape CHECK constraint preserving exact 009 shape (R01 / R02)
+ALTER TABLE idempotency_record DROP CONSTRAINT project_outcome_shape;
+ALTER TABLE idempotency_record ADD CONSTRAINT project_outcome_shape CHECK (((
+  operation = 'createTask' AND state = 'committed' AND expires_at = 'infinity'::timestamptz
+  AND payload_hash ~ '^[a-f0-9]{64}$' AND length(idempotency_key) > 0 AND result_ref IS NOT NULL
+  AND result_status = 201 AND valid_task_creation_snapshot(result_snapshot, result_ref)
+) OR (
+  operation IN ('editTask', 'setTaskState', 'setAssignee') AND state = 'committed' AND expires_at = 'infinity'::timestamptz
+  AND payload_hash ~ '^[a-f0-9]{64}$' AND length(idempotency_key) > 0 AND result_ref IS NOT NULL
+  AND result_status = 200 AND valid_task_outcome_snapshot(result_snapshot, result_ref)
+) OR (
+  operation = 'recordBlocker' AND state = 'committed' AND expires_at = 'infinity'::timestamptz
+  AND payload_hash ~ '^[a-f0-9]{64}$' AND length(idempotency_key) > 0 AND result_ref IS NOT NULL
+  AND result_status = 201 AND valid_blocker_outcome_snapshot(result_snapshot, result_ref)
+) OR (
+  operation IN ('createProject', 'addMember', 'removeMember') AND state = 'committed' AND expires_at = 'infinity'::timestamptz
+  AND payload_hash ~ '^[a-f0-9]{64}$' AND length(idempotency_key) > 0 AND result_ref IS NOT NULL
+  AND result_status IS NOT NULL AND (
+    (operation = 'removeMember' AND result_status = 204 AND result_snapshot IS NULL)
+    OR (operation IN ('createProject', 'addMember') AND result_status = 201 AND result_snapshot IS NOT NULL
+      AND jsonb_typeof(result_snapshot) = 'object' AND result_snapshot->>'project_id' = result_ref
+      AND result_snapshot ? 'revision' AND jsonb_typeof(result_snapshot->'revision') = 'number'
+      AND result_snapshot->>'revision' ~ '^[1-9][0-9]*$' AND (result_snapshot->>'revision')::numeric <= 9007199254740991
+      AND (
+        (operation = 'createProject' AND result_snapshot ?& ARRAY['project_id','name','description','revision']
+          AND result_snapshot - ARRAY['project_id','name','description','revision'] = '{}'::jsonb
+          AND jsonb_typeof(result_snapshot->'name') = 'string' AND jsonb_typeof(result_snapshot->'description') = 'string')
+        OR (operation = 'addMember' AND result_snapshot ?& ARRAY['project_id','user_id','role','revision']
+          AND result_snapshot - ARRAY['project_id','user_id','role','revision'] = '{}'::jsonb
+          AND jsonb_typeof(result_snapshot->'user_id') = 'string'
+          AND result_snapshot->>'role' IN ('product_owner','scrum_master','developer','viewer'))
+      )
+    )
+  )
+) OR (
+  operation NOT IN (
+    'createProject', 'addMember', 'removeMember', 'createTask',
+    'editTask', 'setTaskState', 'setAssignee', 'recordBlocker'
+  )
+  AND result_status IS NULL AND result_snapshot IS NULL
+)) IS TRUE);
+
+-- 6. Update protect_project_outcome trigger function (R02)
+CREATE OR REPLACE FUNCTION protect_project_outcome() RETURNS trigger LANGUAGE plpgsql AS $$
+BEGIN
+  IF OLD.operation IN (
+    'createProject','addMember','removeMember','createTask',
+    'editTask','setTaskState','setAssignee','recordBlocker'
+  ) OR (TG_OP = 'UPDATE' AND NEW.operation IN (
+    'createProject','addMember','removeMember','createTask',
+    'editTask','setTaskState','setAssignee','recordBlocker'
+  )) THEN
+    RAISE EXCEPTION 'Committed project/task outcome identity is immutable' USING ERRCODE = '23514';
+  END IF;
+  IF TG_OP = 'DELETE' THEN RETURN OLD; END IF;
+  RETURN NEW;
+END $$;
+```
+
+**Rollback refusal rules (`010-task-mutation-outcomes.down.sql`):**
+The down migration checks for any retained semantic rows before attempting reversal:
+- Fails with exception `23514` if rows exist in `idempotency_record` with operations `editTask`, `setTaskState`, `setAssignee`, or `recordBlocker`.
+- Fails with exception `23514` if rows exist in `capability_grant` or `authority_provisioning_audit` with the 4 mutation actions.
+- Fails with exception `23514` if rows exist in `blocker_event`.
+- If no retained semantic data exists, safely drops triggers/functions and restores Migration 009 constraints.
+
+### 2.3 Completed-Sprint reopening mechanics (`setTaskState` / R05)
+
+When client requests state transition for a task currently in a completed Sprint (`location_kind = 'completed'`):
+1. **Scope:** Reopening applies when the requested state is `todo` **OR** `in_progress`.
+2. **Location normalization:** Under migration 003 constraint `task_location_shape` (`003#L40-44`), `location_kind = 'completed'` strictly requires `state = 'done'`. Any transition to `state = 'todo'` or `state = 'in_progress'` automatically normalizes the task's location to `location_kind = 'backlog'` with `location_sprint_id = NULL`.
+3. **Backlog placement & generation:** Position in Backlog is assigned as `(SELECT COALESCE(MAX(position::numeric), 0) + 1 FROM task WHERE project_id = $1 AND location_kind = 'backlog')::text`. Existing trigger `advance_backlog_revision` (`003#L89-108`) automatically increments `project.backlog_revision`.
+4. **Completed allocation immutability:** Existing trigger `preserve_completed_allocation` (`003#L110-120`) prevents modifying rows in `sprint_allocation` whose `allocation_state = 'completed'`. The handler leaves the historical completed allocation row completely untouched.
+
+### 2.4 Blocker sequence allocation, safe bounds & reads (R05)
+
+1. **Monotonic sequence allocation:** In `recordBlocker`, sequence allocation runs under task row lock:
+   ```sql
+   SELECT COALESCE(MAX(sequence), 0) + 1 AS next_seq
+   FROM workspace.blocker_event
+   WHERE task_id = $1
+   ```
+   Safe integer bounds check: asserts `next_seq <= 9007199254740991`. If exceeded, rejects with 409 conflict.
+2. **Task revision effect:** Every committed `recordBlocker` increments `task.revision` by 1 and updates task timestamp, ensuring concurrent board viewers detect changes via optimistic concurrency.
+3. **Highest-sequence projection:** Handlers project `blocked = true` if and only if the event with the highest sequence has `status = 'open'`. Subsequent events ('open' or 'resolved') are strictly append-only.
+4. **History paging contract:** `listBlockerEvents` requires current project membership and read authority. Cursors are opaque tokens binding actor, project, task, and dataset version. Malformed cursor returns generic `400`; dataset change returns `409 state_conflict` without items.
+
+---
+
+## 3. Proposed contract and data support scope (P03A)
+
+Before writing runtime handlers, P03A coordinates the following bounded additions:
+
+| Path | Coordinated change | Rationale |
+|---|---|---|
+| `contracts/openapi/workspace.openapi.json` | Declare HTTP `413` (Payload Too Large) and `415` (Unsupported Media Type) under `responses` for `editTask`, `setTaskState`, `setAssignee`, and `recordBlocker`. | Aligns contract with Fastify guards and 8192-byte body size limits. |
+| `contracts/data-model.json` | Document blocker event status/sequence invariants and the 4 proposed capability actions. | Aligns contract data model with SQL schema. |
+| `specs/004-update-task.md` | Record coordinated contract, migration, and test paths. | Fulfills specification trace requirements. |
+
+---
+
+## 4. Decomposed implementation task breakdown (P03A–P08 / R06)
+
+P03 is refined into small, reviewable sequential slices:
+
+```mermaid
+flowchart LR
+    P02["P02 Design (Batch)"] --> P03A["P03A Contract Support"]
+    P03A --> P03B["P03B Migration 010 & Storage"]
+    P03B --> P03C["P03C Private Authority Provisioning"]
+    P03C --> P03D1["P03D1 Edit Task Handler"]
+    P03D1 --> P03D2["P03D2 Set State & Reopen Handler"]
+    P03D2 --> P03D3["P03D3 Set Assignee Handler"]
+    P03D3 --> P04["P04 Blocker Append & History"]
+    P04 --> P05["P05 Connected UI"]
+    P05 --> P06["P06 Concurrency & Failure Tests"]
+    P06 --> P07["P07 Regression Handoff"]
+    P07 --> P08["P08 SP-05 Integration Gate"]
+```
+
+| Sub-task / Producer | Closed planned file paths | Allowed existing seams | Verification criteria |
+|---|---|---|---|
+| **P03A** Contract support | None (contracts only) | `contracts/openapi/workspace.openapi.json`, `contracts/data-model.json`, `specs/004-update-task.md` | `npm run contracts:test`, `npm run context:check`, `npm run docs:lint`. Verify 413/415 declarations. |
+| **P03B** Owned persistence | `services/workspace/migrations/010-task-mutation-outcomes.up.sql`, `010-task-mutation-outcomes.down.sql`, `tests/workspace/task-mutation-storage.test.mjs` | `services/workspace/src/tasks/types.ts`, `services/workspace/src/tasks/outcomes.ts` | Disposable PG: Up, forward, idempotent replay, check constraint violations, rollback refusal on non-empty data. |
+| **P03C** Private authority | `tests/workspace/task-mutation-authority.test.mjs` | `services/workspace/src/projects/operator.ts`, `services/workspace/src/projects/cli.ts` | Test private operator provisioning of 4 capabilities; test DB trigger rejects non-owner issuance; test audit logging. |
+| **P03D1** Edit task | `tests/workspace/task-edit.test.mjs` | `services/workspace/src/tasks/store.ts`, `services/workspace/src/tasks/http.ts` | `editTask` handler: expected_revision check, no-op on identical/empty, immutable outcome replay, audit emission. |
+| **P03D2** Set state | `tests/workspace/task-state.test.mjs` | `services/workspace/src/tasks/store.ts`, `services/workspace/src/tasks/http.ts` | `setTaskState` handler: reopen from completed sprint to backlog (for todo and in_progress), preserve completed allocation, advance backlog revision. |
+| **P03D3** Set assignee | `tests/workspace/task-assignee.test.mjs` | `services/workspace/src/tasks/store.ts`, `services/workspace/src/tasks/http.ts` | `setAssignee` handler: active membership check, defense-in-depth disabled check, single 400 error response without disclosure, unassign handling. |
+| **P04** Blocker handlers | `tests/workspace/blocker-http.test.mjs` | `services/workspace/src/tasks/store.ts`, `services/workspace/src/tasks/http.ts` | `recordBlocker` monotonic sequence, safe upper bound, task revision bump; `listBlockerEvents` cursor pagination and generic 400/409 errors. |
+| **P05** Connected UI | `tests/workspace/task-mutation-ui.test.mjs` | `apps/web/src/tasks.ts`, `apps/web/src/TaskWorkspace.tsx` | React UI: title/description inline edit, state dropdown, assignee selector, blocker modal, fresh `getTask` read on conflict. |
+| **P06** Concurrency & failure | `tests/workspace/task-mutation-concurrency.test.mjs` | Shared test fixtures | Races: `removeMember` racing `setAssignee`; stale revision conflicts; commit timeout recovery with original key. |
+| **P07** Regression handoff | Dated execution report under `evidence/` | Regression test suites | Typecheck, build, project suites, DOM/browser tests, final trace verification. |
+| **P08** SP-05 integration | Future test suite | Real SP-05 completion handlers | Full verification of completed-sprint reopening against real SP-05 producers. |
+
+---
+
+## 5. Verification status and limits (R07)
+
+### Verification status:
+- **Baseline requirements:** Active baseline has **69 requirements** (with 1 withdrawn: FR-45).
+- **Structural context tests:** Context test suite comprises a separate **45-case structural test suite** in `tests/context/context.test.mjs`.
+- **Documentation check:** This AG03 document correction is a read-only documentation task. No tests were executed during this correction turn, and no runtime code was modified.
+- **Source preservation:** All 174 baseline source paths, migrations 001–009, and historical reports remain intact.

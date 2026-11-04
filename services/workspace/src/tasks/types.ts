@@ -6,3 +6,15 @@ export interface Task {
  work_location:WorkLocation;created_at:string;
 }
 export interface TaskList {items:Task[];next_cursor:string|null;backlog_revision:string}
+export interface Blocker {
+ event_id:string;task_id:string;status:'open'|'resolved';description:string;outcome:string|null;
+ actor_id:string;recorded_at:string;sequence:number;
+}
+export type TaskMutationOperation='editTask'|'setTaskState'|'setAssignee'|'recordBlocker';
+export type TaskMutationOutcome={status:200;body:Task;projectId:string}|{status:201;body:Blocker;projectId:string};
+
+export interface EditTask {title?:string;description?:string;expected_revision:number}
+export interface SetState {state:Task['state'];expected_revision:number}
+export interface SetAssignee {assignee_id:string|null;expected_revision:number}
+export interface RecordBlocker {status:Blocker['status'];description:string;outcome?:string|null;expected_revision:number}
+export interface BlockerEventList {items:Blocker[];next_cursor:string|null}

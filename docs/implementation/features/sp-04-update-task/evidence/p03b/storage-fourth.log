@@ -1,0 +1,52 @@
+▶ SP04-P03B additive010 mutation storage, real roles and permanent originals
+  ✔ legacy keys, invalidated grants, history and both audits refuse before DDL and preserve seeded rows (39.1949ms)
+  ✔ upgrade/repeat/reverse/reapply preserve009 receipts, definitions and prior checksums (7149.7306ms)
+  ✔ each retained mutation receipt/grant/audit/event independently refuses destructive down (60.7636ms)
+  ✔ total SQL validators reject NULL, every missing/extra/wrong field, unsafe values and malformed placement/time (288.078ms)
+  ✔ all valid Task locations/states and Blocker UTC precisions/nullable outcome retain exact wire snapshots (53.0614ms)
+  ✔ new-operation status/hash/key/state/expiry/ref constraints and OLD/NEW immutability are enforced (179.7337ms)
+  ✖ actor/operation/key/hash/Task/project/event binding rejects cross-scope replay without current-state substitution (111.057ms)
+  ✔ private action scope/uniqueness, runtime issue/revival/rewrite denial and real member removal/rejoin (252.7489ms)
+  ✔ Task/event/audit/result writes roll back together on audit or outcome persistence failure (41.441ms)
+  ✔ lost real COMMIT acknowledgement is unknown, with one durable original and no current-state replacement (41.8085ms)
+  ✔ old project/member/createTask and protected-handoff branches still function and old SQL checksums match (36.1452ms)
+✖ SP04-P03B additive010 mutation storage, real roles and permanent originals (14529.524ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 10
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 19616.0061
+
+✖ failing tests:
+
+test at tests\workspace\task-mutation-storage.test.mjs:96:10
+✖ actor/operation/key/hash/Task/project/event binding rejects cross-scope replay without current-state substitution (111.057ms)
+  error: insert or update on table "task" violates foreign key constraint "task_project_id_assignee_id_fkey"
+      at D:\scrum-workspace-KMS-ai\node_modules\pg-pool\index.js:45:11
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:105:3)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:96:2)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    length: 365,
+    severity: 'ERROR',
+    code: '23503',
+    detail: 'Key (project_id, assignee_id)=(240cdd44-c80c-4189-9156-e8134cafa1dc, d935a937-bf4d-4d45-947a-0546cf49e152) is not present in table "membership".',
+    hint: undefined,
+    position: undefined,
+    internalPosition: undefined,
+    internalQuery: undefined,
+    where: undefined,
+    schema: 'workspace',
+    table: 'task',
+    column: undefined,
+    dataType: undefined,
+    constraint: 'task_project_id_assignee_id_fkey',
+    file: 'ri_triggers.c',
+    line: '2599',
+    routine: 'ri_ReportViolation'
+  }

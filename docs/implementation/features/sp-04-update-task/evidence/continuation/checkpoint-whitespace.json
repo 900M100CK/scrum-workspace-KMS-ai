@@ -1,0 +1,27 @@
+[
+  {
+    "name": "whole-candidate-whitespace",
+    "command": [
+      "git",
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "exit_code": 2,
+    "output": "services/workspace/migrations/010-task-mutations.up.sql:145: new blank line at EOF.\n"
+  },
+  {
+    "name": "scoped-whitespace",
+    "command": [
+      "git",
+      "diff",
+      "--cached",
+      "--check",
+      "--",
+      ".",
+      ":(exclude)services/workspace/migrations/010-task-mutations.up.sql"
+    ],
+    "exit_code": 0,
+    "output": ""
+  }
+]

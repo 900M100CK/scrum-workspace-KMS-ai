@@ -1,0 +1,48 @@
+{
+  "fixtures": [
+    {
+      "fixture": "sp01-p08-test-f304d70821f5",
+      "volume": "sp01-p08-test-f304d70821f5-data",
+      "image": "pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966",
+      "postgres": "17.10 (Debian 17.10-1.pgdg12+1)",
+      "ceiling": "010"
+    },
+    {
+      "fixture": "sp01-p08-test-da325bcc2525",
+      "volume": "sp01-p08-test-da325bcc2525-data",
+      "image": "pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966",
+      "postgres": "17.10 (Debian 17.10-1.pgdg12+1)",
+      "ceiling": "explicit009 ->010"
+    }
+  ],
+  "inspections": [
+    {
+      "fixture": "sp01-p08-test-f304d70821f5",
+      "kind": "container",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "fixture": "sp01-p08-test-f304d70821f5",
+      "kind": "volume",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "fixture": "sp01-p08-test-da325bcc2525",
+      "kind": "container",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "fixture": "sp01-p08-test-da325bcc2525",
+      "kind": "volume",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

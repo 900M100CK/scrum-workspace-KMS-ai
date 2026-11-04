@@ -1,9 +1,9 @@
 # Central diagram index
 
 **Artifact ID:** UML-07
-**Version/date:** 0.22 Draft · 27 October 2026
+**Version/date:** 0.21.4 Draft · 3 November 2026
 **Status:** Draft; Ready for downstream inventory use; C4 primary views with a 4+1 coverage crosswalk are recommended; see the 17 October report for corrections and remaining design/implementation gates.
-**Source versions:** BRD English v1.0; PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; UX Docs v0.9 / sitemap v0.10 / personas v0.5 / matrix v0.11 / Board v0.10 / AI v0.9; ADR-0004 v0.2; ADR-0007–ADR-0017; Proposed ADR-0018–ADR-0023; PLAN-01 v0.4.
+**Source versions:** BRD English v1.0; PRD-01 v0.10.1; UC-02 v0.8.2; SAD-03 v0.16.2; UX Docs v0.9 / sitemap v0.10 / personas v0.5 / matrix v0.11 / Board v0.10 / AI v0.9; ADR-0004 v0.2; ADR-0007–ADR-0017; Proposed ADR-0018–ADR-0023; PLAN-01 v0.4.
 
 ## Historical Diagram-first design foundation — 17 October 2026
 
@@ -86,7 +86,7 @@ The system diagram inventory aligns with Philippe Kruchten's 4+1 Architectural V
 | **Process View** | DGM-FLOW-04 | [Draw.io](flowchart/permission-read-flow.drawio) / [Mermaid](flowchart/permission-read-flow.mmd) | Authoritative scope resolution, access denial, generic 404 | [docs/ux/permission-matrix.md](../../ux/permission-matrix.md) v0.11; SAD-03 §3.1, §3.2 (Flow 3) |
 | **Process View** | DGM-FLOW-05 | [Draw.io](flowchart/permission-ai-checkpoints.drawio) / [Mermaid](flowchart/permission-ai-checkpoints.mmd) | Four AI permission checkpoints and citation return to DGM-FLOW-04 | [docs/ux/permission-matrix.md](../../ux/permission-matrix.md) v0.11; SAD-03 §3.1 |
 | **Physical View** | DGM-ARCH-01 (Deployment aspect) | [Draw.io](architecture/service-composition.drawio) / [Mermaid](architecture/service-composition.mmd) | Host processes, PostgreSQL databases, network trust boundaries | [docs/architecture.md](../../architecture.md) §5 |
-| **+1 Scenarios View** | UC-02 diagram | [Draw.io](use-case/use-case-diagram.drawio) / [Mermaid](use-case/use-case-diagram.mmd) | Actors and 13 system use cases driving architectural validation | [UC-02 v0.8](../use-cases.md); SAD-03 §6.1 |
+| **+1 Scenarios View** | UC-02 diagram | [Draw.io](use-case/use-case-diagram.drawio) / [Mermaid](use-case/use-case-diagram.mmd) | Actors and 13 system use cases driving architectural validation | [UC-02 v0.8.2](../use-cases.md); SAD-03 §6.1 |
 | **+1 Scenarios View** | DGM-JOURNEY-01 | [Draw.io](user-journey/core-user-journeys.drawio) / [Mermaid](user-journey/core-user-journeys.mmd) | End-to-end user journeys validating cross-view behaviors | [docs/ux/personas.md](../../ux/personas.md) v0.5; SAD-03 §6.1 |
 
 ## Inventory and Trace
@@ -168,15 +168,15 @@ Current filesystem inspection found eight Draw.io files in the five type folders
 <!-- BEGIN GENERATED:artifact-versions -->
 | Artifact ID | Version | Canonical source |
 | --- | --- | --- |
-| UML-07 | v0.22 | [Source](README.md) |
-| REG-00 | v0.103 | [Source](../artifact-register.md) |
-| SAD-03 | v0.16 | [Source](../../architecture.md) |
-| UX-PERM-MATRIX-02 | v0.11 | [Source](../../ux/permission-matrix.md) |
-| UX-PERSONAS-01 | v0.5 | [Source](../../ux/personas.md) |
-| UX-SITEMAP-03 | v0.10 | [Source](../../ux/sitemap.md) |
-| UX-FLOW-AI-03 | v0.9 | [Source](../../ux/flows/ai-qa-flow.md) |
-| UX-FLOW-BOARD-01 | v0.10 | [Source](../../ux/flows/board-flow.md) |
-| UX-FLOW-DOCS-02 | v0.9 | [Source](../../ux/flows/docs-flow.md) |
+| UML-07 | v0.21.4 | [Source](README.md) |
+| REG-00 | v0.117 | [Source](../artifact-register.md) |
+| SAD-03 | v0.16.2 | [Source](../../architecture.md) |
+| UX-PERM-MATRIX-02 | v0.11.2 | [Source](../../ux/permission-matrix.md) |
+| UX-PERSONAS-01 | v0.5.2 | [Source](../../ux/personas.md) |
+| UX-SITEMAP-03 | v0.10.1 | [Source](../../ux/sitemap.md) |
+| UX-FLOW-AI-03 | v0.9.2 | [Source](../../ux/flows/ai-qa-flow.md) |
+| UX-FLOW-BOARD-01 | v0.10.2 | [Source](../../ux/flows/board-flow.md) |
+| UX-FLOW-DOCS-02 | v0.9.2 | [Source](../../ux/flows/docs-flow.md) |
 | DGM-ARCH-01 | v0.9 | [Source](architecture/service-composition.mmd) |
 | DGM-SITE-01 | v0.8 | [Source](sitemap/application-sitemap.mmd) |
 | DGM-FLOW-01 | v0.13 | [Source](flowchart/ai-qa-flow.mmd) |
@@ -185,13 +185,13 @@ Current filesystem inspection found eight Draw.io files in the five type folders
 | DGM-FLOW-04 | v0.9 | [Source](flowchart/permission-read-flow.mmd) |
 | DGM-FLOW-05 | v0.4 | [Source](flowchart/permission-ai-checkpoints.mmd) |
 | DGM-JOURNEY-01 | v0.4 | [Source](user-journey/core-user-journeys.mmd) |
-| PRD-01 | v0.9 | [Source](../PRD_SRS.md) |
-| UC-02 | v0.8 | [Source](../use-cases.md) |
+| PRD-01 | v0.10.1 | [Source](../PRD_SRS.md) |
+| UC-02 | v0.8.2 | [Source](../use-cases.md) |
 | DGM-UC-01 | v0.5 | [Source](use-case/use-case-diagram.mmd) |
-| DGM-REVIEW-02 | v0.1 | [Source](review-2026-10-16.md) |
-| DGM-REVIEW-03 | v0.1 | [Source](review-2026-10-17.md) |
-| DATA-04 | v0.16 | [Source](../data-design.md) |
-| DGM-DESIGN-01 | v0.1 | [Source](design-foundation-2026-10-17.md) |
+| DGM-REVIEW-02 | v0.1.1 | [Source](review-2026-10-16.md) |
+| DGM-REVIEW-03 | v0.1.1 | [Source](review-2026-10-17.md) |
+| DATA-04 | v0.16.1 | [Source](../data-design.md) |
+| DGM-DESIGN-01 | v0.1.1 | [Source](design-foundation-2026-10-17.md) |
 | DGM-C4-01 | v0.1 | [Source](c4/system-context.mmd) |
 | DGM-C4-02 | v0.1 | [Source](c4/containers.mmd) |
 | DGM-SEQ-01 | v0.2 | [Source](sequence/protected-handoff.mmd) |

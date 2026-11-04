@@ -1,0 +1,18 @@
+[
+  {
+    "name": "docs-lint-rerun",
+    "command": "node scripts/docs/verify-docs.mjs",
+    "exit_code": 0,
+    "started_utc": "2026-11-03T12:21:02.0210304Z",
+    "duration_seconds": 2.8031541,
+    "log": "evidence/p01-docs-lint-rerun.log"
+  },
+  {
+    "name": "docs-test-rerun",
+    "command": "node --test tests/docs/docs.test.mjs",
+    "exit_code": 0,
+    "started_utc": "2026-11-03T12:21:04.8281125Z",
+    "duration_seconds": 2.824263,
+    "log": "evidence/p01-docs-test-rerun.log"
+  }
+]

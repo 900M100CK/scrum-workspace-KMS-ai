@@ -1,0 +1,15 @@
+{
+  "observed_exit": 1,
+  "missing_on_first_pass": [
+    {
+      "file": "docs/implementation/features/sp-04-update-task/plan.md",
+      "target": "evidence/p03b/checks.json"
+    },
+    {
+      "file": "docs/implementation/features/sp-04-update-task/reviews/p03b-storage-result.md",
+      "target": "../evidence/p03b/checks.json"
+    }
+  ],
+  "cause": "Final artifact not yet written before local-target validation",
+  "resolution": "Write measured checks artifact first, then verify targets and persist final check results."
+}

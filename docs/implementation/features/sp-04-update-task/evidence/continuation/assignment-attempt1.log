@@ -1,0 +1,17 @@
+▶ SP04 actual assignment, current eligibility and removal races
+  ✔ scope/action before target eligibility and strict shape (178.9591ms)
+  ✔ enabled member/null assignment, no-op, exact historical replay and stale conflict (145.6435ms)
+  ✔ update/audit/outcome failure rolls back with recoverable same key (332.0504ms)
+  ✔ assign-first actual SQL schedule then removal clears assignment and replay never restores it (286.8225ms)
+  ✔ remove-first actual producer blocks assignment; rejoin restores no current assignment (192.5089ms)
+  ✔ concurrent assignments and duplicate keys; overflow and authority revocation (228.7303ms)
+  ✔ post-lock session expiry rejects new assignment (535.0555ms)
+✔ SP04 actual assignment, current eligibility and removal races (8384.8161ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8811.9792

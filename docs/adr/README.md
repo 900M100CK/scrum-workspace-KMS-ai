@@ -1,8 +1,8 @@
 # Architecture decision index
 
 **Artifact ID:** ADR-INDEX-01\
-**Version/date:** 0.2 Draft · 3 November 2026\
-**Inputs:** Existing ADR entries below; Proposed ADR-0027 v0.2; no change to existing decisions.
+**Version/date:** 0.3 Draft · 3 November 2026\
+**Inputs:** Existing ADR entries below; Proposed ADR-0027 v0.2; no change to existing decisions.; Proposed ADR-0028 v0.1
 
 Updated 3 November 2026. Owner-confirmed direction is distinct from implemented and tested behaviour. No commit or independent review is implied by this index.
 
@@ -46,3 +46,5 @@ The [business review](../analyst/business-review-2026-10-13.md) records the sour
 [ADR-0025: opaque session candidate](0025-opaque-session-candidate.md) — v0.5: owner-confirmed session policy direction and bounded P08/P09/P10 implementation; detailed adoption Proposed. Measured clock fault/recovery and KDF candidates retain trusted-time and application evidence gates.
 
 [ADR-0027: bounded task creation](0027-task-creation-foundation.md) — v0.2 Proposed. The owner selected private audited backlog-author, immutable server Task.created_at and permanent original-result retention. Bounded 009/create/read/UI verification is recorded in FEAT-SP03-01 and the SP-03 reports. Formal ADR/release/independent acceptance remains open; no other ADR adoption is implied.
+
+[ADR-0028: bounded Task mutations](0028-task-mutation-authority-and-outcomes.md) — v0.1 Proposed mechanics. Actual SP04-OWNER-01 D-01/D-02/D-03 directions select separate edit authority, enabled new assignees and permanent original mutation outcomes with current-authority replay. P03A2 aligns canonical sources only; provisioning, additive storage, mutation/history handlers, D-07 and SP-05 producer integration remain unverified. Existing ADRs are unchanged.

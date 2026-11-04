@@ -1,0 +1,134 @@
+{
+  "date": "2026-11-04",
+  "node": "v24.21.0",
+  "checks": [
+    {
+      "name": "typecheck-final",
+      "executable": "C:\\Users\\MCK\\AppData\\Local\\Temp\\kms-node24\\node-v24.21.0-win-x64\\node.exe",
+      "args": [
+        "node_modules/typescript/bin/tsc",
+        "-p",
+        "services/workspace/tsconfig.json",
+        "--noEmit"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "context-lint-1",
+      "executable": "C:\\Users\\MCK\\AppData\\Local\\Temp\\kms-node24\\node-v24.21.0-win-x64\\node.exe",
+      "args": [
+        "--check",
+        "scripts/verify-context.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "context-lint-2",
+      "executable": "C:\\Users\\MCK\\AppData\\Local\\Temp\\kms-node24\\node-v24.21.0-win-x64\\node.exe",
+      "args": [
+        "--check",
+        "scripts/context/verify-api-routing.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "context-lint-3",
+      "executable": "C:\\Users\\MCK\\AppData\\Local\\Temp\\kms-node24\\node-v24.21.0-win-x64\\node.exe",
+      "args": [
+        "--check",
+        "tests/context/context.test.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "context-check",
+      "executable": "C:\\Users\\MCK\\AppData\\Local\\Temp\\kms-node24\\node-v24.21.0-win-x64\\node.exe",
+      "args": [
+        "scripts/verify-context.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "context-test",
+      "executable": "C:\\Users\\MCK\\AppData\\Local\\Temp\\kms-node24\\node-v24.21.0-win-x64\\node.exe",
+      "args": [
+        "--test",
+        "tests/context/context.test.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "contracts-test",
+      "executable": "C:\\Users\\MCK\\AppData\\Local\\Temp\\kms-node24\\node-v24.21.0-win-x64\\node.exe",
+      "args": [
+        "--test",
+        "tests/contracts/contract-schemas.test.mjs",
+        "tests/contracts/handoff-bytes.test.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "metadata-sync",
+      "executable": "C:\\Users\\MCK\\AppData\\Local\\Temp\\kms-node24\\node-v24.21.0-win-x64\\node.exe",
+      "args": [
+        "scripts/docs/docs-metadata.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "metadata-check",
+      "executable": "C:\\Users\\MCK\\AppData\\Local\\Temp\\kms-node24\\node-v24.21.0-win-x64\\node.exe",
+      "args": [
+        "scripts/docs/docs-metadata.mjs",
+        "--check"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "docs-lint",
+      "executable": "C:\\Users\\MCK\\AppData\\Local\\Temp\\kms-node24\\node-v24.21.0-win-x64\\node.exe",
+      "args": [
+        "scripts/docs/verify-docs.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "docs-test",
+      "executable": "C:\\Users\\MCK\\AppData\\Local\\Temp\\kms-node24\\node-v24.21.0-win-x64\\node.exe",
+      "args": [
+        "--test",
+        "tests/docs/docs.test.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "combined-regression",
+      "executable": "C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe",
+      "args": [
+        "--test",
+        "--test-concurrency=1",
+        "tests/workspace/task-mutation-authority.test.mjs",
+        "tests/workspace/task-authority.test.mjs",
+        "tests/workspace/project-http.test.mjs",
+        "tests/workspace/task-mutation-storage.test.mjs"
+      ],
+      "exit": 0,
+      "log": "regression-first.log",
+      "scope": "Real disposable010 authority/storage, historical009 author and project HTTP fixtures; no valuable-data access."
+    }
+  ],
+  "earlier_attempts": [
+    {
+      "name": "authority-first",
+      "exit": 0,
+      "log": "authority-first.log",
+      "result": "13/13; final combined run adds stronger creator/precise dependency-failure assertions."
+    },
+    {
+      "name": "typecheck-first",
+      "exit": 2,
+      "log": "typecheck-first.log",
+      "reason": "Resolved project ID retained optional type; introduced a local resolved string without changing runtime scope or expectations. Final typecheck exit0."
+    }
+  ]
+}

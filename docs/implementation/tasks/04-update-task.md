@@ -1,9 +1,9 @@
 # SP-04: Update a task without stale overwrite and retain blocker resolution evidence.
 
 **Artifact ID:** IMPL-SP-04\
-**Version/date:** 0.1 Draft · 26 October 2026\
-**Status:** Breakdown only; all child steps Not started.\
-**Inputs:** [Canonical SP-04](../../../specs/004-update-task.md) v0.7; SPEC-INDEX v0.4; PRD-01 v0.9; [source register](../register.md); [decisions](../decisions.md).\
+**Version/date:** 0.2 Draft · 4 November 2026\
+**Status:** Current Task commands/history/UI checkpoint; whole-feature integration remains open. Actual status and evidence belong to FEAT-SP04-01.\
+**Inputs:** [Canonical SP-04](../../../specs/004-update-task.md) v0.7.4; SPEC-INDEX v0.4; PRD-01 v0.9; [source register](../register.md); [decisions](../decisions.md).\
 **Trace:** FR-09, FR-40, FR-43, FR-44; BR-03, BR-02, BR-06; SC-03, SC-04.\
 **Owner role:** Sequential implementer; no independent approval claimed.
 
@@ -62,3 +62,8 @@ Use [execution rules](../execution.md): real handlers/persisted state, relevant 
 Record command/runtime, source revision or dirty-worktree digest, fixture/config identity, asserted boundary, results/failed attempts, unrun checks and open decisions in a dated [handoff](../handoff-template.md). Link it from the child status row and update the [catalogue](README.md) when pack state changes.
 
 **Checklist/handoff:** Pass for bounded breakdown and canonical references; Gap for missing decisions and all application acceptance. Ready for preparation within these limits; no implementation, release completion or independent acceptance is claimed.
+
+
+## Current execution navigation
+
+[Owning plan](../features/sp-04-update-task/plan.md) v0.14 supersedes the initial Not started snapshot above. SP-04.1 source/design and bounded SP-04.2/03 Task handlers/UI have actual producer evidence; SP-04.4 still requires P08 actual SP-05 completion/allocation versus reopen integration. The owner requested a checkpoint commit and hotfix switch with that gate open. See the continuation report for exact checks and limitations; this is not full acceptance or an OD-11 deferral.

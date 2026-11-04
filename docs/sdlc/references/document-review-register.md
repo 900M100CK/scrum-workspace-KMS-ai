@@ -1,9 +1,9 @@
 # Supporting document review register
 
 **Artifact ID:** DOC-REVIEW-REG-01\
-**Version/date:** 0.44 Draft · 3 November 2026\
+**Version/date:** 0.57 Draft · 4 November 2026\
 **Status:** Review planning with bounded author rechecks recorded below; no full document-type review or approval.\
-**Inputs:** [Development rules](../../development-rules.md) v1.13; [PREFLIGHT-01](../../agent-preflight-checklist.md) v0.1; [REG-00](../artifact-register.md) v0.103; [SDLC-INDEX-01](../README.md) v0.3; [SDLC workflow](../../../agents/WORKFLOW.md), unversioned working guide.\
+**Inputs:** [Development rules](../../development-rules.md) v1.14; [PREFLIGHT-01](../../agent-preflight-checklist.md) v0.1; [REG-00](../artifact-register.md) v0.117; [SDLC-INDEX-01](../README.md) v0.3; [SDLC workflow](../../../agents/WORKFLOW.md) v0.2; AGENT-ALIGN-01 v0.1.\
 **Trace:** Supports navigation and review of existing BR-01–BR-15 / SC-01–SC-08 documentation; no new requirement, application slice or acceptance criterion.\
 **Owner role:** SDLC coordinator; review assignments remain unassigned.
 
@@ -137,6 +137,8 @@ REG-00 v0.87 registers the new feature plan/source review/owner proposal after t
 
 1 November report publication: registers two author-consolidated SP-01/SP-02 testing/audit reports and the bounded publication plan. Runtime counts retain their original dates/source captures; manual sheets are specified, not new passes. This does not assign an independent reviewer or close a review group.
 
+2 November agent alignment: linked REG-00/workflow inputs synchronised for [AGENT-ALIGN-01](../../implementation/features/agents-sdlc-alignment/plan.md). Agent source routing and stage responsibilities are revised; this metadata update does not revalidate historical findings, assign an independent reviewer or close any review group.
+
 ## SP-03 planning applicability
 
 The owner requested the three-template planning/task workflow and SP-03 documentation. Review FEAT-SP03-01/SP03-WBS-01/task briefs for source identity, bounded scope, Must-AC trace, decisions, task contracts and separate structural/runtime evidence. This is author verification only; independent review and workbook/standards certification remain unassigned/not run. Actual results live in the feature plan.
@@ -160,3 +162,36 @@ Current local reading sources: FEAT-SP03-01/entry/WBS 0.5, canonical SP-03 0.8, 
 ## SP-03 publication completion — 3 November 2026
 
 [PUB-SP03-01 v0.2](../../implementation/features/sp-03-publication/plan.md) and [SP03-PUB-REPORT-01 v0.2](../reports/SP-03-publication-2026-11-03.md) record actual verification, source commit a8b3192, successful GitHub CI, confirmed fast-forward into main and deletion of both SP-03 source branches. Parent FR-05/AC-05 / SP-03.1–03.4 / PLAN-01 Month 1 / M-02 is unchanged. Unrelated working files and the template gitlink are preserved. No deployment, complete master milestone or independent approval.
+
+## Historical SP-04 recorded owner choices and P03A assignment — 3 November 2026
+
+[FEAT-SP04-01 v0.8](../../implementation/features/sp-04-update-task/plan.md), FEAT-SP04-ENTRY v0.8, SP04-COORD-01 v0.6, SP04-P02 v0.6, [SP04-DECISION-BATCH v0.4](../../implementation/features/sp-04-update-task/decision-batch.md) and [SP04-OWNER-01 v0.1](../../implementation/features/sp-04-update-task/owner-decisions.md) record actual D-01/D-02/D-03 replies: edit authority is separate from create, new assignees must be enabled current project members, and original mutation outcomes are retained indefinitely with current authority checks. P02 design preparation is complete; detailed mechanics remain Proposed and unimplemented. Parent SP-04.1–04.2 / FR-09/40/43/44, supporting FR-03/31/59/68 / PLAN-01 Month 1 / M-02–M-03 remain the trace.
+
+[SP04-P03A v0.1](../../implementation/features/sp-04-update-task/tasks/P03A-contract-support.md) is the written Antigravity assignment for eight 413/415 response declarations across four future mutation operations and coordinated metadata only; manual delivery/execution is unconfirmed. [SP04-P03A2 v0.1](../../implementation/features/sp-04-update-task/tasks/P03A2-policy-source-alignment.md) is planned policy-source alignment before P03B, not dispatched. Current navigation: IMPL-FEATURES-01 v0.37, IMPL-REG-01 v0.42, IMPL-ROADMAP-01 v0.30, DOC-REVIEW-REG-01 v0.51, REG-00 v0.110. No runtime, migration, test-result acceptance, new FR, priority change or whole-feature completion.
+
+## Historical SP-04 P03A receipt reconciliation — 3 November 2026
+
+[FEAT-SP04-01 v0.9](../../implementation/features/sp-04-update-task/plan.md) registers [SP04-P03A-R v0.1](../../implementation/features/sp-04-update-task/tasks/P03A-R-return-reconciliation.md) for the owner's returned [SP04-P03A-RESULT v0.1](../../implementation/features/sp-04-update-task/reviews/p03a-contract-support.md). Trace SP-04.2 / FR-09/40/43/44 and supporting FR-03/31/59/68 / PLAN-01 Month 1 / M-02–M-03. Inputs: SP-04 v0.7.2, CONTRACT-01 v0.25, API-05 v0.23, Workspace v0.2.13. Preserve actual receipt, verify exact API delta and source hashes, record evidence limits and update parent status. No runtime or applied migration changes, independent approval or next-producer dispatch. P03A2 remains the planned source-alignment prerequisite before P03B.
+
+P03A receipt result: [SP04-P03A-DISPOSITION v0.1](../../implementation/features/sp-04-update-task/reviews/p03a-codex-disposition.md) verifies the exact eight-entry delta, 42 Workspace / 24 Knowledge operations and 172/174 unchanged preserved paths (contract/README are expected changes). Source/report/failure-log/preregistration limits remain explicit; original return is preserved. FEAT-SP04-ENTRY v0.9 and SP04-COORD-01 v0.7 close the shared-write lease. No external task is active; P03A2 refinement/registration is next before dispatch/P03B, without another material policy-selection round. Structural checks are not runtime acceptance.
+
+## Historical SP-04 P03A2 registered source alignment — 3 November 2026
+
+[FEAT-SP04-01 v0.10](../../implementation/features/sp-04-update-task/plan.md) and [SP04-P03A2 v0.2](../../implementation/features/sp-04-update-task/tasks/P03A2-policy-source-alignment.md) register owner-requested sequential source alignment before storage/permission producers. Trace SP-04.1–04.2 / FR-09/40/43/44, supporting FR-03/31/59/68 / PLAN-01 Month 1 / M-02–M-03. Exact primary/support/metadata paths, initial versions, planned checks and preservation assertions are in the brief; source before-images are captured. Canonical support amendment precedes further primary edits. New ADR-0028 will remain Proposed; existing ADRs/baseline/OpenAPI/runtime/migrations/tests and requirement priorities stay unchanged. No independent/runtime acceptance or automatic P03B execution.
+
+P03A2 actual result: [SP04-P03A2-RESULT v0.1](../../implementation/features/sp-04-update-task/reviews/p03a2-source-alignment.md) and evidence/p03a2/checks.json close canonical source alignment under FEAT-SP04-01 v0.10 / SP04-P03A2 v0.2; entry v0.10 and coordination v0.8. Current sources: PRD-01 v0.10.1, UC-02 v0.8.2, DATA-04 v0.16.1, logical model v0.13, API-05 v0.23.1, CONTRACT-01 v0.25.1, SP-04 v0.7.3, TEST-08 v0.24.1, TEST-COVERAGE-01 v0.11.1 and VERIFY-01 v0.12.1. [ADR-0028 v0.1 Proposed](../../adr/0028-task-mutation-authority-and-outcomes.md) is new bounded mechanics with explicit owner-policy provenance, not formal acceptance. Actual context45/45, contracts27/27, docs20/20 remain structural checks; protected runtime/wire/old ADR/baseline sources and graph content are preserved. Exact metadata-only propagation/frozen report envelope limits and failed attempts are recorded. Next P03B requires its own exact brief; no runtime, migration, new requirement/priority, independent approval or external dispatch.
+
+## Historical SP-04 P03B registered storage producer — 3 November 2026
+
+[FEAT-SP04-01 v0.11](../../implementation/features/sp-04-update-task/plan.md) and [SP04-P03B v0.1](../../implementation/features/sp-04-update-task/tasks/P03B-mutation-storage.md) register the owner's requested bounded additive010/types/storage-test producer after P03A2. Parent SP-04.2 / FR-09/40/43/44 and supporting FR-03/31/59/68 / PLAN-01 Month1 / M-02–M-03. Exact paths, selected design inputs, real disposable verification and refusal/preservation gates precede implementation. No Task handler/operator/UI change, applied migration edit, valuable-data upgrade, broad ADR adoption, external assignment or Git publication.
+
+P03B actual result — 4 November 2026: [SP04-P03B-RESULT v0.1](../../implementation/features/sp-04-update-task/reviews/p03b-storage-result.md) verifies additive010/internal typed mutation outcomes/private grant guard under FEAT-SP04-01 v0.11 / SP04-P03B v0.1; entry v0.11, coordination v0.9, WORKSPACE-TASKS-01 v0.2. Actual disposable new storage13/13 and historical009 regression8/8, Workspace typecheck and context45/45/contracts27/27/docs20/20 pass with original failures preserved. Parent SP-04.2 / M-02–M-03 is unchanged; old applied SQL/create adapter/handlers/UI/wire/ADR/baseline remain preserved. No valuable-data upgrade or runtime end-user mutation/permission/HTTP acceptance. Next separately briefed P03C; actual SP-05 integration and whole-SP-04 gates remain open.
+
+## SP-04 P03C private authority/discovery producer — 4 November 2026
+
+[FEAT-SP04-01 v0.12](../../implementation/features/sp-04-update-task/plan.md) and [SP04-P03C v0.1](../../implementation/features/sp-04-update-task/tasks/P03C-task-authority-discovery.md) register owner-requested private selected Task actions and exact target discovery under SP-04.2 / M-02–M-03. Exact code/test/provenance/registered-operation scope and disposable verification precede edits. No001–010/wire/ADR/baseline/UI/root/dependency change or new mutation handler. Prior results remain bounded; no formal ADR/runtime end-user mutation acceptance.
+
+P03C actual result: [SP04-P03C-RESULT v0.1](../../implementation/features/sp-04-update-task/reviews/p03c-authority-result.md) and evidence/p03c/checks.json verify private selected Task actions/provenance and exact registered-operation Task discovery under FEAT-SP04-01 v0.12; entry v0.12, coordination v0.10, WORKSPACE-TASKS-01 v0.3. New13/13 and combined43/43 real disposable authority/projectHTTP/storage regressions, Workspace typecheck and context45/45/contracts27/27/docs20/20 pass. Prior001–010/wire/model/ADR/baseline/old tests/UI remain preserved. Production exposes current getTask/read discovery only; no synthetic future registry is credited as a handler. Next separately briefed P03D1; whole-SP-04/SP-05/D-07/independent gates remain open.
+
+
+SP-04 continuation source navigation — 4 November 2026: FEAT-SP04-01 v0.14 and canonical SP-04 v0.7.4 retain original producer evidence and separate new runtime/UI/browser checks. This is author verification only; P08 actual SP-05 integration remains open by explicit owner instruction. No independent acceptance or historical result revision.

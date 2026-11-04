@@ -1,0 +1,77 @@
+{
+  "branch": "codex/sp-04",
+  "paths": [
+    {
+      "path": "services/workspace/src/tasks/types.ts",
+      "sha256": "d36e304a5181191140974fab1e889e36d30539985b2d4b2036cf462d0c9a6ac3"
+    },
+    {
+      "path": "services/workspace/src/tasks/store.ts",
+      "sha256": "fb928c6d81012b0328abe43b0ef95f92dc74263be6bdc8252cbd838d55db4faa"
+    },
+    {
+      "path": "services/workspace/src/tasks/http.ts",
+      "sha256": "904c0d1267ed954902223e6c2b1dd588919d2f55d898acbbcf3b91ce543c50e3"
+    },
+    {
+      "path": "tests/workspace/task-mutation-authority.test.mjs",
+      "sha256": "e9e894600994de0e9083eb005d9d8b55973ed75dd743fc419779509b3773a14a"
+    },
+    {
+      "path": "services/workspace/TASKS.md",
+      "sha256": "e481b5b4090eb710feaa19840814ee60063649a8da739a66d5906725a98eafeb"
+    },
+    {
+      "path": "docs/implementation/features/README.md",
+      "sha256": "081c8766d0893a45ba6429c3bfbe66394cc2d09b2075f521faac6d1a0f7fbc5e"
+    },
+    {
+      "path": "docs/implementation/register.md",
+      "sha256": "047d4303a5b56837d7cc1b3b90b0f6ad9e3737054813a7820b70cd33cb23e41c"
+    },
+    {
+      "path": "docs/implementation/roadmap.md",
+      "sha256": "e417a4c5474dd1dd57900804eb305d931dc71d026e50b102eb72623e93a8ee0b"
+    },
+    {
+      "path": "docs/sdlc/artifact-register.md",
+      "sha256": "f49e9bdf6614b123bd2c1f50ffeb5d9ebdb0fb4b8e8fdcd79bdf604afd2900b1"
+    },
+    {
+      "path": "docs/sdlc/diagrams/manifest.json",
+      "sha256": "ecae125acea70324d2d8a2a4f465ba9b4b8177d04e695ffdba8d2644b51be340"
+    },
+    {
+      "path": "docs/sdlc/diagrams/README.md",
+      "sha256": "d4797e1390cf26939afca25a0ef656390687169f46ff0f9e6343ade728d47a88"
+    },
+    {
+      "path": "docs/sdlc/references/document-review-register.md",
+      "sha256": "4bd24e973fe6e0f251cb418e5bca93be4068703d69694993bbcb372fd506a8bc"
+    },
+    {
+      "path": "services/workspace/src/tasks/mutation-outcomes.ts",
+      "sha256": "2325088c2e4dafc2f8113ca840fa6c006ada43a5c9aedd54b886295b50e9a350"
+    },
+    {
+      "path": "services/workspace/src/projects/store.ts",
+      "sha256": "019b0cb4f0cea5e138abb1a632a53527cd6e529f3400d869599c9fdba62380b6"
+    },
+    {
+      "path": "services/workspace/src/session/database.ts",
+      "sha256": "a94c2df12b2815ef4b93e71f386d0e4e8831f12a1c32931d13a2db1292afa489"
+    },
+    {
+      "path": "contracts/openapi/workspace.openapi.json",
+      "sha256": "17cc995de5d46454579032a3047855c66b1946fd4e9237d0f9dbd9c2dd46e192"
+    },
+    {
+      "path": "docs/adr/0028-task-mutation-authority-and-outcomes.md",
+      "sha256": "4d06b269e3040cc716955f07a5ae236e8af5fa14e2c8b1ec2698fb79a035879a"
+    },
+    {
+      "path": "specs/004-update-task.md",
+      "sha256": "f81d972f1e0b7c9e64f9dfa75186571e39a46411bbb0ffd311f9238ad9c21d46"
+    }
+  ]
+}

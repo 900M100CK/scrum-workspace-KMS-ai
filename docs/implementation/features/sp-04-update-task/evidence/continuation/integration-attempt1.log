@@ -1,0 +1,13 @@
+▶ SP04 cross-producer original outcomes, concurrent writes and revocation schedules
+  ✔ four competing real changed writes share one revision; exactly one business change wins (224.3102ms)
+  ✔ lost actual COMMIT acknowledgement preserves business/audit/outcome; same key returns original once (859.423ms)
+  ✔ actual revoke-first lock schedules deny waiting writes and retained replays for every action (841.5943ms)
+✔ SP04 cross-producer original outcomes, concurrent writes and revocation schedules (9998.9175ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10540.2614

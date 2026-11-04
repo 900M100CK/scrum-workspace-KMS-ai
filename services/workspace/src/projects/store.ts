@@ -6,6 +6,8 @@ import {ProjectFault,conflict,invalid,missing,outcome,saveOutcome,requestHash,wi
 import type {Outcome} from './outcomes.ts';
 import {ProjectCursor} from './cursor.ts';
 import type {CursorKey} from './cursor.ts';
+import {discoverTaskOperations} from '../tasks/authority.ts';
+import type {TaskOperation} from '../tasks/authority.ts';
 
 export const uuid=(s:string)=>/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(s);
 export async function businessAudit(c:PoolClient,actor:string,project:string,action:string,entity:string,correlation:string,before:string|null=null,after:string|null=null){
@@ -128,7 +130,7 @@ export class WorkspaceProjectStore {
    const result={status:204,body:null,projectId};await saveOutcome(c,actor,'removeMember',key,hash,result);return result;
   });
  }
- async actions(token:string,kind:string,id?:string,taskOperations:ReadonlySet<'createTask'|'listTasks'>=new Set()){
+ async actions(token:string,kind:string,id?:string,taskOperations:ReadonlySet<TaskOperation>=new Set(),resourceId?:string){
   return this.transaction(token,async(c,actor,guard)=>{
    let operations:string[];
    if(kind==='global'){
@@ -140,9 +142,15 @@ export class WorkspaceProjectStore {
     if((await c.query("SELECT 1 FROM workspace.capability_grant WHERE project_id=$1 AND subject_id=$2 AND resource_kind='project' AND resource_id=$1 AND action='membership-manage' AND valid LIMIT 1",[id,actor])).rowCount)operations.push('addMember','removeMember');
     if(taskOperations.has('listTasks'))operations.push('listTasks');
     if(taskOperations.has('createTask')&&(await c.query("SELECT 1 FROM workspace.capability_grant WHERE project_id=$1 AND subject_id=$2 AND resource_kind='project' AND resource_id=$1 AND action='backlog-author' AND valid LIMIT 1",[id,actor])).rowCount)operations.push('createTask');
+   }else if(kind==='task'){
+    if(!id||!uuid(id)||!resourceId||!uuid(resourceId))throw invalid();
+    const access=await projectAccess(c,actor,id),projectId:string=access.project.project_id;id=projectId;resourceId=resourceId.toLowerCase();
+    const task=(await c.query('SELECT location_kind FROM workspace.task WHERE task_id=$1 AND project_id=$2',[resourceId,projectId])).rows[0];
+    if(!task)throw missing();
+    operations=await discoverTaskOperations(c,actor,projectId,task.location_kind,taskOperations);
    }else throw missing();
    if(!await guard())return null;
-   return {resource_kind:kind,project_id:kind==='global'?null:id,resource_id:null,document_id:null,version_id:null,allowed_operations:operations.sort()};
+   return {resource_kind:kind,project_id:kind==='global'?null:id,resource_id:kind==='task'?resourceId:null,document_id:null,version_id:null,allowed_operations:operations.sort()};
   });
  }
  async page(c:PoolClient,actor:string,route:string,project:string|null,rows:Record<string,any>[],limit:number,token:string|undefined,shape:(row:Record<string,any>)=>unknown,idField:string,authority:unknown=null){

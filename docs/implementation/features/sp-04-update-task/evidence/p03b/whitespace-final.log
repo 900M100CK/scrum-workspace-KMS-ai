@@ -1,0 +1,9 @@
+warning: in the working copy of 'docs/implementation/features/README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/implementation/register.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/implementation/roadmap.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/sdlc/artifact-register.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/sdlc/diagrams/README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/sdlc/diagrams/manifest.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/sdlc/references/document-review-register.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'services/workspace/TASKS.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'services/workspace/src/tasks/types.ts', LF will be replaced by CRLF the next time Git touches it

@@ -1,9 +1,9 @@
 # API design — contract entry
 
 **Artifact ID:** API-05  
-**Version/date:** 0.22 Draft · 2 November 2026
+**Version/date:** 0.23.1 Draft · 3 November 2026
 **Status:** ADR-0007–ADR-0013 directions are owner-confirmed; transport implementation and independent review remain pending.
-**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; DATA-04 v0.16; [contract pack](../../contracts/README.md) v0.24; ADR-0007–ADR-0017; Proposed ADR-0018.\; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0026
+**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.10.1; UC-02 v0.8.2; SAD-03 v0.16.2; DATA-04 v0.16.1; [contract pack](../../contracts/README.md) v0.25.1; ADR-0007–ADR-0017; Proposed ADR-0018.\; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0026; Proposed ADR-0028 v0.1
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 The canonical payload/routes are the two OpenAPI files linked by the contract pack. Public consumers are the web UI; internal consumers are Workspace/Knowledge. Every operation has x-requirements, authenticated scope, resource parameters, explicit responses and mutation concurrency semantics. Context validation checks shape/trace only.
@@ -99,3 +99,15 @@ createTask declares 413/415 for bounded JSON/media rejection; getTask declares 4
 ## SP-03 current local handoff — 2 November 2026
 
 The registered SP-03 now implements createTask/listTasks/getTask and the existing-design Task UI against Workspace 0.2.12, logical model 0.12 and additive draft 009. See [execution evidence](reports/SP-03-2026-11-02-execution.md) for final actual command results/source identity and limits. Prior support/checkpoint paragraphs above are historical stages; they do not mean these handlers are still absent. Business audit uses UC-03 backlog-item-create; durable replay operation remains createTask. Current access precedes original snapshot disclosure; creation time is immutable server time. No Task edit/reorder/Sprint/Knowledge/AI handler is added. Formal Proposed ADR/release/independent gates remain open; no development upgrade or new Git publication.
+
+## Task mutation transport contract support — 3 November 2026
+
+Workspace v0.2.13 declares bounded transport error responses HTTP 413 (Payload Too Large) and HTTP 415 (Unsupported Media Type) under editTask, setTaskState, setAssignee and recordBlocker. Operation inventory remains 66; Knowledge remains v0.2.9. These four Task mutation handlers, their additive storage support and runtime tests remain unimplemented at this support checkpoint.
+
+## SP-04 selected command semantics — 3 November 2026
+
+[Owner-selected directions](../implementation/features/sp-04-update-task/owner-decisions.md) and [Proposed ADR-0028](../adr/0028-task-mutation-authority-and-outcomes.md) refine existing Task operations without changing the OpenAPI bytes, schemas, headers or inventory. Current Task/project read scope and the specific requested action are required for new writes and replay; edit is separately provisioned from create and new content edits are Backlog-only. New non-null assignees must be enabled current same-project members; null unassign remains available. After caller authorisation, unknown/nonmember/foreign/disabled targets share bounded400 validation_failed; required authority/storage failure stays503. No user directory or implicit role grant is introduced.
+
+Keep original edit/state/assignment200 Task (including title/description) and blocker201 indefinitely with consumed actor/operation/key/hash. Committed same-input replay checks current read/action, then returns the original historical result without applying live write revision/placement/old-assignee checks or mutating again. Changed input conflicts. UI reads current state separately. New same-value/empty edits, same-state or same-assignee requests are proposed business no-ops after all new-write checks: retain original200 without revision/change audit; distinct blocker keys append and advance revision. Omitted blocker outcome normalizes to null, edit omission leaves unchanged and explicit null remains invalid for nonnullable fields.
+
+C01: generic409 state_conflict contains no current_revision field; client performs fresh authorised getTask before a new user-approved write. C02: recordBlocker201 contains only Blocker, so fresh Task/history supplies current blocked/revision. C03: known rollback is atomic; uncertain COMMIT/HTTP acknowledgement remains unknown and recovers only the same original actor/operation/key/body. Do not introduce a pending wire schema or automatically retry under a fresh key. Existing413/415 declarations are not runtime evidence.

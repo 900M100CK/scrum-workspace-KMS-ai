@@ -8,8 +8,8 @@ import {taskFixture} from './task-fixture.mjs';
 import {buildApp} from '../../services/workspace/src/app.ts';
 import {ScryptVerifier} from '../../services/workspace/src/session/kdf.ts';
 const requireWeb=createRequire(new URL('../../apps/web/package.json',import.meta.url));
-export async function taskUiFixture(){
- const f=await taskFixture();let backend,vite;
+export async function taskUiFixture({through='009'}={}){
+ const f=await taskFixture({through});let backend,vite;
  try{
   await f.operator.project(f.ids[0],f.project,'backlog-author',true,'0','synthetic-task-ui','explicit fixture author');
   const listener=createServer();await new Promise(r=>listener.listen(0,'127.0.0.1',r));const port=listener.address().port;await new Promise(r=>listener.close(r));

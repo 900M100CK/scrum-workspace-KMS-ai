@@ -1,0 +1,28 @@
+{
+  "artifact_id": "SP04-OWNER-RESPONSES",
+  "version": "0.1",
+  "date": "2026-11-03",
+  "timezone": "Asia/Saigon",
+  "source": "Owner explicit asynchronous question replies in this chat; selected options were submitted by the owner",
+  "answers": [
+    {
+      "decision": "D-01",
+      "question": "Với Task trong Backlog, người có quyền tạo Task có được sửa nội dung luôn không?",
+      "answer": "Không; cấp quyền sửa riêng (đề xuất)",
+      "normalised_selection": "Separate edit authority; no create-to-edit auto-grant"
+    },
+    {
+      "decision": "D-02",
+      "question": "Có cho gán Task cho tài khoản đã bị vô hiệu hóa nhưng vẫn còn tư cách thành viên dự án không?",
+      "answer": "Không cho gán (đề xuất)",
+      "normalised_selection": "Reject new assignment to disabled target accounts"
+    },
+    {
+      "decision": "D-03",
+      "question": "Để đối soát thao tác mất phản hồi, bạn chọn cách lưu kết quả gốc của các thao tác cập nhật mới thế nào? Bản Task được lưu sẽ gồm cả tiêu đề và mô tả, và mỗi lần đọc lại vẫn phải kiểm tra quyền hiện tại.",
+      "answer": "Giữ vô thời hạn như SP-03 (đề xuất)",
+      "normalised_selection": "Indefinite original new-operation results including Task title/description; current authority on replay"
+    }
+  ],
+  "scope": "Policy directions only, not implementation tests, formal ADR acceptance, migration, commit or external dispatch"
+}

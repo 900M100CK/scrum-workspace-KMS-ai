@@ -3,58 +3,64 @@
     {
       "id": "UML-07",
       "path": "docs/sdlc/diagrams/README.md",
-      "version": "0.22",
+      "version": "0.21.4",
       "adrs": [],
-      "date": "3 November 2026"
+      "date": "4 November 2026"
     },
     {
       "id": "REG-00",
       "path": "docs/sdlc/artifact-register.md",
-      "version": "0.103",
+      "version": "0.117",
       "adrs": [],
-      "date": "3 November 2026"
+      "date": "4 November 2026"
     },
     {
       "id": "SAD-03",
       "path": "docs/architecture.md",
-      "version": "0.16",
-      "adrs": []
+      "version": "0.16.2",
+      "adrs": [],
+      "date": "3 November 2026"
     },
     {
       "id": "UX-PERM-MATRIX-02",
       "path": "docs/ux/permission-matrix.md",
-      "version": "0.11",
-      "adrs": []
+      "version": "0.11.2",
+      "adrs": [],
+      "date": "3 November 2026"
     },
     {
       "id": "UX-PERSONAS-01",
       "path": "docs/ux/personas.md",
-      "version": "0.5",
-      "adrs": []
+      "version": "0.5.2",
+      "adrs": [],
+      "date": "3 November 2026"
     },
     {
       "id": "UX-SITEMAP-03",
       "path": "docs/ux/sitemap.md",
-      "version": "0.10",
+      "version": "0.10.1",
       "adrs": []
     },
     {
       "id": "UX-FLOW-AI-03",
       "path": "docs/ux/flows/ai-qa-flow.md",
-      "version": "0.9",
-      "adrs": []
+      "version": "0.9.2",
+      "adrs": [],
+      "date": "3 November 2026"
     },
     {
       "id": "UX-FLOW-BOARD-01",
       "path": "docs/ux/flows/board-flow.md",
-      "version": "0.10",
-      "adrs": []
+      "version": "0.10.2",
+      "adrs": [],
+      "date": "3 November 2026"
     },
     {
       "id": "UX-FLOW-DOCS-02",
       "path": "docs/ux/flows/docs-flow.md",
-      "version": "0.9",
-      "adrs": []
+      "version": "0.9.2",
+      "adrs": [],
+      "date": "3 November 2026"
     },
     {
       "id": "DGM-ARCH-01",
@@ -349,14 +355,16 @@
     {
       "id": "PRD-01",
       "path": "docs/sdlc/PRD_SRS.md",
-      "version": "0.9",
-      "adrs": []
+      "version": "0.10.1",
+      "adrs": [],
+      "date": "3 November 2026"
     },
     {
       "id": "UC-02",
       "path": "docs/sdlc/use-cases.md",
-      "version": "0.8",
-      "adrs": []
+      "version": "0.8.2",
+      "adrs": [],
+      "date": "3 November 2026"
     },
     {
       "id": "DGM-UC-01",
@@ -388,26 +396,26 @@
     {
       "id": "DGM-REVIEW-02",
       "path": "docs/sdlc/diagrams/review-2026-10-16.md",
-      "version": "0.1",
+      "version": "0.1.1",
       "adrs": []
     },
     {
       "id": "DGM-REVIEW-03",
       "path": "docs/sdlc/diagrams/review-2026-10-17.md",
-      "version": "0.1",
+      "version": "0.1.1",
       "adrs": []
     },
     {
       "id": "DATA-04",
       "path": "docs/sdlc/data-design.md",
-      "version": "0.16",
+      "version": "0.16.1",
       "adrs": [],
-      "date": "2 November 2026"
+      "date": "3 November 2026"
     },
     {
       "id": "DGM-DESIGN-01",
       "path": "docs/sdlc/diagrams/design-foundation-2026-10-17.md",
-      "version": "0.1",
+      "version": "0.1.1",
       "adrs": []
     },
     {

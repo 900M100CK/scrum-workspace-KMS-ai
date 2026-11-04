@@ -1,0 +1,61 @@
+{
+  "artifact_id": "SP04-OWNER-CHECKS",
+  "version": "0.1",
+  "date": "2026-11-03",
+  "timezone": "Asia/Saigon",
+  "branch": "codex/sp-04",
+  "head": "6b837fd52e01709f72bfe2de6cb96f0e9cc52653",
+  "owner_responses": {
+    "path": "docs/implementation/features/sp-04-update-task/evidence/owner-responses-2026-11-03.json",
+    "sha256": "e3660418dbaaec99aa59d911610ec71b40aecc242676292e218eb0692c4e2749",
+    "provenance": "Actual submitted asynchronous replies in owner chat; normalized choices are recorded in SP04-OWNER-01."
+  },
+  "preservation": {
+    "source_paths_checked": 174,
+    "changed": [],
+    "predecision_snapshot": "docs/implementation/features/sp-04-update-task/evidence/p02-design-before-owner-v0.3.txt",
+    "predecision_snapshot_sha256": "e6b5f5627fba865beb9695e84db2dc16e24109fed030df6ef926ab3e67907ad1",
+    "matches_ag03_design": true,
+    "received_artifacts": [
+      {
+        "snapshot": "docs/implementation/features/sp-04-update-task/evidence/ag03-decision-batch-v0.2.txt",
+        "sha256": "1c82472da003cf58a066d0c0abae49bf6bfedf4c19db54691002fe4af82bd7d6",
+        "matches_recorded_hash": true
+      },
+      {
+        "snapshot": "docs/implementation/features/sp-04-update-task/evidence/ag03-antigravity-report-v0.2.txt",
+        "sha256": "8162aeeebed8a1eee339cd07aaf40058c9e428086fa41cbbddb0393aabb3f9e0",
+        "matches_recorded_hash": true
+      }
+    ]
+  },
+  "current_design": {
+    "path": "docs/implementation/features/sp-04-update-task/decision-batch.md",
+    "version": "0.4",
+    "sha256": "47661a644ad1f31007b275f5a4235cad33a45f97a20037655f7dafd430d396a7"
+  },
+  "checks": {
+    "docs_metadata_sync_exit": 0,
+    "docs_lint_exit": 0,
+    "docs_lint_result": {
+      "diagrams": 20,
+      "artifacts": 35,
+      "nodes": 324,
+      "edges": 365,
+      "runtimeEvidence": "not run"
+    },
+    "metadata_check_exit": 0,
+    "whitespace_exit": 0,
+    "local_markdown_targets": {
+      "files": 8,
+      "targets_checked": 84,
+      "missing": []
+    }
+  },
+  "assignment": {
+    "task": "SP04-P03A v0.1",
+    "status": "Written; manual delivery and execution unconfirmed",
+    "next_policy_alignment": "SP04-P03A2 planned, not dispatched"
+  },
+  "limits": "Documentation-only decision recording and task preparation. No contracts, handlers, migrations or runtime suites changed/executed; structural checks do not establish application permission behaviour."
+}

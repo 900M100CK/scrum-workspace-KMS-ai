@@ -1,0 +1,11 @@
+{
+  "name": "context-test",
+  "command": [
+    "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+    "run",
+    "context:test"
+  ],
+  "exit_code": 0,
+  "tail": "jected (1.5962ms)\n\u2714 unresolved contract references are rejected (2.558ms)\n\u2714 not-found response cannot add a source title (5.2124ms)\n\u2714 client task creation cannot assert permissions (3.0557ms)\n\u2714 retrieval response cannot expose Draft as validity (4.2245ms)\n\u2714 document citation requires exact version identity (3.8542ms)\n\u2714 internal request must require service plus actor context (2.0825ms)\n\u2714 withdrawn IDs cannot return through an API trace (2.3042ms)\n\u2714 withdrawn requirements cannot count as release Must (1.6628ms)\n\u2714 new Core deferral requires an explicit matching decision (2.1199ms)\n\u2714 missing withdrawal record cannot silently shrink the scope (1.9596ms)\n\u2714 document lifecycle rejects reintroducing Draft outside retrieval (3.3888ms)\n\u2714 research references reject restricted evidence without an explicit grant (3.6955ms)\n\u2714 document-only configuration cannot receive current-state credit (1.728ms)\n\u2714 operational citation must match the frozen revision and observation time (5.6942ms)\n\u2714 fixture blocked flag cannot disagree with ordered evidence (0.7825ms)\n\u2714 regression fixture cannot reintroduce the removed Draft lifecycle (2.2098ms)\n\u2714 revision scenario cannot overwrite an existing cited identity (2.676ms)\n\u2714 unsaved editor scenario must stay outside ingested evidence (4.2064ms)\n\u2714 matching observation revision cannot hide a different value (0.6747ms)\n\u2714 source-task fixture links cannot cross projects (0.7817ms)\n\u2714 observations without source rows cannot be used as operational evidence (0.7088ms)\n\u2139 tests 45\n\u2139 suites 0\n\u2139 pass 45\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 624.3477\n"
+}

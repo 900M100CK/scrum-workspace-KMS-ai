@@ -1,9 +1,9 @@
 # Core wireframes — Excalidraw
 
 **Artifact ID:** UX-WF-EX-01  
-**Version/date:** 0.5 Draft · 1 November 2026
+**Version/date:** 0.5.2 Draft · 3 November 2026
 **Status:** Editable visual author draft with synthetic data; no owner approval, independent review or application acceptance.  
-**Inputs:** BRD v1.0 through [stable entry](../../BRD.md); PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; UX-06 v0.13; [UX-BLUEPRINT-01 v1.7](../../sdlc/ui-ux-blueprint.md); [UX-PLAN-01 v0.4](../wireframe-workplan.md); UX-SITEMAP-03 v0.10; SP-03 v0.8; Workspace v0.2.8 / Knowledge v0.2.9 contracts; ADR-0007–ADR-0017 and Proposed ADR-0018–ADR-0023 as referenced by those design inputs.\
+**Inputs:** BRD v1.0 through [stable entry](../../BRD.md); PRD-01 v0.10.1; UC-02 v0.8.2; SAD-03 v0.16.2; UX-06 v0.13.2; [UX-BLUEPRINT-01 v1.7.2](../../sdlc/ui-ux-blueprint.md); [UX-PLAN-01 v0.4.2](../wireframe-workplan.md); UX-SITEMAP-03 v0.10.1; SP-03 v0.8.1; Workspace v0.2.8 / Knowledge v0.2.9 contracts; ADR-0007–ADR-0017 and Proposed ADR-0018–ADR-0023 as referenced by those design inputs.\
 **Trace:** BR-01–BR-14; SC-01–SC-08 through the UC/TC mappings below. No new FR/AC, framework, service or permission policy.  
 **Author:** Sequential UX author.
 

@@ -1,0 +1,8 @@
+ contracts/README.md                      |   8 +-
+ contracts/openapi/workspace.openapi.json |  82 +++++++++++++-
+ docs/sdlc/api-design.md                  |   8 +-
+ docs/sdlc/artifact-register.md           | 188 ++++++++++++++++++++++++-------
+ docs/sdlc/test-plan.md                   |   2 +-
+ docs/ux/wireframe-workplan.md            |   4 +-
+ specs/004-update-task.md                 |   8 +-
+ 7 files changed, 247 insertions(+), 53 deletions(-)
