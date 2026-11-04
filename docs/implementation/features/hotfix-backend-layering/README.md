@@ -1,7 +1,7 @@
 # Backend layering documentation hotfix
 
 **Artifact ID:** HOTFIX-BACKEND-42-ENTRY\
-**Version/date:** 0.7 Draft · 4 November 2026
+**Version/date:** 0.8 Draft · 4 November 2026
 
 Read the [authoritative plan](plan.md) for task status/results, [breakdown](breakdown.md), and [source snapshot](evidence/source-inputs.json). Parent: PLAN-01 Month 1 / M-02–M-03; SP-03/SP-04 support only. Original documentation clarification plus the separately authorised RF01–RF05 runtime follow-up; no independent or release acceptance.
 
@@ -19,3 +19,6 @@ Publication remains open: [HF42-P01](tasks/HF42-P01-publication.md) requires its
 
 
 Current publication authority: [P01 final continuation](plan.md#p01-final-publication-and-cleanup-authority--4-november-2026) authorises the current dependent delivery and safe cleanup after green checks. Status remains in plan.md; earlier publication-status statements are dated checkpoints.
+
+
+Actual P01 publication: [receipt](p01-report.md) records code commit dde2933 on main and successful [exact-commit CI](https://github.com/900M100CK/scrum-workspace-KMS-ai/actions/runs/41864431513). Earlier open/publication-pending text describes prior checkpoints; authoritative current status is in plan.md.

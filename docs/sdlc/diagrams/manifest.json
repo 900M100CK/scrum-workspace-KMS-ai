@@ -3,14 +3,14 @@
     {
       "id": "UML-07",
       "path": "docs/sdlc/diagrams/README.md",
-      "version": "0.25.7",
+      "version": "0.25.8",
       "adrs": [],
       "date": "4 November 2026"
     },
     {
       "id": "REG-00",
       "path": "docs/sdlc/artifact-register.md",
-      "version": "0.122.1",
+      "version": "0.123",
       "adrs": [],
       "date": "4 November 2026"
     },

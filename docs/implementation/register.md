@@ -1,7 +1,7 @@
 # Implementation source and artifact register
 
 **Artifact ID:** IMPL-REG-01\
-**Version/date:** 0.53 Draft · 4 November 2026\
+**Version/date:** 0.54 Draft · 4 November 2026\
 **Status:** Source snapshot and navigation, not approval or runtime evidence.\
 **Inputs:** REG-00; PRD-01 v0.10.2; SPEC-INDEX v0.8.2; PLAN-01 v0.4; SAD-03 v0.19.1; ADR-0001–ADR-0026.\; Proposed ADR-0029 v0.1
 **Trace:** Existing BR-01–BR-14 / SC-01–SC-08.\
@@ -232,3 +232,8 @@ RF05 bounded result: HOTFIX-BACKEND-42-01 v0.8 / HF42-RF05-RESULT v0.1 verifies 
 ## P01 final delivery registration — 4 November 2026
 
 [HOTFIX-BACKEND-42-01 v0.10](features/hotfix-backend-layering/plan.md) / HF42-P01 v0.3 registers owner-authorised final checks, exact current hotfix/SP-04 dependency commit/push, green-check main integration and safe merged-branch cleanup. SAD-03 v0.19 / entry0.18 align §4.2 with tested RF02/RF04. Actual outcomes follow execution; P08/SP-05/D-07 and independent/release/deployment gates remain open.
+
+
+## P01 actual publication receipt — 4 November 2026
+
+[HF42-P01-RESULT v0.2](features/hotfix-backend-layering/p01-report.md) / HOTFIX-BACKEND-42-01 v0.11 / P01v0.4 / entry0.8 record actual dde2933 hotfix push, exact-commit CI success and verified main fast-forward/publication. Earlier pending receipts remain historical observations. Final audit receipt/cleanup follow normal checked publication; parent SP05/P08/D07/independent/release gates remain open.

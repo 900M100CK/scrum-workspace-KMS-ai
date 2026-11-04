@@ -1,7 +1,7 @@
 # HF42-P01 — commit and main integration
 
 **Artifact ID:** HF42-P01\
-**Version/date:** 0.3 Draft · 4 November 2026
+**Version/date:** 0.4 Draft · 4 November 2026
 
 Parent/status authority: [plan v0.3](../plan.md#owner-authorised-publication--4-november-2026). Owner explicitly authorised commit and direct main integration/publication. Same PLAN-01 Month1 / M-02–M-03 / SP-03–SP-04 documentation support.
 
@@ -20,3 +20,6 @@ Before closure, reconcile exact current deliverable, allowed paths and publicati
 
 
 Final owner continuation: [plan v0.10](../plan.md#p01-final-publication-and-cleanup-authority--4-november-2026) explicitly authorises the current hotfix/SP-04-dependent delivery, commit/push, green-check integration and safe merged-branch cleanup. That later authority supersedes the preceding documentation-only restriction. Preserve owner work and open P08/D-07 gates; record actual final candidate/CI/ref/cleanup outcomes.
+
+
+Actual result: [plan v0.11](../plan.md#p01-actual-publication-receipt--4-november-2026) / [P01 result v0.2](../p01-report.md) record dde2933 pushed to hotfix, exact-commit CI success and actual main fast-forward/push/live equality. Original documentation receipt remains preserved. Publication closure is verified; audit-receipt publication/safe cleanup are recorded separately after execution. No parent-feature or independent acceptance is inferred.

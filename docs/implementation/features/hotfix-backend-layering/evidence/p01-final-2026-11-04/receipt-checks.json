@@ -1,0 +1,52 @@
+[
+  {
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "scripts/docs/verify-docs.mjs"
+    ],
+    "exit": 1,
+    "log": "receipt-check-0.log",
+    "summary": []
+  },
+  {
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "--test",
+      "tests/docs/docs.test.mjs"
+    ],
+    "exit": 1,
+    "log": "receipt-check-1.log",
+    "summary": [
+      "\u2139 tests 20",
+      "\u2139 pass 19",
+      "\u2139 fail 1",
+      "\u2139 skipped 0",
+      "\u2139 todo 0"
+    ]
+  },
+  {
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "scripts/verify-context.mjs"
+    ],
+    "exit": 0,
+    "log": "receipt-check-2.log",
+    "summary": []
+  },
+  {
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "--test",
+      "tests/context/context.test.mjs"
+    ],
+    "exit": 0,
+    "log": "receipt-check-3.log",
+    "summary": [
+      "\u2139 tests 45",
+      "\u2139 pass 45",
+      "\u2139 fail 0",
+      "\u2139 skipped 0",
+      "\u2139 todo 0"
+    ]
+  }
+]

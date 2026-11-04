@@ -1,11 +1,11 @@
 # Backend §4.2 documentation hotfix
 
 **Artifact ID:** HOTFIX-BACKEND-42-01\
-**Version/date:** 0.10 Draft · 4 November 2026\
+**Version/date:** 0.11 Draft · 4 November 2026\
 **Work kind:** Original documentation hotfix; separately authorised RF01–RF05 runtime follow-up\
-**Status:** Owner-authorised final P01 checks/publication/integration in progress; RF01–RF05 bounded hardening verified.\
+**Status:** P01 verified publication/main integration at dde2933 with successful exact-commit CI; final audit receipt and safe branch cleanup follow. Parent acceptance gates remain open.\
 **Planning mode:** Plan mode used in the preceding conversation; this written registration precedes checks and architecture edits.\
-**Inputs:** Committed SP-04 checkpoint e6f2337 / FEAT-SP04-01 v0.14; canonical SP-04 v0.7.5; Workspace0.2.13; [architecture](../../../architecture.md) v0.18; [Proposed ADR-0029](../../../adr/0029-unexpected-null-transaction-result.md) v0.1; original source snapshots below.\
+**Inputs:** Committed SP-04 checkpoint e6f2337 / FEAT-SP04-01 v0.14; canonical SP-04 v0.7.6; Workspace0.2.13; [architecture](../../../architecture.md) v0.18; [Proposed ADR-0029](../../../adr/0029-unexpected-null-transaction-result.md) v0.1; original source snapshots below.\
 **Historical initial inputs:** Base commit 6b837fd; [frozen sources](evidence/source-inputs.json); PRD-01 v0.9; SAD-03 v0.16; SAD-03-ENTRY v0.15; PLAN-01 v0.4; SP-03 v0.8; current base SP-04 header in snapshot.\
 **Owner authorisation:** Explicit request to implement the supplied plan on 4 November 2026; no commit/push/merge authority.\
 **Trace:** SP-03.1–03.4 / FR-05 / AC-05 / BR-02 / SC-01; SP-04.1–04.4 reading dependency only; BR-01/10/11/14 for identity, authority, audit and denial invariants. No FR/AC change or acceptance closure.
@@ -30,7 +30,7 @@ Architecture/entry may change only §4.2, version/date, entry self-version and a
 | [HF42-T02](tasks/HF42-T02-layering.md) | §4.2, entry and metadata only | T01; baseline preserved | Complete within scope; §4.2/entry and enumerated metadata; source preservation verified |
 | [HF42-T03](tasks/HF42-T03-verification.md) | Verification and integration handoff | T02 | Complete; original gap preserved in evidence and resolved by [HF42-F01](tasks/HF42-F01-source-link.md) |
 | [HF42-F01](tasks/HF42-F01-source-link.md) | Stage6 source-link correction | T03 finding and explicit owner direction | Complete; original F01 evidence retained |
-| [HF42-P01](tasks/HF42-P01-publication.md) | Publication and integration closure | T01–T03/F01; exact authorised delivery scope | Local final candidate verified; authorised commit/push/exact-commit CI/main integration in progress; [P01 report](p01-report.md) |
+| [HF42-P01](tasks/HF42-P01-publication.md) | Publication and integration closure | T01–T03/F01; exact authorised delivery scope | Verified: dde2933 pushed to hotfix, exact-commit CI41864431513 success, fast-forward main/live-main equality confirmed; [P01 receipt](p01-report.md) |
 | [HF42-C01](tasks/HF42-C01-documentation-closure.md) | Reconciled documentation/publication closure | Owner selection2; existing evidence | Verified bounded closure: reference and projection context45/45, docs20/20, metadata66; live ref/source/links/preservation evidence in closure-2026-11-04 |
 
 ## Verification and acceptance
@@ -228,3 +228,10 @@ P01 metadata closure for PRD0.10.2: dependent current Inputs/Sources/version/dat
 
 
 P01 local final result: combined disposable PostgreSQL179/179; typecheck/build/contracts/prototype/foundation exit0 (foundation18 pass, one opt-in HTTPS skip), context45/45 and docs20/20 pass on final metadata. Actual clean-pin source-navigation/TLS setup failures and long-path staging failure remain retained. Scoped authored whitespace excludes only the immutable byte-identical SQL010 inherited EOF diagnostic, which is reported explicitly. HF42-P01-RESULT v0.1 is registered at p01-report.md; actual remote/CI/main/cleanup results follow execution.
+
+
+## P01 actual publication receipt — 4 November 2026
+
+The owner explicitly retained the CI-green condition during the GitHub Actions outage. Commit dde2933a68c9477c265dbad6190e21dffc0404f3 (Codex author/committer, required byline) was pushed to origin/codex/hotfix-backend-layering; exact-commit CI run41864431513 completed success. A fresh live main comparison retained dcd2d81, then ordinary fast-forward/main push published dde2933; live origin/main equality was verified. Both documentation/SP-04 parent histories are retained. P01 publication/integration is verified, not inferred from local checks. Windows long-path failures for staging/switch were corrected using command-local core.longpaths=true; no force/reset or owner-work mutation.
+
+This bounded audit receipt updates plan/entry/P01/result and registered source/feature/roadmap/central/review/index metadata only; no runtime, wire, SQL or assertions change. Run docs lint/tests, context check/tests and authored whitespace before receipt commit/push; observe exact receipt-commit CI before final main fast-forward/cleanup. Use normal push only. Final chat records the receipt commit and final remote/cleanup outcomes; no self-referential future SHA is predicted here. Keep SP04/P08 and all active/dirty worktrees. P08/SP05/D07, independent/release/deployment gates remain open.

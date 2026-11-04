@@ -1,0 +1,32 @@
+[
+  {
+    "branch": "codex/hf42-publication",
+    "sha": "dde2933a68c9477c265dbad6190e21dffc0404f3",
+    "reachable_from_candidate": true,
+    "disposition": "delete after successful main publication and switch to main"
+  },
+  {
+    "branch": "codex/hotfix-backend-layering",
+    "sha": "dcd2d815a173f8adfd71619fcc00f84880d88636",
+    "reachable_from_candidate": true,
+    "disposition": "keep: active owner checkout"
+  },
+  {
+    "branch": "codex/sp-04",
+    "sha": "e6f233735f6e7c09dee7af4ec54b19902b0910b9",
+    "reachable_from_candidate": true,
+    "disposition": "keep: open P08 integration gate"
+  },
+  {
+    "branch": "codex/sp-04-update-task",
+    "sha": "d6b8caf241603cdff4f9b7a2a491fc4e2e386453",
+    "reachable_from_candidate": true,
+    "disposition": "keep: branch belongs to another worktree"
+  },
+  {
+    "branch": "main",
+    "sha": "dcd2d815a173f8adfd71619fcc00f84880d88636",
+    "reachable_from_candidate": true,
+    "disposition": "main is protected target"
+  }
+]

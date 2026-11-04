@@ -1,0 +1,45 @@
+{
+  "steps": [
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.longpaths=true",
+        "switch",
+        "main"
+      ],
+      "exit": 0,
+      "stdout": "Your branch is up to date with 'origin/main'.\n",
+      "stderr": "Switched to branch 'main'\n"
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.longpaths=true",
+        "merge",
+        "--ff-only",
+        "codex/hf42-publication"
+      ],
+      "exit": 0,
+      "stdout": "roject-capabilities.test.mjs\n create mode 100644 tests/workspace/project-transaction-null.test.mjs\n create mode 100644 tests/workspace/task-assignment.test.mjs\n create mode 100644 tests/workspace/task-blocker.test.mjs\n create mode 100644 tests/workspace/task-edit.test.mjs\n create mode 100644 tests/workspace/task-mutation-authority.test.mjs\n create mode 100644 tests/workspace/task-mutation-browser.test.mjs\n create mode 100644 tests/workspace/task-mutation-fixture.mjs\n create mode 100644 tests/workspace/task-mutation-integration.test.mjs\n create mode 100644 tests/workspace/task-mutation-storage.test.mjs\n create mode 100644 tests/workspace/task-mutation-ui-controller.test.mjs\n create mode 100644 tests/workspace/task-mutation-ui.test.mjs\n create mode 100644 tests/workspace/task-state.test.mjs\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.longpaths=true",
+        "push",
+        "origin",
+        "main"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": "To https://github.com/900M100CK/scrum-workspace-KMS-ai.git\n   dcd2d81..dde2933  main -> main\n"
+    }
+  ],
+  "remote_main": "dde2933a68c9477c265dbad6190e21dffc0404f3",
+  "exact_branch_ci": "success",
+  "first_switch_failure": "Windows long path; corrected with command-local core.longpaths=true; no branch/ref moved by failed attempt"
+}

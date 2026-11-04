@@ -1,0 +1,39 @@
+{
+  "changed_paths": [
+    "docs/implementation/features/README.md",
+    "docs/implementation/features/hotfix-backend-layering/README.md",
+    "docs/implementation/features/hotfix-backend-layering/p01-report.md",
+    "docs/implementation/features/hotfix-backend-layering/plan.md",
+    "docs/implementation/features/hotfix-backend-layering/tasks/HF42-P01-publication.md",
+    "docs/implementation/register.md",
+    "docs/implementation/roadmap.md",
+    "docs/sdlc/artifact-register.md",
+    "docs/sdlc/diagrams/README.md",
+    "docs/sdlc/diagrams/architecture/README.md",
+    "docs/sdlc/diagrams/c4/README.md",
+    "docs/sdlc/diagrams/data/README.md",
+    "docs/sdlc/diagrams/deployment/README.md",
+    "docs/sdlc/diagrams/development/README.md",
+    "docs/sdlc/diagrams/flowchart/README.md",
+    "docs/sdlc/diagrams/manifest.json",
+    "docs/sdlc/diagrams/sequence/README.md",
+    "docs/sdlc/diagrams/sitemap/README.md",
+    "docs/sdlc/diagrams/state/README.md",
+    "docs/sdlc/diagrams/use-case/README.md",
+    "docs/sdlc/diagrams/user-journey/README.md",
+    "docs/sdlc/references/document-review-register.md"
+  ],
+  "no_runtime_wire_migration_dependency_or_test_changes": true,
+  "outside_owner_files_preserved": 133,
+  "final_context_check_exit": 0,
+  "final_context_tests": {
+    "pass": 45,
+    "fail": 0
+  },
+  "final_docs_lint_exit": 0,
+  "final_docs_tests": {
+    "pass": 20,
+    "fail": 0
+  },
+  "retained_receipt_alias_failure": "0.123.1 from partial replacement, corrected exactly to0.123; initial logs retained"
+}

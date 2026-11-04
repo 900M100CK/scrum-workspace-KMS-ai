@@ -1,8 +1,8 @@
 # P01 final publication candidate
 
 **Artifact ID:** HF42-P01-RESULT\
-**Version/date:** 0.1 Draft · 4 November 2026\
-**Status:** Local candidate verified; authorised branch publication, exact-commit CI and main integration follow. No predicted remote result.
+**Version/date:** 0.2 Draft · 4 November 2026\
+**Status:** Actual code publication/main integration verified at dde2933 with successful exact-commit CI. This audit receipt is prepared after those events.
 
 [Plan v0.10](plan.md#p01-final-publication-and-cleanup-authority--4-november-2026) records explicit owner authority to commit/push the current hotfix with its necessary SP-04 checkpoint, merge after green checks and clean up merged branches. This supersedes the original documentation-only publication scope. Plan mode unavailable; written gate preceded edits/testing/Git mutations. The candidate preserves both dcd2d81 documentation and e6f2337 SP-04 history in a normal merge commit. The owner checkout/current branch/index and133 unrelated file hashes remain unchanged after the bounded root documentation edits; publication is prepared in the clean existing worktree.
 
@@ -23,3 +23,12 @@ Scoped authored whitespace is required clean. Full staged diff retains an inheri
 The local candidate is staged only from reviewed paths. Actual agent-identity/byline commit, branch push, exact-commit GitHub CI, live main equality and cleanup will be reported after execution, with no force push. Keep codex/sp-04 for its open P08 gate and all dirty/in-use worktrees/branches. Recovery after publication uses a normal follow-up commit; never rewrite main or reset/stash owner work.
 
 SP-04 P08 actual SP-05 completion/allocation/reopen integration, D-07, formal ADR/independent/release/deployment acceptance remain open. Browser/provider/load/new UI campaigns and valuable-data migrations were not run. Foundation opt-in HTTPS skip remains visible; actual backend HTTPS cases passed in the PostgreSQL campaign. Local and CI structure checks are separate from runtime evidence.
+
+
+## Actual Git and CI receipt
+
+Code commit: dde2933a68c9477c265dbad6190e21dffc0404f3. Parents: dcd2d815a173f8adfd71619fcc00f84880d88636 and e6f233735f6e7c09dee7af4ec54b19902b0910b9. Author/committer Codex <codex@openai.com>; required Co-Authored-By retained. Ordinary push created origin/codex/hotfix-backend-layering at that exact SHA. [GitHub Actions run41864431513](https://github.com/900M100CK/scrum-workspace-KMS-ai/actions/runs/41864431513) completed success for that SHA after a GitHub Actions incident/runner queue; owner explicitly requested retaining the CI-green condition. No queued result was treated as passed.
+
+Fresh remote main was still dcd2d81, permitting ordinary fast-forward. Main was then pushed normally and live main verified equal to dde2933. [Actual branch CI](evidence/p01-final-2026-11-04/actual-branch-ci.json) and [main publication](evidence/p01-final-2026-11-04/actual-main-publication.json) retain the evidence. Initial main switch hit a Windows long-path error; it moved no main ref. Command-local core.longpaths=true corrected the environment; no reset/force push.
+
+This v0.2 result is an audit receipt after successful publication; receipt metadata is checked and published normally. Final receipt SHA/live-main equality and actual safe cleanup are reported after execution. Delete the remote hotfix and temporary local publication branch only after final successful main integration; preserve the current dirty owner branch, open-gate codex/sp-04 and any branch attached to another worktree. Code acceptance does not imply P08/SP05/D07 or independent/release/deployment acceptance.

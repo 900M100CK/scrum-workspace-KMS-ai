@@ -39,7 +39,7 @@ Prior OWNER-Q-01 verification: combined Node 24.21.0 run `node --test tests/docs
 ## Current register and handoffs
 
 **Artifact ID:** REG-00
-**Version/date:** 0.122.1 Draft · 4 November 2026
+**Version/date:** 0.123 Draft · 4 November 2026
 **Status:** Draft; confirmed policy corrections in progress, full coverage and remaining decisions explicit.
 **Source versions:** Proposed ADR-0024/0025 for SP-01.1; [BRD stable entry](../BRD.md) → [English BRD v1.0](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md) and two Proposed addenda, [AGENTS.md v1.13](../../AGENTS.md), [workflow](../../agents/WORKFLOW.md), PRD-01 v0.10.2, UC-02 v0.8.3, SAD-03 v0.19.1 and ADR-0007–ADR-0017. Prior review inputs remain historical. Storage has measured test evidence; bounded session runtime evidence exists; interviews, pilot and full application acceptance remain absent.; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; Proposed ADR-0026; Proposed ADR-0029 v0.1
 
@@ -79,7 +79,7 @@ Prior OWNER-Q-01 verification: combined Node 24.21.0 run `node --test tests/docs
 | 4 / DATA-04 | docs/sdlc/data-design.md; contracts/data-model.json | Data designer | DATA-04 v0.16.3 Draft; logical model v0.10 | SAD-03 v0.19.1; confirmed policy and corrective Proposed ADRs | BR-01–BR-14; SC-01–SC-08 | Applied storage foundation distinct from unimplemented logical additions |
 | 5 / API-05 | docs/sdlc/api-design.md; contracts/ | API designer | API-05 v0.23.2; Workspace v0.2.11 / Knowledge v0.2.9; 66 operations | DATA-04 v0.16.3; SAD-03 v0.19.1; Proposed ADR-0018–ADR-0023 | BR-01–BR-14; SC-01–SC-08 | Handler/consumer-provider/access tests and unimplemented opaque token/receipt handlers |
 | 6 / UX-06 | docs/sdlc/ui-ux-spec.md; docs/ux/ | UX designer | UX-06 v0.13.3; Board v0.10, AI v0.9, Docs v0.9, sitemap v0.10, matrix v0.11, personas v0.5 | Current PRD/use cases/SAD and contract drafts | BR-01–BR-14; SC-01–SC-08 | Token/receipt handlers, visual tokens/viewports, usability/accessibility and application evidence |
-| 7 / UML-07 | `docs/sdlc/diagrams/README.md`; five type folders; `docs/sdlc/diagrams/review-2026-10-16.md`; historical `review.md` | Diagram author | UML-07 v0.25.7; DGM-REVIEW-02 v0.1; current versions below | Current UC/UX/SAD sources and owner-confirmed direction | BR-01–BR-14; SC-01–SC-08 as applicable | RV-09 rendered routing/readability and full semantic review |
+| 7 / UML-07 | `docs/sdlc/diagrams/README.md`; five type folders; `docs/sdlc/diagrams/review-2026-10-16.md`; historical `review.md` | Diagram author | UML-07 v0.25.8; DGM-REVIEW-02 v0.1; current versions below | Current UC/UX/SAD sources and owner-confirmed direction | BR-01–BR-14; SC-01–SC-08 as applicable | RV-09 rendered routing/readability and full semantic review |
 | 8 / TEST-08 | docs/sdlc/test-plan.md; test-coverage.md; requirement-verification.md; eval/ | Test author | TEST-08 v0.24.2; TEST-COVERAGE-01 v0.11.1; VERIFY-01 v0.12.1; EVAL-CASES-ENTRY v0.8.2 | Current PRD/use cases/specs/corrective contracts | BR-01–BR-14; SC-01–SC-08 planned | Bounded P09/P10 session evidence exists; full application/permission/guard/provider evaluation acceptance remains open |
 | 9 / SPEC-REVIEW-01 (Stage alias REVIEW-09) | docs/sdlc/spec-review.md | Sequential reviewer | 0.30 Draft; original v0.4 history preserved | Snapshot inputs retained in source; no execution or review rerun | BR-01–BR-15; SC-01–SC-08 | Bounded handoff, owner-policy gaps and all runtime acceptance |
 | Budget checkpoint / PROGRESS-01 | docs/sdlc/reports/progress-report-2026-10-18.md | Coordinator / author | 0.2 Draft | Correction queue and executed evidence; account 5% observation | BR-01–BR-14; SC-01–SC-08 | Budget-stop reporting complete; application, owner and rendered UI gates remain open |
@@ -133,8 +133,8 @@ The BRD leaves architecture to design while AGENTS.md directs minimal microservi
 <!-- BEGIN GENERATED:artifact-versions -->
 | Artifact ID | Version | Canonical source |
 | --- | --- | --- |
-| UML-07 | v0.25.7 | [Source](diagrams/README.md) |
-| REG-00 | v0.122.1 | [Source](artifact-register.md) |
+| UML-07 | v0.25.8 | [Source](diagrams/README.md) |
+| REG-00 | v0.123 | [Source](artifact-register.md) |
 | SAD-03 | v0.19.1 | [Source](../architecture.md) |
 | UX-PERM-MATRIX-02 | v0.11.3 | [Source](../ux/permission-matrix.md) |
 | UX-PERSONAS-01 | v0.5.3 | [Source](../ux/personas.md) |
@@ -740,3 +740,8 @@ P01 dependent metadata versions are registered in hotfix evidence/p01-final-2026
 
 
 P01 registers HF42-P01-RESULT v0.1: verified local candidate, actual PostgreSQL179/179, source protection, retained setup/metadata failures and open parent gates. Publication outcomes are recorded only after execution.
+
+
+## P01 actual publication receipt — 4 November 2026
+
+[HF42-P01-RESULT v0.2](../implementation/features/hotfix-backend-layering/p01-report.md) / HOTFIX-BACKEND-42-01 v0.11 / P01v0.4 / entry0.8 record actual dde2933 hotfix push, exact-commit CI success and verified main fast-forward/publication. Earlier pending receipts remain historical observations. Final audit receipt/cleanup follow normal checked publication; parent SP05/P08/D07/independent/release gates remain open.
