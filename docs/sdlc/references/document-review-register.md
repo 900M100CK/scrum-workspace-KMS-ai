@@ -1,9 +1,9 @@
 # Supporting document review register
 
 **Artifact ID:** DOC-REVIEW-REG-01\
-**Version/date:** 0.44.3 Draft · 4 November 2026\
+**Version/date:** 0.62.1 Draft · 4 November 2026\
 **Status:** Review planning with bounded author rechecks recorded below; no full document-type review or approval.\
-**Inputs:** [Development rules](../../development-rules.md) v1.13; [PREFLIGHT-01](../../agent-preflight-checklist.md) v0.1; [REG-00](../artifact-register.md) v0.106; [SDLC-INDEX-01](../README.md) v0.3; [SDLC workflow](../../../agents/WORKFLOW.md), unversioned working guide.\
+**Inputs:** [Development rules](../../development-rules.md) v1.13; [PREFLIGHT-01](../../agent-preflight-checklist.md) v0.1; [REG-00](../artifact-register.md) v0.122.1; [SDLC-INDEX-01](../README.md) v0.3; [SDLC workflow](../../../agents/WORKFLOW.md), unversioned working guide.\
 **Trace:** Supports navigation and review of existing BR-01–BR-15 / SC-01–SC-08 documentation; no new requirement, application slice or acceptance criterion.\
 **Owner role:** SDLC coordinator; review assignments remain unassigned.
 
@@ -160,3 +160,12 @@ Current local reading sources: FEAT-SP03-01/entry/WBS 0.5, canonical SP-03 0.8, 
 ## SP-03 publication completion — 3 November 2026
 
 [PUB-SP03-01 v0.2](../../implementation/features/sp-03-publication/plan.md) and [SP03-PUB-REPORT-01 v0.2](../reports/SP-03-publication-2026-11-03.md) record actual verification, source commit a8b3192, successful GitHub CI, confirmed fast-forward into main and deletion of both SP-03 source branches. Parent FR-05/AC-05 / SP-03.1–03.4 / PLAN-01 Month 1 / M-02 is unchanged. Unrelated working files and the template gitlink are preserved. No deployment, complete master milestone or independent approval.
+
+
+HF42-C01 author reconciliation: HOTFIX-BACKEND-42-01 v0.4 records owner-selected documentation closure with actual ref/source/structural checks, no runtime or independent approval. Historical reviews/results and unrelated agent maintenance remain untouched.
+
+
+Planning-only handoff: HOTFIX-BACKEND-42-01 v0.5/WBS0.3 prepares HF42-RF01–RF05 before future SP-04 execution. Review checks task contracts, ownership and preserved negative/fixture-ceiling obligations; no independent or runtime acceptance, new refactor implementation or change to earlier results.
+
+
+RF01 baseline source: existing FEAT-SP04-01 v0.14 at e6f2337 is restored as committed source/evidence, retaining its P08 actual-SP05 gate. HOTFIX-BACKEND-42-01 v0.6 owns only the new RF01–RF05 changes. Baseline integration creates no Git merge/commit or new wire/schema policy.

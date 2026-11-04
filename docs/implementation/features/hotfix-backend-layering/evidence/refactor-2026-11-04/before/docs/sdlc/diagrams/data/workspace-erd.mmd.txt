@@ -1,0 +1,181 @@
+%% Origin: docs/sdlc/diagrams/design-foundation-2026-10-17.md v0.1
+%% DGM-DATA-01 v0.6.1 Draft - 2 November 2026
+%% Sources: DGM-DESIGN-01 v0.1; PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.17; DATA-04 v0.16.1; ADR-0004; ADR-0007; ADR-0008; ADR-0011; ADR-0012; ADR-0017; ADR-0018; ADR-0023; ADR-0024; ADR-0025; ADR-0026; ADR-0027
+%% Trace: BR-01–BR-03, BR-06, BR-10–BR-12; SC-03/04/06
+%% Scope: Workspace schema through selected additive migration 009, tested only in disposable PostgreSQL; development upgrade not claimed. Selected fields; database storage is not end-user authority.
+%% Legend: Relationship label names FK columns; ||--o{ means parent 1 to child 0..many. AuthAccount is private authentication storage; no cross-store FK. Session/idempotency/authentication audit have no project FK.
+erDiagram
+    project {
+        uuid project_id PK
+        text name
+        bigint revision
+        bigint backlog_revision "set and order generation"
+        uuid created_by FK "immutable creator"
+        timestamptz created_at "immutable server origin"
+    }
+    membership {
+        uuid project_id PK,FK
+        uuid user_id PK
+        boolean active
+        bigint membership_generation
+        text role
+        bigint revision "safe integer API boundary"
+    }
+    session {
+        uuid session_id PK
+        uuid user_id FK
+        boolean revoked
+        timestamptz expires_at
+        bigint revision
+    }
+    sprint {
+        uuid sprint_id PK
+        uuid project_id FK
+        text state "planned active completed"
+        bigint revision
+    }
+    task {
+        uuid task_id PK
+        uuid project_id FK
+        uuid assignee_id FK "nullable composite membership FK"
+        text state "todo in_progress done"
+        numeric backlog_position
+        bigint revision
+        text location_kind "backlog sprint completed"
+        uuid location_sprint_id FK "nullable current pointer independent of history"
+        timestamptz created_at "immutable server creation time"
+    }
+    sprint_allocation {
+        uuid sprint_id PK,FK
+        uuid task_id PK,FK
+        uuid project_id FK
+        text allocation_state "allocated completed returned"
+        bigint revision
+    }
+    blocker_event {
+        uuid event_id PK
+        uuid task_id FK
+        bigint sequence "unique per task"
+        text status "open resolved"
+    }
+    document_policy {
+        uuid document_id PK
+        uuid project_id FK
+        text classification
+        text registry_state "active unavailable after 002"
+        bigint permission_revision
+    }
+    read_grant {
+        uuid document_id PK,FK
+        uuid user_id PK,FK
+        bigint grant_generation PK
+        uuid project_id FK
+        bigint membership_generation
+        boolean valid
+    }
+    capability_grant {
+        uuid grant_id PK
+        uuid project_id FK
+        uuid subject_id
+        uuid resource_id
+        text action
+        boolean valid
+    }
+    business_audit {
+        uuid event_id PK
+        uuid project_id FK
+        uuid actor_id
+        uuid entity_id
+        uuid correlation_id
+    }
+    idempotency_record {
+        uuid actor_id PK
+        text operation PK
+        text idempotency_key PK
+        text payload_hash
+        text state
+        timestamptz expires_at
+        uuid claim_fence "protected only"
+        uuid process_ref "protected only"
+        smallint result_status "SP02 committed result"
+        jsonb result_snapshot "minimal immutable 201 fields"
+    }
+    protected_handoff_outcome {
+        uuid outcome_id PK
+        uuid actor_id FK
+        text operation FK
+        text handoff_id FK
+        uuid claim_fence FK
+        text status
+        timestamptz observed_at
+        text enforcement_ref
+    }
+    auth_account {
+        uuid user_id PK
+        text username UK
+        text password_credential "private encoded KDF"
+        boolean disabled
+        bigint credential_revision
+    }
+    session_token {
+        uuid session_id PK,FK
+        text token_digest UK
+        timestamptz created_at
+        timestamptz absolute_expires_at "immutable cap"
+    }
+    auth_clock_state {
+        boolean singleton PK
+        timestamptz last_observed
+        boolean healthy
+        bigint recovery_generation
+    }
+    authentication_audit {
+        uuid event_id PK
+        text action
+        uuid actor_user_id
+        uuid entity_id
+        text operator_ref
+        text database_principal
+        timestamptz observed_at
+        bigint recovery_generation
+        uuid correlation_id
+        text evidence_ref
+    }
+    global_project_authority {
+        uuid user_id PK,FK
+        boolean can_create
+        bigint revision
+    }
+    authority_provisioning_audit {
+        uuid event_id PK
+        uuid target_user_id FK
+        uuid project_id FK "nullable"
+        text action
+        boolean allowed
+        bigint previous_revision
+        bigint revision
+        text operator_ref
+        text database_principal
+        timestamptz recorded_at
+    }
+    project ||--o{ membership : "project_id"
+    project ||--o{ sprint : "project_id"
+    project ||--o{ task : "project_id"
+    membership o|--o{ task : "project_id + nullable assignee_id"
+    sprint ||--o{ sprint_allocation : "project_id + sprint_id"
+    task ||--o{ sprint_allocation : "project_id + task_id"
+    task ||--o{ blocker_event : "task_id"
+    project ||--o{ document_policy : "project_id"
+    document_policy ||--o{ read_grant : "project_id + document_id"
+    membership ||--o{ read_grant : "project_id + user_id"
+    project ||--o{ capability_grant : "project_id"
+    project ||--o{ business_audit : "project_id"
+    sprint o|--o{ task : "project_id + location_sprint_id (deferred)"
+    sprint_allocation o|--o| task : "location_sprint_id + task_id (deferred)"
+    idempotency_record ||--o{ protected_handoff_outcome : "actor operation key fence; append-only"
+    auth_account ||--o{ session : "user_id"
+    session ||--|| session_token : "session_id"
+    auth_account ||--o{ project : "created_by"
+    auth_account ||--o| global_project_authority : "user_id"
+    auth_account ||--o{ authority_provisioning_audit : "target_user_id"
+    project o|--o{ authority_provisioning_audit : "project_id nullable"

@@ -1,0 +1,49 @@
+✖ all registered docs and diagram pairs pass (1147.9858ms)
+✔ preflight exception counts agree with current use-case definitions (1.7942ms)
+✔ architecture FR trace rows stay inside one continuous Markdown table (0.8736ms)
+✔ unselected retrieval mechanisms need explicit status in current text (0.8303ms)
+✔ Draw.io status belongs to its own label, not an unrelated cell on the same XML line (0.7258ms)
+✔ Sources contains every body ADR, including shorthand and ranges, not just the highest ID (0.4543ms)
+✔ manifest version/ADR changes propagate to all generated inventories and both diagram headers (12.4721ms)
+✔ AI checkpoint sources retain the unavailable, partial-answer and member-removal decisions (0.8248ms)
+✔ use-case associations are undirected; generalization/include retain direction and native UML style (52.1533ms)
+✔ operation references fail on facade path/ID or actual node label drift (0.5611ms)
+✔ input headers name the latest cited ADR and current input versions (0.3042ms)
+✔ real Mermaid parser rejects invalid syntax (4.0187ms)
+✔ flowchart adapter compares labels, direction and parallel-edge counts (9.3327ms)
+✔ invalid XML and dangling/undirected edges fail closed (0.7614ms)
+✔ current version drift and missing rows fail; historical versions are allowed (0.369ms)
+✔ journey actors and scores are compared, not merely grammar-checked (2.9103ms)
+✔ current prose references cannot disagree with headers while historical snapshots can (0.3042ms)
+✔ current linked input aliases use target versions while snapshot evidence stays historical (0.7389ms)
+✔ design pairs reject reversed sequence handoffs and changed native multiplicities (44.5964ms)
+✔ physical diagram entity inventory matches owned CREATE TABLE definitions (3.7392ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 19
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2886.5151
+
+✖ failing tests:
+
+test at tests\docs\docs.test.mjs:14:1
+✖ all registered docs and diagram pairs pass (1147.9858ms)
+  AssertionError [ERR_ASSERTION]: Current reference version drift in docs/sdlc/diagrams/README.md: SAD-03
+  
+  '0.19' !== '0.19.1'
+  
+      at checkCurrentReferences (file:///C:/Users/MCK/.codex/worktrees/hotfix-backend-layering/scrum-workspace-KMS-ai/scripts/docs/verify-docs.mjs:179:14)
+      at verifyDocs (file:///C:/Users/MCK/.codex/worktrees/hotfix-backend-layering/scrum-workspace-KMS-ai/scripts/docs/verify-docs.mjs:345:5)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/hotfix-backend-layering/scrum-workspace-KMS-ai/tests/docs/docs.test.mjs:15:3)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '0.19',
+    expected: '0.19.1',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

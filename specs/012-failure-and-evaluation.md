@@ -1,9 +1,9 @@
 # Verify fallback and evaluate the evidence pipeline
 
 **Artifact ID:** SP-12  
-**Version/date:** 0.4 Draft · 25 October 2026\
+**Version/date:** 0.4.3 Draft · 4 November 2026\
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
-**Inputs:** PRD-01 v0.9; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-12--continue-work-during-ai-failure); [contract pack](../contracts/README.md); PLAN-01 v0.4.\
+**Inputs:** PRD-01 v0.10.2; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-12--continue-work-during-ai-failure); [contract pack](../contracts/README.md); PLAN-01 v0.4.\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 4.  

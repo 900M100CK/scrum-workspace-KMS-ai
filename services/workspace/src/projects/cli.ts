@@ -1,7 +1,7 @@
 import {pathToFileURL} from 'node:url';
 import {resolve} from 'node:path';
 import {workspacePool} from '../session/database.ts';
-import {WorkspaceProjectOperator} from './operator.ts';
+import {WorkspaceProjectOperator,isProjectCapability} from './operator.ts';
 
 async function main(){
  const url=process.env.SACW_OPERATOR_DATABASE_URL,operatorRef=process.env.SACW_OPERATOR_REF;
@@ -16,7 +16,7 @@ async function main(){
   if(process.argv[2]==='state')result=await operator.state(text('user_id'),data.project_id===undefined?undefined:text('project_id'));
   else if(process.argv[2]==='global')result=await operator.global(text('user_id'),data.allowed as boolean,text('expected_revision'),operatorRef,text('reason'));
   else if(process.argv[2]==='project'){
-   const action=text('action');if(action!=='membership-manage'&&action!=='project-administrator'&&action!=='backlog-author')throw new Error('Unsupported action');
+   const action=text('action');if(!isProjectCapability(action))throw new Error('Unsupported action');
    result=await operator.project(text('user_id'),text('project_id'),action,data.allowed as boolean,text('expected_revision'),operatorRef,text('reason'));
   }else throw new Error('Unknown command');
   process.stdout.write(JSON.stringify(result)+'\n');

@@ -1,0 +1,17 @@
+✔ unknown task creation survives reload with exact actor/body/key; confirmed replay refreshes current details (22.34ms)
+✔ denied/expired/conflicting reconciliation retains uncertainty and hides protected data; no new key is generated (1.3773ms)
+✔ foreign actor or malformed recovery storage cannot reveal/replay saved request input (0.712ms)
+✔ only current advisory create authority and valid bounded supported input permit a persisted mutation (0.83ms)
+✔ blocked or silently discarded browser storage sends no mutation while current reads still work (0.6734ms)
+✔ late reads cannot restore a revoked task, list or advisory create controls (0.543ms)
+✔ cursor conflict discards previous pages and loads a fresh first page without stale accumulation (0.6101ms)
+✔ malformed, wrong-project and secret-bearing protected output is withheld; malformed 201 preserves original recovery identity (0.906ms)
+✔ explicit sign-out cleanup removes the stored operation while expiry alone retains it for the same actor (1.4699ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 180.3589

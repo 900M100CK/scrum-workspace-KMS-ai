@@ -1,0 +1,81 @@
+{
+  "node": "v24.22.1",
+  "results": [
+    {
+      "name": "regression",
+      "command": [
+        "--test",
+        "--test-concurrency=1",
+        "tests/workspace/task-edit.test.mjs",
+        "tests/workspace/task-mutation-authority.test.mjs",
+        "tests/workspace/task-http.test.mjs",
+        "tests/workspace/task-reads.test.mjs",
+        "tests/workspace/task-concurrency.test.mjs"
+      ],
+      "exit_code": 0,
+      "tail": "econstruction and actor/projection-bound numeric paging\n  \u2714 fresh detail exposes immutable creation time, current location and highest committed blocker sequence (120.3621ms)\n  \u2714 50-item pages preserve numeric position then UUID across descending IDs/equal positions, and all uses UUID order (355.1213ms)\n  \u2714 unknown/foreign/nonmember reads share generic 404 and invalid selectors cannot assert scope (82.1914ms)\n  \u2714 cursor binds actor/filter and current projection while same-actor relogin remains valid (133.587ms)\n  \u2714 highest blocker changes invalidate projection without advancing Backlog set/order generation (67.6467ms)\n  \u2714 verified expired or absent bookmark returns conflict without a partial page, never an implicit restart (44.1419ms)\n  \u2714 missing/rotated key or database faults fail closed; detail still needs no cursor key (188.2731ms)\n  \u2714 removed membership denies old cursor; same-role rejoin invalidates its generation without author revival (142.4041ms)\n  \u2714 post-wait session expiry withholds protected page (330.2493ms)\n  \u2714 post-wait session expiry withholds protected detail (357.2661ms)\n\u2714 P05 real scoped Task reconstruction and actor/projection-bound numeric paging (7760.4624ms)\n\u2139 tests 61\n\u2139 suites 0\n\u2139 pass 61\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 45068.3422\n"
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "typecheck",
+        "--workspace",
+        "@sacw/workspace"
+      ],
+      "exit_code": 0,
+      "tail": "\n> @sacw/workspace@0.1.0 typecheck\n> tsc --noEmit\n\n"
+    },
+    {
+      "name": "context-check",
+      "command": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "context:check"
+      ],
+      "exit_code": 0,
+      "tail": "\n> scrum-workspace-kms-context@0.1.0 context:check\n> node scripts/verify-context.mjs\n\n{\n  \"requirements\": 69,\n  \"withdrawn\": [\n    \"FR-45\"\n  ],\n  \"scope\": {\n    \"Must\": 60,\n    \"Should\": 4,\n    \"Wont\": 1,\n    \"Could\": 4\n  },\n  \"services\": 2,\n  \"operations\": 66,\n  \"specs\": 13,\n  \"referenceCases\": 25,\n  \"research\": {\n    \"cases\": 25,\n    \"groups\": {\n      \"doc\": 8,\n      \"state\": 8,\n      \"both\": 9\n    },\n    \"results\": \"not run; reference definitions only\"\n  },\n  \"runtimeEvidence\": \"not run\"\n}\n"
+    },
+    {
+      "name": "context-test",
+      "command": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "context:test"
+      ],
+      "exit_code": 0,
+      "tail": "entity (3.1261ms)\n\u2714 internal request must require service plus actor context (3.727ms)\n\u2714 withdrawn IDs cannot return through an API trace (3.7943ms)\n\u2714 withdrawn requirements cannot count as release Must (1.3398ms)\n\u2714 new Core deferral requires an explicit matching decision (1.0086ms)\n\u2714 missing withdrawal record cannot silently shrink the scope (1.2731ms)\n\u2714 document lifecycle rejects reintroducing Draft outside retrieval (3.5336ms)\n\u2714 research references reject restricted evidence without an explicit grant (6.4715ms)\n\u2714 document-only configuration cannot receive current-state credit (2.9229ms)\n\u2714 operational citation must match the frozen revision and observation time (2.2959ms)\n\u2714 fixture blocked flag cannot disagree with ordered evidence (1.2508ms)\n\u2714 regression fixture cannot reintroduce the removed Draft lifecycle (1.6489ms)\n\u2714 revision scenario cannot overwrite an existing cited identity (2.8167ms)\n\u2714 unsaved editor scenario must stay outside ingested evidence (2.2049ms)\n\u2714 matching observation revision cannot hide a different value (0.7637ms)\n\u2714 source-task fixture links cannot cross projects (0.5817ms)\n\u2714 observations without source rows cannot be used as operational evidence (0.4181ms)\n\u2139 tests 45\n\u2139 suites 0\n\u2139 pass 45\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 632.7362\n"
+    },
+    {
+      "name": "contracts-test",
+      "command": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "contracts:test"
+      ],
+      "exit_code": 0,
+      "tail": "exact strings (0.8011ms)\n\u2714 strict base64 rejects permissive decoder inputs, nonzero padding bits and byte overrun (6.6916ms)\n\u2714 manifest JSON rejects duplicate decoded keys, malformed UTF-8 and trailing data (7.3593ms)\n\u2714 numeric revision/count parsing rejects rounding and accepts exact integer equivalents (2.7396ms)\n\u2714 native-serialized nested JSON survives the duplicate-key token walk unchanged (5.7841ms)\n\u2714 both purposes bind exact bytes and full mixed evidence without granting send authority (15.8869ms)\n\u2714 authoritative receipt, identity and destination mismatches fail before any binding result (8.8925ms)\n\u2714 manifest hashing preserves raw whitespace, order and Unicode bytes (4.6248ms)\n\u2714 payload digest and byte count reject even semantically equivalent reserialization (6.5625ms)\n\u2714 uncited changed, omitted, duplicate and cross-project evidence cannot hide behind a valid document citation (3.6723ms)\n\u2714 answer citations and claim references bind exact prepared source identities (5.6214ms)\n\u2714 typed/byte disagreement and numeric precision loss are rejected despite valid schema shapes (1.8364ms)\n\u2714 zero-evidence insufficiency retains exact no-answer state without fabricated sources (1.2286ms)\n\u2139 tests 27\n\u2139 suites 0\n\u2139 pass 27\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 1405.1674\n"
+    },
+    {
+      "name": "docs-lint",
+      "command": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "docs:lint"
+      ],
+      "exit_code": 0,
+      "tail": "\n> scrum-workspace-kms-context@0.1.0 docs:lint\n> node scripts/docs/verify-docs.mjs\n\n{\n  \"diagrams\": 20,\n  \"artifacts\": 35,\n  \"nodes\": 324,\n  \"edges\": 365,\n  \"runtimeEvidence\": \"not run\"\n}\n"
+    },
+    {
+      "name": "docs-test",
+      "command": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "docs:test"
+      ],
+      "exit_code": 0,
+      "tail": " generated inventories and both diagram headers (41.3723ms)\n\u2714 AI checkpoint sources retain the unavailable, partial-answer and member-removal decisions (2.9024ms)\n\u2714 use-case associations are undirected; generalization/include retain direction and native UML style (118.6175ms)\n\u2714 operation references fail on facade path/ID or actual node label drift (1.4736ms)\n\u2714 input headers name the latest cited ADR and current input versions (1.2211ms)\n\u2714 real Mermaid parser rejects invalid syntax (6.1549ms)\n\u2714 flowchart adapter compares labels, direction and parallel-edge counts (19.4233ms)\n\u2714 invalid XML and dangling/undirected edges fail closed (2.8124ms)\n\u2714 current version drift and missing rows fail; historical versions are allowed (1.0363ms)\n\u2714 journey actors and scores are compared, not merely grammar-checked (17.6135ms)\n\u2714 current prose references cannot disagree with headers while historical snapshots can (0.6023ms)\n\u2714 current linked input aliases use target versions while snapshot evidence stays historical (0.4798ms)\n\u2714 design pairs reject reversed sequence handoffs and changed native multiplicities (80.2692ms)\n\u2714 physical diagram entity inventory matches owned CREATE TABLE definitions (6.699ms)\n\u2139 tests 20\n\u2139 suites 0\n\u2139 pass 20\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 6019.1066\n"
+    }
+  ]
+}

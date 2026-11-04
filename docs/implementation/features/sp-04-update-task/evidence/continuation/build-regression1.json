@@ -1,0 +1,11 @@
+{
+  "name": "build",
+  "command": [
+    "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+    "run",
+    "build"
+  ],
+  "exit_code": 0,
+  "tail": "\n> scrum-workspace-kms-context@0.1.0 build\n> npm run build --workspaces --if-present\n\n\n> @sacw/web@0.1.0 build\n> tsc --noEmit && vite build\n\nvite v8.3.5 building client environment for production...\ntransforming...\n\u2713 21 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                   0.45 kB \u2502 gzip:  0.31 kB\ndist/assets/index-Cwwwh_FJ.css    3.31 kB \u2502 gzip:  1.27 kB\ndist/assets/index-DQWSfdxw.js   263.77 kB \u2502 gzip: 79.14 kB\n\n\u2713 built in 480ms\n\n> @sacw/workspace@0.1.0 build\n> tsc -p tsconfig.build.json\n\n\n> @sacw/knowledge@0.1.0 build\n> tsc -p tsconfig.build.json\n\n"
+}

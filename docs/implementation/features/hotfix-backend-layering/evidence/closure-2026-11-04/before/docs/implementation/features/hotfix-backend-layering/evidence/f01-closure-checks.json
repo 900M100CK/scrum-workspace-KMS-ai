@@ -1,0 +1,12 @@
+[
+  {
+    "command": "docs:lint",
+    "exit_code": 0,
+    "log": "f01-closure-docs-lint.log"
+  },
+  {
+    "command": "context:check",
+    "exit_code": 0,
+    "log": "f01-closure-context-check.log"
+  }
+]

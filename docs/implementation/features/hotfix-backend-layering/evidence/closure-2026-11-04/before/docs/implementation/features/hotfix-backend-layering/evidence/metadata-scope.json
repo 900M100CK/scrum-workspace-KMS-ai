@@ -1,0 +1,223 @@
+{
+  "changes": {
+    "docs/architecture.md": {
+      "id": "SAD-03",
+      "old": "0.16",
+      "new": "0.17"
+    },
+    "docs/sdlc/SAD.md": {
+      "id": "SAD-03-ENTRY",
+      "old": "0.15",
+      "new": "0.16"
+    },
+    "docs/sdlc/artifact-register.md": {
+      "id": "REG-00",
+      "old": "0.103",
+      "new": "0.104"
+    },
+    "docs/sdlc/diagrams/README.md": {
+      "id": "UML-07",
+      "old": "0.22",
+      "new": "0.23"
+    },
+    "docs/implementation/features/README.md": {
+      "id": "IMPL-FEATURES-01",
+      "old": "0.30",
+      "new": "0.31"
+    },
+    "docs/implementation/roadmap.md": {
+      "id": "IMPL-ROADMAP-01",
+      "old": "0.23",
+      "new": "0.24"
+    },
+    "docs/implementation/register.md": {
+      "id": "IMPL-REG-01",
+      "old": "0.35",
+      "new": "0.36"
+    },
+    "docs/sdlc/api-design.md": {
+      "id": "API-05",
+      "old": "0.22",
+      "new": "0.22.1"
+    },
+    "docs/sdlc/data-design.md": {
+      "id": "DATA-04",
+      "old": "0.16",
+      "new": "0.16.1"
+    },
+    "docs/sdlc/references/document-review-register.md": {
+      "id": "DOC-REVIEW-REG-01",
+      "old": "0.44",
+      "new": "0.44.1"
+    },
+    "docs/sdlc/test-plan.md": {
+      "id": "TEST-08",
+      "old": "0.24",
+      "new": "0.24.1"
+    },
+    "docs/sdlc/ui-ux-blueprint.md": {
+      "id": "UX-BLUEPRINT-01",
+      "old": "1.7",
+      "new": "1.7.1"
+    },
+    "docs/sdlc/ui-ux-spec.md": {
+      "id": "UX-06",
+      "old": "0.13",
+      "new": "0.13.1"
+    },
+    "docs/ux/wireframe-workplan.md": {
+      "id": "UX-PLAN-01",
+      "old": "0.4",
+      "new": "0.4.1"
+    },
+    "docs/ux/wireframes/README.md": {
+      "id": "UX-WF-EX-01",
+      "old": "0.5",
+      "new": "0.5.1"
+    },
+    "docs/sdlc/evaluation-cases.md": {
+      "id": "EVAL-CASES-ENTRY",
+      "old": "0.8",
+      "new": "0.8.1"
+    },
+    "docs/sdlc/requirement-verification.md": {
+      "id": "VERIFY-01",
+      "old": "0.12",
+      "new": "0.12.1"
+    },
+    "docs/sdlc/test-coverage.md": {
+      "id": "TEST-COVERAGE-01",
+      "old": "0.11",
+      "new": "0.11.1"
+    }
+  },
+  "diagram_metadata": [
+    "docs/sdlc/diagrams/architecture/service-composition.mmd",
+    "docs/sdlc/diagrams/architecture/service-composition.drawio",
+    "docs/sdlc/diagrams/sitemap/application-sitemap.mmd",
+    "docs/sdlc/diagrams/sitemap/application-sitemap.drawio",
+    "docs/sdlc/diagrams/flowchart/ai-qa-flow.mmd",
+    "docs/sdlc/diagrams/flowchart/ai-qa-flow.drawio",
+    "docs/sdlc/diagrams/flowchart/board-flow.mmd",
+    "docs/sdlc/diagrams/flowchart/board-flow.drawio",
+    "docs/sdlc/diagrams/flowchart/docs-flow.mmd",
+    "docs/sdlc/diagrams/flowchart/docs-flow.drawio",
+    "docs/sdlc/diagrams/flowchart/permission-read-flow.mmd",
+    "docs/sdlc/diagrams/flowchart/permission-read-flow.drawio",
+    "docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.mmd",
+    "docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.drawio",
+    "docs/sdlc/diagrams/user-journey/core-user-journeys.mmd",
+    "docs/sdlc/diagrams/user-journey/core-user-journeys.drawio",
+    "docs/sdlc/diagrams/use-case/use-case-diagram.mmd",
+    "docs/sdlc/diagrams/use-case/use-case-diagram.drawio",
+    "docs/sdlc/diagrams/c4/system-context.mmd",
+    "docs/sdlc/diagrams/c4/system-context.drawio",
+    "docs/sdlc/diagrams/c4/containers.mmd",
+    "docs/sdlc/diagrams/c4/containers.drawio",
+    "docs/sdlc/diagrams/sequence/protected-handoff.mmd",
+    "docs/sdlc/diagrams/sequence/protected-handoff.drawio",
+    "docs/sdlc/diagrams/sequence/document-creation.mmd",
+    "docs/sdlc/diagrams/sequence/document-creation.drawio",
+    "docs/sdlc/diagrams/state/document-and-readiness.mmd",
+    "docs/sdlc/diagrams/state/document-and-readiness.drawio",
+    "docs/sdlc/diagrams/state/sprint-task-allocation.mmd",
+    "docs/sdlc/diagrams/state/sprint-task-allocation.drawio",
+    "docs/sdlc/diagrams/data/workspace-erd.mmd",
+    "docs/sdlc/diagrams/data/workspace-erd.drawio",
+    "docs/sdlc/diagrams/data/knowledge-erd.mmd",
+    "docs/sdlc/diagrams/data/knowledge-erd.drawio",
+    "docs/sdlc/diagrams/data/handoff-logical-model.mmd",
+    "docs/sdlc/diagrams/data/handoff-logical-model.drawio",
+    "docs/sdlc/diagrams/deployment/local-development.mmd",
+    "docs/sdlc/diagrams/deployment/local-development.drawio",
+    "docs/sdlc/diagrams/development/package-ownership.mmd",
+    "docs/sdlc/diagrams/development/package-ownership.drawio"
+  ],
+  "generated_and_manifest": [
+    "docs/sdlc/diagrams/manifest.json",
+    "docs/sdlc/diagrams/architecture/README.md",
+    "docs/sdlc/diagrams/c4/README.md",
+    "docs/sdlc/diagrams/data/README.md",
+    "docs/sdlc/diagrams/deployment/README.md",
+    "docs/sdlc/diagrams/development/README.md",
+    "docs/sdlc/diagrams/flowchart/README.md",
+    "docs/sdlc/diagrams/sequence/README.md",
+    "docs/sdlc/diagrams/sitemap/README.md",
+    "docs/sdlc/diagrams/state/README.md",
+    "docs/sdlc/diagrams/use-case/README.md",
+    "docs/sdlc/diagrams/user-journey/README.md"
+  ],
+  "exact_paths": [
+    "docs/architecture.md",
+    "docs/implementation/features/README.md",
+    "docs/implementation/register.md",
+    "docs/implementation/roadmap.md",
+    "docs/sdlc/SAD.md",
+    "docs/sdlc/api-design.md",
+    "docs/sdlc/artifact-register.md",
+    "docs/sdlc/data-design.md",
+    "docs/sdlc/diagrams/README.md",
+    "docs/sdlc/diagrams/architecture/README.md",
+    "docs/sdlc/diagrams/architecture/service-composition.drawio",
+    "docs/sdlc/diagrams/architecture/service-composition.mmd",
+    "docs/sdlc/diagrams/c4/README.md",
+    "docs/sdlc/diagrams/c4/containers.drawio",
+    "docs/sdlc/diagrams/c4/containers.mmd",
+    "docs/sdlc/diagrams/c4/system-context.drawio",
+    "docs/sdlc/diagrams/c4/system-context.mmd",
+    "docs/sdlc/diagrams/data/README.md",
+    "docs/sdlc/diagrams/data/handoff-logical-model.drawio",
+    "docs/sdlc/diagrams/data/handoff-logical-model.mmd",
+    "docs/sdlc/diagrams/data/knowledge-erd.drawio",
+    "docs/sdlc/diagrams/data/knowledge-erd.mmd",
+    "docs/sdlc/diagrams/data/workspace-erd.drawio",
+    "docs/sdlc/diagrams/data/workspace-erd.mmd",
+    "docs/sdlc/diagrams/deployment/README.md",
+    "docs/sdlc/diagrams/deployment/local-development.drawio",
+    "docs/sdlc/diagrams/deployment/local-development.mmd",
+    "docs/sdlc/diagrams/development/README.md",
+    "docs/sdlc/diagrams/development/package-ownership.drawio",
+    "docs/sdlc/diagrams/development/package-ownership.mmd",
+    "docs/sdlc/diagrams/flowchart/README.md",
+    "docs/sdlc/diagrams/flowchart/ai-qa-flow.drawio",
+    "docs/sdlc/diagrams/flowchart/ai-qa-flow.mmd",
+    "docs/sdlc/diagrams/flowchart/board-flow.drawio",
+    "docs/sdlc/diagrams/flowchart/board-flow.mmd",
+    "docs/sdlc/diagrams/flowchart/docs-flow.drawio",
+    "docs/sdlc/diagrams/flowchart/docs-flow.mmd",
+    "docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.drawio",
+    "docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.mmd",
+    "docs/sdlc/diagrams/flowchart/permission-read-flow.drawio",
+    "docs/sdlc/diagrams/flowchart/permission-read-flow.mmd",
+    "docs/sdlc/diagrams/manifest.json",
+    "docs/sdlc/diagrams/sequence/README.md",
+    "docs/sdlc/diagrams/sequence/document-creation.drawio",
+    "docs/sdlc/diagrams/sequence/document-creation.mmd",
+    "docs/sdlc/diagrams/sequence/protected-handoff.drawio",
+    "docs/sdlc/diagrams/sequence/protected-handoff.mmd",
+    "docs/sdlc/diagrams/sitemap/README.md",
+    "docs/sdlc/diagrams/sitemap/application-sitemap.drawio",
+    "docs/sdlc/diagrams/sitemap/application-sitemap.mmd",
+    "docs/sdlc/diagrams/state/README.md",
+    "docs/sdlc/diagrams/state/document-and-readiness.drawio",
+    "docs/sdlc/diagrams/state/document-and-readiness.mmd",
+    "docs/sdlc/diagrams/state/sprint-task-allocation.drawio",
+    "docs/sdlc/diagrams/state/sprint-task-allocation.mmd",
+    "docs/sdlc/diagrams/use-case/README.md",
+    "docs/sdlc/diagrams/use-case/use-case-diagram.drawio",
+    "docs/sdlc/diagrams/use-case/use-case-diagram.mmd",
+    "docs/sdlc/diagrams/user-journey/README.md",
+    "docs/sdlc/diagrams/user-journey/core-user-journeys.drawio",
+    "docs/sdlc/diagrams/user-journey/core-user-journeys.mmd",
+    "docs/sdlc/evaluation-cases.md",
+    "docs/sdlc/references/document-review-register.md",
+    "docs/sdlc/requirement-verification.md",
+    "docs/sdlc/test-coverage.md",
+    "docs/sdlc/test-plan.md",
+    "docs/sdlc/ui-ux-blueprint.md",
+    "docs/sdlc/ui-ux-spec.md",
+    "docs/ux/wireframe-workplan.md",
+    "docs/ux/wireframes/README.md"
+  ],
+  "policy": "Header/version/date/current generated references only; preserve historical prose and every graph body."
+}

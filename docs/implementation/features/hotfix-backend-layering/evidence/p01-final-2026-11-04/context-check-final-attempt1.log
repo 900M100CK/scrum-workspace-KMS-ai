@@ -1,0 +1,19 @@
+
+> scrum-workspace-kms-context@0.1.0 context:check
+> node scripts/verify-context.mjs
+
+node:internal/fs/promises:1312
+  return await PromisePrototypeThen(
+         ^
+
+Error: ENOENT: no such file or directory, access 'C:\Users\MCK\.codex\worktrees\hotfix-backend-layering\scrum-workspace-KMS-ai\SDLC-Prompt-Checklist\analysis\PRD_prompt.md'
+    at async access (node:internal/fs/promises:1312:10)
+    at async verifyContext (file:///C:/Users/MCK/.codex/worktrees/hotfix-backend-layering/scrum-workspace-KMS-ai/scripts/verify-context.mjs:390:7)
+    at async file:///C:/Users/MCK/.codex/worktrees/hotfix-backend-layering/scrum-workspace-KMS-ai/scripts/verify-context.mjs:402:30 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'access',
+  path: 'C:\\Users\\MCK\\.codex\\worktrees\\hotfix-backend-layering\\scrum-workspace-KMS-ai\\SDLC-Prompt-Checklist\\analysis\\PRD_prompt.md'
+}
+
+Node.js v24.22.1

@@ -1,0 +1,66 @@
+▶ SP04-P03D1 actual Backlog edit, recovery, rollback and authority schedules
+  ✔ explicit action only; cross-project/nonmember/missing identities conceal existence (94.7559ms)
+  ✖ strict shape/media/origin/header/text/body bounds make no change (29.4454ms)
+  ✔ confirmed edit persists exact text, audit and original200; omission preserves description; changed hash conflicts (171.325ms)
+  ✔ empty and same-value no-ops retain their own200 without revision/audit; missing and empty fields hash differently (99.4186ms)
+  ✔ new edits reject non-Backlog placement; retained replay bypasses current placement and revision (101.8647ms)
+  ✔ safe revision ceiling permits no-op but refuses increment (70.2598ms)
+  ✖ task UPDATE, audit and outcome faults roll back every business effect (131.6477ms)
+  ✔ same-revision competing edits have one winner; concurrent duplicate key writes once (209.0298ms)
+  ✔ edit-first actual lock schedule commits once then current revoked authority denies replay (157.5259ms)
+  ✔ revoke-first actual producer denies waiting new edit and original replay (94.5486ms)
+  ✔ actual removal before edit denies the former member and rejoin restores no edit grant (153.5227ms)
+  ✔ live discovery advertises only implemented edit with current authority and clears after revoke (74.4166ms)
+  ✔ session expiry during a paused actual read withholds edit before business writes (543.8546ms)
+✖ SP04-P03D1 actual Backlog edit, recovery, rollback and authority schedules (8357.7347ms)
+ℹ {"fixture":"sp01-p08-test-15977556b8c8","volume":"sp01-p08-test-15977556b8c8-data","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","ceiling":"010"}
+ℹ tests 14
+ℹ suites 0
+ℹ pass 11
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8882.339
+
+✖ failing tests:
+
+test at tests\workspace\task-edit.test.mjs:34:10
+✖ strict shape/media/origin/header/text/body bounds make no change (29.4454ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  400 !== 415
+  
+      at TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-edit.test.mjs:42:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-edit.test.mjs:34:2)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 400,
+    expected: 415,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\workspace\task-edit.test.mjs:81:10
+✖ task UPDATE, audit and outcome faults roll back every business effect (131.6477ms)
+  AssertionError [ERR_ASSERTION]: {"task_id":"bd023a5e-0eba-40a1-8117-03b367264e28","project_id":"a9d345a5-3aaa-4a6d-ac87-9facc852eac5","type":"task","title":"Must rollback","description":"","state":"todo","assignee_id":null,"blocked":false,"revision":4,"work_location":{"kind":"backlog","position":"1"},"created_at":"2026-11-04T03:47:11.231Z"}
+  
+  200 !== 503
+  
+      at TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-edit.test.mjs:85:57)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-edit.test.mjs:81:2)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 503,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

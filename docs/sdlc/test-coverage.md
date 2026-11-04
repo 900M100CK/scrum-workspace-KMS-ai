@@ -1,8 +1,8 @@
 # Scenario and exception verification matrix
 
 **Artifact ID:** TEST-COVERAGE-01
-**Version/date:** 0.11.1 Draft · 4 November 2026
-**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.9; UC-02 v0.8; TEST-08 v0.24.1; ADR-0007–ADR-0017.
+**Version/date:** 0.11.2 Draft · 4 November 2026
+**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.10.2; UC-02 v0.8.3; TEST-08 v0.24.3; ADR-0007–ADR-0017.; Proposed ADR-0028 v0.1
 **Status:** Planned assertions with bounded P09/P10/P11 measured subsets; no complete scenario or independent approval.
 
 ## Evidence rules
@@ -57,10 +57,10 @@
 | UC-02 / EX-04 | TC-13, TC-14 | Specified | Last-manager removal is rejected with no mutation; racing removals of the last two managers result in exactly one rejection, preserving an effective manager. |
 | UC-03 / EX-01 | TC-13 | Specified | Unsupported item type fails validation without a persisted item. |
 | UC-03 / EX-02 | TC-13 | Specified | Missing backlog-author authority denies; Scrum title alone cannot create. |
-| UC-03 / EX-03 | TC-07 | Specified | Stale edit conflicts and preserves newer content/revision. |
-| UC-04 / EX-01 | TC-07 | Specified | Stale board move conflicts and preserves committed state. |
-| UC-04 / EX-02 | TC-13 | Specified | Nonmember assignee fails and leaves previous assignee intact. |
-| UC-04 / EX-03 | TC-14 | Specified | State/event transaction failure leaves no partial mutation/audit; unknown response is reconciled before retry. |
+| UC-03 / EX-03 | TC-07 | Specified | New stale edit returns generic409 without current_revision, preserves newer content and refreshes authorised getTask; committed original-key recovery instead checks current action/read. |
+| UC-04 / EX-01 | TC-07 | Specified | New stale board move returns generic409 without current_revision and preserves committed state; refresh authorised getTask, separating new write from original-key replay. |
+| UC-04 / EX-02 | TC-13 | Specified | After caller scope/action checks, unknown/nonmember/foreign/disabled new target receives the same bounded400 validation_failed and leaves previous assignee intact; enabled member/null succeeds, dependency failure stays503. |
+| UC-04 / EX-03 | TC-14 | Specified | Known failure rolls back Task/event/audit/original outcome together; unknown COMMIT/HTTP acknowledgement reconciles only original actor/operation/key/body under current read/action, without inventing pending wire fields or fresh automatic keys. |
 | UC-04 / EX-04 | TC-08 | Specified | A new Open event after Open appends at a new sequence; state stays Blocked and history remains. Replay of the same request key is separately idempotent. |
 | UC-05 / EX-01 | TC-07 | Specified | Concurrent starts yield at most one Active Sprint; rejected start remains Planned. |
 | UC-05 / EX-02 | TC-13 | Specified | Missing/reversed dates reject without changing lifecycle. |
@@ -144,3 +144,7 @@ AC-02/03/38/39 and BR-01/10/14 have actual Workspace project/member, audit/repla
 | Current Backlog reconstruction and permission-aware reads | P05 107-row numeric/UUID/current-location/blocker/cursor/member tests; P07 read watermark/append schedule; P08 fresh first-page restart. |
 
 UC-03 EX-01 and EX-02 now have bounded creation evidence. EX-03/Alt-1 editing and Alt-2 reorder remain later SP-04/SP-05 scope. FR-50 is document classification, not Task creation. This does not close whole SC-01/SC-06, document/citation/provider/D-07 gates, SP02-F01 or independent/release acceptance. Historical scenarios and failures remain unchanged.
+
+## SP-04 P03A2 planned verification alignment — 3 November 2026
+
+Existing TC-07/08/13/14/16/18/19/22 and FR-09/40/43/44 trace now include [actual owner directions](../implementation/features/sp-04-update-task/owner-decisions.md) and [Proposed ADR-0028](../adr/0028-task-mutation-authority-and-outcomes.md). All new/refined assertions are Specified, not executed runtime results. Actual handler/DB/DOM/browser and SP-05 producer race evidence belongs to the future owning producers; source/schema passes close none of those gates. No test-case/EX/FR ID, priority, expected-answer fixture or historical result is changed.

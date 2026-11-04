@@ -1,0 +1,245 @@
+# SP-04 bounded design and owner decision batch
+
+**Artifact ID:** SP04-DECISION-BATCH\
+**Version/date:** 0.1 Draft · 3 November 2026\
+**Status:** Proposed reviewable mechanics; ready for coordinator/owner disposition. No implementation authority or runtime code edits. Execution status belongs to the parent plan.\
+**Inputs:** [FEAT-SP04-01](plan.md) v0.5; [SP04-P01-MAP](source-review.md) v0.2; [SP04-AG01-RESULT](reviews/antigravity-p01-review-v0.2.md) v0.2; [SP04-AG02-DISPOSITION](reviews/ag02-codex-final-disposition.md) v0.1; current Workspace v0.2.12; canonical [SP-04](../../../../specs/004-update-task.md) v0.7.1; [UC-04](../../../sdlc/use-cases.md#L151-205).\
+**Trace:** SP-04.1–04.2, FR-09/AC-09, FR-40/AC-40, FR-43/AC-43, FR-44/AC-44; supporting FR-03/31/59/68, BR-01/02/03/06/10/11/14, UC-04 main/Alt-1/Alt-2/EX-01–04, TC-07/08/14/16/18/19/22, PLAN-01 Month 1 / M-02–M-03.
+
+---
+
+## 1. Concrete owner decisions and policy resolutions
+
+| Decision / Item | Recommended design and exact consequence | Alternatives / rationale | Target task |
+| --- | --- | --- | --- |
+| **D-01 Action authority naming & provisioning** (C05) | Introduce four granular project capabilities in `workspace.capability_grant`: `'task-edit'`, `'task-state'`, `'task-assign'`, `'task-blocker'`. Issue/revoke via the existing private operator/CLI under owner role only. Caller must be an active project member (`membership.active = true`) **AND** hold the specific mutation capability grant for the requested operation (`Work Operator` in UC-04). | Alternative: single coarse `'task-mutate'` capability. Rationale: granular capabilities preserve least-privilege, map directly to distinct UC-04 mutation flows, and align with `backlog-author`. Membership alone or role strings (Admin/PO/Dev) grant no implicit mutation authority. | P03C, P03D |
+| **D-02 Target assignee eligibility** (AC-43 / C05) | Baseline requirement: Target assignee must be a current project member (`membership.active = true`). Defense-in-depth policy: Also assert `NOT auth_account.disabled` at the application transaction boundary. If either check fails, reject with `400 validation_failed` (or `404` if target user UUID is nonexistent). Unassigning (`assignee_id = null`) requires no target membership check. | Alternative: check `membership.active` only. Rationale: checking `NOT auth_account.disabled` ensures consistency with `removeMember`'s last-manager check and prevents assigning work to deactivated system accounts while respecting confirmed AC-43 text. | P03D |
+| **D-03 Typed outcome storage & Migration 010** (Finding 1 / C05) | Additive migration `010-task-mutation-outcomes.up.sql`: Update CHECK constraint `project_outcome_shape` on `workspace.idempotency_record` to validate HTTP 200 Task snapshots for `editTask`, `setTaskState`, `setAssignee` (with `result_ref = task_id`), and HTTP 201 Blocker snapshot for `recordBlocker` (with `result_ref = event_id`). Update trigger `protect_project_outcome` to enforce immutability across all 8 operations. | Alternative: store unvalidated JSON snapshots or allow NULL snapshots. Rationale: immutable typed receipt storage is mandatory under NFR-03/BR-02 to prevent corrupt replays or lost outcome evidence. | P03B |
+| **D-04 Conflict response & current-state read** (C01 / C02) | On optimistic revision collision (`expected_revision !== task.revision`), emit `ProjectFault(409, 'state_conflict')` with standard `#/components/schemas/Error` body (`code: 'state_conflict'`). Do not add ad-hoc `current_revision` to the 409 error payload. Client UI performs an authorized, fresh `getTask` read upon receiving 409 to synchronize current state and revision. Similarly, `recordBlocker` 201 response returns `Blocker` event only; client reads fresh Task state separately. | Alternative: inject `current_revision` into 409 or `blocked` into 201 Blocker schema. Rationale: preserves OpenAPI schema bounds (`additionalProperties: false`) and eliminates data-leakage risk across concurrent permission revocation. | P03A, P03D, P04 |
+| **D-05 Unknown outcomes & replay discipline** (C03) | On 503 `access_unavailable`, network timeout, or socket drop during transaction commit, client must preserve the original `Idempotency-Key` and exact same request body. Server verifies actor's current permission on replay: if the transaction committed, return the retained immutable snapshot; if rolled back, safely execute the operation. Never auto-retry with a newly generated key. | Alternative: client generates new key on error. Rationale: generating fresh keys risks duplicate blocker events or invalid double revision increments. | P03B, P03D, P04 |
+| **D-06 Mutation edge cases & canonical hashing** (C06) | 1. Empty `EditTask` (omitting `title` and `description`) or identical values: perform a no-op that returns the current Task snapshot with status 200 without advancing `revision` or writing `business_audit`.<br>2. Payload hashing: deterministic JSON stringification distinguishing omitted fields from explicit `null`.<br>3. Bounds: `wireRevision` enforces `1 <= revision <= 9007199254740991` (`Number.MAX_SAFE_INTEGER`). | Alternative: advance revision on empty edit. Rationale: avoiding spurious revision bumps prevents cascading merge conflicts across concurrent viewers. | P03B, P03D |
+| **D-07 Audit transition history** (FR-31 / UC-04) | Write atomic `business_audit` entries inside the mutation transaction with structured references:<br>- `setTaskState`: `before_ref: 'state:<old>;revision:<old>'`, `after_ref: 'state:<new>;revision:<new>'`<br>- `setAssignee`: `before_ref: 'assignee:<old_id|null>;revision:<old>'`, `after_ref: 'assignee:<new_id|null>;revision:<new>'`<br>- `recordBlocker`: `after_ref: 'event_id:<id>;status:<open|resolved>;sequence:<seq>'`<br>No standalone chart, scheduler, or estimate subsystem is added. | Alternative: opaque `revision:N` only. Rationale: revision numbers alone cannot reconstruct historical state/assignee transitions; structured string references fulfill FR-31 without database schema changes. | P03D, P04 |
+
+---
+
+## 2. Recommended technical baseline
+
+### 2.1 Complete transaction protocol and lock hierarchy
+
+Every task mutation executes within a single PostgreSQL transaction managed by `WorkspaceProjectStore.transaction` (`services/workspace/src/projects/store.ts`). All cooperating writers must strictly follow this acquisition sequence:
+
+```mermaid
+flowchart TD
+    Step1["1. Singleton clock: auth_clock_state (FOR UPDATE via clockLock)"] --> Step2["2. Actor auth_account: lock_auth_account(actor_id)"]
+    Step2 --> Step3["3. Actor session: SELECT ... FROM session FOR UPDATE"]
+    Step3 --> Step4["4. Target auth_account (if setAssignee): lock_auth_account(target_user_id)"]
+    Step4 --> Step5["5. Project row: SELECT ... FROM project FOR UPDATE (projectAccess)"]
+    Step5 --> Step6["6. Target membership (if setAssignee): SELECT ... FROM membership FOR UPDATE"]
+    Step6 --> Step7["7. Target task row: SELECT ... FROM task WHERE task_id = $1 FOR UPDATE"]
+    Step7 --> Step8["8. Transaction Guard: recheck session expiration after lock waits"]
+    Step8 --> Step9["9. Idempotency outcome check / Business writes / Audit / Save outcome"]
+```
+
+**Key Concurrency Invariants:**
+1. **Clock serialization:** Because step 1 acquires the PostgreSQL row lock on `auth_clock_state`, all cooperating transactions in `services/workspace/` are serialized at the transaction boundary. No database deadlocks occur between `setAssignee` and `removeMember`.
+2. **Post-wait guard:** Step 8 calls `await guard()`, re-evaluating whether the actor's session expired during any lock wait. If expired, the transaction rolls back cleanly with HTTP 401/503 before any business write or audit record is emitted.
+3. **Optimistic revision validation:** Once the `task` row is locked (step 7), the handler verifies `task.revision.toString() === expected_revision`. If mismatched, it immediately throws `conflict()` (`409 state_conflict`).
+
+### 2.2 Additive Migration 010 specification (`010-task-mutation-outcomes.up.sql`)
+
+Migration 010 introduces typed outcome shape validation and immutability triggers for the 4 new SP-04 operations, alongside auditing support for the 4 new action capabilities:
+
+```sql
+-- 1. Extend authority_provisioning_audit CHECK constraint for mutation actions
+ALTER TABLE workspace.authority_provisioning_audit
+  DROP CONSTRAINT authority_provisioning_audit_action_check,
+  ADD CONSTRAINT authority_provisioning_audit_action_check CHECK (
+    action IN (
+      'create-project',
+      'membership-manage',
+      'project-administrator',
+      'backlog-author',
+      'task-edit',
+      'task-state',
+      'task-assign',
+      'task-blocker'
+    )
+  );
+
+-- 2. Define outcome validation functions for Task and Blocker snapshots
+CREATE OR REPLACE FUNCTION workspace.valid_task_outcome_snapshot(value jsonb, reference text) RETURNS boolean
+LANGUAGE plpgsql IMMUTABLE AS $$
+BEGIN
+  IF jsonb_typeof(value) <> 'object' THEN RETURN false; END IF;
+  RETURN (value->>'task_id') = reference
+    AND (value->>'project_id') IS NOT NULL
+    AND (value->>'title') IS NOT NULL AND length(value->>'title') >= 1
+    AND (value->>'state') IN ('todo', 'in_progress', 'done')
+    AND (value->>'type') IN ('story', 'bug', 'task')
+    AND (value->>'revision') ~ '^[1-9][0-9]*$'
+    AND (value->>'created_at') IS NOT NULL;
+END $$;
+
+CREATE OR REPLACE FUNCTION workspace.valid_blocker_outcome_snapshot(value jsonb, reference text) RETURNS boolean
+LANGUAGE plpgsql IMMUTABLE AS $$
+BEGIN
+  IF jsonb_typeof(value) <> 'object' THEN RETURN false; END IF;
+  RETURN (value->>'event_id') = reference
+    AND (value->>'task_id') IS NOT NULL
+    AND (value->>'status') IN ('open', 'resolved')
+    AND (value->>'sequence') ~ '^[1-9][0-9]*$'
+    AND (value->>'recorded_at') IS NOT NULL;
+END $$;
+
+-- 3. Extend project_outcome_shape CHECK constraint on idempotency_record
+ALTER TABLE workspace.idempotency_record
+  DROP CONSTRAINT project_outcome_shape,
+  ADD CONSTRAINT project_outcome_shape CHECK (
+    (
+      operation = 'createProject'
+      AND result_status IN (201, 204)
+      AND (
+        (result_status = 201 AND workspace.valid_project_creation_snapshot(result_snapshot, result_ref))
+        OR (result_status = 204 AND result_snapshot IS NULL)
+      )
+    ) OR (
+      operation = 'addMember'
+      AND result_status = 204
+      AND result_snapshot IS NULL
+    ) OR (
+      operation = 'removeMember'
+      AND result_status = 204
+      AND result_snapshot IS NULL
+    ) OR (
+      operation = 'createTask'
+      AND result_status = 201
+      AND workspace.valid_task_creation_snapshot(result_snapshot, result_ref)
+    ) OR (
+      operation IN ('editTask', 'setTaskState', 'setAssignee')
+      AND result_status = 200
+      AND workspace.valid_task_outcome_snapshot(result_snapshot, result_ref)
+    ) OR (
+      operation = 'recordBlocker'
+      AND result_status = 201
+      AND workspace.valid_blocker_outcome_snapshot(result_snapshot, result_ref)
+    ) OR (
+      operation NOT IN (
+        'createProject', 'addMember', 'removeMember', 'createTask',
+        'editTask', 'setTaskState', 'setAssignee', 'recordBlocker'
+      )
+      AND result_status IS NULL
+      AND result_snapshot IS NULL
+    )
+  );
+
+-- 4. Update protect_project_outcome trigger function to protect all 8 operations
+CREATE OR REPLACE FUNCTION workspace.protect_project_outcome() RETURNS trigger
+LANGUAGE plpgsql AS $$
+BEGIN
+  IF OLD.operation IN (
+    'createProject', 'addMember', 'removeMember', 'createTask',
+    'editTask', 'setTaskState', 'setAssignee', 'recordBlocker'
+  ) THEN
+    RAISE EXCEPTION 'Committed project outcomes are immutable' USING ERRCODE = '23514';
+  END IF;
+  RETURN OLD;
+END $$;
+```
+
+**Rollback Specification (`010-task-mutation-outcomes.down.sql`):**
+- Verifies that no retained idempotency records or authority audit records exist with the 4 new mutation operations/actions before rolling back.
+- Restores migration 009's exact functions and constraints.
+
+### 2.3 Completed-Sprint reopening mechanics (`setTaskState`)
+
+When reopening a task from a completed Sprint (`location_kind = 'completed'`) to active state (`state = 'todo'`):
+1. In accordance with migration 003 constraint `task_location_shape` (`003#L40-44`):
+   - A task cannot have `location_kind = 'completed'` unless `state = 'done'`.
+   - Therefore, changing `state` from `done` to `todo` requires atomically updating `location_kind = 'backlog'` and `location_sprint_id = NULL`.
+2. Existing trigger `preserve_completed_allocation` (`003#L110-120`) prevents modifying rows in `sprint_allocation` whose `allocation_state = 'completed'`. The handler must **not** update or delete the completed allocation row; it leaves the completed historical allocation intact.
+3. Existing trigger `advance_backlog_revision` (`003#L89-108`) will automatically increment `project.backlog_revision` when the task's location transitions back to the Backlog.
+
+### 2.4 Highest-sequence blocker projection & sequence allocation
+
+1. **Atomic sequence allocation:** In `recordBlocker`, the next sequence number for `task_id` is computed under the task row lock:
+   ```sql
+   SELECT COALESCE(MAX(sequence), 0) + 1 AS next_seq
+   FROM workspace.blocker_event
+   WHERE task_id = $1
+   ```
+   This guarantees that sequence numbers are strictly contiguous and monotonically increasing without collision against `UNIQUE(task_id, sequence)`.
+2. **Current blocked status:** Existing projection logic in `services/workspace/src/tasks/store.ts#L41,55`:
+   ```sql
+   COALESCE((
+     SELECT status = 'open'
+     FROM workspace.blocker_event
+     WHERE task_id = t.task_id
+     ORDER BY sequence DESC
+     LIMIT 1
+   ), false) AS blocked
+   ```
+   correctly derives `blocked = true` if and only if the event with the highest sequence is `status = 'open'`.
+
+---
+
+## 3. Proposed contract and data support scope (P03A)
+
+Before writing runtime handlers in P03B/P03C/P03D, P03A will coordinate the following bounded contract updates:
+
+| File / Component | Planned Change | Trace / Rationale |
+| --- | --- | --- |
+| `contracts/openapi/workspace.openapi.json` | Declare HTTP `413` (Payload Too Large) and `415` (Unsupported Media Type) under `responses` for `editTask`, `setTaskState`, `setAssignee`, and `recordBlocker`. | C04 alignment: ensures OpenAPI contract matches Fastify payload guards and 8192-byte body size limits. |
+| `contracts/data-model.json` | Add explicit documentation for `blocker_event` status and sequence invariants, and document the 4 new `capability_grant.action` strings. | Aligns data model documentation with SQL schema. |
+| `specs/004-update-task.md` | Record the coordinated contract and migration support paths in the specification. | Fulfills spec maintenance requirements. |
+
+---
+
+## 4. Frozen planned implementation files and task breakdown
+
+The execution of SP-04 is decomposed into small, reviewable sequential slices:
+
+```mermaid
+flowchart LR
+    P02["P02 Design (Batch)"] --> P03A["P03A Contract Support"]
+    P03A --> P03B["P03B Migration 010 & Storage Outcomes"]
+    P03B --> P03C["P03C Private Authority Provisioning"]
+    P03C --> P03D["P03D Task Mutation Handlers (Edit, State, Assignee)"]
+    P03D --> P04["P04 Blocker Append & History Reads"]
+    P04 --> P05["P05 Connected UI"]
+    P05 --> P06["P06 Integration & Concurrency Tests"]
+    P06 --> P07["P07 Regression Handoff"]
+    P07 --> P08["P08 SP-05 Producer Integration"]
+```
+
+| Sub-task / Producer | Closed planned / new file paths | Allowed existing seams | Deliverable / Verification |
+| --- | --- | --- | --- |
+| **P03A** Contract support | None (contracts only) | `contracts/openapi/workspace.openapi.json`, `contracts/data-model.json`, `specs/004-update-task.md` | `npm run contracts:test`, `npm run context:check`, `npm run docs:lint`. Verify 413/415 declarations. |
+| **P03B** Owned persistence | `services/workspace/migrations/010-task-mutation-outcomes.up.sql`, `010-task-mutation-outcomes.down.sql`, `tests/workspace/task-mutation-storage.test.mjs` | `services/workspace/src/tasks/types.ts`, `services/workspace/src/tasks/outcomes.ts` | Disposable PG test: Up, forward, idempotent replay, check constraint violations, rollback. |
+| **P03C** Private authority | `tests/workspace/task-mutation-authority.test.mjs` | `services/workspace/src/projects/operator.ts`, `services/workspace/src/projects/cli.ts` | Test private operator provisioning of `task-edit`, `task-state`, `task-assign`, `task-blocker`; test audit logging. |
+| **P03D** Mutation handlers | `tests/workspace/task-mutation-http.test.mjs` | `services/workspace/src/tasks/store.ts`, `services/workspace/src/tasks/http.ts`, `services/workspace/src/projects/store.ts` | Handlers for `editTask`, `setTaskState`, `setAssignee`. Concurrency, optimistic revision check, reopening completed tasks. |
+| **P04** Blocker handlers | `tests/workspace/blocker-http.test.mjs` | `services/workspace/src/tasks/store.ts`, `services/workspace/src/tasks/http.ts` | Handlers for `recordBlocker` and `listBlockerEvents`. Sequence monotonic check, cursor pagination, 400 on malformed cursor. |
+| **P05** Connected UI | `tests/workspace/task-mutation-ui.test.mjs` | `apps/web/src/tasks.ts`, `apps/web/src/TaskWorkspace.tsx` | UI mutation controls: title/description edit, state dropdown, assignee selector, blocker modal, error handling. |
+| **P06** Concurrency & failure | `tests/workspace/task-mutation-concurrency.test.mjs` | Shared test fixtures | Races between `removeMember` and `setAssignee`; stale revision conflicts; commit timeout recovery. |
+| **P07** Regression handoff | Dated execution report under `evidence/` | Regression test suites | Typecheck, build, project suites, DOM/browser tests, final trace verification. |
+| **P08** SP-05 integration | Future test suite | Real SP-05 completion handlers | Full verification of completed-sprint reopening against real SP-05 producers. |
+
+---
+
+## 5. Exact verification entry points and assertions
+
+| Step | Commands to Execute | Key Assertions to Verify |
+| --- | --- | --- |
+| **P02 Design (Current)** | `npm run context:check`<br>`npm run context:test`<br>`npm run docs:lint`<br>`npm run docs:test`<br>`npm run contracts:test` | Context 45/45 pass; docs lint zero errors; contracts test 27/27 pass. Structural integrity preserved. No runtime files touched. |
+| **P03A Support** | `npm run contracts:test`<br>`npm run context:check` | All OpenAPI schemas validate; 413/415 status codes declared for 4 mutation routes. |
+| **P03B Persistence** | `node --test tests/workspace/task-mutation-storage.test.mjs` | Migration 010 applies cleanly; rejects malformed outcome snapshots; preserves immutability; down migration cleanly reverts. |
+| **P03C Authority** | `node --test tests/workspace/task-mutation-authority.test.mjs` | Only private operator can provision 4 new capabilities; unprovisioned actors denied; audit records logged atomically. |
+| **P03D Handlers** | `node --test tests/workspace/task-mutation-http.test.mjs` | `editTask` validates expected revision; `setTaskState` reopens completed sprint task to backlog; `setAssignee` enforces member active; 409 `state_conflict` emitted on stale revision. |
+| **P04 Blockers** | `node --test tests/workspace/blocker-http.test.mjs` | `recordBlocker` enforces sequence monotonicity; `listBlockerEvents` returns ordered committed events; cursor validation. |
+
+---
+
+## 6. Readiness and handoff
+
+1. **Design deliverable:** This decision batch resolves all outstanding architectural, schema, and concurrency questions identified during P01 and AG01/AG02.
+2. **Next ready task:** Upon owner and coordinator acknowledgement of this decision batch, **P03A** (`contracts/openapi/workspace.openapi.json` support) and **P03B** (`010-task-mutation-outcomes.up.sql`) become ready for execution.
+3. **Preservation:** No runtime implementation code, database migrations, or git commits were executed during this design task. All pre-existing work is preserved.

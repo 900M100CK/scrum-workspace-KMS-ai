@@ -1,9 +1,9 @@
 # SP-02 — testing and audit report
 
 **Artifact ID:** SP02-TEST-AUDIT-01\
-**Version/date:** 0.1 Draft · 1 November 2026\
+**Version/date:** 0.1.1 Draft · 4 November 2026\
 **Status:** Consolidated measured evidence and reproducible testing guide; not an independent audit or whole-release approval.\
-**Inputs:** [SP-02](../../../specs/002-project-membership.md) v0.7; [feature plan](../../implementation/features/sp-02-project-membership/plan.md) v0.6; [execution result](SP-02-execution-2026-10-31.md) v0.2; [project runbook](../../../services/workspace/PROJECTS.md) v0.1; Workspace v0.2.11; Proposed ADR-0019/0026.\
+**Inputs:** [SP-02](../../../specs/002-project-membership.md) (execution snapshot v0.7); [feature plan](../../implementation/features/sp-02-project-membership/plan.md) (execution snapshot v0.6); [execution result](SP-02-execution-2026-10-31.md) (execution snapshot v0.2); [project runbook](../../../services/workspace/PROJECTS.md) (execution snapshot v0.1); Workspace v0.2.11; Proposed ADR-0019/0026.\
 **Trace:** AC-02/03/38/39; BR-01/10/14; bounded TC-02/18/22/24 observations. Optional FR-64 is not selected.\
 **Author:** Codex, sequential implementer/report author. Independent reviewer: not assigned.
 

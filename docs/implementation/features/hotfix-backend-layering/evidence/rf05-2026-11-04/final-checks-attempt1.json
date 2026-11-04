@@ -1,0 +1,6 @@
+{
+  "result": "Checker failed before final evidence generation; runtime/structural checks remain green",
+  "reason": "git ls-files --others returned docs/SDLC-Prompt-Checklist/ as a directory; before snapshot stored only is_file entries, but after new-path comparison initially did not apply that same filter",
+  "correction": "Compare file-only inventories consistently; do not edit/delete the directory or weaken source/hash assertions",
+  "runtime_or_document_change_needed": false
+}

@@ -1,8 +1,11 @@
 import {randomUUID} from 'node:crypto';
 import type {Pool,PoolClient} from 'pg';
 import {ownedTransaction} from '../session/database.ts';
+import {TASK_ACTIONS} from '../tasks/authority.ts';
 
-export type ProjectCapability='membership-manage'|'project-administrator'|'backlog-author';
+export const PROJECT_CAPABILITIES=['membership-manage','project-administrator','backlog-author',...Object.values(TASK_ACTIONS)] as const;
+export type ProjectCapability=typeof PROJECT_CAPABILITIES[number];
+export const isProjectCapability=(value:unknown):value is ProjectCapability=>PROJECT_CAPABILITIES.some(action=>action===value);
 const reference=(value:string)=>{if(typeof value!=='string'||!value.trim()||Buffer.byteLength(value)>1024)throw new Error('Operator reference/reason required');};
 const revision=(value:string)=>{if(!/^(0|[1-9]\d{0,18})$/.test(value))throw new Error('Expected revision required');};
 async function start(c:PoolClient,userId:string){
@@ -11,8 +14,8 @@ async function start(c:PoolClient,userId:string){
  const account=(await c.query('SELECT disabled FROM workspace.auth_account WHERE user_id=$1 FOR UPDATE',[userId])).rows[0];
  if(!account||account.disabled)throw new Error('Enabled known target required');
 }
-async function log(c:PoolClient,userId:string,projectId:string|null,action:string,allowed:boolean,before:string,after:string,operatorRef:string,reason:string){
- await c.query('INSERT INTO workspace.authority_provisioning_audit(event_id,target_user_id,project_id,action,allowed,previous_revision,revision,operator_ref,reason) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9)',[randomUUID(),userId,projectId,action,allowed,before,after,operatorRef,reason]);
+async function log(c:PoolClient,userId:string,projectId:string|null,action:string,allowed:boolean,before:string,after:string,operatorRef:string,reason:string,eventId=randomUUID()){
+ await c.query('INSERT INTO workspace.authority_provisioning_audit(event_id,target_user_id,project_id,action,allowed,previous_revision,revision,operator_ref,reason) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9)',[eventId,userId,projectId,action,allowed,before,after,operatorRef,reason]);
 }
 /** Uses the private DB operator identity, never a browser role or a public endpoint. */
 export class WorkspaceProjectOperator {
@@ -36,12 +39,14 @@ export class WorkspaceProjectOperator {
   });
  }
  async project(userId:string,projectId:string,action:ProjectCapability,allowed:boolean,expected:string,operatorRef:string,reason:string){
-  reference(operatorRef);reference(reason);revision(expected);if(!['membership-manage','project-administrator','backlog-author'].includes(action)||typeof allowed!=='boolean')throw new Error('Explicit supported action required');
+  reference(operatorRef);reference(reason);revision(expected);if(!isProjectCapability(action)||typeof allowed!=='boolean')throw new Error('Explicit supported action required');
   return ownedTransaction(this.pool,'operator',async c=>{
    await start(c,userId);
    if(!(await c.query('SELECT project_id FROM workspace.project WHERE project_id=$1 FOR UPDATE',[projectId])).rowCount)throw new Error('Project unavailable');
    if(!(await c.query('SELECT user_id FROM workspace.membership WHERE project_id=$1 AND user_id=$2 AND active FOR UPDATE',[projectId,userId])).rowCount)throw new Error('Current membership required');
-   const rows=(await c.query("SELECT grant_id,valid,permission_revision::text revision FROM workspace.capability_grant WHERE project_id=$1 AND subject_id=$2 AND resource_kind='project' AND resource_id=$1 AND action=$3 ORDER BY permission_revision DESC,grant_id FOR UPDATE",[projectId,userId,action])).rows;
+   const rows=(await c.query("SELECT g.grant_id,g.valid,g.permission_revision::text revision,EXISTS(SELECT 1 FROM workspace.authority_provisioning_audit a WHERE a.event_id=g.grant_id AND a.target_user_id=g.subject_id AND a.project_id=g.project_id AND a.action=g.action AND a.allowed AND a.revision=g.permission_revision-CASE WHEN g.valid THEN 0 ELSE 1 END) provenanced FROM workspace.capability_grant g WHERE g.project_id=$1 AND g.subject_id=$2 AND g.resource_kind='project' AND g.resource_id=$1 AND g.action=$3 ORDER BY g.permission_revision DESC,g.grant_id FOR UPDATE OF g",[projectId,userId,action])).rows;
+   const taskAction=Object.values(TASK_ACTIONS).some(value=>value===action);
+   if(taskAction&&rows.some(row=>!row.provenanced))throw new Error('Task authority provenance requires explicit reconciliation');
    const before=rows[0]?.revision??'0',current=rows.find(row=>row.valid);if(before!==expected)throw new Error('Stale capability revision');
    if(!!current===allowed)return {changed:false,revision:before};
    if(!allowed&&action==='membership-manage'){
@@ -49,9 +54,10 @@ export class WorkspaceProjectOperator {
     if(!others.rowCount)throw new Error('Last effective membership manager');
    }
    const after=(BigInt(before)+1n).toString();
-   if(allowed)await c.query("INSERT INTO workspace.capability_grant(grant_id,subject_id,project_id,resource_kind,resource_id,action,permission_revision) VALUES($1,$2,$3,'project',$3,$4,$5)",[randomUUID(),userId,projectId,action,after]);
+   const grantId=randomUUID();
+   if(allowed)await c.query("INSERT INTO workspace.capability_grant(grant_id,subject_id,project_id,resource_kind,resource_id,action,permission_revision) VALUES($1,$2,$3,'project',$3,$4,$5)",[grantId,userId,projectId,action,after]);
    else await c.query('UPDATE workspace.capability_grant SET valid=false,permission_revision=$2 WHERE grant_id=$1',[current!.grant_id,after]);
-   await log(c,userId,projectId,action,allowed,before,after,operatorRef,reason);return {changed:true,revision:after};
+   await log(c,userId,projectId,action,allowed,before,after,operatorRef,reason,taskAction&&allowed?grantId:undefined);return {changed:true,revision:after};
   });
  }
 }

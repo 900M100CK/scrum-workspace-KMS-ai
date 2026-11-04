@@ -1,0 +1,22 @@
+✔ each mutation uses exact target actions, persists original identity before sending and refreshes current state after historical receipt (36.8964ms)
+✔ conflicts refresh separately, never automatically issue a new key; denial/outage retain recovery and clear content (10.0797ms)
+✔ foreign actor, malformed stored input and missing exact action cannot issue mutations; logout clears recovery (1.4251ms)
+✔ a confirmed write followed by unavailable current reads never presents its historical receipt as current (1.3844ms)
+✔ history pagination validates ascending events, refreshes current scope and discards stale pages (7.5244ms)
+✔ unknown task creation survives reload with exact actor/body/key; confirmed replay refreshes current details (30.6562ms)
+✔ denied/expired/conflicting reconciliation retains uncertainty and hides protected data; no new key is generated (1.3389ms)
+✔ foreign actor or malformed recovery storage cannot reveal/replay saved request input (0.9814ms)
+✔ only current advisory create authority and valid bounded supported input permit a persisted mutation (1.6422ms)
+✔ blocked or silently discarded browser storage sends no mutation while current reads still work (2.1631ms)
+✔ late reads cannot restore a revoked task, list or advisory create controls (0.9714ms)
+✔ cursor conflict discards previous pages and loads a fresh first page without stale accumulation (0.9605ms)
+✔ malformed, wrong-project and secret-bearing protected output is withheld; malformed 201 preserves original recovery identity (1.9589ms)
+✔ explicit sign-out cleanup removes the stored operation while expiry alone retains it for the same actor (2.256ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 236.0363

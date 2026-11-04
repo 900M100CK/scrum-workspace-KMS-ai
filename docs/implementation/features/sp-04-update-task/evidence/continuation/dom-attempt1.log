@@ -1,0 +1,14 @@
+▶ SP04 real mutation DOM over HTTPS and disposable010
+  ✔ native labelled forms perform actual persisted edit/state/assignment/blocker updates (1099.4363ms)
+  ✔ stale revision conflict refreshes current detail without overwriting a later actual producer (244.8362ms)
+  ✔ lost committed edit recovers same body/key and displays a fresh later state, not old receipt (333.5383ms)
+  ✔ denial and outage remove protected panes and forms; current authority refresh removes revoked controls (295.4423ms)
+✔ SP04 real mutation DOM over HTTPS and disposable010 (12126.3159ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13482.5988

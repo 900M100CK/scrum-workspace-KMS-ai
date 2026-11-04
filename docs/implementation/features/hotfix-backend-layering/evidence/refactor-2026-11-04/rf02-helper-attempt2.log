@@ -1,0 +1,15 @@
+▶ HF42-RF02 shared grant predicate with actual010 handler authority
+  ✔ same-client helper returns exact valid project/actor/action grant predicates (72.8911ms)
+  ✔ role/create authority does not imply edit or membership-management; resource scope remains in callers (74.4534ms)
+  ✔ explicit issue/revoke/regrant changes lookup without altering query scope or business state (64.7894ms)
+  ✔ a real runtime database privilege failure propagates to generic503, never false or allow (41.8256ms)
+  ✔ actual edit succeeds after dependency recovery and current grant check; batch discovery still advertises live operations (64.2639ms)
+✔ HF42-RF02 shared grant predicate with actual010 handler authority (5604.3125ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6008.2904

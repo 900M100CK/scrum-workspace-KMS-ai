@@ -1,0 +1,8 @@
+{
+  "node": "v24.22.1",
+  "npm_invocation": "explicit Node24 + npm-cli.js; default npm.cmd binds its sibling Node22",
+  "npm_ci": "npm-ci-node24.log",
+  "initial_attempt": "npm.cmd emitted Node22 engine warnings; corrected install completed using Node24",
+  "submodule": "initially uninitialised; checked out pinned 3c65f5cbefa7d69a75cadd89b177e3add8b400b0 using existing local reference; gitlink/template source unchanged",
+  "metadata_failure": "after-edit docs:test failed because a diagram local date override violated preservation assertion; restored every diagram original date, without editing the test"
+}

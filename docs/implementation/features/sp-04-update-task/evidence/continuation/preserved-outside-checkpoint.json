@@ -1,0 +1,530 @@
+[
+  {
+    "path": "agents/00-sdlc-coordinator.md",
+    "sha256": "abe12bb27df9da05d7d46055858520bb45a7a8d293873a70d4486c43c3c4f808"
+  },
+  {
+    "path": "agents/01-prd-srs.md",
+    "sha256": "5d6f9ea7c801d9718ef40456093e738f546fafd90ab0552ebee4a5a8efd6beda"
+  },
+  {
+    "path": "agents/02-use-cases.md",
+    "sha256": "51579f1db23d92741e3c52dd097fcfe54d7eca11bcee202c7ad39d430903879a"
+  },
+  {
+    "path": "agents/03-architecture.md",
+    "sha256": "1906419ced0b12c72405bb90e5e0833b8793d4022c2649e5378fadd6077dad98"
+  },
+  {
+    "path": "agents/04-data-design.md",
+    "sha256": "a4700672b561715b7bfeedffcdbf77f58380ec7925286035073d32ae7aee43f7"
+  },
+  {
+    "path": "agents/05-api-design.md",
+    "sha256": "61ec6e70d442b07e0ff2f67e8147499872713ae487ddcdd3e1d183cd4d07949f"
+  },
+  {
+    "path": "agents/06-ui-ux.md",
+    "sha256": "5f4b02bb6742b4626ce8ee29158aa790082ded3ef7245563e137e572acdd73ab"
+  },
+  {
+    "path": "agents/07-uml-diagrams.md",
+    "sha256": "8867ca7fa59ae539e78b6285754e0da76b3d151e71eeffe8a913274496939783"
+  },
+  {
+    "path": "agents/08-test-plan.md",
+    "sha256": "6b043c5a11b3b9dbe2c1cd2ba091725a44bd1f8d734c159fd33123a3a79a65bc"
+  },
+  {
+    "path": "agents/09-consistency-review.md",
+    "sha256": "1ca3a8242d24027e6e31b5eb0398152d91ea219f320fdb5ee939ae606a87eb72"
+  },
+  {
+    "path": "agents/WORKFLOW.md",
+    "sha256": "8c6586b3d69ef3a99ac9f5745b161bf05725f25bca230425a56acfe08d5c0f70"
+  },
+  {
+    "path": "agents/template-guide.md",
+    "sha256": "40b01e080cf8795024555d736d60cef80d5c4025853bb9a9ac69b45fe8aab6ef"
+  },
+  {
+    "path": "docs/adr/0027-task-creation-foundation.md",
+    "sha256": "eb884375223b19e2001b54dc8b1e203dbd5c31a0f153fc849d610a85fc50a031"
+  },
+  {
+    "path": "docs/implementation/features/sp-02-project-membership/README.md",
+    "sha256": "7d74b1533256e97233f758e90e53ce5a407f2855c65991a59330a409324251dd"
+  },
+  {
+    "path": "docs/implementation/features/sp-02-project-membership/plan.md",
+    "sha256": "24f1969b861a2bfcf5c90e2188eb4f86c5339a2930c51efeade36abaaaa81c11"
+  },
+  {
+    "path": "docs/sdlc/diagrams/design-foundation-2026-10-17.md",
+    "sha256": "afb51ea4e7f7e5e9025ba8852cb005ed1bf820657e052e46ee9743521bbfd078"
+  },
+  {
+    "path": "docs/sdlc/diagrams/review-2026-10-16.md",
+    "sha256": "e439bfadd6ccb9aad39b074fc4029bfa8b25709d9134b5b8106148d553eec6ed"
+  },
+  {
+    "path": "docs/sdlc/diagrams/review-2026-10-17.md",
+    "sha256": "006065a09f4ec483b5762ec46a47c907256561189a9e0b80afee486d9c66a2fe"
+  },
+  {
+    "path": "docs/sdlc/reports/SP-01-P12-handoff-2026-10-28.md",
+    "sha256": "d078bd37ed482c3e7820f3c3d13807a4e06b1f183d247b5a24e6c61a04000169"
+  },
+  {
+    "path": "docs/sdlc/reports/SP-01-testing-audit-2026-11-01.md",
+    "sha256": "4d718dd6b843bc0fd6716231e3b9b340c4e4ff310b56bed2f42744c38aa58897"
+  },
+  {
+    "path": "docs/sdlc/reports/SP-02-execution-2026-10-31.md",
+    "sha256": "e09d111fad2e172a78ea870cb9fabb0902cd077340970825f2dcbd1fb857916a"
+  },
+  {
+    "path": "docs/sdlc/reports/SP-02-testing-audit-2026-11-01.md",
+    "sha256": "a48a70037d03666c8f1affb6bd1ea76aa7845c85922fb6087ad230ef05c8a626"
+  },
+  {
+    "path": "docs/ux/sitemap.md",
+    "sha256": "d4104fc435c6712ff42bb2ffb5ee1e73943eb030303d865123f671cec6433591"
+  },
+  {
+    "path": "tests/workspace/project-cursor.test.mjs",
+    "sha256": "545f3702c6e03e928e153bada87e8f8454429b00c303ab6097e4b70d62be2d17"
+  },
+  {
+    "path": "agents/README.md",
+    "sha256": "08d9b5d167f94a579c35f33e88c929d68bcd67440e5fe3781aca4a2fc29a63c6"
+  },
+  {
+    "path": "diagram-fixes-v2.patch",
+    "sha256": "67d0dd21c7496ed325032e0fbc9346512ff7e0e5ffcefb1012d9ceee390f2ccc"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/activityDiagram_prompt.md",
+    "sha256": "1b3a63fa715e725bc009779bd5127c73d9c7baa9e7bb9f517b5a63516a53f02f"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/Activity_Diagram_UML2.0_Checklist.xlsx",
+    "sha256": "45c29e2477111c7eeb5504a1934e2cc543a21fe09e1671cdc57a44afbf4e4b1c"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/apiDesign_prompt.md",
+    "sha256": "13a5fe1b90a01c83db5b11ce5e57d9fb67a7f2f55ee12a45dd9ebba42b3154b5"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/API_Design_IEEE-1016-2009Checklist.xlsx",
+    "sha256": "b17c3eb78349c021affeee082b5a1900934325aacb2da1716193dc339930a8e8"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/BluePrint_Design_IEEE_1016_2009_Checklist.xlsx",
+    "sha256": "01e951fc25f7a75aaaa3249c458ef6a41cc3ddbd4093bf49eeb824977fa8cf27"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/bluePrint_design_prompt.md",
+    "sha256": "fe897813fe116b1d7e28226e3b2c4453de5280cbddfe54d4bf21070726cfdc3c"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/Checklist_Database Design Review.xlsx",
+    "sha256": "ab5d71fa25ac2d292b8123738f44700bf0e2c7dcb22acc81a09eaf7e630fe73c"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/classDiagram_prompt.md",
+    "sha256": "ecde6d20a2e0d1a5759ba5d5ecdb7c38925c3aea5d842708e2716fc926527c6f"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/Class_Diagram_UML2.0_Checklist.xlsx",
+    "sha256": "ca3e8bc9f1225db8fecde101c07adf95b0e0cc8a97cc879e516de813d4cf82d2"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/componentDiagram_prompt.md",
+    "sha256": "09deb5d532a8c829cdbf6a35c632c176d0d12f7e0bf01b889099e26db6830b3e"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/Component_Diagram_UML2.0_Checklist.xlsx",
+    "sha256": "7a0f91598584bedd534ea9ac49f6c392b9033bbe73c87be3bf875028636a2767"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/databaseDesign_GraphrDB_prompt.md",
+    "sha256": "36fbb4a72cc3ede31337b9c2d152b9821f737388367399b4a2c8922d019fee5a"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/databaseDesign_NoSQL_prompt.md",
+    "sha256": "3443767a90313561b9aa7ee1d04a085b47c94b2aceea79856e41ae8ab9f55415"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/databaseDesign_SQL_prompt.md",
+    "sha256": "ed658e070c2d37c0a820dd1f5e7f8e9de370d9f03b4d0c6b74a5999e97f1004f"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/databaseDesign_VectorDB_prompt.md",
+    "sha256": "7ba7e2e3905152b3f21924dcd986b9bb10df6af269fa5a6693de100eacbefff5"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/Database_Design_Checklist.xlsx",
+    "sha256": "0fb1cbde2fc117ffe8ff84031475fb15bde1b3d1aa98fac5bf70740bbdbd89cf"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/deploymentDiagram_prompt.md",
+    "sha256": "89e6489380442663bccf147170aade7ac599330740f567239ea67987d81eaa05"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/Deployment_Diagram_UML2.0_Checklist.xlsx",
+    "sha256": "f68bce70524540e0b4a4daa41c4ed7ef6cf4b8078dd4fcc361caa21321d52c5c"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/Polyglot_DB_Design_Checklist.xlsx",
+    "sha256": "3a20ef8e781864845f9b8b0db7da54c4b23c169949286a5e80bc17da1e27873f"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/PRD_IEEE_29148_Checklist.xlsx",
+    "sha256": "cccef0554250589f35d393c41fc122210bcce00bd56d9066983cc2acffe81ea6"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/PRD_prompt.md",
+    "sha256": "559a8a78c96935e3831f9ec6d5259b376a520161cad354eaf5865f8abc53a57e"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/PRD_Prompt_IEEE_standard.md",
+    "sha256": "1c5bb1c0ccbe5345e6ce3b6bffa5d73cbc48f50492ac9550c767a9d3caf88929"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/PRD_Prompt_with_template.md",
+    "sha256": "ac360ecb1abbc9cfd65301b4a370db8fe93842c29c1971c82ed22773394bb39a"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/README.md",
+    "sha256": "aa88169baf20e2d6c76c9c87cf8501322eb08df6e7c203e1c9a3d342c52ea609"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/SAD_IEEE_1016_Checklist.xlsx",
+    "sha256": "9e46ffae7090859a93b31ea61b66a470249d72f772d94157400866ee396d0de2"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/SAD_prompt.md",
+    "sha256": "3f443941b584e6d07412adea7bf7bd75d8324833e418754ec1624200a81fd26b"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/SAD_Prompt_IEEE_standard.md",
+    "sha256": "5342e7821268ff95ba283b96ad6bed52bea2721b068bbfc6f88ca4a15a668562"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/SAD_Prompt_with_template_.md",
+    "sha256": "33b7f7d2db70924368738878bd82b070309d3ca52aa3bf84a8db2dd15f081789"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/sequenceDiagram_prompt.md",
+    "sha256": "8f48ea4d59278e678f492b2d28408ab56e521df628d7ad917375ee22d4adde73"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/Sequence_Diagram_UML2.0_Checklist.xlsx",
+    "sha256": "1848e88487982f2923638caf5370fb37a8c5f105ed1bd7fda0b90ccab40df4f7"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/TEMPLATE_GUIDE.md",
+    "sha256": "d3d9cddbb6d84ea11ff2e7a01840bd5befb772c12a26f24958703ee17c282f9d"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/testPlan_prompt.md",
+    "sha256": "df1262135fb9bd1efffd13de993a44b1379ccccc9d3e91bb8b8da9c03e5ac597"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/Test_Plan_IEEE_829_Checklist.xlsx",
+    "sha256": "3ebab117c7f08a8940750ff55fc0120169e72fb4ff927aa4d91fc7b748e83a20"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/UI-UX-Design_prompt.md",
+    "sha256": "f8d63f94514c8d4909bb4a117ca3664fdbeeb31f534f108ffbc75f97739a40b5"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/UI_UX_Design_IEEE-1016-2009_Checklist.xlsx",
+    "sha256": "31dc9c4350e8b09e0586fe79901bc7a01876daaa6bfcd0317fb2771b1bbafd0b"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/UseCase_Document_UML2.0_Checklist.xlsx",
+    "sha256": "ef9db8866e223445eefba42c5c75089afac864a934f690c1621374a2e8f6faef"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/useCase_prompt.md",
+    "sha256": "340f610c2136016de8693088cb9a6872a4a229d2ca0ddf3c7b14015c91c4ddd4"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/API-design/apiDesign_prompt.md",
+    "sha256": "13a5fe1b90a01c83db5b11ce5e57d9fb67a7f2f55ee12a45dd9ebba42b3154b5"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/API-design/API_Design_IEEE-1016-2009Checklist.xlsx",
+    "sha256": "b17c3eb78349c021affeee082b5a1900934325aacb2da1716193dc339930a8e8"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/API-design/Checklist_Database Design Review.xlsx",
+    "sha256": "ab5d71fa25ac2d292b8123738f44700bf0e2c7dcb22acc81a09eaf7e630fe73c"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/API-design/databaseDesign_GraphrDB_prompt.md",
+    "sha256": "45dd4b69703fe21f654c36930e3acff55e7b1dda90484532f29eafed7dbd5249"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/API-design/databaseDesign_NoSQL_prompt.md",
+    "sha256": "3e0e878839f98bce387046a3c5e94bcf967402440ca0324e650290af6d955eb1"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/API-design/databaseDesign_SQL_prompt.md",
+    "sha256": "94abb1c3379dc1d4774be81dfea53d9060070f463a4646fd3aa198216b683f9d"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/API-design/databaseDesign_VectorDB_prompt.md",
+    "sha256": "9947d4fb0b0ff8a9ea64c665702052eaeb9cf39733e30c19aa6793aa65df1c7f"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/API-design/Database_Design_Checklist.xlsx",
+    "sha256": "0fb1cbde2fc117ffe8ff84031475fb15bde1b3d1aa98fac5bf70740bbdbd89cf"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/API-design/Polyglot_DB_Design_Checklist.xlsx",
+    "sha256": "3a20ef8e781864845f9b8b0db7da54c4b23c169949286a5e80bc17da1e27873f"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/PRD/PRD_IEEE_29148_Checklist copy.csv",
+    "sha256": "cccef0554250589f35d393c41fc122210bcce00bd56d9066983cc2acffe81ea6"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/PRD/PRD_IEEE_29148_Checklist.xlsx",
+    "sha256": "20f113d7d108372a4102aa5dcd299ea4f80f94f72c6ff3c60556a856064fc82f"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/PRD/PRD_prompt.md",
+    "sha256": "9e5539796e4c541904dbd0b80fcd7676da778504a082c474036ced3f30c34b3d"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/PRD/PRD_Prompt_IEEE_standard.md",
+    "sha256": "07eee36e84b9ab612f9a25b416cb4b753b4332f630e4809eb5c11f8ed9815a0e"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/PRD/PRD_Prompt_with_template.md",
+    "sha256": "e93871c74f9cb01d673a60428cd39f4fa4341017542067719458dd0c8c8d5a3c"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/SAD/SAD_IEEE_1016_Checklist.xlsx",
+    "sha256": "9e46ffae7090859a93b31ea61b66a470249d72f772d94157400866ee396d0de2"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/SAD/SAD_prompt.md",
+    "sha256": "ddcc286a4829fad35f805ee11c45f90fa5b31bfdae3a15f55edc74696e5e64aa"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/SAD/SAD_Prompt_IEEE_standard.md",
+    "sha256": "9eb7168971a39aff424fc51e6f3730e4406a2d168a8db2317cc2bcec13b4f077"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/SAD/SAD_Prompt_with_template_.md",
+    "sha256": "1d0f33beb365e45077f3ccbd39c1d9cbeb9ee3e47a62130f5ee2908c4609286d"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/TESTING/testPlan_prompt.md",
+    "sha256": "a7c88d34354a7b84b03b2a1b2cd19ef5505ff7f86aa205687e12152dc61e43b8"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/TESTING/Test_Plan_IEEE_829_Checklist.xlsx",
+    "sha256": "3ebab117c7f08a8940750ff55fc0120169e72fb4ff927aa4d91fc7b748e83a20"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/UC/SKILL.md",
+    "sha256": "8718c6131b968f7b40625b74660aadcfce5a8348eaff7f6fc40293d8a04f04e3"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/UC/UseCase_Document_UML2.0_Checklist.xlsx",
+    "sha256": "ef9db8866e223445eefba42c5c75089afac864a934f690c1621374a2e8f6faef"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/UC/useCase_prompt.md",
+    "sha256": "89bcf9bc938c2ab5291ea9d6e9c1c757b6887b464d84912b203a9c31ab157040"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/UIUX/BluePrint_Design_IEEE_1016_2009_Checklist.xlsx",
+    "sha256": "01e951fc25f7a75aaaa3249c458ef6a41cc3ddbd4093bf49eeb824977fa8cf27"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/UIUX/bluePrint_design_prompt.md",
+    "sha256": "bfedc255a3dd6f3992355f93679e7e52f9eeabb0eacdab2f6b9e62f4632c1b78"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/UIUX/UI-UX-Design_prompt.md",
+    "sha256": "f8d63f94514c8d4909bb4a117ca3664fdbeeb31f534f108ffbc75f97739a40b5"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/UIUX/UI_UX_Design_IEEE-1016-2009_Checklist.xlsx",
+    "sha256": "31dc9c4350e8b09e0586fe79901bc7a01876daaa6bfcd0317fb2771b1bbafd0b"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/UML/activityDiagram_prompt.md",
+    "sha256": "786b1f90bfaef7f60b8cd0ef8cded5018c5ca5c1ef401402960bc77cc2401ee3"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/UML/Activity_Diagram_UML2.0_Checklist.xlsx",
+    "sha256": "45c29e2477111c7eeb5504a1934e2cc543a21fe09e1671cdc57a44afbf4e4b1c"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/UML/classDiagram_prompt.md",
+    "sha256": "33503675cc14591fab28452fc01b2c9512dc8f51aff6db88ce7d734c7c42d9da"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/UML/Class_Diagram_UML2.0_Checklist.xlsx",
+    "sha256": "ca3e8bc9f1225db8fecde101c07adf95b0e0cc8a97cc879e516de813d4cf82d2"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/UML/componentDiagram_prompt.md",
+    "sha256": "76d779936cf53a911f0c0fd7034d17fd6899d46ef606c34bf7cd3a695a0eb91e"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/UML/Component_Diagram_UML2.0_Checklist.xlsx",
+    "sha256": "7a0f91598584bedd534ea9ac49f6c392b9033bbe73c87be3bf875028636a2767"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/UML/deploymentDiagram_prompt.md",
+    "sha256": "e551775a49155b9673bc12800d2e944fed90bbf5b8f33d5d7583f398c9d451f7"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/UML/Deployment_Diagram_UML2.0_Checklist.xlsx",
+    "sha256": "f68bce70524540e0b4a4daa41c4ed7ef6cf4b8078dd4fcc361caa21321d52c5c"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/UML/sequenceDiagram_prompt.md",
+    "sha256": "75f2f847ad63499b208f593013b4ab9c91e6f303f18950912890ee2f9f20d1ba"
+  },
+  {
+    "path": "docs/SDLC-Prompt-Checklist/UML/Sequence_Diagram_UML2.0_Checklist.xlsx",
+    "sha256": "1848e88487982f2923638caf5370fb37a8c5f105ed1bd7fda0b90ccab40df4f7"
+  },
+  {
+    "path": "docs/agents/00-sdlc-coordinator.md",
+    "sha256": "9be0e757d3ccc7cd746cf7f775c37b0c3c087da16374db45b381469e59d9955f"
+  },
+  {
+    "path": "docs/agents/01-prd-srs.md",
+    "sha256": "03d7b0266ff3fca1170410a22289c2879aaf0558715b850b135110fcdd0d32c7"
+  },
+  {
+    "path": "docs/agents/02-use-cases.md",
+    "sha256": "0d8446e62af1ea0c289e9b319f922db7fe2e55a5c8b4826da675f06da812ea62"
+  },
+  {
+    "path": "docs/agents/03-architecture.md",
+    "sha256": "b5de626ca23221dce72ebf438ffa312ca5985505e07d66ccbb7a9884b08e575d"
+  },
+  {
+    "path": "docs/agents/04-data-design.md",
+    "sha256": "5d7c303da97adb290e801dcf2c404fa390acc7f3586b72b3e3a8bc4dd2fc0600"
+  },
+  {
+    "path": "docs/agents/05-api-design.md",
+    "sha256": "59d1445315e469b13d48bfcec9c51fd7108979acd4cffe7849940a5f24a4b999"
+  },
+  {
+    "path": "docs/agents/06-ui-ux.md",
+    "sha256": "bb97a22ea5c6f14f3f6011149c041a9af7f2673aa27f3e98c62b52aac60cfabd"
+  },
+  {
+    "path": "docs/agents/07-uml-diagrams.md",
+    "sha256": "3af2c023582f6ac97b1b86013d889601dd12973b1855e25b2da172726f3de59a"
+  },
+  {
+    "path": "docs/agents/08-test-plan.md",
+    "sha256": "451938ec2b3a7338af181b83dba9dc2d09892aceddda3d1e6b9e517314146610"
+  },
+  {
+    "path": "docs/agents/09-consistency-review.md",
+    "sha256": "8fb9298cbe39394625956d9d7b615925454972c0e8f7c7118e9f476b53f21798"
+  },
+  {
+    "path": "docs/agents/README.md",
+    "sha256": "01366206f699eb0a10c75840a214cc74fe368a72d6cf99498369d3cf6c391158"
+  },
+  {
+    "path": "docs/agents/template-guide.md",
+    "sha256": "cc2340f6e68bfe74ec40f1b4d51c499db7f01958adcbdc18923e233d0ae3c831"
+  },
+  {
+    "path": "docs/agents/WORKFLOW.md",
+    "sha256": "385de765a10a7377aed7430cb2d8ea6849799388e12d7980b2b1b9f0dbd09fa0"
+  },
+  {
+    "path": "docs/implementation/features/agents-sdlc-alignment/plan.md",
+    "sha256": "2c21c19cd79bdce9fb9c700d2591554dc6ac2cd58a50c95857a82ab3b70bcce2"
+  },
+  {
+    "path": "docs/implementation/features/agents-sdlc-alignment/README.md",
+    "sha256": "bd1b54f72aff189bd4a13c6d7f73f50d59cadfb2492a7f3519afca304c1f1f5b"
+  },
+  {
+    "path": "docs/implementation/features/agents-sdlc-alignment/tasks/A01-align-profiles.md",
+    "sha256": "5bb3af4bbf599a5c50a1a69b0c5d841a519176f301f2a4700b8b247c3967b8a8"
+  },
+  {
+    "path": "docs/implementation/features/agents-sdlc-alignment/tasks/A02-verify-handoff.md",
+    "sha256": "e19d1f660a90761f713b29890f06f6357efd08aa374c176056ae2b091402c38f"
+  },
+  {
+    "path": "docs/implementation/features/agents-sdlc-alignment/tasks/A03-prd-template-links.md",
+    "sha256": "18fef07bb0355461242ea14c17cf8366668c3d2fe38354de034e9a42f9b3ab5e"
+  },
+  {
+    "path": "docs/implementation/features/database-status-check/plan.md",
+    "sha256": "33ac89471f6ea3ca1ddc611905a3445b48c3aa4c07c6707d19fa4244d462687c"
+  },
+  {
+    "path": "docs/implementation/features/database-status-check/README.md",
+    "sha256": "3b2b787f756951d07a0e6b45e399579fe5f40f44da6747d9cbc53ab79e472f72"
+  },
+  {
+    "path": "docs/implementation/features/database-status-check/tasks/DB01-inspect.md",
+    "sha256": "1c7b70815b778ad239c048f1a3876317c62902457c850777110e65ca0517f584"
+  },
+  {
+    "path": "docs/implementation/features/sp-02-project-membership/tasks/SP02-T01-cursor-boundaries.md",
+    "sha256": "f02cfa7d1e7eef570b61cc20a22f6ba6da11b6fb2d250507f160de99b57fa2b3"
+  },
+  {
+    "path": "docs/implementation/features/sp-03-create-task/evidence/ui-2026-11-02/runs/run-1793689108068-1f4f5fa7/browser-summary.json",
+    "sha256": "fc3aef9784b0325ee00b574f7c950a42bf8f5512f83b25ac0250ed314a2d2913"
+  },
+  {
+    "path": "docs/implementation/features/sp-03-create-task/evidence/ui-2026-11-02/runs/run-1793689108068-1f4f5fa7/task-desktop.png",
+    "sha256": "6a2caa089ba879887d73998639eb11d3b237d4851f69c2f39baf4f63b83ac253"
+  },
+  {
+    "path": "docs/implementation/features/sp-03-create-task/evidence/ui-2026-11-02/runs/run-1793689108068-1f4f5fa7/task-mobile-long-title.png",
+    "sha256": "c6a75d9952823c060f09f7a43dd3a9b93a94dbef14de5fd2d179b35641013948"
+  },
+  {
+    "path": "docs/implementation/features/sp-03-create-task/evidence/ui-2026-11-02/runs/run-1793689108068-1f4f5fa7/task-mobile.png",
+    "sha256": "0333f1cd5a1f2c6ce78802085fd3a04bc0be54c41ee881799cb2d09504fb7bd1"
+  },
+  {
+    "path": "docs/planning/backend-design-pattern-brainstorming-with-claude-2026-11-04.md",
+    "sha256": "80ca707b7a2701a5c0bc9a490c21ac5b3d2490c3742904d5c61ad0260b9518a7"
+  },
+  {
+    "path": "docs/sdlc/reports/load-balancing-assessment-2026-11-03.md",
+    "sha256": "ebea22e2bab8e116e5168cdbf2e51cb85ba3ebc493d613762b5b49fe358a9065"
+  },
+  {
+    "path": "docs/sdlc/reports/load-balancing-assessment-2026-11-03.sources.json",
+    "sha256": "fcd71abb75648f6b916c3d8dd5f817ba05864615370a4d5420a552c2ec025d83"
+  },
+  {
+    "path": "new.tree",
+    "sha256": "3b24d56c033712f08c94686426144283c63c19871b31bef2207d518b2b79ca93"
+  },
+  {
+    "path": "structure.json",
+    "sha256": "a65ea12df39245e8250c09de19ef9dace55477cfbc2429c44257f4d5e68e25c1"
+  },
+  {
+    "path": "uc-review-fixes.patch",
+    "sha256": "3c135e75e817350f63c1f03a60fb390e720e26d4081adf7c6fc6d27a05ecd239"
+  }
+]

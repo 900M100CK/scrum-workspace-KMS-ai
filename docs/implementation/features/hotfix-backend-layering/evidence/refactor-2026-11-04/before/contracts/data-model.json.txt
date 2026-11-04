@@ -1,0 +1,596 @@
+{
+  "artifactId": "DATA-04",
+  "version": "0.12",
+  "status": "Draft",
+  "storageDecision": "ADR-0004 foundation plus Workspace 003 work location, Knowledge 003 immutable handoffs and Workspace 004 permanent protected claims; isolated storage evidence is not handler or guard acceptance. Workspace 005 owner-authorised session persistence and private authentication clock/audit; no public auth handler acceptance. Workspace 007 adds immutable project origin and private explicit create authority/audit; separate 008 adds permanent minimal project-operation snapshots. Tested disposable storage/handlers do not authorise a development upgrade or D-07 transport acceptance. SP-03 owner selected immutable Task.created_at and permanent original createTask result retention with current access checks; additive 009 and Task handlers now have bounded local evidence in FEAT-SP03-01. Logical schema checks alone remain distinct from permission/handler verification.",
+  "entities": [
+    {
+      "name": "Project",
+      "owner": "workspace",
+      "key": [
+        "project_id"
+      ],
+      "fields": [
+        "name",
+        "description",
+        "revision",
+        "backlog_revision",
+        "created_by",
+        "created_at"
+      ]
+    },
+    {
+      "name": "Membership",
+      "owner": "workspace",
+      "key": [
+        "project_id",
+        "user_id"
+      ],
+      "fields": [
+        "role",
+        "active",
+        "membership_generation",
+        "revision"
+      ]
+    },
+    {
+      "name": "Task",
+      "owner": "workspace",
+      "key": [
+        "task_id"
+      ],
+      "fields": [
+        "project_id",
+        "type",
+        "title",
+        "description",
+        "state",
+        "assignee_id",
+        "revision",
+        "location_kind",
+        "location_sprint_id",
+        "backlog_position",
+        "created_at"
+      ],
+      "constraints": [
+        "location_kind = backlog: null Sprint reference, no allocated association; any task state allowed",
+        "location_kind = sprint: same-project reference to an allocated association in Planned/Active Sprint",
+        "location_kind = completed: Done task with same-project completed association and Completed Sprint",
+        "Location references are deferred foreign keys; final state checked across task, allocation and Sprint writes",
+        "Completed associations remain immutable independently of current task location",
+        "created_at is immutable server-recorded creation time; Task responses and original createTask outcomes preserve the same UTC millisecond timestamp; no fabricated legacy backfill"
+      ]
+    },
+    {
+      "name": "Sprint",
+      "owner": "workspace",
+      "key": [
+        "sprint_id"
+      ],
+      "fields": [
+        "project_id",
+        "goal",
+        "start_date",
+        "end_date",
+        "state",
+        "revision"
+      ]
+    },
+    {
+      "name": "SprintAllocation",
+      "owner": "workspace",
+      "key": [
+        "sprint_id",
+        "task_id"
+      ],
+      "fields": [
+        "allocation_state",
+        "revision"
+      ]
+    },
+    {
+      "name": "BlockerEvent",
+      "owner": "workspace",
+      "key": [
+        "event_id"
+      ],
+      "fields": [
+        "task_id",
+        "status",
+        "description",
+        "outcome",
+        "actor_id",
+        "sequence",
+        "recorded_at"
+      ]
+    },
+    {
+      "name": "DocumentPolicy",
+      "owner": "workspace",
+      "key": [
+        "document_id"
+      ],
+      "fields": [
+        "project_id",
+        "classification",
+        "registry_state",
+        "permission_revision"
+      ]
+    },
+    {
+      "name": "ReadGrant",
+      "owner": "workspace",
+      "key": [
+        "document_id",
+        "user_id",
+        "grant_generation"
+      ],
+      "fields": [
+        "valid",
+        "membership_generation",
+        "revision"
+      ]
+    },
+    {
+      "name": "Session",
+      "owner": "workspace",
+      "key": [
+        "session_id"
+      ],
+      "fields": [
+        "user_id",
+        "expires_at",
+        "revoked",
+        "revision"
+      ]
+    },
+    {
+      "name": "Document",
+      "owner": "knowledge",
+      "key": [
+        "document_id"
+      ],
+      "fields": [
+        "project_id",
+        "kind",
+        "title",
+        "owner_id",
+        "labels",
+        "current_version_id",
+        "revision",
+        "unavailable"
+      ]
+    },
+    {
+      "name": "DocumentVersion",
+      "owner": "knowledge",
+      "key": [
+        "document_id",
+        "version_id"
+      ],
+      "fields": [
+        "document_id",
+        "state",
+        "immutable_content",
+        "created_at",
+        "revision"
+      ]
+    },
+    {
+      "name": "Passage",
+      "owner": "knowledge",
+      "key": [
+        "document_id",
+        "version_id",
+        "passage_id"
+      ],
+      "fields": [
+        "document_id",
+        "version_id",
+        "locator",
+        "immutable_excerpt"
+      ]
+    },
+    {
+      "name": "Link",
+      "owner": "knowledge",
+      "key": [
+        "link_id"
+      ],
+      "fields": [
+        "project_id",
+        "from_kind",
+        "from_id",
+        "to_kind",
+        "to_id",
+        "relation",
+        "revision"
+      ]
+    },
+    {
+      "name": "SearchJob",
+      "owner": "knowledge",
+      "key": [
+        "job_id"
+      ],
+      "fields": [
+        "document_id",
+        "version_id",
+        "aggregate_revision",
+        "processing_generation",
+        "readiness",
+        "tombstone"
+      ]
+    },
+    {
+      "name": "Execution",
+      "owner": "knowledge",
+      "key": [
+        "run_id"
+      ],
+      "fields": [
+        "actor_id",
+        "project_id",
+        "source_ids",
+        "configuration_id",
+        "duration",
+        "usage",
+        "errors",
+        "validation_outcomes",
+        "actual_query",
+        "recorded_steps",
+        "duration_availability",
+        "usage_availability"
+      ],
+      "constraints": [
+        "Actual queries/steps/selected source provenance are mandatory producing records; persistence failure cannot be represented as missing optional telemetry",
+        "Duration/usage are measured with nonnegative value, unavailable without invented value, or not_performed for unexecuted activities",
+        "Inspection projections filter current source/query/validation disclosure separately from immutable recorded history; no raw private reasoning"
+      ]
+    },
+    {
+      "name": "Provenance",
+      "owner": "knowledge",
+      "key": [
+        "run_id",
+        "source_id"
+      ],
+      "fields": [
+        "document_id",
+        "version_id",
+        "passage_id",
+        "entity_kind",
+        "entity_id",
+        "observation_revision",
+        "observed_at",
+        "entity_revision"
+      ]
+    },
+    {
+      "name": "BusinessAudit",
+      "owner": "per_service",
+      "key": [
+        "event_id"
+      ],
+      "fields": [
+        "actor_id",
+        "action",
+        "entity_id",
+        "time",
+        "before_ref",
+        "after_ref",
+        "correlation_id"
+      ]
+    },
+    {
+      "name": "IdempotencyRecord",
+      "owner": "per_service",
+      "key": [
+        "actor_id",
+        "operation",
+        "idempotency_key"
+      ],
+      "fields": [
+        "payload_hash",
+        "state",
+        "result_ref",
+        "expires_at",
+        "result_status",
+        "result_snapshot"
+      ]
+    },
+    {
+      "name": "CapabilityGrant",
+      "owner": "workspace",
+      "key": [
+        "grant_id"
+      ],
+      "fields": [
+        "subject_id",
+        "project_id",
+        "resource_kind",
+        "resource_id",
+        "action",
+        "valid",
+        "permission_revision"
+      ]
+    },
+    {
+      "name": "HandoffManifest",
+      "owner": "knowledge",
+      "key": [
+        "handoff_id"
+      ],
+      "immutable": true,
+      "fields": [
+        "run_id",
+        "attempt_id",
+        "purpose",
+        "actor_id",
+        "project_id",
+        "access_context_ref",
+        "evidence_set",
+        "payload_digest",
+        "manifest_digest",
+        "prepared_at",
+        "complete",
+        "session_generation",
+        "project_permission_revision",
+        "payload_length",
+        "destination_ref",
+        "manifest_bytes_ref",
+        "durable_commit_ref"
+      ],
+      "constraints": [
+        "Complete manifest plus exact serialized manifest bytes/digest and durable receipt commit atomically in Knowledge; no mutable/incomplete ready row",
+        "Evidence is a discriminated document-or-operational set with per-source policy/lifecycle or entity/observation revision/time/digest",
+        "Immutable manifest stores identities/digests and scope references, never provider payload/source content or private reasoning",
+        "Knowledge migration 003 stores exact bytes and complete JSON evidence atomically with generated SHA-256 and immutable receipt; run/actor/project reference owned execution"
+      ]
+    },
+    {
+      "name": "HandoffOutcome",
+      "owner": "knowledge",
+      "key": [
+        "outcome_id"
+      ],
+      "immutable": true,
+      "fields": [
+        "handoff_id",
+        "status",
+        "observed_at",
+        "enforcement_ref"
+      ]
+    },
+    {
+      "name": "ProtectedHandoffClaim",
+      "owner": "workspace",
+      "key": [
+        "actor_id",
+        "operation",
+        "handoff_id"
+      ],
+      "fields": [
+        "manifest_digest",
+        "claim_fence",
+        "state",
+        "outcome_ref",
+        "process_ref"
+      ],
+      "constraints": [
+        "Map operation=protected_handoff to owned idempotency storage; only fresh durably acknowledged claim can enter guard",
+        "No expiry/deletion into send eligibility; unknown/consumed/aborted claims never permit replay",
+        "Workspace migration 004 reserves protected_handoff in idempotency_record with immutable fence/process, infinity expiry and append-only outcomes; active process/guard/transport enforcement remains unimplemented",
+        "The pending idempotency state means the claim identity is consumed from insertion, not eligible for resend; only a fresh known committed insertion returns a new fence"
+      ]
+    },
+    {
+      "name": "ExecutionStep",
+      "owner": "knowledge",
+      "key": [
+        "run_id",
+        "step_id"
+      ],
+      "fields": [
+        "recorded_order",
+        "stage",
+        "status",
+        "actual_query",
+        "duration",
+        "duration_availability",
+        "usage",
+        "usage_availability",
+        "safe_error_category"
+      ],
+      "constraints": [
+        "Mandatory recorded stage/query/provenance separate from optional metric availability; no raw tool payload/private reasoning"
+      ]
+    },
+    {
+      "name": "StepSource",
+      "owner": "knowledge",
+      "key": [
+        "run_id",
+        "step_id",
+        "source_id"
+      ],
+      "fields": [
+        "recorded_order"
+      ],
+      "constraints": [
+        "Reference one exact per-run Provenance locator; same source may participate in multiple steps",
+        "Visible rank is densely derived after current access filtering, not persisted as unrestricted global rank"
+      ]
+    },
+    {
+      "name": "DocumentCommandPrecondition",
+      "owner": "knowledge",
+      "key": [
+        "token_hash"
+      ],
+      "fields": [
+        "actor_ref",
+        "session_generation",
+        "project_id",
+        "document_id",
+        "target_action",
+        "version_id",
+        "document_revision",
+        "policy_generation_ref",
+        "state"
+      ],
+      "constraints": [
+        "Opaque unpredictable token reference; bind exact command scope and private current revision",
+        "No permission grant; current authority and revision checked under guarded mutation",
+        "Consume with committed mutation/audit/idempotency; invalid/revoked/stale/unknown token never becomes fresh by cleanup; only original same-key receipt may replay",
+        "Additive mapping and retention/cleanup remain implementation work; no cross-service writes"
+      ]
+    },
+    {
+      "name": "ProtectedHandoffOutcome",
+      "owner": "workspace",
+      "key": [
+        "outcome_id"
+      ],
+      "immutable": true,
+      "fields": [
+        "actor_id",
+        "operation",
+        "handoff_id",
+        "claim_fence",
+        "status",
+        "observed_at",
+        "enforcement_ref"
+      ],
+      "constraints": [
+        "Composite foreign key binds the exact actor/protected_handoff/identity/fence; append-only observation does not prove external delivery or permit replay"
+      ]
+    },
+    {
+      "name": "AuthAccount",
+      "owner": "workspace",
+      "key": [
+        "user_id"
+      ],
+      "fields": [
+        "username",
+        "password_credential",
+        "disabled",
+        "credential_revision"
+      ],
+      "constraints": [
+        "Exact case-sensitive pre-provisioned username; runtime has no account/credential UPDATE",
+        "Manual disable invalidates existing sessions; no automatic failed-attempt lockout"
+      ]
+    },
+    {
+      "name": "SessionToken",
+      "owner": "workspace",
+      "key": [
+        "session_id"
+      ],
+      "fields": [
+        "token_digest",
+        "created_at",
+        "absolute_expires_at"
+      ],
+      "constraints": [
+        "Unique SHA-256 digest only; immutable token identity/absolute deadline",
+        "Existing Session effective expiry is bounded by this immutable absolute cap"
+      ]
+    },
+    {
+      "name": "AuthClockState",
+      "owner": "workspace",
+      "key": [
+        "singleton"
+      ],
+      "fields": [
+        "last_observed",
+        "healthy",
+        "recovery_generation"
+      ],
+      "constraints": [
+        "Initially unhealthy; observed regression latches fault",
+        "Runtime cannot clear fault; operator recovery revokes all old sessions with minimum audit atomically",
+        "Mitigation cannot establish elapsed time in unobserved intervals"
+      ]
+    },
+    {
+      "name": "AuthenticationAudit",
+      "owner": "workspace",
+      "key": [
+        "event_id"
+      ],
+      "fields": [
+        "action",
+        "actor_user_id",
+        "entity_id",
+        "operator_ref",
+        "database_principal",
+        "observed_at",
+        "recovery_generation",
+        "correlation_id",
+        "evidence_ref"
+      ],
+      "constraints": [
+        "Append-only private authentication events; no project-audit visibility implied",
+        "Never raw password/token/cookie, credential hash or token digest"
+      ]
+    },
+    {
+      "name": "GlobalProjectAuthority",
+      "owner": "workspace",
+      "key": [
+        "user_id"
+      ],
+      "fields": [
+        "can_create",
+        "revision"
+      ]
+    },
+    {
+      "name": "AuthorityProvisioningAudit",
+      "owner": "workspace",
+      "key": [
+        "event_id"
+      ],
+      "immutable": true,
+      "fields": [
+        "target_user_id",
+        "project_id",
+        "action",
+        "allowed",
+        "previous_revision",
+        "revision",
+        "operator_ref",
+        "reason",
+        "database_principal",
+        "recorded_at"
+      ]
+    }
+  ],
+  "invariants": [
+    "No cross-service database writes/joins",
+    "Project membership AND current document scope govern source access",
+    "Membership removal invalidates read grants; rejoin creates no restricted grant",
+    "At most one Active Sprint per project; a task has at most one Planned/Active allocation",
+    "Task blocked state derives from highest committed blocker sequence",
+    "Version/passage evidence is immutable",
+    "Product versions are Current/Superseded/Archived; revision atomically supersedes old Current and inserts new Current",
+    "Old jobs cannot revive unavailable/tombstoned content",
+    "No answer cache or permission-decision cache in MVP",
+    "Workspace allocates document identity; registered policy is not content availability",
+    "Restricted creation adds a revocable author read grant; authorship never bypasses current access",
+    "Unfinished Backlog returns become To Do atomically with allocation, task revision and audit; completed allocation history is immutable",
+    "Complete immutable handoff manifests commit outside guard; guarded exact evidence/revision/payload matching precedes any send",
+    "A mismatch sends zero bytes and releases guard before a fresh bounded preparation; prepared records prove no send; consumed handoff IDs cannot be reused",
+    "Current task location is persisted explicitly, never inferred from historical completed associations or Done alone",
+    "Project backlog_revision changes atomically on entry/exit/reposition within Backlog, not merely title/state/blocker changes",
+    "Reorder expected_revision equals listTasks backlog_revision and task_ids is a complete Backlog permutation; reject partial/stale submissions",
+    "Frozen payload digest hashes exact outbound UTF-8 bytes; manifest digest hashes exact immutable manifest bytes, not a reserialized object",
+    "Workspace verifies committed Knowledge record before one-use claim; purpose/run/attempt/actor/project/destination and complete mixed evidence must match before any protected byte",
+    "Trace/summary source locators bind retrieval step and visible dense rank; denied source identities and dependent query/validation data are omitted without hidden counts",
+    "Optional missing metrics are explicitly unavailable, never fabricated zero; not_performed identifies an activity that never executed"
+  ]
+}

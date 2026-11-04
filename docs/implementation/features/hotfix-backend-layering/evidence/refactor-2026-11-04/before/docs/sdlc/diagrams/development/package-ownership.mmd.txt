@@ -1,0 +1,19 @@
+%% Origin: docs/sdlc/diagrams/design-foundation-2026-10-17.md v0.1
+%% DGM-DEV-01 v0.1.1 Draft - 18 October 2026
+%% Sources: DGM-DESIGN-01 v0.1; PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.17; DATA-04 v0.16.1; ADR-0002; ADR-0003; ADR-0004; ADR-0011; ADR-0012
+%% Trace: BR-01–BR-14; SC-01–SC-08
+%% Scope: Repository ownership; packages below service roots are responsibilities, not a claim that handlers already exist.
+%% Legend: Two business services. Domain logic depends on interfaces, not UI/provider SDKs. No shared permission implementation or cross-database repositories.
+flowchart LR
+    Web["apps/web/<br/>UI candidate: React + Vite<br/>Consumes public facade; no authority"]
+    Contracts["contracts/<br/>HTTP/event/data definitions<br/>Shared shape, not copied policy rules"]
+    Workspace["services/workspace/<br/>Sessions, membership, Scrum, policy, gateway<br/>Own adapters + domain + local audit"]
+    Knowledge["services/knowledge/<br/>Documents, retrieval, evidence and provenance<br/>Own adapters + domain + local audit"]
+    Checks["scripts/ + tests/ + eval/<br/>Existing context/storage harness<br/>Future handler/contract/race tests"]
+    Infra["infra/postgres/<br/>Compose/bootstrap + migration runner<br/>Separate store credentials"]
+    Web -->|"public request/response shape"| Contracts
+    Workspace -->|"owns Workspace API; consumes Knowledge API"| Contracts
+    Knowledge -->|"owns Knowledge API; consumes current policy/state"| Contracts
+    Checks -->|"contract/context validation"| Contracts
+    Workspace -->|"owned migrations only"| Infra
+    Knowledge -->|"owned migrations only"| Infra

@@ -1,0 +1,36 @@
+{
+  "node": "v24.22.1",
+  "phase": "publication",
+  "results": [
+    {
+      "command": "npm run context:lint",
+      "exit_code": 0,
+      "log": "publication-context-lint.log",
+      "tail": "\n> scrum-workspace-kms-context@0.1.0 context:lint\n> node --check scripts/verify-context.mjs && node --check scripts/context/verify-api-routing.mjs && node --check tests/context/context.test.mjs\n\n"
+    },
+    {
+      "command": "npm run context:check",
+      "exit_code": 0,
+      "log": "publication-context-check.log",
+      "tail": "\n> scrum-workspace-kms-context@0.1.0 context:check\n> node scripts/verify-context.mjs\n\n{\n  \"requirements\": 69,\n  \"withdrawn\": [\n    \"FR-45\"\n  ],\n  \"scope\": {\n    \"Must\": 60,\n    \"Should\": 4,\n    \"Wont\": 1,\n    \"Could\": 4\n  },\n  \"services\": 2,\n  \"operations\": 66,\n  \"specs\": 13,\n  \"referenceCases\": 25,\n  \"research\": {\n    \"cases\": 25,\n    \"groups\": {\n      \"doc\": 8,\n      \"state\": 8,\n      \"both\": 9\n    },\n    \"results\": \"not run; reference definitions only\"\n  },\n  \"runtimeEvidence\": \"not run\"\n}\n"
+    },
+    {
+      "command": "npm run context:test",
+      "exit_code": 0,
+      "log": "publication-context-test.log",
+      "tail": "al response cannot expose Draft as validity (1.7345ms)\n\u2714 document citation requires exact version identity (1.7466ms)\n\u2714 internal request must require service plus actor context (1.998ms)\n\u2714 withdrawn IDs cannot return through an API trace (1.7478ms)\n\u2714 withdrawn requirements cannot count as release Must (0.7715ms)\n\u2714 new Core deferral requires an explicit matching decision (0.7845ms)\n\u2714 missing withdrawal record cannot silently shrink the scope (2.3101ms)\n\u2714 document lifecycle rejects reintroducing Draft outside retrieval (2.2799ms)\n\u2714 research references reject restricted evidence without an explicit grant (1.5631ms)\n\u2714 document-only configuration cannot receive current-state credit (1.5161ms)\n\u2714 operational citation must match the frozen revision and observation time (1.3684ms)\n\u2714 fixture blocked flag cannot disagree with ordered evidence (0.4572ms)\n\u2714 regression fixture cannot reintroduce the removed Draft lifecycle (0.7181ms)\n\u2714 revision scenario cannot overwrite an existing cited identity (0.9743ms)\n\u2714 unsaved editor scenario must stay outside ingested evidence (1.0882ms)\n\u2714 matching observation revision cannot hide a different value (0.4575ms)\n\u2714 source-task fixture links cannot cross projects (0.4436ms)\n\u2714 observations without source rows cannot be used as operational evidence (0.4319ms)\n\u2139 tests 45\n\u2139 suites 0\n\u2139 pass 45\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 494.1124\n"
+    },
+    {
+      "command": "npm run docs:lint",
+      "exit_code": 0,
+      "log": "publication-docs-lint.log",
+      "tail": "\n> scrum-workspace-kms-context@0.1.0 docs:lint\n> node scripts/docs/verify-docs.mjs\n\n{\n  \"diagrams\": 20,\n  \"artifacts\": 35,\n  \"nodes\": 324,\n  \"edges\": 365,\n  \"runtimeEvidence\": \"not run\"\n}\n"
+    },
+    {
+      "command": "npm run docs:test",
+      "exit_code": 0,
+      "log": "publication-docs-test.log",
+      "tail": "rthand and ranges, not just the highest ID (1.2833ms)\n\u2714 manifest version/ADR changes propagate to all generated inventories and both diagram headers (42.1905ms)\n\u2714 AI checkpoint sources retain the unavailable, partial-answer and member-removal decisions (2.1112ms)\n\u2714 use-case associations are undirected; generalization/include retain direction and native UML style (85.3257ms)\n\u2714 operation references fail on facade path/ID or actual node label drift (1.5353ms)\n\u2714 input headers name the latest cited ADR and current input versions (1.1564ms)\n\u2714 real Mermaid parser rejects invalid syntax (4.8848ms)\n\u2714 flowchart adapter compares labels, direction and parallel-edge counts (13.9683ms)\n\u2714 invalid XML and dangling/undirected edges fail closed (1.2539ms)\n\u2714 current version drift and missing rows fail; historical versions are allowed (1.0747ms)\n\u2714 journey actors and scores are compared, not merely grammar-checked (4.4846ms)\n\u2714 current prose references cannot disagree with headers while historical snapshots can (0.5287ms)\n\u2714 current linked input aliases use target versions while snapshot evidence stays historical (0.4185ms)\n\u2714 design pairs reject reversed sequence handoffs and changed native multiplicities (58.8389ms)\n\u2714 physical diagram entity inventory matches owned CREATE TABLE definitions (5.9437ms)\n\u2139 tests 20\n\u2139 suites 0\n\u2139 pass 20\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 5277.3176\n"
+    }
+  ]
+}

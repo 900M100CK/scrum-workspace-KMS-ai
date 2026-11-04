@@ -1,0 +1,143 @@
+# Work plan register and template
+
+**Artifact ID:** IMPL-FEATURES-01\
+**Version/date:** 0.32.1 Draft · 4 November 2026\
+**Status:** Planning entry; no application feature accepted or implemented by this file.\
+**Inputs:** [Development rules](../../development-rules.md) v1.13; [implementation roadmap](../roadmap.md) v0.24; [PLAN-01](../../planning/five-month-plan.md) v0.4; [spec index](../../../specs/README.md) v0.9; [source register](../register.md).\
+**Trace:** Existing feature FR/AC/BR/SC through its canonical spec; no added scope.\
+**Owner role:** Sequential development coordinator.
+
+## Register before implementation
+
+Follow [the planning gate](../../development-rules.md#111-work-planning-gate) for features, fixes, hotfixes and standalone testing. The folder and artifact ID retain their original names for stable links; all these work types use this one register. Use Plan mode when available and persist the plan before work. A chat-only plan is insufficient. Small/urgent work can have a short plan; existing registered tasks cover their own checks and reruns. Register parent PLAN-01/spec and [roadmap milestone](../roadmap.md) links, then select a ready task. Existing [task packs](../tasks/README.md) and [SP-01.1 brief](../briefs/SP-01.1-session-foundation.md) remain valid inputs; completed preparation is not retroactively reclassified.
+
+| Work plan ID / kind / file | Version / status | Parent PLAN-01 section / roadmap milestone | Canonical spec / pack children | Next ready task / result |
+| --- | --- | --- | --- | --- |
+| [FEAT-SP01-01 / feature / session foundation](sp-01-session-foundation/plan.md) / [folder entry](sp-01-session-foundation/README.md) | Plan v0.9 Draft; entry/task briefs v0.8; application gated | PLAN-01 Month 1 / M-01 | SP-01 / SP-01.1–01.4; applicable SP-11.1 capture | P01–P04 laboratory preparation verified with limits; P05 clock evidence partial; P06 core policy direction selected; bounded P07 interfaces/HTTPS verified; P08 verified with actual role/storage regression evidence; bounded P09 verified; bounded P10 verified; P11 bounded DOM/live/browser observations verified; P12 bounded regression/handoff executed; release gates open; see authoritative plan |
+| [FEAT-SP02-01 / feature / project membership](sp-02-project-membership/plan.md) / [entry](sp-02-project-membership/README.md) | Plan/entry v0.6; corrected task versions in their headers | PLAN-01 Month 1 / M-02 and M-03 | SP-02 / SP-02.1–02.4; co-delivered SP-11 capture | P03A–P08/P10 bounded implementation verified; optional P09 not selected; actual results/source identities in parent plan; future SP02-F01 and D-07 open |
+
+| [PUB-SP01-SP02-01 / reports and publication](sp-01-sp-02-test-audit-publication/plan.md) / [entry](sp-01-sp-02-test-audit-publication/README.md) | v0.1; owner-authorised | PLAN-01 Month 1 / M-01–M-03 | Existing SP-01/SP-02 evidence; no new feature | Two testing/audit reports, source/publication checks, current-branch commit/push; actual outcome reported after execution |
+
+For each new plan: replace the empty row with the actual ID/link, register the artifact centrally and in the [source register](../register.md), and add the roadmap backlink. Keep one canonical task table per feature. Parent rows reference it; they do not copy every task's mutable status.
+
+## Saved plan template
+
+Create `<work-id>/README.md`, `<work-id>/plan.md` and `<work-id>/tasks/<task-id>-<slug>.md`. Copy the structure below into plan.md and replace placeholders before calling a task ready. State kind as feature, fix, hotfix or test. Link each task row to its individual file; each task file records source versions, parent/child IDs, dependencies, allowed paths, steps, acceptance assertions, actual-versus-planned commands and result/handoff requirements. Keep execution state only in the parent plan table. Short plans retain the same structure; missing commands are Planned, never reported as executed.
+
+```markdown
+# <Feature name>
+
+**Artifact ID:** <unique plan ID>
+**Version/date:** 0.1 Draft · <date>
+**Status:** Planning / Ready for authorised tasks / In progress / Verification gaps
+**Inputs:** <source versions and links, including spec/contracts/ADRs>
+**Trace:** <FR/AC/BR/SC and relevant UC/TC>
+**Owner role:** Sequential implementer
+**Planning mode:** Plan mode used / unavailable (state the actual limitation)
+**Work kind:** feature / fix / hotfix / test
+
+## Goal, scope and parent registration
+
+Observable outcome:
+Fix/hotfix: observed failure, reproduction/incident evidence, regression assertion:
+Hotfix: recovery/rollback and any deferred verification/follow-up task IDs:
+Testing: environment/fixtures, expected assertions, evidence destination, triage tasks:
+Non-goals:
+Parent PLAN-01 section (link):
+Parent roadmap milestone (link):
+Canonical spec / implementation pack and child IDs (links):
+Feature register / central register / source register links:
+Existing authorisation and material open decisions:
+
+## Implementation boundaries
+
+Allowed paths copied from canonical spec:
+Owning service and integration consumers:
+Existing implementation/conventions to reuse:
+Dependencies, migration/contract changes and coordinated scope updates:
+Permission, version, citation, audit and failure/unknown-outcome constraints:
+
+## Tasks
+
+| Task ID | Reviewable outcome | Depends on / decision gates | Allowed paths | Acceptance assertions / verification | Status / result link |
+| --- | --- | --- | --- | --- | --- |
+| <feature-id>-T01 | <one concrete outcome> | <ready prerequisites> | <bounded paths> | <observable positive/negative checks> | Not started |
+
+## Integration and feature acceptance
+
+Must AC → task/assertion mapping:
+End-to-end, negative/concurrency/failure and UI coverage as applicable:
+Existing verification commands vs Planned commands:
+Evidence boundary (schema/SQL/lab handlers vs application handlers):
+Unrun checks and unresolved decisions:
+
+## Handoff and change log
+
+Next ready task and prerequisites:
+Actual results/handoff links using the existing handoff template:
+Source/plan revisions and downstream registration changes:
+Owner acceptance or independent review only if actually obtained:
+```
+
+Use existing [execution states and evidence rules](../execution.md) and [handoff template](../handoff-template.md). A plan/task may be ready for authorised work while a separate dependency remains open; list the boundary explicitly. Do not mark the whole feature verified from preparation or a structural check.
+
+**Checklist:** Self-checked for the planning/register/template contract; runtime verification N/A because this file adds no handler. **Handoff:** start feature/fix/hotfix/test work through a saved or updated registered plan.
+
+## Shared foundation registration
+
+| Work plan | Parent | Next work |
+| --- | --- | --- |
+| [INIT-FRAMEWORK-01 v0.2](framework-foundation/plan.md) | M-01 / PLAN-01 Month 1; SP-01 prerequisite | INIT-01 through INIT-04 verified; source 5b00fce published and synced, no protected business handler |
+
+## P11 browser continuation — 28 October 2026
+
+The owner completed the certificate handoff. Actual keyboard login, reload/cookie reuse, navigation/back, server expiry and logout were observed; browser outcomes are retained in SP01-P11-RESULT v0.2. P12 and broader acceptance remain open. No independent approval is implied.
+
+## P12 integrated handoff — 28 October 2026
+
+See [P12 result](../../sdlc/reports/SP-01-P12-handoff-2026-10-28.md) for bounded integrated session/UI regression, owner local test feedback and screenshot evidence. AC-01/36/37/68 and applicable session producers/UI are mapped there; D-07, other protected features, full cross-browser/accessibility and deployment/formal ADR gates remain open. No new requirement or independent acceptance is inferred.
+
+## SP-03 planning registration — 2 November 2026
+
+| Work plan | Version / parent | Scope / status authority |
+| --- | --- | --- |
+| [FEAT-SP03-01](sp-03-create-task/plan.md) / [entry](sp-03-create-task/README.md) / [WBS](sp-03-create-task/breakdown.md) | Plan/entry/WBS v0.5; individually versioned task briefs; selected decision batch/Proposed ADR-0027 v0.2; PLAN-01 Month 1 / M-02 | Bounded local implementation and actual evidence are in the parent plan/report; no new Git publication or milestone acceptance. |
+
+### Historical SP-03 selected support continuation — 2 November 2026
+
+FEAT-SP03-01/entry/WBS v0.4 resumes all SP-03 tasks under the owner objective. SP03-DECISION-BATCH v0.2 and Proposed ADR-0027 v0.2 record all three actual owner choices; P02 preparation is complete. P03A v0.2 coordinates canonical SP-03 v0.7, Workspace v0.2.12, CONTRACT-01 v0.23, logical JSON v0.11, DATA-04 v0.15 and API-05 v0.21. Parent plan owns actual test/status evidence. No migration/handler or Git publication has occurred at this support checkpoint. Earlier source tables/results are dated snapshots, not relabelled runtime evidence.
+
+### Historical SP-03 foundation execution evidence — 2 November 2026
+
+FEAT-SP03-01 v0.4 now links actual P03A/P03B/P03C evidence and v0.2 child briefs. P03B adds only draft migration 009, internal task types/outcome adapter, explicit 009 fixture and storage tests; DGM-DATA-01 v0.6/model entry reflects Task.created_at. P03C extends the private operator/CLI and tests author grant/removal ordering. Parent plan is the only mutable task-status table; migration/contract/source versions and old captures are retained as dated identities. No task HTTP/UI/browser or whole-feature completion, development upgrade, Git publication or independent approval is claimed.
+
+### SP-03 final handoff source registration — 2 November 2026
+
+Current local reading sources: FEAT-SP03-01/entry/WBS 0.5, canonical SP-03 0.8, IMPL-SP-03 0.2 / IMPL-TASKS-01 0.6, Workspace 0.2.12, logical JSON 0.12, CONTRACT-01 0.24, API-05 0.22, DATA-04 0.16, TEST-08 0.24, TEST-COVERAGE-01 0.11 and VERIFY-01 0.12. SP03-UI-01 0.2 preserves its original 0.1 report snapshot and actual captures; SP03-EXEC-01/WORKSPACE-TASKS-01 are 0.1. Source status updates in AGENTS 1.15/rules 1.14 change no planning/permission authority. P09 final regression/audit results belong to the parent/report; do not infer acceptance from this registration. Older source/result sections remain historical observations and are not relabelled.
+
+## Historical SP-03 publication follow-up — 3 November 2026
+
+[PUB-SP03-01 v0.1](sp-03-publication/plan.md) registers bounded review/verification, selective publication, merge into main and deletion of the merged SP-03 branch under the owner instruction. Parent FEAT-SP03-01 / SP-03.1–03.4 / FR-05/AC-05 / PLAN-01 Month 1 / M-02. PUB03-T01/T02 v0.1 and PUB-SP03-ENTRY-01 v0.1 define the ready work; the publication plan owns actual results. Planned report SP03-PUB-REPORT-01 v0.1: docs/sdlc/reports/SP-03-publication-2026-11-03.md. No product scope, independent approval or deployment is implied.
+
+## SP-03 publication completion — 3 November 2026
+
+[PUB-SP03-01 v0.2](sp-03-publication/plan.md) and [SP03-PUB-REPORT-01 v0.2](../../sdlc/reports/SP-03-publication-2026-11-03.md) record actual verification, source commit a8b3192, successful GitHub CI, confirmed fast-forward into main and deletion of both SP-03 source branches. Parent FR-05/AC-05 / SP-03.1–03.4 / PLAN-01 Month 1 / M-02 is unchanged. Unrelated working files and the template gitlink are preserved. No deployment, complete master milestone or independent approval.
+
+
+## Backend layering hotfix registration — 4 November 2026
+
+[HOTFIX-BACKEND-42-01 v0.1](hotfix-backend-layering/plan.md) / [entry](hotfix-backend-layering/README.md) registers HF42-T01–T03, PLAN-01 Month 1 / M-02–M-03, SP-03/SP-04 documentation support. Parent plan owns status/evidence. No runtime or policy change, automatic publication or slice acceptance.
+
+Backend layering bounded result: [HOTFIX-BACKEND-42-RESULT v0.1](hotfix-backend-layering/handoff.md) records implemented §4.2, preserved SP-04 checkout/source boundaries and five passing npm gates. Overall acceptance remains open for inherited local-source-link gap HF42-F01; no runtime evidence or automatic integration. Parent plan owns task status.
+
+
+## HF42-F01 owner-authorised continuation — 4 November 2026
+
+[HOTFIX-BACKEND-42-01 v0.2](hotfix-backend-layering/plan.md) registers the explicitly requested Stage 6 profile source-link correction and bounded current metadata reconciliation. Same PLAN-01 Month 1 / M-02–M-03 support; no runtime or design change. Original gap evidence is retained; parent plan owns status/results.
+
+HF42-F01 current result: [HOTFIX-BACKEND-42-01 v0.2](hotfix-backend-layering/plan.md) closes the explicitly authorised source-link correction with five passing npm gates, no missing local targets and preserved prior failures. Bounded documentation author verification only; no runtime, independent acceptance or integration. HOTFIX-BACKEND-42-RESULT is now v0.2.
+
+
+## Backend layering publication authorisation — 4 November 2026
+
+[HOTFIX-BACKEND-42-01 v0.3](hotfix-backend-layering/plan.md) registers HF42-P01 for the owner-requested exact-scope commit and fast-forward integration/publication into main. Same PLAN-01 Month1 / M-02–M-03 parent; no code/design expansion, force push, branch deletion, runtime or independent acceptance. Actual final Git refs are reported after execution.

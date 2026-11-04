@@ -1,0 +1,4 @@
+
+> scrum-workspace-kms-context@0.1.0 context:lint
+> node --check scripts/verify-context.mjs && node --check scripts/context/verify-api-routing.mjs && node --check tests/context/context.test.mjs
+

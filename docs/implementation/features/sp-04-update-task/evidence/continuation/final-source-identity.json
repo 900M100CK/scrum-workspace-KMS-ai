@@ -1,0 +1,107 @@
+{
+  "node": "v24.22.1",
+  "branch": "codex/sp-04",
+  "sources": {
+    "services/workspace/src/tasks/authority.ts": "016e1c08c412f2681243145a871f2b754deabb0f264a36b6c49f5fb2bbd12031",
+    "services/workspace/src/tasks/http.ts": "421a5ffb05a182b7502d333470254e33c7502d19a6f50385abe54a49dca31f2e",
+    "services/workspace/src/tasks/mutation-outcomes.ts": "2325088c2e4dafc2f8113ca840fa6c006ada43a5c9aedd54b886295b50e9a350",
+    "services/workspace/src/tasks/outcomes.ts": "ddfd21efef8936b9ebe2c43b843dcd2531b50c53243ee1d0216ddfed0a66c14d",
+    "services/workspace/src/tasks/store.ts": "60efb9ea127b1a8ed84be969a4910878fd02884bcb4d1957e7cf35d23b604b9a",
+    "services/workspace/src/tasks/types.ts": "01f3719c693f18cd9f7ea6ce59cc24d70fe3899912251fef240dda06ca562a4c",
+    "apps/web/src/App.tsx": "f1ed9dead32ae278d4369c599ec5e01e094ea9f10401196e02469bfe59e0c825",
+    "apps/web/src/main.tsx": "0f0a3419faa5354d8cff60d6aac6f48256e553058ff720756f8489a0fc3ace49",
+    "apps/web/src/projects.ts": "d93289b081046719030fab594a2167c29dd896936c71d5250f913a6701ca703b",
+    "apps/web/src/ProjectWorkspace.tsx": "944fbb0924d3d4ee0a49bfaa207c37531260895486f859449ceb2d8f2512a320",
+    "apps/web/src/session.ts": "e8392a1c95748aacfd3edc085917a725e744e4c2558a4f2827363b06104d5016",
+    "apps/web/src/styles.css": "42bb2bb9e03a2553fd03fb84d2a71b9372da015a7ca7701926556802d90d085f",
+    "apps/web/src/tasks.ts": "7137777f4090f75fc0789ab60d9d6041df6979cff5a92fc18e3ff44a09470b9f",
+    "apps/web/src/TaskWorkspace.tsx": "a1f5e5fbe012cd6a2bcd063c3d153a8420492c9ab7a610c7d67eb4618046514c"
+  },
+  "protected_head_comparison": {
+    "package.json": {
+      "raw_equal": false,
+      "lf_normalized_equal": true
+    },
+    "package-lock.json": {
+      "raw_equal": false,
+      "lf_normalized_equal": true
+    },
+    "docs/BRD.md": {
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    "services/workspace/migrations/001-store.down.sql": {
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    "services/workspace/migrations/001-store.up.sql": {
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    "services/workspace/migrations/002-registered-policy.down.sql": {
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    "services/workspace/migrations/002-registered-policy.up.sql": {
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    "services/workspace/migrations/003-work-location.down.sql": {
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    "services/workspace/migrations/003-work-location.up.sql": {
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    "services/workspace/migrations/004-protected-claims.down.sql": {
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    "services/workspace/migrations/004-protected-claims.up.sql": {
+      "raw_equal": true,
+      "lf_normalized_equal": true
+    },
+    "services/workspace/migrations/005-session-foundation.down.sql": {
+      "raw_equal": false,
+      "lf_normalized_equal": true
+    },
+    "services/workspace/migrations/005-session-foundation.up.sql": {
+      "raw_equal": false,
+      "lf_normalized_equal": true
+    },
+    "services/workspace/migrations/006-session-lifecycle.down.sql": {
+      "raw_equal": false,
+      "lf_normalized_equal": true
+    },
+    "services/workspace/migrations/006-session-lifecycle.up.sql": {
+      "raw_equal": false,
+      "lf_normalized_equal": true
+    },
+    "services/workspace/migrations/007-project-membership.down.sql": {
+      "raw_equal": false,
+      "lf_normalized_equal": true
+    },
+    "services/workspace/migrations/007-project-membership.up.sql": {
+      "raw_equal": false,
+      "lf_normalized_equal": true
+    },
+    "services/workspace/migrations/008-project-outcomes.down.sql": {
+      "raw_equal": false,
+      "lf_normalized_equal": true
+    },
+    "services/workspace/migrations/008-project-outcomes.up.sql": {
+      "raw_equal": false,
+      "lf_normalized_equal": true
+    },
+    "services/workspace/migrations/009-task-creation.down.sql": {
+      "raw_equal": false,
+      "lf_normalized_equal": true
+    },
+    "services/workspace/migrations/009-task-creation.up.sql": {
+      "raw_equal": false,
+      "lf_normalized_equal": true
+    }
+  },
+  "comparison_note": "Workspace CRLF versus Git LF is recorded separately. Migration checksums normalize CRLF; protected source has no normalized drift. Frozen captured evidence is instead stored byte-exact with -text."
+}

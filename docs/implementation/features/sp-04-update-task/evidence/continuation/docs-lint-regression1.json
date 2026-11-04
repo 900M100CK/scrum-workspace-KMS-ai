@@ -1,0 +1,11 @@
+{
+  "name": "docs-lint",
+  "command": [
+    "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+    "run",
+    "docs:lint"
+  ],
+  "exit_code": 0,
+  "tail": "\n> scrum-workspace-kms-context@0.1.0 docs:lint\n> node scripts/docs/verify-docs.mjs\n\n{\n  \"diagrams\": 20,\n  \"artifacts\": 35,\n  \"nodes\": 324,\n  \"edges\": 365,\n  \"runtimeEvidence\": \"not run\"\n}\n"
+}

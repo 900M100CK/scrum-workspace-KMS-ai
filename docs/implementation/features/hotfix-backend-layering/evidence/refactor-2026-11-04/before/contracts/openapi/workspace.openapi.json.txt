@@ -1,0 +1,5384 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "Workspace service public facade and internal policy",
+    "version": "0.2.12",
+    "description": "Draft contract; policy/stack decisions remain proposed. Schema validation proves shape only."
+  },
+  "x-status": "Draft",
+  "x-source-prd": "PRD-01 v0.4",
+  "servers": [
+    {
+      "url": "/api"
+    }
+  ],
+  "security": [
+    {
+      "sessionCookie": []
+    }
+  ],
+  "paths": {
+    "/session": {
+      "post": {
+        "operationId": "signIn",
+        "x-requirements": [
+          "FR-01",
+          "FR-36"
+        ],
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. Requires exact configured HTTPS Origin and X-SACW-Request: 1. Body validation rejects extra fields and coercion; responses use no-store. Token is delivered only through the secure host cookie.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Confirmed result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Session"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "description": "Known readable resource but insufficient action authority",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "JSON request exceeds the configured 8192-byte body limit",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported request media type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "security": [],
+        "x-policy-decision": "Owner-selected pre-provisioned username credentials and secure same-origin opaque cookie; POST/GET/DELETE implemented in bounded P09/P10 scope, wider deployment and guard acceptance remain open.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              }
+            }
+          }
+        },
+        "x-release-priority": "Must"
+      },
+      "delete": {
+        "operationId": "signOut",
+        "x-requirements": [
+          "FR-37"
+        ],
+        "description": "Requires exact configured HTTPS Origin and X-SACW-Request: 1; no request body. Revokes only the current token with mandatory atomic audit before returning empty 204 and clearing the secure host cookie. Absent, malformed, unknown, expired or already revoked token is idempotent 204. DB/audit failure or unknown commit returns 503 without clearing the cookie or claiming confirmed logout. Revocation may reduce access while clock health is fault-latched; it cannot reset health. Responses use no-store.",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "Completed with no content"
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "description": "Known readable resource but insufficient action authority",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "JSON request exceeds the configured 8192-byte body limit",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported request media type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "x-release-priority": "Must"
+      },
+      "get": {
+        "operationId": "getSession",
+        "x-requirements": [
+          "FR-01",
+          "FR-68"
+        ],
+        "description": "Server derives identity only from the secure host cookie and current persisted state. GET renews only a strictly unexpired enabled session, never regresses the effective deadline or slides its immutable absolute cap. Successful response refreshes the same secure cookie from DB expiry. Missing, ambiguous, expired, revoked or disabled identity denies access. Responses use no-store. A request authorized before logout may already be in flight; session serialization is not a protected-content handoff guard.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Confirmed result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Session"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "x-release-priority": "Must"
+      }
+    },
+    "/projects": {
+      "post": {
+        "operationId": "createProject",
+        "x-requirements": [
+          "FR-02"
+        ],
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Actor/operation scoped; replay rechecks access; different payload conflicts."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "description": "Known readable resource but insufficient action authority",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported media type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProject"
+              }
+            }
+          }
+        },
+        "x-release-priority": "Must"
+      },
+      "get": {
+        "operationId": "listProjects",
+        "x-requirements": [
+          "FR-03"
+        ],
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. Current members only; order project_id ascending, fixed page size 50. Opaque authenticated cursors bind actor, route/filter/order/page size and complete authorised projection/membership/permission generation, not login-session identity. Recheck current authority on each page. Malformed/foreign/tampered or changed-key cursor returns 400; authenticated expired/changed dataset returns 409 with no items. No hidden totals; no-store. Missing required key/storage returns 503. See ADR-0026.",
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Confirmed result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid selector or cursor; no resource metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Changed or expired projection; discard accumulated pages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "x-release-priority": "Must"
+      }
+    },
+    "/projects/{project_id}": {
+      "patch": {
+        "operationId": "editProject",
+        "x-requirements": [
+          "FR-64"
+        ],
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Actor/operation scoped; replay rechecks access; different payload conflicts."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Confirmed result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "description": "Known readable resource but insufficient action authority",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditProject"
+              }
+            }
+          }
+        },
+        "x-release-priority": "Could"
+      },
+      "get": {
+        "operationId": "getProject",
+        "x-requirements": [
+          "FR-03"
+        ],
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Confirmed result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid extra selector",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "x-release-priority": "Must"
+      }
+    },
+    "/projects/{project_id}/members": {
+      "post": {
+        "operationId": "addMember",
+        "x-requirements": [
+          "FR-38"
+        ],
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Actor/operation scoped; replay rechecks access; different payload conflicts."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Member"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "description": "Known readable resource but insufficient action authority",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported media type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddMember"
+              }
+            }
+          }
+        },
+        "x-release-priority": "Must"
+      },
+      "get": {
+        "operationId": "listMembers",
+        "x-requirements": [
+          "FR-03",
+          "FR-38",
+          "FR-39"
+        ],
+        "x-release-priority": "Must",
+        "description": "Current project members may read minimal current-member IDs, descriptive roles and membership revisions for assignment/owner/grantee selectors. No email, global directory, removed members or capability inventory. Order user_id ascending. Membership-management route/actions separately require membership-manage. removeMember X-Expected-Revision comes from the selected Member.revision; rejoining changes it. Add-member uses a known registered user ID, not this current-member list. Pages are committed, permission-filtered projections ordered as specified. An opaque authenticated cursor binds actor, current membership/permission generation, route, filters, order and the complete visible projection generation. Revalidate authority on every page and protected response handoff. Filter before pagination; expose no hidden counts, placeholders or skipped IDs. Malformed/foreign cursor: generic 400; changed/expired cursor: 409 state_conflict without items. Discard all accumulated pages and restart. No cross-endpoint snapshot is implied. Return Cache-Control: no-store. See Proposed ADR-0019.",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 50
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Current authorised projection",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MemberList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid selector or cursor; no resource metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Changed or expired projection; discard all pages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/members/{user_id}": {
+      "delete": {
+        "operationId": "removeMember",
+        "x-requirements": [
+          "FR-39"
+        ],
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. ADR-0017: atomically deactivate membership, invalidate all individually granted project capabilities and read grants, clear affected current task assignees with revision changes, and persist minimum audit. Preserve historical attribution and unrelated projects. Rejoin restores no old grant/assignment; serialize against grant and assignment writes. Unknown commit outcome reconciles the same operation. Reject removal of the last effective current membership manager with state_conflict before any changes; serialize the post-removal authority check with concurrent removals/capability changes. No creator/Admin bypass or automatic successor.",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Actor/operation scoped; replay rechecks access; different payload conflicts."
+          },
+          {
+            "name": "X-Expected-Revision",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "Must match the current owned resource revision; stale request fails without mutation."
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Completed with no content"
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "description": "Known readable resource but insufficient action authority",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported media type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "x-release-priority": "Must"
+      }
+    },
+    "/projects/{project_id}/tasks": {
+      "post": {
+        "operationId": "createTask",
+        "x-requirements": [
+          "FR-05"
+        ],
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Actor/operation scoped; replay rechecks access; different payload conflicts."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "description": "Known readable resource but insufficient action authority",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          },
+          "413": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTask"
+              }
+            }
+          }
+        },
+        "x-release-priority": "Must"
+      },
+      "get": {
+        "operationId": "listTasks",
+        "x-requirements": [
+          "FR-03",
+          "FR-07",
+          "FR-09",
+          "FR-41"
+        ],
+        "description": "Current membership required. Default location=all returns all project tasks ordered by task_id. location=backlog returns only current Backlog tasks, ordered numerically by work_location.position then task_id; Done Backlog items remain included. Completed-Sprint retained tasks are not Backlog until reopened/returned.  Each page is a consistent committed read. Opaque cursor binds actor/current membership generation, resource/filter/order and dataset version. Recheck current authority on every page. Malformed or foreign cursor returns generic 400 without scope details; changed/expired dataset returns 409 state_conflict without items. Discard accumulated pages and restart. Cursor version covers all projected fields; separate endpoints are not a shared snapshot. See Proposed ADR-0018. AI and Knowledge are not dependencies. TaskList.backlog_revision is the project Backlog set/order generation read in the same transaction as the page. Content changes may invalidate a cursor dataset without changing this generation. Only location=backlog traversal supplies the complete reorder set; never reorder search results. After pagination 409 discard all pages and reload.",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "all",
+                "backlog"
+              ],
+              "default": "all"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Confirmed result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid filter/cursor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Changed or expired list; discard pages and restart",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "x-release-priority": "Must"
+      }
+    },
+    "/tasks/{task_id}": {
+      "get": {
+        "operationId": "getTask",
+        "x-requirements": [
+          "FR-03"
+        ],
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Confirmed result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-release-priority": "Must"
+      },
+      "patch": {
+        "operationId": "editTask",
+        "x-requirements": [
+          "FR-40"
+        ],
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Actor/operation scoped; replay rechecks access; different payload conflicts."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Confirmed result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "description": "Known readable resource but insufficient action authority",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditTask"
+              }
+            }
+          }
+        },
+        "x-release-priority": "Must"
+      }
+    },
+    "/tasks/{task_id}/state": {
+      "post": {
+        "operationId": "setTaskState",
+        "x-requirements": [
+          "FR-09"
+        ],
+        "description": "Authorised members may change directly between todo, in_progress and done, including reopening done. Enforce authenticated project authority, expected revision and scoped idempotency. Reopening a Done task from a Completed Sprint atomically returns it to Product Backlog as To Do (normalising a requested In Progress target) while preserving completed allocation history and leaving that Sprint Completed (ADR-0008 v0.3). Record audit; no automatic Scrum Master approval.",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Actor/operation scoped; replay rechecks access; different payload conflicts."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Confirmed result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "description": "Known readable resource but insufficient action authority",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetState"
+              }
+            }
+          }
+        },
+        "x-release-priority": "Must"
+      }
+    },
+    "/tasks/{task_id}/assignee": {
+      "post": {
+        "operationId": "setAssignee",
+        "x-requirements": [
+          "FR-43"
+        ],
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. ADR-0017: require current assignee membership and serialize with removal; a departed assignee cannot be restored by a stale write.",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Actor/operation scoped; replay rechecks access; different payload conflicts."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Confirmed result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "description": "Known readable resource but insufficient action authority",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetAssignee"
+              }
+            }
+          }
+        },
+        "x-release-priority": "Must"
+      }
+    },
+    "/tasks/{task_id}/blockers": {
+      "post": {
+        "operationId": "recordBlocker",
+        "x-requirements": [
+          "FR-44"
+        ],
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Actor/operation scoped; replay rechecks access; different payload conflicts."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Blocker"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "description": "Known readable resource but insufficient action authority",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordBlocker"
+              }
+            }
+          }
+        },
+        "x-release-priority": "Must"
+      },
+      "get": {
+        "operationId": "listBlockerEvents",
+        "x-requirements": [
+          "FR-44"
+        ],
+        "x-release-priority": "Must",
+        "description": "Current authenticated project membership and target work read authority required. Unknown/inaccessible target is generic 404; unknown authority denies with 503. Return committed blocker events in ascending per-task sequence. No audit-read capability required. Empty items means no events, not dependency failure. Each page is a consistent committed read. Opaque cursor binds actor/current membership generation, resource/filter/order and dataset version. Recheck current authority on every page. Malformed or foreign cursor returns generic 400 without scope details; changed/expired dataset returns 409 state_conflict without items. Discard accumulated pages and restart. Cursor version covers all projected fields; separate endpoints are not a shared snapshot. See Proposed ADR-0018. AI and Knowledge are not dependencies.",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Permitted committed page",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockerEventList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid cursor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Changed or expired list; discard pages and restart",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/sprints": {
+      "post": {
+        "operationId": "createSprint",
+        "x-requirements": [
+          "FR-06"
+        ],
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Actor/operation scoped; replay rechecks access; different payload conflicts."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Sprint"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "description": "Known readable resource but insufficient action authority",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSprint"
+              }
+            }
+          }
+        },
+        "x-release-priority": "Must"
+      },
+      "get": {
+        "operationId": "listSprints",
+        "x-requirements": [
+          "FR-06",
+          "FR-08",
+          "FR-42"
+        ],
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Confirmed result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SprintList"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "x-release-priority": "Must"
+      }
+    },
+    "/sprints/{sprint_id}": {
+      "patch": {
+        "operationId": "editSprint",
+        "x-requirements": [
+          "FR-66"
+        ],
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "parameters": [
+          {
+            "name": "sprint_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Actor/operation scoped; replay rechecks access; different payload conflicts."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Confirmed result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Sprint"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "description": "Known readable resource but insufficient action authority",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditSprint"
+              }
+            }
+          }
+        },
+        "x-release-priority": "Could"
+      },
+      "get": {
+        "operationId": "getSprint",
+        "x-requirements": [
+          "FR-06",
+          "FR-08",
+          "FR-42"
+        ],
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "parameters": [
+          {
+            "name": "sprint_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Confirmed result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Sprint"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "x-release-priority": "Must"
+      }
+    },
+    "/sprints/{sprint_id}/items": {
+      "post": {
+        "operationId": "allocateTask",
+        "x-requirements": [
+          "FR-07"
+        ],
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. ADR-0014: the UI may select multiple tasks and invoke this operation separately for each, with its own idempotency key and expected revision. Confirmed successes remain committed if another item rejects. Unknown transport outcomes reconcile with the same item key/payload; never blindly retry the full selection with fresh keys. Recheck current authority/lifecycle per item; no hidden task or competing-Sprint details in rejection.",
+        "parameters": [
+          {
+            "name": "sprint_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Actor/operation scoped; replay rechecks access; different payload conflicts."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Confirmed result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Sprint"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "description": "Known readable resource but insufficient action authority",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Allocation"
+              }
+            }
+          }
+        },
+        "x-release-priority": "Must"
+      },
+      "get": {
+        "operationId": "listSprintItems",
+        "x-requirements": [
+          "FR-07",
+          "FR-09",
+          "FR-42"
+        ],
+        "x-release-priority": "Must",
+        "description": "Current authenticated project membership and target work read authority required. Unknown/inaccessible target is generic 404; unknown authority denies with 503. Return all retained allocation associations ordered by task_id. Active Board uses allocated rows only. Returned/completed associations remain visible as history with separately labelled current task state/location. Each page is a consistent committed read. Opaque cursor binds actor/current membership generation, resource/filter/order and dataset version. Recheck current authority on every page. Malformed or foreign cursor returns generic 400 without scope details; changed/expired dataset returns 409 state_conflict without items. Discard accumulated pages and restart. Cursor version covers all projected fields; separate endpoints are not a shared snapshot. See Proposed ADR-0018. AI and Knowledge are not dependencies.",
+        "parameters": [
+          {
+            "name": "sprint_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Permitted committed page",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SprintItemList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid cursor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Changed or expired list; discard pages and restart",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        }
+      }
+    },
+    "/sprints/{sprint_id}/items/{task_id}": {
+      "delete": {
+        "operationId": "removeAllocation",
+        "x-requirements": [
+          "FR-67"
+        ],
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. ADR-0008 v0.3: unfinished tasks returned to Product Backlog become To Do; commit allocation return, task revision and minimum audit atomically, preserve Done/completed history, and reconcile same-key replay.",
+        "parameters": [
+          {
+            "name": "sprint_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Actor/operation scoped; replay rechecks access; different payload conflicts."
+          },
+          {
+            "name": "X-Expected-Revision",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "Must match the current owned resource revision; stale request fails without mutation."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Confirmed result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Sprint"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "description": "Known readable resource but insufficient action authority",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "x-release-priority": "Could"
+      }
+    },
+    "/sprints/{sprint_id}/start": {
+      "post": {
+        "operationId": "startSprint",
+        "x-requirements": [
+          "FR-08"
+        ],
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "parameters": [
+          {
+            "name": "sprint_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Actor/operation scoped; replay rechecks access; different payload conflicts."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Confirmed result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Sprint"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "description": "Known readable resource but insufficient action authority",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExpectedRevision"
+              }
+            }
+          }
+        },
+        "x-release-priority": "Must"
+      }
+    },
+    "/sprints/{sprint_id}/complete": {
+      "post": {
+        "operationId": "completeSprint",
+        "x-requirements": [
+          "FR-42"
+        ],
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. ADR-0008 v0.3: unfinished tasks returned to Product Backlog become To Do; commit allocation return, task revision and minimum audit atomically, preserve Done/completed history, and reconcile same-key replay. Return SprintCompletion counts from the same committed completion transaction; retained_done_count counts Done associations kept, returned_unfinished_count counts unfinished tasks returned as To Do. Same-key reconciliation retains these counts and rechecks current authority; do not recompute from later task state.",
+        "parameters": [
+          {
+            "name": "sprint_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Actor/operation scoped; replay rechecks access; different payload conflicts."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Confirmed result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SprintCompletion"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "description": "Known readable resource but insufficient action authority",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExpectedRevision"
+              }
+            }
+          }
+        },
+        "x-release-priority": "Must"
+      }
+    },
+    "/projects/{project_id}/backlog-order": {
+      "post": {
+        "operationId": "reorderBacklog",
+        "x-requirements": [
+          "FR-41"
+        ],
+        "description": "Current membership and Backlog-order capability required. expected_revision comes exclusively from TaskList.backlog_revision for listTasks(location=backlog); never use task/project revision or cursor. With project locked before work rows, compare the revision and require task_ids to be a complete permutation of the current Backlog set. Duplicate or malformed IDs: 400. Stale revision, omission, non-Backlog or foreign IDs: generic 409 state_conflict without identifying offending items. Empty list succeeds only if Backlog is empty. No partial reorder: unlisted items are never deleted, moved or implicitly appended. Assign ordinal numeric positions 1..N in submitted order and bump revisions only for changed tasks; project.backlog_revision advances transactionally through the membership/order triggers. Identical existing order is a no-op with unchanged revision. Minimum audit and idempotent receipt commit with changed positions. Same-key/same-payload replay rechecks current authority and returns the original receipt without rerunning the stale comparison or mutation; different payload conflicts. Unknown outcomes reconcile the same key. Receipt revision describes that commit, not later current state; renew reads before another edit.",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Actor/operation scoped; replay rechecks access; different payload conflicts."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Confirmed result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReorderResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "description": "Known readable resource but insufficient action authority",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reorder"
+              }
+            }
+          }
+        },
+        "x-release-priority": "Must"
+      }
+    },
+    "/documents/{document_id}/classification": {
+      "post": {
+        "operationId": "setClassification",
+        "x-requirements": [
+          "FR-50"
+        ],
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. Expected revision comes from getDocumentPolicy.permission_revision (or the same revision on listDocumentReadGrants). Recheck current manage-access and target membership; compare the policy aggregate atomically. On 409 reload policy/grants and reconsider, never overwrite with an automatic fresh revision.",
+        "parameters": [
+          {
+            "name": "document_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Actor/operation scoped; replay rechecks access; different payload conflicts."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Confirmed result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Policy"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "description": "Known readable resource but insufficient action authority",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Classification"
+              }
+            }
+          }
+        },
+        "x-release-priority": "Must"
+      }
+    },
+    "/documents/{document_id}/read-grants": {
+      "post": {
+        "operationId": "grantDocumentRead",
+        "x-requirements": [
+          "FR-51"
+        ],
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. Expected revision comes from getDocumentPolicy.permission_revision (or the same revision on listDocumentReadGrants). Recheck current manage-access and target membership; compare the policy aggregate atomically. On 409 reload policy/grants and reconsider, never overwrite with an automatic fresh revision.",
+        "parameters": [
+          {
+            "name": "document_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Actor/operation scoped; replay rechecks access; different payload conflicts."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Confirmed result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Policy"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "description": "Known readable resource but insufficient action authority",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReadGrant"
+              }
+            }
+          }
+        },
+        "x-release-priority": "Must"
+      },
+      "get": {
+        "operationId": "listDocumentReadGrants",
+        "x-requirements": [
+          "FR-51",
+          "FR-52"
+        ],
+        "x-release-priority": "Must",
+        "description": "Require current membership plus document manage-access even without content-read. List only valid explicit read grants for current membership generations, ordered user_id ascending; includes revocable author grant. Project-shared membership access is not fabricated as a grant. Retained explicit grants may be shown for project-shared policy; no removed/revoked grant history. permission_revision is the same policy aggregate precondition as getDocumentPolicy; changes invalidate traversal. No content metadata. Pages are committed, permission-filtered projections ordered as specified. An opaque authenticated cursor binds actor, current membership/permission generation, route, filters, order and the complete visible projection generation. Revalidate authority on every page and protected response handoff. Filter before pagination; expose no hidden counts, placeholders or skipped IDs. Malformed/foreign cursor: generic 400; changed/expired cursor: 409 state_conflict without items. Discard all accumulated pages and restart. No cross-endpoint snapshot is implied. Return Cache-Control: no-store. See Proposed ADR-0019.",
+        "parameters": [
+          {
+            "name": "document_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 50
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Current authorised projection",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentReadGrantList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid selector or cursor; no resource metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Changed or expired projection; discard all pages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        }
+      }
+    },
+    "/documents/{document_id}/read-grants/{user_id}": {
+      "delete": {
+        "operationId": "revokeDocumentRead",
+        "x-requirements": [
+          "FR-52"
+        ],
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. Expected revision comes from getDocumentPolicy.permission_revision (or the same revision on listDocumentReadGrants). Recheck current manage-access and target membership; compare the policy aggregate atomically. On 409 reload policy/grants and reconsider, never overwrite with an automatic fresh revision.",
+        "parameters": [
+          {
+            "name": "document_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Actor/operation scoped; replay rechecks access; different payload conflicts."
+          },
+          {
+            "name": "X-Expected-Revision",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "Must match the current owned resource revision; stale request fails without mutation."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Confirmed result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Policy"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "description": "Known readable resource but insufficient action authority",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "x-release-priority": "Must"
+      }
+    },
+    "/internal/access/evaluate": {
+      "post": {
+        "operationId": "evaluateAccess",
+        "x-requirements": [
+          "FR-04",
+          "FR-20",
+          "FR-28",
+          "FR-55"
+        ],
+        "description": "Internal only: identity resolved from Workspace-validated opaque session; returns authoritative scoped decisions, never guessed rules. ADR-0011: read-only committed observation, never reacquire the project guard; service authentication and actor/resource scope still apply.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Confirmed result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PolicyDecision"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "description": "Known readable resource but insufficient action authority",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "security": [
+          {
+            "serviceKey": [],
+            "actorSession": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PolicyCheck"
+              }
+            }
+          }
+        },
+        "x-release-priority": "Must",
+        "x-guard-mode": "read-committed-no-reacquire"
+      }
+    },
+    "/projects/{project_id}/observations/blocked-tasks": {
+      "get": {
+        "operationId": "observeBlockedTasks",
+        "x-requirements": [
+          "FR-25",
+          "FR-26"
+        ],
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Confirmed result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Observation"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "x-release-priority": "Must"
+      }
+    },
+    "/projects/{project_id}/audit": {
+      "get": {
+        "operationId": "listAudit",
+        "x-requirements": [
+          "FR-31",
+          "FR-56"
+        ],
+        "description": "Require current project membership and scoped audit-read; return only in-scope events. ADR-0012 permits actor/action/entity identity/time, while protected before/after content or references remain redacted without separate read authority. No source access follows from returned IDs.",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Confirmed result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuditList"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "x-release-priority": "Must"
+      }
+    },
+    "/internal/document-registry": {
+      "post": {
+        "operationId": "registerDocumentPolicy",
+        "x-requirements": [
+          "FR-04",
+          "FR-10",
+          "FR-50"
+        ],
+        "description": "Internal service/actor authenticated call to Workspace authority; allocate document identity and commit policy plus initial scoped capabilities and restricted-author read grant atomically. Same-key replay returns the same identity only after current authority checks; changed payload conflicts. No activation step. Policy alone reveals no content.",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Actor/operation scoped; replay rechecks access; different payload conflicts."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Policy"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "description": "Known readable resource but insufficient action authority",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "security": [
+          {
+            "serviceKey": [],
+            "actorSession": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterDocument"
+              }
+            }
+          }
+        },
+        "x-release-priority": "Must"
+      }
+    },
+    "/internal/document-registry/{document_id}/unavailable": {
+      "post": {
+        "operationId": "retireDocumentPolicy",
+        "x-requirements": [
+          "FR-48"
+        ],
+        "description": "Internal authenticated service only; Workspace validates actor/session/current project and document scope. Not a browser-callable endpoint.",
+        "parameters": [
+          {
+            "name": "document_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Actor/operation scoped; replay rechecks access; different payload conflicts."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Confirmed result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Policy"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "description": "Known readable resource but insufficient action authority",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "security": [
+          {
+            "serviceKey": [],
+            "actorSession": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExpectedRevision"
+              }
+            }
+          }
+        },
+        "x-release-priority": "Must"
+      }
+    },
+    "/internal/guards/provider-input": {
+      "post": {
+        "operationId": "guardProviderInput",
+        "x-requirements": [
+          "FR-21",
+          "FR-28",
+          "FR-29"
+        ],
+        "description": "Internal authenticated service only; Workspace validates actor/session/current project and document scope. Not a browser-callable endpoint. SYS-01 / Proposed ADR-0020: ProviderInput is a complete StoredHandoff-bound frozen payload. Verify the Knowledge durable record outside guard, then claim once and validate exact full record/payload/current evidence under guard. No content handoff on lookup failure, incomplete/mismatched record or replay. A request retry never repeats provider transmission.",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Must equal handoff.manifest.handoff_id. One-use actor/protected_handoff claim binds manifest_digest; any existing or unknown claim denies transmission, without automatic expiry or replay."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Confirmed result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderOutput"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "description": "Known readable resource but insufficient action authority",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "security": [
+          {
+            "serviceKey": [],
+            "actorSession": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProviderInput"
+              }
+            }
+          }
+        },
+        "x-release-priority": "Must"
+      }
+    },
+    "/internal/observations": {
+      "post": {
+        "operationId": "observeWorkState",
+        "x-requirements": [
+          "FR-25",
+          "FR-26"
+        ],
+        "description": "Internal authenticated service only; Workspace validates actor/session/current project and document scope. Not a browser-callable endpoint. ADR-0011: read-only committed observation, never reacquire the project guard; service authentication and actor/resource scope still apply.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Confirmed result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Observation"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "description": "Known readable resource but insufficient action authority",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "security": [
+          {
+            "serviceKey": [],
+            "actorSession": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ObservationRequest"
+              }
+            }
+          }
+        },
+        "x-release-priority": "Must",
+        "x-guard-mode": "read-committed-no-reacquire"
+      }
+    },
+    "/projects/{project_id}/tasks/search": {
+      "get": {
+        "operationId": "searchTasks",
+        "x-requirements": [
+          "FR-03",
+          "FR-59",
+          "FR-70"
+        ],
+        "description": "ADR-0016 optional task search, after the 60 Must. Workspace reads committed task title/description under current project membership; no AI or Knowledge dependency. Match literal case-insensitive substring after trimming q; reject blank query. Return only current-project matches, deterministic task_id order and opaque project/query-bound cursor; recheck access for every page. Unknown/inaccessible project is generic 404. Cursor grants no authority; do not expose hidden counts. TaskList.backlog_revision is the project Backlog set/order generation read in the same transaction as the page. Content changes may invalidate a cursor dataset without changing this generation. Only location=backlog traversal supplies the complete reorder set; never reorder search results. After pagination 409 discard all pages and reload.",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Literal title/description substring; trim whitespace and reject empty. No query operators."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Confirmed result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid or blank query/cursor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "x-release-priority": "Should"
+      }
+    },
+    "/documents/{document_id}/policy": {
+      "get": {
+        "operationId": "getDocumentPolicy",
+        "x-requirements": [
+          "FR-04",
+          "FR-50",
+          "FR-51",
+          "FR-52"
+        ],
+        "x-release-priority": "Must",
+        "description": "Require current membership and document-scoped manage-access, independent of content-read. Return only policy identity, classification, registry_state and permission_revision; no Knowledge title, content, owner, version or readiness. Unknown and unauthorised targets share generic 404. Policy existence does not establish content availability. Return Cache-Control: no-store. See Proposed ADR-0019.",
+        "parameters": [
+          {
+            "name": "document_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Current authorised projection",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Policy"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid selector or cursor; no resource metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        }
+      }
+    },
+    "/access/allowed-actions": {
+      "get": {
+        "operationId": "getAllowedActions",
+        "x-requirements": [
+          "FR-03",
+          "FR-04",
+          "FR-38",
+          "FR-50",
+          "FR-12",
+          "FR-27",
+          "FR-47",
+          "FR-58",
+          "FR-59"
+        ],
+        "x-release-priority": "Must",
+        "description": "Read-only current actor projection; never accepts actor, role, permission or capability assertions. resource_kind=global requires omitted project_id/resource_id and returns only applicable global operations (e.g. createProject). project requires project_id and omitted resource_id. Version scope requires project_id, document_id and version_id, with resource_id omitted. Resolve the exact (document_id, version_id) pair and verify its parent project; version_id alone is never a locator. All other nonglobal/nonproject kinds require project_id and resource_id and forbid document_id/version_id. Global/project also forbid document_id/version_id. Extra or contradictory selectors return generic 400; a well-formed but unknown or mismatched project/document/version pair returns generic 404. Echo the exact pair in document_id/version_id and set resource_id=null for version responses; for other scopes both version locator fields are null. Return matching target IDs and only existing public operation identifiers whose scoped authority the caller currently holds. Project-scoped operations do not imply document/task/Sprint-specific authority; resolve the exact resource before its actions. For document/version, content-read OR an independently held scoped content-write/lifecycle/manage-access capability permits discovery of the already-known target identity and applicable action names only; no content metadata. For task/Sprint require operational read; link requires both endpoint visibility; run evaluates getRetrievalSummary and getTrace separately. When the optional summary is implemented, a currently permitted answer reader may discover getRetrievalSummary without trace-read (FR-27); getTrace requires current scoped trace-read (FR-58). Each independently rechecks its own source disclosure rules; trace authority does not automatically grant summary entitlement. A caller entitled to either may discover only the permitted operations; neither entitlement yields generic 404. Revoked/unknown answer entitlement never retains a summary allow. Audit-read alone grants neither. Unknown and no applicable read/action entitlement use identical 404. A readable target with no mutation rights returns read operations only. Empty global result is valid. No grant identities, reasons, role mapping, resource revision or authority token. Known unavailable authority/dependency returns 503, never a cached allow. Result is an advisory authority snapshot, not a guarantee of state/revision/business-rule validity or authorisation of a subsequent request; every operation rechecks all preconditions. Return Cache-Control: no-store. See Proposed ADR-0019. For known document/version scope, getDocumentCommandPrecondition may be returned only when at least one implemented supported command is currently allowed; the requested target_action is independently checked on its precondition read. It exposes only opaque command preconditions, never content or current revisions.",
+        "parameters": [
+          {
+            "name": "resource_kind",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "global",
+                "project",
+                "task",
+                "sprint",
+                "document",
+                "version",
+                "link",
+                "run"
+              ]
+            }
+          },
+          {
+            "name": "project_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "resource_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "document_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Required only for resource_kind=version; forbidden for every other scope. Both fields form the exact version locator."
+          },
+          {
+            "name": "version_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Required only for resource_kind=version; forbidden for every other scope. Both fields form the exact version locator."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Current authorised projection",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AllowedActions"
+                },
+                "examples": {
+                  "version": {
+                    "summary": "Exact version authority for a known document",
+                    "value": {
+                      "resource_kind": "version",
+                      "project_id": "project-a",
+                      "resource_id": null,
+                      "document_id": "document-a",
+                      "version_id": "v1",
+                      "allowed_operations": [
+                        "getVersion"
+                      ]
+                    }
+                  },
+                  "summaryReader": {
+                    "summary": "Permitted answer reader without trace-read; FR-27 remains optional",
+                    "value": {
+                      "resource_kind": "run",
+                      "project_id": "project-a",
+                      "resource_id": "run-a",
+                      "document_id": null,
+                      "version_id": null,
+                      "allowed_operations": [
+                        "getRetrievalSummary"
+                      ]
+                    }
+                  },
+                  "traceInspector": {
+                    "summary": "Scoped execution inspector without independent answer-reader entitlement",
+                    "value": {
+                      "resource_kind": "run",
+                      "project_id": "project-a",
+                      "resource_id": "run-a",
+                      "document_id": null,
+                      "version_id": null,
+                      "allowed_operations": [
+                        "getTrace"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid selector or cursor; no resource metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        },
+        "x-version-locator": [
+          "project_id",
+          "document_id",
+          "version_id"
+        ],
+        "x-run-action-entitlements": {
+          "getRetrievalSummary": "permitted_answer_reader",
+          "getTrace": "scoped_trace_read"
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "NotFound": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "const": "not_found"
+          },
+          "message": {
+            "const": "Resource unavailable"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ]
+      },
+      "Error": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "enum": [
+              "authentication_required",
+              "forbidden",
+              "validation_failed",
+              "stale_revision",
+              "state_conflict",
+              "idempotency_conflict",
+              "access_unavailable",
+              "knowledge_unavailable",
+              "provider_unavailable",
+              "provider_timeout",
+              "budget_exhausted",
+              "index_unavailable"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1
+          },
+          "run_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "run_id"
+        ]
+      },
+      "Login": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "username": {
+            "type": "string",
+            "minLength": 1
+          },
+          "password": {
+            "type": "string",
+            "minLength": 1,
+            "writeOnly": true
+          }
+        },
+        "required": [
+          "username",
+          "password"
+        ]
+      },
+      "Session": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "user_id",
+          "expires_at"
+        ]
+      },
+      "Project": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "project_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string"
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "project_id",
+          "name",
+          "description",
+          "revision"
+        ]
+      },
+      "CreateProject": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "EditProject": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "expected_revision"
+        ]
+      },
+      "Member": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "project_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "user_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "role": {
+            "enum": [
+              "product_owner",
+              "scrum_master",
+              "developer",
+              "viewer"
+            ]
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "project_id",
+          "user_id",
+          "role",
+          "revision"
+        ]
+      },
+      "AddMember": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "role": {
+            "enum": [
+              "product_owner",
+              "scrum_master",
+              "developer",
+              "viewer"
+            ]
+          }
+        },
+        "required": [
+          "user_id",
+          "role"
+        ]
+      },
+      "Task": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "project_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "type": {
+            "enum": [
+              "story",
+              "task",
+              "bug"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "todo",
+              "in_progress",
+              "done"
+            ]
+          },
+          "assignee_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "blocked": {
+            "type": "boolean"
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "work_location": {
+            "$ref": "#/components/schemas/WorkLocation"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "description": "Immutable server-recorded creation time, canonical UTC RFC3339 with millisecond precision; returned with the original create result."
+          }
+        },
+        "required": [
+          "task_id",
+          "project_id",
+          "type",
+          "title",
+          "description",
+          "state",
+          "assignee_id",
+          "blocked",
+          "revision",
+          "work_location",
+          "created_at"
+        ]
+      },
+      "CreateTask": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "enum": [
+              "story",
+              "task",
+              "bug"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "title"
+        ]
+      },
+      "EditTask": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "expected_revision"
+        ]
+      },
+      "SetState": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "enum": [
+              "todo",
+              "in_progress",
+              "done"
+            ]
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "state",
+          "expected_revision"
+        ]
+      },
+      "SetAssignee": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "assignee_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "assignee_id",
+          "expected_revision"
+        ]
+      },
+      "Blocker": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "event_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "task_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "open",
+              "resolved"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "outcome": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "actor_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "recorded_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "sequence": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "event_id",
+          "task_id",
+          "status",
+          "description",
+          "outcome",
+          "actor_id",
+          "recorded_at",
+          "sequence"
+        ]
+      },
+      "RecordBlocker": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "enum": [
+              "open",
+              "resolved"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "outcome": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "status",
+          "description",
+          "expected_revision"
+        ]
+      },
+      "Sprint": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "sprint_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "project_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "goal": {
+            "type": "string",
+            "minLength": 1
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "state": {
+            "enum": [
+              "planned",
+              "active",
+              "completed"
+            ]
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "sprint_id",
+          "project_id",
+          "goal",
+          "start_date",
+          "end_date",
+          "state",
+          "revision"
+        ]
+      },
+      "CreateSprint": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "goal": {
+            "type": "string",
+            "minLength": 1
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "required": [
+          "goal",
+          "start_date",
+          "end_date"
+        ]
+      },
+      "EditSprint": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "goal": {
+            "type": "string",
+            "minLength": 1
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "expected_revision"
+        ]
+      },
+      "ExpectedRevision": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "expected_revision"
+        ]
+      },
+      "Allocation": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "task_id",
+          "expected_revision"
+        ]
+      },
+      "Reorder": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "task_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true,
+            "description": "Complete permutation of all current Backlog task IDs, gathered through all pages of listTasks(location=backlog) with the same backlog_revision; never a single page or arbitrary subset. Empty only for an empty Backlog."
+          },
+          "expected_revision": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$",
+            "description": "Exact decimal project.backlog_revision; distinct from Project.revision, Task.revision and the cursor dataset fingerprint."
+          }
+        },
+        "required": [
+          "task_ids",
+          "expected_revision"
+        ]
+      },
+      "Policy": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "document_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "project_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "classification": {
+            "enum": [
+              "project_shared",
+              "restricted"
+            ]
+          },
+          "permission_revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "registry_state": {
+            "enum": [
+              "active",
+              "unavailable"
+            ],
+            "description": "Registered policy or retired policy; active is not proof of Knowledge content availability."
+          }
+        },
+        "required": [
+          "document_id",
+          "project_id",
+          "classification",
+          "permission_revision",
+          "registry_state"
+        ]
+      },
+      "Classification": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "classification": {
+            "enum": [
+              "project_shared",
+              "restricted"
+            ]
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "classification",
+          "expected_revision"
+        ]
+      },
+      "ReadGrant": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "user_id",
+          "expected_revision"
+        ]
+      },
+      "PolicyCheck": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "project_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "document_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "action": {
+            "enum": [
+              "read",
+              "content_write",
+              "lifecycle",
+              "manage_access"
+            ]
+          }
+        },
+        "required": [
+          "project_id",
+          "document_ids",
+          "action"
+        ]
+      },
+      "PolicyDecision": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "allowed": {
+            "type": "boolean"
+          },
+          "project_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "allowed_document_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "permission_revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "decision_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "allowed",
+          "project_id",
+          "allowed_document_ids",
+          "permission_revision",
+          "decision_id"
+        ]
+      },
+      "Observation": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "entities": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/Task"
+                },
+                {
+                  "$ref": "#/components/schemas/Project"
+                },
+                {
+                  "$ref": "#/components/schemas/Sprint"
+                }
+              ]
+            }
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "observation_revision": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "entities",
+          "observed_at",
+          "observation_revision"
+        ]
+      },
+      "AuditEvent": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "event_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "actor_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "action": {
+            "type": "string",
+            "minLength": 1
+          },
+          "entity_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "recorded_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "before_ref": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Protected reference; null when current source-read permission is absent. Audit identity entitlement alone cannot disclose this payload."
+          },
+          "after_ref": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Protected reference; null when current source-read permission is absent. Audit identity entitlement alone cannot disclose this payload."
+          },
+          "correlation_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "event_id",
+          "actor_id",
+          "action",
+          "entity_id",
+          "recorded_at",
+          "before_ref",
+          "after_ref",
+          "correlation_id"
+        ],
+        "description": "ADR-0012: current project membership and scoped audit-read permit in-scope actor/action/entity identity/time even without document-read. Protected title/content/before-after references require separate current read authority and are otherwise null/redacted. Audit IDs grant no source/citation/retrieval/AI access; trace-read alone does not inherit this entitlement."
+      },
+      "ProjectList": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Project"
+            }
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor"
+        ]
+      },
+      "TaskList": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Task"
+            }
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "backlog_revision": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$",
+            "description": "Exact decimal project.backlog_revision; distinct from Project.revision, Task.revision and the cursor dataset fingerprint."
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor",
+          "backlog_revision"
+        ]
+      },
+      "AuditList": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AuditEvent"
+            }
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor"
+        ]
+      },
+      "RegisterDocument": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "project_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "classification": {
+            "enum": [
+              "project_shared",
+              "restricted"
+            ]
+          },
+          "content_owner_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "project_id",
+          "classification",
+          "content_owner_id"
+        ],
+        "description": "Workspace allocates document_id and binds it to the authenticated actor, operation, idempotency key and original payload. Initial scoped capabilities and restricted-author read grant commit with policy."
+      },
+      "ContextPassage": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "document_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "passage_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "excerpt": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "source_id",
+          "document_id",
+          "version_id",
+          "passage_id",
+          "excerpt"
+        ]
+      },
+      "ProviderInput": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "handoff": {
+            "$ref": "#/components/schemas/ProviderHandoff"
+          },
+          "payload": {
+            "$ref": "#/components/schemas/ProviderPayload"
+          },
+          "payload_bytes_base64": {
+            "type": "string",
+            "minLength": 1,
+            "contentEncoding": "base64"
+          }
+        },
+        "required": [
+          "handoff",
+          "payload",
+          "payload_bytes_base64"
+        ],
+        "description": "Internal only. Decode exact final provider UTF-8 JSON request bytes. The immutable allowlisted provider adapter must validate their complete semantic mapping to typed payload (question/configuration/evidence and no extra hidden context); provider wire JSON need not equal the internal ProviderPayload object. Adapter-specific final-wire schema and validation tests are prerequisites before relay implementation. Compare byte count/digest against the committed manifest; send only these bytes to the allowlisted provider destination bound by destination_ref. Compare run/project/configuration, full evidence including uncited context and current revisions. Existing idempotency key must equal handoff_id; Workspace claims actor/protected_handoff/handoff_id once before guard, with no expiry into replay. Fail closed on missing/unknown preparation/claim; no automatic replay or fresh-ID resend after unknown transport."
+      },
+      "ProviderOutput": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "run_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "output": {
+            "type": "string",
+            "description": "Final answer content only; discard provider private reasoning/analysis fields and do not trace them. Output remains untrusted."
+          },
+          "model_configuration_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "usage_tokens": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "handoff_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "run_id",
+          "output",
+          "model_configuration_id",
+          "usage_tokens",
+          "handoff_id"
+        ]
+      },
+      "SprintList": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Sprint"
+            }
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor"
+        ]
+      },
+      "ObservationRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "project_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "entity_kind": {
+            "enum": [
+              "project",
+              "sprint",
+              "task"
+            ]
+          },
+          "entity_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "project_id",
+          "entity_kind"
+        ]
+      },
+      "WorkLocation": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "const": "backlog"
+              },
+              "position": {
+                "type": "string",
+                "pattern": "^-?[0-9]+(\\.[0-9]+)?$",
+                "description": "Exact numeric backlog position; compare numerically, then task_id."
+              }
+            },
+            "required": [
+              "kind",
+              "position"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "const": "sprint"
+              },
+              "sprint_id": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "kind",
+              "sprint_id"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "const": "completed"
+              },
+              "sprint_id": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "kind",
+              "sprint_id"
+            ]
+          }
+        ],
+        "description": "Current location, not complete allocation history. Completed-Sprint reopening returns backlog; retained associations are read through listSprintItems."
+      },
+      "SprintItem": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "task": {
+            "$ref": "#/components/schemas/Task"
+          },
+          "allocation_state": {
+            "enum": [
+              "allocated",
+              "completed",
+              "returned"
+            ]
+          }
+        },
+        "required": [
+          "task",
+          "allocation_state"
+        ],
+        "description": "Association to the requested Sprint; task is current state, never a historical snapshot. Returned/completed rows do not imply current allocation."
+      },
+      "SprintItemList": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SprintItem"
+            }
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor"
+        ]
+      },
+      "BlockerEventList": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Blocker"
+            }
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor"
+        ]
+      },
+      "SprintCompletion": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "sprint": {
+            "$ref": "#/components/schemas/Sprint"
+          },
+          "retained_done_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "returned_unfinished_count": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "sprint",
+          "retained_done_count",
+          "returned_unfinished_count"
+        ]
+      },
+      "ReorderResult": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "project_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "backlog_revision": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$",
+            "description": "Exact decimal project.backlog_revision; distinct from Project.revision, Task.revision and the cursor dataset fingerprint."
+          }
+        },
+        "required": [
+          "project_id",
+          "backlog_revision"
+        ]
+      },
+      "MemberList": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Member"
+            }
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor"
+        ]
+      },
+      "DocumentReadGrant": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "user_id"
+        ]
+      },
+      "DocumentReadGrantList": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DocumentReadGrant"
+            }
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "document_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "permission_revision": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor",
+          "document_id",
+          "permission_revision"
+        ]
+      },
+      "AllowedActions": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "resource_kind": {
+            "enum": [
+              "global",
+              "project",
+              "task",
+              "sprint",
+              "document",
+              "version",
+              "link",
+              "run"
+            ]
+          },
+          "project_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "resource_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "allowed_operations": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "enum": [
+                "addMember",
+                "allocateTask",
+                "archiveVersion",
+                "askQuestion",
+                "completeSprint",
+                "createDocument",
+                "createLink",
+                "createProject",
+                "createSprint",
+                "createTask",
+                "deleteDocument",
+                "editDocumentMetadata",
+                "editProject",
+                "editSprint",
+                "editTask",
+                "getAllowedActions",
+                "getDocument",
+                "getDocumentCommandPrecondition",
+                "getDocumentPolicy",
+                "getProject",
+                "getReadiness",
+                "getRetrievalSummary",
+                "getSession",
+                "getSprint",
+                "getTask",
+                "getTrace",
+                "getVersion",
+                "grantDocumentRead",
+                "importDocument",
+                "keywordSearch",
+                "listAudit",
+                "listBlockerEvents",
+                "listDocumentReadGrants",
+                "listDocuments",
+                "listLinks",
+                "listMembers",
+                "listProjects",
+                "listSprintItems",
+                "listSprints",
+                "listTasks",
+                "listVersions",
+                "observeBlockedTasks",
+                "openCitation",
+                "recordBlocker",
+                "removeAllocation",
+                "removeLink",
+                "removeMember",
+                "reorderBacklog",
+                "reviseDocument",
+                "revokeDocumentRead",
+                "searchTasks",
+                "semanticSearch",
+                "setAssignee",
+                "setClassification",
+                "setTaskState",
+                "signIn",
+                "signOut",
+                "startSprint"
+              ]
+            }
+          },
+          "document_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "version_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "resource_kind",
+          "project_id",
+          "resource_id",
+          "allowed_operations",
+          "document_id",
+          "version_id"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "resource_kind": {
+                  "const": "version"
+                }
+              },
+              "required": [
+                "resource_kind"
+              ]
+            },
+            "then": {
+              "properties": {
+                "resource_id": {
+                  "type": "null"
+                },
+                "document_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "version_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "project_id": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "document_id": {
+                  "type": "null"
+                },
+                "version_id": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "DocumentHandoffEvidence": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "const": "document"
+          },
+          "source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "project_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "document_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "passage_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "permission_revision": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$"
+          },
+          "lifecycle_revision": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$"
+          },
+          "version_digest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "Lowercase SHA-256 over the exact specified bytes; no normalization or JSON reserialization."
+          },
+          "excerpt_digest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "Lowercase SHA-256 over the exact specified bytes; no normalization or JSON reserialization."
+          }
+        },
+        "required": [
+          "kind",
+          "source_id",
+          "project_id",
+          "document_id",
+          "version_id",
+          "passage_id",
+          "permission_revision",
+          "lifecycle_revision",
+          "version_digest",
+          "excerpt_digest"
+        ]
+      },
+      "OperationalHandoffEvidence": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "const": "operational"
+          },
+          "source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "project_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "entity_kind": {
+            "enum": [
+              "project",
+              "sprint",
+              "task"
+            ]
+          },
+          "entity_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "entity_revision": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$"
+          },
+          "observation_revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "entity_digest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "Lowercase SHA-256 over the exact specified bytes; no normalization or JSON reserialization."
+          }
+        },
+        "required": [
+          "kind",
+          "source_id",
+          "project_id",
+          "entity_kind",
+          "entity_id",
+          "entity_revision",
+          "observation_revision",
+          "observed_at",
+          "entity_digest"
+        ]
+      },
+      "HandoffEvidence": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/DocumentHandoffEvidence"
+          },
+          {
+            "$ref": "#/components/schemas/OperationalHandoffEvidence"
+          }
+        ]
+      },
+      "HandoffManifest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "handoff_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "run_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "attempt_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "purpose": {
+            "enum": [
+              "provider_input",
+              "answer_delivery"
+            ]
+          },
+          "actor_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "project_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "access_context_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "session_generation": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$"
+          },
+          "project_permission_revision": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$"
+          },
+          "evidence_set": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HandoffEvidence"
+            }
+          },
+          "payload_digest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "Lowercase SHA-256 over the exact specified bytes; no normalization or JSON reserialization."
+          },
+          "payload_length": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "destination_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "prepared_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "complete": {
+            "const": true
+          }
+        },
+        "required": [
+          "handoff_id",
+          "run_id",
+          "attempt_id",
+          "purpose",
+          "actor_id",
+          "project_id",
+          "access_context_ref",
+          "session_generation",
+          "project_permission_revision",
+          "evidence_set",
+          "payload_digest",
+          "payload_length",
+          "destination_ref",
+          "prepared_at",
+          "complete"
+        ]
+      },
+      "StoredHandoff": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "manifest": {
+            "$ref": "#/components/schemas/HandoffManifest"
+          },
+          "manifest_bytes_base64": {
+            "type": "string",
+            "minLength": 1,
+            "contentEncoding": "base64"
+          },
+          "manifest_digest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "Lowercase SHA-256 over the exact specified bytes; no normalization or JSON reserialization."
+          },
+          "durable_commit_ref": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "manifest",
+          "manifest_bytes_base64",
+          "manifest_digest",
+          "durable_commit_ref"
+        ],
+        "description": "Knowledge-owned immutable committed manifest receipt. Decode manifest_bytes_base64 as UTF-8 JSON equal to manifest; manifest_digest hashes those exact bytes. Resolve by authenticated getHandoffManifest and compare the entire stored record before claiming. A caller assertion, digest or complete=true is never evidence of persistence or current access."
+      },
+      "ProviderHandoff": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/StoredHandoff"
+          },
+          {
+            "properties": {
+              "manifest": {
+                "properties": {
+                  "purpose": {
+                    "const": "provider_input"
+                  }
+                },
+                "required": [
+                  "purpose"
+                ]
+              }
+            },
+            "required": [
+              "manifest"
+            ]
+          }
+        ]
+      },
+      "AnswerHandoff": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/StoredHandoff"
+          },
+          {
+            "properties": {
+              "manifest": {
+                "properties": {
+                  "purpose": {
+                    "const": "answer_delivery"
+                  }
+                },
+                "required": [
+                  "purpose"
+                ]
+              }
+            },
+            "required": [
+              "manifest"
+            ]
+          }
+        ]
+      },
+      "ProviderPayload": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "run_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "project_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "provider_configuration_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "question": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContextPassage"
+            }
+          },
+          "operational_observations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Observation"
+            }
+          }
+        },
+        "required": [
+          "run_id",
+          "project_id",
+          "provider_configuration_id",
+          "question",
+          "evidence",
+          "operational_observations"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "sessionCookie": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "__Host-sacw-session"
+      },
+      "serviceKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-Service-Key"
+      },
+      "actorSession": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-Actor-Session"
+      }
+    },
+    "responses": {
+      "NotFound": {
+        "description": "Unknown or inaccessible resource; identical public body",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/NotFound"
+            },
+            "example": {
+              "code": "not_found",
+              "message": "Resource unavailable"
+            }
+          }
+        }
+      },
+      "Unauthenticated": {
+        "description": "No valid session",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Unavailable": {
+        "description": "Dependency/permission check unavailable; protected output denied",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    }
+  }
+}

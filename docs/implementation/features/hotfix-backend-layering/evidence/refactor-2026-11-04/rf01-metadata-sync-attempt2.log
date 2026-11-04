@@ -1,0 +1,29 @@
+{
+  "checked": 66,
+  "changed": [
+    "docs/sdlc/diagrams/README.md",
+    "docs/sdlc/artifact-register.md",
+    "docs/sdlc/diagrams/c4/system-context.drawio",
+    "docs/sdlc/diagrams/c4/system-context.mmd",
+    "docs/sdlc/diagrams/c4/containers.drawio",
+    "docs/sdlc/diagrams/c4/containers.mmd",
+    "docs/sdlc/diagrams/sequence/protected-handoff.drawio",
+    "docs/sdlc/diagrams/sequence/protected-handoff.mmd",
+    "docs/sdlc/diagrams/sequence/document-creation.drawio",
+    "docs/sdlc/diagrams/sequence/document-creation.mmd",
+    "docs/sdlc/diagrams/state/document-and-readiness.drawio",
+    "docs/sdlc/diagrams/state/document-and-readiness.mmd",
+    "docs/sdlc/diagrams/state/sprint-task-allocation.drawio",
+    "docs/sdlc/diagrams/state/sprint-task-allocation.mmd",
+    "docs/sdlc/diagrams/data/workspace-erd.drawio",
+    "docs/sdlc/diagrams/data/workspace-erd.mmd",
+    "docs/sdlc/diagrams/data/knowledge-erd.drawio",
+    "docs/sdlc/diagrams/data/knowledge-erd.mmd",
+    "docs/sdlc/diagrams/data/handoff-logical-model.drawio",
+    "docs/sdlc/diagrams/data/handoff-logical-model.mmd",
+    "docs/sdlc/diagrams/deployment/local-development.drawio",
+    "docs/sdlc/diagrams/deployment/local-development.mmd",
+    "docs/sdlc/diagrams/development/package-ownership.drawio",
+    "docs/sdlc/diagrams/development/package-ownership.mmd"
+  ]
+}

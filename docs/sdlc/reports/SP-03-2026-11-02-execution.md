@@ -1,9 +1,9 @@
 # SP-03 bounded implementation and regression handoff
 
 **Artifact ID:** SP03-EXEC-01\
-**Version/date:** 0.1 Draft · 2 November 2026\
+**Version/date:** 0.1.1 Draft · 3 November 2026\
 **Status:** Bounded implementation, specified regressions and handoff verified locally. Independent/release acceptance remains open.\
-**Inputs:** [FEAT-SP03-01](../../implementation/features/sp-03-create-task/plan.md) v0.5; canonical SP-03 v0.8; Workspace v0.2.12; logical model v0.12; Proposed ADR-0027 v0.2.\
+**Historical inputs:** [FEAT-SP03-01](../../implementation/features/sp-03-create-task/plan.md) v0.5; canonical SP-03 v0.8; Workspace v0.2.12; logical model v0.12; Proposed ADR-0027 v0.2.\
 **Trace:** FR-05/AC-05, supporting FR-03/31/59, BR-01/02/10/11/14; UC-03 main/EX-01/EX-02; SP-03.1–SP-03.4 / PLAN-01 Month 1 / M-02.
 
 ## Result and boundary

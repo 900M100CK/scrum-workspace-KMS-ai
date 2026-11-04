@@ -1,0 +1,10 @@
+{
+  "observation": "The full generator tried to align four pre-existing dirty metadata headers to the manifest; original complete file hashes were captured before any edit.",
+  "restored_by_exact_original_hash": [
+    "docs/sdlc/diagrams/design-foundation-2026-10-17.md",
+    "docs/sdlc/diagrams/review-2026-10-16.md",
+    "docs/sdlc/diagrams/review-2026-10-17.md",
+    "docs/ux/sitemap.md"
+  ],
+  "unresolved": []
+}

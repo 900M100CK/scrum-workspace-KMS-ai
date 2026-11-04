@@ -1,0 +1,2 @@
+# Verbatim captured command output retains original blank lines.
+*.log -whitespace

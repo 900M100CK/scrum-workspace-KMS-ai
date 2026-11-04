@@ -1,0 +1,23 @@
+▶ SP04-P03C private Task action grants and exact Task discovery
+  ✔ create/creator/member roles imply no mutation action; live HTTP returns exact read target and registered handlers only (76.0153ms)
+  ✔ four independent private grants have issue-ID provenance, revisioned revoke/regrant, and audited no-op/stale semantics (243.33ms)
+  ✔ future registry projection checks independent rights and Backlog edit context without claiming those handlers exist (68.2623ms)
+  ✔ missing/foreign/nonmember targets conceal identity and malformed or asserted selectors fail bounded validation (89.2742ms)
+  ✔ disabled/nonmember/unknown targets, unsupported actions and ordinary runtime cannot provision or inspect private audit (56.3449ms)
+  ✔ unprovenanced selected rows are retained and rejected even for an apparent no-op (61.2133ms)
+  ✔ failed private audit persistence rolls back grant issuance (35.1533ms)
+  ✔ actual removal invalidates all four actions; rejoin restores none and explicit regrant keeps provenance (149.5686ms)
+  ✔ both actual grant/removal lock orderings preserve revocation without deadlock or grant resurrection (200.4322ms)
+  ✔ private CLI supports selected grant/revoke/state and generic failure without configuration disclosure (1519.4196ms)
+  ✔ required authority failure withholds discovery; app without Task handlers advertises no Task endpoint (114.9302ms)
+  ✔ session expiry during an observed Project lock wait withholds allowed operations (337.3067ms)
+✔ SP04-P03C private Task action grants and exact Task discovery (9351.0025ms)
+ℹ {"fixture":"sp01-p08-test-b770549e91c1","volume":"sp01-p08-test-b770549e91c1-data","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","postgres":"17.10 (Debian 17.10-1.pgdg12+1)","ceiling":"010"}
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9768.7415

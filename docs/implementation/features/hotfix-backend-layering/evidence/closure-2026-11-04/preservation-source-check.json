@@ -1,0 +1,15 @@
+{
+  "source_observations": {
+    "mechanism_documented": true,
+    "project_for_update": true,
+    "complete_projection_in_memory_pages50": true,
+    "null_risk_labelled_not_reproduced": true
+  },
+  "outside_files_checked": 133,
+  "outside_drift": [],
+  "index_unchanged": true,
+  "active_branch": "codex/hotfix-backend-layering",
+  "head": "dcd2d815a173f8adfd71619fcc00f84880d88636",
+  "sp04_checkpoint": "e6f233735f6e7c09dee7af4ec54b19902b0910b9",
+  "runtime_contract_migration_dependency_changes": false
+}

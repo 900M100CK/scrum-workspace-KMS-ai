@@ -1,0 +1,134 @@
+{
+  "artifact_id": "SP04-P03B-CHECKS",
+  "version": "0.1",
+  "date": "2026-11-04",
+  "timezone": "Asia/Saigon",
+  "node": "v24.21.0",
+  "branch": "codex/sp-04",
+  "head": "6b837fd52e01709f72bfe2de6cb96f0e9cc52653",
+  "preservation": {
+    "initial_tracked_files": 918,
+    "changed_tracked_paths": [
+      "docs/implementation/features/README.md",
+      "docs/implementation/register.md",
+      "docs/implementation/roadmap.md",
+      "docs/sdlc/artifact-register.md",
+      "docs/sdlc/diagrams/README.md",
+      "docs/sdlc/diagrams/manifest.json",
+      "docs/sdlc/references/document-review-register.md",
+      "services/workspace/TASKS.md",
+      "services/workspace/src/tasks/types.ts"
+    ],
+    "unexpected_changes": [],
+    "old_migration_files_checked": 24,
+    "old_migrations_and_create_adapter_unchanged": true,
+    "remaining_tracked_sources_unchanged": 909
+  },
+  "primary_sources": [
+    {
+      "path": "services/workspace/migrations/010-task-mutations.up.sql",
+      "bytes": 10390,
+      "sha256": "7fa545b8a8bc7b809a9fc128ca2bf15b1aa67fa3124070f9f9e18902a7690a3b"
+    },
+    {
+      "path": "services/workspace/migrations/010-task-mutations.down.sql",
+      "bytes": 3968,
+      "sha256": "a3645ea6c967b1b629afa12a0961dcfa63dfeb58e6518555f37b66c897766599"
+    },
+    {
+      "path": "services/workspace/src/tasks/types.ts",
+      "bytes": 924,
+      "sha256": "d36e304a5181191140974fab1e889e36d30539985b2d4b2036cf462d0c9a6ac3"
+    },
+    {
+      "path": "services/workspace/src/tasks/mutation-outcomes.ts",
+      "bytes": 2896,
+      "sha256": "2325088c2e4dafc2f8113ca840fa6c006ada43a5c9aedd54b886295b50e9a350"
+    },
+    {
+      "path": "tests/workspace/task-mutation-fixture.mjs",
+      "bytes": 349,
+      "sha256": "b5ee6186a62a5e63ab2cc3f5c690e3867f9581d5f54d610c8d1c71db5d844d57"
+    },
+    {
+      "path": "tests/workspace/task-mutation-storage.test.mjs",
+      "bytes": 22523,
+      "sha256": "48c434dbd81716e752f28b2d3b3e16346b4ee1562627caf1fbef9702c513e7aa"
+    },
+    {
+      "path": "services/workspace/TASKS.md",
+      "bytes": 10297,
+      "sha256": "9c76ea8bdaa7b5e59b961cae143b5cb43f816112919c46702f25535632a855c2"
+    }
+  ],
+  "actual_tests": {
+    "new010": {
+      "tests": 13,
+      "pass": 13,
+      "fail": 0,
+      "skipped": 0
+    },
+    "old009": {
+      "tests": 8,
+      "pass": 8,
+      "fail": 0,
+      "skipped": 0
+    },
+    "context": {
+      "tests": 45,
+      "pass": 45,
+      "fail": 0,
+      "skipped": 0
+    },
+    "contracts": {
+      "tests": 27,
+      "pass": 27,
+      "fail": 0,
+      "skipped": 0
+    },
+    "docs": {
+      "tests": 20,
+      "pass": 20,
+      "fail": 0,
+      "skipped": 0
+    }
+  },
+  "fixture": {
+    "name": "sp01-p08-test-cf0cb8d4c954",
+    "volume": "sp01-p08-test-cf0cb8d4c954-data",
+    "postgres": "17.10 (Debian 17.10-1.pgdg12+1)",
+    "docker": "29.3.1",
+    "image": "pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966",
+    "exact_named_container_and_volume_absent": true
+  },
+  "limits": "Storage/adapter and existing member-removal observations only. No new mutation/current-action replay/private CLI/HTTP/UI/browser/concurrency/SP-05/D-07 or valuable-data upgrade acceptance. ADR-0028 remains Proposed.",
+  "final_checks": [
+    {
+      "name": "metadata-check-last",
+      "executable": "C:\\Users\\MCK\\AppData\\Local\\Temp\\kms-node24\\node-v24.21.0-win-x64\\node.exe",
+      "args": [
+        "scripts/docs/docs-metadata.mjs",
+        "--check"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "docs-lint-last",
+      "executable": "C:\\Users\\MCK\\AppData\\Local\\Temp\\kms-node24\\node-v24.21.0-win-x64\\node.exe",
+      "args": [
+        "scripts/docs/verify-docs.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "whitespace-last",
+      "exit": 0
+    }
+  ],
+  "local_markdown_targets": {
+    "checked": 686,
+    "missing": [],
+    "anchors": "not browser-validated"
+  },
+  "final_artifact_assembly_note": "First final-link pass ran before checks.json existed and found only those two self-links. Artifact assembly order corrected; no application/test expectation changed. Original functional failures are recorded in executions.json."
+}

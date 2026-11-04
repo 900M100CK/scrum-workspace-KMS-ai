@@ -1,0 +1,59 @@
+{
+  "branch": "codex/hotfix-backend-layering",
+  "head": "dcd2d815a173f8adfd71619fcc00f84880d88636",
+  "head_sp04_ref_index_unchanged": true,
+  "unchanged_preexisting_files": 1433,
+  "changed_preexisting_paths": [
+    "docs/implementation/features/README.md",
+    "docs/implementation/features/hotfix-backend-layering/plan.md",
+    "docs/implementation/register.md",
+    "docs/implementation/roadmap.md",
+    "docs/sdlc/artifact-register.md",
+    "docs/sdlc/diagrams/README.md",
+    "docs/sdlc/diagrams/architecture/README.md",
+    "docs/sdlc/diagrams/c4/README.md",
+    "docs/sdlc/diagrams/data/README.md",
+    "docs/sdlc/diagrams/deployment/README.md",
+    "docs/sdlc/diagrams/development/README.md",
+    "docs/sdlc/diagrams/flowchart/README.md",
+    "docs/sdlc/diagrams/manifest.json",
+    "docs/sdlc/diagrams/sequence/README.md",
+    "docs/sdlc/diagrams/sitemap/README.md",
+    "docs/sdlc/diagrams/state/README.md",
+    "docs/sdlc/diagrams/use-case/README.md",
+    "docs/sdlc/diagrams/user-journey/README.md",
+    "docs/sdlc/references/document-review-register.md",
+    "services/workspace/src/projects/store.ts"
+  ],
+  "unexpected_paths": [],
+  "rf03_test_unchanged": true,
+  "runtime_delta_only": "services/workspace/src/projects/store.ts authenticated transaction guard",
+  "node": "v24.22.1",
+  "null_suite": {
+    "pass": 8,
+    "fail": 0,
+    "exit": 0
+  },
+  "regression": {
+    "pass": 129,
+    "fail": 0,
+    "exit": 0
+  },
+  "workspace_typecheck": 0,
+  "workspace_build": 0,
+  "context_check": 0,
+  "docs_lint_attempts": [
+    1,
+    1,
+    0
+  ],
+  "missing_local_links": [],
+  "scoped_whitespace_exit": 0,
+  "rf05_started": false,
+  "preflight_section9": "bounded critical report, ProposedADR0029 retained; no scope/acceptance/publication claim",
+  "source_hashes": {
+    "services/workspace/src/projects/store.ts": "752a92209439f5c05a35f59e4982ad08312dcddae9d8e07f2d742f7e734d35b7",
+    "tests/workspace/project-transaction-null.test.mjs": "42dad24fe604fd1622d51e7aadb73e34e2020591a94ce14f0060046908adf7c2",
+    "services/workspace/src/session/database.ts": "a94c2df12b2815ef4b93e71f386d0e4e8831f12a1c32931d13a2db1292afa489"
+  }
+}

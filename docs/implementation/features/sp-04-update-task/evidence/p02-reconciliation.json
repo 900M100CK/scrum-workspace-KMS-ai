@@ -1,0 +1,104 @@
+{
+  "artifact_id": "SP04-P02-RECONCILIATION",
+  "version": "0.1",
+  "date": "2026-11-03",
+  "timezone": "Asia/Saigon",
+  "branch": "codex/sp-04",
+  "head": "6b837fd52e01709f72bfe2de6cb96f0e9cc52653",
+  "received_artifacts": [
+    {
+      "source": "docs/implementation/features/sp-04-update-task/decision-batch.md",
+      "source_sha256": "5b68bdb46fd6fb309acedc56cfe6871cdd28aea27244e6a2b7e5c714181cf1bf",
+      "snapshot": "docs/implementation/features/sp-04-update-task/evidence/p02-decision-batch-v0.1.txt",
+      "snapshot_sha256": "5b68bdb46fd6fb309acedc56cfe6871cdd28aea27244e6a2b7e5c714181cf1bf"
+    },
+    {
+      "source": "docs/implementation/features/sp-04-update-task/reviews/p02-codex-report.md",
+      "source_sha256": "3f24f70d9dd79df5671c9948cdd84ec2c6652fdb7fa6ddeda1ecc5cdf564afba",
+      "snapshot": "docs/implementation/features/sp-04-update-task/evidence/p02-antigravity-report-v0.1.txt",
+      "snapshot_sha256": "3f24f70d9dd79df5671c9948cdd84ec2c6652fdb7fa6ddeda1ecc5cdf564afba"
+    },
+    {
+      "source": "docs/implementation/features/sp-04-update-task/tasks/P02-storage-authority.md",
+      "source_sha256": "63ea797aaf1c2e511c33c5b5a2f4c87f9609cd464489327cfe2cb3c39e5cf321",
+      "snapshot": "docs/implementation/features/sp-04-update-task/evidence/p02-task-brief-v0.3.txt",
+      "snapshot_sha256": "63ea797aaf1c2e511c33c5b5a2f4c87f9609cd464489327cfe2cb3c39e5cf321"
+    }
+  ],
+  "preservation": {
+    "tracked_source_paths_checked": 174,
+    "changed": []
+  },
+  "source_review": {
+    "result": "Changes required; P02 not complete; P03A/P03B unready",
+    "findings": [
+      "R01 existing result regression and absent helper",
+      "R02 incomplete/null-admitting validators, trigger and reverse-migration regressions",
+      "R03 replay/write-precondition ordering and no-op receipts",
+      "R04 unselected authority/eligibility choices, disclosure and private issuance enforcement",
+      "R05 actual clock-fault/reopen/blocker/history obligations",
+      "R06 small producer slices and co-delivered verification",
+      "R07 unverified/contradictory structural test reporting"
+    ]
+  },
+  "reported_antigravity_checks": {
+    "context_check": "Reported, no P02 command/runtime/log capture supplied",
+    "context_test": "Reported 45/45, not independently reproduced; not requirement acceptance",
+    "runtime_tests": "Not evidenced; not run by Codex"
+  },
+  "external_reference": {
+    "url": "https://www.postgresql.org/docs/17/ddl-constraints.html#DDL-CONSTRAINTS-CHECK-CONSTRAINTS",
+    "observed": "Official PostgreSQL 17 documentation: CHECK permits true or null; static design finding, no DB experiment"
+  },
+  "followup": {
+    "task": "SP04-AG03",
+    "brief": "tasks/AG03-p02-design-correction.md",
+    "scope": "Two proposed design documents only; no tests/shared edits",
+    "delivery": "Written assignment ready; external delivery/execution pending"
+  },
+  "unrun": [
+    "No new context/docs-test/contract-test suite run in this reconciliation",
+    "No application/build/DB/SQL/browser/concurrency/failure/load/provider/evaluation campaign",
+    "No schema/runtime/contract change, migration or independent release acceptance"
+  ],
+  "documentation_check": {
+    "node": "24.21.0",
+    "command": "node scripts/docs/verify-docs.mjs",
+    "exit_code": 0,
+    "log": "evidence/p02-docs-lint.log"
+  },
+  "local_link_check": {
+    "files": 6,
+    "targets": 63,
+    "missing": [],
+    "scope": "Local target existence only"
+  },
+  "receipt_preservation": [
+    {
+      "snapshot": "docs/implementation/features/sp-04-update-task/evidence/p02-decision-batch-v0.1.txt",
+      "matches": true,
+      "source_unchanged": true,
+      "expected_coordinator_edit": false
+    },
+    {
+      "snapshot": "docs/implementation/features/sp-04-update-task/evidence/p02-antigravity-report-v0.1.txt",
+      "matches": true,
+      "source_unchanged": true,
+      "expected_coordinator_edit": false
+    },
+    {
+      "snapshot": "docs/implementation/features/sp-04-update-task/evidence/p02-task-brief-v0.3.txt",
+      "matches": true,
+      "source_unchanged": false,
+      "expected_coordinator_edit": true
+    }
+  ],
+  "final_metadata": {
+    "exit_code": 0,
+    "log": "evidence/p02-metadata-final.log"
+  },
+  "whitespace": {
+    "exit_code": 0,
+    "log": "evidence/p02-whitespace.log"
+  }
+}

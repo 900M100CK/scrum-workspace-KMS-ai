@@ -1,0 +1,309 @@
+▶ SP04-P03B additive010 mutation storage, real roles and permanent originals
+  ✔ legacy keys, invalidated grants, history and both audits refuse before DDL and preserve seeded rows (61.681ms)
+  ✖ upgrade/repeat/reverse/reapply preserve009 receipts, definitions and prior checksums (5086.8301ms)
+  ✖ each retained mutation receipt/grant/audit/event independently refuses destructive down (5.1697ms)
+  ✖ total SQL validators reject NULL, every missing/extra/wrong field, unsafe values and malformed placement/time (2.8036ms)
+  ✖ all valid Task locations/states and Blocker UTC precisions/nullable outcome retain exact wire snapshots (5.9179ms)
+  ✖ new-operation status/hash/key/state/expiry/ref constraints and OLD/NEW immutability are enforced (93.2621ms)
+  ✖ actor/operation/key/hash/Task/project/event binding rejects cross-scope replay without current-state substitution (5.4278ms)
+  ✖ private action scope/uniqueness, runtime issue/revival/rewrite denial and real member removal/rejoin (28.2383ms)
+  ✔ Task/event/audit/result writes roll back together on audit or outcome persistence failure (26.9052ms)
+  ✖ lost real COMMIT acknowledgement is unknown, with one durable original and no current-state replacement (7.4157ms)
+  ✔ old project/member/createTask and protected-handoff branches still function and old SQL checksums match (23.1025ms)
+✖ SP04-P03B additive010 mutation storage, real roles and permanent originals (12177.5666ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 3
+ℹ fail 9
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17091.9641
+
+✖ failing tests:
+
+test at tests\workspace\task-mutation-storage.test.mjs:55:10
+✖ upgrade/repeat/reverse/reapply preserve009 receipts, definitions and prior checksums (5086.8301ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      {
+        definition: "CHECK (((((operation = 'createTask'::text) AND (state = 'committed'::text) AND (expires_at = 'infinity'::timestamp with time zone) AND (payload_hash ~ '^[a-f0-9]{64}$'::text) AND (length(idempotency_key) > 0) AND (result_ref IS NOT NULL) AND (result_status = 201) AND workspace.valid_task_creation_snapshot(result_snapshot, result_ref)) OR ((operation <> 'createTask'::text) AND ((((operation <> ALL (ARRAY['createProject'::text, 'addMember'::text, 'removeMember'::text])) AND (result_status IS NULL) AND (result_snapshot IS NULL)) OR ((operation = ANY (ARRAY['createProject'::text, 'addMember'::text, 'removeMember'::text])) AND (state = 'committed'::text) AND (expires_at = 'infinity'::timestamp with time zone) AND (payload_hash ~ '^[a-f0-9]{64}$'::text) AND (length(idempotency_key) > 0) AND (result_ref IS NOT NULL) AND (result_status IS NOT NULL) AND (((operation = 'removeMember'::text) AND (result_status = 204) AND (result_snapshot IS NULL)) OR ((operation = ANY (ARRAY['createProject'::text, 'addMember'::text])) AND (result_status = 201) AND (result_snapshot IS NOT NULL) AND (jsonb_typeof(result_snapshot) = 'object'::text) AND ((result_snapshot ->> 'project_id'::text) = result_ref) AND (result_snapshot ? 'revision'::text) AND (jsonb_typeof((result_snapshot -> 'revision'::text)) = 'number'::text) AND ((result_snapshot ->> 'revision'::text) ~ '^[1-9][0-9]*$'::text) AND (((result_snapshot ->> 'revision'::text))::numeric <= ('9007199254740991'::bigint)::numeric) AND (((operation = 'createProject'::text) AND (result_snapshot ?& ARRAY['project_id'::text, 'name'::text, 'description'::text, 'revision'::text]) AND ((result_snapshot - ARRAY['project_id'::text, 'name'::text, 'description'::text, 'revision'::text]) = '{}'::jsonb) AND (jsonb_typeof((result_snapshot -> 'name'::text)) = 'string'::text) AND (jsonb_typeof((result_snapshot -> 'description'::text)) = 'string'::text)) OR ((operation = 'addMember'::text) AND (result_snapshot ?& ARRAY['project_id'::text, 'user_id'::text, 'role'::text, 'revision'::text]) AND ((result_snapshot - ARRAY['project_id'::text, 'user_id'::text, 'role'::text, 'revision'::text]) = '{}'::jsonb) AND (jsonb_typeof((result_snapshot -> 'user_id'::text)) = 'string'::text) AND ((result_snapshot ->> 'role'::text) = ANY (ARRAY['product_owner'::text, 'scrum_master'::text, 'developer'::text, 'viewer'::text])))))))) IS TRUE))) IS TRUE))"
+      },
+      {
+  ...
+          ' LANGUAGE plpgsql\n' +
+  +       'AS $function$\r\n' +
+  +       'BEGIN\r\n' +
+  +       " IF OLD.operation IN ('createProject','addMember','removeMember','createTask') OR (TG_OP='UPDATE' AND NEW.operation IN ('createProject','addMember','removeMember','createTask')) THEN\r\n" +
+  +       "  RAISE EXCEPTION 'Committed project/task outcome identity is immutable' USING ERRCODE='23514';\r\n" +
+  +       ' END IF;\r\n' +
+  +       " IF TG_OP='DELETE' THEN RETURN OLD; END IF;\r\n" +
+  +       ' RETURN NEW;\r\n' +
+  -       'AS $function$\n' +
+  -       'BEGIN\n' +
+  -       " IF OLD.operation IN ('createProject','addMember','removeMember','createTask') OR (TG_OP='UPDATE' AND NEW.operation IN ('createProject','addMember','removeMember','createTask')) THEN\n" +
+  -       "  RAISE EXCEPTION 'Committed project/task outcome identity is immutable' USING ERRCODE='23514';\n" +
+  -       ' END IF;\n' +
+  -       " IF TG_OP='DELETE' THEN RETURN OLD; END IF;\n" +
+  -       ' RETURN NEW;\n' +
+          'END $function$\n'
+      }
+    ]
+  
+      at TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:58:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:55:2)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { definition: "CHECK (((((operation = 'createTask'::text) AND (state = 'committed'::text) AND (expires_at = 'infinity'::timestamp with time zone) AND (payload_hash ~ '^[a-f0-9]{64}$'::text) AND (length(idempotency_key) > 0) AND (result_ref IS NOT NULL) AND (result_status = 201) AND workspace.valid_task_creation_snapshot(result_snapshot, result_ref)) OR ((operation <> 'createTask'::text) AND ((((operation <> ALL (ARRAY['createProject'::text, 'addMember'::text, 'removeMember'::text])) AND (result_status IS NULL) AND (result_snapshot IS NULL)) OR ((operation = ANY (ARRAY['createProject'::text, 'addMember'::text, 'removeMember'::text])) AND (state = 'committed'::text) AND (expires_at = 'infinity'::timestamp with time zone) AND (payload_hash ~ '^[a-f0-9]{64}$'::text) AND (length(idempotency_key) > 0) AND (result_ref IS NOT NULL) AND (result_status IS NOT NULL) AND (((operation = 'removeMember'::text) AND (result_status = 204) AND (result_snapshot IS NULL)) OR ((operation = ANY (ARRAY['createProject'::text, 'addMember'::text])) AND (result_status = 201) AND (result_snapshot IS NOT NULL) AND (jsonb_typeof(result_snapshot) = 'object'::text) AND ((result_snapshot ->> 'project_id'::text) = result_ref) AND (result_snapshot ? 'revision'::text) AND (jsonb_typeof((result_snapshot -> 'revision'::text)) = 'number'::text) AND ((result_snapshot ->> 'revision'::text) ~ '^[1-9][0-9]*$'::text) AND (((result_snapshot ->> 'revision'::text))::numeric <= ('9007199254740991'::bigint)::numeric) AND (((operation = 'createProject'::text) AND (result_snapshot ?& ARRAY['project_id'::text, 'name'::text, 'description'::text, 'revision'::text]) AND ((result_snapshot - ARRAY['project_id'::text, 'name'::text, 'description'::text, 'revision'::text]) = '{}'::jsonb) AND (jsonb_typeof((result_snapshot -> 'name'::text)) = 'string'::text) AND (jsonb_typeof((result_snapshot -> 'description'::text)) = 'string'::text)) OR ((operation = 'addMember'::text) AND (result_snapshot ?& ARRAY['project_id'::text, 'user_id'::text, 'role'::text, 'revision'::text]) AND ((result_snapshot - ARRAY['project_id'::text, 'user_id'::text, 'role'::text, 'revision'::text]) = '{}'::jsonb) AND (jsonb_typeof((result_snapshot -> 'user_id'::text)) = 'string'::text) AND ((result_snapshot ->> 'role'::text) = ANY (ARRAY['product_owner'::text, 'scrum_master'::text, 'developer'::text, 'viewer'::text])))))))) IS TRUE))) IS TRUE))" }, { definition: "CREATE OR REPLACE FUNCTION workspace.protect_project_outcome()\n RETURNS trigger\n LANGUAGE plpgsql\nAS $function$\r\nBEGIN\r\n IF OLD.operation IN ('createProject','addMember','removeMember','createTask') OR (TG_OP='UPDATE' AND NEW.operation IN ('createProject','addMember','removeMember','createTask')) THEN\r\n  RAISE EXCEPTION 'Committed project/task outcome identity is immutable' USING ERRCODE='23514';\r\n END IF;\r\n IF TG_OP='DELETE' THEN RETURN OLD; END IF;\r\n RETURN NEW;\r\nEND $function$\n" } ],
+    expected: [ { definition: "CHECK (((((operation = 'createTask'::text) AND (state = 'committed'::text) AND (expires_at = 'infinity'::timestamp with time zone) AND (payload_hash ~ '^[a-f0-9]{64}$'::text) AND (length(idempotency_key) > 0) AND (result_ref IS NOT NULL) AND (result_status = 201) AND workspace.valid_task_creation_snapshot(result_snapshot, result_ref)) OR ((operation <> 'createTask'::text) AND ((((operation <> ALL (ARRAY['createProject'::text, 'addMember'::text, 'removeMember'::text])) AND (result_status IS NULL) AND (result_snapshot IS NULL)) OR ((operation = ANY (ARRAY['createProject'::text, 'addMember'::text, 'removeMember'::text])) AND (state = 'committed'::text) AND (expires_at = 'infinity'::timestamp with time zone) AND (payload_hash ~ '^[a-f0-9]{64}$'::text) AND (length(idempotency_key) > 0) AND (result_ref IS NOT NULL) AND (result_status IS NOT NULL) AND (((operation = 'removeMember'::text) AND (result_status = 204) AND (result_snapshot IS NULL)) OR ((operation = ANY (ARRAY['createProject'::text, 'addMember'::text])) AND (result_status = 201) AND (result_snapshot IS NOT NULL) AND (jsonb_typeof(result_snapshot) = 'object'::text) AND ((result_snapshot ->> 'project_id'::text) = result_ref) AND (result_snapshot ? 'revision'::text) AND (jsonb_typeof((result_snapshot -> 'revision'::text)) = 'number'::text) AND ((result_snapshot ->> 'revision'::text) ~ '^[1-9][0-9]*$'::text) AND (((result_snapshot ->> 'revision'::text))::numeric <= ('9007199254740991'::bigint)::numeric) AND (((operation = 'createProject'::text) AND (result_snapshot ?& ARRAY['project_id'::text, 'name'::text, 'description'::text, 'revision'::text]) AND ((result_snapshot - ARRAY['project_id'::text, 'name'::text, 'description'::text, 'revision'::text]) = '{}'::jsonb) AND (jsonb_typeof((result_snapshot -> 'name'::text)) = 'string'::text) AND (jsonb_typeof((result_snapshot -> 'description'::text)) = 'string'::text)) OR ((operation = 'addMember'::text) AND (result_snapshot ?& ARRAY['project_id'::text, 'user_id'::text, 'role'::text, 'revision'::text]) AND ((result_snapshot - ARRAY['project_id'::text, 'user_id'::text, 'role'::text, 'revision'::text]) = '{}'::jsonb) AND (jsonb_typeof((result_snapshot -> 'user_id'::text)) = 'string'::text) AND ((result_snapshot ->> 'role'::text) = ANY (ARRAY['product_owner'::text, 'scrum_master'::text, 'developer'::text, 'viewer'::text])))))))) IS TRUE))) IS TRUE))" }, { definition: "CREATE OR REPLACE FUNCTION workspace.protect_project_outcome()\n RETURNS trigger\n LANGUAGE plpgsql\nAS $function$\nBEGIN\n IF OLD.operation IN ('createProject','addMember','removeMember','createTask') OR (TG_OP='UPDATE' AND NEW.operation IN ('createProject','addMember','removeMember','createTask')) THEN\n  RAISE EXCEPTION 'Committed project/task outcome identity is immutable' USING ERRCODE='23514';\n END IF;\n IF TG_OP='DELETE' THEN RETURN OLD; END IF;\n RETURN NEW;\nEND $function$\n" } ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\workspace\task-mutation-storage.test.mjs:61:10
+✖ each retained mutation receipt/grant/audit/event independently refuses destructive down (5.1697ms)
+  Error: Session persistence unavailable
+      at ownedTransaction (file:///D:/scrum-workspace-KMS-ai/services/workspace/src/session/database.ts:28:9)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:63:27)
+      ... 3 lines matching cause stack trace ...
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    commitOutcome: 'not-committed',
+    [cause]: error: new row for relation "idempotency_record" violates check constraint "project_outcome_shape"
+        at D:\scrum-workspace-KMS-ai\node_modules\pg\lib\client.js:694:17
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:64:44
+        at async ownedTransaction (file:///D:/scrum-workspace-KMS-ai/services/workspace/src/session/database.ts:24:16)
+        at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:63:27)
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:61:2)
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+      length: 529,
+      severity: 'ERROR',
+      code: '23514',
+      detail: 'Failing row contains (9d969e47-db9d-489f-9072-aa9afd7d035d, editTask, 94d4cca5-140a-42c5-9cfa-0dde0cf35f56, ee2ae737f4db609e98f2fa09bcd7102c256ef5771a6033bf18bd7157b82d1e42, committed, 4302400d-2bc0-4c66-a2d4-9ae4aee62aae, infinity, null, null, 200, {"type": "task", "state": "todo", "title": "Original text", "blo...).',
+      hint: undefined,
+      position: undefined,
+      internalPosition: undefined,
+      internalQuery: undefined,
+      where: undefined,
+      schema: 'workspace',
+      table: 'idempotency_record',
+      column: undefined,
+      dataType: undefined,
+      constraint: 'project_outcome_shape',
+      file: 'execMain.c',
+      line: '2074',
+      routine: 'ExecConstraints'
+    }
+  }
+
+test at tests\workspace\task-mutation-storage.test.mjs:70:10
+✖ total SQL validators reject NULL, every missing/extra/wrong field, unsafe values and malformed placement/time (2.8036ms)
+  error: function workspace.valid_task_mutation_snapshot(unknown, unknown) does not exist
+      at D:\scrum-workspace-KMS-ai\node_modules\pg-pool\index.js:45:11
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:77:18)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:70:2)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    length: 248,
+    severity: 'ERROR',
+    code: '42883',
+    detail: undefined,
+    hint: 'No function matches the given name and argument types. You might need to add explicit type casts.',
+    position: '8',
+    internalPosition: undefined,
+    internalQuery: undefined,
+    where: undefined,
+    schema: undefined,
+    table: undefined,
+    column: undefined,
+    dataType: undefined,
+    constraint: undefined,
+    file: 'parse_func.c',
+    line: '629',
+    routine: 'ParseFuncOrColumn'
+  }
+
+test at tests\workspace\task-mutation-storage.test.mjs:82:10
+✖ all valid Task locations/states and Blocker UTC precisions/nullable outcome retain exact wire snapshots (5.9179ms)
+  Error: Session persistence unavailable
+      at ownedTransaction (file:///D:/scrum-workspace-KMS-ai/services/workspace/src/session/database.ts:28:9)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:84:29)
+      ... 3 lines matching cause stack trace ...
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    commitOutcome: 'not-committed',
+    [cause]: error: new row for relation "idempotency_record" violates check constraint "project_outcome_shape"
+        at D:\scrum-workspace-KMS-ai\node_modules\pg\lib\client.js:694:17
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async saveMutationOutcome (file:///D:/scrum-workspace-KMS-ai/services/workspace/src/tasks/mutation-outcomes.ts:43:2)
+        at async ownedTransaction (file:///D:/scrum-workspace-KMS-ai/services/workspace/src/session/database.ts:24:16)
+        at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:84:29)
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:82:2)
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+      length: 529,
+      severity: 'ERROR',
+      code: '23514',
+      detail: 'Failing row contains (9d969e47-db9d-489f-9072-aa9afd7d035d, editTask, 707d9b5d-d973-4e4a-9043-bab9c1e79147, ee2ae737f4db609e98f2fa09bcd7102c256ef5771a6033bf18bd7157b82d1e42, committed, 4302400d-2bc0-4c66-a2d4-9ae4aee62aae, infinity, null, null, 200, {"type": "task", "state": "todo", "title": "Original text", "blo...).',
+      hint: undefined,
+      position: undefined,
+      internalPosition: undefined,
+      internalQuery: undefined,
+      where: undefined,
+      schema: 'workspace',
+      table: 'idempotency_record',
+      column: undefined,
+      dataType: undefined,
+      constraint: 'project_outcome_shape',
+      file: 'execMain.c',
+      line: '2074',
+      routine: 'ExecConstraints'
+    }
+  }
+
+test at tests\workspace\task-mutation-storage.test.mjs:87:10
+✖ new-operation status/hash/key/state/expiry/ref constraints and OLD/NEW immutability are enforced (93.2621ms)
+  Error: Session persistence unavailable
+      at ownedTransaction (file:///D:/scrum-workspace-KMS-ai/services/workspace/src/session/database.ts:28:9)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:89:3)
+      ... 3 lines matching cause stack trace ...
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    commitOutcome: 'not-committed',
+    [cause]: error: new row for relation "idempotency_record" violates check constraint "project_outcome_shape"
+        at D:\scrum-workspace-KMS-ai\node_modules\pg\lib\client.js:694:17
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async saveMutationOutcome (file:///D:/scrum-workspace-KMS-ai/services/workspace/src/tasks/mutation-outcomes.ts:43:2)
+        at async ownedTransaction (file:///D:/scrum-workspace-KMS-ai/services/workspace/src/session/database.ts:24:16)
+        at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:89:3)
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:87:2)
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+      length: 502,
+      severity: 'ERROR',
+      code: '23514',
+      detail: 'Failing row contains (9d969e47-db9d-489f-9072-aa9afd7d035d, editTask, immutable, ee2ae737f4db609e98f2fa09bcd7102c256ef5771a6033bf18bd7157b82d1e42, committed, 4302400d-2bc0-4c66-a2d4-9ae4aee62aae, infinity, null, null, 200, {"type": "task", "state": "todo", "title": "Original text", "blo...).',
+      hint: undefined,
+      position: undefined,
+      internalPosition: undefined,
+      internalQuery: undefined,
+      where: undefined,
+      schema: 'workspace',
+      table: 'idempotency_record',
+      column: undefined,
+      dataType: undefined,
+      constraint: 'project_outcome_shape',
+      file: 'execMain.c',
+      line: '2074',
+      routine: 'ExecConstraints'
+    }
+  }
+
+test at tests\workspace\task-mutation-storage.test.mjs:96:10
+✖ actor/operation/key/hash/Task/project/event binding rejects cross-scope replay without current-state substitution (5.4278ms)
+  Error: Session persistence unavailable
+      at ownedTransaction (file:///D:/scrum-workspace-KMS-ai/services/workspace/src/session/database.ts:28:9)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:97:77)
+      ... 3 lines matching cause stack trace ...
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    commitOutcome: 'not-committed',
+    [cause]: error: new row for relation "idempotency_record" violates check constraint "project_outcome_shape"
+        at D:\scrum-workspace-KMS-ai\node_modules\pg\lib\client.js:694:17
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async saveMutationOutcome (file:///D:/scrum-workspace-KMS-ai/services/workspace/src/tasks/mutation-outcomes.ts:43:2)
+        at async ownedTransaction (file:///D:/scrum-workspace-KMS-ai/services/workspace/src/session/database.ts:24:16)
+        at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:97:77)
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:96:2)
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+      length: 501,
+      severity: 'ERROR',
+      code: '23514',
+      detail: 'Failing row contains (9d969e47-db9d-489f-9072-aa9afd7d035d, editTask, same-key, ee2ae737f4db609e98f2fa09bcd7102c256ef5771a6033bf18bd7157b82d1e42, committed, 4302400d-2bc0-4c66-a2d4-9ae4aee62aae, infinity, null, null, 200, {"type": "task", "state": "todo", "title": "Original text", "blo...).',
+      hint: undefined,
+      position: undefined,
+      internalPosition: undefined,
+      internalQuery: undefined,
+      where: undefined,
+      schema: 'workspace',
+      table: 'idempotency_record',
+      column: undefined,
+      dataType: undefined,
+      constraint: 'project_outcome_shape',
+      file: 'execMain.c',
+      line: '2074',
+      routine: 'ExecConstraints'
+    }
+  }
+
+test at tests\workspace\task-mutation-storage.test.mjs:108:10
+✖ private action scope/uniqueness, runtime issue/revival/rewrite denial and real member removal/rejoin (28.2383ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:111:4)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:108:2)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\workspace\task-mutation-storage.test.mjs:144:10
+✖ lost real COMMIT acknowledgement is unknown, with one durable original and no current-state replacement (7.4157ms)
+  AssertionError [ERR_ASSERTION]: The validation function is expected to return "true". Received false
+  
+  Caught error:
+  
+  Error: Session persistence unavailable
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:148:3)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:144:2)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Session persistence unavailable
+        at ownedTransaction (file:///D:/scrum-workspace-KMS-ai/services/workspace/src/session/database.ts:28:9)
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async waitForActual (node:assert:646:5)
+        ... 2 lines matching cause stack trace ...
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:144:2)
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+      [cause]: error: new row for relation "idempotency_record" violates check constraint "project_outcome_shape"
+          at D:\scrum-workspace-KMS-ai\node_modules\pg\lib\client.js:694:17
+          at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+          at async Proxy.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:147:171)
+          at async saveMutationOutcome (file:///D:/scrum-workspace-KMS-ai/services/workspace/src/tasks/mutation-outcomes.ts:43:2)
+          at async file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:148:208
+          at async ownedTransaction (file:///D:/scrum-workspace-KMS-ai/services/workspace/src/session/database.ts:24:16)
+          at async waitForActual (node:assert:646:5)
+          at async strict.rejects (node:assert:769:25)
+          at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:148:3)
+          at async Test.run (node:internal/test_runner/test:1409:7)
+    },
+    operator: 'rejects',
+    diff: 'simple'
+  }

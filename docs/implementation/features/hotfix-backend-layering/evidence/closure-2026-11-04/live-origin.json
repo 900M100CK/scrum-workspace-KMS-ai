@@ -1,0 +1,12 @@
+{
+  "command": [
+    "git",
+    "ls-remote",
+    "--heads",
+    "origin",
+    "main"
+  ],
+  "exit_code": 0,
+  "remote_main": "dcd2d815a173f8adfd71619fcc00f84880d88636\trefs/heads/main",
+  "error": null
+}

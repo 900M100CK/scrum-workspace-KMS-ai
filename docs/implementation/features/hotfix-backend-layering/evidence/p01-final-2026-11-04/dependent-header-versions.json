@@ -1,0 +1,142 @@
+{
+  "contracts/README.md": {
+    "old": "0.25.1",
+    "new": "0.25.2"
+  },
+  "docs/sdlc/api-design.md": {
+    "old": "0.23.2",
+    "new": "0.23.3"
+  },
+  "docs/sdlc/use-cases.md": {
+    "old": "0.8.2",
+    "new": "0.8.3"
+  },
+  "specs/001-session.md": {
+    "old": "0.5.2",
+    "new": "0.5.3"
+  },
+  "specs/002-project-membership.md": {
+    "old": "0.7.2",
+    "new": "0.7.3"
+  },
+  "specs/003-create-task.md": {
+    "old": "0.8.1",
+    "new": "0.8.2"
+  },
+  "specs/004-update-task.md": {
+    "old": "0.7.5",
+    "new": "0.7.6"
+  },
+  "specs/005-sprint-lifecycle.md": {
+    "old": "0.7.2",
+    "new": "0.7.3"
+  },
+  "specs/006-document-access.md": {
+    "old": "0.6.2",
+    "new": "0.6.3"
+  },
+  "specs/007-version-publication.md": {
+    "old": "0.6.2",
+    "new": "0.6.3"
+  },
+  "specs/008-linked-keyword-search.md": {
+    "old": "0.4.2",
+    "new": "0.4.3"
+  },
+  "specs/009-cited-question.md": {
+    "old": "0.9.2",
+    "new": "0.9.3"
+  },
+  "specs/010-current-work-question.md": {
+    "old": "0.5.2",
+    "new": "0.5.3"
+  },
+  "specs/011-audit-and-source-inspection.md": {
+    "old": "0.10.2",
+    "new": "0.10.3"
+  },
+  "specs/012-failure-and-evaluation.md": {
+    "old": "0.4.2",
+    "new": "0.4.3"
+  },
+  "specs/013-scoped-inspection.md": {
+    "old": "0.6.2",
+    "new": "0.6.3"
+  },
+  "specs/README.md": {
+    "old": "0.8.2",
+    "new": "0.8.3"
+  },
+  "docs/ux/permission-matrix.md": {
+    "old": "0.11.2",
+    "new": "0.11.3"
+  },
+  "docs/ux/personas.md": {
+    "old": "0.5.2",
+    "new": "0.5.3"
+  },
+  "docs/ux/flows/ai-qa-flow.md": {
+    "old": "0.9.2",
+    "new": "0.9.3"
+  },
+  "docs/ux/flows/board-flow.md": {
+    "old": "0.10.2",
+    "new": "0.10.3"
+  },
+  "docs/ux/flows/docs-flow.md": {
+    "old": "0.9.2",
+    "new": "0.9.3"
+  },
+  "docs/architecture.md": {
+    "old": "0.19",
+    "new": "0.19.1"
+  },
+  "docs/sdlc/artifact-register.md": {
+    "old": "0.122",
+    "new": "0.122.1"
+  },
+  "docs/sdlc/data-design.md": {
+    "old": "0.16.2",
+    "new": "0.16.3"
+  },
+  "docs/sdlc/requirement-verification.md": {
+    "old": "0.12.1",
+    "new": "0.12.2"
+  },
+  "docs/sdlc/test-coverage.md": {
+    "old": "0.11.1",
+    "new": "0.11.2"
+  },
+  "docs/sdlc/test-plan.md": {
+    "old": "0.24.2",
+    "new": "0.24.3"
+  },
+  "docs/sdlc/ui-ux-blueprint.md": {
+    "old": "1.7.3",
+    "new": "1.7.4"
+  },
+  "docs/sdlc/ui-ux-spec.md": {
+    "old": "0.13.3",
+    "new": "0.13.4"
+  },
+  "docs/sdlc/references/document-review-register.md": {
+    "old": "0.62",
+    "new": "0.62.1"
+  },
+  "docs/ux/wireframe-workplan.md": {
+    "old": "0.4.3",
+    "new": "0.4.4"
+  },
+  "docs/ux/wireframes/README.md": {
+    "old": "0.5.3",
+    "new": "0.5.4"
+  },
+  "docs/sdlc/evaluation-cases.md": {
+    "old": "0.8.2",
+    "new": "0.8.3"
+  },
+  "docs/sdlc/SAD.md": {
+    "old": "0.18",
+    "new": "0.18.1"
+  }
+}

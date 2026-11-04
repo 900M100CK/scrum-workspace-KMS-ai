@@ -1,9 +1,9 @@
 # Logical data and lifecycle design
 
 **Artifact ID:** DATA-04  
-**Version/date:** 0.16.1 Draft · 4 November 2026
+**Version/date:** 0.16.3 Draft · 4 November 2026
 **Status:** Draft for owner review; proposed policies/deferrals are not approved.
-**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.9; UC-02 v0.8; [SAD-03](../architecture.md) v0.17; [logical entities](../../contracts/data-model.json) v0.12; owner-authorised ADR-0004 implementation; ADR-0007–ADR-0017.; Proposed ADR-0018.; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; [ADR-0024](../adr/0024-backend-session-foundation.md); [ADR-0025](../adr/0025-opaque-session-candidate.md); Proposed ADR-0026
+**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.10.2; UC-02 v0.8.3; [SAD-03](../architecture.md) v0.19.1; [logical entities](../../contracts/data-model.json) v0.13; owner-authorised ADR-0004 implementation; ADR-0007–ADR-0017.; Proposed ADR-0018.; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; [ADR-0024](../adr/0024-backend-session-foundation.md); [ADR-0025](../adr/0025-opaque-session-candidate.md); Proposed ADR-0026; Proposed ADR-0028 v0.1
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 ## Ownership and relationships
@@ -171,3 +171,11 @@ New 009 adds finite millisecond Task.created_at with an immutable-origin trigger
 ## SP-03 current local handoff — 2 November 2026
 
 The registered SP-03 now implements createTask/listTasks/getTask and the existing-design Task UI against Workspace 0.2.12, logical model 0.12 and additive draft 009. See [execution evidence](reports/SP-03-2026-11-02-execution.md) for final actual command results/source identity and limits. Prior support/checkpoint paragraphs above are historical stages; they do not mean these handlers are still absent. Business audit uses UC-03 backlog-item-create; durable replay operation remains createTask. Current access precedes original snapshot disclosure; creation time is immutable server time. No Task edit/reorder/Sprint/Knowledge/AI handler is added. Formal Proposed ADR/release/independent gates remain open; no development upgrade or new Git publication.
+
+## SP-04 selected policy and proposed mutation storage — 3 November 2026
+
+The actual [owner directions](../implementation/features/sp-04-update-task/owner-decisions.md) select separate edit authority, enabled same-project new assignees/null, and permanent original Task200/Blocker201 outcomes with consumed actor/operation/key/hash. Task originals intentionally include title/description; current read/action authority precedes replay and a fresh read supplies current state. Logical JSON v0.13 refines existing Task/CapabilityGrant/IdempotencyRecord constraints and invariants only; no new entity, field, relationship, physical migration or implemented grant is implied.
+
+[Proposed ADR-0028](../adr/0028-task-mutation-authority-and-outcomes.md) bounds the proposed four private audited action grants, DB issue/revival protection, safe total typed validators and preserved 009 outcome branches. New assignment keeps target-account-before-Project order; committed replay checks current action/read but does not reapply current revision/old target eligibility or restore state. Reopen uses existing location/backlog_position and 003 generation trigger, preserves completed history and immutable created_at. Distinct blocker events advance Task revision with sequence-ordered history; proposed no-ops retain originals without fake change audit. Minimum before/after audit must have unambiguous resolvable retained references, not an unsupported digest.
+
+Future additive storage needs its own P03B brief and explicit disposable forward/reverse/repeat/refusal/old-operation evidence. Applied 001–009 and historical fixture ceilings remain unchanged. No source-only check establishes runtime permission, SQL correctness, complete historical chart data, D-07 transport or actual SP-05 race acceptance.

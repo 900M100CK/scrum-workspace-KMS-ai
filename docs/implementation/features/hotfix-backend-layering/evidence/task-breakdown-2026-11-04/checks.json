@@ -1,0 +1,58 @@
+{
+  "kind": "planning/documentation verification only",
+  "checks": [
+    {
+      "name": "metadata",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/docs/docs-metadata.mjs"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\hf42-c01-validation-1793800889039",
+      "exit_code": 0,
+      "tail": "{\n  \"checked\": 66,\n  \"changed\": []\n}\n"
+    },
+    {
+      "name": "docs-lint",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/docs/verify-docs.mjs"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\hf42-c01-validation-1793800889039",
+      "exit_code": 0,
+      "tail": "{\n  \"diagrams\": 20,\n  \"artifacts\": 35,\n  \"nodes\": 324,\n  \"edges\": 365,\n  \"runtimeEvidence\": \"not run\"\n}\n"
+    }
+  ],
+  "generated_outputs_copied": [
+    "docs/sdlc/diagrams/README.md",
+    "docs/sdlc/artifact-register.md",
+    "docs/sdlc/diagrams/architecture/README.md",
+    "docs/sdlc/diagrams/sitemap/README.md",
+    "docs/sdlc/diagrams/flowchart/README.md",
+    "docs/sdlc/diagrams/user-journey/README.md",
+    "docs/sdlc/diagrams/use-case/README.md",
+    "docs/sdlc/diagrams/c4/README.md",
+    "docs/sdlc/diagrams/sequence/README.md",
+    "docs/sdlc/diagrams/state/README.md",
+    "docs/sdlc/diagrams/data/README.md",
+    "docs/sdlc/diagrams/deployment/README.md",
+    "docs/sdlc/diagrams/development/README.md"
+  ],
+  "task_briefs": 5,
+  "missing_links": [],
+  "sp04_planned_target_inventory": [
+    "docs/implementation/features/sp-04-update-task/plan.md",
+    "services/workspace/src/projects/store.ts",
+    "services/workspace/src/tasks/store.ts",
+    "tests/workspace/task-mutation-fixture.mjs",
+    "tests/workspace/task-edit.test.mjs",
+    "tests/workspace/task-state.test.mjs",
+    "tests/workspace/task-assignment.test.mjs",
+    "tests/workspace/task-blocker.test.mjs"
+  ],
+  "outside_files_preserved": 133,
+  "outside_drift": [],
+  "scoped_whitespace_exit": 0,
+  "head_index_sp04_ref_unchanged": true,
+  "runtime_tests_run": false,
+  "implementation_dispatched": false
+}

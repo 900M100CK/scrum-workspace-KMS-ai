@@ -1,0 +1,34 @@
+[
+  {
+    "name": "build-final",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "build"
+    ],
+    "exit_code": 0,
+    "tail": "\n> scrum-workspace-kms-context@0.1.0 build\n> npm run build --workspaces --if-present\n\n\n> @sacw/web@0.1.0 build\n> tsc --noEmit && vite build\n\nvite v8.3.5 building client environment for production...\ntransforming...\n\u2713 21 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                   0.45 kB \u2502 gzip:  0.31 kB\ndist/assets/index-Cwwwh_FJ.css    3.31 kB \u2502 gzip:  1.27 kB\ndist/assets/index-DthH_Pv8.js   263.77 kB \u2502 gzip: 79.14 kB\n\n\u2713 built in 154ms\n\n> @sacw/workspace@0.1.0 build\n> tsc -p tsconfig.build.json\n\n\n> @sacw/knowledge@0.1.0 build\n> tsc -p tsconfig.build.json\n\n"
+  },
+  {
+    "name": "controller-final",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "--test",
+      "tests/workspace/task-ui-controller.test.mjs",
+      "tests/workspace/task-mutation-ui-controller.test.mjs"
+    ],
+    "exit_code": 0,
+    "tail": "ed request input (0.9814ms)\n\u2714 only current advisory create authority and valid bounded supported input permit a persisted mutation (1.6422ms)\n\u2714 blocked or silently discarded browser storage sends no mutation while current reads still work (2.1631ms)\n\u2714 late reads cannot restore a revoked task, list or advisory create controls (0.9714ms)\n\u2714 cursor conflict discards previous pages and loads a fresh first page without stale accumulation (0.9605ms)\n\u2714 malformed, wrong-project and secret-bearing protected output is withheld; malformed 201 preserves original recovery identity (1.9589ms)\n\u2714 explicit sign-out cleanup removes the stored operation while expiry alone retains it for the same actor (2.256ms)\n\u2139 tests 14\n\u2139 suites 0\n\u2139 pass 14\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 236.0363\n"
+  },
+  {
+    "name": "docs-test-final",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "--test",
+      "tests/docs/docs.test.mjs"
+    ],
+    "exit_code": 0,
+    "tail": "flowchart adapter compares labels, direction and parallel-edge counts (17.137ms)\n\u2714 invalid XML and dangling/undirected edges fail closed (1.5194ms)\n\u2714 current version drift and missing rows fail; historical versions are allowed (0.7448ms)\n\u2714 journey actors and scores are compared, not merely grammar-checked (8.6635ms)\n\u2714 current prose references cannot disagree with headers while historical snapshots can (0.4504ms)\n\u2714 current linked input aliases use target versions while snapshot evidence stays historical (0.2998ms)\n\u2714 design pairs reject reversed sequence handoffs and changed native multiplicities (73.1221ms)\n\u2714 physical diagram entity inventory matches owned CREATE TABLE definitions (6.0367ms)\n\u2139 tests 20\n\u2139 suites 0\n\u2139 pass 20\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 4898.8757\n"
+  }
+]

@@ -1,0 +1,61 @@
+{
+  "executed_at": "2026-11-03T14:24:49.712Z",
+  "environment": {
+    "node": "v24.21.0",
+    "cwd": "d:/scrum-workspace-KMS-ai",
+    "git_branch": "codex/sp-04",
+    "base_head": "6b837fd52e01709f72bfe2de6cb96f0e9cc52653"
+  },
+  "checks": [
+    {
+      "name": "node-version",
+      "command": "\"C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe\" --version",
+      "exitCode": 0
+    },
+    {
+      "name": "context:lint",
+      "command": "\"C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe\" --check scripts/verify-context.mjs && \"C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe\" --check scripts/context/verify-api-routing.mjs && \"C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe\" --check tests/context/context.test.mjs",
+      "exitCode": 0
+    },
+    {
+      "name": "context:check",
+      "command": "\"C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe\" scripts/verify-context.mjs",
+      "exitCode": 0
+    },
+    {
+      "name": "context:test",
+      "command": "\"C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe\" --test tests/context/context.test.mjs",
+      "exitCode": 0
+    },
+    {
+      "name": "contracts:test",
+      "command": "\"C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe\" --test tests/contracts/contract-schemas.test.mjs tests/contracts/handoff-bytes.test.mjs",
+      "exitCode": 0
+    },
+    {
+      "name": "docs:sync-metadata",
+      "command": "\"C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe\" scripts/docs/docs-metadata.mjs",
+      "exitCode": 0
+    },
+    {
+      "name": "docs:lint",
+      "command": "\"C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe\" scripts/docs/verify-docs.mjs",
+      "exitCode": 0
+    },
+    {
+      "name": "docs:test",
+      "command": "\"C:/Users/MCK/AppData/Local/Temp/kms-node24/node-v24.21.0-win-x64/node.exe\" --test tests/docs/docs.test.mjs",
+      "exitCode": 0
+    },
+    {
+      "name": "whitespace-check",
+      "command": "git diff --check contracts/ docs/ specs/",
+      "exitCode": 0
+    },
+    {
+      "name": "diff-stat",
+      "command": "git diff --stat contracts/openapi/workspace.openapi.json contracts/README.md docs/sdlc/api-design.md specs/004-update-task.md docs/sdlc/artifact-register.md docs/sdlc/test-plan.md docs/ux/wireframe-workplan.md",
+      "exitCode": 0
+    }
+  ]
+}

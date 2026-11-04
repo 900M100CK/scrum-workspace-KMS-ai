@@ -1,0 +1,19 @@
+▶ HF42-RF03 actual010 unexpected-null rollback contract and recorded-denial distinctions
+  ✔ legitimate false/zero and204 outcome objects with null body retain normal commit semantics (280.2479ms)
+  ✔ known thrown callback failure rolls back actual attempted business effects before COMMIT (55.0453ms)
+  ✔ unexpected null with no recorded denial must roll back Task, audit and immutable original outcome (50.02ms)
+  ✔ protected HTTP null fault returns the existing generic503 envelope without internal detail (110.5561ms)
+  ✔ ordinary authentication denial never runs callback or invents clock-fault audit (14.0325ms)
+  ✔ actual initial/final clock faults retain their durable latch/audit while withholding business effects (238.9344ms)
+  ✔ actual lost COMMIT acknowledgement remains unknown and original-key replay does not mutate twice (130.4407ms)
+✔ HF42-RF03 actual010 unexpected-null rollback contract and recorded-denial distinctions (5481.1589ms)
+ℹ {"fixture":"sp01-p08-test-4aca3a364f77","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","ceiling":"010","scope":"Controlled callbacks on actual PostgreSQL; not a production incident or new public mutation"}
+ℹ {"case":"unexpected-null","reachedNull":true,"returnedNull":false,"failureStatus":503,"before":{"task":{"title":"Synthetic transaction original","description":"","revision":"1"},"audits":"1","outcomes":"1"},"after":{"task":{"title":"Synthetic transaction original","description":"","revision":"1"},"audits":"1","outcomes":"1"}}
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5943.9035

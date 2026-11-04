@@ -1,0 +1,16 @@
+▶ SP04 state handler and completed placement persistence
+  ✔ explicit authority, concealed foreign targets and strict request validation (80.9075ms)
+  ✔ all direct transitions and no-ops; stale and changed-input retries preserve state (1247.9242ms)
+  ✔ both completed reopen targets normalize atomically, append exact numeric position and preserve allocation (165.2708ms)
+  ✔ audit/outcome/update faults roll back and original-key retries recover; overflow rejects change (384.6697ms)
+  ✔ concurrent revision writes have one winner; duplicate requests commit once; revoked replay denies (164.8202ms)
+  ✔ session expiry after actual Task lock withholds mutation (507.2661ms)
+✔ SP04 state handler and completed placement persistence (9125.1918ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9532.1883

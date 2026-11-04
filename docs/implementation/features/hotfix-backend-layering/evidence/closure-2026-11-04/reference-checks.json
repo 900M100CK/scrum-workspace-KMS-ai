@@ -1,0 +1,68 @@
+{
+  "node": "v24.22.1",
+  "head": "dcd2d815a173f8adfd71619fcc00f84880d88636",
+  "template": "3c65f5cbefa7d69a75cadd89b177e3add8b400b0",
+  "reference_sources_unchanged": true,
+  "checks": [
+    {
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "context:lint"
+      ],
+      "cwd": "C:\\Users\\MCK\\.codex\\worktrees\\hotfix-backend-layering\\scrum-workspace-KMS-ai",
+      "exit_code": 0,
+      "log": "reference-context-lint.log",
+      "tail": "\n> scrum-workspace-kms-context@0.1.0 context:lint\n> node --check scripts/verify-context.mjs && node --check scripts/context/verify-api-routing.mjs && node --check tests/context/context.test.mjs\n\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "context:check"
+      ],
+      "cwd": "C:\\Users\\MCK\\.codex\\worktrees\\hotfix-backend-layering\\scrum-workspace-KMS-ai",
+      "exit_code": 0,
+      "log": "reference-context-check.log",
+      "tail": "\n> scrum-workspace-kms-context@0.1.0 context:check\n> node scripts/verify-context.mjs\n\n{\n  \"requirements\": 69,\n  \"withdrawn\": [\n    \"FR-45\"\n  ],\n  \"scope\": {\n    \"Must\": 60,\n    \"Should\": 4,\n    \"Wont\": 1,\n    \"Could\": 4\n  },\n  \"services\": 2,\n  \"operations\": 66,\n  \"specs\": 13,\n  \"referenceCases\": 25,\n  \"research\": {\n    \"cases\": 25,\n    \"groups\": {\n      \"doc\": 8,\n      \"state\": 8,\n      \"both\": 9\n    },\n    \"results\": \"not run; reference definitions only\"\n  },\n  \"runtimeEvidence\": \"not run\"\n}\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "context:test"
+      ],
+      "cwd": "C:\\Users\\MCK\\.codex\\worktrees\\hotfix-backend-layering\\scrum-workspace-KMS-ai",
+      "exit_code": 0,
+      "log": "reference-context-test.log",
+      "tail": "removed Draft lifecycle (1.2302ms)\n\u2714 revision scenario cannot overwrite an existing cited identity (2.0193ms)\n\u2714 unsaved editor scenario must stay outside ingested evidence (1.9037ms)\n\u2714 matching observation revision cannot hide a different value (1.7354ms)\n\u2714 source-task fixture links cannot cross projects (0.9683ms)\n\u2714 observations without source rows cannot be used as operational evidence (0.666ms)\n\u2139 tests 45\n\u2139 suites 0\n\u2139 pass 45\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 490.3398\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "docs:lint"
+      ],
+      "cwd": "C:\\Users\\MCK\\.codex\\worktrees\\hotfix-backend-layering\\scrum-workspace-KMS-ai",
+      "exit_code": 0,
+      "log": "reference-docs-lint.log",
+      "tail": "\n> scrum-workspace-kms-context@0.1.0 docs:lint\n> node scripts/docs/verify-docs.mjs\n\n{\n  \"diagrams\": 20,\n  \"artifacts\": 35,\n  \"nodes\": 324,\n  \"edges\": 365,\n  \"runtimeEvidence\": \"not run\"\n}\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "docs:test"
+      ],
+      "cwd": "C:\\Users\\MCK\\.codex\\worktrees\\hotfix-backend-layering\\scrum-workspace-KMS-ai",
+      "exit_code": 0,
+      "log": "reference-docs-test.log",
+      "tail": "hecked (3.6909ms)\n\u2714 current prose references cannot disagree with headers while historical snapshots can (0.4253ms)\n\u2714 current linked input aliases use target versions while snapshot evidence stays historical (0.348ms)\n\u2714 design pairs reject reversed sequence handoffs and changed native multiplicities (58.8525ms)\n\u2714 physical diagram entity inventory matches owned CREATE TABLE definitions (3.7235ms)\n\u2139 tests 20\n\u2139 suites 0\n\u2139 pass 20\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 41923.2098\n"
+    }
+  ]
+}

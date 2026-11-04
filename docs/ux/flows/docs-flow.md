@@ -1,9 +1,9 @@
 # User Flow: Knowledge Management (Docs & Versions)
 
 **Artifact ID:** UX-FLOW-DOCS-02\
-**Version/date:** 0.9 Draft · 25 October 2026
+**Version/date:** 0.9.3 Draft · 4 November 2026
 **Status:** Owner-confirmed policy direction; UI, diagram and runtime verification pending.\
-**Sources:** PRD-01 v0.9; UC-02 v0.8 (UC-06/UC-07); SAD-03 v0.16; ADR-0007/0009/0011/0013/0017; Workspace OpenAPI v0.2.8 / Knowledge v0.2.9\; Proposed ADR-0022
+**Sources:** PRD-01 v0.10.2; UC-02 v0.8.3 (UC-06/UC-07); SAD-03 v0.19.1; ADR-0007/0009/0011/0013/0017; Workspace OpenAPI v0.2.8 / Knowledge v0.2.9\; Proposed ADR-0022
 **Trace:** BR-01, BR-04, BR-05, BR-07, BR-08, BR-10, BR-11, BR-12, BR-14; FR-04, FR-10–FR-15, FR-19, FR-31, FR-39, FR-46–FR-48, FR-50–FR-52, FR-55, FR-59, FR-61; SC-05, SC-06. FR-45 is Withdrawn, with replacement/history assertions under AC-11.
 
 ## 1. Creation and immutable revisions

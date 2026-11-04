@@ -1,0 +1,47 @@
+{
+  "matching_predicates": [
+    {
+      "path": "services/workspace/src/projects/store.ts",
+      "caller": "projectAccess",
+      "action": "membership-manage"
+    },
+    {
+      "path": "services/workspace/src/tasks/store.ts",
+      "caller": "create",
+      "action": "backlog-author"
+    },
+    {
+      "path": "services/workspace/src/tasks/store.ts",
+      "caller": "edit",
+      "action": "task-edit"
+    },
+    {
+      "path": "services/workspace/src/tasks/store.ts",
+      "caller": "setState",
+      "action": "task-state"
+    },
+    {
+      "path": "services/workspace/src/tasks/store.ts",
+      "caller": "assign",
+      "action": "task-assign"
+    },
+    {
+      "path": "services/workspace/src/tasks/store.ts",
+      "caller": "recordBlocker",
+      "action": "task-blocker"
+    }
+  ],
+  "excluded": [
+    "Project list capability aggregation",
+    "effective last membership manager query",
+    "batch Task discovery ANY query",
+    "private grant/provenance provisioning"
+  ],
+  "ceilings": {
+    "session": "006",
+    "project": "008",
+    "task create/read": "009",
+    "new helper/null and mutation": "010"
+  },
+  "hotfix_section42_preserved_before_rf04": true
+}

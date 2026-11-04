@@ -1,0 +1,22 @@
+{
+  "checked": 66,
+  "changed": [
+    "docs/sdlc/diagrams/README.md",
+    "docs/sdlc/artifact-register.md",
+    "docs/ux/sitemap.md",
+    "docs/sdlc/diagrams/review-2026-10-16.md",
+    "docs/sdlc/diagrams/review-2026-10-17.md",
+    "docs/sdlc/diagrams/design-foundation-2026-10-17.md",
+    "docs/sdlc/diagrams/architecture/README.md",
+    "docs/sdlc/diagrams/sitemap/README.md",
+    "docs/sdlc/diagrams/flowchart/README.md",
+    "docs/sdlc/diagrams/user-journey/README.md",
+    "docs/sdlc/diagrams/use-case/README.md",
+    "docs/sdlc/diagrams/c4/README.md",
+    "docs/sdlc/diagrams/sequence/README.md",
+    "docs/sdlc/diagrams/state/README.md",
+    "docs/sdlc/diagrams/data/README.md",
+    "docs/sdlc/diagrams/deployment/README.md",
+    "docs/sdlc/diagrams/development/README.md"
+  ]
+}

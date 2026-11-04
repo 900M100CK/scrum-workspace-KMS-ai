@@ -1,0 +1,497 @@
+{
+  "artifact_id": "SP04-P03A2-CHECKS",
+  "version": "0.1",
+  "date": "2026-11-03",
+  "node": "v24.21.0",
+  "source_baseline": {
+    "tracked_files": 918,
+    "protected_files": 202,
+    "protected_drift": [],
+    "changed_tracked_paths": [
+      "contracts/README.md",
+      "contracts/data-model.json",
+      "docs/adr/README.md",
+      "docs/architecture.md",
+      "docs/implementation/features/README.md",
+      "docs/implementation/register.md",
+      "docs/implementation/roadmap.md",
+      "docs/sdlc/PRD_SRS.md",
+      "docs/sdlc/SAD.md",
+      "docs/sdlc/api-design.md",
+      "docs/sdlc/artifact-register.md",
+      "docs/sdlc/data-design.md",
+      "docs/sdlc/diagrams/README.md",
+      "docs/sdlc/diagrams/architecture/README.md",
+      "docs/sdlc/diagrams/architecture/service-composition.drawio",
+      "docs/sdlc/diagrams/architecture/service-composition.mmd",
+      "docs/sdlc/diagrams/c4/README.md",
+      "docs/sdlc/diagrams/c4/containers.drawio",
+      "docs/sdlc/diagrams/c4/containers.mmd",
+      "docs/sdlc/diagrams/c4/system-context.drawio",
+      "docs/sdlc/diagrams/c4/system-context.mmd",
+      "docs/sdlc/diagrams/data/README.md",
+      "docs/sdlc/diagrams/data/handoff-logical-model.drawio",
+      "docs/sdlc/diagrams/data/handoff-logical-model.mmd",
+      "docs/sdlc/diagrams/data/knowledge-erd.drawio",
+      "docs/sdlc/diagrams/data/knowledge-erd.mmd",
+      "docs/sdlc/diagrams/data/workspace-erd.drawio",
+      "docs/sdlc/diagrams/data/workspace-erd.mmd",
+      "docs/sdlc/diagrams/deployment/README.md",
+      "docs/sdlc/diagrams/deployment/local-development.drawio",
+      "docs/sdlc/diagrams/deployment/local-development.mmd",
+      "docs/sdlc/diagrams/development/README.md",
+      "docs/sdlc/diagrams/development/package-ownership.drawio",
+      "docs/sdlc/diagrams/development/package-ownership.mmd",
+      "docs/sdlc/diagrams/flowchart/README.md",
+      "docs/sdlc/diagrams/flowchart/ai-qa-flow.drawio",
+      "docs/sdlc/diagrams/flowchart/ai-qa-flow.mmd",
+      "docs/sdlc/diagrams/flowchart/board-flow.drawio",
+      "docs/sdlc/diagrams/flowchart/board-flow.mmd",
+      "docs/sdlc/diagrams/flowchart/docs-flow.drawio",
+      "docs/sdlc/diagrams/flowchart/docs-flow.mmd",
+      "docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.drawio",
+      "docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.mmd",
+      "docs/sdlc/diagrams/flowchart/permission-read-flow.drawio",
+      "docs/sdlc/diagrams/flowchart/permission-read-flow.mmd",
+      "docs/sdlc/diagrams/manifest.json",
+      "docs/sdlc/diagrams/sequence/README.md",
+      "docs/sdlc/diagrams/sequence/document-creation.drawio",
+      "docs/sdlc/diagrams/sequence/document-creation.mmd",
+      "docs/sdlc/diagrams/sequence/protected-handoff.drawio",
+      "docs/sdlc/diagrams/sequence/protected-handoff.mmd",
+      "docs/sdlc/diagrams/sitemap/README.md",
+      "docs/sdlc/diagrams/sitemap/application-sitemap.drawio",
+      "docs/sdlc/diagrams/sitemap/application-sitemap.mmd",
+      "docs/sdlc/diagrams/state/README.md",
+      "docs/sdlc/diagrams/state/document-and-readiness.drawio",
+      "docs/sdlc/diagrams/state/document-and-readiness.mmd",
+      "docs/sdlc/diagrams/state/sprint-task-allocation.drawio",
+      "docs/sdlc/diagrams/state/sprint-task-allocation.mmd",
+      "docs/sdlc/diagrams/use-case/README.md",
+      "docs/sdlc/diagrams/use-case/use-case-diagram.drawio",
+      "docs/sdlc/diagrams/use-case/use-case-diagram.mmd",
+      "docs/sdlc/diagrams/user-journey/README.md",
+      "docs/sdlc/diagrams/user-journey/core-user-journeys.drawio",
+      "docs/sdlc/diagrams/user-journey/core-user-journeys.mmd",
+      "docs/sdlc/evaluation-cases.md",
+      "docs/sdlc/references/document-review-register.md",
+      "docs/sdlc/reports/SP-03-2026-11-02-execution.md",
+      "docs/sdlc/reports/SP-03-2026-11-02-ui.md",
+      "docs/sdlc/reports/SP-03-publication-2026-11-03.md",
+      "docs/sdlc/requirement-verification.md",
+      "docs/sdlc/test-coverage.md",
+      "docs/sdlc/test-plan.md",
+      "docs/sdlc/ui-ux-blueprint.md",
+      "docs/sdlc/ui-ux-spec.md",
+      "docs/sdlc/use-cases.md",
+      "docs/ux/flows/ai-qa-flow.md",
+      "docs/ux/flows/board-flow.md",
+      "docs/ux/flows/docs-flow.md",
+      "docs/ux/permission-matrix.md",
+      "docs/ux/personas.md",
+      "docs/ux/wireframe-workplan.md",
+      "docs/ux/wireframes/README.md",
+      "specs/001-session.md",
+      "specs/002-project-membership.md",
+      "specs/003-create-task.md",
+      "specs/004-update-task.md",
+      "specs/005-sprint-lifecycle.md",
+      "specs/006-document-access.md",
+      "specs/007-version-publication.md",
+      "specs/008-linked-keyword-search.md",
+      "specs/009-cited-question.md",
+      "specs/010-current-work-question.md",
+      "specs/011-audit-and-source-inspection.md",
+      "specs/012-failure-and-evaluation.md",
+      "specs/013-scoped-inspection.md",
+      "specs/README.md"
+    ],
+    "snapshots_checked": 95,
+    "snapshot_hashes_unchanged": true
+  },
+  "semantic": {
+    "FR_ids_priorities_and_requirement_text_unchanged": true,
+    "AC_ids_unchanged": true,
+    "UC_headings_and_exception_sequence_unchanged": true,
+    "TC_table_ids_unchanged": true,
+    "logical_entity_field_key_relationship_shape_unchanged": true,
+    "OpenAPI_runtime_tests_migrations_existing_ADRs_baseline_unchanged": true
+  },
+  "metadata_body_preservation": [
+    {
+      "path": "docs/architecture.md",
+      "body_unchanged": true
+    },
+    {
+      "path": "docs/sdlc/evaluation-cases.md",
+      "body_unchanged": true
+    },
+    {
+      "path": "docs/sdlc/reports/load-balancing-assessment-2026-11-03.md",
+      "body_unchanged": "not independently verified: untracked source lacked a pre-edit full-byte snapshot",
+      "scope": "Only envelope version/date and Historical inputs label were edited; reviewed input values retained. No new assessment result."
+    },
+    {
+      "path": "docs/sdlc/SAD.md",
+      "body_unchanged": true
+    },
+    {
+      "path": "docs/sdlc/ui-ux-blueprint.md",
+      "body_unchanged": true
+    },
+    {
+      "path": "docs/sdlc/ui-ux-spec.md",
+      "body_unchanged": true
+    },
+    {
+      "path": "specs/001-session.md",
+      "body_unchanged": true
+    },
+    {
+      "path": "specs/002-project-membership.md",
+      "body_unchanged": true
+    },
+    {
+      "path": "specs/003-create-task.md",
+      "body_unchanged": true
+    },
+    {
+      "path": "specs/005-sprint-lifecycle.md",
+      "body_unchanged": true
+    },
+    {
+      "path": "specs/006-document-access.md",
+      "body_unchanged": true
+    },
+    {
+      "path": "specs/007-version-publication.md",
+      "body_unchanged": true
+    },
+    {
+      "path": "specs/008-linked-keyword-search.md",
+      "body_unchanged": true
+    },
+    {
+      "path": "specs/009-cited-question.md",
+      "body_unchanged": true
+    },
+    {
+      "path": "specs/010-current-work-question.md",
+      "body_unchanged": true
+    },
+    {
+      "path": "specs/011-audit-and-source-inspection.md",
+      "body_unchanged": true
+    },
+    {
+      "path": "specs/012-failure-and-evaluation.md",
+      "body_unchanged": true
+    },
+    {
+      "path": "specs/013-scoped-inspection.md",
+      "body_unchanged": true
+    },
+    {
+      "path": "specs/README.md",
+      "body_unchanged": true
+    },
+    {
+      "path": "docs/ux/flows/ai-qa-flow.md",
+      "body_unchanged": true
+    },
+    {
+      "path": "docs/ux/flows/board-flow.md",
+      "body_unchanged": true
+    },
+    {
+      "path": "docs/ux/flows/docs-flow.md",
+      "body_unchanged": true
+    },
+    {
+      "path": "docs/ux/permission-matrix.md",
+      "body_unchanged": true
+    },
+    {
+      "path": "docs/ux/personas.md",
+      "body_unchanged": true
+    },
+    {
+      "path": "docs/ux/wireframe-workplan.md",
+      "body_unchanged": true
+    },
+    {
+      "path": "docs/ux/wireframes/README.md",
+      "body_unchanged": true
+    },
+    {
+      "path": "docs/sdlc/reports/SP-03-2026-11-02-execution.md",
+      "body_unchanged": true,
+      "frozen_input_values_unchanged": true
+    },
+    {
+      "path": "docs/sdlc/reports/SP-03-2026-11-02-ui.md",
+      "body_unchanged": true,
+      "frozen_input_values_unchanged": true
+    },
+    {
+      "path": "docs/sdlc/reports/SP-03-publication-2026-11-03.md",
+      "body_unchanged": true,
+      "frozen_input_values_unchanged": true
+    }
+  ],
+  "diagram_preservation": [
+    {
+      "path": "docs/sdlc/diagrams/architecture/service-composition.drawio",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/architecture/service-composition.mmd",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/c4/containers.drawio",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/c4/containers.mmd",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/c4/system-context.drawio",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/c4/system-context.mmd",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/handoff-logical-model.drawio",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/handoff-logical-model.mmd",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/knowledge-erd.drawio",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/knowledge-erd.mmd",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/workspace-erd.drawio",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/workspace-erd.mmd",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/deployment/local-development.drawio",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/deployment/local-development.mmd",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/development/package-ownership.drawio",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/development/package-ownership.mmd",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/ai-qa-flow.drawio",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/ai-qa-flow.mmd",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/board-flow.drawio",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/board-flow.mmd",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/docs-flow.drawio",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/docs-flow.mmd",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.drawio",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.mmd",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/permission-read-flow.drawio",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/permission-read-flow.mmd",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/sequence/document-creation.drawio",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/sequence/document-creation.mmd",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/sequence/protected-handoff.drawio",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/sequence/protected-handoff.mmd",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/sitemap/application-sitemap.drawio",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/sitemap/application-sitemap.mmd",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/state/document-and-readiness.drawio",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/state/document-and-readiness.mmd",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/state/sprint-task-allocation.drawio",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/state/sprint-task-allocation.mmd",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/use-case/use-case-diagram.drawio",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/use-case/use-case-diagram.mmd",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/user-journey/core-user-journeys.drawio",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    },
+    {
+      "path": "docs/sdlc/diagrams/user-journey/core-user-journeys.mmd",
+      "graph_preserved": true,
+      "generated_metadata_only": true
+    }
+  ],
+  "execution_manifest": "executions.json",
+  "limits": "Source/schema/context checks only; ADR-0028 Proposed. No runtime/DB/DOM/browser/concurrency/load/SP-05 integration evidence.",
+  "final_checks": [
+    {
+      "name": "source-scope-final",
+      "executable": "C:\\Users\\MCK\\AppData\\Local\\Temp\\kms-node24\\node-v24.21.0-win-x64\\node.exe",
+      "args": [
+        "docs/implementation/features/sp-04-update-task/evidence/p03a2/verify-source-scope.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "metadata-check-final",
+      "executable": "C:\\Users\\MCK\\AppData\\Local\\Temp\\kms-node24\\node-v24.21.0-win-x64\\node.exe",
+      "args": [
+        "scripts/docs/docs-metadata.mjs",
+        "--check"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "docs-lint-final",
+      "executable": "C:\\Users\\MCK\\AppData\\Local\\Temp\\kms-node24\\node-v24.21.0-win-x64\\node.exe",
+      "args": [
+        "scripts/docs/verify-docs.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "whitespace-final",
+      "command": "git diff --check -- <actual changed tracked and current feature paths>",
+      "exit": 0
+    }
+  ],
+  "local_links": {
+    "targets_checked": 1141,
+    "new_missing": [],
+    "pre_existing_missing": [],
+    "note": "Existing missing links are classified against actual before-images; Markdown anchors are not browser-validated."
+  },
+  "actual_test_totals": {
+    "context": 45,
+    "contracts": 27,
+    "docs": 20,
+    "runtime": "not run"
+  },
+  "failure_records": [
+    "docs-lint-first.log",
+    "docs-lint-second.log",
+    "docs-lint-third.log",
+    "preservation-first-failure.json",
+    "source-scope-check.log"
+  ]
+}

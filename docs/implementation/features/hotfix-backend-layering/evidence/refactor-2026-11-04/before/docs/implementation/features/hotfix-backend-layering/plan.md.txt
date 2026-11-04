@@ -1,0 +1,123 @@
+# Backend §4.2 documentation hotfix
+
+**Artifact ID:** HOTFIX-BACKEND-42-01\
+**Version/date:** 0.5 Draft · 4 November 2026\
+**Work kind:** Hotfix, documentation only\
+**Status:** Original documentation/publication receipts reconciled with bounded author checks. No runtime or independent acceptance.\
+**Planning mode:** Plan mode used in the preceding conversation; this written registration precedes checks and architecture edits.\
+**Inputs:** Base commit 6b837fd; [frozen sources](evidence/source-inputs.json); PRD-01 v0.9; SAD-03 v0.16; SAD-03-ENTRY v0.15; PLAN-01 v0.4; SP-03 v0.8; current base SP-04 header in snapshot.\
+**Owner authorisation:** Explicit request to implement the supplied plan on 4 November 2026; no commit/push/merge authority.\
+**Trace:** SP-03.1–03.4 / FR-05 / AC-05 / BR-02 / SC-01; SP-04.1–04.4 reading dependency only; BR-01/10/11/14 for identity, authority, audit and denial invariants. No FR/AC change or acceptance closure.
+
+## Goal and parent registration
+
+The observed documentation gap is that §4.2 states dependency invariants but does not describe the inspected Task/Project store structure, transaction/denial protocol or bounded read/pagination limits. Reproduction: inspect §4.2 at the base commit and compare the named source symbols. The null-without-denied type risk is an extension risk, not a reproduced runtime incident.
+
+Deliver the owner-provided English description, preserving the original three invariants and operational behaviour. Parent [PLAN-01 Month 1](../../../planning/five-month-plan.md) / [M-02–M-03 roadmap](../../roadmap.md), [SP-03](../../../../specs/003-create-task.md) / [implementation pack](../../tasks/03-create-task.md) and [SP-04](../../../../specs/004-update-task.md) / [pack](../../tasks/04-update-task.md). Registration: [feature register](../README.md), [source register](../../register.md), [central register](../../../sdlc/artifact-register.md). This is an owner-authorised coordinated documentation scope outside canonical runtime spec paths.
+
+## Boundaries and recovery
+
+Branch codex/hotfix-backend-layering in a managed worktree from 6b837fd. Keep source checkout codex/sp-04, its staging and all existing edits untouched. No copied brainstorming or uncommitted SP-04 sources. No runtime, schema, API/type/contract, dependency manifest/lockfile, accepted ADR, baseline, diagram graph or historical evidence edits. No new ADR, providers, agents, commits, publication or database tests.
+
+Architecture/entry may change only §4.2, version/date, entry self-version and a bounded change record. Metadata-only downstream scope must be enumerated in T02 before editing. Record baseline failures; do not fix unrelated failures to pass gates. Recovery is selective reversion of this hotfix in its isolated worktree, never reset/stash the source. Keep worktree for review; integration later must reconcile §4.2 and current metadata with SP-04, not overwrite whole files.
+
+## Tasks and actual results
+
+| Task | Reviewable result | Dependencies | Status / evidence |
+| --- | --- | --- | --- |
+| [HF42-T01](tasks/HF42-T01-register.md) | Registered plan and frozen sources | Owner request | Complete; registered in four parents; [source snapshot](evidence/source-inputs.json) |
+| [HF42-T02](tasks/HF42-T02-layering.md) | §4.2, entry and metadata only | T01; baseline preserved | Complete within scope; §4.2/entry and enumerated metadata; source preservation verified |
+| [HF42-T03](tasks/HF42-T03-verification.md) | Verification and integration handoff | T02 | Complete; original gap preserved in evidence and resolved by [HF42-F01](tasks/HF42-F01-source-link.md) |
+| [HF42-F01](tasks/HF42-F01-source-link.md) | Stage6 source-link correction | T03 finding and explicit owner direction | Complete; original F01 evidence retained |
+| [HF42-P01](tasks/HF42-P01-publication.md) | Original bounded publication | T01–T03/F01 | Verified original publication: local and live origin/main match dcd2d81; C01 retains the original source-snapshot receipt |
+| [HF42-C01](tasks/HF42-C01-documentation-closure.md) | Reconciled documentation/publication closure | Owner selection2; existing evidence | Verified bounded closure: reference and projection context45/45, docs20/20, metadata66; live ref/source/links/preservation evidence in closure-2026-11-04 |
+
+## Verification and acceptance
+
+Use Node 24+; install via npm ci only if needed, preserving package manifests and lockfile. Before target edits and after them run: npm run context:lint, npm run context:check, npm run context:test, npm run docs:lint, npm run docs:test. Also check local links and git diff --check. Logs and exit codes go under evidence/. No new handler behaviour is verified.
+
+Accept only when every §4.2 factual claim has source/symbol support; Task ordering is scoped; source checkout digest/staging is unchanged; runtime/contracts/migrations/history/diagram semantics are preserved; current metadata and links agree; required structural checks pass. Pre-existing mandatory failures remain visible and prevent full closure. Baseline/final comparison is not independent review or runtime acceptance. DB/HTTP/DOM/browser/provider suites are deliberately not run because behaviour is unchanged.
+
+## Handoff
+
+[Integration and result report](handoff.md) will enumerate exact changes, source references, actual checks, failures, unrun runtime gates, rollback and SP-04 conflict handling. No automatic integration. Reopen this plan at continuation and keep all mutable task results here.
+
+
+## Historical verification and remaining gap — 4 November 2026
+
+[Final checks](evidence/final-checks.json) pass: context:lint, context:check, context:test 45/45, docs:lint, docs:test 20/20 on Node24.22.1. Initial setup and introduced metadata-date failures are preserved in baseline/after-edit logs; exact pinned submodule setup and preserving original diagram dates resolved them without changing test expectations, gitlinks or template sources.
+
+[Preservation](evidence/preservation.json) proves the source checkout digest/staging/branch unchanged, diagram graph bodies/dates and historical sections unchanged, no code/contracts/schema/lockfile changes, and architecture content outside §4.2/header/change record preserved. The wide link scan retains one pre-existing UI blueprint source-link failure, [HF42-F01](tasks/HF42-T03-verification.md#hf42-f01--pre-existing-source-link). Therefore overall acceptance is not closed. This is not deferred mandatory testing or a claimed pass: the scan executed and its inherited failure remains explicit. Every new hotfix link resolves. No new runtime behaviour was tested. No commit/publication/integration.
+
+
+## HF42-F01 authorised continuation — 4 November 2026
+
+Owner explicitly requested fixing the remaining header source-link gap. Plan mode is unavailable in this execution turn; this saved amendment provides the written planning gate before the correction. Earlier Plan-mode preparation and original negative results remain unchanged.
+
+Scope: change only the Stage 6 profile link in the UI blueprint Inputs header from `../agents/06-ui-ux.md` to `../../agents/06-ui-ux.md`; bump the blueprint to 1.7.2 and current wireframe input/own metadata to UX-WF-EX-01 0.5.2. No design body, frames, runtime, permission, contract or schema change. Current metadata/register updates: IMPL-FEATURES-01 0.32, IMPL-REG-01 0.37, IMPL-ROADMAP-01 0.25, REG-00 0.105, UML-07 0.24, DOC-REVIEW-REG-01 0.44.2. Exact paths and pre-images: evidence/f01-before-images.json; generated group READMEs already enumerated in T02 remain metadata-only. Plan/brief/result amendments are within this owning feature folder.
+
+Task: [HF42-F01](tasks/HF42-F01-source-link.md), dependent on original T03 finding. Same PLAN-01 Month 1 / M-02–M-03 / SP-03–SP-04 support trace; this is source navigation only, not an added FR/AC. Goal: source link resolves to the existing repository Stage 6 profile; broad hotfix link scan has no missing targets; metadata checks and whitespace pass. Verify with existing five-command runner under phase f01, link scan and body-preservation checks. Retain baseline/failure logs and do not overwrite earlier evidence. Recovery: reverse the exact link/metadata amendment only. No commits or integration authorised.
+
+
+## HF42-F01 actual result — 4 November 2026
+
+The header source link now resolves to repository agents/06-ui-ux.md. Blueprint 1.7.2 and wireframe inventory 0.5.2 carry source metadata only; the UI design body and frames are unchanged. [F01 checks](evidence/f01-checks.json) pass all five commands (context tests45/45, docs tests20/20) on Node24.22.1. [F01 preservation/link evidence](evidence/f01-preservation.json) records zero missing local targets and clean whitespace; original failures remain in the previous logs/preservation files. HF42-F01 and the hotfix documentation acceptance are closed by author checks, without independent or runtime acceptance. No code, migrations, dependencies or contracts changed; no commits/publication/integration. Parent SP-04/release gates are unchanged.
+
+
+## Owner-authorised publication — 4 November 2026
+
+The owner explicitly requested committing and merging this canonical documentation directly into main. This later instruction supersedes earlier no-commit/no-integration restrictions for this bounded hotfix only, including publishing main to origin. Existing SP-04 work and all unrelated refs/content remain untouched. Plan mode is unavailable for this continuation; this written amendment precedes publication checks and Git mutations.
+
+[HF42-P01](tasks/HF42-P01-publication.md) covers exact-diff staging, agent-identity commit with Co-Authored-By, fast-forward integration from base6b837fd into local main, ordinary non-force push to origin/main, and remote ref confirmation. Same registered parent and scope; no additional code/design change or deletion of branches/worktrees. Remote main was fetched and matches base6b837fd. Use the exact original70-path metadata allowlist plus this feature folder; explicitly include the ignored evidence logs. Retain prior negative evidence. Recheck five structural gates and whitespace before commit. Keep the branch/worktree available; final actual commit/ref results are reported in the chat, not predicted in this source snapshot. Runtime/deployment and independent acceptance remain unclaimed.
+
+HF42-P01 status at source snapshot: remote baseline and exact scope confirmed; five publication gates pass ([checks](evidence/publication-checks.json)); source snapshot ready for authorised commit/fast-forward/push. Final Git outcomes will be reported after execution. Previously completed documentation tasks retain their original evidence.
+
+
+## C01 owner-selected documentation closure — 4 November 2026
+
+The owner chose documentation closure before any runtime refactor and rejected a bundled runner/actions-discovery sequence. Current request authorises only reconciliation of the existing hotfix. Plan mode unavailable; this written gate precedes checks and edits. Keep current branch codex/hotfix-backend-layering; SP-04 checkpoint e6f2337 and all unrelated dirty/untracked work remain untouched. This supersedes the earlier source-checkout location description only; it grants no merge, push, commit or runtime change. Evidence: evidence/closure-2026-11-04/initial-git.json and outside-before.json.
+
+New bounded [HF42-C01](tasks/HF42-C01-documentation-closure.md): confirm existing T01/T02/T03/F01, reconcile P01 actual commit/local-main/live-origin refs, preserve historical reports and source/negative evidence, and record that the original runtime mechanism plus the Project FOR UPDATE and full-projection/in-memory 50-item pagination limits are documented. Parent PLAN-01 Month1 / M-02–M-03 / SP-03.1–03.4 / FR-05/AC-05/BR-02/SC-01 and supporting BR-01/10/11/14; SP-04 reading dependency only. No FR/AC or accepted ADR changes.
+
+Allowed writes: this feature folder, registration/version/result navigation only in docs/implementation/features/README.md, docs/implementation/register.md, docs/implementation/roadmap.md, docs/sdlc/artifact-register.md; current registration metadata only in docs/sdlc/diagrams/manifest.json, README.md and existing generated group README files; input/version navigation only in docs/sdlc/references/document-review-register.md. No architecture/body graph, runtime, contract, migration, dependency, baseline, old evidence, template checkout, SP-04 ref or unrelated file edits. Current worktree is dirty with an owner template checkout different from the pin; do not reset it to run checks.
+
+Verification order: inspect the existing clean reference worktree at dcd2d81 with exact3c65f5c template; run Node24 context:lint/check/test and docs:lint/test there, recording commands/exits under new closure evidence. Read live origin/main with git ls-remote (read-only, no fetch/ref mutation); distinguish live evidence from cached refs. Then export committed dcd2d81 into a unique .tmp validation directory with git archive, include the exact pinned template archive and only closure-owned changed files. Reuse installed dependency directories through local junctions, with no installs or dependency edits. Run the same five checks and metadata check on this bounded validation projection. Validate closure-local links, source anchors, scoped whitespace, index/ref identity and hashes of all pre-existing dirty/untracked files. These are structural/source/ref checks, not new handler, load, PG, HTTP, DOM/browser or independent acceptance. Preserve failures; if a mandatory check fails, correct only this closure's cause or report the actual blocker. Recovery reverses only closure-owned edits against before-images; never reset/stash/delete unrelated work or write to reference worktree sources.
+
+Deferred design disposition, not new executable tasks: any shared hasCapability/query reuse and unexpected-null rejection belong to a separately scoped small SP-04 task if later requested; preserve exact SQL/behaviour. A null guard may stay in the existing transaction and needs an explicitly stated generic503 failure plus real PostgreSQL rollback/denial/clock evidence with each fixture ceiling. Runner extraction and actions-discovery separation await concrete demand. No refactor is dispatched or adopted by this closure.
+
+
+C01 verification-environment note: the full metadata synchronizer touched four pre-existing dirty headers despite the closed allowlist. Before further work, each complete file was reconstructed and accepted only when its full SHA-256 matched the original outside-before capture; all four match. The retained metadata-preservation-recovery.json records the exact scope. No runtime/contract/source behaviour changed. All remaining generator/check work runs on the bounded projection; the owner checkout and unrelated source bytes are preserved.
+
+
+C01 projection attempt1: context lint/check/tests45/45 and metadata pass; docs lint/test reject the prior SP-03 publication receipt REG-00 v0.106 being parsed as a current claim after the register became0.107. Prefix only that existing receipt heading with Historical, preserving its body/results, then rerun affected projection gates. Original negative logs remain under closure-2026-11-04.
+
+
+## C01 actual author-verification result — 4 November 2026
+
+HF42-C01 closes the bounded documentation reconciliation, not a new runtime feature. Original T01/T02/T03/F01 remain backed by their original evidence; P01 publication is now independently confirmed by live origin/main=dcd2d815a173f8adfd71619fcc00f84880d88636 and matching local refs. Existing mechanism and Project FOR UPDATE / full-projection in-memory pages50 are verified as source statements. No runtime refactor was implemented or adopted.
+
+Reference rerun: all five gates pass, context45/45 and docs20/20. Closure projection: context lint/check/tests45/45 and metadata pass in attempt1; docs initially reject an old REG00 receipt being parsed as current. Marking only its heading Historical preserves its original result; attempt2 docs lint/tests20/20 and metadata pass. All attempts remain under evidence/closure-2026-11-04. Final closure-local targets, authored whitespace, exact outside hashes and source/index/ref assertions are recorded in final-closure-checks.json.133 pre-existing outside files remain byte-identical; original runtime/contract/schema/dependency sources, HEAD, index and SP-04 e6f2337 are unchanged. The clean reference checkout was not modified.
+
+The owner checkout's unrelated dirty documents and non-pinned template were not reset or relabelled as a clean-checkout pass. Checks ran on explicitly identified clean reference/closure projections with the exact pinned template and existing libraries, without installs. Original source/evidence and metadata-recovery observations remain retained. DB/HTTP/DOM/browser/load/provider/evaluation/independent review and remote CI were not run. There is no new commit, push, merge or service/permission decision. Future shared-query/null work belongs to separately scoped SP-04 implementation if requested; runner/actions-discovery remain unstarted pending concrete need.
+
+
+## Owner-requested small-task breakdown — 4 November 2026
+
+The owner requested small task breakdown after choosing documentation closure first. This is planning/brief authoring only: Plan mode is unavailable, and no implementation/test campaign/branch switch/commit is started. Original hotfix results above remain unchanged. Five handoff briefs refine the already discussed shared-query/null follow-up; they do not reopen completed documentation tasks, adopt a larger architecture or execute runtime work.
+
+The current checkout is the older hotfix source, while FEAT-SP04-01 v0.14 / SP-04 v0.7.4 lives in codex/sp-04 at e6f2337. Therefore these briefs are prepared here as handoff drafts, not a second SP-04 plan. RF01 must reconcile and register them in the existing owning feature before code or test changes. This hotfix plan owns only draft preparation; future mutable implementation status belongs solely to FEAT-SP04-01. Do not import that plan wholesale into this checkout or overwrite its newer runtime. Same PLAN-01 Month1 / M-02–M-03 trace; proposed future SP-04.2–04.4 / FR-09/40/43/44 and supporting FR-03/31/59/68, BR-01/02/10/11/14.
+
+| Prepared handoff brief | Single outcome | Prerequisite | Preparation state |
+| --- | --- | --- | --- |
+| [HF42-RF01](tasks/HF42-RF01-source-registration.md) | Current source/caller map and registration in existing SP-04 plan | Original hotfix closed; owner breakdown request | Draft prepared; future adoption only |
+| [HF42-RF02](tasks/HF42-RF02-shared-capability-query.md) | Shared identical capability SQL and real PG producer negatives | RF01 registered | Draft prepared; not implemented |
+| [HF42-RF03](tasks/HF42-RF03-unexpected-null-contract.md) | Explicit generic503/rollback contract and real red regression for unexpected null | RF02 verified | Draft prepared; proposed contract, not adopted/executed |
+| [HF42-RF04](tasks/HF42-RF04-unexpected-null-guard.md) | Minimal guard inside current transaction, preserving recorded denial/clock/commit behaviour | RF03 contract and reproduction | Draft prepared; not implemented |
+| [HF42-RF05](tasks/HF42-RF05-regression-handoff.md) | Combined identified regression, source preservation and SP-04 handoff | RF02/RF04 producer verification | Draft prepared; not run |
+
+Allowed current writes: this feature's plan/breakdown/README, these five task briefs and new evidence/task-breakdown-2026-11-04; registration/version navigation only in the existing feature/source/central registers and roadmap; current generated REG/UML metadata plus review-register input/version. No runtime, contracts, migrations, dependencies, accepted ADR, old evidence, SP-04 ref/plan, unrelated files or template changes. Future runtime paths are proposals in the briefs, not authority granted by this editing task.
+
+Planning acceptance: each brief has one outcome, prerequisite, closed proposed paths, invariant/FR-AC trace, explicit meaningful verification/ceiling, DoD, recovery and handoff. Preserve the original completed task IDs/results and keep implementation status out of the WBS/entry. Verify links, planned command file inventory against the actual SP-04 checkpoint, scoped whitespace and metadata/document structure in the already isolated pinned-template closure projection. Do not rerun PostgreSQL/runtime suites for task authoring. Keep helper errors/false/allow distinct; batch discovery/private grant tooling stays untouched; null correction must not erase durable recorded denial. Runner extraction and actions-discovery separation are outside this breakdown and require future concrete need, not automatic next tasks. P08 actual SP-05 integration remains open.
+
+
+Breakdown author-verification result: five individual handoff drafts and WBS/entry are prepared and registered. [Planning checks](evidence/task-breakdown-2026-11-04/checks.json) verify local targets, actual SP-04 checkpoint target-file inventory, scoped whitespace and pinned-template projection docs lint/metadata66 outputs with no drift.133 pre-existing outside files, HEAD/index and SP-04 checkpoint remain unchanged. No runtime test or implementation was executed; no runner/discovery work, branch switch, commit or publication. The next proposed outcome is RF01 source reconciliation/adoption into the existing SP-04 plan, not automatic RF02 code changes on the hotfix branch.

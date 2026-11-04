@@ -1,0 +1,16 @@
+%% Origin: docs/sdlc/diagrams/design-foundation-2026-10-17.md v0.1
+%% DGM-C4-01 v0.1.1 Draft - 18 October 2026
+%% Sources: DGM-DESIGN-01 v0.1; PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.17; DATA-04 v0.16.1; ADR-0002; ADR-0005; ADR-0007; ADR-0011; ADR-0012
+%% Trace: BR-01–BR-14; SC-01–SC-08
+%% Scope: Software system boundary; external integrations are candidates, not deployed facts.
+%% Legend: Blue: system/person. Yellow: conditional external system. AI reads only; human mutations require capability.
+flowchart LR
+    Member["Person: Project member<br/>PO / developer / Scrum Master / viewer<br/>Capabilities and source read rights are separate"]
+    System["Software system: Scrum Workspace + AI Project KMS<br/>Scrum work, immutable knowledge, scoped retrieval, exact citations and audit"]
+    Gen["External software system: Generation provider<br/>Candidate cloud or local provider; not selected"]
+    Embed["External software system: Embedding provider<br/>Candidate model/service; not selected"]
+    Identity["External software system: Identity provider<br/>Only if external identity is selected; local identity remains an alternative"]
+    Member -->|"Uses permitted work, knowledge and inspection"| System
+    System -->|"Sends guarded permitted evidence; receives draft"| Gen
+    System -->|"Embeds permitted text / query; receives vectors"| Embed
+    System -->|"Conditional identity integration"| Identity

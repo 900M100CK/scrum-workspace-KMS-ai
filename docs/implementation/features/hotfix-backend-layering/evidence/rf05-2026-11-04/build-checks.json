@@ -1,0 +1,24 @@
+[
+  {
+    "name": "typecheck",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "typecheck"
+    ],
+    "exit": 0,
+    "seconds": 8.252
+  },
+  {
+    "name": "build",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "build"
+    ],
+    "exit": 0,
+    "seconds": 6.958
+  }
+]

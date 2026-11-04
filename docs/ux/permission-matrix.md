@@ -1,9 +1,9 @@
 # Permission Matrix by Screen & Action
 
 **Artifact ID:** UX-PERM-MATRIX-02\
-**Version/date:** 0.11 Draft · 25 October 2026
+**Version/date:** 0.11.3 Draft · 4 November 2026
 **Status:** Owner-confirmed initial access/lifecycle/guard direction; additional delegation and retention rights remain open.\
-**Source versions:** BRD English v1.0; PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; ADR-0007–ADR-0011; Workspace OpenAPI v0.2.8 / Knowledge v0.2.9\; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022
+**Source versions:** BRD English v1.0; PRD-01 v0.10.2; UC-02 v0.8.3; SAD-03 v0.19.1; ADR-0007–ADR-0011; Workspace OpenAPI v0.2.8 / Knowledge v0.2.9\; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022
 **Trace:** BR-01, BR-05, BR-08, BR-10, BR-12, BR-14; FR-01–FR-04, FR-09–FR-14, FR-19–FR-21, FR-28–FR-29, FR-38–FR-39, FR-46–FR-48, FR-50–FR-52, FR-55–FR-59, FR-61, FR-68; SC-05, SC-06.\
 **Scope:** UI visibility and action states derived from current server-authorised capabilities. Capability descriptions are design terms, not new API enums or an accepted role mapping.
 

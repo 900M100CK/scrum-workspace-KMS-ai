@@ -1,0 +1,68 @@
+{
+  "node": "v24.21.0",
+  "checks": [
+    {
+      "name": "context-lint-1",
+      "executable": "C:\\Users\\MCK\\AppData\\Local\\Temp\\kms-node24\\node-v24.21.0-win-x64\\node.exe",
+      "args": [
+        "--check",
+        "scripts/verify-context.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "context-lint-2",
+      "executable": "C:\\Users\\MCK\\AppData\\Local\\Temp\\kms-node24\\node-v24.21.0-win-x64\\node.exe",
+      "args": [
+        "--check",
+        "scripts/context/verify-api-routing.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "context-lint-3",
+      "executable": "C:\\Users\\MCK\\AppData\\Local\\Temp\\kms-node24\\node-v24.21.0-win-x64\\node.exe",
+      "args": [
+        "--check",
+        "tests/context/context.test.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "context-check",
+      "executable": "C:\\Users\\MCK\\AppData\\Local\\Temp\\kms-node24\\node-v24.21.0-win-x64\\node.exe",
+      "args": [
+        "scripts/verify-context.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "context-test",
+      "executable": "C:\\Users\\MCK\\AppData\\Local\\Temp\\kms-node24\\node-v24.21.0-win-x64\\node.exe",
+      "args": [
+        "--test",
+        "tests/context/context.test.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "contracts-test",
+      "executable": "C:\\Users\\MCK\\AppData\\Local\\Temp\\kms-node24\\node-v24.21.0-win-x64\\node.exe",
+      "args": [
+        "--test",
+        "tests/contracts/contract-schemas.test.mjs",
+        "tests/contracts/handoff-bytes.test.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "docs-test",
+      "executable": "C:\\Users\\MCK\\AppData\\Local\\Temp\\kms-node24\\node-v24.21.0-win-x64\\node.exe",
+      "args": [
+        "--test",
+        "tests/docs/docs.test.mjs"
+      ],
+      "exit": 1
+    }
+  ]
+}

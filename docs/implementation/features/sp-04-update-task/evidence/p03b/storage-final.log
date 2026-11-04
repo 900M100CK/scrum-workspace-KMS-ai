@@ -1,0 +1,23 @@
+▶ SP04-P03B additive010 mutation storage, real roles and permanent originals
+  ✔ legacy keys, invalidated grants, history and both audits refuse before DDL and preserve seeded rows (42.7616ms)
+  ✔ upgrade/repeat/reverse/reapply preserve009 receipts, definitions and prior checksums (7077.4825ms)
+  ✔ each retained mutation receipt/grant/audit/event independently refuses destructive down (67.485ms)
+  ✔ total SQL validators reject NULL, every missing/extra/wrong field, unsafe values and malformed placement/time (275.3944ms)
+  ✔ all valid Task locations/states and Blocker UTC precisions/nullable outcome retain exact wire snapshots (47.0442ms)
+  ✔ new-operation status/hash/key/state/expiry/ref constraints and OLD/NEW immutability are enforced (165.0587ms)
+  ✔ actor/operation/key/hash/Task/project/event binding rejects cross-scope replay without current-state substitution (107.6583ms)
+  ✔ private action scope/uniqueness, runtime issue/revival/rewrite denial and real member removal/rejoin (186.1645ms)
+  ✔ physical blocker history rejects unsafe sequence and nonfinite time before any wire serialization (19.6325ms)
+  ✔ Task/event/audit/result writes roll back together on audit or outcome persistence failure (51.6873ms)
+  ✔ lost real COMMIT acknowledgement is unknown, with one durable original and no current-state replacement (24.5834ms)
+  ✔ old project/member/createTask and protected-handoff branches still function and old SQL checksums match (34.5705ms)
+✔ SP04-P03B additive010 mutation storage, real roles and permanent originals (13583.3332ms)
+ℹ {"fixture":"sp01-p08-test-cf0cb8d4c954","volume":"sp01-p08-test-cf0cb8d4c954-data","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","postgres":"17.10 (Debian 17.10-1.pgdg12+1)","ceiling":"explicit009 ->010"}
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13894.1339

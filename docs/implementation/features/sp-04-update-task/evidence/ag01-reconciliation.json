@@ -1,0 +1,541 @@
+{
+  "artifact_id": "SP04-AG01-RECONCILIATION",
+  "version": "0.1",
+  "date": "2026-11-03",
+  "timezone": "Asia/Saigon",
+  "branch": "codex/sp-04",
+  "head": "6b837fd52e01709f72bfe2de6cb96f0e9cc52653",
+  "original_report": {
+    "path": "docs/implementation/features/sp-04-update-task/reviews/antigravity-p01-review.md",
+    "raw_sha256": "1184ab57018c73d3812f8885939991bf2ffa15dacf4aada21ca7ff6b9ff640c2",
+    "preservation": "Original bytes retained; rechecked after integration",
+    "preserved_after_reconciliation": true
+  },
+  "source_verification": {
+    "selected_count": 42,
+    "current_snapshot_matches": 42,
+    "results": [
+      {
+        "path": "AGENTS.md",
+        "snapshot_sha256": "9031e7e58bdbef4b1fad8b656ba1a0003f7c78af4cb2b4427645a0c6cfd4aab0",
+        "actual_sha256": "9031e7e58bdbef4b1fad8b656ba1a0003f7c78af4cb2b4427645a0c6cfd4aab0",
+        "matches": true
+      },
+      {
+        "path": "docs/development-rules.md",
+        "snapshot_sha256": "a098906cb6df5ea45794d69f409fca74b094e21b522e2a72ccabdd7e80f37e89",
+        "actual_sha256": "a098906cb6df5ea45794d69f409fca74b094e21b522e2a72ccabdd7e80f37e89",
+        "matches": true
+      },
+      {
+        "path": "docs/agent-preflight-checklist.md",
+        "snapshot_sha256": "1de8f9e6ba1ae8138aafa525f4a5a7d861bd50636745b924cf7ca1d5616a6b1c",
+        "actual_sha256": "1de8f9e6ba1ae8138aafa525f4a5a7d861bd50636745b924cf7ca1d5616a6b1c",
+        "matches": true
+      },
+      {
+        "path": "agents/WORKFLOW.md",
+        "snapshot_sha256": "8c6586b3d69ef3a99ac9f5745b161bf05725f25bca230425a56acfe08d5c0f70",
+        "actual_sha256": "8c6586b3d69ef3a99ac9f5745b161bf05725f25bca230425a56acfe08d5c0f70",
+        "matches": true
+      },
+      {
+        "path": "agents/development-skills.md",
+        "snapshot_sha256": "5a561be0b816634bd29349e35743cc712625e1869f51bab803158cf710e4b120",
+        "actual_sha256": "5a561be0b816634bd29349e35743cc712625e1869f51bab803158cf710e4b120",
+        "matches": true
+      },
+      {
+        "path": "docs/BRD.md",
+        "snapshot_sha256": "2fa1da3a0d3ba2f80271e304301ba4370235fc1aafb82e1f15e1d0bfb88cdfa1",
+        "actual_sha256": "2fa1da3a0d3ba2f80271e304301ba4370235fc1aafb82e1f15e1d0bfb88cdfa1",
+        "matches": true
+      },
+      {
+        "path": "docs/baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md",
+        "snapshot_sha256": "3195aefb50314c1a5a3ff7d31c505ffc083142752cf6184a754da7c5f61d4925",
+        "actual_sha256": "3195aefb50314c1a5a3ff7d31c505ffc083142752cf6184a754da7c5f61d4925",
+        "matches": true
+      },
+      {
+        "path": "docs/planning/five-month-plan.md",
+        "snapshot_sha256": "33eef3af5de2dd269d24b42fc5837abc64fb11b152da0444fa371ad10cad5efe",
+        "actual_sha256": "33eef3af5de2dd269d24b42fc5837abc64fb11b152da0444fa371ad10cad5efe",
+        "matches": true
+      },
+      {
+        "path": "docs/sdlc/PRD_SRS.md",
+        "snapshot_sha256": "b0b013d3237cf4eb71a0c074a444c8e4ce12831ddd8b9457479a0692fd0ef8ab",
+        "actual_sha256": "b0b013d3237cf4eb71a0c074a444c8e4ce12831ddd8b9457479a0692fd0ef8ab",
+        "matches": true
+      },
+      {
+        "path": "docs/sdlc/use-cases.md",
+        "snapshot_sha256": "29475d6da902b1b3bbebae65e822cbc4c4292d122149f6c29d0cd6e154bbf616",
+        "actual_sha256": "29475d6da902b1b3bbebae65e822cbc4c4292d122149f6c29d0cd6e154bbf616",
+        "matches": true
+      },
+      {
+        "path": "docs/architecture.md",
+        "snapshot_sha256": "a99772633e51ce45cfa7301c41c39032b23a78dd8b941df9fe09345d8b943b05",
+        "actual_sha256": "a99772633e51ce45cfa7301c41c39032b23a78dd8b941df9fe09345d8b943b05",
+        "matches": true
+      },
+      {
+        "path": "docs/sdlc/data-design.md",
+        "snapshot_sha256": "c8b24f333fcafea19ab282a3e837f1f122c226d63cc05c7de777b9f010855d11",
+        "actual_sha256": "c8b24f333fcafea19ab282a3e837f1f122c226d63cc05c7de777b9f010855d11",
+        "matches": true
+      },
+      {
+        "path": "docs/sdlc/test-plan.md",
+        "snapshot_sha256": "0aec147bd2b10eaf9d2af1f63c2efc135e9f519de98e0edcc66646d74d86cf5c",
+        "actual_sha256": "0aec147bd2b10eaf9d2af1f63c2efc135e9f519de98e0edcc66646d74d86cf5c",
+        "matches": true
+      },
+      {
+        "path": "docs/implementation/tasks/04-update-task.md",
+        "snapshot_sha256": "e99e970454990a3505fcc9b0b4e15e25ce53744695e6f46cd1b2f9e19650123d",
+        "actual_sha256": "e99e970454990a3505fcc9b0b4e15e25ce53744695e6f46cd1b2f9e19650123d",
+        "matches": true
+      },
+      {
+        "path": "specs/004-update-task.md",
+        "snapshot_sha256": "c0a8bda3198643b60299c9fcd99808ee861bd4ad024f52231fd1d4c34970faab",
+        "actual_sha256": "c0a8bda3198643b60299c9fcd99808ee861bd4ad024f52231fd1d4c34970faab",
+        "matches": true
+      },
+      {
+        "path": "specs/005-sprint-lifecycle.md",
+        "snapshot_sha256": "718c003702f8da6b952131d0169f57cee2b28ecdfceb33f88e5ebc05368c9c3a",
+        "actual_sha256": "718c003702f8da6b952131d0169f57cee2b28ecdfceb33f88e5ebc05368c9c3a",
+        "matches": true
+      },
+      {
+        "path": "docs/adr/0007-document-access-model.md",
+        "snapshot_sha256": "6a6d913df26e54fb86821b2ee4eefa7240b969edccf5637407e5659f3c9e87cb",
+        "actual_sha256": "6a6d913df26e54fb86821b2ee4eefa7240b969edccf5637407e5659f3c9e87cb",
+        "matches": true
+      },
+      {
+        "path": "docs/adr/0008-fixed-sprint-lifecycle.md",
+        "snapshot_sha256": "07ff763471a3b7e55f74211253babb9e4db91aff13584616d88db45e06f52ca8",
+        "actual_sha256": "07ff763471a3b7e55f74211253babb9e4db91aff13584616d88db45e06f52ca8",
+        "matches": true
+      },
+      {
+        "path": "docs/adr/0012-audit-visibility-and-durable-evidence.md",
+        "snapshot_sha256": "703015d03f084cd4a2f50ebfa4b9245f35d71fddfcc0bbce843bebd8bbe1a221",
+        "actual_sha256": "703015d03f084cd4a2f50ebfa4b9245f35d71fddfcc0bbce843bebd8bbe1a221",
+        "matches": true
+      },
+      {
+        "path": "docs/adr/0017-membership-removal-capabilities-and-assignees.md",
+        "snapshot_sha256": "43ddff14188428b6cbe630a499749265bbcd554d11115b9f992cd22cf21045a7",
+        "actual_sha256": "43ddff14188428b6cbe630a499749265bbcd554d11115b9f992cd22cf21045a7",
+        "matches": true
+      },
+      {
+        "path": "docs/adr/0018-operational-read-projections.md",
+        "snapshot_sha256": "e2a8f053652923376661d572993f8c70b3a9cd95ecdfa272a6da878a44e7a738",
+        "actual_sha256": "e2a8f053652923376661d572993f8c70b3a9cd95ecdfa272a6da878a44e7a738",
+        "matches": true
+      },
+      {
+        "path": "docs/adr/0019-scoped-ui-discovery.md",
+        "snapshot_sha256": "67f13286ce0fa2d29b035ee796a9a32ca5034b4657280f95ba699a3928966492",
+        "actual_sha256": "67f13286ce0fa2d29b035ee796a9a32ca5034b4657280f95ba699a3928966492",
+        "matches": true
+      },
+      {
+        "path": "docs/adr/0026-project-membership-foundation.md",
+        "snapshot_sha256": "98faa4926b30ea3ea634524c52c190b411f22b3c3b24ab29883946ba3f5f9bda",
+        "actual_sha256": "98faa4926b30ea3ea634524c52c190b411f22b3c3b24ab29883946ba3f5f9bda",
+        "matches": true
+      },
+      {
+        "path": "docs/adr/0027-task-creation-foundation.md",
+        "snapshot_sha256": "eb884375223b19e2001b54dc8b1e203dbd5c31a0f153fc849d610a85fc50a031",
+        "actual_sha256": "eb884375223b19e2001b54dc8b1e203dbd5c31a0f153fc849d610a85fc50a031",
+        "matches": true
+      },
+      {
+        "path": "contracts/openapi/workspace.openapi.json",
+        "snapshot_sha256": "16110cb022aba48cccfb916b79b86e794b12796dfebf95f8933d1662f8f2c1d2",
+        "actual_sha256": "16110cb022aba48cccfb916b79b86e794b12796dfebf95f8933d1662f8f2c1d2",
+        "matches": true
+      },
+      {
+        "path": "contracts/data-model.json",
+        "snapshot_sha256": "5bb8346053fa241e2e307eef5ec842b886a5531622a34fb694b3828a2b70d602",
+        "actual_sha256": "5bb8346053fa241e2e307eef5ec842b886a5531622a34fb694b3828a2b70d602",
+        "matches": true
+      },
+      {
+        "path": "services/workspace/migrations/001-store.up.sql",
+        "snapshot_sha256": "9898406f45069f652b2ada98a0415353d5e7c0916df974dc5ff015b25403f269",
+        "actual_sha256": "9898406f45069f652b2ada98a0415353d5e7c0916df974dc5ff015b25403f269",
+        "matches": true
+      },
+      {
+        "path": "services/workspace/migrations/002-registered-policy.up.sql",
+        "snapshot_sha256": "cff0d0cdca9f3cc98be5443bac579c0351bfc2d301d383dda531f2c966f27040",
+        "actual_sha256": "cff0d0cdca9f3cc98be5443bac579c0351bfc2d301d383dda531f2c966f27040",
+        "matches": true
+      },
+      {
+        "path": "services/workspace/migrations/003-work-location.up.sql",
+        "snapshot_sha256": "e73b8af5f4cae23ee0368cf0577d881d0a2560a133a69b2fa38876b060a6727c",
+        "actual_sha256": "e73b8af5f4cae23ee0368cf0577d881d0a2560a133a69b2fa38876b060a6727c",
+        "matches": true
+      },
+      {
+        "path": "services/workspace/migrations/007-project-membership.up.sql",
+        "snapshot_sha256": "cb7216447397b9ef4104230725e5037a4fba12971976507cf29f396c412481f6",
+        "actual_sha256": "cb7216447397b9ef4104230725e5037a4fba12971976507cf29f396c412481f6",
+        "matches": true
+      },
+      {
+        "path": "services/workspace/migrations/008-project-outcomes.up.sql",
+        "snapshot_sha256": "91f6fa1c4654341d485be0b5ed226380b0e4b06f29c94fe196631e2e3fe4e6a2",
+        "actual_sha256": "91f6fa1c4654341d485be0b5ed226380b0e4b06f29c94fe196631e2e3fe4e6a2",
+        "matches": true
+      },
+      {
+        "path": "services/workspace/migrations/009-task-creation.up.sql",
+        "snapshot_sha256": "24ff61006fddf17e172f30fb5e6267b27f5616aca46da25d4f89d801a4fe8b0f",
+        "actual_sha256": "24ff61006fddf17e172f30fb5e6267b27f5616aca46da25d4f89d801a4fe8b0f",
+        "matches": true
+      },
+      {
+        "path": "services/workspace/src/session/store.ts",
+        "snapshot_sha256": "9195b3d6cfb935ad6d5542ca64ccc5fecc0e1f7cea79651f5525398dfb7279ac",
+        "actual_sha256": "9195b3d6cfb935ad6d5542ca64ccc5fecc0e1f7cea79651f5525398dfb7279ac",
+        "matches": true
+      },
+      {
+        "path": "services/workspace/src/session/database.ts",
+        "snapshot_sha256": "a94c2df12b2815ef4b93e71f386d0e4e8831f12a1c32931d13a2db1292afa489",
+        "actual_sha256": "a94c2df12b2815ef4b93e71f386d0e4e8831f12a1c32931d13a2db1292afa489",
+        "matches": true
+      },
+      {
+        "path": "services/workspace/src/projects/store.ts",
+        "snapshot_sha256": "34923139ad9f0347d5b49c63724b2d90cf42a8c909322b4e16adf3fa6cc808b2",
+        "actual_sha256": "34923139ad9f0347d5b49c63724b2d90cf42a8c909322b4e16adf3fa6cc808b2",
+        "matches": true
+      },
+      {
+        "path": "services/workspace/src/projects/operator.ts",
+        "snapshot_sha256": "86ac65fdb3a1b464854c6ed643536b358bae8d15fa00491ebf127f81c5e9b403",
+        "actual_sha256": "86ac65fdb3a1b464854c6ed643536b358bae8d15fa00491ebf127f81c5e9b403",
+        "matches": true
+      },
+      {
+        "path": "services/workspace/src/projects/outcomes.ts",
+        "snapshot_sha256": "57c954a7a871de99c3a1babdf6a3b58b6592dc1aab1d759319cd35e5ab7e245c",
+        "actual_sha256": "57c954a7a871de99c3a1babdf6a3b58b6592dc1aab1d759319cd35e5ab7e245c",
+        "matches": true
+      },
+      {
+        "path": "services/workspace/src/tasks/store.ts",
+        "snapshot_sha256": "fb928c6d81012b0328abe43b0ef95f92dc74263be6bdc8252cbd838d55db4faa",
+        "actual_sha256": "fb928c6d81012b0328abe43b0ef95f92dc74263be6bdc8252cbd838d55db4faa",
+        "matches": true
+      },
+      {
+        "path": "services/workspace/src/tasks/outcomes.ts",
+        "snapshot_sha256": "ddfd21efef8936b9ebe2c43b843dcd2531b50c53243ee1d0216ddfed0a66c14d",
+        "actual_sha256": "ddfd21efef8936b9ebe2c43b843dcd2531b50c53243ee1d0216ddfed0a66c14d",
+        "matches": true
+      },
+      {
+        "path": "services/workspace/src/tasks/http.ts",
+        "snapshot_sha256": "75ddcde72e4c516cf2f9d0a56cf196827417576e96a1bb3cbd6fbebd5fdd79b8",
+        "actual_sha256": "75ddcde72e4c516cf2f9d0a56cf196827417576e96a1bb3cbd6fbebd5fdd79b8",
+        "matches": true
+      },
+      {
+        "path": "services/workspace/src/tasks/types.ts",
+        "snapshot_sha256": "0a9b265752263f9b94de9376e3376d4635bb3360041f801a3dfef51a5ab796dd",
+        "actual_sha256": "0a9b265752263f9b94de9376e3376d4635bb3360041f801a3dfef51a5ab796dd",
+        "matches": true
+      },
+      {
+        "path": "docs/sdlc/reports/SP-03-publication-2026-11-03.md",
+        "snapshot_sha256": "fd3ffdd92f455a59148a435d0862f9c3984bba5b20bea4bc29e9e3fed4960258",
+        "actual_sha256": "fd3ffdd92f455a59148a435d0862f9c3984bba5b20bea4bc29e9e3fed4960258",
+        "matches": true
+      }
+    ]
+  },
+  "reported_prefix_verification": {
+    "reported_rows": 14,
+    "raw_matches": 0,
+    "lf_normalized_matches": 0,
+    "results": [
+      {
+        "path": "specs/004-update-task.md",
+        "reported_prefix": "7437fa4",
+        "raw_sha256": "c0a8bda3198643b60299c9fcd99808ee861bd4ad024f52231fd1d4c34970faab",
+        "lf_normalized_sha256": "c0a8bda3198643b60299c9fcd99808ee861bd4ad024f52231fd1d4c34970faab",
+        "raw_prefix_matches": false,
+        "lf_prefix_matches": false
+      },
+      {
+        "path": "docs/sdlc/use-cases.md",
+        "reported_prefix": "42d7655",
+        "raw_sha256": "29475d6da902b1b3bbebae65e822cbc4c4292d122149f6c29d0cd6e154bbf616",
+        "lf_normalized_sha256": "29475d6da902b1b3bbebae65e822cbc4c4292d122149f6c29d0cd6e154bbf616",
+        "raw_prefix_matches": false,
+        "lf_prefix_matches": false
+      },
+      {
+        "path": "contracts/openapi/workspace.openapi.json",
+        "reported_prefix": "58b8d4f",
+        "raw_sha256": "16110cb022aba48cccfb916b79b86e794b12796dfebf95f8933d1662f8f2c1d2",
+        "lf_normalized_sha256": "16110cb022aba48cccfb916b79b86e794b12796dfebf95f8933d1662f8f2c1d2",
+        "raw_prefix_matches": false,
+        "lf_prefix_matches": false
+      },
+      {
+        "path": "services/workspace/migrations/001-store.up.sql",
+        "reported_prefix": "c260273",
+        "raw_sha256": "9898406f45069f652b2ada98a0415353d5e7c0916df974dc5ff015b25403f269",
+        "lf_normalized_sha256": "9898406f45069f652b2ada98a0415353d5e7c0916df974dc5ff015b25403f269",
+        "raw_prefix_matches": false,
+        "lf_prefix_matches": false
+      },
+      {
+        "path": "services/workspace/migrations/003-work-location.up.sql",
+        "reported_prefix": "aa47a07",
+        "raw_sha256": "e73b8af5f4cae23ee0368cf0577d881d0a2560a133a69b2fa38876b060a6727c",
+        "lf_normalized_sha256": "e73b8af5f4cae23ee0368cf0577d881d0a2560a133a69b2fa38876b060a6727c",
+        "raw_prefix_matches": false,
+        "lf_prefix_matches": false
+      },
+      {
+        "path": "services/workspace/migrations/007-project-membership.up.sql",
+        "reported_prefix": "961cefd",
+        "raw_sha256": "cb7216447397b9ef4104230725e5037a4fba12971976507cf29f396c412481f6",
+        "lf_normalized_sha256": "04e660547797da67eb806e241a0a71ed337aa98800ce86f088efe0c54fed72e5",
+        "raw_prefix_matches": false,
+        "lf_prefix_matches": false
+      },
+      {
+        "path": "services/workspace/migrations/008-project-outcomes.up.sql",
+        "reported_prefix": "31463bc",
+        "raw_sha256": "91f6fa1c4654341d485be0b5ed226380b0e4b06f29c94fe196631e2e3fe4e6a2",
+        "lf_normalized_sha256": "47e0470817560da2eced0a67c6d7bb6d229d88dbc3f8ddba4ab14ad861ab0223",
+        "raw_prefix_matches": false,
+        "lf_prefix_matches": false
+      },
+      {
+        "path": "services/workspace/migrations/009-task-creation.up.sql",
+        "reported_prefix": "c4656ca",
+        "raw_sha256": "24ff61006fddf17e172f30fb5e6267b27f5616aca46da25d4f89d801a4fe8b0f",
+        "lf_normalized_sha256": "df18f590907edd73773e6def67d8ced940c34dbfa99271574fcd369f933408e1",
+        "raw_prefix_matches": false,
+        "lf_prefix_matches": false
+      },
+      {
+        "path": "services/workspace/src/tasks/store.ts",
+        "reported_prefix": "22a4c14",
+        "raw_sha256": "fb928c6d81012b0328abe43b0ef95f92dc74263be6bdc8252cbd838d55db4faa",
+        "lf_normalized_sha256": "fb928c6d81012b0328abe43b0ef95f92dc74263be6bdc8252cbd838d55db4faa",
+        "raw_prefix_matches": false,
+        "lf_prefix_matches": false
+      },
+      {
+        "path": "services/workspace/src/tasks/http.ts",
+        "reported_prefix": "1cffaa6",
+        "raw_sha256": "75ddcde72e4c516cf2f9d0a56cf196827417576e96a1bb3cbd6fbebd5fdd79b8",
+        "lf_normalized_sha256": "75ddcde72e4c516cf2f9d0a56cf196827417576e96a1bb3cbd6fbebd5fdd79b8",
+        "raw_prefix_matches": false,
+        "lf_prefix_matches": false
+      },
+      {
+        "path": "services/workspace/src/tasks/outcomes.ts",
+        "reported_prefix": "7134371",
+        "raw_sha256": "ddfd21efef8936b9ebe2c43b843dcd2531b50c53243ee1d0216ddfed0a66c14d",
+        "lf_normalized_sha256": "ddfd21efef8936b9ebe2c43b843dcd2531b50c53243ee1d0216ddfed0a66c14d",
+        "raw_prefix_matches": false,
+        "lf_prefix_matches": false
+      },
+      {
+        "path": "services/workspace/src/projects/operator.ts",
+        "reported_prefix": "f72c019",
+        "raw_sha256": "86ac65fdb3a1b464854c6ed643536b358bae8d15fa00491ebf127f81c5e9b403",
+        "lf_normalized_sha256": "e77c8e72d09a9845981734f73e1efdd4b8828e06eac00439131e8c08e89501a6",
+        "raw_prefix_matches": false,
+        "lf_prefix_matches": false
+      },
+      {
+        "path": "services/workspace/src/projects/store.ts",
+        "reported_prefix": "183189a",
+        "raw_sha256": "34923139ad9f0347d5b49c63724b2d90cf42a8c909322b4e16adf3fa6cc808b2",
+        "lf_normalized_sha256": "455e6fc0f8ebf937e2a7c9e824d0ddcca7457fda512e291ad4ba6f1e986a39a9",
+        "raw_prefix_matches": false,
+        "lf_prefix_matches": false
+      },
+      {
+        "path": "docs/implementation/features/sp-04-update-task/source-review.md",
+        "reported_prefix": "ae8e348",
+        "raw_sha256": "9d01f5d943eede207cba9ba1d30c5fe3a6c70ad0365216f710d3c073ea78c7be",
+        "lf_normalized_sha256": "9d01f5d943eede207cba9ba1d30c5fe3a6c70ad0365216f710d3c073ea78c7be",
+        "raw_prefix_matches": false,
+        "lf_prefix_matches": false
+      }
+    ]
+  },
+  "operation_responses": [
+    {
+      "operation": "createTask",
+      "path": "/projects/{project_id}/tasks",
+      "method": "post",
+      "declared_responses": [
+        "201",
+        "400",
+        "401",
+        "403",
+        "404",
+        "409",
+        "503",
+        "413",
+        "415"
+      ]
+    },
+    {
+      "operation": "editTask",
+      "path": "/tasks/{task_id}",
+      "method": "patch",
+      "declared_responses": [
+        "200",
+        "400",
+        "401",
+        "403",
+        "404",
+        "409",
+        "503"
+      ]
+    },
+    {
+      "operation": "setTaskState",
+      "path": "/tasks/{task_id}/state",
+      "method": "post",
+      "declared_responses": [
+        "200",
+        "400",
+        "401",
+        "403",
+        "404",
+        "409",
+        "503"
+      ]
+    },
+    {
+      "operation": "setAssignee",
+      "path": "/tasks/{task_id}/assignee",
+      "method": "post",
+      "declared_responses": [
+        "200",
+        "400",
+        "401",
+        "403",
+        "404",
+        "409",
+        "503"
+      ]
+    },
+    {
+      "operation": "recordBlocker",
+      "path": "/tasks/{task_id}/blockers",
+      "method": "post",
+      "declared_responses": [
+        "201",
+        "400",
+        "401",
+        "403",
+        "404",
+        "409",
+        "503"
+      ]
+    },
+    {
+      "operation": "listBlockerEvents",
+      "path": "/tasks/{task_id}/blockers",
+      "method": "get",
+      "declared_responses": [
+        "200",
+        "400",
+        "401",
+        "404",
+        "409",
+        "503"
+      ]
+    }
+  ],
+  "actual_schema_lines": [
+    {
+      "line": 3556,
+      "text": "\"Error\": {"
+    },
+    {
+      "line": 3841,
+      "text": "\"EditTask\": {"
+    },
+    {
+      "line": 3861,
+      "text": "\"SetState\": {"
+    },
+    {
+      "line": 3882,
+      "text": "\"SetAssignee\": {"
+    },
+    {
+      "line": 3902,
+      "text": "\"Blocker\": {"
+    },
+    {
+      "line": 3953,
+      "text": "\"RecordBlocker\": {"
+    }
+  ],
+  "preservation": {
+    "paths_checked": 174,
+    "changed": []
+  },
+  "verdict": "Correction required; AG01 not accepted; supported substantive observations are individually reconciled by Codex source inspection",
+  "followup": {
+    "task": "SP04-AG02",
+    "brief": "tasks/AG02-evidence-correction.md",
+    "dispatch": "Written assignment ready; delivery unconfirmed",
+    "expected_output": "reviews/antigravity-p01-review-v0.2.md"
+  },
+  "unrun": [
+    "Application/DB/SQL/HTTP/DOM/browser execution",
+    "Concurrency/deadlock/failure/load/provider/evaluation tests",
+    "No new P01 test executions",
+    "No direct external dispatch or independent acceptance"
+  ],
+  "documentation_check": {
+    "node": "24.21.0",
+    "command": "node scripts/docs/verify-docs.mjs",
+    "exit_code": 0,
+    "log": "evidence/ag01-docs-lint.log"
+  },
+  "local_link_check": {
+    "files": 5,
+    "targets": 54,
+    "missing": [],
+    "scope": "Local target existence; not source line/anchor validation"
+  },
+  "final_metadata": {
+    "exit_code": 0,
+    "log": "evidence/ag01-metadata-final.log"
+  },
+  "whitespace": {
+    "exit_code": 0,
+    "log": "evidence/ag01-whitespace.log"
+  }
+}

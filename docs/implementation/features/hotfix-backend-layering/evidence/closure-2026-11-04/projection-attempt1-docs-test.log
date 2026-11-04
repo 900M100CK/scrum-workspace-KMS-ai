@@ -1,0 +1,53 @@
+
+> scrum-workspace-kms-context@0.1.0 docs:test
+> node --test tests/docs/docs.test.mjs
+
+✖ all registered docs and diagram pairs pass (3185.0489ms)
+✔ preflight exception counts agree with current use-case definitions (2.6725ms)
+✔ architecture FR trace rows stay inside one continuous Markdown table (1.2638ms)
+✔ unselected retrieval mechanisms need explicit status in current text (1.2998ms)
+✔ Draw.io status belongs to its own label, not an unrelated cell on the same XML line (1.004ms)
+✔ Sources contains every body ADR, including shorthand and ranges, not just the highest ID (0.6981ms)
+✔ manifest version/ADR changes propagate to all generated inventories and both diagram headers (22.4382ms)
+✔ AI checkpoint sources retain the unavailable, partial-answer and member-removal decisions (1.3063ms)
+✔ use-case associations are undirected; generalization/include retain direction and native UML style (76.9402ms)
+✔ operation references fail on facade path/ID or actual node label drift (1.1409ms)
+✔ input headers name the latest cited ADR and current input versions (0.6327ms)
+✔ real Mermaid parser rejects invalid syntax (4.6142ms)
+✔ flowchart adapter compares labels, direction and parallel-edge counts (16.1743ms)
+✔ invalid XML and dangling/undirected edges fail closed (1.1364ms)
+✔ current version drift and missing rows fail; historical versions are allowed (0.4775ms)
+✔ journey actors and scores are compared, not merely grammar-checked (4.0531ms)
+✔ current prose references cannot disagree with headers while historical snapshots can (0.4739ms)
+✔ current linked input aliases use target versions while snapshot evidence stays historical (0.3867ms)
+✔ design pairs reject reversed sequence handoffs and changed native multiplicities (71.7432ms)
+✔ physical diagram entity inventory matches owned CREATE TABLE definitions (4.4774ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 19
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5007.9236
+
+✖ failing tests:
+
+test at tests\docs\docs.test.mjs:14:1
+✖ all registered docs and diagram pairs pass (3185.0489ms)
+  AssertionError [ERR_ASSERTION]: Current reference version drift in docs/sdlc/artifact-register.md: REG-00
+  
+  '0.106' !== '0.107'
+  
+      at checkCurrentReferences (file:///D:/scrum-workspace-KMS-ai/.tmp/hf42-c01-validation-1793800889039/scripts/docs/verify-docs.mjs:179:14)
+      at verifyDocs (file:///D:/scrum-workspace-KMS-ai/.tmp/hf42-c01-validation-1793800889039/scripts/docs/verify-docs.mjs:345:5)
+      at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/.tmp/hf42-c01-validation-1793800889039/tests/docs/docs.test.mjs:15:3)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '0.106',
+    expected: '0.107',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

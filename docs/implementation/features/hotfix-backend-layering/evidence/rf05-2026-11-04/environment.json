@@ -1,0 +1,27 @@
+{
+  "node": "v24.22.1",
+  "baseline": "e6f233735f6e7c09dee7af4ec54b19902b0910b9",
+  "dependency_install": "none; existing installed packages",
+  "fixtures": "unique disposable synthetic databases only",
+  "ceiling_sources": {
+    "tests/workspace/fixture.mjs": [
+      "export async function sessionFixture({through='006'}={}){"
+    ],
+    "tests/workspace/project-fixture.mjs": [
+      "const db=await sessionFixture({through:'008'});let app;"
+    ],
+    "tests/workspace/task-fixture.mjs": [
+      "export async function taskFixture({through='009',count=3}={}){"
+    ],
+    "tests/workspace/task-mutation-fixture.mjs": [
+      "export async function taskMutationFixture({through='010'}={}){",
+      "if(!['009','010'].includes(through))throw Error('Mutation fixture requires an explicit 009/010 ceiling');"
+    ]
+  },
+  "observed_postgres": [
+    "PostgreSQL 17.10 (Debian 17.10-1.pgdg12+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit"
+  ],
+  "observed_images": [
+    "pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966"
+  ]
+}

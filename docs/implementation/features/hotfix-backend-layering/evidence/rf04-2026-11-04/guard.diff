@@ -1,0 +1,13 @@
+--- RF03/projects/store.ts
++++ RF04/projects/store.ts
+@@ -38,7 +38,9 @@
+     denied=new ProjectFault(current.kind==='unauthenticated'?401:503,current.kind==='unauthenticated'?'authentication_required':'access_unavailable');return false;
+    };
+    // Call guard after relevant lock waits and before the first business write/response.
+-   return work(c,auth.session.userId,guard);
++   const value=await work(c,auth.session.userId,guard);
++   if(value===null&&!denied)throw new Error('Unexpected authenticated transaction null result');
++   return value;
+   });
+   if(denied)throw denied;return result as T;
+  }

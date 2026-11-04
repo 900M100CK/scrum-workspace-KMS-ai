@@ -1,0 +1,2379 @@
+{
+  "source_commit": "e6f2337",
+  "common_parent": "6b837fd",
+  "method": "guarded working-tree file delta; no ref/index mutation",
+  "restored_paths": [
+    {
+      "path": "apps/web/src/TaskWorkspace.tsx",
+      "before_sha256": "2fe98b7040a20cd98fa461d8900c1c9782a9831bf9805fa6029da8844ec0d6d4",
+      "checkpoint_sha256": "a1f5e5fbe012cd6a2bcd063c3d153a8420492c9ab7a610c7d67eb4618046514c"
+    },
+    {
+      "path": "apps/web/src/tasks.ts",
+      "before_sha256": "b103851dc8a7124341f594bb5c57947382f46e0022c99e954ffbd679c06dccb0",
+      "checkpoint_sha256": "7137777f4090f75fc0789ab60d9d6041df6979cff5a92fc18e3ff44a09470b9f"
+    },
+    {
+      "path": "contracts/README.md",
+      "before_sha256": "6f46aedfa6d4f4fd973e5acc60f1024820c7e00c409011ebefc3d3393067e58d",
+      "checkpoint_sha256": "aad6cea9a889958e961c6b3169be3a921be1adbd76bc5c07ed966f081e32da90"
+    },
+    {
+      "path": "contracts/data-model.json",
+      "before_sha256": "8737ec2b030596a3f3c6546f69bf9aa7794ad9ef9324f99a27447724aa61eade",
+      "checkpoint_sha256": "2db5da5c2728897c1af7f4f0a8bab0020b25d06f535530f433de44d6747e4834"
+    },
+    {
+      "path": "contracts/openapi/workspace.openapi.json",
+      "before_sha256": "d9b294f7a6ca5784ddeaf7e85d5ef0369eace9e06419f437a237518ae59624f5",
+      "checkpoint_sha256": "8b6108b10b19175090cd108654b6c999c60e378a1fca714950c8aa47f9fa7b21"
+    },
+    {
+      "path": "docs/adr/0028-task-mutation-authority-and-outcomes.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "5ca454c399b3d5fdaffffb6704afc73fc77bfc981508c9fe593e77f1d10f3b15"
+    },
+    {
+      "path": "docs/adr/README.md",
+      "before_sha256": "60dcb36a98e42abd3d1b4c70ff3f166e4a1449027217224cf1cc912d8118f3f8",
+      "checkpoint_sha256": "8418dc91ce4323e4c64f1ea0caf0d67f1519b9dbfe7360277b8419c572fb7b91"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/.gitattributes",
+      "before_sha256": null,
+      "checkpoint_sha256": "7f4c77011a432650c44a92e0e9141c37ababadafa08fac606880febcd5647c67"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/COORDINATION.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "b77720fd8d7e07727fc0b208d0918489fcfc74908e7f313611fc4fbc11002d8f"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/README.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "6a8546910e4c615eccb51f9a9196df10bb06719185345e863bc371130a766ef6"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/breakdown.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "a0901792369e1a2b135e433b96331c4e2b859e008a50eb9cc8a681547c33b7a5"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/decision-batch.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "ff0ecdb0036feb93d71b53f0a86cdc3e91e634d7643a707e3912fd2bb358c6f5"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/ag01-docs-lint.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "aefeb0852489cdffb1cec528f8cd6b0c2b209fb4473af2875d0672bb39e8e265"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/ag01-metadata-final.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "a0f7df1211191d4220b0d7f044165fd6e40b65d7925a16dd57ba6cff8ecc9c30"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/ag01-metadata.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "b7ea7e5e62670009a9139ba9d2e3f94ccf328de9de4723a3bcdf39eaa63e47f6"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/ag01-reconciliation.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "7e4dd6044d05783434f766d2e02d072fcebbc9ce591f7f714805bdb78173398b"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/ag01-whitespace.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "13ac9378d10b92fd60f0af127d3a6883224831e8504781c4c17219edce1dbd35"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/ag02-docs-lint.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "aefeb0852489cdffb1cec528f8cd6b0c2b209fb4473af2875d0672bb39e8e265"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/ag02-metadata-final.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "a0f7df1211191d4220b0d7f044165fd6e40b65d7925a16dd57ba6cff8ecc9c30"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/ag02-metadata.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "b7ea7e5e62670009a9139ba9d2e3f94ccf328de9de4723a3bcdf39eaa63e47f6"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/ag02-reconciliation.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "0774801918785373d417b32dcec5f0a4bb283bbedead369366f3d062bb6ed7da"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/ag02-whitespace.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "13ac9378d10b92fd60f0af127d3a6883224831e8504781c4c17219edce1dbd35"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/ag03-antigravity-report-v0.2.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "8162aeeebed8a1eee339cd07aaf40058c9e428086fa41cbbddb0393aabb3f9e0"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/ag03-decision-batch-v0.2.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "1c82472da003cf58a066d0c0abae49bf6bfedf4c19db54691002fe4af82bd7d6"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/ag03-docs-lint.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "aefeb0852489cdffb1cec528f8cd6b0c2b209fb4473af2875d0672bb39e8e265"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/ag03-metadata-final.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "a0f7df1211191d4220b0d7f044165fd6e40b65d7925a16dd57ba6cff8ecc9c30"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/ag03-metadata.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "b7ea7e5e62670009a9139ba9d2e3f94ccf328de9de4723a3bcdf39eaa63e47f6"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/ag03-received-snapshots.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "6b6ecfbfba252791332e8fb33171e699008632a9a5f6d959178f7ce60e87ae5a"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/ag03-reconciliation.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "0eb188978d4efb0f2910b43470d0c4c8c131adf7689aba984c8b4874c46e40b2"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/ag03-whitespace.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "13ac9378d10b92fd60f0af127d3a6883224831e8504781c4c17219edce1dbd35"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/assignment-attempt1.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "d57abe927303258246f0ce9cd734d6256b725823e92d9138ba0250f0aee592df"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/authority-regression2.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "877759559e4f8b3d27d5d245f42a941b9128f8ee73bb65c2140ceb40dc407a7e"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/before.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "5d1a3864bd540cadae23c843e3c7c284115a7a78f3a663f0269360a5bc67fd79"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/before/apps/web/src/TaskWorkspace.tsx",
+      "before_sha256": null,
+      "checkpoint_sha256": "130da6fe1055358a6cbb1286cba2f2729e64b5076a77bbd5d6796f3e4f823e64"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/before/apps/web/src/tasks.ts",
+      "before_sha256": null,
+      "checkpoint_sha256": "37fea6427da5456f1cd4f1c63db2d249d82f20911dd9d2fe337cc2c0700745e2"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/before/services/workspace/src/tasks/http.ts",
+      "before_sha256": null,
+      "checkpoint_sha256": "81a7bd19e995cbabb8beff3604ec9fd929f1e5e99559488a650f6d4546ec2f0e"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/before/services/workspace/src/tasks/store.ts",
+      "before_sha256": null,
+      "checkpoint_sha256": "af81badc710716db6a9ed754626f157318f637720a3958a30fcf9684398c28f3"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/before/services/workspace/src/tasks/types.ts",
+      "before_sha256": null,
+      "checkpoint_sha256": "8110bcce12c51db5f836fb9c54b4d543444ed3b8fe2dadff0df11f0642c91205"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/blocker-attempt1.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "35492a613207127edc5e87c466ba16fd316602d4da1cbb58b37f6bea1d1902f7"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/blocker-attempt2.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "35f7f4d572f5558129199e8637cb7b38bfe48ea9af95ee751893977a0ca55005"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/browser-1793766247137/desktop.png",
+      "before_sha256": null,
+      "checkpoint_sha256": "134d84b15898febb1d4e3b94ad341f22bf33c0be18a8c620d891725cd7da74fe"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/browser-1793766247137/mobile.png",
+      "before_sha256": null,
+      "checkpoint_sha256": "00aea7fcb02556838c399bf2f204e3a945fe4fa267e9c13bfbbe908d588bc0ff"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/browser-1793766247137/summary.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "94afc58193436640bd3504da6624f1adf7229601b3b1f029358b35ee8071deee"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/browser-1793766921222/desktop.png",
+      "before_sha256": null,
+      "checkpoint_sha256": "d380dd7f5333aef4b63f72e14eff748a09fe343ecfaf2f572bc15a44838d7973"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/browser-1793766921222/mobile.png",
+      "before_sha256": null,
+      "checkpoint_sha256": "5ad7bc093db8e2120e552ee46c7bedd10b90a437594a1b8805d1af41c221abb0"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/browser-1793766921222/summary.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "94afc58193436640bd3504da6624f1adf7229601b3b1f029358b35ee8071deee"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/browser-attempt1.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "bba2ac61647284ba26f32b91b9b3bdebb296317f7449f36605ff235e9f9de9e3"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/build-final.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "51c0434e750fee57013fa92446716f84f6bb926f106db361bf994daaff771f67"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/build-regression1.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "ff0d16eb95dae3b224d12a85082e435512aa786e391c53022de75ba0f1637e27"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/build-regression1.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "1e780b67756df3cbe74112a1dc32dbe60311ddd5dbecdc963333b38f3f984aab"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/checkpoint-docs-lint.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "aefeb0852489cdffb1cec528f8cd6b0c2b209fb4473af2875d0672bb39e8e265"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/checkpoint-scope.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "3eab9858176ea3259d55715e9cdf11cbf98f7d74d8afc0e204c4ee92b80be9ab"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/checkpoint-whitespace.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "25e3c2128177aefcad0f5802275e5c0415b5f0953fedc2fb72f2194f4ea55b4f"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/close-context-check.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "d4b042a0db63f7887ed4678f5564f5842fbb0cf01325ab343761662fa85f6228"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/close-context-lint.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "2875584bbbea4294d4db8fcdfca8de0ea8f04c235234b8a371e08df1f8601f78"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/close-context-test.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "8a76165320076bdbf7707ebfcc830fcf4f488e5e75c8b6197ce9b5a88d9e5225"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/close-contracts.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "05e9896e5cdeaed77876a99744dc9d90ea0abf130f0edb670aad9aceffff5c1d"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/close-docs-lint.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "bdec06812384c6b88264b1a64583d6bde6840fde38c58c7cce727c94703a9fd3"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/close-docs-test.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "0a7c44419a4bfdb5e30cf08a8dcdf6ddfd08d41b98bd67b450c42ff0b70b83f1"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/close-metadata.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "a0f7df1211191d4220b0d7f044165fd6e40b65d7925a16dd57ba6cff8ecc9c30"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/commit-message.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "bfcd775568ef3e027b577d32926d7d1c03322f52d0647650a4e3e2610c909f04"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/context-check-regression1.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "3b2c2600605cdb699b99bbc03a0c4d85e00281131f583c2b87b08f7856917e87"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/context-check-regression1.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "d4b042a0db63f7887ed4678f5564f5842fbb0cf01325ab343761662fa85f6228"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/context-lint-regression1.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "c67f08f26cdae16c901ba6b2ceba4859672aa049711240d79d1db6cc13713826"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/context-lint-regression1.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "2875584bbbea4294d4db8fcdfca8de0ea8f04c235234b8a371e08df1f8601f78"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/context-test-regression1.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "71470a06bab67a96af43074326c3b1e8c9e3573a1cb029007bb03a48f11b0347"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/context-test-regression1.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "a388f0ca9c25ce7ba1403b72a51b9470448f5fdae69f7a3c8e10570bc379eb92"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/contracts-test-regression1.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "d692cd1ed9ba8688cf3682c1e26d1e8fd3d5d007f0502b5fa5379a0c401c9542"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/contracts-test-regression1.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "fd7eb3595a7fcc7936d2b26419bf10cf0b8ae3e3d5dad3ef89a112b8dcb6f076"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/controller-attempt1.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "85edc18bebd42bbedc74997ca23468765780131ca946c7694c7ec310ed0f415a"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/controller-final.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "777f80c620e7b50d0bef835819b79d6d16510cee10d62a3838c85ee2a0f2a841"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/docs-final-attempt1.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "b028bc7bbf872a7890ec89dc4d64fe22946214334ef126fe8c680649a11818b6"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/docs-lint-final-attempt1.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "45a32c64ad8fc188cf3a2a196128fd0411d85ac099f4c94600bc6a597a9ea319"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/docs-lint-final-attempt2.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "aa7f8d248e61db7ef1ea46d32b1ec06c2aa1eac3edb8a29dbd400655d4774010"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/docs-lint-final-attempt3.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "e237c326a9e783c535e51b16a8b2c92ae24ecaf8fbbe0a23962035d26a459f0e"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/docs-lint-final-attempt4.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "aefeb0852489cdffb1cec528f8cd6b0c2b209fb4473af2875d0672bb39e8e265"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/docs-lint-regression1.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "0778f9f9f0431f2d1863d87360870fd2c8e1422058bfad0a973d78ebfeffc944"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/docs-lint-regression1.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "bdec06812384c6b88264b1a64583d6bde6840fde38c58c7cce727c94703a9fd3"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/docs-test-final-attempt1.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "048649edb6d23f4d8c13295f482b856b76111dcd0942857826008312e4f0173d"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/docs-test-final.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "baf71ccf58ffd6e38046d0a5124cc11e59dfa6584117cbac032e89726f2f1790"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/docs-test-regression1.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "3aeb715c7a7bf6359ed90d2e5772e2052bba485b742575b9fe3591d85a89a220"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/docs-test-regression1.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "9218be60512a2424573e636f6dea0cf7268da517cb657df270d520f600cdb236"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/dom-attempt1.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "4ce1e5e5f46c107776aa7cf36b20a021289149e69de7c23f762cbe4fc0542dd5"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/final-checks1.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "975ac44a4e62f754b390c377461baa4c93d6ef49f96b1617a0186a4fdda78957"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/final-source-identity.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "8b3e5ce1a2912740c1c1edc2454fdc24b36e2fbc8a6d85786f8331de26b2be06"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/final-verification.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "8692581b3e9c0e04150498e4a2fbd463c2301065a80dab4453e49c6f47916b24"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/integration-attempt1.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "20bc110d80782481eb7a9cba310a963da600e33e8076558499357ede786dd36f"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/metadata-attempt1.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "c4f3a3eb2a464c257fdcce765183dd578314828a10e0959ad702b8dbc1c581ff"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/metadata-attempt2.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "a84c4101e56c427a131bfcd6117fa159b2943b1a061af25860b74842924d2168"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/metadata-final-attempt1.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "a0f7df1211191d4220b0d7f044165fd6e40b65d7925a16dd57ba6cff8ecc9c30"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/old-controller-attempt1.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "bbbe6471653fb6316db9e23fbb54fb16adc04ed8d9ff3126d37c4e57c22dca1f"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/preserved-outside-checkpoint.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "c2be3969e4e7c149b343a8191845d796e6c1253d14ab7f51ab92a27733d1d21e"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/producers-final.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "71d55a44b5f22393a3382c4354ea5e6d1e2c2783550e4e273cbd9c84f9a23ee7"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/run-regression.py",
+      "before_sha256": null,
+      "checkpoint_sha256": "238be24b409c897f9ad12ddff27c9bc70c52d6ef9853e498de9eba97e4e5b8ee"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/runtime-regression-regression1.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "d50f82dd74b66e1b28a4519f2b6fbb42831eb54580b71caf0747f69cbd2dba12"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/runtime-regression-regression1.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "5adf2a493704ac8ea8422c8be2e71770f341330ee561091e089131fbf34b0c2d"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/scoped-whitespace.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/stage-paths.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "d0209b452c3bbbd4e1e8314845ed73d92db68613a2c0a99dbee7baaa33e4f162"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/state-attempt1.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "a312021300a64a6e0ca6f8fd30fd6bdf8bce0e845dbf1f498567501e074d6864"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/state-attempt2.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "315b083683112397715eacbac6d5556d4a5926f3a3212ce80bd6928b75088bcd"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/typecheck-attempt1.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "88657cfb3a226a92d86809c3045af95bc8ec56ca1dd17e18ce84fe28f30aef41"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/typecheck-regression1.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "935aef924f2008ad8464fc087068491cc14eba1a1889b1e245241aa50af6010c"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/typecheck-regression1.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "a65ee10a5582b38f15c10a79f30c71fe7f941b44cbff4c70fe5f79ce97480a52"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/ui-final.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "7669be27648342f32c90db6d8c1fe7f7b497a2aba3db82d167e0849a9e3e2b60"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/whole-candidate-whitespace.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "ac51df195c03a6824d8ceb208d497deb7e4cad0a731637e0d217f0afbab8648e"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/coordination-checks.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "e805d941b656cd43c035ef00a937e5b3187a09b49e697b36746594376399de63"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/coordination-docs-lint.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "aefeb0852489cdffb1cec528f8cd6b0c2b209fb4473af2875d0672bb39e8e265"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/coordination-metadata-final.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "a0f7df1211191d4220b0d7f044165fd6e40b65d7925a16dd57ba6cff8ecc9c30"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/coordination-metadata.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "b7ea7e5e62670009a9139ba9d2e3f94ccf328de9de4723a3bcdf39eaa63e47f6"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/coordination-whitespace.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "13ac9378d10b92fd60f0af127d3a6883224831e8504781c4c17219edce1dbd35"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/owner-decisions-checks.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "d937e40b094b1819780e7eb5ae449684425910b3bfb1291b615ea6599054ed73"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/owner-decisions-docs-lint.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "aefeb0852489cdffb1cec528f8cd6b0c2b209fb4473af2875d0672bb39e8e265"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/owner-decisions-metadata-check.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "c8bca8f66821fa6d07f78acfd28d6031ca53864495543883369844cb7856827f"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/owner-decisions-metadata.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "b7ea7e5e62670009a9139ba9d2e3f94ccf328de9de4723a3bcdf39eaa63e47f6"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/owner-decisions-whitespace.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "ae361e3f80568438e3642cd2b38afe08eb431aeb80107ff64405df4cc89386d7"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/owner-responses-2026-11-03.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "e3660418dbaaec99aa59d911610ec71b40aecc242676292e218eb0692c4e2749"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p01-checks.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "efc3c0b0296a1e79a94e0d590f963d79a13a50430f1ab845c4aa488fedd6217b"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p01-context-check.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "ad1eb0a5633812e4da079a1edbd31615ad3ba40b04111edfc92db52f17d7bc49"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p01-context-checks.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "0a42ab6b07d8e2d8504e52923abb04b7fdb21a2c5919547393ed838d9f34a05f"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p01-context-lint.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p01-context-test.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "665ab1660d3b30317c1023942a85d6af26f0c2431c3daa157a67b63f0c97f744"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p01-contracts-checks.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "c929c39382a80d173b4e1ce8912b0cf8aa99b97533c193bb774b0376fa8f2ee5"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p01-contracts-test.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "3cebada2a71e8d3142320a4bbaa99570d68e95f0c8263be53a54ced1e4be1625"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p01-docs-checks.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "f815536a069534e9204b7cc4fa6027911d217fe3abc3a4dcc20821049bf8b690"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p01-docs-lint-rerun.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "aefeb0852489cdffb1cec528f8cd6b0c2b209fb4473af2875d0672bb39e8e265"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p01-docs-lint.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "ad67a1a9eca3dc393cfc5e0dc206d2018ff141063bc8fa1eefe55640cdb5a49a"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p01-docs-rerun.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "e9189a0a993f4e5baff267dd920b02cfcb4105bf53374b6606d77cabb9089503"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p01-docs-test-rerun.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "4387c5a0e05e56d4c93d94ef06d041a3e20cdcebbac0d2352bac1357547b7487"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p01-docs-test.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "0e0f42c43313621709dd06af00e3a10fde576a88bde15f21f7dfe8eece3f32d8"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p01-metadata-final.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "a0f7df1211191d4220b0d7f044165fd6e40b65d7925a16dd57ba6cff8ecc9c30"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p01-metadata-sync.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "b7ea7e5e62670009a9139ba9d2e3f94ccf328de9de4723a3bcdf39eaa63e47f6"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p01-source-inputs.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "e5500476f8de4db0987bebd2f9da371c7bc5b752b7d4e1df9717d6a0f6952d68"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p01-version.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "44ce64f1806e1aa8fa0bdd85b10e0413acd78557c88a8d52e94a0eb70f40b7ee"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p01-whitespace.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "13ac9378d10b92fd60f0af127d3a6883224831e8504781c4c17219edce1dbd35"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p01-working-status.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "fb6eb83930dd8220ad47d4edc9397a191e9b031d9205c07e3de2dc25eac65024"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p02-antigravity-report-v0.1.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "3f24f70d9dd79df5671c9948cdd84ec2c6652fdb7fa6ddeda1ecc5cdf564afba"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p02-decision-batch-v0.1.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "5b68bdb46fd6fb309acedc56cfe6871cdd28aea27244e6a2b7e5c714181cf1bf"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p02-design-before-owner-v0.3.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "e6b5f5627fba865beb9695e84db2dc16e24109fed030df6ef926ab3e67907ad1"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p02-docs-lint.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "aefeb0852489cdffb1cec528f8cd6b0c2b209fb4473af2875d0672bb39e8e265"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p02-metadata-final.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "a0f7df1211191d4220b0d7f044165fd6e40b65d7925a16dd57ba6cff8ecc9c30"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p02-metadata.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "b7ea7e5e62670009a9139ba9d2e3f94ccf328de9de4723a3bcdf39eaa63e47f6"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p02-received-snapshots.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "2b4443df5ce678873cf1d7b92cd9259427f63d626a1a6677e8e10861d0abe233"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p02-reconciliation.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "e26a6911e335b9c40b6221eb7c501b6a34fa6e72397a5894b771ef3587ac108f"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p02-task-brief-v0.3.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "63ea797aaf1c2e511c33c5b5a2f4c87f9609cd464489327cfe2cb3c39e5cf321"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p02-whitespace.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "13ac9378d10b92fd60f0af127d3a6883224831e8504781c4c17219edce1dbd35"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a-codex/checks.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "bf1117f9dd6daacaac91cdbfe73c0a2eaaa24011f51cea06f8ae45379ee89830"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a-codex/context-check.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "65bd8cbbf70fce0536509c7c32560fa39e51d70a92ed0424e2eec10fe621ab08"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a-codex/context-lint-1.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a-codex/context-lint-2.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a-codex/context-lint-3.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a-codex/context-test.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "efc4953050d4e92f456801bd238911b7a4b53d754f3d1089a0d268501a560e14"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a-codex/contracts-test.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "d0fea5672c7dd5e4cbef716ee082cb4cb768e6cca4c92b466713f75f7f49af4e"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a-codex/docs-lint.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "0ac1178dfc2969d5c14c02246fb5bfaf6b5592fc9619f015c03a642877de5251"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a-codex/docs-test-after-sync.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "71d7f796a4018597635014faa43bbf5497b12a9541f4e89312d13dbbfb05437b"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a-codex/docs-test.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "d4fd5195b9c98d26c6049b9ae7d5168d1210c05b15187f4ed0bc5d3bbf845a47"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a-codex/executions.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "a13acbc41db72ac4671f03da8db5bdfe675dac9d97d938dc7fc5e483f35b43fe"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a-codex/metadata-check.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "c8bca8f66821fa6d07f78acfd28d6031ca53864495543883369844cb7856827f"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a-codex/metadata-sync.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "b7ea7e5e62670009a9139ba9d2e3f94ccf328de9de4723a3bcdf39eaa63e47f6"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a-codex/whitespace.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "ae361e3f80568438e3642cd2b38afe08eb431aeb80107ff64405df4cc89386d7"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a-received-p03a-checks.json.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "037d431d4862ea1cd8a35d773f1bec290788fbb3ea6221382bbd71676412fbd3"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a-received-p03a-contract-support.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "f49aa343714c96b73623ee9ab40ac20f05ce03632c5edb7882154500048f3637"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a-received-snapshots.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "b1744d949a53ef7dd020af46e0f895e11c8f77d6a1a5f064585c5b49e18107c2"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a-received-source-inputs.json.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "cf076c4fc400a4a98afd1c3fc76ab4c2b052cbb7ce708915467e9b642a16d75e"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a/p03a-checks.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "037d431d4862ea1cd8a35d773f1bec290788fbb3ea6221382bbd71676412fbd3"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a/p03a-context-check.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "65bd8cbbf70fce0536509c7c32560fa39e51d70a92ed0424e2eec10fe621ab08"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a/p03a-context-lint.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a/p03a-context-test.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "c9a258981834e59c880c2cf77b883aa3e655d5d1489689714d7c8be39334cd9a"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a/p03a-contracts-test.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "61cbb3e311be6481e9b95e1628577301196db024dd9111df4d32788f09d89c00"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a/p03a-diff-stat.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "e2f8c61102869574208866dfb9b5673d61a7dad8591009b2d8851b5817e7ecde"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a/p03a-docs-lint.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "0ac1178dfc2969d5c14c02246fb5bfaf6b5592fc9619f015c03a642877de5251"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a/p03a-docs-test.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "28ba45e0e7514f7448ce98674eaac817e6aa1a69e1d8d917c4f535bc911fb829"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a/p03a-metadata-sync.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "c8bca8f66821fa6d07f78acfd28d6031ca53864495543883369844cb7856827f"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a/p03a-node-version.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "f2ec568164f99546161909b0189b57bb5be3e80f8e2ccd8a51a4aed8c4055a04"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a/p03a-whitespace.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a/source-inputs.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "cf076c4fc400a4a98afd1c3fc76ab4c2b052cbb7ce708915467e9b642a16d75e"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before-P03A2-brief-v0.1.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "b1da907c05f2849fbfba3c4744a5575460226c0deaf95f382d31df91b782927e"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/contracts/README.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "9630caf6b03a0e1b9d151973eec7930e96f0818b28a5c387e16bf8ff19047272"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/contracts/data-model.json.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "5bb8346053fa241e2e307eef5ec842b886a5531622a34fb694b3828a2b70d602"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/adr/README.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "d822f363ee08acfe84fc79556cfb3f61e402e2826d8b30e9c30f8bc72fc75dbd"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/architecture.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "a99772633e51ce45cfa7301c41c39032b23a78dd8b941df9fe09345d8b943b05"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/CHANGELOG.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "cab01ac7100b644b5f240d7e8f7397976fde5fc618653a81a684d0eb9da4ae05"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/PRD_SRS.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "b0b013d3237cf4eb71a0c074a444c8e4ce12831ddd8b9457479a0692fd0ef8ab"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/README.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "d77a8673ea7474735746bfb2bd0522f99459fc904d8e4d58b2ae7b17cfd02b2e"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/SAD.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "7c718d2aa9aecae74bed0685f92163b4d0b529d44345ad3f7f1e652171dad6c9"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/api-design.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "3ef4d4cacb5dabfbd5dfb2d84407a0cd99833bdc0f3270a5b462c4cdf6fb1be0"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/artifact-register.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "4c950e2db7b812f9f9b6b5152d0e1194e70ba3a93742a3022c2f5172fcda0349"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/data-design.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "c8b24f333fcafea19ab282a3e837f1f122c226d63cc05c7de777b9f010855d11"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/data-policy-fit-review.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "38099b9536d57f7d704fc52aee44b3ea158e8c3d6f3997e3fe768fa27b87a618"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/diagrams/README.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "1510380e51314991c55a0f693af6d10ec15d55f8d47378e478406338fd47928f"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/diagrams/architecture/README.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "44e67fdf832f895f723fa36548e7a2dba76d6b60e354839932407f3562142ce1"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/diagrams/c4/README.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "151902e88583c493d685402f28e4c1ac188fbe5067d9e0c3a034b8501181c88a"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/diagrams/data/README.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "0b615fd9a23df3e728e0c89aadcb2e592f971529b39674d719d31ea410c4583b"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/diagrams/deployment/README.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "56bc52fd427e3f2fb5d1eea06d6fe48ff55734ac65cbb944b79fd438bf620db3"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/diagrams/design-foundation-2026-10-17.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "afb51ea4e7f7e5e9025ba8852cb005ed1bf820657e052e46ee9743521bbfd078"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/diagrams/development/README.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "43541877ef820d970eaacb5797d47925742aa0dac8de361bc5f08979d97cbcbd"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/diagrams/flowchart/README.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "9fe6fc66aa28aff2e3cab25880c246a62d534d0be5e44bb30390067c1f427cdb"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/diagrams/previews/README.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "3f995bae5e8f02bfc9b1580271d8af777dd2222225e4916c868be92076bbe474"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/diagrams/review-2026-10-16.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "e439bfadd6ccb9aad39b074fc4029bfa8b25709d9134b5b8106148d553eec6ed"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/diagrams/review-2026-10-17.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "006065a09f4ec483b5762ec46a47c907256561189a9e0b80afee486d9c66a2fe"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/diagrams/review.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "e98fa93bd8ffe9e689bbddb0f23f3c70602e829ffb14fb4c4fea605108acf493"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/diagrams/sequence/README.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "87d92ed819f7ccfc316b5e4f93d055dcc4f292eec071fd697556dd973534c84d"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/diagrams/sitemap/README.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "daccaddd94a800623a6615be4876a78662e1b0c393715e0fc2e59fe77cbdab7a"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/diagrams/state/README.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "ed651583718dbca5cce638632ca119eac9f0d5a077c06d6d224e456c78a6eacc"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/diagrams/use-case/README.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "1e1bf8ac825fe3266a68953bb74b4a2ba2384cdea50668eeeaace59871cad9fa"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/diagrams/user-journey/README.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "e96c5d8429fe117d8fd23f3f3791bb441a6ac46bdd23a10c661d128c591885cf"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/documentation-freshness-2026-10-17.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "50e9b2b0adc5a8b08d1cef87da55e60c40fbb76897ea85f287be50d844c6adad"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/documentation-freshness-inventory-2026-10-17.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "a049ae090d8c4ed419a8f7c162652e6e6e002bb12c41a43db04f7600e87559d3"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/evaluation-cases.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "03541d85483310b58949039d4c4008c7bc78499c07bf2e493ddf71f37f958379"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/handoffs/remediation-priorities-2026-10-18.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "bab199e25b21ff04cc2d5928657ae696916ecb397273c409ea40d72f9e323a8a"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/handoffs/ui-ux-handoff-2026-10-18.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "2be5f0120904c3e77532351e5a8267fbba5fec274d8a108e664a470662ab7c5a"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/references/document-review-register.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "1b01cae7e99ff238ef1faef284ce128e2a8e6a2b71cbae1818547d229ee70a75"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/references/handoff-byte-reference-2026-10-18.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "cba26e561cbfe2d6ab2fdc8ab17549e68e45477a6bacfd98b9866e0c7000e7a6"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/references/handoff-sql-projection-2026-10-18.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "ed36f114322287139ca26d19f57e80a6662f0fa49dded6414901e99110883fe3"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/reports/SP-01-P07-scaffold-2026-10-28.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "980d3cfdf2c709f7fb1db00876be19c45c63fa36da5c00b852c671d27b793a58"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/reports/SP-01-P08-persistence-2026-10-28.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "5e3001b0cfbe93baeb7aba5f5b036758e0781f603254fdc3ddcc53809f50bbd6"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/reports/SP-01-P09-http-2026-10-28.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "430fb3a127269c90ec1b4de4a1e782a60d0becfdcd4691346e630c0946eb8181"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/reports/SP-01-P10-lifecycle-2026-10-28.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "0514c421674c66df1771414b7f9963b352b22b421cd98c0492e913bac3e640d0"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/reports/SP-01-P11-ui-2026-10-28.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "db0746ddd67a8a901bab8e1ca5dfe49249a24ddaecd9001d052889f61c1d4693"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/reports/SP-01-P12-handoff-2026-10-28.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "d078bd37ed482c3e7820f3c3d13807a4e06b1f183d247b5a24e6c61a04000169"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/reports/SP-01-runtime-spike-2026-10-28.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "3108045e1788cec5808217e91007aca7d26041458ec69198a3b383d97e12c0e7"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/reports/SP-01-testing-audit-2026-11-01.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "4d718dd6b843bc0fd6716231e3b9b340c4e4ff310b56bed2f42744c38aa58897"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/reports/SP-01.1-preparation-2026-10-27.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "aeeb4e8322d22c6a8dbad526bdf8eedada29f03f0583d2d2771cae1afda59301"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/reports/SP-02-P02-preparation-2026-10-28.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "70aae84c5d4e31feec431007b02ad52c4feeba717ca45540754fbab9582bcb1a"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/reports/SP-02-execution-2026-10-31.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "e09d111fad2e172a78ea870cb9fabb0902cd077340970825f2dcbd1fb857916a"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/reports/SP-02-testing-audit-2026-11-01.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "a48a70037d03666c8f1affb6bd1ea76aa7845c85922fb6087ad230ef05c8a626"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/reports/SP-03-2026-11-02-execution.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "06dfd5c78f5df3244cfbb8ac794fe0b1a7d93f2ba676adb2056dfb5ffce17db9"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/reports/SP-03-2026-11-02-ui.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "5a21a9549bc8f605743073c57d75ccf000ad289016ed2457e3e1dc723ebbf814"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/reports/SP-03-publication-2026-11-03.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "fd3ffdd92f455a59148a435d0862f9c3984bba5b20bea4bc29e9e3fed4960258"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/reports/framework-foundation-2026-10-27.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "7a99fb3352fcdc756d8a8d615b1ace1cacabc1a31f74967ad39136eb3fe69757"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/reports/progress-report-2026-10-18.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "c3cc3dfc830bc0da65516f41cf73264b326c726969bec6301ebdf7ca0e89580d"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/reports/progress-report-handoff-2026-10-18.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "c1b86272b6ba912387cc02197782aee8a6d89740287d8940c8bdf39b29aed1ed"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/reports/sp01-p08-evidence/prep-restart/report.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "87defb1739270bc2f6d1b93d6013960540c6f97848d973f297b46b7625ebf4fc"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/reports/sp01-runtime-2026-10-28/prior-before-recovery/report.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "443fb6195f5798155038a66bb259cb08bdbd2de0a308169f227ff6fa640c8ba2"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/reports/sp01-runtime-2026-10-28/prior-initial-run/report.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "5dd5b684a923c3069bae7aa850b479e1823b39d25033e2235e1e085c82ff64fa"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/reports/sp01-runtime-2026-10-28/prior-restricted-run/report.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "21ccd5a47f39cf2d97238f210a4358df0fc5df9100e6871a916564cabe7cd1d2"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/reports/sp01-runtime-2026-10-28/prior-subset-run/report.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "35b3174a7fddd9feedbf3d7f48ccbb660e6f40b46887f6c311c018d10588d86b"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/reports/sp01-runtime-2026-10-28/report.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "f6862faf182d9116d03362db5e01b10bb96289e64d0a53634b4ce77389b0f23f"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/requirement-verification.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "c3bf8a1a468917dbb83e46b19b35cf79d31f65c8e6a05cbd18a3d7f3be1db15f"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/reviews/implementation-input-review-2026-10-26.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "36a1af3ad44dcbce1f57c903c8b0c9ac16610d38a54155a6d4a8cb97e8bc1c37"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/reviews/ui-ux-checklist-review-2026-10-18.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "15edd815c3bd99ad1767e38cafee355c6e52f3721e5e2505b69402ef8b38206d"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/spec-review-v0.4-history.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "533d1ba662293d957a9d4c9a11a5c4226265759c9d0fe215d6c2965e90c13d18"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/spec-review.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "b2f794f8912bead422582cdd3501e29538a43bc8647588001cc927be84944220"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/system-consistency-review-2026-10-18.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "1ba7c1549db05d6676fb107f95957aae35a00f648a67ca739ce61de617b8ef1d"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/test-coverage.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "7ebe839ba8f95c5c46eaea8e416f89c1cafb15ef15657a26de7053390f395e81"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/test-plan-v0.2-history.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "8c67d70735dfaa1ace77a3ad8029a441f84f7fc816e0bfdb82c9b616d87fdce2"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/test-plan.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "e889dbb8c51a68ddeaac7e1e2431fe9dc6b2a007303cdc1b99a80d51f4cd4ceb"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/ui-ux-blueprint.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "9985246ea7f05c523f6902758c1087f4f3563e2b842f38b9ae7a75ac469304d4"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/ui-ux-spec.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "95a801a8ab96fe3a7d432df69414e94b1aa6abf7f77beddb37218e896150328e"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/sdlc/use-cases.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "29475d6da902b1b3bbebae65e822cbc4c4292d122149f6c29d0cd6e154bbf616"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/ux/flows/ai-qa-flow.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "44c5ab026dfc4d2bf045a4892b01ba2bf1d7f07d5953f7bd54eefd93776d33b2"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/ux/flows/board-flow.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "0bf0948b87497a4c5373ae5c6939ee15d00da455a4b6ffa0ae4ae1be18819c20"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/ux/flows/docs-flow.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "0dec7f9e31a6b68868fc8184f2c462588ad4bef0a63c6065df3c1c711532af34"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/ux/permission-matrix.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "a7e06f471adb20c5b6244a9a8dc5e3f91f7a4934b6cab8d3cf551b98feda2c53"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/ux/personas.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "fe19f5ffbd12549d66d4fd6e40df9e770b1adc5863096c3fe3d477a266d71e61"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/ux/sitemap.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "d4104fc435c6712ff42bb2ffb5ee1e73943eb030303d865123f671cec6433591"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/ux/wireframe-workplan.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "3d7bfd67a30d1d88660d41d5bb011175140f68a4fa9ce2fef955d0b3efe1e14c"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/docs/ux/wireframes/README.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "44e637ae90eee3e78d7329900aa7c5a950a31e72f38d8e0fcdb0475b3db7a9e9"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/specs/001-session.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "da15ca9dce04b9f54793c0715060d209a6483fe9bc8831d36d9f684e327e0035"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/specs/002-project-membership.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "4af5b72d9955551916f4c4b7695ef643d8cbeaa193b39e4d747c07e404ca7448"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/specs/003-create-task.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "7614c1676aa66e197f2de2cf1be1aeaeaf53f74d616fa63e7d70f2c70e6ee522"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/specs/004-update-task.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "0cb1980a66a297b2c24b6850a17070ab2def5c268935c3e7bd91b9c6f992a845"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/specs/005-sprint-lifecycle.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "718c003702f8da6b952131d0169f57cee2b28ecdfceb33f88e5ebc05368c9c3a"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/specs/006-document-access.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "4be68caa475aff882626fa9f6637905e51b5cf1cac2fdd8327fcf4bd5cc90e3b"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/specs/007-version-publication.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "e92d00bfd410aaa19499229b4b266db5eb39e77f9462bc4886545f304b1dce7c"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/specs/008-linked-keyword-search.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "1948f1328f4492653ba15e37fafa6557d8f79b0584eac3e6269fcf5bb938233d"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/specs/009-cited-question.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "567d2e004831ad237dae0e111485cbcb79dab3bffd52b41cc68e319476f68072"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/specs/010-current-work-question.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "18a7ab17707bb3a5ae3bc4cfc56ba961b4c917c03a6881e86f0949ab5d352944"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/specs/011-audit-and-source-inspection.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "13342b9742802f8e652cd19efd438a5760bc85a3dc142e92926f834af3001dd8"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/specs/012-failure-and-evaluation.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "dea7d3e3096cc484f3381428e35854ed45f76fcb48d68c56422d75a4d5984f84"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/specs/013-scoped-inspection.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "ce99d1776eeb93bb20d465ee051ddcea7417fc40a7dd7777c2c7f680f235b76b"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/before/specs/README.md.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "25543276e2f54e0a16e2d32a46a24cc39a58f00a45454525d598e30841a5f192"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/checks.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "cf8312bded4b71411fe2a71d647b8ba7f3ff2052516aa4b2dfbc5c9511a26b83"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/context-check.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "65bd8cbbf70fce0536509c7c32560fa39e51d70a92ed0424e2eec10fe621ab08"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/context-lint-1.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/context-lint-2.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/context-lint-3.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/context-test.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "5ae562c214447e77d59111f3f091962034c9a7ebcce78f99cb7d94268ff25acf"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/contracts-test.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "352d9ebed577c5fc5f829d302f1c072bfb0fc752e25e39a832191d9fbbd7c441"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/diagram-metadata-preservation.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "2cfae2f627bb6f18e766268b072699c1c2c5b70e9b0dd60002779fba1ed751a8"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/docs-lint-final.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "0ac1178dfc2969d5c14c02246fb5bfaf6b5592fc9619f015c03a642877de5251"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/docs-lint-first.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "331a072abd4bedbd8e323a2154c6af94231e0532b9b1a3fa411393889fc82074"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/docs-lint-fourth.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "aefeb0852489cdffb1cec528f8cd6b0c2b209fb4473af2875d0672bb39e8e265"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/docs-lint-second.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "bd25ed794bc0cc0137ffd0cfcb41ba4b784de4d2c5f435e336c9a628a4e21aee"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/docs-lint-third.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "3d5d1221dba0a57a87275cd10b8f31cfdf6243b304d971dd7ec172d3275e6e3f"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/docs-test.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "6be1ca8a5f544a60fa5941bb203b45e2074cca4a399c329978b060dac43a04f9"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/executions.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "d51003167e840565e83f9b1f346149dda963757d30f5df90c68075a0ebe4db44"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/initial-version-closure-proposal.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "1740da95bad82941e23db1bca1c793621cde3f9c17d5cad79381a92828de665e"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/metadata-check-final.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "c8bca8f66821fa6d07f78acfd28d6031ca53864495543883369844cb7856827f"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/metadata-check.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "c8bca8f66821fa6d07f78acfd28d6031ca53864495543883369844cb7856827f"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/metadata-sync-first.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "f0f4452d26f04ff5247cdbda249442178d0d7ceb5eade3f013ed0e57f97c4cb8"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/metadata-sync-second.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "a84c4101e56c427a131bfcd6117fa159b2943b1a061af25860b74842924d2168"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/node-version.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "44ce64f1806e1aa8fa0bdd85b10e0413acd78557c88a8d52e94a0eb70f40b7ee"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/planned-version-closure.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "1740da95bad82941e23db1bca1c793621cde3f9c17d5cad79381a92828de665e"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/preservation-first-failure.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "f12fc6a4f0ad9134fe577e41f71992cab60fdf818d20a3ca9280e1e26f6ed486"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/source-inputs-before-snapshot-path-correction.txt",
+      "before_sha256": null,
+      "checkpoint_sha256": "fb9afd1ca87c32704a87ef8d03bca705537667b0e013a68ecdf664c0e8210491"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/source-inputs.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "0a4b58040696366cc4c89f9d186406075f40a2aa8dfda3e38b99ea37cd0fe92f"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/source-scope-check-second.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "6d629c836682bfaa3400b1a06e188a435506422f24094b5fe5bad599d3128088"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/source-scope-check.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "4277b5b81e04eb11ac813480f8611634dd055577edca8e0c9e16817a20112879"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/source-scope-final.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "6c08f95fedbdc45d5c643031b15b4eaf35fbe06bbeb054b4c860daff5a336e2d"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/verify-source-scope.mjs",
+      "before_sha256": null,
+      "checkpoint_sha256": "a38bcaf76e6abe09e694835907a0909d233e9e62fa7291fed96832cd9c040236"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/version-map.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "eb90bcf96b2db449f12bdfdb21e2b35763a520da4813b321032ca091c163847b"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a2/whitespace-final.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "68d1e7cdee438e81de0d88032e934bd6cbc188f834ef67b075a141a3ce54064f"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/artifact-link-first-failure.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "8d0241608dffb972e9c871e274b17aaed6e520d213dbfd23b4362dc5bc75337b"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/checks.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "45e0e8765a612be6f186b68fc35a48041624a6206fe42ced07f1110ce2de7579"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/context-check.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "65bd8cbbf70fce0536509c7c32560fa39e51d70a92ed0424e2eec10fe621ab08"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/context-lint-1.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/context-lint-2.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/context-lint-3.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/context-test.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "1f201766bcd32a060e847bd2b29ead0e275544fef4638bdc6d6530d3c5a20e80"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/contracts-test.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "e7e6e4f11473dcaa453059282e903c747e425dea072b655616a96c0537b658dc"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/docker-after-start.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "b091bf6843123dd14028fe412dcdd18b85fabd91bbf9c94a763121d11c9a76e1"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/docker-prerequisite.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "b091bf6843123dd14028fe412dcdd18b85fabd91bbf9c94a763121d11c9a76e1"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/docker-version-final.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "fc40cacc4ad868c1aca1007d7c9d0d7c0fc50faa836e196edb79b29ec07a266a"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/docs-lint-final.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "0ac1178dfc2969d5c14c02246fb5bfaf6b5592fc9619f015c03a642877de5251"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/docs-lint-last.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "0ac1178dfc2969d5c14c02246fb5bfaf6b5592fc9619f015c03a642877de5251"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/docs-lint.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "0ac1178dfc2969d5c14c02246fb5bfaf6b5592fc9619f015c03a642877de5251"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/docs-test.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "012e3a5b935413239a5bb36b05a284b0390173d52f34e43dea3a0ba3c6683064"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/executions.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "d7595d071d954f5970c22e4b9457ac87a0081edf3c382e204df670c792a3dd90"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/fixture-container-cleanup.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/fixture-volume-cleanup.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/metadata-check-final.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "c8bca8f66821fa6d07f78acfd28d6031ca53864495543883369844cb7856827f"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/metadata-check-last.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "c8bca8f66821fa6d07f78acfd28d6031ca53864495543883369844cb7856827f"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/metadata-check.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "c8bca8f66821fa6d07f78acfd28d6031ca53864495543883369844cb7856827f"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/metadata-sync.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "9e38029b0ea7318943b1bd98ff6dba31ff0390e86f89acb9a801dbe341982945"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/source-inputs.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "39df33ebfc0addde0f7d49b59747f57db5b29edb46b24fe93da6e5964c2322e4"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/storage-009-regression.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "930713c35c74801f69dc4b0f51ec80f5fb9f8c2b04adbf85b149c03e09abdba1"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/storage-fifth.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "c70eca59a0eec2cefaaa4ddd6ee3be13833934aeb2886f6614f999fece64aa9b"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/storage-final.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "c9ac9e76eee2305c02ccc7c27080ef675413c1c6755b88f5f27240f0ff373883"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/storage-first.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "e28508c11bd91ecdf7f96d417986d42b3277766c38ec4137a81bb4f77a242d8e"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/storage-fourth.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "b6cbc3626a98485f21341e5606809c0fc002b850bef1d89a81804f006045e564"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/storage-second.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "fe738cdfdcd1774c5e78479604ee847246cc2bff214d4d1638167125a8d7be02"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/storage-third.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "c39b8a5a8af63fafb38bae52bf79432381a33986b436a10a52bba0f47f2a20a0"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/test-syntax-first.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/typecheck-final.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/typecheck-first.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/whitespace-final.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "879d9dbbf654f7829ae22409629a21f71935f160baf35bcb4dd1000d493466d6"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03b/whitespace-last.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "879d9dbbf654f7829ae22409629a21f71935f160baf35bcb4dd1000d493466d6"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03c/authority-first.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "00071459fa7a2aea779dc41b8c9c92bd0f43668db1abab5a236b89a9d7caa5a8"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03c/checks.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "6e4134ccccf1c2b0360403cdadde127a45051febe80e6469e90286a33f7fceb3"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03c/context-check.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "65bd8cbbf70fce0536509c7c32560fa39e51d70a92ed0424e2eec10fe621ab08"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03c/context-lint-1.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03c/context-lint-2.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03c/context-lint-3.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03c/context-test.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "8fe6ff37eda790f6ab453fa386e7fb56eadf20763fb6a1ee99af6c2a01f3bd64"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03c/contracts-test.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "170960b56b43770c1977ec54bad181d45cd82c72ee4dae8271781e75174e4756"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03c/docs-lint-last.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "0ac1178dfc2969d5c14c02246fb5bfaf6b5592fc9619f015c03a642877de5251"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03c/docs-lint.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "0ac1178dfc2969d5c14c02246fb5bfaf6b5592fc9619f015c03a642877de5251"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03c/docs-test.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "ca944b0f1481dcac224651feee66c045a8740f3ba63fc0c7f41551762c7a3d9b"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03c/executions.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "9d455ef1b16f8816ec5d7ff5617f84afd0c7f86d2cee7f68e0af3ab378be5217"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03c/fixture-cleanup.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "f3e5e7274bcd3175e015c68d501392d9cb05e17da04108ce5191cdd0578b81be"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03c/metadata-check-last.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "c8bca8f66821fa6d07f78acfd28d6031ca53864495543883369844cb7856827f"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03c/metadata-check.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "c8bca8f66821fa6d07f78acfd28d6031ca53864495543883369844cb7856827f"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03c/metadata-sync.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "9e38029b0ea7318943b1bd98ff6dba31ff0390e86f89acb9a801dbe341982945"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03c/regression-first.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "f200ef6ecf66566f81b64d5cd36f6c8ef3f4c6eaf52aa7acf2d14ede04cacfc8"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03c/source-inputs.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "48c5d7731ec98621b0fce621f39ce967e7602c6492e879c6e2dd572d0aad7584"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03c/typecheck-final.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03c/typecheck-first.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "85164e224bad15a9a5d6e0752b8a3bcf80dcedf847924f15526111d5a67fecf9"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03c/whitespace-last.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "8a660061a16a96fafd86f1693fdbc43f44fe0ebe6f4e8a0363b70f3bd5748bf0"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03d1/before-images.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "110aa8361f3eab208600650b052567225ab9b8e4f74cdd1ddb8f85f8af440b68"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03d1/checks.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "677e1333a31dc4bf527d71bb048c406901552a65ffc93c918ec6cd8168dd50b9"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03d1/context-check.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "d4b042a0db63f7887ed4678f5564f5842fbb0cf01325ab343761662fa85f6228"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03d1/context-test.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "e4141ab3176d81b443889f9f521c74d59d17bb007756dc69e2b120b0e7c6b2bf"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03d1/contracts-test.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "ac1020752bdc24183deb90d9a2c4359f96274fd1a506506a832bfc0ee88903c1"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03d1/docs-lint.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "bdec06812384c6b88264b1a64583d6bde6840fde38c58c7cce727c94703a9fd3"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03d1/docs-test.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "79afb1c789f971ef34a6210762c167d7ceef0ccbebeb3a248b1ea561fd38f1a7"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03d1/handoff-checks.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "53a760272a96223a69e802ba2dca4500af3b91e787fd07b7924732855350d3f6"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03d1/handoff-context-check.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "d4b042a0db63f7887ed4678f5564f5842fbb0cf01325ab343761662fa85f6228"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03d1/handoff-context-lint.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "2875584bbbea4294d4db8fcdfca8de0ea8f04c235234b8a371e08df1f8601f78"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03d1/handoff-docs-lint.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "bdec06812384c6b88264b1a64583d6bde6840fde38c58c7cce727c94703a9fd3"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03d1/preservation.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "50f4daa3d3366eee800a86442d92a467de185e050905cb088eb2d84c19091bc7"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03d1/regression.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "5700120e908797e6db68c55f6a45f89d7bb2cf2ea61c3866cb33a419d113b30d"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03d1/run-checks.py",
+      "before_sha256": null,
+      "checkpoint_sha256": "3d59dd64013aabf507b4b1e6647430380575b52c942952b69cef80f65f73ef2e"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03d1/source-inputs.json",
+      "before_sha256": null,
+      "checkpoint_sha256": "431223e007ba0dca61116405de68c4d1768de498eea9695a3109af94c09b70e0"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03d1/task-edit-attempt1.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "097f06e4bbc8923cc65fcfa791ba8f4566eccd8c1cb53170941de8fed2146ad0"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03d1/task-edit-attempt2.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "f315a1fc2c684022cb976594fdf0ab2cebe5fa9f0c5ef02bc4c033bbbb99b30e"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03d1/typecheck.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "3caeb1c666db35e1adb046112f27bc595f3b8eca63148b35b42be373e4a7802f"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03d1/whitespace.log",
+      "before_sha256": null,
+      "checkpoint_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/owner-decisions.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "1ef63ec6d0dbd8167e2caebe0b506e29d2ac5781b385862bc5017555d436831b"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/plan.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "0fe676bc1d08a03551e5bf36c87872d946fa0559b862a469bb8e6216370c0a4b"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/reviews/ag01-codex-disposition.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "52d908d7cf9c02b13d15f9b681f50138365a2ac656a0af7eb423d58e2f8d28d8"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/reviews/ag02-codex-final-disposition.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "698c3590e3f9dd6a917f1c9fd2fd32a37cfff1285289c7451f9fa79648959382"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/reviews/ag03-codex-disposition.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "8ab999c54c5ae2e5666e0460e7e56aabe2ee78da02b953534982e6f6a814701d"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/reviews/antigravity-p01-review-v0.2.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "128a58dfe3346a81696c7d6e8f7871f2c1dda406a8c81a0e4ddfe1623c319a46"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/reviews/antigravity-p01-review.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "007cbce98487368793442c0f8199e150ea6ec1186b5063b7f2efb2cec410cfe9"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/reviews/continuation-result.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "a9124d50e8b61806a2337e92133e9d8af06208a86d81dc2d6d5d315a33aaf65d"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/reviews/p02-codex-disposition.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "91273830459508439b93eef21fa185141101985f64bc91ebd36f4423901bf65a"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/reviews/p02-codex-report-v0.2.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "8162aeeebed8a1eee339cd07aaf40058c9e428086fa41cbbddb0393aabb3f9e0"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/reviews/p02-codex-report.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "d63754df8db3b9d99b97bc86523bcb7059f3fd463964c3b384b67e93ee1ca951"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/reviews/p03a-codex-disposition.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "593d6a32ebee7d88976dcc122288e9b6fe4b0c047e06aacbbdb966a5429018d0"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/reviews/p03a-contract-support.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "f49aa343714c96b73623ee9ab40ac20f05ce03632c5edb7882154500048f3637"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/reviews/p03a2-source-alignment.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "3cec3fcc366c08cb45e03a0762f6b98e01a78c0ac9729bfcccad0bc51cb10af8"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/reviews/p03b-storage-result.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "69c9426a11c4e6888a653bdc0b0eb64397939fa64233969a3aa6e0d17a1a0d5b"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/reviews/p03c-authority-result.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "370eb60888179af34aa63cc002762961590984294b0cae61632348246746d445"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/reviews/p03d1-edit-result.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "f8bd1940db8bf2f16f8bbef0346a85e1cc4276f9b36095ee698cfebb4b671ec5"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/source-review.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "0dffe230913f1422d7ac27a37ccd58c677f97e71fc3795930ac56fa27b60f61a"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/tasks/AG01-source-crosscheck.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "f464c139ef81ada8a719b85f2eaa9160d13f220ff614bc39a402ac2fa19ea57d"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/tasks/AG02-evidence-correction.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "0680dc935b1deccf394b4815d8894e9477750be538676f3c183aba54e75af71a"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/tasks/AG03-p02-design-correction.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "9616ff5e3a9fe0be2cbfe0d398973c3147a7b449961d03d7a8175f1f03ba00e3"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/tasks/P01-source-design.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "c9b2ddd2cabac54f2f58553edc599ce053e37057c108e1b4ccb8b137daa51d23"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/tasks/P02-storage-authority.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "2e2db2c7e5b005eafcbedc51a105a4f9e96394030d7e07976462fbf604cdafb5"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/tasks/P03-task-commands.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "d4bd1de62f1b459938b1d7c9799ccaeac8928a22cc8061bd88b4ab2a6bcf2eb5"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/tasks/P03A-R-return-reconciliation.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "562287646ed7b790b19acf8ae0d3b98aca6f061482263f33adaad5be77d1138f"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/tasks/P03A-contract-support.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "2e8376f260055ca7bd0805b9f86e086e00954ecd5bdd131f89f513dd7e3720ab"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/tasks/P03A2-policy-source-alignment.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "bad00aa83ae1580ef118f7ca4ff5e0eb137e974b3be48fa778d84f7594e64706"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/tasks/P03B-mutation-storage.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "e3ca5279db735cafb925c4d0eebd4e55f15173db74dd052f7adbf2da6b5e944c"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/tasks/P03C-task-authority-discovery.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "146e980d56b5272b2062812820a53683cdf60f1e78aa2601e292581243f8702a"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/tasks/P03D1-backlog-edit.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "2d6d7457c851489ae83ac605579d23b6148e17ef6adff01c3869958d17884281"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/tasks/P03D2-state.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "2c88f0dcb7fe5cc7453cabd9856e5e7db5dc8515066c59573f023c2890d428a2"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/tasks/P03D3-assignment.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "f3b116906a84062b6bcbacddd0663ee5545fbd9de983ebfafb5dfb4940123337"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/tasks/P04-blocker-history.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "3ca51d0393a0690ffd6158714e3a78229ee7f24cab7865980c4310d29f7d0503"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/tasks/P05-task-ui.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "96f03d1aa44489a87d29da866b6028efdefb7cf6e6d48601ea13a4629d15686f"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/tasks/P06-integration.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "a8beba4f858d94648cbdefecf3a730e63ba68260c24788698c1a4987a1225ffb"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/tasks/P07-handoff.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "dd771252f056d40fcaed205bf96b4eba9a063e1e1556f551d1c1cbd17e6bf31a"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/tasks/P08-sp05-integration.md",
+      "before_sha256": null,
+      "checkpoint_sha256": "966b42115495a549066b01a9801c62e7adbfc0483bc4d16171c8d7b768ca96b9"
+    },
+    {
+      "path": "docs/implementation/tasks/04-update-task.md",
+      "before_sha256": "bdc6301e610eaaa0bfa33bc8296bc986b2c34dc7cf2152507b2a124be2f3cc01",
+      "checkpoint_sha256": "80e839dc32557964f3170533537efa591ddf19e34ae9ee9d044b6ae94b079745"
+    },
+    {
+      "path": "docs/sdlc/PRD_SRS.md",
+      "before_sha256": "3bfbddafc0a5488afa1ec5ef29d06648adf67c00ebb532534abe747c5e07925e",
+      "checkpoint_sha256": "635aea4973797d0e3d23f2370ada7d96e4f98b8ea734136b0c5cd755ab12b63e"
+    },
+    {
+      "path": "docs/sdlc/api-design.md",
+      "before_sha256": "eafec0055bc4e4b3cc55776d150a65049609cc4bcf69498efe0ee5321a49ec39",
+      "checkpoint_sha256": "8eaa1e381f65b82fd0863a2b3e13a1c599b12db88869c9be2b1a71d0f439f821"
+    },
+    {
+      "path": "docs/sdlc/data-design.md",
+      "before_sha256": "f330ac9d5e7234ebb9d653d555fabf4f5348ab4625e25a26885bdc053766783e",
+      "checkpoint_sha256": "32cd1bcfe3c3b0404ee5a058f979fa6f1542f1b8f19d5c4c526edb1919521063"
+    },
+    {
+      "path": "docs/sdlc/evaluation-cases.md",
+      "before_sha256": "d28864151c6d2e9b81bf5f1b8049a20b604b3eaec3dbbda17f6752206178b50f",
+      "checkpoint_sha256": "3e213b1806ce73de4aa33f7f1e8e16bf71c357f4bea85c5e46100864cfea9d64"
+    },
+    {
+      "path": "docs/sdlc/reports/SP-03-2026-11-02-execution.md",
+      "before_sha256": "06dfd5c78f5df3244cfbb8ac794fe0b1a7d93f2ba676adb2056dfb5ffce17db9",
+      "checkpoint_sha256": "0034755d03c91b08c1ce7a7a021ceda4b95d0a5695ab786d416fc81d97e948da"
+    },
+    {
+      "path": "docs/sdlc/reports/SP-03-2026-11-02-ui.md",
+      "before_sha256": "5a21a9549bc8f605743073c57d75ccf000ad289016ed2457e3e1dc723ebbf814",
+      "checkpoint_sha256": "8b434a9a8ad1405a361cae1bbef5e6b455cf5068b380a3b1ca93a7e103671471"
+    },
+    {
+      "path": "docs/sdlc/reports/SP-03-publication-2026-11-03.md",
+      "before_sha256": "93a65585f391d8d1cfd72fc5e2f1eafcfa5aaa41f80b01a85b8e718c0e63550e",
+      "checkpoint_sha256": "e119b35c775cab9029d007517c1ebbe0d2c80f639f1f50e4e393b3d52d9b9d69"
+    },
+    {
+      "path": "docs/sdlc/requirement-verification.md",
+      "before_sha256": "d1172a99d206fe05122de844c869bc856e136608d3f633661e5012b1c1a872b6",
+      "checkpoint_sha256": "7fdd7c23a83ef8a9b6b752f32949e96ccce7d62b33a4d8afa3bb81fc54d078f8"
+    },
+    {
+      "path": "docs/sdlc/test-coverage.md",
+      "before_sha256": "c4b2e18b1b8ac5a8eb12ea4a9fee6a45ab8f4356f5b0b36f5c2db0889688702a",
+      "checkpoint_sha256": "49627229483b3ce31650639f8a772e18b4f4cfc50878629c621bdd96ef1d62ee"
+    },
+    {
+      "path": "docs/sdlc/test-plan.md",
+      "before_sha256": "9dcf32a3cf490711e8bd6008065cf25f3244b3cdf33be1f3ccc5b674b3f7919f",
+      "checkpoint_sha256": "a7e6ad673542b405a2c267f8557a51cb1d786b0391478cedfdc787b7530b4f7b"
+    },
+    {
+      "path": "docs/sdlc/ui-ux-blueprint.md",
+      "before_sha256": "f7ec8274884def724ddc915a083b6bf4bded7ea8882c05017ad24220b28a7636",
+      "checkpoint_sha256": "26f555c5344bed5362fe307d82d908788336c4913d589ec27bf9e7159c19bb0b"
+    },
+    {
+      "path": "docs/sdlc/ui-ux-spec.md",
+      "before_sha256": "6ca49e81e60ed23d1783a0e25db068190a06e49d9e76d6deeee6cd383be9232f",
+      "checkpoint_sha256": "566631fda96cbe62cf3eaba366726166e645b2841e733524df6e873320dabfda"
+    },
+    {
+      "path": "docs/sdlc/use-cases.md",
+      "before_sha256": "cbe41dfda6039db0822011b719ff9bc4ba7944d75e9d100c7901d36a5fa0d37b",
+      "checkpoint_sha256": "e949213040833589460475d2d10cf067c6175a7175b231598c849e22771d86c0"
+    },
+    {
+      "path": "docs/ux/flows/ai-qa-flow.md",
+      "before_sha256": "6ae1e9efcef953a863f5fb3f8dc032e8bacb3fe3a2cc713928fedb3c92bf4aaf",
+      "checkpoint_sha256": "50a8c07cbe91c3c869ab7a99e7eb024870f19789f1675dd526197d5978e9689f"
+    },
+    {
+      "path": "docs/ux/flows/board-flow.md",
+      "before_sha256": "1c93983f0f5e9fbd877e2cf0a0540d766e6c7cbe652979d2d887259a7dbba341",
+      "checkpoint_sha256": "b9f9bc0f34a8ff58cf86154695d8c5619af21df6f20a993f3b73aa47042e38ab"
+    },
+    {
+      "path": "docs/ux/flows/docs-flow.md",
+      "before_sha256": "21b2f0376b21050ec8352ed56bbc25c3006db1e9f2f13c855bf63c8f01268e58",
+      "checkpoint_sha256": "937ed3c27e9e694c4f720b6e5cac3a9fc908da92502c3450b628e5c8e256d66f"
+    },
+    {
+      "path": "docs/ux/permission-matrix.md",
+      "before_sha256": "6ed177f38c695492da5f08ce61c5aabd33092c0a316c497312eea241bd943de8",
+      "checkpoint_sha256": "a246b0f94c2ec430bbefe78fc10190040293e902fcca5e25232c439f8e51ef90"
+    },
+    {
+      "path": "docs/ux/personas.md",
+      "before_sha256": "20e01d0059545e5f59f41152b4e4cd1ac55b0a627ce56c8225afa82c98a7879e",
+      "checkpoint_sha256": "d22c1f78318cdd745e5e66768c4d4cf82e30e8c761a4f14a35fff76a2179acf9"
+    },
+    {
+      "path": "docs/ux/wireframe-workplan.md",
+      "before_sha256": "f16ceb3a8eda510829c77c3b979788c0bdb17003a0f3b78783c38a62f285723e",
+      "checkpoint_sha256": "fe683f09ca576926b558794e9444c68f7dae1211e2252199497e2305e46c84f0"
+    },
+    {
+      "path": "docs/ux/wireframes/README.md",
+      "before_sha256": "084d95896ecbc61f7d6ee3bd0cd0141a052064538caab1d7ceea6bc1ad68e1d1",
+      "checkpoint_sha256": "579c06994163f049df56b2ec4ab10dac6b09773a19e4dae2adfc8bb523183aef"
+    },
+    {
+      "path": "services/workspace/TASKS.md",
+      "before_sha256": "af0360c9d04fa651bcebc7bff4c6fcda367d24cd84a40e1207cb9e4acf08ecb6",
+      "checkpoint_sha256": "d283ec7b5869fe228d9033d12a62a4d2c81758bf938cc2a062d1b3e84b36c3d5"
+    },
+    {
+      "path": "services/workspace/migrations/010-task-mutations.down.sql",
+      "before_sha256": null,
+      "checkpoint_sha256": "cf33b148261f13327837c55944d6f6a34bac5939e4e9388f3c1bfbdd5094b457"
+    },
+    {
+      "path": "services/workspace/migrations/010-task-mutations.up.sql",
+      "before_sha256": null,
+      "checkpoint_sha256": "62fb2fa55dc91e237a8ea91977c8350589d86a0af7c6a00b94fc70ef4f2f3033"
+    },
+    {
+      "path": "services/workspace/src/projects/cli.ts",
+      "before_sha256": "14eb9be33cb35fcec1aeaeead22168b2f2a970c0411d91d3d4861508afcf5527",
+      "checkpoint_sha256": "54be771bb384621a9fd0bb8d919a4b41885883d96cfcac212b3f15dd2cf7f6a9"
+    },
+    {
+      "path": "services/workspace/src/projects/http.ts",
+      "before_sha256": "586b6ffc555c360f4f93c288270ac7cee4da8e61703c2c161b37cdebf9fbb059",
+      "checkpoint_sha256": "4655bdf69616ba8db393f023be083fb89b9d431eb0947fbb1c742298758bdece"
+    },
+    {
+      "path": "services/workspace/src/projects/operator.ts",
+      "before_sha256": "86ac65fdb3a1b464854c6ed643536b358bae8d15fa00491ebf127f81c5e9b403",
+      "checkpoint_sha256": "46f002ab8c39ffb677f7406e1e910062c9ed10d18aa0dfbbf4d7534d4bd11ccf"
+    },
+    {
+      "path": "services/workspace/src/projects/store.ts",
+      "before_sha256": "34923139ad9f0347d5b49c63724b2d90cf42a8c909322b4e16adf3fa6cc808b2",
+      "checkpoint_sha256": "019b0cb4f0cea5e138abb1a632a53527cd6e529f3400d869599c9fdba62380b6"
+    },
+    {
+      "path": "services/workspace/src/tasks/authority.ts",
+      "before_sha256": null,
+      "checkpoint_sha256": "e888bd055bdf485789ac4836a0da36989db51c2842c747126d69f005062efc11"
+    },
+    {
+      "path": "services/workspace/src/tasks/http.ts",
+      "before_sha256": "c2b80c17817943e5bae6cc53c54e90b69af523d820810e8dbe4b7005bc35ca3b",
+      "checkpoint_sha256": "421a5ffb05a182b7502d333470254e33c7502d19a6f50385abe54a49dca31f2e"
+    },
+    {
+      "path": "services/workspace/src/tasks/mutation-outcomes.ts",
+      "before_sha256": null,
+      "checkpoint_sha256": "917a0e2d01655296a2a507986b2baf4e70efb6a879caf4128beb49666bc7318a"
+    },
+    {
+      "path": "services/workspace/src/tasks/store.ts",
+      "before_sha256": "cd6473845ed8f7309fd7f3ea3cc7659417667a59508f1e395a1e82c4e7d3a3bb",
+      "checkpoint_sha256": "60efb9ea127b1a8ed84be969a4910878fd02884bcb4d1957e7cf35d23b604b9a"
+    },
+    {
+      "path": "services/workspace/src/tasks/types.ts",
+      "before_sha256": "04191fd3592247c878a1827ae3aa44ffe1ab4f673c8fd69b4514f3294a764d32",
+      "checkpoint_sha256": "01f3719c693f18cd9f7ea6ce59cc24d70fe3899912251fef240dda06ca562a4c"
+    },
+    {
+      "path": "specs/001-session.md",
+      "before_sha256": "29b5a64756ab73d0bab9de1fdd9b909e0486e461476d8c8f8844a86bb370f14d",
+      "checkpoint_sha256": "43fbeb6afdd6e659f89f109bfcf564440396cda1ed8e864d422b9b9e9f34e214"
+    },
+    {
+      "path": "specs/002-project-membership.md",
+      "before_sha256": "7bcebf51a8603a2b28eaf6bea33d82b92f97b2ab178ddc4169eaa40e8c69954e",
+      "checkpoint_sha256": "5cf1803fa1218ee3d378c4223085bb55f95fc72563b969ff916bba3526472a8f"
+    },
+    {
+      "path": "specs/003-create-task.md",
+      "before_sha256": "b37dd97ac55b941cf7dd78558bc3791f46da24fc09385af108a7e50aaad85ad3",
+      "checkpoint_sha256": "bb1e16c1cea278ac52acc7b8fc38e27713a5bcb93fcc15100ec126039b229f01"
+    },
+    {
+      "path": "specs/004-update-task.md",
+      "before_sha256": "c370574344de120dabe0ac998ba51e8f15842c0c136f49f657a13f29500e4345",
+      "checkpoint_sha256": "2ff7e7bb9ec1824bc23a301d46563db494df877deb86df94fb56037ecddad830"
+    },
+    {
+      "path": "specs/005-sprint-lifecycle.md",
+      "before_sha256": "f2a2d1a976445c1627af1cf2cf49fab79e72d7e77e2beadc7d365337cb4463e2",
+      "checkpoint_sha256": "020a4eb87005ade7dc2693e84ed0c25e542e95597110d9518dfa6dbe84f0840a"
+    },
+    {
+      "path": "specs/006-document-access.md",
+      "before_sha256": "72d27becf05ef85e27bf65e2405d4fefeb74b0aacfc35ad3ae1692dbb908a49a",
+      "checkpoint_sha256": "35716d389daa2e922f2d8b5bb636e709ce9bdb64b608a1e8a02d6cb00e1b9f6f"
+    },
+    {
+      "path": "specs/007-version-publication.md",
+      "before_sha256": "c8ae80f43670dd0fbad2e76ea76ed9d500ebb8d89c293bb1ee9c91dd3d343ab2",
+      "checkpoint_sha256": "d85373e8b25c245b403fa8dce8f00013151e54d3eeac72c2619430d45b97592e"
+    },
+    {
+      "path": "specs/008-linked-keyword-search.md",
+      "before_sha256": "e3c0208241e3b00d666270bf5fca48f05cd99362d3c33a28ec1f19544713b255",
+      "checkpoint_sha256": "9b463a9968cb1ea62a24c2b979f2d9ec5ad31e022505f4d17077f1d2d9f216d8"
+    },
+    {
+      "path": "specs/009-cited-question.md",
+      "before_sha256": "4ba06b8d3ec936f3f16a82bb1a129b0462792c0fcb93b51b627f28a8e6e2ece5",
+      "checkpoint_sha256": "964a0f05015f1d0ad15e48862cef235771efd097c2b546ae1b1201c8556c92c8"
+    },
+    {
+      "path": "specs/010-current-work-question.md",
+      "before_sha256": "375d28e4a2376619545def732b8aede61e8db45a19d0fcf222986f284554cb37",
+      "checkpoint_sha256": "ef2ed5dd6d166a6518878eb813be46be1cf877e478a4cfd57af58d07fa9f565d"
+    },
+    {
+      "path": "specs/011-audit-and-source-inspection.md",
+      "before_sha256": "6c177401272fc5c65330d9eaabd28f6cde8857c48b7952e9c3c6c73bf132faf0",
+      "checkpoint_sha256": "617e8220e2bb8a9ae877874786c39ec596e257a6be59f7926b64774accc928bb"
+    },
+    {
+      "path": "specs/012-failure-and-evaluation.md",
+      "before_sha256": "cfaf276355648ccfdeecf614f198a6ce29a004f69070b8e87223a65689609b04",
+      "checkpoint_sha256": "0fe46eb08f9ea1b6703977aa97192425b32ec09fdb3d4749cc3185772a41ecc3"
+    },
+    {
+      "path": "specs/013-scoped-inspection.md",
+      "before_sha256": "7caf7af07bc71eab725fb568a8f7095ac05474ca26586ebcd5b184a5f20e24e9",
+      "checkpoint_sha256": "ea2084eec93ea47ae967b32dfc648c0a1362c231cf9b494dbd0473d34da0fbc3"
+    },
+    {
+      "path": "specs/README.md",
+      "before_sha256": "21da62a926e2ebd137805207540549df1694f40bb059341f1221fa9a65e410c7",
+      "checkpoint_sha256": "e99d28a1f6aa82d6cdb4695c0af95e21ae2efcab2a198ac0331287cd91c2a699"
+    },
+    {
+      "path": "tests/workspace/task-assignment.test.mjs",
+      "before_sha256": null,
+      "checkpoint_sha256": "2023f79f848fc2a555537c6b30ac24f220892b51ec1624819c395fa3041570b4"
+    },
+    {
+      "path": "tests/workspace/task-blocker.test.mjs",
+      "before_sha256": null,
+      "checkpoint_sha256": "83d251eb69d80f5888320efc38bba3035e95cec5772dfd7fbd3d28643e00456d"
+    },
+    {
+      "path": "tests/workspace/task-edit.test.mjs",
+      "before_sha256": null,
+      "checkpoint_sha256": "139b7dd250ffc228830eea32508e4438c69644089a699e3a3c876225b43d6f66"
+    },
+    {
+      "path": "tests/workspace/task-mutation-authority.test.mjs",
+      "before_sha256": null,
+      "checkpoint_sha256": "4c31c1db356ef8df7a31c1a2b0e41ecf09ce19a50902f5dce1fb6056c00cde0e"
+    },
+    {
+      "path": "tests/workspace/task-mutation-browser.test.mjs",
+      "before_sha256": null,
+      "checkpoint_sha256": "a084084c77031e8defb76adb1562ac2251c287a0cf86493dc29e5d3c1c68d212"
+    },
+    {
+      "path": "tests/workspace/task-mutation-fixture.mjs",
+      "before_sha256": null,
+      "checkpoint_sha256": "a3c97d912965790fdbdf6223d113d348982e000d8a4e765428b6d4c6b46e5a1d"
+    },
+    {
+      "path": "tests/workspace/task-mutation-integration.test.mjs",
+      "before_sha256": null,
+      "checkpoint_sha256": "c2cdcf3f2c09936c22f7ff10cfbedc731d54d2c4efe1c12f0ac5f2432e70e49e"
+    },
+    {
+      "path": "tests/workspace/task-mutation-storage.test.mjs",
+      "before_sha256": null,
+      "checkpoint_sha256": "84518305ffbe8938efd06411f218e73751b3ae35b9cd9a448e5f0c01240ad7fd"
+    },
+    {
+      "path": "tests/workspace/task-mutation-ui-controller.test.mjs",
+      "before_sha256": null,
+      "checkpoint_sha256": "4b11b4aca39e659c5d50ca15d26eb2bcf32e31cfe4f84234667a1bc70e0c6325"
+    },
+    {
+      "path": "tests/workspace/task-mutation-ui.test.mjs",
+      "before_sha256": null,
+      "checkpoint_sha256": "0b09e77033d2250c73397b2fed8269a2393e9a8f4eea7bea92cd879fe4e79cf4"
+    },
+    {
+      "path": "tests/workspace/task-state.test.mjs",
+      "before_sha256": null,
+      "checkpoint_sha256": "f4241116bd85d06fea4e58873627f7236b8aa9e2346f3c62ef4bf9273dd1d724"
+    },
+    {
+      "path": "tests/workspace/task-ui-controller.test.mjs",
+      "before_sha256": "851ef36656ee936f20355ea7f27678465903a1b07d12ae6845901df4421d7c1d",
+      "checkpoint_sha256": "f09fe7e13027fc36bcb0cae004d19d6ec1fedd5287aee13b3f334af83af7cdae"
+    },
+    {
+      "path": "tests/workspace/task-ui-fixture.mjs",
+      "before_sha256": "7d00f211c2482535b378b97fb2db3333d7cf4d47282273deb135e46af4a3d2bd",
+      "checkpoint_sha256": "d8cbaf89cadc9555be865b8d14edd59c20e50c8652f561f5c9cb658519ecaa23"
+    }
+  ],
+  "collisions": [],
+  "first_attempt": "Owned dirty manifest was correctly rejected before writes; it is now excluded and reconciled separately."
+}

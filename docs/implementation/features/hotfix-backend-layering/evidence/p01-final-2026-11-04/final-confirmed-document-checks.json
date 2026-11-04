@@ -1,0 +1,74 @@
+[
+  {
+    "name": "context:lint",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "context:lint"
+    ],
+    "exit": 0,
+    "log": "context-lint-confirmed.log",
+    "summary": []
+  },
+  {
+    "name": "context:check",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "context:check"
+    ],
+    "exit": 0,
+    "log": "context-check-confirmed.log",
+    "summary": []
+  },
+  {
+    "name": "context:test",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "context:test"
+    ],
+    "exit": 0,
+    "log": "context-test-confirmed.log",
+    "summary": [
+      "\u2139 tests 45",
+      "\u2139 pass 45",
+      "\u2139 fail 0",
+      "\u2139 skipped 0",
+      "\u2139 todo 0"
+    ]
+  },
+  {
+    "name": "docs:lint",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "docs:lint"
+    ],
+    "exit": 0,
+    "log": "docs-lint-confirmed.log",
+    "summary": []
+  },
+  {
+    "name": "docs:test",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "docs:test"
+    ],
+    "exit": 0,
+    "log": "docs-test-confirmed.log",
+    "summary": [
+      "\u2139 tests 20",
+      "\u2139 pass 20",
+      "\u2139 fail 0",
+      "\u2139 skipped 0",
+      "\u2139 todo 0"
+    ]
+  }
+]

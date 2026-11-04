@@ -1,0 +1,59 @@
+# P09 actual sign-in and current-session result
+
+**Artifact ID:** SP01-P09-RESULT\
+**Version/date:** 0.2 Draft · 28 October 2026\
+**Status:** Bounded POST/GET session handler verification; logout/renewal/UI and full feature acceptance remain open.\
+**Inputs:** [FEAT-SP01-01](../../implementation/features/sp-01-session-foundation/plan.md) (execution snapshot v0.5); [P09 task](../../implementation/features/sp-01-session-foundation/tasks/SP01-P09-sign-in-context.md) (execution snapshot v0.4); [ADR-0024](../../adr/0024-backend-session-foundation.md) (execution snapshot v0.4); [ADR-0025](../../adr/0025-opaque-session-candidate.md) (execution snapshot v0.4); Workspace contract v0.2.9; [P08 result](SP-01-P08-persistence-2026-10-28.md) (execution snapshot v0.1).\
+**Trace:** M-01 / SP-01.2; AC-01/36 and bounded AC-68 server denial; TC-01/18 relevance, no whole-case/browser/parent acceptance.\
+**Owner role:** Sequential implementer; owner separately requested P09. No independent approval or Accepted ADR.
+
+## Outcome and evidence
+
+POST /session verifies pre-provisioned credentials and issues a fresh secure cookie only after known database commit. GET /session derives request-local context from that cookie and current P08 state; client actor/service/header/query values grant no identity. Current disabled/revoked/expired/unknown state denies. GET does not renew and DELETE remains unimplemented in this slice. No UI was changed and no project/document capability is conferred.
+
+Actual application handlers use exact Workspace dependencies: @fastify/cookie 11.1.5, Ajv 8.20.0 and ajv-formats 3.0.1. The application reads the actual versioned contract artifact; it imports no development-only schema harness. Non-mutating request validation rejects extras/type coercion. Final response-object validation occurs at serialization after mutable preSerialization hooks, with no silent projection of invalid objects. Unsuccessful login also strips queued cookie output in onSend after the cookie plugin flushes it.
+
+Selected cookie: __Host-sacw-session, Secure/HttpOnly/SameSite=Strict/Path=/, no Domain and DB-derived Expires. No app-clock Max-Age calculation is used. Session JSON contains only user_id/expires_at; Error has the declared enum/message/run_id shape. Exact configured HTTPS Origin plus X-SACW-Request: 1 is required for login; all session responses use no-store. Wrong/unknown/disabled failures are generic with real/dummy KDF work; DB/clock/audit/KDF-capacity/internal errors expose only generic unavailable responses.
+
+Explicit runtime DB/origin configuration wires the real server; missing configuration leaves sessions unavailable, partial/invalid configuration stops startup, and runtime rejects operator/Knowledge identities. No automatic provisioning, time initialization or migration runs. Liveness remains independent. [SESSION-HTTP.md](../../../services/workspace/SESSION-HTTP.md) documents startup and runtime packaging of the contract.
+
+## Actual checks
+
+The [recorded run](sp01-p09-evidence/2026-10-28T04-03-15-162Z/result.json) retains exact commands, before/after source hashes, logs and receipt. Inputs remained stable. Node 24.22.1 was invoked explicitly with Node 24 first in the child PATH. This is working-tree evidence, not clean-clone or remote CI evidence.
+
+| Command | Result / scope |
+| --- | --- |
+| Fresh npm ci, offline, ignore-scripts | Passed from updated root lockfile |
+| typecheck / build | Passed web and both services |
+| test:foundation with local TLS configured | 13 passed, 0 skipped; includes real HTTPS/proxy plus KDF/runtime configuration negatives |
+| test:session:http | 15 Node results passed (14 scenarios plus parent), including actual configured compiled-server startup, real PostgreSQL and trusted HTTPS |
+| test:session:storage | Initial broad glob ran both suites (32/32); corrected independent P08 command passed 17/17 in the follow-up below |
+| contracts:test | 26/26 passed |
+
+The HTTP suite executes malformed/excess/poisoned/type-confused inputs before KDF/writes, body non-mutation, Origin/header rejection, 413/415 shapes, generic wrong/unknown/disabled responses and work counts, fresh-cookie fixation resistance, actor forgery/context/correlation, old-name/ambiguous/forged cookies, actual expiry/revocation, audit rollback/no cookie, DB read and clock failure, KDF busy mapping, captured normal/error log secrecy, trusted HTTPS cookie expiry, malformed final output rejection and actual compiled server wiring. It uses the real P08 store and workspace_app role, with private operator setup on disposable storage.
+
+Adding the new HTTP test file exposed that the old storage command's `*.test.mjs` glob would also include the HTTPS/build-dependent suite. It was narrowed to persistence.test.mjs so P08 remains independently runnable. The [follow-up run](sp01-p09-evidence/2026-10-28T04-07-54-460Z/result.json) records 17/17 passing with stable inputs. Only the root command selection and evidence collector changed between runs; handler, migration and KDF source bytes did not change. The original full passing run is retained unchanged.
+
+The bounded handler assertions correspond to AC-01 (effective actor stays the cookie-bound account), AC-36 (valid credentials/current revision create usable state; wrong/unknown/disabled/failed transaction do not), and server-side AC-68 rejection of an expired session. The UI portion of AC-68, logout AC-37, renewal races, cross-project/document permission and browser cookie semantics are not passed by these results.
+
+## Corrections and compatibility
+
+Exploratory tests first found that a preSerialization validator could run before a later payload mutation, and the normal serializer would silently drop the extra field. Moving validation into the final serializer made invalid output fail, then a second negative exposed the cookie plugin's queued onSend output surviving an earlier header removal. The final onSend suppression now prevents a success cookie on unsuccessful POST; the same negative passes. One exploratory failing assertion displayed a short-lived synthetic test cookie; assertions were changed to compare booleans without printing cookie values, and that disposable DB was removed. No such value is retained in the final run. Those console-only exploratory attempts lack complete source snapshots and are not presented as reproducible measured runs.
+
+TypeScript checks also caught CJS format-plugin interop and unknown error typing. A typed createRequire bridge and explicit error narrowing fixed those without disabling type checking or weakening schema constraints. Captured logger serializers omit URL/query, headers/body/cookies and internal causes; normal/error canaries are checked against actual logs. Default logging stays disabled.
+
+Workspace v0.2.9 synchronizes the stale cookie scheme name to the selected host cookie and declares POST 413/415 transport errors at the 8192-byte JSON limit. No operation/FR is added; Knowledge wire behavior is unchanged. The compiled-layout test confirms the contract artifact path, but deployment must retain that artifact layout explicitly.
+
+An output/receipt failure after commit can leave an inaccessible retained session row; it is not automatically retried or purged. Expires header observation is not browser storage/send proof. The shared libuv/KDF deployment and unobserved-clock limits from P08 remain open. Request-local session identity does not implement D-07 or replace later current project/document checks.
+
+## Handoff
+
+P09 POST/GET is verified within the stated scope. Next task is P10 logout/expiry/renewal integration, followed by P11 browser/UI and P12 integrated acceptance. ADRs remain Proposed; no parent pack or full TC/FR is self-approved. No development migration/reset, commit, push or subagent was performed.
+
+Documentation/context checks passed: docs:lint, docs:test 20/20, context:lint, context:check and context:test 45/45. Metadata checks 66 generated outputs. VERIFY-01 v0.6 and TEST-COVERAGE-01 v0.5 map only bounded P09 observations, leaving whole-case/FR/SC acceptance open. Earlier P08 report inputs are explicitly retained as execution snapshots; no earlier measured outcome changed.
+
+**Checklist:** Author self-checked source attribution, actual handler boundaries and retained failure descriptions. **Review:** Not requested. **Unrun:** P10 logout/renewal, P11 browser/UI, full cross-service/project/document guards and target-deployment KDF/time validation. No development migration, commit or push.
+
+## P10 metadata note
+
+Revision 0.2 labels the original execution inputs as snapshots after P10 source versions advanced. P09 outcomes, logs and source archives are unchanged; later lifecycle behavior is recorded in the P10 result.

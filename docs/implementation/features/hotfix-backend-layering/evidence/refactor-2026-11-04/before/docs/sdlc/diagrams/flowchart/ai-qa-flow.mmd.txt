@@ -1,0 +1,79 @@
+%% Origin: docs/ux/flows/ai-qa-flow.md v0.9
+%% DGM-FLOW-01 v0.13.1 Draft - 22 October 2026
+%% Sources: UX-FLOW-AI-03 v0.9; PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.17; ADR-0004; ADR-0006; ADR-0007; ADR-0009; ADR-0011; ADR-0012; ADR-0013; ADR-0015; ADR-0016; ADR-0017
+%% Trace: FR-18-FR-30, FR-33-FR-34, FR-46, FR-53-FR-55, FR-59-FR-61, FR-69; SC-02, SC-03, SC-05-SC-08
+%% UX / server responsibilities are labelled. API keys are relative to /api. Policy and runtime evidence remain unapproved.
+flowchart TD
+    Unable["Generic unable-to-deliver state: no answer, no source reason; user may ask again"]
+    Start["User submits POST /knowledge/questions using application session"]
+    Read["1. AI path: Workspace checks session and project/document scope; Knowledge uses scoped pgvector exact discovery"]
+    Scope["Current-only by default; explicit labelled history; no Draft; operational facts from current observations"]
+    Enough{"At least one requested component has supporting evidence?"}
+    Insufficient["Insufficient evidence; no hints about hidden sources; capability-aware Create action"]
+    Provider["2. Persist immutable input manifest outside guard; then guarded evidence/revision/payload match before sending"]
+    Generate["Wait outside guard; buffer whole answer; no browser token streaming"]
+    Validate["Validate exact server citations and claim support; invented citation invalidates entire draft"]
+    Delivery["3. Persist fresh delivery manifest outside guard; then guarded full-evidence/revision/payload match"]
+    Safe{"Claims, exact citations, full evidence and immutable manifest/payload binding all pass?"}
+    Withhold["Withhold entire unsafe/stale draft; zero bytes; release guard; generic answer_withheld; no source reason"]
+    Retry["Bounded new attempt outside guard; fresh immutable handoff ID and manifest; repeat all checks"]
+    Answer["Guard remains held through response completion/abort; render answered / partially_answered / conflict"]
+    Click["User opens exact citation"]
+    CitationKind{"Server citation kind?"}
+    Operational["Fresh scoped getProject / getSprint / getTask; never a document locator or historical snapshot endpoint"]
+    OperationalView["Original citation present: historical locator; absent on reload: observation unavailable. Label fresh current read separately"]
+    NewQuestion["Deliberate new user request with renewed scope; no automatic replay; stale health badge does not block editor"]
+    UnknownRequest["Lost browser response: unknown prior outcome; no automatic resend; explicit new question cannot bypass server quarantine"]
+    Citation["4. GET /knowledge/citations/{document_id}/{version_id}/{passage_id}; guarded current protected read"]
+    Inspect["Exact excerpt and version; label Current / Superseded / Archived; no substitution"]
+    Unavailable["200 unavailable: verified exact locator + current membership and retained read policy; no excerpt or substitution"]
+    Denied["401 sign-in or identical generic 404 for unknown/denied; withhold protected data"]
+    Authority["Authority or mandatory persistence failed: no handoff; generic error; no unrestricted retry"]
+    AIError["AI dependency error/timeout/budget: explicit failure, no generated answer"]
+    Fallback["PostgreSQL English full-text search (GIN) — independent keyword path; document/work UI when own dependencies healthy"]
+    KnowledgeError["Knowledge outage: documents/document search unavailable; Workspace work and optional task search may continue"]
+    Start --> Read
+    Read -->|Permitted| Scope
+    Read -->|Unauthenticated / denied| Denied
+    Read -->|Unknown authority| Authority
+    Scope --> Enough
+    Enough -->|No| Insufficient
+    Enough -->|Yes| Provider
+    Provider -->|Handoff succeeds| Generate
+    Provider -->|Evidence revoked: exclude; retry chosen with budget and safe evidence| Retry
+    Provider -->|Check failed| Authority
+    Generate -->|Complete| Validate
+    Generate -->|Dependency failed| AIError
+    Validate --> Delivery
+    Delivery --> Safe
+    Safe -->|Yes| Answer
+    Safe -->|Invalid claims/citations or revoked evidence| Withhold
+    Delivery -->|Check failed| Authority
+    Withhold -->|Retry chosen with budget and safe evidence| Retry
+    Retry --> Read
+    Answer --> Click
+    Click --> CitationKind
+    CitationKind -->|Document| Citation
+    CitationKind -->|Operational| Operational
+    Operational -->|Readable exact current entity| OperationalView
+    Operational -->|Unknown or inaccessible| Denied
+    Operational -->|Authority or Workspace unavailable| Authority
+    Citation -->|Accessible and available| Inspect
+    Citation -->|Readable identity; evidence unavailable| Unavailable
+    Citation -->|Unknown / inaccessible| Denied
+    Citation -->|Check failed| Authority
+    AIError -->|Offer separate search; user chooses| Fallback
+    AIError -->|User chooses Try again| NewQuestion
+    Unable -->|User chooses new question| NewQuestion
+    NewQuestion --> Start
+    Start -->|Browser response lost| UnknownRequest
+    UnknownRequest -->|User explicitly submits a new question| NewQuestion
+    UnknownRequest -->|User chooses keyword search| Fallback
+    Read -->|Knowledge unavailable| KnowledgeError
+    Citation -->|Knowledge unavailable| KnowledgeError
+    Fallback -->|Keyword dependency unavailable| KnowledgeError
+    Withhold -->|No retry, budget exhausted or no safe evidence| Unable
+    Provider -->|Evidence revoked: no retry, budget exhausted or no safe evidence| Unable
+%% Change: AI semantic discovery and independent keyword baseline are distinct; graph topology retained.
+
+%% Amendment: owner-confirmed partial answers, unavailable identity and membership rules; overview inspected, print-scale readability pending.

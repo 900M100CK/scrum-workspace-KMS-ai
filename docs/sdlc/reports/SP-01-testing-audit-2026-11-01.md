@@ -1,9 +1,9 @@
 # SP-01 — testing and audit report
 
 **Artifact ID:** SP01-TEST-AUDIT-01\
-**Version/date:** 0.1 Draft · 1 November 2026\
+**Version/date:** 0.1.1 Draft · 4 November 2026\
 **Status:** Consolidated measured evidence and reproducible testing guide; not an independent audit or release approval.\
-**Inputs:** [SP-01](../../../specs/001-session.md) v0.5; [feature plan](../../implementation/features/sp-01-session-foundation/plan.md) v0.9; [original P12 result](SP-01-P12-handoff-2026-10-28.md) v0.1; [current integration result](SP-02-execution-2026-10-31.md) v0.2; Workspace v0.2.11; Proposed ADR-0024/0025/0026.\
+**Inputs:** [SP-01](../../../specs/001-session.md) (execution snapshot v0.5); [feature plan](../../implementation/features/sp-01-session-foundation/plan.md) (execution snapshot v0.9); [original P12 result](SP-01-P12-handoff-2026-10-28.md) (execution snapshot v0.1); [current integration result](SP-02-execution-2026-10-31.md) (execution snapshot v0.2); Workspace v0.2.11; Proposed ADR-0024/0025/0026.\
 **Trace:** AC-01/36/37/68; TC-01 and applicable TC-18/22 subsets; BR-01/10. Full SC-06 is outside the measured session subset.\
 **Author:** Codex, sequential implementer/report author. Independent reviewer: not assigned.
 

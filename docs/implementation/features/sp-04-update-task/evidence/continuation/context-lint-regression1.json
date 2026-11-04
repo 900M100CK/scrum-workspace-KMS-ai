@@ -1,0 +1,11 @@
+{
+  "name": "context-lint",
+  "command": [
+    "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+    "run",
+    "context:lint"
+  ],
+  "exit_code": 0,
+  "tail": "\n> scrum-workspace-kms-context@0.1.0 context:lint\n> node --check scripts/verify-context.mjs && node --check scripts/context/verify-api-routing.mjs && node --check tests/context/context.test.mjs\n\n"
+}

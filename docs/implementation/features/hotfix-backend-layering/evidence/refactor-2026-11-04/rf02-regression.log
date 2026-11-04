@@ -1,0 +1,87 @@
+▶ P03 additive 007/private authority and bootstrap on disposable PostgreSQL
+  ✔ 007 refuses ambiguous legacy project and retains original data/checksums (3149.0038ms)
+  ✔ empty 007 reverse/forward preserves SP-01 fault latch, audit and sessions (1036.5731ms)
+  ✔ runtime cannot bootstrap, access global provisioning audit or rewrite immutable evidence (29.8251ms)
+  ✔ explicit bootstrap/revoke/recovery, same-state no-op and expected revision are audited (46.7025ms)
+  ✔ private audit failure rolls back authority; disabled targets never bootstrap (33.3333ms)
+  ✔ project provisioning uses current membership and serialized last-manager rule (48.9563ms)
+  ✔ project origin and numeric revision bounds enforce DB constraints; unsafe down retains everything (17.5476ms)
+  ✔ private CLI reads scoped authority through operator configuration without dumping secrets (206.0651ms)
+✔ P03 additive 007/private authority and bootstrap on disposable PostgreSQL (7958.2506ms)
+ℹ {"schema":"007 only; no outcome/cursor table","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","oldMigrations":["001-store","002-registered-policy","003-work-location","004-protected-claims","005-session-foundation","006-session-lifecycle"],"sourceHash":"cb7216447397b9ef4104230725e5037a4fba12971976507cf29f396c412481f6"}
+▶ P04C real project create, exact replay and failure boundaries
+  ✔ denied, unauthenticated, forged/extra/blank inputs create no project (61.4215ms)
+  ✔ atomic creation persists server actor/time and only explicit initial capability (34.0176ms)
+  ✔ same/concurrent keys return original project once; changed payload conflicts (65.4708ms)
+  ✔ audit and outcome failures roll back the entire business transaction (73.8191ms)
+  ✔ lost COMMIT acknowledgement is unknown and same-key retry reconciles without a second create (51.6444ms)
+  ✔ current authority and membership are rechecked before old result disclosure (46.1296ms)
+  ✔ declared body bounds and final serializer reject untrusted/error shapes (85.5902ms)
+  ✔ actual trusted HTTPS transports a project response with no session cookie rewrite (141.7696ms)
+✔ P04C real project create, exact replay and failure boundaries (4285.0349ms)
+▶ SP04 actual assignment, current eligibility and removal races
+  ✔ scope/action before target eligibility and strict shape (125.3998ms)
+  ✔ enabled member/null assignment, no-op, exact historical replay and stale conflict (139.5218ms)
+  ✔ update/audit/outcome failure rolls back with recoverable same key (260.1401ms)
+  ✔ assign-first actual SQL schedule then removal clears assignment and replay never restores it (210.2581ms)
+  ✔ remove-first actual producer blocks assignment; rejoin restores no current assignment (161.334ms)
+  ✔ concurrent assignments and duplicate keys; overflow and authority revocation (175.1002ms)
+  ✔ post-lock session expiry rejects new assignment (504.8285ms)
+✔ SP04 actual assignment, current eligibility and removal races (5627.3863ms)
+▶ SP04 append-only blocker commands and scoped history pages
+  ✔ history needs membership not audit/action; commands require exact authority; strict validation (52.8147ms)
+  ✔ retrospective resolution, repeated Open and later Resolved append every distinct event; sequence is truth (331.9954ms)
+  ✔ event/task/audit/outcome faults roll back entire append and retry uses original identity (534.658ms)
+  ✔ concurrent writes conflict; duplicate keys append once; default outcome canonicalizes null (141.2358ms)
+  ✔ ascending pages bind actor/task/full dataset; current login survives but stale/foreign/malformed fails (1570.9446ms)
+  ✔ expired signed cursors, missing signing key and removal/rejoin deny or invalidate history (178.5549ms)
+  ✔ revision and sequence upper bounds reject writes; revoked replay denies (89.9578ms)
+  ✔ actual history read wait rechecks session before returning any page (464.9831ms)
+✔ SP04 append-only blocker commands and scoped history pages (7499.2531ms)
+▶ SP04-P03D1 actual Backlog edit, recovery, rollback and authority schedules
+  ✔ explicit action only; cross-project/nonmember/missing identities conceal existence (99.4653ms)
+  ✔ strict shape/media/origin/header/text/body bounds make no change (47.6735ms)
+  ✔ confirmed edit persists exact text, audit and original200; omission preserves description; changed hash conflicts (202.9286ms)
+  ✔ empty and same-value no-ops retain their own200 without revision/audit; missing and empty fields hash differently (110.9841ms)
+  ✔ new edits reject non-Backlog placement; retained replay bypasses current placement and revision (135.6007ms)
+  ✔ safe revision ceiling permits no-op but refuses increment (87.5488ms)
+  ✔ task UPDATE, audit and outcome faults roll back every business effect (270.0542ms)
+  ✔ same-revision competing edits have one winner; concurrent duplicate key writes once (157.4259ms)
+  ✔ edit-first actual lock schedule commits once then current revoked authority denies replay (92.1854ms)
+  ✔ revoke-first actual producer denies waiting new edit and original replay (80.3218ms)
+  ✔ actual removal before edit denies the former member and rejoin restores no edit grant (129.8482ms)
+  ✔ live discovery advertises only implemented edit with current authority and clears after revoke (58.8184ms)
+  ✔ session expiry during a paused actual read withholds edit before business writes (508.409ms)
+✔ SP04-P03D1 actual Backlog edit, recovery, rollback and authority schedules (6059.8698ms)
+ℹ {"fixture":"sp01-p08-test-99215e0963a6","volume":"sp01-p08-test-99215e0963a6-data","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","ceiling":"010"}
+▶ SP04-P03C private Task action grants and exact Task discovery
+  ✔ create/creator/member roles imply no mutation action; live HTTP returns exact read target and registered handlers only (48.1275ms)
+  ✔ four independent private grants have issue-ID provenance, revisioned revoke/regrant, and audited no-op/stale semantics (180.3591ms)
+  ✔ future registry projection checks independent rights and Backlog edit context without claiming those handlers exist (50.2571ms)
+  ✔ missing/foreign/nonmember targets conceal identity and malformed or asserted selectors fail bounded validation (55.2996ms)
+  ✔ disabled/nonmember/unknown targets, unsupported actions and ordinary runtime cannot provision or inspect private audit (38.6345ms)
+  ✔ unprovenanced selected rows are retained and rejected even for an apparent no-op (56.6249ms)
+  ✔ failed private audit persistence rolls back grant issuance (31.0844ms)
+  ✔ actual removal invalidates all four actions; rejoin restores none and explicit regrant keeps provenance (89.023ms)
+  ✔ both actual grant/removal lock orderings preserve revocation without deadlock or grant resurrection (190.9321ms)
+  ✔ private CLI supports selected grant/revoke/state and generic failure without configuration disclosure (835.0807ms)
+  ✔ required authority failure withholds discovery; app without Task handlers advertises no Task endpoint (129.1577ms)
+  ✔ session expiry during an observed Project lock wait withholds allowed operations (327.2066ms)
+✔ SP04-P03C private Task action grants and exact Task discovery (6210.3635ms)
+ℹ {"fixture":"sp01-p08-test-1ca69117f42e","volume":"sp01-p08-test-1ca69117f42e-data","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","postgres":"17.10 (Debian 17.10-1.pgdg12+1)","ceiling":"010"}
+▶ SP04 state handler and completed placement persistence
+  ✔ explicit authority, concealed foreign targets and strict request validation (87.9046ms)
+  ✔ all direct transitions and no-ops; stale and changed-input retries preserve state (1193.2052ms)
+  ✔ both completed reopen targets normalize atomically, append exact numeric position and preserve allocation (155.0533ms)
+  ✔ audit/outcome/update faults roll back and original-key retries recover; overflow rejects change (368.0666ms)
+  ✔ concurrent revision writes have one winner; duplicate requests commit once; revoked replay denies (155.1666ms)
+  ✔ session expiry after actual Task lock withholds mutation (503.4698ms)
+✔ SP04 state handler and completed placement persistence (6628.3951ms)
+ℹ tests 69
+ℹ suites 0
+ℹ pass 69
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 46507.8129

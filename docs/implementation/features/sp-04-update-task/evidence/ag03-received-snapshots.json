@@ -1,0 +1,14 @@
+[
+  {
+    "source": "docs/implementation/features/sp-04-update-task/decision-batch.md",
+    "source_sha256": "1c82472da003cf58a066d0c0abae49bf6bfedf4c19db54691002fe4af82bd7d6",
+    "snapshot": "docs/implementation/features/sp-04-update-task/evidence/ag03-decision-batch-v0.2.txt",
+    "snapshot_sha256": "1c82472da003cf58a066d0c0abae49bf6bfedf4c19db54691002fe4af82bd7d6"
+  },
+  {
+    "source": "docs/implementation/features/sp-04-update-task/reviews/p02-codex-report-v0.2.md",
+    "source_sha256": "8162aeeebed8a1eee339cd07aaf40058c9e428086fa41cbbddb0393aabb3f9e0",
+    "snapshot": "docs/implementation/features/sp-04-update-task/evidence/ag03-antigravity-report-v0.2.txt",
+    "snapshot_sha256": "8162aeeebed8a1eee339cd07aaf40058c9e428086fa41cbbddb0393aabb3f9e0"
+  }
+]

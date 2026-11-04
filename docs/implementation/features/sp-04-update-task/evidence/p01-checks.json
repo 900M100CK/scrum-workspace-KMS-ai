@@ -1,0 +1,129 @@
+{
+  "artifact_id": "SP04-P01-CHECKS",
+  "version": "0.2",
+  "date": "2026-11-03",
+  "timezone": "Asia/Saigon",
+  "node": "24.21.0",
+  "branch": "codex/sp-04",
+  "head": "6b837fd52e01709f72bfe2de6cb96f0e9cc52653",
+  "context": [
+    {
+      "name": "version",
+      "command": "node --version",
+      "exit_code": 0,
+      "started_utc": "2026-11-03T12:20:10.9192159Z",
+      "duration_seconds": 0.1850619,
+      "log": "evidence/p01-version.log"
+    },
+    {
+      "name": "context-lint",
+      "command": "node --check scripts/verify-context.mjs",
+      "exit_code": 0,
+      "started_utc": "2026-11-03T12:20:11.1090494Z",
+      "duration_seconds": 0.0474725,
+      "log": "evidence/p01-context-lint.log"
+    },
+    {
+      "name": "context-check",
+      "command": "node scripts/verify-context.mjs",
+      "exit_code": 0,
+      "started_utc": "2026-11-03T12:20:11.1565922Z",
+      "duration_seconds": 0.1139767,
+      "log": "evidence/p01-context-check.log"
+    },
+    {
+      "name": "context-test",
+      "command": "node --test tests/context/context.test.mjs",
+      "exit_code": 0,
+      "started_utc": "2026-11-03T12:20:11.2706147Z",
+      "duration_seconds": 0.3658627,
+      "log": "evidence/p01-context-test.log"
+    }
+  ],
+  "contracts": [
+    {
+      "name": "contracts-test",
+      "command": "node --test tests/contracts/contract-schemas.test.mjs tests/contracts/handoff-bytes.test.mjs",
+      "exit_code": 0,
+      "started_utc": "2026-11-03T12:20:10.9158737Z",
+      "duration_seconds": 2.0587571,
+      "log": "evidence/p01-contracts-test.log"
+    }
+  ],
+  "docs_initial": [
+    {
+      "name": "docs-lint",
+      "command": "node scripts/docs/verify-docs.mjs",
+      "exit_code": 1,
+      "started_utc": "2026-11-03T12:20:10.9355174Z",
+      "duration_seconds": 33.217586,
+      "log": "evidence/p01-docs-lint.log"
+    },
+    {
+      "name": "docs-test",
+      "command": "node --test tests/docs/docs.test.mjs",
+      "exit_code": 1,
+      "started_utc": "2026-11-03T12:20:44.1564721Z",
+      "duration_seconds": 2.8063884,
+      "log": "evidence/p01-docs-test.log"
+    }
+  ],
+  "docs_rerun": [
+    {
+      "name": "docs-lint-rerun",
+      "command": "node scripts/docs/verify-docs.mjs",
+      "exit_code": 0,
+      "started_utc": "2026-11-03T12:21:02.0210304Z",
+      "duration_seconds": 2.8031541,
+      "log": "evidence/p01-docs-lint-rerun.log"
+    },
+    {
+      "name": "docs-test-rerun",
+      "command": "node --test tests/docs/docs.test.mjs",
+      "exit_code": 0,
+      "started_utc": "2026-11-03T12:21:04.8281125Z",
+      "duration_seconds": 2.824263,
+      "log": "evidence/p01-docs-test-rerun.log"
+    }
+  ],
+  "initial_failure": "REG-00 v0.103 receipt reference drift after register bump; preserved logs, labelled original receipt heading Historical and updated current review-navigation row; no expectation or historical result changes",
+  "summary": {
+    "context_tests": "45/45; zero skips",
+    "contract_tests": "27/27; zero skips",
+    "docs_tests": "20/20 final; zero skips",
+    "runtime_behaviours_verified": 0
+  },
+  "preservation": {
+    "paths_checked": 174,
+    "changed": []
+  },
+  "antigravity": {
+    "brief": "tasks/AG01-source-crosscheck.md",
+    "dispatch": "Not dispatched; no direct connector available",
+    "result": "Pending; no independent acceptance"
+  },
+  "unrun": [
+    "build/typecheck",
+    "application/session/project/Task storage/HTTP/DOM/browser/concurrency/failure suites",
+    "load balancing/benchmark",
+    "Knowledge/AI/provider/evaluation",
+    "independent review"
+  ],
+  "local_link_check": {
+    "markdown_files": 13,
+    "local_targets_checked": 51,
+    "missing": [],
+    "scope": "Target existence; anchors are not validated by this scan"
+  },
+  "final_metadata": {
+    "command": "node scripts/docs/docs-metadata.mjs --check",
+    "exit_code": 0,
+    "log": "evidence/p01-metadata-final.log"
+  },
+  "whitespace": {
+    "command": "git diff --check -- <P01 paths>",
+    "exit_code": 0,
+    "log": "evidence/p01-whitespace.log",
+    "new_markdown_trailing_whitespace_files": []
+  }
+}

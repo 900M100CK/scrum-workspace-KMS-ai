@@ -2,7 +2,7 @@
   "openapi": "3.1.1",
   "info": {
     "title": "Workspace service public facade and internal policy",
-    "version": "0.2.12",
+    "version": "0.2.13",
     "description": "Draft contract; policy/stack decisions remain proposed. Schema validation proves shape only."
   },
   "x-status": "Draft",
@@ -1159,6 +1159,26 @@
           },
           "503": {
             "$ref": "#/components/responses/Unavailable"
+          },
+          "413": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           }
         },
         "requestBody": {
@@ -1251,6 +1271,26 @@
           },
           "503": {
             "$ref": "#/components/responses/Unavailable"
+          },
+          "413": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           }
         },
         "requestBody": {
@@ -1343,6 +1383,26 @@
           },
           "503": {
             "$ref": "#/components/responses/Unavailable"
+          },
+          "413": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           }
         },
         "requestBody": {
@@ -1435,6 +1495,26 @@
           },
           "503": {
             "$ref": "#/components/responses/Unavailable"
+          },
+          "413": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           }
         },
         "requestBody": {

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "context",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "scripts/verify-context.mjs"
+    ],
+    "exit_code": 0,
+    "tail": "{\n  \"requirements\": 69,\n  \"withdrawn\": [\n    \"FR-45\"\n  ],\n  \"scope\": {\n    \"Must\": 60,\n    \"Should\": 4,\n    \"Wont\": 1,\n    \"Could\": 4\n  },\n  \"services\": 2,\n  \"operations\": 66,\n  \"specs\": 13,\n  \"referenceCases\": 25,\n  \"research\": {\n    \"cases\": 25,\n    \"groups\": {\n      \"doc\": 8,\n      \"state\": 8,\n      \"both\": 9\n    },\n    \"results\": \"not run; reference definitions only\"\n  },\n  \"runtimeEvidence\": \"not run\"\n}\n"
+  },
+  {
+    "name": "docs",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "scripts/docs/verify-docs.mjs"
+    ],
+    "exit_code": 1,
+    "tail": "Linked input version drift in docs/sdlc/data-design.md: ../architecture.md\n\n'0.16.2' !== '0.18'\n\n"
+  }
+]

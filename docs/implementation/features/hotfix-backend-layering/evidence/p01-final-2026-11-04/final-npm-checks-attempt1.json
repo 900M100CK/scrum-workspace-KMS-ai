@@ -1,0 +1,172 @@
+[
+  {
+    "name": "typecheck",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "typecheck"
+    ],
+    "exit": 0,
+    "log": "typecheck-final-attempt1.log",
+    "seconds": 11.363,
+    "test_summary": []
+  },
+  {
+    "name": "build",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "build"
+    ],
+    "exit": 0,
+    "log": "build-final-attempt1.log",
+    "seconds": 7.36,
+    "test_summary": []
+  },
+  {
+    "name": "context:lint",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "context:lint"
+    ],
+    "exit": 0,
+    "log": "context-lint-final-attempt1.log",
+    "seconds": 0.464,
+    "test_summary": []
+  },
+  {
+    "name": "context:check",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "context:check"
+    ],
+    "exit": 1,
+    "log": "context-check-final-attempt1.log",
+    "seconds": 0.455,
+    "test_summary": []
+  },
+  {
+    "name": "context:test",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "context:test"
+    ],
+    "exit": 1,
+    "log": "context-test-final-attempt1.log",
+    "seconds": 0.723,
+    "test_summary": [
+      "\u2139 tests 45",
+      "\u2139 pass 44",
+      "\u2139 fail 1",
+      "\u2139 skipped 0",
+      "\u2139 todo 0"
+    ]
+  },
+  {
+    "name": "docs:lint",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "docs:lint"
+    ],
+    "exit": 0,
+    "log": "docs-lint-final-attempt1.log",
+    "seconds": 3.817,
+    "test_summary": []
+  },
+  {
+    "name": "docs:test",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "docs:test"
+    ],
+    "exit": 0,
+    "log": "docs-test-final-attempt1.log",
+    "seconds": 4.029,
+    "test_summary": [
+      "\u2139 tests 20",
+      "\u2139 pass 20",
+      "\u2139 fail 0",
+      "\u2139 skipped 0",
+      "\u2139 todo 0"
+    ]
+  },
+  {
+    "name": "contracts:test",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "contracts:test"
+    ],
+    "exit": 0,
+    "log": "contracts-test-final-attempt1.log",
+    "seconds": 2.986,
+    "test_summary": [
+      "\u2139 tests 27",
+      "\u2139 pass 27",
+      "\u2139 fail 0",
+      "\u2139 skipped 0",
+      "\u2139 todo 0"
+    ]
+  },
+  {
+    "name": "test:foundation",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "test:foundation"
+    ],
+    "exit": 0,
+    "log": "test-foundation-final-attempt1.log",
+    "seconds": 14.556,
+    "test_summary": [
+      "\u2139 tests 9",
+      "\u2139 pass 8",
+      "\u2139 fail 0",
+      "\u2139 skipped 1",
+      "\u2139 todo 0",
+      "\u2139 tests 7",
+      "\u2139 pass 7",
+      "\u2139 fail 0",
+      "\u2139 skipped 0",
+      "\u2139 todo 0",
+      "\u2139 tests 3",
+      "\u2139 pass 3",
+      "\u2139 fail 0",
+      "\u2139 skipped 0",
+      "\u2139 todo 0"
+    ]
+  },
+  {
+    "name": "test:prototype",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "test:prototype"
+    ],
+    "exit": 0,
+    "log": "test-prototype-final-attempt1.log",
+    "seconds": 2.719,
+    "test_summary": [
+      "\u2139 tests 20",
+      "\u2139 pass 20",
+      "\u2139 fail 0",
+      "\u2139 skipped 0",
+      "\u2139 todo 0"
+    ]
+  }
+]

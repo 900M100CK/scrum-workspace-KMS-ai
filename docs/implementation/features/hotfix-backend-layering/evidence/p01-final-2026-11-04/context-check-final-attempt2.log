@@ -1,0 +1,26 @@
+{
+  "requirements": 69,
+  "withdrawn": [
+    "FR-45"
+  ],
+  "scope": {
+    "Must": 60,
+    "Should": 4,
+    "Wont": 1,
+    "Could": 4
+  },
+  "services": 2,
+  "operations": 66,
+  "specs": 13,
+  "referenceCases": 25,
+  "research": {
+    "cases": 25,
+    "groups": {
+      "doc": 8,
+      "state": 8,
+      "both": 9
+    },
+    "results": "not run; reference definitions only"
+  },
+  "runtimeEvidence": "not run"
+}

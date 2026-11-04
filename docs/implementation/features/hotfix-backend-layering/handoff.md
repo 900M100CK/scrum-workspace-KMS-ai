@@ -1,8 +1,12 @@
 # Backend layering hotfix — implementation handoff
 
 **Artifact ID:** HOTFIX-BACKEND-42-RESULT\
-**Version/date:** 0.2 Draft · 4 November 2026\
-**Status:** Bounded documentation author verification complete; HF42-F01 resolved. No independent approval or runtime acceptance.
+**Version/date:** 0.3 Draft · 4 November 2026\
+**Status:** Bounded C01 documentation/publication reconciliation verified. No runtime or independent acceptance.
+
+## Historical pre-publication handoff
+
+The following original receipt describes its pre-publication source snapshot; current ref evidence appears below.
 
 Task status/results are authoritative in [plan.md](plan.md). Branch: `codex/hotfix-backend-layering`; base: `6b837fd52e01709f72bfe2de6cb96f0e9cc52653`. No commit, push, merge or cherry-pick was performed.
 
@@ -50,3 +54,23 @@ The broad Markdown scan retains a pre-existing missing source link in the UI blu
 ## HF42-F01 closure — 4 November 2026
 
 The owner subsequently authorised the source-link correction. The Stage 6 profile link is now ../../agents/06-ui-ux.md, pointing to the existing repository profile. Current blueprint/wireframe metadata and register versions are synchronised; UI body/frames, old negative evidence and application behaviour are preserved. [Checks](evidence/f01-checks.json) pass all five existing commands; [preservation and link results](evidence/f01-preservation.json) show no missing local targets. [Plan v0.2](plan.md) closes the bounded documentation acceptance by author verification only. No outstanding HF42-F01 gap, runtime test, independent approval, commit or integration is implied.
+
+
+## C01 current publication and source reconciliation — 4 November 2026
+
+The owner selected documentation closure before any runtime refactor. Actual original commit: dcd2d815a173f8adfd71619fcc00f84880d88636, parent6b837fd52e01709f72bfe2de6cb96f0e9cc52653, author/committer Codex with Co-Authored-By. Local hotfix/main/cached origin refs match. [Live origin/main](evidence/closure-2026-11-04/live-origin.json) independently returns the same full commit; this is read-only remote evidence, not inferred publication or CI success. No new push/merge/commit was performed for C01. SP-04 e6f2337 remains a separate checkpoint with its actual Sprint integration gate open; no SP-04 sources are imported here.
+
+Source inspection confirms that section4.2 describes feature modules and transaction-script stores with embedded SQL, database runner/authenticated wrapper/callback responsibilities, recorded-denial commit semantics and uncertain COMMIT outcomes. Both existing limits are explicit: projectAccess obtains Project FOR UPDATE and can serialize reads; Task lists load/fingerprint their full ordered projection before in-memory pages50. The null-without-denied extension risk is documented as a risk, not a reproduced current caller failure. These are identified source observations, not new performance or permission-handler proof.
+
+[Reference checks](evidence/closure-2026-11-04/reference-checks.json) rerun the original five gates on the clean existing dcd2d81 worktree with exact pinned3c65f5c template: context lint/check/tests45/45 and docs lint/tests20/20 pass on Node24.22.1. Reference sources remain clean. Current dirty checkout/template is preserved; closure-owned changes are checked in a separately exported committed-source projection with the pinned template, without installs or resetting user work. Projection results and preservation evidence are recorded separately under the new closure directory.
+
+The metadata synchronizer initially attempted to align four pre-existing dirty document headers. All four complete files were restored using their captured original SHA-256; [recovery record](evidence/closure-2026-11-04/metadata-preservation-recovery.json) retains the observation and exact recovery. Subsequent synchronization/testing runs only in the bounded projection. This does not relabel unrelated metadata changes as this task's work or rewrite a historical source.
+
+Future disposition is deliberately separate: hasCapability has concrete reuse in SP-04; unexpected-null handling can remain in the existing transaction with a separately stated generic503/rollback assertion and real PostgreSQL tests using explicit006/008/009/010 ceilings as applicable. Neither change is implemented by C01. Runner extraction is a separate sensitive change when justified; actions-discovery separation waits for actual Sprint/document branches. No bundled architecture adoption, new dependency or runtime change.
+
+Unrun: database/HTTP/DOM/browser/load/provider/evaluation/independent review and remote CI. Documentation/source/ref verification establishes none of those runtime gates. Recovery applies only to this continuation's source snapshots; never reset/stash/delete unrelated work. Actual mutable task closure is in plan.md.
+
+
+### C01 final check outcome
+
+Reference and closure projection context45/45/docs20/20 pass; metadata checks66 outputs with no drift. Original attempt1 docs failure and exact header-recovery observation are retained. Closure-local links, scoped whitespace and outside/index/ref preservation are in [final closure checks](evidence/closure-2026-11-04/final-closure-checks.json).133 pre-existing outside files are byte-identical. This updates documentation receipts only and creates no commit/publication or runtime acceptance.

@@ -1,9 +1,9 @@
 # SP-02 sequential implementation evidence
 
 **Artifact ID:** SP02-EXECUTION-RESULT\
-**Version/date:** 0.2 Draft · 1 November 2026\
+**Version/date:** 0.2.1 Draft · 4 November 2026\
 **Status:** Bounded SP-02 implementation and local integration verified; wider acceptance/deployment remain open.\
-**Inputs:** [FEAT-SP02-01](../../implementation/features/sp-02-project-membership/plan.md) v0.6; SP-02 v0.7; ADR-0026 (original design snapshot v0.3; current bounded reconciliation v0.4); current Workspace contract.\
+**Inputs:** [FEAT-SP02-01](../../implementation/features/sp-02-project-membership/plan.md) v0.6; SP-02 (execution snapshot v0.7); ADR-0026 (original design snapshot v0.3; current bounded reconciliation v0.4); current Workspace contract.\
 **Trace:** AC-02/03/38/39, session prerequisite regression; BR-01/10/11/14.
 
 Owner authorised corrected sequential tasks. No development data migration, commit or push. Actual task results and unrun boundaries are appended only after execution.

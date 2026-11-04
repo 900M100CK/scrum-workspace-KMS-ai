@@ -1,0 +1,4 @@
+Input version drift in docs/sdlc/api-design.md: SAD-03
+
+'0.18' !== '0.19'
+

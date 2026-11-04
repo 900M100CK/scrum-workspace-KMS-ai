@@ -3,35 +3,37 @@
     {
       "id": "UML-07",
       "path": "docs/sdlc/diagrams/README.md",
-      "version": "0.25",
+      "version": "0.25.7",
       "adrs": [],
       "date": "4 November 2026"
     },
     {
       "id": "REG-00",
       "path": "docs/sdlc/artifact-register.md",
-      "version": "0.106",
+      "version": "0.122.1",
       "adrs": [],
       "date": "4 November 2026"
     },
     {
       "id": "SAD-03",
       "path": "docs/architecture.md",
-      "version": "0.17",
+      "version": "0.19.1",
       "adrs": [],
       "date": "4 November 2026"
     },
     {
       "id": "UX-PERM-MATRIX-02",
       "path": "docs/ux/permission-matrix.md",
-      "version": "0.11",
-      "adrs": []
+      "version": "0.11.3",
+      "adrs": [],
+      "date": "3 November 2026"
     },
     {
       "id": "UX-PERSONAS-01",
       "path": "docs/ux/personas.md",
-      "version": "0.5",
-      "adrs": []
+      "version": "0.5.3",
+      "adrs": [],
+      "date": "3 November 2026"
     },
     {
       "id": "UX-SITEMAP-03",
@@ -42,27 +44,30 @@
     {
       "id": "UX-FLOW-AI-03",
       "path": "docs/ux/flows/ai-qa-flow.md",
-      "version": "0.9",
-      "adrs": []
+      "version": "0.9.3",
+      "adrs": [],
+      "date": "3 November 2026"
     },
     {
       "id": "UX-FLOW-BOARD-01",
       "path": "docs/ux/flows/board-flow.md",
-      "version": "0.10",
-      "adrs": []
+      "version": "0.10.3",
+      "adrs": [],
+      "date": "3 November 2026"
     },
     {
       "id": "UX-FLOW-DOCS-02",
       "path": "docs/ux/flows/docs-flow.md",
-      "version": "0.9",
-      "adrs": []
+      "version": "0.9.3",
+      "adrs": [],
+      "date": "3 November 2026"
     },
     {
       "id": "DGM-ARCH-01",
       "path": "docs/sdlc/diagrams/architecture/service-composition.mmd",
       "drawio": "docs/sdlc/diagrams/architecture/service-composition.drawio",
       "origin": "SAD-03",
-      "version": "0.9.1",
+      "version": "0.9",
       "adrs": [
         "ADR-0004",
         "ADR-0006",
@@ -84,7 +89,7 @@
       "path": "docs/sdlc/diagrams/sitemap/application-sitemap.mmd",
       "drawio": "docs/sdlc/diagrams/sitemap/application-sitemap.drawio",
       "origin": "UX-SITEMAP-03",
-      "version": "0.8.1",
+      "version": "0.8",
       "adrs": [
         "ADR-0007",
         "ADR-0009",
@@ -106,7 +111,7 @@
       "path": "docs/sdlc/diagrams/flowchart/ai-qa-flow.mmd",
       "drawio": "docs/sdlc/diagrams/flowchart/ai-qa-flow.drawio",
       "origin": "UX-FLOW-AI-03",
-      "version": "0.13.1",
+      "version": "0.13",
       "date": "22 October 2026",
       "adrs": [
         "ADR-0004",
@@ -151,7 +156,7 @@
       "path": "docs/sdlc/diagrams/flowchart/board-flow.mmd",
       "drawio": "docs/sdlc/diagrams/flowchart/board-flow.drawio",
       "origin": "UX-FLOW-BOARD-01",
-      "version": "0.7.1",
+      "version": "0.7",
       "adrs": [
         "ADR-0007",
         "ADR-0008",
@@ -189,7 +194,7 @@
       "path": "docs/sdlc/diagrams/flowchart/docs-flow.mmd",
       "drawio": "docs/sdlc/diagrams/flowchart/docs-flow.drawio",
       "origin": "UX-FLOW-DOCS-02",
-      "version": "0.9.1",
+      "version": "0.9",
       "adrs": [
         "ADR-0007",
         "ADR-0009",
@@ -286,7 +291,7 @@
       "path": "docs/sdlc/diagrams/flowchart/permission-read-flow.mmd",
       "drawio": "docs/sdlc/diagrams/flowchart/permission-read-flow.drawio",
       "origin": "UX-PERM-MATRIX-02",
-      "version": "0.9.1",
+      "version": "0.9",
       "adrs": [
         "ADR-0006",
         "ADR-0007",
@@ -309,7 +314,7 @@
       "path": "docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.mmd",
       "drawio": "docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.drawio",
       "origin": "UX-PERM-MATRIX-02",
-      "version": "0.4.1",
+      "version": "0.4",
       "adrs": [
         "ADR-0006",
         "ADR-0007",
@@ -333,7 +338,7 @@
       "path": "docs/sdlc/diagrams/user-journey/core-user-journeys.mmd",
       "drawio": "docs/sdlc/diagrams/user-journey/core-user-journeys.drawio",
       "origin": "UX-PERSONAS-01",
-      "version": "0.4.1",
+      "version": "0.4",
       "adrs": [
         "ADR-0007",
         "ADR-0009",
@@ -350,14 +355,16 @@
     {
       "id": "PRD-01",
       "path": "docs/sdlc/PRD_SRS.md",
-      "version": "0.9",
-      "adrs": []
+      "version": "0.10.2",
+      "adrs": [],
+      "date": "3 November 2026"
     },
     {
       "id": "UC-02",
       "path": "docs/sdlc/use-cases.md",
-      "version": "0.8",
-      "adrs": []
+      "version": "0.8.3",
+      "adrs": [],
+      "date": "3 November 2026"
     },
     {
       "id": "DGM-UC-01",
@@ -365,7 +372,7 @@
       "drawio": "docs/sdlc/diagrams/use-case/use-case-diagram.drawio",
       "origin": "UC-02",
       "kind": "use-case",
-      "version": "0.5.1",
+      "version": "0.5",
       "adrs": [
         "ADR-0007",
         "ADR-0008",
@@ -401,7 +408,7 @@
     {
       "id": "DATA-04",
       "path": "docs/sdlc/data-design.md",
-      "version": "0.16.1",
+      "version": "0.16.3",
       "adrs": [],
       "date": "4 November 2026"
     },
@@ -415,7 +422,7 @@
       "id": "DGM-C4-01",
       "path": "docs/sdlc/diagrams/c4/system-context.mmd",
       "drawio": "docs/sdlc/diagrams/c4/system-context.drawio",
-      "version": "0.1.1",
+      "version": "0.1",
       "origin": "DGM-DESIGN-01",
       "sources": [
         "PRD-01",
@@ -437,7 +444,7 @@
       "id": "DGM-C4-02",
       "path": "docs/sdlc/diagrams/c4/containers.mmd",
       "drawio": "docs/sdlc/diagrams/c4/containers.drawio",
-      "version": "0.1.1",
+      "version": "0.1",
       "origin": "DGM-DESIGN-01",
       "sources": [
         "PRD-01",
@@ -459,7 +466,7 @@
       "id": "DGM-SEQ-01",
       "path": "docs/sdlc/diagrams/sequence/protected-handoff.mmd",
       "drawio": "docs/sdlc/diagrams/sequence/protected-handoff.drawio",
-      "version": "0.2.1",
+      "version": "0.2",
       "origin": "DGM-DESIGN-01",
       "sources": [
         "PRD-01",
@@ -482,7 +489,7 @@
       "id": "DGM-SEQ-02",
       "path": "docs/sdlc/diagrams/sequence/document-creation.mmd",
       "drawio": "docs/sdlc/diagrams/sequence/document-creation.drawio",
-      "version": "0.1.1",
+      "version": "0.1",
       "origin": "DGM-DESIGN-01",
       "sources": [
         "PRD-01",
@@ -504,7 +511,7 @@
       "id": "DGM-STATE-01",
       "path": "docs/sdlc/diagrams/state/document-and-readiness.mmd",
       "drawio": "docs/sdlc/diagrams/state/document-and-readiness.drawio",
-      "version": "0.1.1",
+      "version": "0.1",
       "origin": "DGM-DESIGN-01",
       "sources": [
         "PRD-01",
@@ -525,7 +532,7 @@
       "id": "DGM-STATE-02",
       "path": "docs/sdlc/diagrams/state/sprint-task-allocation.mmd",
       "drawio": "docs/sdlc/diagrams/state/sprint-task-allocation.drawio",
-      "version": "0.2.1",
+      "version": "0.2",
       "origin": "DGM-DESIGN-01",
       "sources": [
         "PRD-01",
@@ -546,7 +553,7 @@
       "id": "DGM-DATA-01",
       "path": "docs/sdlc/diagrams/data/workspace-erd.mmd",
       "drawio": "docs/sdlc/diagrams/data/workspace-erd.drawio",
-      "version": "0.6.1",
+      "version": "0.6",
       "origin": "DGM-DESIGN-01",
       "sources": [
         "PRD-01",
@@ -576,7 +583,7 @@
       "id": "DGM-DATA-02",
       "path": "docs/sdlc/diagrams/data/knowledge-erd.mmd",
       "drawio": "docs/sdlc/diagrams/data/knowledge-erd.drawio",
-      "version": "0.2.1",
+      "version": "0.2",
       "origin": "DGM-DESIGN-01",
       "sources": [
         "PRD-01",
@@ -599,7 +606,7 @@
       "id": "DGM-DATA-03",
       "path": "docs/sdlc/diagrams/data/handoff-logical-model.mmd",
       "drawio": "docs/sdlc/diagrams/data/handoff-logical-model.drawio",
-      "version": "0.5.1",
+      "version": "0.5",
       "origin": "DGM-DESIGN-01",
       "sources": [
         "PRD-01",
@@ -623,7 +630,7 @@
       "id": "DGM-DEPLOY-01",
       "path": "docs/sdlc/diagrams/deployment/local-development.mmd",
       "drawio": "docs/sdlc/diagrams/deployment/local-development.drawio",
-      "version": "0.1.1",
+      "version": "0.1",
       "origin": "DGM-DESIGN-01",
       "sources": [
         "PRD-01",
@@ -645,7 +652,7 @@
       "id": "DGM-DEV-01",
       "path": "docs/sdlc/diagrams/development/package-ownership.mmd",
       "drawio": "docs/sdlc/diagrams/development/package-ownership.drawio",
-      "version": "0.1.1",
+      "version": "0.1",
       "origin": "DGM-DESIGN-01",
       "sources": [
         "PRD-01",

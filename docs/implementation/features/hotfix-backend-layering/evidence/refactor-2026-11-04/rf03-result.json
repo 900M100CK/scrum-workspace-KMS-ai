@@ -1,0 +1,75 @@
+{
+  "node": "v24.22.1",
+  "phase": "RF03 report boundary before RF04",
+  "rf01": "guarded baseline/source registration verified",
+  "rf02": {
+    "helper_tests": {
+      "pass": 6,
+      "fail": 0,
+      "log": "rf02-helper-attempt2.log"
+    },
+    "affected_regression": {
+      "pass": 69,
+      "fail": 0,
+      "log": "rf02-regression.log"
+    },
+    "workspace_typecheck": "passed"
+  },
+  "rf03": {
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "--test",
+      "--test-concurrency=1",
+      "tests/workspace/project-transaction-null.test.mjs"
+    ],
+    "exit_code": 1,
+    "log": "rf03-null-red-attempt2.log",
+    "total_test_records": 8,
+    "pass": 6,
+    "fail": 2,
+    "explanation": "One unexpected-null regression plus its parent fail; six other child cases pass. Actual callback reached null and committed Task revision1→2, audit count1→2 and original outcome count1→2 instead of rollback.",
+    "synthetic_disposable_ceiling": "010",
+    "production_incident_claimed": false
+  },
+  "rf04_guard_implemented": false,
+  "wrapper_method_equal_to_checkpoint": true,
+  "source_hashes": {
+    "services/workspace/src/projects/capabilities.ts": "ffde2c209c2ca895b5f29d65e1ac1c77b4cda57b6c6771386bfd43a55397dd32",
+    "services/workspace/src/projects/store.ts": "c921d668ea0d36bff505cb5792c3300c23100446239cdd7b6b73d7140bc91a0b",
+    "services/workspace/src/tasks/store.ts": "fb5b71d4f76c6af747db6590fe36df5686d3a4598b56e9b204036f707fde6d89",
+    "tests/workspace/project-capabilities.test.mjs": "18bfa1cce95b852596395688f7c5a6c737d43cf68396943639ea8efe1f7aeaaf",
+    "tests/workspace/project-transaction-null.test.mjs": "42dad24fe604fd1622d51e7aadb73e34e2020591a94ce14f0060046908adf7c2",
+    "docs/adr/0029-unexpected-null-transaction-result.md": "39e47d37a28e358d3880d100cd4626d4f48c780b0baa71695d419f13991832ca"
+  },
+  "protected_vs_checkpoint_lf_equal": {
+    "package.json": true,
+    "package-lock.json": true,
+    "services/workspace/src/session/database.ts": true,
+    "services/workspace/src/tasks/authority.ts": true,
+    "contracts/openapi/workspace.openapi.json": true,
+    "services/workspace/migrations/001-store.down.sql": true,
+    "services/workspace/migrations/001-store.up.sql": true,
+    "services/workspace/migrations/002-registered-policy.down.sql": true,
+    "services/workspace/migrations/002-registered-policy.up.sql": true,
+    "services/workspace/migrations/003-work-location.down.sql": true,
+    "services/workspace/migrations/003-work-location.up.sql": true,
+    "services/workspace/migrations/004-protected-claims.down.sql": true,
+    "services/workspace/migrations/004-protected-claims.up.sql": true,
+    "services/workspace/migrations/005-session-foundation.down.sql": true,
+    "services/workspace/migrations/005-session-foundation.up.sql": true,
+    "services/workspace/migrations/006-session-lifecycle.down.sql": true,
+    "services/workspace/migrations/006-session-lifecycle.up.sql": true,
+    "services/workspace/migrations/007-project-membership.down.sql": true,
+    "services/workspace/migrations/007-project-membership.up.sql": true,
+    "services/workspace/migrations/008-project-outcomes.down.sql": true,
+    "services/workspace/migrations/008-project-outcomes.up.sql": true,
+    "services/workspace/migrations/009-task-creation.down.sql": true,
+    "services/workspace/migrations/009-task-creation.up.sql": true,
+    "services/workspace/migrations/010-task-mutations.down.sql": true,
+    "services/workspace/migrations/010-task-mutations.up.sql": true
+  },
+  "outside_files_preserved": 133,
+  "outside_drift": [],
+  "refs_index_unchanged": true,
+  "commit_push_merge_performed": false
+}

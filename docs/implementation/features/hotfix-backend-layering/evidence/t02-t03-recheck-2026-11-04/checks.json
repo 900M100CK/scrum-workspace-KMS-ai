@@ -1,0 +1,101 @@
+{
+  "node": "v24.22.1",
+  "scope": "T02/T03 status/evidence review; existing saved five-command T03 plan; no code or document correction",
+  "refs": {
+    "branch": "codex/hotfix-backend-layering",
+    "head": "dcd2d815a173f8adfd71619fcc00f84880d88636",
+    "index_sha256": "c044923362e5ee46d64af6cc8d51da0d77d893da469e0970ba6a35955499f283"
+  },
+  "checks": [
+    {
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "context:lint"
+      ],
+      "exit": 0,
+      "log": "context-lint.log",
+      "seconds": 12.569,
+      "test_summary": []
+    },
+    {
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "context:check"
+      ],
+      "exit": 0,
+      "log": "context-check.log",
+      "seconds": 12.546,
+      "test_summary": []
+    },
+    {
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "context:test"
+      ],
+      "exit": 0,
+      "log": "context-test.log",
+      "seconds": 12.621,
+      "test_summary": [
+        "\u2139 tests 45",
+        "\u2139 pass 45",
+        "\u2139 fail 0",
+        "\u2139 skipped 0",
+        "\u2139 todo 0"
+      ]
+    },
+    {
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "docs:lint"
+      ],
+      "exit": 0,
+      "log": "docs-lint.log",
+      "seconds": 37.801,
+      "test_summary": []
+    },
+    {
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "docs:test"
+      ],
+      "exit": 0,
+      "log": "docs-test.log",
+      "seconds": 38.193,
+      "test_summary": [
+        "\u2139 tests 20",
+        "\u2139 pass 20",
+        "\u2139 fail 0",
+        "\u2139 skipped 0",
+        "\u2139 todo 0"
+      ]
+    }
+  ],
+  "preexisting_files_unchanged": 1477,
+  "index_head_unchanged": true,
+  "findings": [
+    {
+      "file": "docs/architecture.md",
+      "section": "4.2 Denial semantics",
+      "finding": "Current null-risk wording omits RF04 unexpected-null pre-COMMIT rejection; source anchors identify old base6b837fd."
+    },
+    {
+      "file": "docs/architecture.md",
+      "section": "4.2 Evolution",
+      "finding": "Shared capability helper still described as future SP04-owned consideration; RF02 already implemented on hotfix."
+    }
+  ],
+  "historical_status": "T02 original bounded documentation delivered; T03 original five checks passed and F01 later resolved inherited link failure",
+  "current_status": "automated checks do not validate current prose against RF02/RF04 implementation; two content findings remain",
+  "runtime_checks": "not rerun; status/document review only",
+  "publication": "not performed"
+}

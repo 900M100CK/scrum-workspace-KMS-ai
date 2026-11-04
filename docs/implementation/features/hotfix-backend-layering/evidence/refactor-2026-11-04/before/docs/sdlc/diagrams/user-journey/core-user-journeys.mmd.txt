@@ -1,0 +1,21 @@
+%% Origin: docs/ux/personas.md v0.5
+%% DGM-JOURNEY-01 v0.4.1 Draft - 18 October 2026
+%% Sources: UX-PERSONAS-01 v0.5; PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.17; ADR-0007; ADR-0009; ADR-0011
+%% Assumptions: synthetic actors with separately assigned action capabilities; scores are illustrative display inputs, not research or evaluation evidence.
+journey
+    title Illustrative journeys - scores are not measured satisfaction
+    section Developer Task & Citation Flow (SC-01, SC-02)
+      Open Board & Select In-Progress Task: 5: David (example)
+      Flag Blocker with reason: 4: David (example)
+      Ask AI for historical architectural decision: 5: David (example)
+      Click Citation Chip to view exact passage & version: 5: David (example)
+    section PO example with assigned work, content-write and manage-access capabilities (SC-05, SC-06)
+      Create Story in Backlog: 5: Sarah (example)
+      Save Doc v2 as Current & mark v1 Superseded: 5: Sarah (example)
+      Set Doc classification to Restricted: 5: Sarah (example)
+      Revoke Member Grant: 4: Sarah (example)
+    section SM Standup & Fallback Flow (SC-03, SC-08)
+      Filter Board by Blocked items: 5: Alex (example)
+      Ask AI operational status: 4: Alex (example)
+      Encounter AI Outage -> Notice graceful fallback banner: 4: Alex (example)
+      Continue permitted Board and Docs actions while their services are healthy: 5: Alex (example)

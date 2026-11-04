@@ -1,8 +1,8 @@
 {
   "artifactId": "DATA-04",
-  "version": "0.12",
+  "version": "0.13",
   "status": "Draft",
-  "storageDecision": "ADR-0004 foundation plus Workspace 003 work location, Knowledge 003 immutable handoffs and Workspace 004 permanent protected claims; isolated storage evidence is not handler or guard acceptance. Workspace 005 owner-authorised session persistence and private authentication clock/audit; no public auth handler acceptance. Workspace 007 adds immutable project origin and private explicit create authority/audit; separate 008 adds permanent minimal project-operation snapshots. Tested disposable storage/handlers do not authorise a development upgrade or D-07 transport acceptance. SP-03 owner selected immutable Task.created_at and permanent original createTask result retention with current access checks; additive 009 and Task handlers now have bounded local evidence in FEAT-SP03-01. Logical schema checks alone remain distinct from permission/handler verification.",
+  "storageDecision": "ADR-0004 foundation plus Workspace 003 work location, Knowledge 003 immutable handoffs and Workspace 004 permanent protected claims; isolated storage evidence is not handler or guard acceptance. Workspace 005 owner-authorised session persistence and private authentication clock/audit; no public auth handler acceptance. Workspace 007 adds immutable project origin and private explicit create authority/audit; separate 008 adds permanent minimal project-operation snapshots. Tested disposable storage/handlers do not authorise a development upgrade or D-07 transport acceptance. SP-03 owner selected immutable Task.created_at and permanent original createTask result retention with current access checks; additive 009 and Task handlers now have bounded local evidence in FEAT-SP03-01. Logical schema checks alone remain distinct from permission/handler verification. SP-04 P03A2 records owner-selected separate edit authority, enabled new-assignee eligibility and indefinite original Task200/Blocker201 retention with current read/action checks. ADR-0028 mechanics are Proposed; this metadata/constraint refinement adds no entity/field/relationship and no physical migration or handler.",
   "entities": [
     {
       "name": "Project",
@@ -58,7 +58,9 @@
         "location_kind = completed: Done task with same-project completed association and Completed Sprint",
         "Location references are deferred foreign keys; final state checked across task, allocation and Sprint writes",
         "Completed associations remain immutable independently of current task location",
-        "created_at is immutable server-recorded creation time; Task responses and original createTask outcomes preserve the same UTC millisecond timestamp; no fabricated legacy backfill"
+        "created_at is immutable server-recorded creation time; Task responses and original createTask outcomes preserve the same UTC millisecond timestamp; no fabricated legacy backfill",
+        "SP-04 selected policy: new content edits require separately provisioned edit authority and current Backlog placement; creator/create-only backlog-author/role labels imply no edit action",
+        "SP-04 selected policy: new non-null assignee must be enabled and a current same-project member; committed replay acknowledges history without restoring assignment or rechecking historical target eligibility"
       ]
     },
     {
@@ -297,6 +299,10 @@
         "expires_at",
         "result_status",
         "result_snapshot"
+      ],
+      "constraints": [
+        "SP-04 owner-selected indefinite original editTask/setTaskState/setAssignee200 Task (including title/description) and recordBlocker201 Blocker; consumed actor/operation/key/hash retained without automatic expiry or key recycling",
+        "Original results are immutable historical acknowledgements; current Task/project read and exact action authority precede replay; current-state reads are separate; preserve existing operation and protected-handoff branches"
       ]
     },
     {
@@ -313,6 +319,9 @@
         "action",
         "valid",
         "permission_revision"
+      ],
+      "constraints": [
+        "Proposed ADR-0028 maps task-edit/task-state/task-assign/task-blocker to explicit project-scoped grants; private audited operator only issues/revives, runtime may invalidate on member removal; rejoin restores none"
       ]
     },
     {
@@ -591,6 +600,8 @@
     "Frozen payload digest hashes exact outbound UTF-8 bytes; manifest digest hashes exact immutable manifest bytes, not a reserialized object",
     "Workspace verifies committed Knowledge record before one-use claim; purpose/run/attempt/actor/project/destination and complete mixed evidence must match before any protected byte",
     "Trace/summary source locators bind retrieval step and visible dense rank; denied source identities and dependent query/validation data are omitted without hidden counts",
-    "Optional missing metrics are explicitly unavailable, never fabricated zero; not_performed identifies an activity that never executed"
+    "Optional missing metrics are explicitly unavailable, never fabricated zero; not_performed identifies an activity that never executed",
+    "SP-04 business changes, minimum audit and immutable original outcomes co-commit; known rollback differs from unknown acknowledgement requiring same-key/input reconciliation",
+    "SP-04 proposed no-op edits/state/assignment retain original Task without fake change audit/revision bump; distinct blocker operations append and advance revision; current read/action checks still apply"
   ]
 }

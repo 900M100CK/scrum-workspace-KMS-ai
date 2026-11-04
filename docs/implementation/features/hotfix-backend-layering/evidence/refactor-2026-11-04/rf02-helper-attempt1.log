@@ -1,0 +1,25 @@
+✖ HF42-RF02 shared grant predicate with actual010 handler authority (153.5824ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4422.9624
+
+✖ failing tests:
+
+test at tests\workspace\project-capabilities.test.mjs:10:1
+✖ HF42-RF02 shared grant predicate with actual010 handler authority (153.5824ms)
+  Error: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.
+  
+      at docker (file:///D:/scrum-workspace-KMS-ai/scripts/database.mjs:20:11)
+      at sessionFixture (file:///D:/scrum-workspace-KMS-ai/tests/workspace/fixture.mjs:19:3)
+      at taskFixture (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-fixture.mjs:12:17)
+      at taskMutationFixture (file:///D:/scrum-workspace-KMS-ai/tests/workspace/task-mutation-fixture.mjs:6:9)
+      at TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/project-capabilities.test.mjs:11:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)

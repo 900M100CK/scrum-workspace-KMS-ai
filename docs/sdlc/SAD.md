@@ -1,14 +1,14 @@
 # Architecture — stable SDLC entry
 
 **Artifact ID:** SAD-03-ENTRY
-**Version/date:** 0.16 Draft · 4 November 2026
+**Version/date:** 0.18.1 Draft · 4 November 2026
 **Status:** Draft; recorded owner-confirmed directions apply, while remaining choices and runtime acceptance are open.
-**Inputs:** SAD-03 v0.17; PRD-01 v0.9; PLAN-01 v0.4; ADR-0004 v0.2; ADR-0007–ADR-0017.; Proposed ADR-0018–ADR-0023
+**Inputs:** SAD-03 v0.19.1; PRD-01 v0.10.2; PLAN-01 v0.4; ADR-0004 v0.2; ADR-0007–ADR-0017.; Proposed ADR-0018–ADR-0023
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 Read [the complete architecture](../architecture.md). It is the single design source; this entry preserves the workflow path without duplicating design.
 
-The canonical artifact is **SAD-03 v0.17**; this pointer is **SAD-03-ENTRY v0.16**. Stage 3 owns both under the [workflow](../../agents/WORKFLOW.md). ADR-0004's owner-authorised storage foundation has executable migrations and database tests; application implementation and the explicitly listed remaining decisions are still pending.
+The canonical artifact is **SAD-03 v0.19.1**; this pointer is **SAD-03-ENTRY v0.18.1**. Stage 3 owns both under the [workflow](../../agents/WORKFLOW.md). ADR-0004's owner-authorised storage foundation has executable migrations and database tests; application implementation and the explicitly listed remaining decisions are still pending.
 
 ## 4+1 Architectural View Model Organization
 
@@ -24,11 +24,11 @@ The canonical architecture ([docs/architecture.md](../architecture.md)) is struc
 
 Status: Draft; Ready for downstream with explicit gaps. Checklist: Pass for source link and 4+1 structure mapping; Gap for remaining decisions and implementation evidence. Handoff: use the canonical architecture and its ADRs for data/API/UI design.
 
-**v0.5 change summary:** Points to SAD-03 v0.7 and distinguishes the implemented storage foundation from unimplemented application behavior and pending policies.
+**v0.5 change summary:** Points to SAD-03 v0.19.1 and distinguishes the implemented storage foundation from unimplemented application behavior and pending policies.
 
-**v0.6 change:** Follows SAD-03 v0.7 and ADR-0007–ADR-0011; remaining policy and application evidence gaps are explicit in the canonical source.
+**v0.6 change:** Follows SAD-03 v0.19.1 and ADR-0007–ADR-0011; remaining policy and application evidence gaps are explicit in the canonical source.
 
-**v0.7 change:** Points to SAD-03 v0.8, which separates the English full-text keyword baseline from pgvector AI discovery. Prior change summaries above are historical.
+**v0.7 change:** Points to SAD-03 v0.19.1, which separates the English full-text keyword baseline from pgvector AI discovery. Prior change summaries above are historical.
 
 The [diagram foundation](diagrams/design-foundation-2026-10-17.md) uses C4 Context/Container as the structural entry and maps the same diagrams to the 4+1 narrative above. Deployment distinguishes configured storage from proposed application processes.
 
@@ -39,4 +39,4 @@ Only input-version metadata is synchronized for the bounded architecture/UC/chec
 
 ## Backend layering clarification — 4 November 2026
 
-Canonical SAD-03 v0.17 expands §4.2 with the owner-requested implementation description and preserves existing dependency invariants. [Hotfix plan](../implementation/features/hotfix-backend-layering/plan.md) records source identities, checks and limits. No runtime acceptance or architecture-pattern conformance is implied.
+Canonical SAD-03 v0.19.1 expands §4.2 with the owner-requested implementation description and preserves existing dependency invariants. [Hotfix plan](../implementation/features/hotfix-backend-layering/plan.md) records source identities, checks and limits. No runtime acceptance or architecture-pattern conformance is implied.

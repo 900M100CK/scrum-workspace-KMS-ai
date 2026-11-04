@@ -1,0 +1,11 @@
+{
+  "name": "docs-test",
+  "command": [
+    "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+    "run",
+    "docs:test"
+  ],
+  "exit_code": 0,
+  "tail": "chanisms need explicit status in current text (1.7563ms)\n\u2714 Draw.io status belongs to its own label, not an unrelated cell on the same XML line (1.7654ms)\n\u2714 Sources contains every body ADR, including shorthand and ranges, not just the highest ID (2.0217ms)\n\u2714 manifest version/ADR changes propagate to all generated inventories and both diagram headers (41.7881ms)\n\u2714 AI checkpoint sources retain the unavailable, partial-answer and member-removal decisions (1.4102ms)\n\u2714 use-case associations are undirected; generalization/include retain direction and native UML style (98.3937ms)\n\u2714 operation references fail on facade path/ID or actual node label drift (0.9124ms)\n\u2714 input headers name the latest cited ADR and current input versions (1.1147ms)\n\u2714 real Mermaid parser rejects invalid syntax (5.4811ms)\n\u2714 flowchart adapter compares labels, direction and parallel-edge counts (16.3289ms)\n\u2714 invalid XML and dangling/undirected edges fail closed (1.8426ms)\n\u2714 current version drift and missing rows fail; historical versions are allowed (0.7469ms)\n\u2714 journey actors and scores are compared, not merely grammar-checked (5.5757ms)\n\u2714 current prose references cannot disagree with headers while historical snapshots can (0.6864ms)\n\u2714 current linked input aliases use target versions while snapshot evidence stays historical (0.519ms)\n\u2714 design pairs reject reversed sequence handoffs and changed native multiplicities (70.297ms)\n\u2714 physical diagram entity inventory matches owned CREATE TABLE definitions (4.8247ms)\n\u2139 tests 20\n\u2139 suites 0\n\u2139 pass 20\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 3799.9097\n"
+}

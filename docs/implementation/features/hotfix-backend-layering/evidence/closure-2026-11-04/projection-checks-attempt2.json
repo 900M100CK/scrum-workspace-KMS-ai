@@ -1,0 +1,39 @@
+{
+  "projection": "D:\\scrum-workspace-KMS-ai\\.tmp\\hf42-c01-validation-1793800889039",
+  "checks": [
+    {
+      "name": "docs-lint",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "docs:lint"
+      ],
+      "exit_code": 0,
+      "log": "projection-attempt2-docs-lint.log",
+      "tail": "\n> scrum-workspace-kms-context@0.1.0 docs:lint\n> node scripts/docs/verify-docs.mjs\n\n{\n  \"diagrams\": 20,\n  \"artifacts\": 35,\n  \"nodes\": 324,\n  \"edges\": 365,\n  \"runtimeEvidence\": \"not run\"\n}\n"
+    },
+    {
+      "name": "docs-test",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "docs:test"
+      ],
+      "exit_code": 0,
+      "log": "projection-attempt2-docs-test.log",
+      "tail": "dangling/undirected edges fail closed (0.692ms)\n\u2714 current version drift and missing rows fail; historical versions are allowed (0.3046ms)\n\u2714 journey actors and scores are compared, not merely grammar-checked (2.6011ms)\n\u2714 current prose references cannot disagree with headers while historical snapshots can (0.3408ms)\n\u2714 current linked input aliases use target versions while snapshot evidence stays historical (0.1894ms)\n\u2714 design pairs reject reversed sequence handoffs and changed native multiplicities (43.5929ms)\n\u2714 physical diagram entity inventory matches owned CREATE TABLE definitions (2.5929ms)\n\u2139 tests 20\n\u2139 suites 0\n\u2139 pass 20\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 2999.8616\n"
+    },
+    {
+      "name": "metadata",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/docs/docs-metadata.mjs"
+      ],
+      "exit_code": 0,
+      "log": "projection-attempt2-metadata.log",
+      "tail": "{\n  \"checked\": 66,\n  \"changed\": []\n}\n"
+    }
+  ]
+}

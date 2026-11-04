@@ -1,0 +1,24 @@
+▶ SP04-P03D1 actual Backlog edit, recovery, rollback and authority schedules
+  ✔ explicit action only; cross-project/nonmember/missing identities conceal existence (85.1581ms)
+  ✔ strict shape/media/origin/header/text/body bounds make no change (36.1998ms)
+  ✔ confirmed edit persists exact text, audit and original200; omission preserves description; changed hash conflicts (178.8177ms)
+  ✔ empty and same-value no-ops retain their own200 without revision/audit; missing and empty fields hash differently (97.516ms)
+  ✔ new edits reject non-Backlog placement; retained replay bypasses current placement and revision (100.619ms)
+  ✔ safe revision ceiling permits no-op but refuses increment (63.5129ms)
+  ✔ task UPDATE, audit and outcome faults roll back every business effect (240.6963ms)
+  ✔ same-revision competing edits have one winner; concurrent duplicate key writes once (158.6131ms)
+  ✔ edit-first actual lock schedule commits once then current revoked authority denies replay (77.2632ms)
+  ✔ revoke-first actual producer denies waiting new edit and original replay (106.2964ms)
+  ✔ actual removal before edit denies the former member and rejoin restores no edit grant (116.5477ms)
+  ✔ live discovery advertises only implemented edit with current authority and clears after revoke (42.6291ms)
+  ✔ session expiry during a paused actual read withholds edit before business writes (487.3168ms)
+✔ SP04-P03D1 actual Backlog edit, recovery, rollback and authority schedules (7572.5168ms)
+ℹ {"fixture":"sp01-p08-test-56cfa955569d","volume":"sp01-p08-test-56cfa955569d-data","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","ceiling":"010"}
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7911.2608

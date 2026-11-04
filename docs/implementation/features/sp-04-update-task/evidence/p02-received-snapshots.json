@@ -1,0 +1,20 @@
+[
+  {
+    "source": "docs/implementation/features/sp-04-update-task/decision-batch.md",
+    "source_sha256": "5b68bdb46fd6fb309acedc56cfe6871cdd28aea27244e6a2b7e5c714181cf1bf",
+    "snapshot": "docs/implementation/features/sp-04-update-task/evidence/p02-decision-batch-v0.1.txt",
+    "snapshot_sha256": "5b68bdb46fd6fb309acedc56cfe6871cdd28aea27244e6a2b7e5c714181cf1bf"
+  },
+  {
+    "source": "docs/implementation/features/sp-04-update-task/reviews/p02-codex-report.md",
+    "source_sha256": "3f24f70d9dd79df5671c9948cdd84ec2c6652fdb7fa6ddeda1ecc5cdf564afba",
+    "snapshot": "docs/implementation/features/sp-04-update-task/evidence/p02-antigravity-report-v0.1.txt",
+    "snapshot_sha256": "3f24f70d9dd79df5671c9948cdd84ec2c6652fdb7fa6ddeda1ecc5cdf564afba"
+  },
+  {
+    "source": "docs/implementation/features/sp-04-update-task/tasks/P02-storage-authority.md",
+    "source_sha256": "63ea797aaf1c2e511c33c5b5a2f4c87f9609cd464489327cfe2cb3c39e5cf321",
+    "snapshot": "docs/implementation/features/sp-04-update-task/evidence/p02-task-brief-v0.3.txt",
+    "snapshot_sha256": "63ea797aaf1c2e511c33c5b5a2f4c87f9609cd464489327cfe2cb3c39e5cf321"
+  }
+]

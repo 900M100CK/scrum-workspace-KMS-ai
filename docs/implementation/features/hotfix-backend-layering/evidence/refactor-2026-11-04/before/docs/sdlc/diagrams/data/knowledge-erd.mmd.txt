@@ -1,0 +1,123 @@
+%% Origin: docs/sdlc/diagrams/design-foundation-2026-10-17.md v0.1
+%% DGM-DATA-02 v0.2.1 Draft - 18 October 2026
+%% Sources: DGM-DESIGN-01 v0.1; PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.17; DATA-04 v0.16.1; ADR-0004; ADR-0009; ADR-0011; ADR-0012; ADR-0013; ADR-0023
+%% Trace: BR-04–BR-05, BR-08–BR-12, BR-14; SC-01/02/05/06/07
+%% Scope: Schema through Knowledge migration 003; development upgrade not claimed. Immutable manifest bytes and outcomes supplement the source foundation; no handler/guard acceptance.
+%% Legend: No ACL or cross-store FK. Complete manifest/evidence JSON and exact bytes commit in one row. Current source authority and actual capture completeness require application checks.
+erDiagram
+    document {
+        uuid document_id PK
+        uuid project_id "opaque Workspace reference"
+        uuid current_version_id FK "nullable composite pointer"
+        bigint revision
+        bigint processing_generation
+        boolean unavailable
+    }
+    document_version {
+        uuid document_id PK,FK
+        uuid version_id PK
+        text state "current superseded archived after 002"
+        text immutable_content
+    }
+    passage {
+        uuid document_id PK,FK
+        uuid version_id PK,FK
+        uuid passage_id PK
+        text immutable_excerpt
+        text locator
+    }
+    embedding_configuration {
+        uuid configuration_id PK
+        text model_version
+        int dimensions
+        text distance_metric
+    }
+    search_job {
+        uuid job_id PK
+        uuid document_id FK
+        uuid version_id FK
+        uuid configuration_id FK
+        bigint aggregate_revision
+        bigint processing_generation
+        text readiness
+        boolean tombstone
+    }
+    passage_embedding {
+        uuid document_id PK,FK
+        uuid version_id PK,FK
+        uuid passage_id PK,FK
+        uuid configuration_id PK,FK
+        uuid job_id FK
+        int dimensions FK
+        vector embedding
+    }
+    execution {
+        uuid run_id PK
+        uuid actor_id
+        uuid project_id
+        uuid configuration_id FK "nullable"
+    }
+    provenance {
+        uuid run_id PK,FK
+        text source_id PK
+        uuid document_id FK "nullable exact tuple"
+        uuid version_id FK
+        uuid passage_id FK
+        uuid entity_id "operational alternative"
+        bigint observation_revision
+        timestamptz observed_at
+    }
+    link {
+        uuid link_id PK
+        uuid project_id
+        text from_kind
+        uuid from_id
+        text to_kind
+        uuid to_id
+        text relation
+    }
+    business_audit {
+        uuid event_id PK
+        uuid actor_id
+        uuid project_id
+        uuid entity_id
+        uuid correlation_id
+    }
+    idempotency_record {
+        uuid actor_id PK
+        text operation PK
+        text idempotency_key PK
+        text state
+        text payload_hash
+        timestamptz expires_at
+    }
+    handoff_manifest {
+        text handoff_id PK
+        uuid run_id FK
+        uuid actor_id FK
+        uuid project_id FK
+        jsonb manifest "full evidence"
+        bytea manifest_bytes
+        text manifest_digest "generated SHA256"
+        uuid durable_commit_ref UK
+    }
+    handoff_outcome {
+        uuid outcome_id PK
+        text handoff_id FK
+        text status
+        timestamptz observed_at
+        text enforcement_ref
+    }
+    document ||--o{ document_version : "document_id"
+    document_version o|--o| document : "document_id + current_version_id; deferred"
+    document_version ||--o{ passage : "document_id + version_id"
+    document_version ||--o{ search_job : "document_id + version_id"
+    embedding_configuration ||--o{ search_job : "configuration_id"
+    passage ||--o{ passage_embedding : "document_id + version_id + passage_id"
+    embedding_configuration ||--o{ passage_embedding : "configuration_id + dimensions"
+    search_job ||--o{ passage_embedding : "job_id + document/version/configuration"
+    embedding_configuration o|--o{ execution : "nullable configuration_id"
+    execution ||--o{ provenance : "run_id"
+    passage o|--o{ provenance : "nullable exact tuple MATCH FULL"
+    execution ||--o{ handoff_manifest : "run actor project"
+    handoff_manifest ||--o{ handoff_outcome : "handoff_id; append-only"

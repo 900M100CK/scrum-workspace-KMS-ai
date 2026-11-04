@@ -1,0 +1,12 @@
+✔ each mutation uses exact target actions, persists original identity before sending and refreshes current state after historical receipt (64.3352ms)
+✔ conflicts refresh separately, never automatically issue a new key; denial/outage retain recovery and clear content (7.5221ms)
+✔ foreign actor, malformed stored input and missing exact action cannot issue mutations; logout clears recovery (1.2267ms)
+✔ a confirmed write followed by unavailable current reads never presents its historical receipt as current (0.7676ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 317.4964

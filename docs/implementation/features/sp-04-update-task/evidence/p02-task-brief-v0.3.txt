@@ -1,0 +1,38 @@
+# SP04-P02 — storage-authority
+
+**Artifact ID:** SP04-P02\
+**Version/date:** 0.3 Draft · 3 November 2026
+
+Parent [FEAT-SP04-01](../plan.md) owns the only mutable status, exact source/FR/AC/UC/TC/PLAN-01 trace, acceptance outcome and path boundaries for this task. Read its matching row before execution.
+
+Prerequisites: P01; exact authority, replay and storage choices before code.
+
+## 1. Refined brief and deliverable
+
+- **Primary reviewable deliverable:** [`docs/implementation/features/sp-04-update-task/decision-batch.md`](../decision-batch.md) (Artifact ID: `SP04-DECISION-BATCH`, v0.1 Draft).
+- **Handoff report for Codex:** [`docs/implementation/features/sp-04-update-task/reviews/p02-codex-report.md`](../reviews/p02-codex-report.md) (Artifact ID: `SP04-P02-REPORT`, v0.1 Draft).
+- **Scope resolved:**
+  1. Action authority naming: `'task-edit'`, `'task-state'`, `'task-assign'`, `'task-blocker'` in `workspace.capability_grant` with private audited provisioning via `authority_provisioning_audit` and `operator.ts`.
+  2. Assignee eligibility: baseline current membership (`membership.active = true`) under confirmed AC-43, plus defense-in-depth account check (`NOT auth_account.disabled`).
+  3. Storage & outcome immutability: Migration 010 extending `project_outcome_shape` CHECK constraint and `protect_project_outcome` trigger for the four new SP-04 operations.
+  4. Conflict handling & wire discipline: 409 `state_conflict` adhering to `#/components/schemas/Error` without ad-hoc fields; fresh `getTask` read reconciliation.
+  5. Unknown outcomes: strict replay with original `Idempotency-Key` and payload.
+  6. Edge cases: empty/identical `EditTask` as idempotent no-op; canonical JSON hashing; `wireRevision` safe integer bounds.
+  7. Audit history: atomic structured references in `business_audit` (`state:<old>;revision:<old>` -> `state:<new>;revision:<new>`) without standalone chart/scheduler tables.
+
+## 2. Allowed paths and execution boundaries
+
+- **Allowed writes in P02:**
+  - `docs/implementation/features/sp-04-update-task/decision-batch.md`
+  - `docs/implementation/features/sp-04-update-task/tasks/P02-storage-authority.md`
+  - `docs/implementation/features/sp-04-update-task/reviews/p02-codex-report.md`
+- **Strictly read-only / unedited in P02:**
+  - No edits to runtime application code (`services/workspace/src/**`, `apps/web/**`).
+  - No edits to database migrations or applied schemas (`services/workspace/migrations/**`).
+  - No edits to shared contracts (`contracts/**`).
+  - No tests or database instances executed.
+
+## 3. Verification and handoff
+
+- Verification executed: `npm run context:check` (45/45 requirements, 66 operations, 13 specs) and `npm run context:test` (45/45 TAP tests pass).
+- Handoff destination: [parent execution evidence](../plan.md#tasks-and-acceptance) and [P02 report](../reviews/p02-codex-report.md). Next ready task upon coordinator/owner review is **P03A** (contract support) followed by **P03B** (persistence & Migration 010).

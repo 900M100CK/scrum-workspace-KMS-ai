@@ -1,9 +1,9 @@
 # Personas & User Responsibilities (SACW)
 
 **Artifact ID:** UX-PERSONAS-01\
-**Version/date:** 0.5 Draft · 25 October 2026\
+**Version/date:** 0.5.3 Draft · 4 November 2026\
 **Status:** Illustrative draft; no interviews or measured satisfaction.\
-**Source versions:** BRD English v1.0; PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.16; ADR-0007–ADR-0011.\
+**Source versions:** BRD English v1.0; PRD-01 v0.10.2; UC-02 v0.8.3; SAD-03 v0.19.1; ADR-0007–ADR-0011.\
 **Trace:** BR-01–BR-15; FR-01–FR-69; SC-01–SC-08.\
 **Scope:** Core user goals and examples; Enhanced reports and Future Work remain outside these journeys.
 

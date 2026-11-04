@@ -1,0 +1,48 @@
+{
+  "status": "bounded author verification passed",
+  "checks": [
+    {
+      "name": "docs-lint",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/docs/verify-docs.mjs"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\hf42-c01-validation-1793800889039",
+      "exit_code": 0,
+      "log": "closure-final-docs-lint.log"
+    },
+    {
+      "name": "metadata",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/docs/docs-metadata.mjs"
+      ],
+      "cwd": "D:\\scrum-workspace-KMS-ai\\.tmp\\hf42-c01-validation-1793800889039",
+      "exit_code": 0,
+      "log": "closure-final-metadata.log"
+    }
+  ],
+  "outside_files_checked": 133,
+  "outside_drift": [],
+  "unexpected_scope": [],
+  "missing_closure_targets": [],
+  "scoped_whitespace_exit": 0,
+  "index_unchanged": true,
+  "head_unchanged": true,
+  "owner_template_checkout": "6996dae13b2bfe31e77b5d90bb5eb24888a6a910",
+  "sp04_checkpoint_unchanged": true,
+  "runtime_contract_schema_dependency_changes": false,
+  "remote_receipt": "live-origin.json",
+  "reference_checks": "reference-checks.json",
+  "projection_checks": [
+    "projection-checks-attempt1.json",
+    "projection-checks-attempt2.json"
+  ],
+  "not_run": [
+    "runtime PG/HTTP/DOM/browser",
+    "load/provider/evaluation",
+    "independent review",
+    "remote CI"
+  ],
+  "new_commit_push_merge": false
+}

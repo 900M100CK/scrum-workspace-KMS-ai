@@ -1,0 +1,2 @@
+# Frozen planning inputs and verification output keep their original bytes.
+* -text -whitespace

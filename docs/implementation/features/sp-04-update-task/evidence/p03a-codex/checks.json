@@ -1,0 +1,203 @@
+{
+  "artifact_id": "SP04-P03A-CODEX-CHECKS",
+  "version": "0.1",
+  "date": "2026-11-03",
+  "branch": "codex/sp-04",
+  "head": "6b837fd52e01709f72bfe2de6cb96f0e9cc52653",
+  "semantic_delta": {
+    "initial_contract_hash_matches_HEAD": true,
+    "additions": [
+      {
+        "path": "/tasks/{task_id}",
+        "method": "patch",
+        "operation": "editTask",
+        "code": "413"
+      },
+      {
+        "path": "/tasks/{task_id}",
+        "method": "patch",
+        "operation": "editTask",
+        "code": "415"
+      },
+      {
+        "path": "/tasks/{task_id}/state",
+        "method": "post",
+        "operation": "setTaskState",
+        "code": "413"
+      },
+      {
+        "path": "/tasks/{task_id}/state",
+        "method": "post",
+        "operation": "setTaskState",
+        "code": "415"
+      },
+      {
+        "path": "/tasks/{task_id}/assignee",
+        "method": "post",
+        "operation": "setAssignee",
+        "code": "413"
+      },
+      {
+        "path": "/tasks/{task_id}/assignee",
+        "method": "post",
+        "operation": "setAssignee",
+        "code": "415"
+      },
+      {
+        "path": "/tasks/{task_id}/blockers",
+        "method": "post",
+        "operation": "recordBlocker",
+        "code": "413"
+      },
+      {
+        "path": "/tasks/{task_id}/blockers",
+        "method": "post",
+        "operation": "recordBlocker",
+        "code": "415"
+      }
+    ],
+    "only_other_change": "info.version 0.2.12 -> 0.2.13",
+    "operation_counts": {
+      "workspace": 42,
+      "knowledge": 24
+    }
+  },
+  "source_preservation": {
+    "baseline_paths": 174,
+    "unchanged": 172,
+    "expected_changed": [
+      "contracts/README.md",
+      "contracts/openapi/workspace.openapi.json"
+    ]
+  },
+  "returned_hashes": {
+    "verified_on_receipt": 11,
+    "all_matching": true,
+    "entries": [
+      {
+        "path": "contracts/openapi/workspace.openapi.json",
+        "sha256_on_receipt": "17cc995de5d46454579032a3047855c66b1946fd4e9237d0f9dbd9c2dd46e192",
+        "bytes_on_receipt": 165300
+      },
+      {
+        "path": "contracts/README.md",
+        "sha256_on_receipt": "9630caf6b03a0e1b9d151973eec7930e96f0818b28a5c387e16bf8ff19047272",
+        "bytes_on_receipt": 17840
+      },
+      {
+        "path": "docs/sdlc/api-design.md",
+        "sha256_on_receipt": "3ef4d4cacb5dabfbd5dfb2d84407a0cd99833bdc0f3270a5b462c4cdf6fb1be0",
+        "bytes_on_receipt": 17996
+      },
+      {
+        "path": "specs/004-update-task.md",
+        "sha256_on_receipt": "0cb1980a66a297b2c24b6850a17070ab2def5c268935c3e7bd91b9c6f992a845",
+        "bytes_on_receipt": 5524
+      },
+      {
+        "path": "docs/sdlc/artifact-register.md",
+        "sha256_on_receipt": "fb5b28c414be08c534a05c76bab063a38d66204fb031a1f127f34383e1926643",
+        "bytes_on_receipt": 141569
+      },
+      {
+        "path": "docs/sdlc/test-plan.md",
+        "sha256_on_receipt": "e889dbb8c51a68ddeaac7e1e2431fe9dc6b2a007303cdc1b99a80d51f4cd4ceb",
+        "bytes_on_receipt": 33769
+      },
+      {
+        "path": "docs/ux/wireframe-workplan.md",
+        "sha256_on_receipt": "3d7bfd67a30d1d88660d41d5bb011175140f68a4fa9ce2fef955d0b3efe1e14c",
+        "bytes_on_receipt": 12700
+      },
+      {
+        "path": "docs/implementation/features/sp-04-update-task/tasks/P03A-contract-support.md",
+        "sha256_on_receipt": "257f88f9728c006021a8b3a4421aa077afb54504527727a6e535f4ca0158cbbe",
+        "bytes_on_receipt": 6118
+      },
+      {
+        "path": "docs/implementation/features/sp-04-update-task/COORDINATION.md",
+        "sha256_on_receipt": "64b70b008e200592a6a7c4f2127903238bff7475bddddacc8466374491d6cb38",
+        "bytes_on_receipt": 9812
+      },
+      {
+        "path": "docs/implementation/features/sp-04-update-task/owner-decisions.md",
+        "sha256_on_receipt": "3f91b5b96aacbee65e4f07debbcf4246265508dcb71326fd1a8f2e02a891d940",
+        "bytes_on_receipt": 3185
+      },
+      {
+        "path": "docs/implementation/features/sp-04-update-task/decision-batch.md",
+        "sha256_on_receipt": "47661a644ad1f31007b275f5a4235cad33a45f97a20037655f7dafd430d396a7",
+        "bytes_on_receipt": 20420
+      }
+    ],
+    "scope": "Verified before coordinator changed registers/coordination; original inputs preserve receipt identity, not mutable latest-file hashes."
+  },
+  "evidence_limits": [
+    "Returned source-inputs are final hashes, not before-images of all seven support files.",
+    "Original earlier docs:lint exit 1 in pasted transcript has no supplied raw failure log. No failure output reconstructed.",
+    "Canonical spec does not enumerate the support paths; parent/brief registered them before assignment. Historical per-edit preregistration sequence cannot be independently certified.",
+    "Producer report says Workspace44/Knowledge22; actual is42/24. recordBlocker original success is201, not200.",
+    "Scoped Git diff against HEAD includes pre-existing dirty work; it does not prove exactly seven task-authored files."
+  ],
+  "coordinator_execution": "executions.json; also metadata-sync.log and docs-test-after-sync.log",
+  "negative_result": {
+    "command": "node --test tests/docs/docs.test.mjs",
+    "first_exit": 1,
+    "reason": "Coordinator register bump required generated metadata sync; raw first failure retained in docs-test.log.",
+    "after_sync_exit": 0
+  },
+  "runtime": "Not run; transport/schema evidence only",
+  "final_checks": [
+    {
+      "name": "metadata-check",
+      "executable": "C:\\Users\\MCK\\AppData\\Local\\Temp\\kms-node24\\node-v24.21.0-win-x64\\node.exe",
+      "args": [
+        "scripts/docs/docs-metadata.mjs",
+        "--check"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "docs-lint",
+      "executable": "C:\\Users\\MCK\\AppData\\Local\\Temp\\kms-node24\\node-v24.21.0-win-x64\\node.exe",
+      "args": [
+        "scripts/docs/verify-docs.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "whitespace",
+      "exit": 0
+    }
+  ],
+  "local_targets": {
+    "files": 5,
+    "targets": 69,
+    "missing": []
+  },
+  "receipt_preservation": [
+    {
+      "path": "docs/implementation/features/sp-04-update-task/reviews/p03a-contract-support.md",
+      "original_unchanged": true,
+      "snapshot_unchanged": true
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a/source-inputs.json",
+      "original_unchanged": true,
+      "snapshot_unchanged": true
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/p03a/p03a-checks.json",
+      "original_unchanged": true,
+      "snapshot_unchanged": true
+    }
+  ],
+  "execution_result": {
+    "context_tests": 45,
+    "contract_tests": 27,
+    "docs_tests": 20,
+    "docs_tests_first_exit": 1,
+    "docs_tests_after_metadata_sync_exit": 0,
+    "metadata_sync_exit": 0
+  }
+}

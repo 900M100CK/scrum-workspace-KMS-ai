@@ -1,0 +1,7 @@
+{
+  "initial_check": "Rejected pre-existing SDLC-Prompt-Checklist gitlink drift because ordinary-file inventory does not include directories/gitlinks.",
+  "initial_observation": "Initial user-workspace status already listed this gitlink as modified; the earlier session inspected checkout6996dae. C01 never reset or changed that checkout.",
+  "current_owner_template_head": "6996dae13b2bfe31e77b5d90bb5eb24888a6a910",
+  "validation_uses_pinned_template": "3c65f5cbefa7d69a75cadd89b177e3add8b400b0",
+  "index_checked_separately": true
+}

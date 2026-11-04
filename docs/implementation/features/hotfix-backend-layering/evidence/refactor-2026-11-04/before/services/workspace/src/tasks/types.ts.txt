@@ -1,0 +1,8 @@
+export interface CreateTask {type:'story'|'task'|'bug';title:string;description?:string}
+export type WorkLocation={kind:'backlog';position:string}|{kind:'sprint'|'completed';sprint_id:string};
+export interface Task {
+ task_id:string;project_id:string;type:CreateTask['type'];title:string;description:string;
+ state:'todo'|'in_progress'|'done';assignee_id:string|null;blocked:boolean;revision:number;
+ work_location:WorkLocation;created_at:string;
+}
+export interface TaskList {items:Task[];next_cursor:string|null;backlog_revision:string}

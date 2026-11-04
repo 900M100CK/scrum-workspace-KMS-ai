@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-03",
+  "snapshots": [
+    {
+      "source": "docs/implementation/features/sp-04-update-task/reviews/p03a-contract-support.md",
+      "snapshot": "docs/implementation/features/sp-04-update-task/evidence/p03a-received-p03a-contract-support.md.txt",
+      "sha256": "f49aa343714c96b73623ee9ab40ac20f05ce03632c5edb7882154500048f3637"
+    },
+    {
+      "source": "docs/implementation/features/sp-04-update-task/evidence/p03a/source-inputs.json",
+      "snapshot": "docs/implementation/features/sp-04-update-task/evidence/p03a-received-source-inputs.json.txt",
+      "sha256": "cf076c4fc400a4a98afd1c3fc76ab4c2b052cbb7ce708915467e9b642a16d75e"
+    },
+    {
+      "source": "docs/implementation/features/sp-04-update-task/evidence/p03a/p03a-checks.json",
+      "snapshot": "docs/implementation/features/sp-04-update-task/evidence/p03a-received-p03a-checks.json.txt",
+      "sha256": "037d431d4862ea1cd8a35d773f1bec290788fbb3ea6221382bbd71676412fbd3"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+# SP04-P03A2 — selected policy and use-case source alignment
+
+**Artifact ID:** SP04-P03A2\
+**Version/date:** 0.1 Draft · 3 November 2026\
+**Status:** Planned prerequisite, not dispatched or executed.
+
+Parent [FEAT-SP04-01](../plan.md) owns status; SP-04.1–04.2 / FR-09/40/43/44 and supporting FR-03/31/59/68 / PLAN-01 Month 1 / M-02–M-03. Read [owner decisions](../owner-decisions.md) and current [decision batch](../decision-batch.md). This task follows the small transport support slice and must finish before permission/storage producers; no requirement change is smuggled into metadata-only P03A.
+
+One reviewable result: reconcile the owner's separate edit authority, enabled-target assignment eligibility and permanent original new-operation results into the affected canonical FR/AC/UC/spec/data/API traces without adding IDs/priorities or rewriting the BRD. Resolve C01–C03 wording consistently with the existing generic Error/Blocker responses, fresh current reads and unknown-outcome recovery. Add a bounded Proposed mechanics ADR before permission/data-model implementation, keeping owner-confirmed policy separate from untested mechanics. No actual handler or migration is implemented by this source alignment.
+
+Before execution Codex must refine this brief with exact current source versions, affected PRD AC-43/UC-04 sections, logical metadata/spec/ADR paths, dependency aliases, assertions, commands and evidence destinations, then register that coordinated scope. Do not modify accepted ADRs or the baseline. All historical results/snapshots retain their original source identity. Readiness is not runtime acceptance.
+
+P03B remains dependent on this alignment and its own exact additive storage/test brief. No automatic assignment, code edit, testing, migration, commit/push or new policy is authorised by this placeholder.

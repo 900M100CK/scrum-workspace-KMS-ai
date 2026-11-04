@@ -1,0 +1,67 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {randomUUID} from 'node:crypto';
+import {TaskController} from '../../apps/web/src/tasks.ts';
+
+const actor=randomUUID(),project=randomUUID(),taskId=randomUUID();
+const original={task_id:taskId,project_id:project,type:'task',title:'Original title',description:'Original description',state:'todo',assignee_id:null,blocked:false,revision:1,work_location:{kind:'backlog',position:'9007199254740993.125'},created_at:'2026-11-02T00:00:00.123Z'};
+const json=(v,status=200)=>new Response(JSON.stringify(v),{status,headers:{'content-type':'application/json'}});
+const storage=()=>{const data=new Map();return {getItem:k=>data.get(k)??null,setItem:(k,v)=>data.set(k,v),removeItem:k=>data.delete(k),get length(){return data.size;},entries:()=>[...data]};};
+const actions=(ops=['listTasks','createTask'])=>({resource_kind:'project',project_id:project,resource_id:null,document_id:null,version_id:null,allowed_operations:ops});
+function reads(url,value=original){return json(url.includes('allowed-actions')?actions():url.includes('/tasks/'+taskId)?value:{items:[value],next_cursor:null,backlog_revision:'2'});}
+
+test('unknown task creation survives reload with exact actor/body/key; confirmed replay refreshes current details',async()=>{
+ const saved=storage(),writes=[];let lost=true;const current={...original,title:'Later current title',revision:2};
+ const transport=async(url,init)=>{if(init.method==='GET')return reads(url,current);writes.push({url,...init});if(lost)throw Error('lost response');return json(original,201);};
+ const c=new TaskController(actor,project,()=>{},transport,saved);await c.refresh();await c.create('task','Original title','Original description');assert(c.getSnapshot().pending);assert.equal(saved.length,1);assert.deepEqual(c.getSnapshot().items,[]);
+ await c.create('task','Must not create','');assert.equal(writes.length,1);
+ const resumed=new TaskController(actor,project,()=>{},transport,saved);assert(resumed.getSnapshot().pending);lost=false;await resumed.retry();
+ assert.equal(writes.length,2);assert.equal(writes[0].url,writes[1].url);assert.equal(writes[0].body,writes[1].body);assert.deepEqual(writes[0].headers,writes[1].headers);assert.equal(writes[1].credentials,'same-origin');assert.equal(writes[1].redirect,'error');assert.equal(writes[1].headers['X-SACW-Request'],'1');
+ assert.equal(saved.length,0);assert.equal(resumed.getSnapshot().pending,false);assert.equal(resumed.getSnapshot().detail.title,'Later current title');assert.equal(resumed.getSnapshot().detail.revision,2);
+ assert(!saved.entries().some(([,raw])=>/credential|session_token|items/.test(raw)));
+});
+test('denied/expired/conflicting reconciliation retains uncertainty and hides protected data; no new key is generated',async()=>{
+ const saved=storage();let status=503,expired=0,writes=0;
+ const c=new TaskController(actor,project,()=>expired++,async(url,init)=>init.method==='GET'?reads(url):(writes++,new Response(null,{status})),saved);
+ await c.refresh();await c.create('task',original.title,original.description);const pending=saved.entries()[0][1];
+ for(status of [403,404,409,400,401]){await c.retry();assert(c.getSnapshot().pending);assert.equal(c.getSnapshot().detail,null);assert.deepEqual(c.getSnapshot().items,[]);assert.equal(saved.entries()[0][1],pending);assert.match(c.getSnapshot().message,/unconfirmed|not confirmed/);}
+ assert.equal(expired,1);await c.create('task','Do not submit','');assert.equal(writes,6);
+});
+test('foreign actor or malformed recovery storage cannot reveal/replay saved request input',async()=>{
+ const saved=storage();const c=new TaskController(actor,project,()=>{},async(url,init)=>init.method==='GET'?reads(url):new Response(null,{status:503}),saved);await c.refresh();await c.create('task','Private original input','');
+ const foreign=new TaskController(randomUUID(),project,()=>{},async()=>{throw Error('must not send');},saved);assert.equal(foreign.getSnapshot().pending,false);assert.equal(saved.length,0);assert(!JSON.stringify(foreign.getSnapshot()).includes('Private'));
+ saved.setItem('sacw.task.pending.v1',JSON.stringify({actor,project_id:project,key:randomUUID(),body:JSON.stringify({type:'task',title:'x',description:'',actor_id:actor})}));
+ assert.equal(new TaskController(actor,project,()=>{},async()=>{throw Error('must not send');},saved).getSnapshot().pending,false);assert.equal(saved.length,0);
+});
+test('only current advisory create authority and valid bounded supported input permit a persisted mutation',async()=>{
+ let writes=0;const saved=storage();let permitted=false;
+ const transport=async(url,init)=>{if(init.method!=='GET'){writes++;return new Response(null,{status:503});}return url.includes('allowed-actions')?json(actions(permitted?['listTasks','createTask']:['listTasks'])):reads(url);};
+ const c=new TaskController(actor,project,()=>{},transport,saved);await c.refresh();await c.create('task','Denied','');assert.equal(writes,0);permitted=true;await c.refresh();
+ for(const input of [['epic','Bad',''],['task',' \t\n ',''],['task','x\0',''],['task','\ud800',''],['task','x','x'.repeat(9000)]])await c.create(...input);
+ assert.equal(writes,0);assert.equal(saved.length,0);await c.create('bug','Valid','');assert.equal(writes,1);assert.equal(saved.length,1);
+});
+test('blocked or silently discarded browser storage sends no mutation while current reads still work',async()=>{
+ for(const saved of [{getItem(){return null;},setItem(){throw Error('disabled');},removeItem(){}},{getItem(){return null;},setItem(){},removeItem(){}}]){
+  let writes=0;const c=new TaskController(actor,project,()=>{},async(url,init)=>{if(init.method!=='GET')writes++;return reads(url);},saved);await c.refresh();assert.equal(c.getSnapshot().items.length,1);await c.create('task','Valid','');assert.equal(writes,0);assert.match(c.getSnapshot().message,/recovery information/);
+ }
+});
+test('late reads cannot restore a revoked task, list or advisory create controls',async()=>{
+ let release,paused=true;const gate=new Promise(r=>release=r),c=new TaskController(actor,project,()=>{},async url=>{if(paused){await gate;return reads(url);}return new Response(null,{status:404});},storage());
+ const old=c.open(taskId);paused=false;await c.refresh();release();await old;assert.equal(c.getSnapshot().detail,null);assert.deepEqual(c.getSnapshot().items,[]);assert.deepEqual(c.getSnapshot().actions,[]);assert.match(c.getSnapshot().message,/unavailable/);
+});
+test('cursor conflict discards previous pages and loads a fresh first page without stale accumulation',async()=>{
+ let changed=false,firstCalls=0;const current={...original,title:'Fresh first page',revision:2};
+ const c=new TaskController(actor,project,()=>{},async url=>{
+  if(url.includes('allowed-actions'))return json(actions());if(url.includes('cursor=')){changed=true;return new Response(null,{status:409});}
+  firstCalls++;return json({items:[changed?current:original],next_cursor:changed?null:'opaque-page',backlog_revision:changed?'3':'2'});
+ },storage());await c.refresh();await c.more();assert.equal(firstCalls,2);assert.deepEqual(c.getSnapshot().items,[current]);assert.equal(c.getSnapshot().cursor,null);assert.match(c.getSnapshot().message,/current first page/);
+});
+test('malformed, wrong-project and secret-bearing protected output is withheld; malformed 201 preserves original recovery identity',async()=>{
+ for(const value of [{...original,project_id:randomUUID()},{...original,secret:'private'},{...original,created_at:'yesterday'}]){
+  const c=new TaskController(actor,project,()=>{},async url=>reads(url,value),storage());await c.refresh();assert.deepEqual(c.getSnapshot().items,[]);assert.equal(c.getSnapshot().detail,null);
+ }
+ const saved=storage(),c=new TaskController(actor,project,()=>{},async(url,init)=>init.method==='GET'?reads(url):json({...original,secret:'private'},201),saved);await c.refresh();await c.create('task',original.title,original.description);assert(c.getSnapshot().pending);assert.equal(c.getSnapshot().detail,null);assert.equal(saved.length,1);
+});
+test('explicit sign-out cleanup removes the stored operation while expiry alone retains it for the same actor',async()=>{
+ const saved=storage(),c=new TaskController(actor,project,()=>{},async(url,init)=>init.method==='GET'?reads(url):new Response(null,{status:503}),saved);await c.refresh();await c.create('task','Original','');c.cancel();assert.equal(saved.length,1);TaskController.clearPending(saved);assert.equal(saved.length,0);
+});

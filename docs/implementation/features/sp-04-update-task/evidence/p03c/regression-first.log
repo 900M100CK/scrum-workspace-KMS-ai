@@ -1,0 +1,57 @@
+▶ P04C real project create, exact replay and failure boundaries
+  ✔ denied, unauthenticated, forged/extra/blank inputs create no project (40.332ms)
+  ✔ atomic creation persists server actor/time and only explicit initial capability (32.1563ms)
+  ✔ same/concurrent keys return original project once; changed payload conflicts (59.6166ms)
+  ✔ audit and outcome failures roll back the entire business transaction (46.8389ms)
+  ✔ lost COMMIT acknowledgement is unknown and same-key retry reconciles without a second create (42.6485ms)
+  ✔ current authority and membership are rechecked before old result disclosure (32.0571ms)
+  ✔ declared body bounds and final serializer reject untrusted/error shapes (77.1955ms)
+  ✔ actual trusted HTTPS transports a project response with no session cookie rewrite (80.8671ms)
+✔ P04C real project create, exact replay and failure boundaries (5766.4912ms)
+▶ P03C private audited backlog authors and controlled membership ordering
+  ✔ creator and descriptive roles do not grant authors; explicit grant/revoke is private, revisioned and co-audited (74.7523ms)
+  ✔ runtime cannot provision, revive or read private audit; unknown/nonmember/disabled/empty reason are denied (61.0215ms)
+  ✔ private audit insert failure rolls back the author grant and keeps its old revision (31.0158ms)
+  ✔ real removal invalidates authors and same-role rejoin restores none; unsupported operations stay unadvertised (63.7301ms)
+  ✔ actual grant commits first behind a SQL barrier; waiting removal invalidates that grant (71.8988ms)
+  ✔ actual removal commits first behind a SQL barrier; waiting grant rejects departed membership (70.2166ms)
+  ✔ private CLI accepts author grant/revoke with audited reason and emits no database configuration (628.2739ms)
+✔ P03C private audited backlog authors and controlled membership ordering (6644.1534ms)
+▶ SP04-P03C private Task action grants and exact Task discovery
+  ✔ create/creator/member roles imply no mutation action; live HTTP returns exact read target and registered handlers only (47.1115ms)
+  ✔ four independent private grants have issue-ID provenance, revisioned revoke/regrant, and audited no-op/stale semantics (176.4433ms)
+  ✔ future registry projection checks independent rights and Backlog edit context without claiming those handlers exist (55.2997ms)
+  ✔ missing/foreign/nonmember targets conceal identity and malformed or asserted selectors fail bounded validation (61.4367ms)
+  ✔ disabled/nonmember/unknown targets, unsupported actions and ordinary runtime cannot provision or inspect private audit (40.1547ms)
+  ✔ unprovenanced selected rows are retained and rejected even for an apparent no-op (40.1409ms)
+  ✔ failed private audit persistence rolls back grant issuance (43.3283ms)
+  ✔ actual removal invalidates all four actions; rejoin restores none and explicit regrant keeps provenance (88.3832ms)
+  ✔ both actual grant/removal lock orderings preserve revocation without deadlock or grant resurrection (143.8569ms)
+  ✔ private CLI supports selected grant/revoke/state and generic failure without configuration disclosure (1199.2558ms)
+  ✔ required authority failure withholds discovery; app without Task handlers advertises no Task endpoint (76.6977ms)
+  ✔ session expiry during an observed Project lock wait withholds allowed operations (339.3867ms)
+✔ SP04-P03C private Task action grants and exact Task discovery (8218.7937ms)
+ℹ {"fixture":"sp01-p08-test-f304d70821f5","volume":"sp01-p08-test-f304d70821f5-data","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","postgres":"17.10 (Debian 17.10-1.pgdg12+1)","ceiling":"010"}
+▶ SP04-P03B additive010 mutation storage, real roles and permanent originals
+  ✔ legacy keys, invalidated grants, history and both audits refuse before DDL and preserve seeded rows (47.1181ms)
+  ✔ upgrade/repeat/reverse/reapply preserve009 receipts, definitions and prior checksums (7246.661ms)
+  ✔ each retained mutation receipt/grant/audit/event independently refuses destructive down (69.2042ms)
+  ✔ total SQL validators reject NULL, every missing/extra/wrong field, unsafe values and malformed placement/time (299.4881ms)
+  ✔ all valid Task locations/states and Blocker UTC precisions/nullable outcome retain exact wire snapshots (50.2206ms)
+  ✔ new-operation status/hash/key/state/expiry/ref constraints and OLD/NEW immutability are enforced (368.6142ms)
+  ✔ actor/operation/key/hash/Task/project/event binding rejects cross-scope replay without current-state substitution (170.6796ms)
+  ✔ private action scope/uniqueness, runtime issue/revival/rewrite denial and real member removal/rejoin (243.0106ms)
+  ✔ physical blocker history rejects unsafe sequence and nonfinite time before any wire serialization (18.9348ms)
+  ✔ Task/event/audit/result writes roll back together on audit or outcome persistence failure (28.6841ms)
+  ✔ lost real COMMIT acknowledgement is unknown, with one durable original and no current-state replacement (26.8407ms)
+  ✔ old project/member/createTask and protected-handoff branches still function and old SQL checksums match (26.8349ms)
+✔ SP04-P03B additive010 mutation storage, real roles and permanent originals (14183.6325ms)
+ℹ {"fixture":"sp01-p08-test-da325bcc2525","volume":"sp01-p08-test-da325bcc2525-data","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","postgres":"17.10 (Debian 17.10-1.pgdg12+1)","ceiling":"explicit009 ->010"}
+ℹ tests 43
+ℹ suites 0
+ℹ pass 43
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 36140.2328

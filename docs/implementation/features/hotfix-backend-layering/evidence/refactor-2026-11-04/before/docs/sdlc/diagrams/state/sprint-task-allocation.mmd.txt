@@ -1,0 +1,38 @@
+%% Origin: docs/sdlc/diagrams/design-foundation-2026-10-17.md v0.1
+%% DGM-STATE-02 v0.2.1 Draft - 18 October 2026
+%% Sources: DGM-DESIGN-01 v0.1; PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.17; DATA-04 v0.16.1; ADR-0008; ADR-0012; ADR-0014; ADR-0018
+%% Trace: FR-07–FR-09, FR-42, FR-44, FR-64; UC-04/05; SC-03/04
+%% Scope: Independent state domains coordinated by one Workspace transaction for completion/reopen. No Sprint reopening. Current location is persisted independently of completed allocation history.
+%% Legend: One Active Sprint per project; at most one live allocation per task. Completed allocation history and blocker events are preserved. Capability + expected revision + idempotency + audit required.
+stateDiagram-v2
+    direction LR
+    state "Sprint: Planned" as Planned
+    state "Sprint: Active" as Active
+    state "Sprint: Completed" as Completed
+    state "Task: To Do" as Todo
+    state "Task: In Progress" as Progress
+    state "Task: Done" as Done
+    state "Allocation: allocated" as Allocated
+    state "Allocation: returned<br/>Task in Backlog / To Do" as Returned
+    state "Allocation: completed<br/>Historical completion retained" as Kept
+    state "Derived blocker: not Blocked<br/>No event or latest event Resolved" as Unblocked
+    state "Derived blocker: Blocked<br/>Latest committed sequence is Open" as Blocked
+    state "Current location: Backlog<br/>Sprint reference null; any task state" as LocationBacklog
+    state "Current location: Sprint<br/>Planned/Active + allocated association" as LocationSprint
+    state "Current location: Completed<br/>Done + completed association" as LocationCompleted
+    Planned --> Active: start; reject second Active
+    Active --> Completed: complete; atomically settle allocations
+    Todo --> Progress: authorised direct transition
+    Progress --> Done: authorised direct transition
+    Todo --> Done: direct transition allowed
+    Progress --> Todo: direct transition
+    Done --> Progress: reopen only outside Completed-Sprint special case
+    Done --> Todo: reopen; Completed Sprint forces Backlog / To Do
+    Allocated --> Returned: completion of unfinished task; optional removal resets unfinished
+    Allocated --> Kept: completion of Done task
+    Unblocked --> Blocked: append Open with next sequence
+    Blocked --> Unblocked: append Resolved; never infer resolution from Sprint completion
+    LocationBacklog --> LocationSprint: allocate; advance Backlog revision
+    LocationSprint --> LocationCompleted: complete Done work
+    LocationSprint --> LocationBacklog: return unfinished; To Do
+    LocationCompleted --> LocationBacklog: reopen To Do; retain completed association

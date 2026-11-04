@@ -1,0 +1,109 @@
+# Dependency-based implementation roadmap
+
+**Artifact ID:** IMPL-ROADMAP-01\
+**Version/date:** 0.25.2 Draft · 4 November 2026\
+**Status:** Planning order, not completed work or scope acceptance.\
+**Inputs:** PRD-01 v0.9; SPEC-INDEX v0.7; PLAN-01 v0.4; [decisions](decisions.md); [task catalogue](tasks/README.md).\
+**Trace:** BR-01–BR-14; SC-01–SC-08.\
+**Owner role:** Sequential development coordinator.
+
+Dependencies are gates, not dates. Keep all release Must ACs. Optional requirements remain optional, with explicit inclusion decisions; do not treat every declared operation as an equal-size unit of delivery.
+
+| Milestone | Packs / sequence | Observable exit evidence |
+| --- | --- | --- |
+| M-01 authenticated foundation | SP-01 + SP-11.1 capture; relevant D-01/02 decisions first | Real sign-in/out/expiry and actor integrity; owned audit capture where required; executable application checks actually wired |
+| M-02 smallest work flow | SP-02 project/membership foundation → SP-03 → SP-04, capture in every producer | Two synthetic accounts; create project/task; update state/blocker; fresh client reconstructs persisted authorised work; membership loss denies and clears protected UI |
+| M-03 complete Scrum behaviour | Finish SP-02 removal/last-manager tests and SP-05 | Fixed lifecycle, complete Backlog reorder, exclusive allocation, mixed per-task outcomes, complete/reopen with history preservation; controlled concurrency/failure tests |
+| M-04 knowledge access | SP-06 with SP-11.1; SP-07 | Workspace-first creation, independent rights, guarded protected reads, revoke/rejoin, immutable Current replacement and exact labelled history; same-key unknown-outcome reconciliation |
+| M-05 useful context without AI | SP-08 plus relevant SP-07 readiness/history | Task links and permission-filtered English keyword search; no hidden target metadata; work and healthy document/keyword paths survive provider failure |
+| M-06 evidence-backed AI | SP-11.2/3 and SP-09 after work/doc prerequisites; SP-10 | Selected permitted provider configuration; scoped retrieval, durable manifests, guarded input/answer transport, exact citation and full evidence checks; operational state overrides old text |
+| M-07 scoped inspection | SP-13 after producing evidence exists; capture is already mandatory | Audit identity exception/redaction; scoped trace and sources; optional summary entitlement independent of audit/trace; honest missing metrics |
+| M-08 release verification | SP-12 with regressions from every pack | Must AC/SC coverage, reproducible evaluation, matched keyword baseline for improvement claims, known failures/limitations and dependency-specific fallback |
+
+## Capture and dependency interpretation
+
+### Registered work plans
+
+The [work plan register](features/README.md) links feature, fix, hotfix and test plans to their PLAN-01 sections, canonical spec/pack children and milestones above. Keep each plan's detailed task statuses in its own task table. Registration adds no Must deferral, dependency reorder, decision acceptance or calendar change.
+
+| Milestone / parent | Child work plan | Scope / next task |
+| --- | --- | --- |
+| M-01 / PLAN-01 Month 1 | [FEAT-SP01-01 v0.9](features/sp-01-session-foundation/plan.md) | Bounded P12 session evidence merged to main at 52a10dd after owner instruction; formal ADR/deployment/D-07 and release limits remain open |
+| M-02/M-03 / PLAN-01 Month 1 | [FEAT-SP02-01 v0.6](features/sp-02-project-membership/plan.md) | P02 feedback reconciliation; proposed session refactor P03A, reduced authority 007/P03, replay/paging design at P04 before public mutations; bounded sequential implementation owner-authorised |
+
+SP-11 is cross-cutting: its mutation-capture child accompanies every first mutation. Its AI evidence children are later, after work and knowledge prerequisites. SP-06's SP-11 dependency means applicable capture readiness, not completion of the entire AI manifest/inspection pipeline. SP-01 and SP-11 capture are co-delivered where session-producing operations require records; do not create a circular wait or defer audit.
+
+The task catalogue retains canonical spec dependencies. Within a spec, foundational children may be integrated early, but the whole pack is not Verified until its mandatory children and dependencies pass. For example, initial project membership can support SP-03 while full member-removal regression continues; final SP-02 acceptance still includes it.
+
+## Stop and recovery rules
+
+- Stop the affected step on unknown authority, unresolved material policy or failing required tests. Continue independent authorised preparation; do not bypass the gate.
+- A timeout is unknown outcome, not rollback. Reconcile the original scoped identity/payload. A protected AI transport follows its one-use/unknown-transport rules, not generic mutation replay.
+- Do not simplify by removing guards, content permissions, durable evidence, history or tests. Revisit unnecessary mechanism complexity through the decision process.
+- Later milestone preparation may use local synthetic doubles. It does not authorise live AI relay before the work/document gates.
+- No additional Must deferral, automatic graph, meeting AI, reports expansion or runtime multi-agent feature is introduced.
+
+Checklist: Pass for explicit sequence, capture interpretation and observable exits; Gap for all application milestone evidence. Handoff: select SP-01.1 from [tasks](tasks/README.md), following [execution](execution.md).
+
+## Shared framework prerequisite
+
+M-01 includes [INIT-FRAMEWORK-01](features/framework-foundation/plan.md): owner-directed frontend/two-service scaffolding on main and preservation of the synthetic UI under design/prototype. This bounded shared setup precedes protected SP-01 implementation; it does not close session or permission acceptance.
+
+## SP-02 bounded handoff — 1 November 2026
+
+FEAT-SP02-01 v0.6 records implemented and locally verified project/member handlers and UI. M-02 continues with SP-03/SP-04; M-03 still needs SP-05 plus future actual producer race reruns SP02-F01. No complete work flow/milestone or release acceptance is inferred from the SP-02 subset.
+
+## SP-01/SP-02 test and audit publication — 1 November 2026
+
+[PUB-SP01-SP02-01](features/sp-01-sp-02-test-audit-publication/plan.md) consolidates the two testing/audit reports and publishes the owner-authorised current branch. It does not add a milestone pass, implement SP-03 or merge to main.
+
+## SP-03 child plan — M-02 / PLAN-01 Month 1
+
+[FEAT-SP03-01 v0.5](features/sp-03-create-task/plan.md) maps SP-03.1–03.4 to the registered implementation and measured evidence. All three material owner choices are recorded; current results belong only to the parent plan and actual handoff. No master milestone, calendar, Must deferral, independent acceptance or new Git publication is implied.
+
+### Historical SP-03 selected support continuation — 2 November 2026
+
+FEAT-SP03-01/entry/WBS v0.4 resumes all SP-03 tasks under the owner objective. SP03-DECISION-BATCH v0.2 and Proposed ADR-0027 v0.2 record all three actual owner choices; P02 preparation is complete. P03A v0.2 coordinates canonical SP-03 v0.7, Workspace v0.2.12, CONTRACT-01 v0.23, logical JSON v0.11, DATA-04 v0.15 and API-05 v0.21. Parent plan owns actual test/status evidence. No migration/handler or Git publication has occurred at this support checkpoint. Earlier source tables/results are dated snapshots, not relabelled runtime evidence.
+
+### Historical SP-03 foundation execution evidence — 2 November 2026
+
+FEAT-SP03-01 v0.4 now links actual P03A/P03B/P03C evidence and v0.2 child briefs. P03B adds only draft migration 009, internal task types/outcome adapter, explicit 009 fixture and storage tests; DGM-DATA-01 v0.6/model entry reflects Task.created_at. P03C extends the private operator/CLI and tests author grant/removal ordering. Parent plan is the only mutable task-status table; migration/contract/source versions and old captures are retained as dated identities. No task HTTP/UI/browser or whole-feature completion, development upgrade, Git publication or independent approval is claimed.
+
+### SP-03 final handoff source registration — 2 November 2026
+
+Current local reading sources: FEAT-SP03-01/entry/WBS 0.5, canonical SP-03 0.8, IMPL-SP-03 0.2 / IMPL-TASKS-01 0.6, Workspace 0.2.12, logical JSON 0.12, CONTRACT-01 0.24, API-05 0.22, DATA-04 0.16, TEST-08 0.24, TEST-COVERAGE-01 0.11 and VERIFY-01 0.12. SP03-UI-01 0.2 preserves its original 0.1 report snapshot and actual captures; SP03-EXEC-01/WORKSPACE-TASKS-01 are 0.1. Source status updates in AGENTS 1.15/rules 1.14 change no planning/permission authority. P09 final regression/audit results belong to the parent/report; do not infer acceptance from this registration. Older source/result sections remain historical observations and are not relabelled.
+
+## Historical SP-03 publication follow-up — 3 November 2026
+
+[PUB-SP03-01 v0.1](features/sp-03-publication/plan.md) registers bounded review/verification, selective publication, merge into main and deletion of the merged SP-03 branch under the owner instruction. Parent FEAT-SP03-01 / SP-03.1–03.4 / FR-05/AC-05 / PLAN-01 Month 1 / M-02. PUB03-T01/T02 v0.1 and PUB-SP03-ENTRY-01 v0.1 define the ready work; the publication plan owns actual results. Planned report SP03-PUB-REPORT-01 v0.1: docs/sdlc/reports/SP-03-publication-2026-11-03.md. No product scope, independent approval or deployment is implied.
+
+## SP-03 publication completion — 3 November 2026
+
+[PUB-SP03-01 v0.2](features/sp-03-publication/plan.md) and [SP03-PUB-REPORT-01 v0.2](../sdlc/reports/SP-03-publication-2026-11-03.md) record actual verification, source commit a8b3192, successful GitHub CI, confirmed fast-forward into main and deletion of both SP-03 source branches. Parent FR-05/AC-05 / SP-03.1–03.4 / PLAN-01 Month 1 / M-02 is unchanged. Unrelated working files and the template gitlink are preserved. No deployment, complete master milestone or independent approval.
+
+
+## M-02/M-03 documentation child — 4 November 2026
+
+[HOTFIX-BACKEND-42-01 v0.1](features/hotfix-backend-layering/plan.md) supports PLAN-01 Month 1 and the existing SP-03/SP-04 packs through a bounded backend layering clarification. No milestone order, acceptance, calendar or runtime scope change. Task results belong to that plan.
+
+Backend layering bounded result: [HOTFIX-BACKEND-42-RESULT v0.1](features/hotfix-backend-layering/handoff.md) records implemented §4.2, preserved SP-04 checkout/source boundaries and five passing npm gates. Overall acceptance remains open for inherited local-source-link gap HF42-F01; no runtime evidence or automatic integration. Parent plan owns task status.
+
+
+## HF42-F01 owner-authorised continuation — 4 November 2026
+
+[HOTFIX-BACKEND-42-01 v0.2](features/hotfix-backend-layering/plan.md) registers the explicitly requested Stage 6 profile source-link correction and bounded current metadata reconciliation. Same PLAN-01 Month 1 / M-02–M-03 support; no runtime or design change. Original gap evidence is retained; parent plan owns status/results.
+
+HF42-F01 current result: [HOTFIX-BACKEND-42-01 v0.2](features/hotfix-backend-layering/plan.md) closes the explicitly authorised source-link correction with five passing npm gates, no missing local targets and preserved prior failures. Bounded documentation author verification only; no runtime, independent acceptance or integration. HOTFIX-BACKEND-42-RESULT is now v0.2.
+
+
+## Backend layering publication authorisation — 4 November 2026
+
+[HOTFIX-BACKEND-42-01 v0.3](features/hotfix-backend-layering/plan.md) registers HF42-P01 for the owner-requested exact-scope commit and fast-forward integration/publication into main. Same PLAN-01 Month1 / M-02–M-03 parent; no code/design expansion, force push, branch deletion, runtime or independent acceptance. Actual final Git refs are reported after execution.
+
+
+## HF42-C01 owner-selected documentation closure — 4 November 2026
+
+[HOTFIX-BACKEND-42-01 v0.4](features/hotfix-backend-layering/plan.md) registers HF42-C01 v0.1 to reconcile existing task/source/publication receipts and retain the documented Project-lock/in-memory-page limits. Same PLAN-01 Month1 / M-02–M-03 / FR-05/AC-05 support. Exact reference/projection checks and preservation gates precede execution. Runtime helpers/null changes require separate SP-04 scope; runner/discovery remain deferred. No automatic commit/publication or new runtime acceptance.
+
+
+HF42-C01 actual result: [HOTFIX-BACKEND-42-01 v0.4](features/hotfix-backend-layering/plan.md) / result v0.3 reconciles original publication using live origin/main=dcd2d81 and retains the documented Project-lock/full-projection-page limits. Reference/projection context45/45, docs20/20 and metadata pass with original negatives retained;133 pre-existing outside files/index/refs remain preserved. Documentation author verification only; no new runtime refactor/commit/push/merge or independent acceptance. Deferred query/null work is separate SP-04 scope; runner/discovery awaits concrete demand.

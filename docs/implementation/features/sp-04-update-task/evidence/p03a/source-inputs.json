@@ -1,0 +1,60 @@
+{
+  "timestamp": "2026-11-03T14:24:49.717Z",
+  "files": [
+    {
+      "path": "contracts/openapi/workspace.openapi.json",
+      "bytes": 165300,
+      "sha256": "17cc995de5d46454579032a3047855c66b1946fd4e9237d0f9dbd9c2dd46e192"
+    },
+    {
+      "path": "contracts/README.md",
+      "bytes": 17840,
+      "sha256": "9630caf6b03a0e1b9d151973eec7930e96f0818b28a5c387e16bf8ff19047272"
+    },
+    {
+      "path": "docs/sdlc/api-design.md",
+      "bytes": 17996,
+      "sha256": "3ef4d4cacb5dabfbd5dfb2d84407a0cd99833bdc0f3270a5b462c4cdf6fb1be0"
+    },
+    {
+      "path": "specs/004-update-task.md",
+      "bytes": 5524,
+      "sha256": "0cb1980a66a297b2c24b6850a17070ab2def5c268935c3e7bd91b9c6f992a845"
+    },
+    {
+      "path": "docs/sdlc/artifact-register.md",
+      "bytes": 141569,
+      "sha256": "fb5b28c414be08c534a05c76bab063a38d66204fb031a1f127f34383e1926643"
+    },
+    {
+      "path": "docs/sdlc/test-plan.md",
+      "bytes": 33769,
+      "sha256": "e889dbb8c51a68ddeaac7e1e2431fe9dc6b2a007303cdc1b99a80d51f4cd4ceb"
+    },
+    {
+      "path": "docs/ux/wireframe-workplan.md",
+      "bytes": 12700,
+      "sha256": "3d7bfd67a30d1d88660d41d5bb011175140f68a4fa9ce2fef955d0b3efe1e14c"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/tasks/P03A-contract-support.md",
+      "bytes": 6118,
+      "sha256": "257f88f9728c006021a8b3a4421aa077afb54504527727a6e535f4ca0158cbbe"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/COORDINATION.md",
+      "bytes": 9812,
+      "sha256": "64b70b008e200592a6a7c4f2127903238bff7475bddddacc8466374491d6cb38"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/owner-decisions.md",
+      "bytes": 3185,
+      "sha256": "3f91b5b96aacbee65e4f07debbcf4246265508dcb71326fd1a8f2e02a891d940"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/decision-batch.md",
+      "bytes": 20420,
+      "sha256": "47661a644ad1f31007b275f5a4235cad33a45f97a20037655f7dafd430d396a7"
+    }
+  ]
+}

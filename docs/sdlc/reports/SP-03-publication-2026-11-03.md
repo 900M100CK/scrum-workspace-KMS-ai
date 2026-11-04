@@ -1,9 +1,9 @@
 # SP-03 verification and publication report
 
 **Artifact ID:** SP03-PUB-REPORT-01\
-**Version/date:** 0.2 Draft · 3 November 2026\
+**Version/date:** 0.2.1 Draft · 3 November 2026\
 **Status:** SP-03 source published and merged into main; remote/local SP-03 branch deleted. No deployment or independent approval.\
-**Inputs:** [PUB-SP03-01](../../implementation/features/sp-03-publication/plan.md) v0.2; FEAT-SP03-01 v0.5; [implementation handoff](SP-03-2026-11-02-execution.md) v0.1; SP03-UI-01 v0.2.\
+**Historical inputs:** [PUB-SP03-01](../../implementation/features/sp-03-publication/plan.md) v0.2; FEAT-SP03-01 v0.5; [implementation handoff](SP-03-2026-11-02-execution.md) v0.1; SP03-UI-01 v0.2.\
 **Trace:** FR-05/AC-05, supporting FR-03/31/59; UC-03 main/EX-01/EX-02; PLAN-01 Month 1 / M-02.
 
 The owner authorised checking SP-03 and, if its bounded implementation is done, publishing to GitHub, merging into main and deleting the merged SP-03 branch. The initial branch was codex/sp-03-create-task at d6b8caf241603cdff4f9b7a2a491fc4e2e386453. Origin/main was dd69700e58d28e367f94833b85a6909a5faec1a5; remote SP-03 contained the earlier planning commits only.

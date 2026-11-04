@@ -1,0 +1,12 @@
+[
+  {
+    "name": "metadata-sync",
+    "exit_code": 0,
+    "tail": "ness.mmd\",\n    \"docs/sdlc/diagrams/state/sprint-task-allocation.drawio\",\n    \"docs/sdlc/diagrams/state/sprint-task-allocation.mmd\",\n    \"docs/sdlc/diagrams/data/workspace-erd.drawio\",\n    \"docs/sdlc/diagrams/data/workspace-erd.mmd\",\n    \"docs/sdlc/diagrams/data/knowledge-erd.drawio\",\n    \"docs/sdlc/diagrams/data/knowledge-erd.mmd\",\n    \"docs/sdlc/diagrams/data/handoff-logical-model.drawio\",\n    \"docs/sdlc/diagrams/data/handoff-logical-model.mmd\",\n    \"docs/sdlc/diagrams/deployment/local-development.drawio\",\n    \"docs/sdlc/diagrams/deployment/local-development.mmd\",\n    \"docs/sdlc/diagrams/development/package-ownership.drawio\",\n    \"docs/sdlc/diagrams/development/package-ownership.mmd\"\n  ]\n}\n"
+  },
+  {
+    "name": "docs",
+    "exit_code": 1,
+    "tail": "Input version drift in docs/sdlc/api-design.md: DATA-04\n\n'0.16.1' !== '0.16.2'\n\n"
+  }
+]

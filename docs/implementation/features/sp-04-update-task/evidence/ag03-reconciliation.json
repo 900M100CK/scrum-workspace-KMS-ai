@@ -1,0 +1,145 @@
+{
+  "artifact_id": "SP04-AG03-RECONCILIATION",
+  "version": "0.1",
+  "date": "2026-11-03",
+  "timezone": "Asia/Saigon",
+  "branch": "codex/sp-04",
+  "head": "6b837fd52e01709f72bfe2de6cb96f0e9cc52653",
+  "received_artifacts": [
+    {
+      "source": "docs/implementation/features/sp-04-update-task/decision-batch.md",
+      "source_sha256": "1c82472da003cf58a066d0c0abae49bf6bfedf4c19db54691002fe4af82bd7d6",
+      "snapshot": "docs/implementation/features/sp-04-update-task/evidence/ag03-decision-batch-v0.2.txt",
+      "snapshot_sha256": "1c82472da003cf58a066d0c0abae49bf6bfedf4c19db54691002fe4af82bd7d6"
+    },
+    {
+      "source": "docs/implementation/features/sp-04-update-task/reviews/p02-codex-report-v0.2.md",
+      "source_sha256": "8162aeeebed8a1eee339cd07aaf40058c9e428086fa41cbbddb0393aabb3f9e0",
+      "snapshot": "docs/implementation/features/sp-04-update-task/evidence/ag03-antigravity-report-v0.2.txt",
+      "snapshot_sha256": "8162aeeebed8a1eee339cd07aaf40058c9e428086fa41cbbddb0393aabb3f9e0"
+    }
+  ],
+  "preservation": {
+    "tracked_source_paths_checked": 174,
+    "changed": []
+  },
+  "actual_work_location_schema": {
+    "oneOf": [
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "const": "backlog"
+          },
+          "position": {
+            "type": "string",
+            "pattern": "^-?[0-9]+(\\.[0-9]+)?$",
+            "description": "Exact numeric backlog position; compare numerically, then task_id."
+          }
+        },
+        "required": [
+          "kind",
+          "position"
+        ]
+      },
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "const": "sprint"
+          },
+          "sprint_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "kind",
+          "sprint_id"
+        ]
+      },
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "const": "completed"
+          },
+          "sprint_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "kind",
+          "sprint_id"
+        ]
+      }
+    ],
+    "description": "Current location, not complete allocation history. Completed-Sprint reopening returns backlog; retained associations are read through listSprintItems."
+  },
+  "coordinator_corrections": [
+    "A01 exact action authority before replay disclosure",
+    "A02 outcome branch separates replay from new-assignee target-account-before-Project locks",
+    "A03 WorkLocation schema exact branches; Sprint/completed have no position",
+    "A04 effective reopen state todo, actual backlog_position and no new mutable timestamp",
+    "A05 typed fault-denial preserves clock evidence; no throw-before-commit mandate",
+    "A06 enforced grants, exact target discovery and full paging/expiry bindings",
+    "A07 unambiguous bounded/resolvable audit references"
+  ],
+  "canonical_design": {
+    "path": "docs/implementation/features/sp-04-update-task/decision-batch.md",
+    "version": "0.3",
+    "raw_sha256": "e6b5f5627fba865beb9695e84db2dc16e24109fed030df6ef926ab3e67907ad1",
+    "scope": "Declarative obligations, not runnable migration DDL"
+  },
+  "owner_choices": {
+    "D01": "Pending: four explicit actions versus reuse backlog-author for edit",
+    "D02": "Pending: disabled-target eligibility",
+    "D03": "Pending: permanent original new-mutation results including Task title/description"
+  },
+  "verdict": "AG03 receipt reconciled with Codex technical corrections; P02 awaits material owner selections; no active external assignment or producer execution",
+  "unrun": [
+    "No new context/docs-test/contract-test suite run",
+    "No application/build/DB/SQL/HTTP/DOM/browser/concurrency/load/provider/evaluation run",
+    "No runtime/contract/schema/ADR change, migration, commit/push or external dispatch"
+  ],
+  "documentation_check": {
+    "node": "24.21.0",
+    "command": "node scripts/docs/verify-docs.mjs",
+    "exit_code": 0,
+    "log": "evidence/ag03-docs-lint.log"
+  },
+  "local_link_check": {
+    "files": 6,
+    "targets": 65,
+    "missing": [],
+    "scope": "Local target existence, no claim of every historical report anchor validity"
+  },
+  "receipt_preservation": [
+    {
+      "snapshot": "docs/implementation/features/sp-04-update-task/evidence/ag03-decision-batch-v0.2.txt",
+      "preserved": true,
+      "source": "docs/implementation/features/sp-04-update-task/decision-batch.md",
+      "source_unchanged": false,
+      "expected_coordinator_design_edit": true
+    },
+    {
+      "snapshot": "docs/implementation/features/sp-04-update-task/evidence/ag03-antigravity-report-v0.2.txt",
+      "preserved": true,
+      "source": "docs/implementation/features/sp-04-update-task/reviews/p02-codex-report-v0.2.md",
+      "source_unchanged": true,
+      "expected_coordinator_design_edit": false
+    }
+  ],
+  "final_metadata": {
+    "exit_code": 0,
+    "log": "evidence/ag03-metadata-final.log"
+  },
+  "whitespace": {
+    "exit_code": 0,
+    "log": "evidence/ag03-whitespace.log"
+  }
+}

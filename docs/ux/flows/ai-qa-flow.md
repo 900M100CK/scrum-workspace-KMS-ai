@@ -1,9 +1,9 @@
 # User Flow: AI Q&A, Citations & Fallback
 
 **Artifact ID:** UX-FLOW-AI-03\
-**Version/date:** 0.9 Draft · 25 October 2026
+**Version/date:** 0.9.3 Draft · 4 November 2026
 **Status:** Owner-confirmed policy direction; runtime and full UX review pending.\
-**Sources:** PRD-01 v0.9; UC-02 v0.8 (UC-09/UC-10/UC-12); SAD-03 v0.16; ADR-0007/0009/0011; Workspace OpenAPI v0.2.8 / Knowledge v0.2.9\
+**Sources:** PRD-01 v0.10.2; UC-02 v0.8.3 (UC-09/UC-10/UC-12); SAD-03 v0.19.1; ADR-0007/0009/0011; Workspace OpenAPI v0.2.8 / Knowledge v0.2.9\
 **Trace:** BR-07–BR-10, BR-12–BR-14; FR-18–FR-30, FR-32–FR-34, FR-46, FR-53–FR-55, FR-59–FR-61, FR-69; SC-02, SC-03, SC-05–SC-08.
 
 ## 1. Request and protected handoffs

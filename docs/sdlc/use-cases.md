@@ -1,9 +1,9 @@
 # Goal-level use cases for the five-month release
 
 **Artifact ID:** UC-02  
-**Version/date:** 0.8 Draft · 25 October 2026
+**Version/date:** 0.8.3 Draft · 4 November 2026
 **Status:** Owner-confirmed ADR-0007–ADR-0011 direction; remaining policy and application evidence gaps are explicit.
-**Inputs:** BRD v1.0; [PRD-01](PRD_SRS.md) v0.9; [PLAN-01](../planning/five-month-plan.md) v0.4; ADR-0007–ADR-0017; repository UC prompt/checklist.; Proposed ADR-0022
+**Inputs:** BRD v1.0; [PRD-01](PRD_SRS.md) v0.10.2; [PLAN-01](../planning/five-month-plan.md) v0.4; ADR-0007–ADR-0017; repository UC prompt/checklist.; Proposed ADR-0022; Proposed ADR-0028 v0.1
 **Author:** development agent acting sequentially; owner reviews business choices.  
 **Changes v0.1 → v0.2:** Replaced boilerplate trigger/flow template with per-UC specific triggers, detailed numbered main success scenarios, separate alternate (Alt-*) and exception (EX-*) flows, and inline Business Rules. All FR/BR/SC traces, postconditions, relationship notes and handoff statements preserved unchanged.
 **Revision note (12 October 2026, version unchanged):** Corrected the UML relationship specification and `use-case-diagram.drawio` so UC-02, UC-03, UC-07 and UC-13 are associated with their scoped actors instead of Authorised Member; added the FR-35 trace note below. No UC flow, FR/BR/SC trace or postcondition changed.
@@ -128,14 +128,14 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 
 ### Alternate Flows
 
-- **Alt-1 (Step 1):** PO submits an edit-content request on an existing item (FR-40) → System validates stale-write token (NFR-02) and updates title/description; another member sees the change after refresh (AC-40). Audit event recorded.
+- **Alt-1 (Step 1):** PO or equivalent authorised editor submits an edit-content request on an existing Backlog item (FR-40) → System requires current project membership, Task read scope and the separately provisioned edit capability, then checks expected revision for a new request (NFR-02) and updates title/description. Creator, create-only backlog-author and role labels alone do not grant editing. Another member sees the committed change after refresh (AC-40); actual changes carry audit. Committed-result recovery follows UC-04 command identity/current-authority rules and returns the retained original Task separately from current reads.
 - **Alt-2 (Step 1):** PO submits a reorder-backlog request with a new relative ordering (FR-41) → System applies the ordering; reads confirm updated relative sequence without changing item content (AC-41). Audit event recorded.
 
 ### Exception Flows
 
 - **EX-01 (Step 2):** Type value is not Story, Task, or Bug → System rejects with validation error; no item created (AC-05).
 - **EX-02 (Step 2):** Requester lacks PO/author capability in the project → System returns forbidden; no item created.
-- **EX-03 (Step 2 — Edit, Alt-1):** Revision token is stale — another member has committed a newer update → System returns conflict error with the current revision token; does not overwrite the newer state (NFR-02, AC-40).
+- **EX-03 (Step 2 — Edit, Alt-1):** Revision token is stale for a new operation — another member has committed a newer update → System returns generic HTTP 409 state_conflict without a current_revision field; does not overwrite the newer state (NFR-02, AC-40). Client performs a fresh authorised getTask before a user-confirmed new edit; committed same-key recovery is not rejected merely because live revision advanced.
 
 ### Business Rules
 
@@ -157,29 +157,35 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 **Trigger:** Authorised member submits a board-state-change request between To Do, In Progress and Done (including reopening Done), an assignee-set request, or a blocker-event request (Open or Resolved) with item ID and required fields.
 **Precondition:** Valid session; requester holds current membership and the requested state-change, assignment or blocker capability; target item exists and is within an accessible project.
 
+### Command identity and current authority
+
+All four Task mutations, including UC-03 Alt-1 edit, submit expected_revision and an original actor/operation-scoped Idempotency-Key with the original body. Server session establishes identity. Before new writes or replay, require current enabled session, project/Task read scope and the exact requested action capability; role, creator, assignee, create-only backlog-author and membership-manage confer no implicit action. Unknown/inaccessible Task targets return the same generic 404; readable targets without the action return 403; required authority/storage failure denies with generic 503.
+
+For an already committed matching original identity/input, after current read/action checks return the indefinitely retained original Task200 or Blocker201; do not apply live expected-revision, old placement or old assignee-eligibility write checks or mutate again. Task originals include title/description. Changed payload conflicts. Original acknowledgement is historical; UI performs fresh authorised Task/history reads. For new requests only, use current revision and applicable write/eligibility checks. Empty/same-value content, same-state or same-assignee requests are proposed business no-ops after those checks: persist their original Task result without revision bump or fake change audit. Distinct blocker operations always append and advance Task revision. Detailed mechanics remain Proposed ADR-0028.
+
 ### Main Success Scenario — Board state change
 
 1. **Member** submits board-state-change request with item ID, target state, and current revision token.
-2. **System** validates: session valid; member has access and state-change capability; current revision token matches the stored token (NFR-02); target state is To Do, In Progress or Done. Direct changes and reopening Done are permitted under ADR-0008 v0.2.
-3. **System** applies the state change; updates the revision token.
+2. **System** validates: session valid; member has access and state-change capability; current revision token matches the stored token (NFR-02); target state is To Do, In Progress or Done. Direct changes and reopening Done are permitted under ADR-0008 v0.3; Completed-Sprint reopening follows Alt-1.
+3. **System** applies the effective state/placement change and updates the revision token for a change; same-value no-op follows the command rules above.
 4. **System** records audit event: actor, board-state-change, item ID, before/after state, time (FR-31).
-5. **Member** receives updated state and new revision token. Another member sees the change after refresh (AC-09).
+5. **Member** receives the committed Task200, with its revision and effective state. A committed replay acknowledges the original result; fresh reads supply current state. Another member sees the change after refresh (AC-09).
 
 ### Main Success Scenario — Set assignee
 
-1. **Member** submits set-assignee request with item ID and target user ID (or unassigned).
-2. **System** validates: requester has member access and assignment capability; target user ID is a current project member or is the unassigned value.
+1. **Member** submits set-assignee request with item ID, target user ID (or unassigned), expected_revision and original Idempotency-Key.
+2. **System** validates: requester has member access and assignment capability; a new non-null target is an enabled current member of the same project, or input is the unassigned value. A disabled account is ineligible even if membership remains active. Null requires no target-account lookup.
 3. **System** persists the assignee; records audit event (FR-31, AC-43).
 4. **Member** receives confirmation of new assignee.
 
 ### Main Success Scenario — Record blocker event
 
-1. **Member** submits a blocker-event request with item ID, event type (Open or Resolved), and description/outcome text.
+1. **Member** submits a blocker-event request with item ID, event type (Open or Resolved), description/outcome text, expected_revision and original Idempotency-Key.
 2. **System** validates: requester has member access and blocker capability; description is non-empty.
-3. **System** appends the event with actor, event type, description/outcome, timestamp and unique per-task committed sequence; does not overwrite prior events (FR-44).
+3. **System** appends the event with actor, event type, description/outcome, timestamp and unique per-task committed sequence; does not overwrite prior events; increments Task revision for every distinct accepted event (FR-44).
 4. **System** derives current Blocked status from the event with the **highest committed per-task sequence**: Open → item is Blocked; Resolved → item is not Blocked; no events → not Blocked (ASM-07, AC-44). Timestamp or identifier ordering cannot override sequence.
 5. **System** records audit event (FR-31).
-6. **Member** receives the event record and the current derived Blocked status.
+6. **Member** receives HTTP 201 Blocker containing only the event record, not Task.blocked or Task revision. The client separately refreshes the authorised getTask and blocker history to display current Blocked/revision; an old receipt or failed refresh is not presented as current state.
 
 ### Alternate Flows
 
@@ -188,9 +194,9 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 
 ### Exception Flows
 
-- **EX-01 (Step 2 — Board state):** Revision token is stale — another member committed a newer change → System returns conflict error with the current revision token; does not overwrite (NFR-02, AC-09).
-- **EX-02 (Step 2 — Set assignee):** Target user ID is not a current project member → System rejects with invalid-assignee error; assignee is not changed (AC-43).
-- **EX-03 (Step 3 — Any):** Dependency fails during commit → System returns explicit failed/pending state (NFR-03); no partial event is recorded; operation is retryable.
+- **EX-01 (Step 2 — Board state):** Revision token is stale for a new request — another member committed a newer change → System returns generic HTTP 409 state_conflict without an extra current_revision field; does not overwrite (NFR-02, AC-09). Client performs a fresh authorised getTask and asks for a new user decision. Already committed same-key recovery follows the command rules above.
+- **EX-02 (Step 2 — Set assignee):** New non-null target is unknown, a nonmember/foreign-project member or disabled → after caller Task/read/action checks, System returns the same bounded HTTP 400 validation_failed for invalid assignee; no target-directory detail and no assignee change (AC-43). Authority/storage failure is generic503, not target validation.
+- **EX-03 (Step 3 — Any):** Dependency fails or acknowledgement is lost → a known pre-commit failure rolls back business state, event, business audit and original outcome together. An uncertain COMMIT/HTTP response remains unknown (NFR-03), not proof that no change committed. Show explicit unavailable/unknown recovery state; reconcile only the same actor/operation/key/body under current authority before another attempt. Do not retry automatically with a new key or invent a wire pending object; existing generic503/transport outcomes apply.
 - **EX-04 (Step 3 — Blocker):** Member records an Open event when latest event is already Open → System appends the new Open event; current Blocked status remains Blocked; no de-duplication or rejection; event history is preserved.
 
 ### Business Rules
@@ -201,7 +207,7 @@ Boundary: Scrum Workspace and AI Project KMS. Primary actors are PRD authorised 
 - **SC-03 / SC-04:** Current blocked state comes from operational observations; historical blocker events distinguish plan (Open) from recorded outcome (Resolved).
 
 **Success postcondition:** Expected revision mismatch returns conflict and preserves the newer committed update (AC-09).  
-**Failure postcondition:** No unauthorised output or write; safe partial state, if any, is labelled pending and retryable.
+**Failure postcondition:** No unauthorised output or write. Known rollback leaves no partial business/audit/outcome state; lost acknowledgement remains unknown until original-key reconciliation. Current read/action revocation denies both new writes and retained-result disclosure.
 
 ---
 
@@ -763,3 +769,7 @@ Removal, rejoin and last-manager checks now appear in the main/exception flows. 
 ## Relationship reconciliation — 25 October 2026
 
 Version 0.8 aligns the UC-11 relationship note with the existing branch-specific UC-08/UC-12 UML specification and refreshes the checklist version/date. Mutation audit remains mandatory; read-only branches do not acquire unconditional include arrows. No flow, FR/AC, permission or audit policy is added; runtime evidence remains unrun.
+
+## SP-04 source reconciliation — 3 November 2026
+
+UC-03 Alt-1/EX-03 and UC-04 now reflect [actual owner directions](../implementation/features/sp-04-update-task/owner-decisions.md) and [Proposed ADR-0028](../adr/0028-task-mutation-authority-and-outcomes.md). C01 uses generic409 plus fresh getTask, C02 event201 plus current Task/history refresh, C03 original-key unknown-outcome recovery. Existing UC/Alt/EX identities remain unchanged; no runtime result follows from this wording.

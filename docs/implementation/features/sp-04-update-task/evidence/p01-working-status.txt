@@ -1,0 +1,130 @@
+ M SDLC-Prompt-Checklist
+ M agents/00-sdlc-coordinator.md
+ M agents/01-prd-srs.md
+ M agents/02-use-cases.md
+ M agents/03-architecture.md
+ M agents/04-data-design.md
+ M agents/05-api-design.md
+ M agents/06-ui-ux.md
+ M agents/07-uml-diagrams.md
+ M agents/08-test-plan.md
+ M agents/09-consistency-review.md
+ M agents/WORKFLOW.md
+ M agents/template-guide.md
+ M contracts/README.md
+ M docs/adr/0027-task-creation-foundation.md
+ M docs/architecture.md
+ M docs/implementation/features/README.md
+ M docs/implementation/features/sp-02-project-membership/README.md
+ M docs/implementation/features/sp-02-project-membership/plan.md
+ M docs/implementation/register.md
+ M docs/implementation/roadmap.md
+ M docs/sdlc/PRD_SRS.md
+ M docs/sdlc/SAD.md
+ M docs/sdlc/api-design.md
+ M docs/sdlc/artifact-register.md
+ M docs/sdlc/data-design.md
+ M docs/sdlc/diagrams/README.md
+ M docs/sdlc/diagrams/architecture/README.md
+ M docs/sdlc/diagrams/architecture/service-composition.drawio
+ M docs/sdlc/diagrams/architecture/service-composition.mmd
+ M docs/sdlc/diagrams/c4/README.md
+ M docs/sdlc/diagrams/c4/containers.drawio
+ M docs/sdlc/diagrams/c4/containers.mmd
+ M docs/sdlc/diagrams/c4/system-context.drawio
+ M docs/sdlc/diagrams/c4/system-context.mmd
+ M docs/sdlc/diagrams/data/README.md
+ M docs/sdlc/diagrams/data/handoff-logical-model.drawio
+ M docs/sdlc/diagrams/data/handoff-logical-model.mmd
+ M docs/sdlc/diagrams/data/knowledge-erd.drawio
+ M docs/sdlc/diagrams/data/knowledge-erd.mmd
+ M docs/sdlc/diagrams/data/workspace-erd.drawio
+ M docs/sdlc/diagrams/data/workspace-erd.mmd
+ M docs/sdlc/diagrams/deployment/README.md
+ M docs/sdlc/diagrams/deployment/local-development.drawio
+ M docs/sdlc/diagrams/deployment/local-development.mmd
+ M docs/sdlc/diagrams/design-foundation-2026-10-17.md
+ M docs/sdlc/diagrams/development/README.md
+ M docs/sdlc/diagrams/development/package-ownership.drawio
+ M docs/sdlc/diagrams/development/package-ownership.mmd
+ M docs/sdlc/diagrams/flowchart/README.md
+ M docs/sdlc/diagrams/flowchart/ai-qa-flow.drawio
+ M docs/sdlc/diagrams/flowchart/ai-qa-flow.mmd
+ M docs/sdlc/diagrams/flowchart/board-flow.drawio
+ M docs/sdlc/diagrams/flowchart/board-flow.mmd
+ M docs/sdlc/diagrams/flowchart/docs-flow.drawio
+ M docs/sdlc/diagrams/flowchart/docs-flow.mmd
+ M docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.drawio
+ M docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.mmd
+ M docs/sdlc/diagrams/flowchart/permission-read-flow.drawio
+ M docs/sdlc/diagrams/flowchart/permission-read-flow.mmd
+ M docs/sdlc/diagrams/manifest.json
+ M docs/sdlc/diagrams/review-2026-10-16.md
+ M docs/sdlc/diagrams/review-2026-10-17.md
+ M docs/sdlc/diagrams/sequence/README.md
+ M docs/sdlc/diagrams/sequence/document-creation.drawio
+ M docs/sdlc/diagrams/sequence/document-creation.mmd
+ M docs/sdlc/diagrams/sequence/protected-handoff.drawio
+ M docs/sdlc/diagrams/sequence/protected-handoff.mmd
+ M docs/sdlc/diagrams/sitemap/README.md
+ M docs/sdlc/diagrams/sitemap/application-sitemap.drawio
+ M docs/sdlc/diagrams/sitemap/application-sitemap.mmd
+ M docs/sdlc/diagrams/state/README.md
+ M docs/sdlc/diagrams/state/document-and-readiness.drawio
+ M docs/sdlc/diagrams/state/document-and-readiness.mmd
+ M docs/sdlc/diagrams/state/sprint-task-allocation.drawio
+ M docs/sdlc/diagrams/state/sprint-task-allocation.mmd
+ M docs/sdlc/diagrams/use-case/README.md
+ M docs/sdlc/diagrams/use-case/use-case-diagram.drawio
+ M docs/sdlc/diagrams/use-case/use-case-diagram.mmd
+ M docs/sdlc/diagrams/user-journey/README.md
+ M docs/sdlc/diagrams/user-journey/core-user-journeys.drawio
+ M docs/sdlc/diagrams/user-journey/core-user-journeys.mmd
+ M docs/sdlc/evaluation-cases.md
+ M docs/sdlc/references/document-review-register.md
+ M docs/sdlc/reports/SP-01-P12-handoff-2026-10-28.md
+ M docs/sdlc/reports/SP-01-testing-audit-2026-11-01.md
+ M docs/sdlc/reports/SP-02-execution-2026-10-31.md
+ M docs/sdlc/reports/SP-02-testing-audit-2026-11-01.md
+ M docs/sdlc/requirement-verification.md
+ M docs/sdlc/test-coverage.md
+ M docs/sdlc/test-plan.md
+ M docs/sdlc/ui-ux-blueprint.md
+ M docs/sdlc/ui-ux-spec.md
+ M docs/sdlc/use-cases.md
+ M docs/ux/flows/ai-qa-flow.md
+ M docs/ux/flows/board-flow.md
+ M docs/ux/flows/docs-flow.md
+ M docs/ux/permission-matrix.md
+ M docs/ux/personas.md
+ M docs/ux/sitemap.md
+ M docs/ux/wireframe-workplan.md
+ M docs/ux/wireframes/README.md
+ M specs/001-session.md
+ M specs/002-project-membership.md
+ M specs/003-create-task.md
+ M specs/004-update-task.md
+ M specs/005-sprint-lifecycle.md
+ M specs/006-document-access.md
+ M specs/007-version-publication.md
+ M specs/008-linked-keyword-search.md
+ M specs/009-cited-question.md
+ M specs/010-current-work-question.md
+ M specs/011-audit-and-source-inspection.md
+ M specs/012-failure-and-evaluation.md
+ M specs/013-scoped-inspection.md
+ M specs/README.md
+ M tests/workspace/project-cursor.test.mjs
+?? agents/README.md
+?? diagram-fixes-v2.patch
+?? docs/SDLC-Prompt-Checklist/
+?? docs/agents/
+?? docs/implementation/features/agents-sdlc-alignment/
+?? docs/implementation/features/sp-02-project-membership/tasks/SP02-T01-cursor-boundaries.md
+?? docs/implementation/features/sp-03-create-task/evidence/ui-2026-11-02/runs/run-1793689108068-1f4f5fa7/
+?? docs/implementation/features/sp-04-update-task/
+?? docs/sdlc/reports/load-balancing-assessment-2026-11-03.md
+?? docs/sdlc/reports/load-balancing-assessment-2026-11-03.sources.json
+?? new.tree
+?? structure.json
+?? uc-review-fixes.patch

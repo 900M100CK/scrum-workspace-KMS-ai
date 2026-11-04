@@ -1,0 +1,63 @@
+▶ HF42-RF03 actual010 unexpected-null rollback contract and recorded-denial distinctions
+  ✔ legitimate false/zero and204 outcome objects with null body retain normal commit semantics (136.6258ms)
+  ✔ known thrown callback failure rolls back actual attempted business effects before COMMIT (80.5125ms)
+  ✔ unexpected null with no recorded denial must roll back Task, audit and immutable original outcome (41.1798ms)
+  ✔ protected HTTP null fault returns the existing generic503 envelope without internal detail (64.6306ms)
+  ✔ ordinary authentication denial never runs callback or invents clock-fault audit (4.461ms)
+  ✖ actual initial/final clock faults retain their durable latch/audit while withholding business effects (60.1176ms)
+  ✖ actual lost COMMIT acknowledgement remains unknown and original-key replay does not mutate twice (11.6499ms)
+✖ HF42-RF03 actual010 unexpected-null rollback contract and recorded-denial distinctions (4431.9951ms)
+ℹ {"fixture":"sp01-p08-test-ddf37b06a057","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","ceiling":"010","scope":"Controlled callbacks on actual PostgreSQL; not a production incident or new public mutation"}
+ℹ {"case":"unexpected-null","returnedNull":false,"failureStatus":503,"before":{"task":{"title":"Synthetic transaction original","description":"","revision":"1"},"audits":"1","outcomes":"1"},"after":{"task":{"title":"Synthetic transaction original","description":"","revision":"1"},"audits":"1","outcomes":"1"}}
+ℹ tests 8
+ℹ suites 0
+ℹ pass 5
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4852.5297
+
+✖ failing tests:
+
+test at tests\workspace\project-transaction-null.test.mjs:53:10
+✖ actual initial/final clock faults retain their durable latch/audit while withholding business effects (60.1176ms)
+  AssertionError [ERR_ASSERTION]: {"code":"authentication_required","message":"Authentication required","run_id":null}
+  
+  401 !== 201
+  
+      at fresh (file:///D:/scrum-workspace-KMS-ai/tests/workspace/project-transaction-null.test.mjs:16:108)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/project-transaction-null.test.mjs:55:14)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/project-transaction-null.test.mjs:53:2)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 401,
+    expected: 201,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\workspace\project-transaction-null.test.mjs:62:10
+✖ actual lost COMMIT acknowledgement remains unknown and original-key replay does not mutate twice (11.6499ms)
+  AssertionError [ERR_ASSERTION]: {"code":"authentication_required","message":"Authentication required","run_id":null}
+  
+  401 !== 201
+  
+      at fresh (file:///D:/scrum-workspace-KMS-ai/tests/workspace/project-transaction-null.test.mjs:16:108)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/project-transaction-null.test.mjs:63:13)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///D:/scrum-workspace-KMS-ai/tests/workspace/project-transaction-null.test.mjs:62:2)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 401,
+    expected: 201,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

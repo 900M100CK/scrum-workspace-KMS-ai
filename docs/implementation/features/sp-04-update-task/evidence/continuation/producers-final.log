@@ -1,0 +1,40 @@
+▶ SP04 actual assignment, current eligibility and removal races
+  ✔ scope/action before target eligibility and strict shape (166.7727ms)
+  ✔ enabled member/null assignment, no-op, exact historical replay and stale conflict (176.2921ms)
+  ✔ update/audit/outcome failure rolls back with recoverable same key (374.9091ms)
+  ✔ assign-first actual SQL schedule then removal clears assignment and replay never restores it (280.8274ms)
+  ✔ remove-first actual producer blocks assignment; rejoin restores no current assignment (199.7515ms)
+  ✔ concurrent assignments and duplicate keys; overflow and authority revocation (215.7027ms)
+  ✔ post-lock session expiry rejects new assignment (528.9532ms)
+✔ SP04 actual assignment, current eligibility and removal races (8253.4867ms)
+▶ SP04 append-only blocker commands and scoped history pages
+  ✔ history needs membership not audit/action; commands require exact authority; strict validation (80.3273ms)
+  ✔ retrospective resolution, repeated Open and later Resolved append every distinct event; sequence is truth (470.7475ms)
+  ✔ event/task/audit/outcome faults roll back entire append and retry uses original identity (697.6813ms)
+  ✔ concurrent writes conflict; duplicate keys append once; default outcome canonicalizes null (215.8384ms)
+  ✔ ascending pages bind actor/task/full dataset; current login survives but stale/foreign/malformed fails (2321.6379ms)
+  ✔ expired signed cursors, missing signing key and removal/rejoin deny or invalidate history (261.859ms)
+  ✔ revision and sequence upper bounds reject writes; revoked replay denies (141.3575ms)
+  ✔ actual history read wait rechecks session before returning any page (505.5412ms)
+✔ SP04 append-only blocker commands and scoped history pages (11145.2938ms)
+▶ SP04 cross-producer original outcomes, concurrent writes and revocation schedules
+  ✔ four competing real changed writes share one revision; exactly one business change wins (190.1658ms)
+  ✔ lost actual COMMIT acknowledgement preserves business/audit/outcome; same key returns original once (746.4636ms)
+  ✔ actual revoke-first lock schedules deny waiting writes and retained replays for every action (695.9508ms)
+✔ SP04 cross-producer original outcomes, concurrent writes and revocation schedules (8037.6228ms)
+▶ SP04 state handler and completed placement persistence
+  ✔ explicit authority, concealed foreign targets and strict request validation (77.8805ms)
+  ✔ all direct transitions and no-ops; stale and changed-input retries preserve state (1570.752ms)
+  ✔ both completed reopen targets normalize atomically, append exact numeric position and preserve allocation (205.5788ms)
+  ✔ audit/outcome/update faults roll back and original-key retries recover; overflow rejects change (445.9272ms)
+  ✔ concurrent revision writes have one winner; duplicate requests commit once; revoked replay denies (203.0209ms)
+  ✔ session expiry after actual Task lock withholds mutation (526.5927ms)
+✔ SP04 state handler and completed placement persistence (9406.4505ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 38514.889

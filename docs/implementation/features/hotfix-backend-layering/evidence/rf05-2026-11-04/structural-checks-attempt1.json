@@ -1,0 +1,98 @@
+[
+  {
+    "name": "context:lint",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "context:lint"
+    ],
+    "log": "context-lint-attempt1.log",
+    "exit": 0,
+    "seconds": 1.952,
+    "test_summary": []
+  },
+  {
+    "name": "context:check",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "context:check"
+    ],
+    "log": "context-check-attempt1.log",
+    "exit": 0,
+    "seconds": 1.932,
+    "test_summary": []
+  },
+  {
+    "name": "context:test",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "context:test"
+    ],
+    "log": "context-test-attempt1.log",
+    "exit": 0,
+    "seconds": 2.587,
+    "test_summary": [
+      "\u2139 tests 45",
+      "\u2139 pass 45",
+      "\u2139 fail 0",
+      "\u2139 skipped 0",
+      "\u2139 todo 0"
+    ]
+  },
+  {
+    "name": "contracts:test",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "contracts:test"
+    ],
+    "log": "contracts-test-attempt1.log",
+    "exit": 0,
+    "seconds": 1.825,
+    "test_summary": [
+      "\u2139 tests 27",
+      "\u2139 pass 27",
+      "\u2139 fail 0",
+      "\u2139 skipped 0",
+      "\u2139 todo 0"
+    ]
+  },
+  {
+    "name": "docs:lint",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "docs:lint"
+    ],
+    "log": "docs-lint-attempt1.log",
+    "exit": 0,
+    "seconds": 4.943,
+    "test_summary": []
+  },
+  {
+    "name": "docs:test",
+    "command": [
+      "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "docs:test"
+    ],
+    "log": "docs-test-attempt1.log",
+    "exit": 0,
+    "seconds": 4.494,
+    "test_summary": [
+      "\u2139 tests 20",
+      "\u2139 pass 20",
+      "\u2139 fail 0",
+      "\u2139 skipped 0",
+      "\u2139 todo 0"
+    ]
+  }
+]

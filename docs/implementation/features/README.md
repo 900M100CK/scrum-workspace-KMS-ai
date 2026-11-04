@@ -1,9 +1,9 @@
 # Work plan register and template
 
 **Artifact ID:** IMPL-FEATURES-01\
-**Version/date:** 0.32.1 Draft · 4 November 2026\
+**Version/date:** 0.48 Draft · 4 November 2026\
 **Status:** Planning entry; no application feature accepted or implemented by this file.\
-**Inputs:** [Development rules](../../development-rules.md) v1.13; [implementation roadmap](../roadmap.md) v0.24; [PLAN-01](../../planning/five-month-plan.md) v0.4; [spec index](../../../specs/README.md) v0.9; [source register](../register.md).\
+**Inputs:** [Development rules](../../development-rules.md) v1.13; [implementation roadmap](../roadmap.md) v0.37; [PLAN-01](../../planning/five-month-plan.md) v0.4; [spec index](../../../specs/README.md) v0.8.2; [source register](../register.md).\
 **Trace:** Existing feature FR/AC/BR/SC through its canonical spec; no added scope.\
 **Owner role:** Sequential development coordinator.
 
@@ -141,3 +141,50 @@ HF42-F01 current result: [HOTFIX-BACKEND-42-01 v0.2](hotfix-backend-layering/pla
 ## Backend layering publication authorisation — 4 November 2026
 
 [HOTFIX-BACKEND-42-01 v0.3](hotfix-backend-layering/plan.md) registers HF42-P01 for the owner-requested exact-scope commit and fast-forward integration/publication into main. Same PLAN-01 Month1 / M-02–M-03 parent; no code/design expansion, force push, branch deletion, runtime or independent acceptance. Actual final Git refs are reported after execution.
+
+
+## HF42-C01 owner-selected documentation closure — 4 November 2026
+
+[HOTFIX-BACKEND-42-01 v0.4](hotfix-backend-layering/plan.md) registers HF42-C01 v0.1 to reconcile existing task/source/publication receipts and retain the documented Project-lock/in-memory-page limits. Same PLAN-01 Month1 / M-02–M-03 / FR-05/AC-05 support. Exact reference/projection checks and preservation gates precede execution. Runtime helpers/null changes require separate SP-04 scope; runner/discovery remain deferred. No automatic commit/publication or new runtime acceptance.
+
+
+HF42-C01 actual result: [HOTFIX-BACKEND-42-01 v0.4](hotfix-backend-layering/plan.md) / result v0.3 reconciles original publication using live origin/main=dcd2d81 and retains the documented Project-lock/full-projection-page limits. Reference/projection context45/45, docs20/20 and metadata pass with original negatives retained;133 pre-existing outside files/index/refs remain preserved. Documentation author verification only; no new runtime refactor/commit/push/merge or independent acceptance. Deferred query/null work is separate SP-04 scope; runner/discovery awaits concrete demand.
+
+
+## Backend follow-up task breakdown — 4 November 2026
+
+[HOTFIX-BACKEND-42-01 v0.5](hotfix-backend-layering/plan.md) / WBS v0.3 / entry v0.3 registers five planning-only handoff briefs HF42-RF01–RF05 v0.1: current SP-04 source/registration, shared capability query, unexpected-null contract/regression, small existing-transaction guard and combined regression/handoff. No runtime task is executed here; RF01 must adopt the drafts into existing FEAT-SP04-01 before code/testing. Same PLAN-01 Month1 / M-02–M-03 / proposed future SP-04.2–04.4 FR-09/40/43/44 and supporting FR-03/31/59/68. Original hotfix evidence/closure is unchanged; runner/discovery separation and automatic commits/publication are excluded.
+
+
+## RF01–RF05 owner-authorised execution — 4 November 2026
+
+[HOTFIX-BACKEND-42-01 v0.6](hotfix-backend-layering/plan.md) owns actual RF01–RF05 runtime follow-up, superseding draft SP-04 adoption. Trace PLAN-01 Month1 / M-02–M-03 / SP-04.2–04.4 / FR-09/40/43/44 and supporting FR-03/31/59/68. Exact reversible committed-baseline reconciliation, allowed helper/null/ADR support and real006/008/009/010 verification are saved before edits. No automatic commit/merge/push, runner/discovery split or P08/independent acceptance.
+
+
+RF01 baseline source: existing FEAT-SP04-01 v0.14 at e6f2337 is restored as committed source/evidence, retaining its P08 actual-SP05 gate. HOTFIX-BACKEND-42-01 v0.6 owns only the new RF01–RF05 changes. Baseline integration creates no Git merge/commit or new wire/schema policy.
+
+
+RF03 owner-requested report boundary: [HF42-RF03-RESULT v0.1](hotfix-backend-layering/rf03-report.md) / HOTFIX-BACKEND-42-01 v0.6, entry/WBS0.4. RF01 source reconciliation is verified; RF02 helper6/6, affected regressions69/69 and typecheck pass. ProposedADR0029/RF03 actual010 reproduction intentionally retains one failing null child plus parent, with six other child cases passing. RF04 guard is unchanged/unimplemented; RF05 and P08 remain open. No full-hotfix acceptance, automatic commit/merge/push or independent approval. Original setup failures and false initial reproduction setup are retained and explained.
+
+
+## RF04 bounded continuation — 4 November 2026
+
+[HOTFIX-BACKEND-42-01 v0.7](hotfix-backend-layering/plan.md) resumes the owner-requested RF04 existing-transaction null guard and unchanged real-PostgreSQL RF03 assertions, with session006/Project008/mutation010 regressions and Workspace typecheck/build. Planned [HF42-RF04-RESULT v0.1](hotfix-backend-layering/rf04-report.md) will record actual outcomes. RF05 remains pending; no automatic commit/merge/push, P08 or independent acceptance.
+
+
+## RF05 combined verification registration — 4 November 2026
+
+[HOTFIX-BACKEND-42-01 v0.8](hotfix-backend-layering/plan.md) resumes RF05 after verified RF02/RF04: source-identified combined real006/008/009/010 regression, root build/typecheck, context/contracts/docs checks and preservation handoff. Planned [HF42-RF05-RESULT v0.1](hotfix-backend-layering/rf05-report.md) and WORKSPACE-TASKS-01 v0.6 bounded notes record actual outcomes. No code/test/schema/policy expansion, publication, P08/SP-05/D-07 closure or independent acceptance.
+
+
+RF05 bounded result: HOTFIX-BACKEND-42-01 v0.8 / HF42-RF05-RESULT v0.1 verifies the combined helper/null change: real disposable006/008/009/010 PostgreSQL179/179; root typecheck/build; context45/45, contracts27/27, docs20/20 and lints. WORKSPACE-TASKS-01 v0.6 records current mechanics; original §4.2 baseline observations and old evidence remain unchanged. Test records include parents and overlap earlier runs. P08 actual SP-05 integration, D-07, deployment and formal/independent/release acceptance remain open; no new commit/merge/push.
+
+
+## HF42-P01 publication status correction — 4 November 2026
+
+[HOTFIX-BACKEND-42-01 v0.9](hotfix-backend-layering/plan.md) / HF42-P01 v0.2 / entry0.6 reopen publication closure after owner correction. RF01–RF05 bounded verification remains valid; historical dcd2d81 documentation publication is preserved and does not prove publication of current dirty work. No new commit/merge/push/CI or whole-branch acceptance. Original documentation-only publication authority does not expand to runtime/SP-04.
+
+
+## P01 final delivery registration — 4 November 2026
+
+[HOTFIX-BACKEND-42-01 v0.10](hotfix-backend-layering/plan.md) / HF42-P01 v0.3 registers owner-authorised final checks, exact current hotfix/SP-04 dependency commit/push, green-check main integration and safe merged-branch cleanup. SAD-03 v0.19 / entry0.18 align §4.2 with tested RF02/RF04. Actual outcomes follow execution; P08/SP-05/D-07 and independent/release/deployment gates remain open.

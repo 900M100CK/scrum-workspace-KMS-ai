@@ -1,0 +1,25 @@
+%% Origin: docs/sdlc/diagrams/design-foundation-2026-10-17.md v0.1
+%% DGM-DEPLOY-01 v0.1.1 Draft - 18 October 2026
+%% Sources: DGM-DESIGN-01 v0.1; PRD-01 v0.9; UC-02 v0.8; SAD-03 v0.17; DATA-04 v0.16.1; ADR-0002; ADR-0003; ADR-0004; ADR-0006; ADR-0011
+%% Trace: NFR-01–NFR-05; BR-10, BR-14; SC-06/08
+%% Scope: Configuration view, not a live-process inventory. Compose currently defines only PostgreSQL; application processes are proposed.
+%% Legend: Green: configured storage. Blue: proposed application. Yellow: candidate external endpoint. Local DB TLS/backup/production secrets are not configured.
+flowchart LR
+    subgraph Host["Developer workstation — local development; hardware sizing unmeasured"]
+        Browser["Browser / web UI<br/>Proposed application<br/>No trusted DB or policy access"]
+        Workspace["One active Workspace process<br/>Proposed port 8000 / HTTPS same-origin<br/>Gateway, policy authority, guarded relay"]
+        Knowledge["Knowledge process<br/>Proposed port 8001 / loopback internal HTTP<br/>Service credential + authenticated actor"]
+        Postgres["Docker Compose: postgres<br/>Configured pgvector 0.8.2 / PostgreSQL 17<br/>Pinned image digest in compose.yaml<br/>Tested patch 17.10; not upgraded here"]
+        WorkspaceDB["workspace_db / workspace_app<br/>Owned schema; separate non-login owner"]
+        KnowledgeDB["knowledge_db / knowledge_app<br/>Owned schema + pgvector only here"]
+        Volume["Named volume: postgres-data<br/>Persists across db:stop<br/>Bootstrap scripts mounted read-only"]
+    end
+    AI["Provider endpoint — candidate<br/>HTTPS if external; local placement unselected<br/>No provider is started by Compose"]
+    Browser -->|"TB1: HTTPS; session / CSRF"| Workspace
+    Workspace -->|"TB2: internal authenticated scoped requests"| Knowledge
+    Workspace -->|"TB3: 127.0.0.1:55432 default → container 5432"| Postgres
+    Knowledge -->|"TB3: same engine, separate database/login"| Postgres
+    Postgres -->|"hosts; no cross-store runtime access"| WorkspaceDB
+    Postgres -->|"hosts"| KnowledgeDB
+    Workspace -->|"TB4: guarded provider handoff"| AI
+    Postgres -->|"/var/lib/postgresql/data"| Volume

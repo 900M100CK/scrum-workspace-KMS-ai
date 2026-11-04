@@ -1,0 +1,669 @@
+{
+  "artifacts": [
+    {
+      "id": "UML-07",
+      "path": "docs/sdlc/diagrams/README.md",
+      "version": "0.25",
+      "adrs": [],
+      "date": "4 November 2026"
+    },
+    {
+      "id": "REG-00",
+      "path": "docs/sdlc/artifact-register.md",
+      "version": "0.106",
+      "adrs": [],
+      "date": "4 November 2026"
+    },
+    {
+      "id": "SAD-03",
+      "path": "docs/architecture.md",
+      "version": "0.17",
+      "adrs": [],
+      "date": "4 November 2026"
+    },
+    {
+      "id": "UX-PERM-MATRIX-02",
+      "path": "docs/ux/permission-matrix.md",
+      "version": "0.11",
+      "adrs": []
+    },
+    {
+      "id": "UX-PERSONAS-01",
+      "path": "docs/ux/personas.md",
+      "version": "0.5",
+      "adrs": []
+    },
+    {
+      "id": "UX-SITEMAP-03",
+      "path": "docs/ux/sitemap.md",
+      "version": "0.10",
+      "adrs": []
+    },
+    {
+      "id": "UX-FLOW-AI-03",
+      "path": "docs/ux/flows/ai-qa-flow.md",
+      "version": "0.9",
+      "adrs": []
+    },
+    {
+      "id": "UX-FLOW-BOARD-01",
+      "path": "docs/ux/flows/board-flow.md",
+      "version": "0.10",
+      "adrs": []
+    },
+    {
+      "id": "UX-FLOW-DOCS-02",
+      "path": "docs/ux/flows/docs-flow.md",
+      "version": "0.9",
+      "adrs": []
+    },
+    {
+      "id": "DGM-ARCH-01",
+      "path": "docs/sdlc/diagrams/architecture/service-composition.mmd",
+      "drawio": "docs/sdlc/diagrams/architecture/service-composition.drawio",
+      "origin": "SAD-03",
+      "version": "0.9.1",
+      "adrs": [
+        "ADR-0004",
+        "ADR-0006",
+        "ADR-0007",
+        "ADR-0009",
+        "ADR-0011",
+        "ADR-0012"
+      ],
+      "kind": "flowchart",
+      "purpose": "Service composition and trust boundaries",
+      "sources": [
+        "PRD-01",
+        "UC-02",
+        "SAD-03"
+      ]
+    },
+    {
+      "id": "DGM-SITE-01",
+      "path": "docs/sdlc/diagrams/sitemap/application-sitemap.mmd",
+      "drawio": "docs/sdlc/diagrams/sitemap/application-sitemap.drawio",
+      "origin": "UX-SITEMAP-03",
+      "version": "0.8.1",
+      "adrs": [
+        "ADR-0007",
+        "ADR-0009",
+        "ADR-0011",
+        "ADR-0013",
+        "ADR-0016",
+        "ADR-0017"
+      ],
+      "kind": "flowchart",
+      "purpose": "Application sitemap and protected navigation",
+      "sources": [
+        "PRD-01",
+        "UC-02",
+        "SAD-03"
+      ]
+    },
+    {
+      "id": "DGM-FLOW-01",
+      "path": "docs/sdlc/diagrams/flowchart/ai-qa-flow.mmd",
+      "drawio": "docs/sdlc/diagrams/flowchart/ai-qa-flow.drawio",
+      "origin": "UX-FLOW-AI-03",
+      "version": "0.13.1",
+      "date": "22 October 2026",
+      "adrs": [
+        "ADR-0004",
+        "ADR-0006",
+        "ADR-0007",
+        "ADR-0009",
+        "ADR-0011",
+        "ADR-0012",
+        "ADR-0013",
+        "ADR-0015",
+        "ADR-0016",
+        "ADR-0017"
+      ],
+      "kind": "flowchart",
+      "purpose": "AI answers, exact citations and fallback",
+      "sources": [
+        "PRD-01",
+        "UC-02",
+        "SAD-03"
+      ],
+      "operationRefs": [
+        {
+          "id": "askQuestion",
+          "service": "knowledge",
+          "method": "POST",
+          "path": "/knowledge/questions",
+          "node": "Start",
+          "label": "POST /knowledge/questions"
+        },
+        {
+          "id": "openCitation",
+          "service": "knowledge",
+          "method": "GET",
+          "path": "/knowledge/citations/{document_id}/{version_id}/{passage_id}",
+          "node": "Citation",
+          "label": "GET /knowledge/citations/{document_id}/{version_id}/{passage_id}"
+        }
+      ]
+    },
+    {
+      "id": "DGM-FLOW-02",
+      "path": "docs/sdlc/diagrams/flowchart/board-flow.mmd",
+      "drawio": "docs/sdlc/diagrams/flowchart/board-flow.drawio",
+      "origin": "UX-FLOW-BOARD-01",
+      "version": "0.7.1",
+      "adrs": [
+        "ADR-0007",
+        "ADR-0008",
+        "ADR-0011",
+        "ADR-0017"
+      ],
+      "kind": "flowchart",
+      "purpose": "Board state, blockers and failure branches",
+      "sources": [
+        "PRD-01",
+        "UC-02",
+        "SAD-03"
+      ],
+      "operationRefs": [
+        {
+          "id": "setTaskState",
+          "service": "workspace",
+          "method": "POST",
+          "path": "/tasks/{task_id}/state",
+          "node": "Move",
+          "label": "POST /tasks/{task_id}/state"
+        },
+        {
+          "id": "recordBlocker",
+          "service": "workspace",
+          "method": "POST",
+          "path": "/tasks/{task_id}/blockers",
+          "node": "Block",
+          "label": "POST /tasks/{task_id}/blockers"
+        }
+      ]
+    },
+    {
+      "id": "DGM-FLOW-03",
+      "path": "docs/sdlc/diagrams/flowchart/docs-flow.mmd",
+      "drawio": "docs/sdlc/diagrams/flowchart/docs-flow.drawio",
+      "origin": "UX-FLOW-DOCS-02",
+      "version": "0.9.1",
+      "adrs": [
+        "ADR-0007",
+        "ADR-0009",
+        "ADR-0011",
+        "ADR-0012",
+        "ADR-0013",
+        "ADR-0017",
+        "ADR-0022"
+      ],
+      "kind": "flowchart",
+      "purpose": "Immutable document revisions and access",
+      "sources": [
+        "PRD-01",
+        "UC-02",
+        "SAD-03"
+      ],
+      "operationRefs": [
+        {
+          "id": "createDocument",
+          "service": "knowledge",
+          "method": "POST",
+          "path": "/knowledge/documents",
+          "node": "Create",
+          "label": "POST /knowledge/documents"
+        },
+        {
+          "id": "getDocument",
+          "service": "knowledge",
+          "method": "GET",
+          "path": "/knowledge/documents/{document_id}",
+          "node": "Read",
+          "label": "GET /knowledge/documents/{document_id}"
+        },
+        {
+          "id": "reviseDocument",
+          "service": "knowledge",
+          "method": "POST",
+          "path": "/knowledge/documents/{document_id}/versions",
+          "node": "Revise",
+          "label": "POST /knowledge/documents/{document_id}/versions"
+        },
+        {
+          "id": "getReadiness",
+          "service": "knowledge",
+          "method": "GET",
+          "path": "/knowledge/documents/{document_id}/versions/{version_id}/readiness",
+          "node": "Ready",
+          "label": "GET /knowledge/documents/{document_id}/versions/{version_id}/readiness"
+        },
+        {
+          "id": "setClassification",
+          "service": "workspace",
+          "method": "POST",
+          "path": "/documents/{document_id}/classification",
+          "node": "Policy",
+          "label": "POST /documents/{document_id}/classification"
+        },
+        {
+          "id": "grantDocumentRead",
+          "service": "workspace",
+          "method": "POST",
+          "path": "/documents/{document_id}/read-grants",
+          "node": "Policy",
+          "label": "/read-grants"
+        },
+        {
+          "id": "revokeDocumentRead",
+          "service": "workspace",
+          "method": "DELETE",
+          "path": "/documents/{document_id}/read-grants/{user_id}",
+          "node": "Policy",
+          "label": "DELETE /documents/{document_id}/read-grants/{user_id}"
+        },
+        {
+          "id": "archiveVersion",
+          "service": "knowledge",
+          "method": "POST",
+          "path": "/knowledge/documents/{document_id}/versions/{version_id}/archive",
+          "node": "Retire",
+          "label": "POST /knowledge/documents/{document_id}/versions/{version_id}/archive"
+        },
+        {
+          "id": "deleteDocument",
+          "service": "knowledge",
+          "method": "DELETE",
+          "path": "/knowledge/documents/{document_id}",
+          "node": "Retire",
+          "label": "DELETE /knowledge/documents/{document_id}"
+        }
+      ]
+    },
+    {
+      "id": "DGM-FLOW-04",
+      "path": "docs/sdlc/diagrams/flowchart/permission-read-flow.mmd",
+      "drawio": "docs/sdlc/diagrams/flowchart/permission-read-flow.drawio",
+      "origin": "UX-PERM-MATRIX-02",
+      "version": "0.9.1",
+      "adrs": [
+        "ADR-0006",
+        "ADR-0007",
+        "ADR-0009",
+        "ADR-0011",
+        "ADR-0012",
+        "ADR-0013",
+        "ADR-0017"
+      ],
+      "kind": "flowchart",
+      "purpose": "Protected source and citation reads",
+      "sources": [
+        "PRD-01",
+        "UC-02",
+        "SAD-03"
+      ]
+    },
+    {
+      "id": "DGM-FLOW-05",
+      "path": "docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.mmd",
+      "drawio": "docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.drawio",
+      "origin": "UX-PERM-MATRIX-02",
+      "version": "0.4.1",
+      "adrs": [
+        "ADR-0006",
+        "ADR-0007",
+        "ADR-0009",
+        "ADR-0011",
+        "ADR-0012",
+        "ADR-0013",
+        "ADR-0015",
+        "ADR-0017"
+      ],
+      "kind": "flowchart",
+      "purpose": "AI permission and manifest checkpoints",
+      "sources": [
+        "PRD-01",
+        "UC-02",
+        "SAD-03"
+      ]
+    },
+    {
+      "id": "DGM-JOURNEY-01",
+      "path": "docs/sdlc/diagrams/user-journey/core-user-journeys.mmd",
+      "drawio": "docs/sdlc/diagrams/user-journey/core-user-journeys.drawio",
+      "origin": "UX-PERSONAS-01",
+      "version": "0.4.1",
+      "adrs": [
+        "ADR-0007",
+        "ADR-0009",
+        "ADR-0011"
+      ],
+      "kind": "journey",
+      "purpose": "Illustrative core user journeys",
+      "sources": [
+        "PRD-01",
+        "UC-02",
+        "SAD-03"
+      ]
+    },
+    {
+      "id": "PRD-01",
+      "path": "docs/sdlc/PRD_SRS.md",
+      "version": "0.9",
+      "adrs": []
+    },
+    {
+      "id": "UC-02",
+      "path": "docs/sdlc/use-cases.md",
+      "version": "0.8",
+      "adrs": []
+    },
+    {
+      "id": "DGM-UC-01",
+      "path": "docs/sdlc/diagrams/use-case/use-case-diagram.mmd",
+      "drawio": "docs/sdlc/diagrams/use-case/use-case-diagram.drawio",
+      "origin": "UC-02",
+      "kind": "use-case",
+      "version": "0.5.1",
+      "adrs": [
+        "ADR-0007",
+        "ADR-0008",
+        "ADR-0009",
+        "ADR-0010",
+        "ADR-0011",
+        "ADR-0012",
+        "ADR-0013",
+        "ADR-0014",
+        "ADR-0015",
+        "ADR-0016",
+        "ADR-0017"
+      ],
+      "purpose": "Actors, system use cases and audit includes",
+      "sources": [
+        "PRD-01",
+        "UC-02",
+        "SAD-03"
+      ]
+    },
+    {
+      "id": "DGM-REVIEW-02",
+      "path": "docs/sdlc/diagrams/review-2026-10-16.md",
+      "version": "0.1",
+      "adrs": []
+    },
+    {
+      "id": "DGM-REVIEW-03",
+      "path": "docs/sdlc/diagrams/review-2026-10-17.md",
+      "version": "0.1",
+      "adrs": []
+    },
+    {
+      "id": "DATA-04",
+      "path": "docs/sdlc/data-design.md",
+      "version": "0.16.1",
+      "adrs": [],
+      "date": "4 November 2026"
+    },
+    {
+      "id": "DGM-DESIGN-01",
+      "path": "docs/sdlc/diagrams/design-foundation-2026-10-17.md",
+      "version": "0.1",
+      "adrs": []
+    },
+    {
+      "id": "DGM-C4-01",
+      "path": "docs/sdlc/diagrams/c4/system-context.mmd",
+      "drawio": "docs/sdlc/diagrams/c4/system-context.drawio",
+      "version": "0.1.1",
+      "origin": "DGM-DESIGN-01",
+      "sources": [
+        "PRD-01",
+        "UC-02",
+        "SAD-03",
+        "DATA-04"
+      ],
+      "adrs": [
+        "ADR-0002",
+        "ADR-0005",
+        "ADR-0007",
+        "ADR-0011",
+        "ADR-0012"
+      ],
+      "kind": "design",
+      "purpose": "C4 Level 1 \u00e2\u20ac\u201d system context"
+    },
+    {
+      "id": "DGM-C4-02",
+      "path": "docs/sdlc/diagrams/c4/containers.mmd",
+      "drawio": "docs/sdlc/diagrams/c4/containers.drawio",
+      "version": "0.1.1",
+      "origin": "DGM-DESIGN-01",
+      "sources": [
+        "PRD-01",
+        "UC-02",
+        "SAD-03",
+        "DATA-04"
+      ],
+      "adrs": [
+        "ADR-0002",
+        "ADR-0004",
+        "ADR-0006",
+        "ADR-0011",
+        "ADR-0012"
+      ],
+      "kind": "design",
+      "purpose": "C4 Level 2 \u00e2\u20ac\u201d applications and owned stores"
+    },
+    {
+      "id": "DGM-SEQ-01",
+      "path": "docs/sdlc/diagrams/sequence/protected-handoff.mmd",
+      "drawio": "docs/sdlc/diagrams/sequence/protected-handoff.drawio",
+      "version": "0.2.1",
+      "origin": "DGM-DESIGN-01",
+      "sources": [
+        "PRD-01",
+        "UC-02",
+        "SAD-03",
+        "DATA-04"
+      ],
+      "adrs": [
+        "ADR-0006",
+        "ADR-0011",
+        "ADR-0012",
+        "ADR-0013",
+        "ADR-0017",
+        "ADR-0020"
+      ],
+      "kind": "design",
+      "purpose": "Protected handoff, one-use claim and revocation"
+    },
+    {
+      "id": "DGM-SEQ-02",
+      "path": "docs/sdlc/diagrams/sequence/document-creation.mmd",
+      "drawio": "docs/sdlc/diagrams/sequence/document-creation.drawio",
+      "version": "0.1.1",
+      "origin": "DGM-DESIGN-01",
+      "sources": [
+        "PRD-01",
+        "UC-02",
+        "SAD-03",
+        "DATA-04"
+      ],
+      "adrs": [
+        "ADR-0007",
+        "ADR-0009",
+        "ADR-0011",
+        "ADR-0012",
+        "ADR-0017"
+      ],
+      "kind": "design",
+      "purpose": "Workspace-first document creation and uncertain outcomes"
+    },
+    {
+      "id": "DGM-STATE-01",
+      "path": "docs/sdlc/diagrams/state/document-and-readiness.mmd",
+      "drawio": "docs/sdlc/diagrams/state/document-and-readiness.drawio",
+      "version": "0.1.1",
+      "origin": "DGM-DESIGN-01",
+      "sources": [
+        "PRD-01",
+        "UC-02",
+        "SAD-03",
+        "DATA-04"
+      ],
+      "adrs": [
+        "ADR-0007",
+        "ADR-0009",
+        "ADR-0011",
+        "ADR-0013"
+      ],
+      "kind": "design",
+      "purpose": "Version lifecycle and independent processing states"
+    },
+    {
+      "id": "DGM-STATE-02",
+      "path": "docs/sdlc/diagrams/state/sprint-task-allocation.mmd",
+      "drawio": "docs/sdlc/diagrams/state/sprint-task-allocation.drawio",
+      "version": "0.2.1",
+      "origin": "DGM-DESIGN-01",
+      "sources": [
+        "PRD-01",
+        "UC-02",
+        "SAD-03",
+        "DATA-04"
+      ],
+      "adrs": [
+        "ADR-0008",
+        "ADR-0012",
+        "ADR-0014",
+        "ADR-0018"
+      ],
+      "kind": "design",
+      "purpose": "Sprint, task, allocation and blocker state projections"
+    },
+    {
+      "id": "DGM-DATA-01",
+      "path": "docs/sdlc/diagrams/data/workspace-erd.mmd",
+      "drawio": "docs/sdlc/diagrams/data/workspace-erd.drawio",
+      "version": "0.6.1",
+      "origin": "DGM-DESIGN-01",
+      "sources": [
+        "PRD-01",
+        "UC-02",
+        "SAD-03",
+        "DATA-04"
+      ],
+      "adrs": [
+        "ADR-0004",
+        "ADR-0007",
+        "ADR-0008",
+        "ADR-0011",
+        "ADR-0012",
+        "ADR-0017",
+        "ADR-0018",
+        "ADR-0023",
+        "ADR-0024",
+        "ADR-0025",
+        "ADR-0026",
+        "ADR-0027"
+      ],
+      "kind": "design",
+      "purpose": "Workspace physical ERD \u00e2\u20ac\u201d owned schema",
+      "date": "2 November 2026"
+    },
+    {
+      "id": "DGM-DATA-02",
+      "path": "docs/sdlc/diagrams/data/knowledge-erd.mmd",
+      "drawio": "docs/sdlc/diagrams/data/knowledge-erd.drawio",
+      "version": "0.2.1",
+      "origin": "DGM-DESIGN-01",
+      "sources": [
+        "PRD-01",
+        "UC-02",
+        "SAD-03",
+        "DATA-04"
+      ],
+      "adrs": [
+        "ADR-0004",
+        "ADR-0009",
+        "ADR-0011",
+        "ADR-0012",
+        "ADR-0013",
+        "ADR-0023"
+      ],
+      "kind": "design",
+      "purpose": "Knowledge physical ERD \u00e2\u20ac\u201d owned schema"
+    },
+    {
+      "id": "DGM-DATA-03",
+      "path": "docs/sdlc/diagrams/data/handoff-logical-model.mmd",
+      "drawio": "docs/sdlc/diagrams/data/handoff-logical-model.drawio",
+      "version": "0.5.1",
+      "origin": "DGM-DESIGN-01",
+      "sources": [
+        "PRD-01",
+        "UC-02",
+        "SAD-03",
+        "DATA-04"
+      ],
+      "adrs": [
+        "ADR-0011",
+        "ADR-0012",
+        "ADR-0013",
+        "ADR-0020",
+        "ADR-0021",
+        "ADR-0022",
+        "ADR-0023"
+      ],
+      "kind": "design",
+      "purpose": "Logical evidence and command additions \u00e2\u20ac\u201d NOT applied schema"
+    },
+    {
+      "id": "DGM-DEPLOY-01",
+      "path": "docs/sdlc/diagrams/deployment/local-development.mmd",
+      "drawio": "docs/sdlc/diagrams/deployment/local-development.drawio",
+      "version": "0.1.1",
+      "origin": "DGM-DESIGN-01",
+      "sources": [
+        "PRD-01",
+        "UC-02",
+        "SAD-03",
+        "DATA-04"
+      ],
+      "adrs": [
+        "ADR-0002",
+        "ADR-0003",
+        "ADR-0004",
+        "ADR-0006",
+        "ADR-0011"
+      ],
+      "kind": "design",
+      "purpose": "Local development deployment \u00e2\u20ac\u201d configured and proposed"
+    },
+    {
+      "id": "DGM-DEV-01",
+      "path": "docs/sdlc/diagrams/development/package-ownership.mmd",
+      "drawio": "docs/sdlc/diagrams/development/package-ownership.drawio",
+      "version": "0.1.1",
+      "origin": "DGM-DESIGN-01",
+      "sources": [
+        "PRD-01",
+        "UC-02",
+        "SAD-03",
+        "DATA-04"
+      ],
+      "adrs": [
+        "ADR-0002",
+        "ADR-0003",
+        "ADR-0004",
+        "ADR-0011",
+        "ADR-0012"
+      ],
+      "kind": "design",
+      "purpose": "Development view \u00e2\u20ac\u201d package ownership and adapter boundaries"
+    }
+  ],
+  "schemaVersion": 2,
+  "date": "18 October 2026"
+}

@@ -1,0 +1,49 @@
+✖ all registered docs and diagram pairs pass (395.1244ms)
+✔ preflight exception counts agree with current use-case definitions (2.2811ms)
+✔ architecture FR trace rows stay inside one continuous Markdown table (2.1162ms)
+✔ unselected retrieval mechanisms need explicit status in current text (1.0161ms)
+✔ Draw.io status belongs to its own label, not an unrelated cell on the same XML line (0.7055ms)
+✔ Sources contains every body ADR, including shorthand and ranges, not just the highest ID (1.0023ms)
+✔ manifest version/ADR changes propagate to all generated inventories and both diagram headers (13.9781ms)
+✔ AI checkpoint sources retain the unavailable, partial-answer and member-removal decisions (1.1158ms)
+✔ use-case associations are undirected; generalization/include retain direction and native UML style (122.4489ms)
+✔ operation references fail on facade path/ID or actual node label drift (0.6879ms)
+✔ input headers name the latest cited ADR and current input versions (0.3458ms)
+✔ real Mermaid parser rejects invalid syntax (3.6411ms)
+✔ flowchart adapter compares labels, direction and parallel-edge counts (9.8139ms)
+✔ invalid XML and dangling/undirected edges fail closed (0.8035ms)
+✔ current version drift and missing rows fail; historical versions are allowed (0.4154ms)
+✔ journey actors and scores are compared, not merely grammar-checked (8.9497ms)
+✔ current prose references cannot disagree with headers while historical snapshots can (0.4994ms)
+✔ current linked input aliases use target versions while snapshot evidence stays historical (0.2685ms)
+✔ design pairs reject reversed sequence handoffs and changed native multiplicities (120.9282ms)
+✔ physical diagram entity inventory matches owned CREATE TABLE definitions (2.5231ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 19
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2360.832
+
+✖ failing tests:
+
+test at tests\docs\docs.test.mjs:14:1
+✖ all registered docs and diagram pairs pass (395.1244ms)
+  AssertionError [ERR_ASSERTION]: Input version drift in contracts/README.md: PRD-01
+  
+  '0.10.1' !== '0.10.2'
+  
+      at checkInputHeader (file:///C:/Users/MCK/.codex/worktrees/hotfix-backend-layering/scrum-workspace-KMS-ai/scripts/docs/verify-docs.mjs:235:34)
+      at verifyDocs (file:///C:/Users/MCK/.codex/worktrees/hotfix-backend-layering/scrum-workspace-KMS-ai/scripts/docs/verify-docs.mjs:297:5)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/hotfix-backend-layering/scrum-workspace-KMS-ai/tests/docs/docs.test.mjs:15:3)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '0.10.1',
+    expected: '0.10.2',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

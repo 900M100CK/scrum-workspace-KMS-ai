@@ -1,0 +1,7 @@
+# Frozen source/output captures retain original bytes, including meaningful whitespace.
+evidence/** -text -whitespace
+# Original returned reports and the earlier edit brief/result are preserved receipts.
+reviews/p02-codex-report-v0.2.md -text -whitespace
+reviews/p03a-contract-support.md -text -whitespace
+reviews/p03d1-edit-result.md -text -whitespace
+tasks/P03D1-backlog-edit.md -text -whitespace

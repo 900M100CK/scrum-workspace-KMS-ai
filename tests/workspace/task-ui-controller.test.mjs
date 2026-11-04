@@ -8,7 +8,7 @@ const original={task_id:taskId,project_id:project,type:'task',title:'Original ti
 const json=(v,status=200)=>new Response(JSON.stringify(v),{status,headers:{'content-type':'application/json'}});
 const storage=()=>{const data=new Map();return {getItem:k=>data.get(k)??null,setItem:(k,v)=>data.set(k,v),removeItem:k=>data.delete(k),get length(){return data.size;},entries:()=>[...data]};};
 const actions=(ops=['listTasks','createTask'])=>({resource_kind:'project',project_id:project,resource_id:null,document_id:null,version_id:null,allowed_operations:ops});
-function reads(url,value=original){return json(url.includes('allowed-actions')?actions():url.includes('/tasks/'+taskId)?value:{items:[value],next_cursor:null,backlog_revision:'2'});}
+function reads(url,value=original){return json(url.includes('allowed-actions')?(url.includes('resource_kind=task')?{...actions(['getTask']),resource_kind:'task',resource_id:taskId}:actions()):url.includes('/tasks/'+taskId)?value:{items:[value],next_cursor:null,backlog_revision:'2'});}
 
 test('unknown task creation survives reload with exact actor/body/key; confirmed replay refreshes current details',async()=>{
  const saved=storage(),writes=[];let lost=true;const current={...original,title:'Later current title',revision:2};
