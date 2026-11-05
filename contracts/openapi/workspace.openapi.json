@@ -2,7 +2,7 @@
   "openapi": "3.1.1",
   "info": {
     "title": "Workspace service public facade and internal policy",
-    "version": "0.2.13",
+    "version": "0.2.14",
     "description": "Draft contract; policy/stack decisions remain proposed. Schema validation proves shape only."
   },
   "x-status": "Draft",
@@ -911,9 +911,6 @@
               }
             }
           },
-          "503": {
-            "$ref": "#/components/responses/Unavailable"
-          },
           "413": {
             "description": "Invalid input",
             "content": {
@@ -933,6 +930,9 @@
                 }
               }
             }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
           }
         },
         "requestBody": {
@@ -1061,15 +1061,6 @@
               }
             }
           },
-          "401": {
-            "$ref": "#/components/responses/Unauthenticated"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "503": {
-            "$ref": "#/components/responses/Unavailable"
-          },
           "400": {
             "description": "Invalid input",
             "content": {
@@ -1079,6 +1070,15 @@
                 }
               }
             }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
           }
         },
         "x-release-priority": "Must"
@@ -1157,9 +1157,6 @@
               }
             }
           },
-          "503": {
-            "$ref": "#/components/responses/Unavailable"
-          },
           "413": {
             "description": "Invalid input",
             "content": {
@@ -1179,6 +1176,9 @@
                 }
               }
             }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
           }
         },
         "requestBody": {
@@ -1269,9 +1269,6 @@
               }
             }
           },
-          "503": {
-            "$ref": "#/components/responses/Unavailable"
-          },
           "413": {
             "description": "Invalid input",
             "content": {
@@ -1291,6 +1288,9 @@
                 }
               }
             }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
           }
         },
         "requestBody": {
@@ -1381,9 +1381,6 @@
               }
             }
           },
-          "503": {
-            "$ref": "#/components/responses/Unavailable"
-          },
           "413": {
             "description": "Invalid input",
             "content": {
@@ -1403,6 +1400,9 @@
                 }
               }
             }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
           }
         },
         "requestBody": {
@@ -1493,9 +1493,6 @@
               }
             }
           },
-          "503": {
-            "$ref": "#/components/responses/Unavailable"
-          },
           "413": {
             "description": "Invalid input",
             "content": {
@@ -1515,6 +1512,9 @@
                 }
               }
             }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
           }
         },
         "requestBody": {
@@ -1674,6 +1674,26 @@
               }
             }
           },
+          "413": {
+            "description": "Request body exceeds transport bound; no partial application",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "JSON media type required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
           "503": {
             "$ref": "#/components/responses/Unavailable"
           }
@@ -1707,6 +1727,15 @@
               "type": "string",
               "minLength": 1
             }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
           }
         ],
         "responses": {
@@ -1720,11 +1749,31 @@
               }
             }
           },
+          "400": {
+            "description": "Invalid input or cursor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
           "401": {
             "$ref": "#/components/responses/Unauthenticated"
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Changed/expired dataset; discard pages and refresh",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           },
           "503": {
             "$ref": "#/components/responses/Unavailable"
@@ -1854,11 +1903,31 @@
               }
             }
           },
+          "400": {
+            "description": "Invalid input or cursor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
           "401": {
             "$ref": "#/components/responses/Unauthenticated"
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Changed/expired dataset; discard pages and refresh",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           },
           "503": {
             "$ref": "#/components/responses/Unavailable"
@@ -1934,6 +2003,26 @@
           },
           "409": {
             "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body exceeds transport bound; no partial application",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "JSON media type required",
             "content": {
               "application/json": {
                 "schema": {
@@ -2206,6 +2295,26 @@
               }
             }
           },
+          "413": {
+            "description": "Request body exceeds transport bound; no partial application",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "JSON media type required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
           "503": {
             "$ref": "#/components/responses/Unavailable"
           }
@@ -2298,6 +2407,26 @@
               }
             }
           },
+          "413": {
+            "description": "Request body exceeds transport bound; no partial application",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "JSON media type required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
           "503": {
             "$ref": "#/components/responses/Unavailable"
           }
@@ -2382,6 +2511,26 @@
           },
           "409": {
             "description": "Stale state or idempotency conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body exceeds transport bound; no partial application",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "JSON media type required",
             "content": {
               "application/json": {
                 "schema": {
@@ -4095,6 +4244,30 @@
           "revision": {
             "type": "integer",
             "minimum": 1
+          },
+          "created_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Server observation time; null only when unavailable for legacy storage. Never fabricated from planned dates."
+          },
+          "started_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Server observation time; null only when unavailable for legacy storage. Never fabricated from planned dates."
+          },
+          "completed_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Server observation time; null only when unavailable for legacy storage. Never fabricated from planned dates."
           }
         },
         "required": [
@@ -4104,7 +4277,10 @@
           "start_date",
           "end_date",
           "state",
-          "revision"
+          "revision",
+          "created_at",
+          "started_at",
+          "completed_at"
         ]
       },
       "CreateSprint": {
@@ -4178,7 +4354,8 @@
           },
           "expected_revision": {
             "type": "integer",
-            "minimum": 1
+            "minimum": 1,
+            "description": "Expected Sprint.revision; current Task project/read scope and Backlog placement are rechecked inside the same transaction."
           }
         },
         "required": [

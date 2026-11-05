@@ -1,0 +1,16 @@
+# SP05-PUB01 — Publish the verified Sprint candidate for review
+
+**Artifact ID:** SP05-PUB01\
+**Version/date:** 0.1 Draft · 5 November 2026
+
+[FEAT-SP05-01](../plan.md) owns mutable status. The owner requested a PR for later Antigravity review, authorising the necessary commit and ordinary branch push. Parent: SP-05.1–05.4, PLAN-01 Month2/M-03, actual SP04-P08 evidence. Plan mode unavailable; written gate saved before changes. Inputs: P15 handoff, AG01 assignment, preserved author source/results, current main and actual GitHub repository permissions.
+
+Deliver one Draft PR codex/sp-05 → main, with code, contract/migration011, UI/tests, trace/evidence and Antigravity brief accessible in the PR. Confirm actual remote main/head/existing PR before mutation; preserve other worktrees and their dirty work. Use agent identity/byline. No force push, main update, merge, cleanup, valuable-data migration, runtime fix, extra reviewer dispatch or acceptance.
+
+Allowed writes: owning feature folder and ignored temporary publication helpers; registration-only feature/source/central/roadmap/current metadata support. Prior evidence stays immutable. After authority is recorded, stage only the complete reviewed SP05 candidate including untracked files; exclude ignored local setup/secrets. Compare every runtime/test hash with captured exercised sources and record Git blob identities so a fresh checkout can verify despite CRLF/LF differences. Existing 001–010, accepted ADRs, baseline and package/gitlink remain unchanged.
+
+Steps: inspect source/remote → update publication/reviewer navigation → run required context/docs/contracts/metadata and relevant source-preservation checks → stage/inspect → agent commit → normal push → one Draft PR → verify URL/base/head/draft and attach it to this chat → bounded receipt commit/push if needed → report exact current remote head and actual CI state without claiming pending checks passed.
+
+Commands: git status/diff, branch/HEAD/worktree/ancestry inspection, exact source hash and secret scan, npm run context:lint/check/test, docs:lint/test, contracts:test, node scripts/docs/docs-metadata.mjs --check, scoped git diff --check; preserved runtime regression evidence may be reused only after source identity verification. CI has its own actual source and outcome. GitHub CLI is unavailable here; equivalent GitHub API calls reuse the existing Git credential helper, keep credentials only in memory and never print/store them. Check default branch and push permission, inspect existing PR, create draft with structured JSON/body file, verify pull/remote SHA/check status.
+
+DoR: source/branch/base preserved, owner authorisation and repository push access. DoD: reviewable Draft URL with matching branch/head and evidence, no unrelated work staged, no secret or main/merge change; actual result in publication receipt and final reply. Missing auth/network or rejected Git mutation blocks only dependent publication; retain the prepared candidate and report the exact limitation. Recovery uses normal follow-up commits; never reset user work or rewrite published history. Relative S preparation, medium confidence due authentication/CI; no calendar commitment. This task publishes for review, not acceptance.

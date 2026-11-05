@@ -1,0 +1,57 @@
+{
+  "base": "1cb54f3cfdfd650caef35dce6d5fd0fd1e32a1d6",
+  "sources": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "abe442a298ea1478ab365a607058617e2aa0cf80d413e7248c283c6b5b7b8512"
+    },
+    {
+      "path": "docs/development-rules.md",
+      "sha256": "f25e0f20e037b993efbf7cb24cd82555a4bf14360535f45eb7e33344422fc5ea"
+    },
+    {
+      "path": "docs/agent-preflight-checklist.md",
+      "sha256": "c1dca33779dbcd0e9e84a62a2b2048f272fc08185c020b19657e1c1adbea9534"
+    },
+    {
+      "path": "docs/BRD.md",
+      "sha256": "7c083790a3f790e3b8ae369cb92bd51ef6bead5ed196e1f8330f144103596a5b"
+    },
+    {
+      "path": "docs/sdlc/PRD_SRS.md",
+      "sha256": "3ff2b075720253e2ebb012bc91a1ea613ffa37ea38f30a10e7851a34c9248f97"
+    },
+    {
+      "path": "docs/planning/five-month-plan.md",
+      "sha256": "36ab17ddd0d694e269590e8f9f542cc13cb13c593c6221680b3690403dd123da"
+    },
+    {
+      "path": "docs/architecture.md",
+      "sha256": "64f9cd656f630c8e12efa8714e242322853d3c34576adb077a9768817f0cb52a"
+    },
+    {
+      "path": "specs/005-sprint-lifecycle.md",
+      "sha256": "e30d62aa033b87fa4e3cf51c99d7cf987c7cb8dbb1d38db01575de61dda9d97b"
+    },
+    {
+      "path": "docs/implementation/tasks/05-sprint-lifecycle.md",
+      "sha256": "0133d457f07e9e249eaea3d75fcd165f7bd4eae3df203af6f3d4d91c6838e515"
+    },
+    {
+      "path": "contracts/openapi/workspace.openapi.json",
+      "sha256": "8b6108b10b19175090cd108654b6c999c60e378a1fca714950c8aa47f9fa7b21"
+    },
+    {
+      "path": "docs/adr/0008-fixed-sprint-lifecycle.md",
+      "sha256": "1a2cde7e3c514dd4c0f1b7dbab5a55407d372c49ac0aae3fded5a4dec4be975f"
+    },
+    {
+      "path": "docs/adr/0014-multiple-sprint-allocation.md",
+      "sha256": "14f27f82a355e10fa849a9a812a50ba75e129d98911e400c0c2a6df7fffba2d7"
+    },
+    {
+      "path": "docs/adr/0018-operational-read-projections.md",
+      "sha256": "fdeb8c590a7e919332a39d4eba58d87a86de7517f0b07ec30ef8d22023d98475"
+    }
+  ]
+}

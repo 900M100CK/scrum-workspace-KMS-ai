@@ -33,3 +33,5 @@ See [the project runbook](PROJECTS.md) for private audited bootstrap/recovery, s
 ## SP-03 Task creation and current reads — 2 November 2026
 
 See [Task operations](TASKS.md) and the registered SP-03 handoff for createTask/listTasks/getTask, current project authority, exact Backlog positions, immutable server time and original-key recovery. Prior foundation/stage notes above are historical. No role/creator auto-grant, public permission editor, Task mutation/Sprint/Knowledge handler or startup migration is added. Only disposable 009 is verified; existing 006/008 suites keep their ceilings. Browser acceptance is a separate installed-runner gate; local source changes are not automatically committed/published.
+
+Bounded Sprint lifecycle/read/reorder implementation and explicit011 testing/private action provisioning are documented in [SPRINTS.md](SPRINTS.md); actual status/evidence remains in FEAT-SP05-01. Startup never migrates.

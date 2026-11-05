@@ -1,0 +1,39 @@
+▶ SP05 actual competing starts/allocations and SP04 complete/reopen integration
+  ✔ two actual starts queued after first state write yield one Active Sprint (246.2005ms)
+  ✔ competing actual allocations cannot give one Task two live associations (226.773ms)
+  ✔ actual completion-first rejects stale reopen, then explicit reopen and later allocation preserve A history (362.3236ms)
+  ✔ reopen-first during Active work makes actual completion return unfinished To Do (312.1258ms)
+  ✔ actual completion return invalidates a queued whole-Backlog reorder without partial positions (279.8715ms)
+✔ SP05 actual competing starts/allocations and SP04 complete/reopen integration (5805.6697ms)
+▶ SP05 each mutation rolls back audit/receipt failures and lost real COMMIT replays once
+  ✔ createSprint (497.7611ms)
+  ✔ allocateTask (337.5138ms)
+  ✔ startSprint (754.3673ms)
+  ✔ completeSprint (280.9474ms)
+  ✔ reorderBacklog (279.1466ms)
+✔ SP05 each mutation rolls back audit/receipt failures and lost real COMMIT replays once (6366.1873ms)
+▶ SP05 actual revoke-first schedules withhold every saved original and changed-payload request
+  ✔ createSprint (185.7484ms)
+  ✔ allocateTask (237.5439ms)
+  ✔ startSprint (200.1922ms)
+  ✔ completeSprint (219.8654ms)
+  ✔ reorderBacklog (205.1056ms)
+✔ SP05 actual revoke-first schedules withhold every saved original and changed-payload request (5338.0604ms)
+▶ SP05 post-wait expiry withholds every write/read and leaves business evidence unchanged
+  ✔ createSprint (4855.6509ms)
+  ✔ allocateTask (5333.4336ms)
+  ✔ startSprint (4861.5425ms)
+  ✔ completeSprint (4910.9025ms)
+  ✔ reorderBacklog (5133.4559ms)
+  ✔ getSprint (4801.7267ms)
+  ✔ listSprints (5282.6468ms)
+  ✔ listSprintItems (4967.9855ms)
+✔ SP05 post-wait expiry withholds every write/read and leaves business evidence unchanged (40150.0287ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 58433.8735

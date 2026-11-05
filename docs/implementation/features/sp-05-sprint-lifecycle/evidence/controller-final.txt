@@ -1,0 +1,15 @@
+✔ sequential selection persists independent exact keys and resumes one lost committed item without repeating earlier success (29.6809ms)
+✔ mixed item conflict leaves later success committed and never retries the entire selection (1.7922ms)
+✔ revoked/unknown outcomes preserve the original body/key, block new changes and clear protected data (1.9159ms)
+✔ foreign actor or tampered payload cannot restore recovery; explicit signout clears it (1.0026ms)
+✔ mixed Backlog generations and wrong Sprint discovery scope cannot expose partial work or enable writes (1.0825ms)
+✔ storage failure prevents mutation and current read failure never renders a receipt as current Sprint (1.2725ms)
+✔ reorder conflict discards moved local order and refreshes without automatic new-key submission (0.6768ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 145.5359

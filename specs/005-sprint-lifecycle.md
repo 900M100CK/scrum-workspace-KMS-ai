@@ -1,12 +1,12 @@
 # Plan, start and complete a basic Sprint
 
 **Artifact ID:** SP-05  
-**Version/date:** 0.7.3 Draft · 4 November 2026
+**Version/date:** 0.7.4 Draft · 5 November 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
 **Inputs:** PRD-01 v0.10.2; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-05--plan-start-and-complete-a-basic-sprint); [contract pack](../contracts/README.md); PLAN-01 v0.4.\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
-**Status:** Unimplemented. **Target:** Month 2.  
+**Status:** Bounded Must handlers/UI implemented; actual verification and limits belong to FEAT-SP05-01. **Target:** Month 2.
 **Dependencies:** SP-04.   
 **Trace:** FR-06, FR-07, FR-08, FR-41, FR-42, FR-66, FR-67; BR-02; SC-03.
 
@@ -57,3 +57,7 @@ Proposed ADR-0018 and DATA-04 define atomic current location, retained completed
 ## Input metadata reconciliation — 25 October 2026
 
 Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.
+
+## Registered SP-05 source alignment — 5 November 2026
+
+[FEAT-SP05-01](../docs/implementation/features/sp-05-sprint-lifecycle/plan.md) owns P00–P15. The owner selected separate sprint-create/sprint-allocate/sprint-start/sprint-complete/backlog-order through private audited provisioning, with no role inference. FR66/67 remain excluded. Coordinated P02 support includes Workspace OpenAPI/data-model/contract entry, relevant data/API/test entries, this spec/pack, Proposed ADR0030/index, feature/source/central/roadmap registers and current metadata aliases as enumerated in the plan before producers. Allocation expected_revision is Sprint.revision, with locked current Task scope/Backlog validation. Lifecycle timestamps are server observations, nullable for unreconstructed legacy rows; no guessed backfill. listSprints has scoped cursor pages. Transport413/415 are explicit. No completed integration or whole-feature acceptance.

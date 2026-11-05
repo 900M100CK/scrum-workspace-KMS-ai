@@ -1,0 +1,42 @@
+▶ SP05 actual011 private authority, lifecycle, full reorder and original outcomes
+  ✔ creator/role labels grant none; private audit failure rolls back and runtime cannot grant (79.1208ms)
+  ✖ invalid date/goal/body/media/CSRF and foreign scopes leave no business state (8.4062ms)
+  ✔ create/read keeps server timestamps; actor/key/hash, revoke and changed payload are enforced (130.1751ms)
+  ✔ single Task allocation changes location and Sprint revision, rejects competing allocation and stale request (187.3919ms)
+  ✔ actual Planned start and mixed completion co-commit state/history/counts; replay does not recompute (277.9279ms)
+  ✔ real completed reopen then real later allocation retains old association and completion counts (175.4221ms)
+  ✔ empty Sprint starts/completes with zero counts and typed originals cannot be changed/deleted (80.4972ms)
+  ✔ reorder is exact full permutation, no-op does not audit/revise, originals survive later changes (224.991ms)
+  ✔ Sprint pages invalidate on actual updates; foreign/tampered cursors and removed members disclose no items (1282.8928ms)
+✖ SP05 actual011 private authority, lifecycle, full reorder and original outcomes (6956.8411ms)
+✔ SP05 additive011 empty reverse/reapply and typed receipts (4079.411ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 9
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11608.6941
+
+✖ failing tests:
+
+test at tests\workspace\sprint-http.test.mjs:16:10
+✖ invalid date/goal/body/media/CSRF and foreign scopes leave no business state (8.4062ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  415 !== 400
+  
+      at TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-http.test.mjs:17:308)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-http.test.mjs:16:2)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 415,
+    expected: 400,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

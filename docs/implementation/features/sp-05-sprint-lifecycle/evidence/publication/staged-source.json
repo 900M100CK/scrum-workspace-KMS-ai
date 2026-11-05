@@ -1,0 +1,741 @@
+{
+  "date": "2026-11-05",
+  "base": "1cb54f3cfdfd650caef35dce6d5fd0fd1e32a1d6",
+  "branch": "codex/sp-05",
+  "objectFormat": "Git blob OIDs; verify with git rev-parse COMMIT:path in any checkout without CRLF/LF ambiguity",
+  "evidence": "Author regression2/focused records retained; publication/sql-format-change.json and successful storage-final.json cover trailing-whitespace-only011 source adjustment",
+  "sources": [
+    {
+      "mode": "100644",
+      "gitBlobOid": "6a9a67254fb6bf1d5cc892a55f4363f58d825fe7",
+      "stage": 0,
+      "path": ".github/workflows/context.yml"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "2bcbd247b00c62f76c6fd0e30c64825d5a3b1423",
+      "stage": 0,
+      "path": ".gitmodules"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "c1cc110d9c598a07646ef67e05897ecdbbf2d536",
+      "stage": 0,
+      "path": "AGENTS.md"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "b8e6a8e3db23a9d857bbe000a54dbc1b4168c95c",
+      "stage": 0,
+      "path": "apps/web/src/App.tsx"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "b5f1407409dff56b41d9b44a1e0224ad94a99e21",
+      "stage": 0,
+      "path": "apps/web/src/ProjectWorkspace.tsx"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "c2e8fed2358027b9254b1b2d8a8c9f71f0b14682",
+      "stage": 0,
+      "path": "apps/web/src/SprintWorkspace.tsx"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "35ef98e4216e3869094986921d70a2047d7ebe15",
+      "stage": 0,
+      "path": "apps/web/src/TaskWorkspace.tsx"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "5f8588eb8901105c7f3c5cc3f5e71c2192159a83",
+      "stage": 0,
+      "path": "apps/web/src/main.tsx"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "90c23018b9a5ffbcc0e37759464d4302e286e8fb",
+      "stage": 0,
+      "path": "apps/web/src/projects.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "e6ccfb0ad52dcc3f6b6e4a816154f7544124ae90",
+      "stage": 0,
+      "path": "apps/web/src/session.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "522cc0cd34e15d4b8fa08026c2a7ae76b6a320d9",
+      "stage": 0,
+      "path": "apps/web/src/sprints.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "24e2159d658708eddbe93ab3db47da3587049874",
+      "stage": 0,
+      "path": "apps/web/src/styles.css"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "69ddecffd62fb1b01f46311547861bd91f10c39f",
+      "stage": 0,
+      "path": "apps/web/src/tasks.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "1a946b6d93dab0633141c379c2f25a7ad71040f0",
+      "stage": 0,
+      "path": "contracts/data-model.json"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "3e85581561d32677f3ad7e8606ec26754819b942",
+      "stage": 0,
+      "path": "contracts/openapi/workspace.openapi.json"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "3fff09b9ac296c33d0829a63b0b2c7f72fb736cc",
+      "stage": 0,
+      "path": "package-lock.json"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "1573e6da8d4fe6644551ab33f9f54f538f26cf83",
+      "stage": 0,
+      "path": "package.json"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "289d80cb666ef1f5df44169a41d35cd1bb4a04cd",
+      "stage": 0,
+      "path": "services/workspace/migrations/001-store.down.sql"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "e4d4a18243abdafd233ff3c978c2e74f90079a03",
+      "stage": 0,
+      "path": "services/workspace/migrations/001-store.up.sql"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "0c564f78d1b0d0dec7a0287dbe1bae58aeebecc1",
+      "stage": 0,
+      "path": "services/workspace/migrations/002-registered-policy.down.sql"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "f71b403e7ff0afb1dae9e1933323462a5b180103",
+      "stage": 0,
+      "path": "services/workspace/migrations/002-registered-policy.up.sql"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "386be8362bb72ae3e8d474e7fbc94719864575c4",
+      "stage": 0,
+      "path": "services/workspace/migrations/003-work-location.down.sql"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "a99bf64496c8b0ca4946e6e9408205514233a825",
+      "stage": 0,
+      "path": "services/workspace/migrations/003-work-location.up.sql"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "122c8e6e78714ffd1e6fecfce94bbd1d8ff2bb1a",
+      "stage": 0,
+      "path": "services/workspace/migrations/004-protected-claims.down.sql"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "c5e52a31698411eb3dbdf59ecf10f7449b4cb3bd",
+      "stage": 0,
+      "path": "services/workspace/migrations/004-protected-claims.up.sql"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "396c540b259016b6890591d4952497aed8e43900",
+      "stage": 0,
+      "path": "services/workspace/migrations/005-session-foundation.down.sql"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "b2fbab277214a01a6af894d40b82ffc195f313e8",
+      "stage": 0,
+      "path": "services/workspace/migrations/005-session-foundation.up.sql"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "f21212b332040d4eca7ec122bff603870a0155d3",
+      "stage": 0,
+      "path": "services/workspace/migrations/006-session-lifecycle.down.sql"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "8e944454f9e93ad273e831b9ad55e1b5387b2b13",
+      "stage": 0,
+      "path": "services/workspace/migrations/006-session-lifecycle.up.sql"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "5a3c9ada308554028264ff523d49f53f1bc8bfe3",
+      "stage": 0,
+      "path": "services/workspace/migrations/007-project-membership.down.sql"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "da5448a879e83e599b17c752f20e21de430c8beb",
+      "stage": 0,
+      "path": "services/workspace/migrations/007-project-membership.up.sql"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "e3695727be4b77644b8daf996f5724f821f9aca0",
+      "stage": 0,
+      "path": "services/workspace/migrations/008-project-outcomes.down.sql"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "75e193447671ddeb2da7015ef2524d994ece493a",
+      "stage": 0,
+      "path": "services/workspace/migrations/008-project-outcomes.up.sql"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "1367b1702d35931147ccd672d40317375ea611cb",
+      "stage": 0,
+      "path": "services/workspace/migrations/009-task-creation.down.sql"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "58f7a9307aca8471c76b0f508fd1f26b819d6cb3",
+      "stage": 0,
+      "path": "services/workspace/migrations/009-task-creation.up.sql"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "76cd6ba54179e509d8e59d3d7156d9f3e6c042e7",
+      "stage": 0,
+      "path": "services/workspace/migrations/010-task-mutations.down.sql"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "e8303db601dbfdb92063c5491f5d9eab51dd618d",
+      "stage": 0,
+      "path": "services/workspace/migrations/010-task-mutations.up.sql"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "ed7ada80db6c626e6a447ce5fcf12cbdfb547d82",
+      "stage": 0,
+      "path": "services/workspace/migrations/011-sprint-lifecycle.down.sql"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "e7a69899b0eb82d369e764606f7e49b0d4e2af0d",
+      "stage": 0,
+      "path": "services/workspace/migrations/011-sprint-lifecycle.up.sql"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "d4fe30905d603f1800f848c493bd7019f1d821bc",
+      "stage": 0,
+      "path": "services/workspace/src/app.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "2c9bb33c0d5fc08652b07131d3460adec4c569ea",
+      "stage": 0,
+      "path": "services/workspace/src/config.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "bc978c34e755f07084723ecd7c131ef1ce5e1ad0",
+      "stage": 0,
+      "path": "services/workspace/src/projects/capabilities.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "361321b84139f7997727241d47a17e4a4d8f33e9",
+      "stage": 0,
+      "path": "services/workspace/src/projects/cli.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "3beadd91c466f4e6afa98d3d7c0d3c0c09dd75dc",
+      "stage": 0,
+      "path": "services/workspace/src/projects/cursor.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "eda80bd88323a3d7a6c13bd60e0f01a13fb3e159",
+      "stage": 0,
+      "path": "services/workspace/src/projects/http.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "17a2954f9e36b5fa5000f32168d44c9f2d364e08",
+      "stage": 0,
+      "path": "services/workspace/src/projects/operator.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "f549c6585c2847d6820b8f0182a8b11ce6fcedba",
+      "stage": 0,
+      "path": "services/workspace/src/projects/outcomes.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "9e8a5ad036f89b137f3c71d81d596f35590f01eb",
+      "stage": 0,
+      "path": "services/workspace/src/projects/store.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "7b149b2161d5ae0a0dbba291fe6c8173dd080bf9",
+      "stage": 0,
+      "path": "services/workspace/src/server.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "d72033d7d2af1319d7bf479a11dd692322101932",
+      "stage": 0,
+      "path": "services/workspace/src/session/config.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "98bb80b92f4f10c59cde161924ef3ff8a9c685ea",
+      "stage": 0,
+      "path": "services/workspace/src/session/database.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "c8d316665b9d5541fdb9d7ea1f051fee41fda7ee",
+      "stage": 0,
+      "path": "services/workspace/src/session/http.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "0abf1502e905556b52d556554eb1b43e08739332",
+      "stage": 0,
+      "path": "services/workspace/src/session/kdf.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "592631104c3cf5a828a5a0ab48b01b6f07fadcb0",
+      "stage": 0,
+      "path": "services/workspace/src/session/operator.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "cc347d5cd9a6e9dd9d47627c0dc5176ceb075bee",
+      "stage": 0,
+      "path": "services/workspace/src/session/ports.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "bddf2d434198569602a42fb4bbadd41f72222725",
+      "stage": 0,
+      "path": "services/workspace/src/session/runtime.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "7576f94d2c7d4a45de773d7faf2d64c0830c7654",
+      "stage": 0,
+      "path": "services/workspace/src/session/schemas.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "d99ae3c263a68bbe6bda137f854dd8ef57ead3ae",
+      "stage": 0,
+      "path": "services/workspace/src/session/store.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "a8f9598ec8ac637c67ca5433a672813694caef03",
+      "stage": 0,
+      "path": "services/workspace/src/sprints/authority.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "0d1d07946878bfdc4c27cfb103e53fa2c3cb9210",
+      "stage": 0,
+      "path": "services/workspace/src/sprints/http.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "0ca126ab0824dee2b569f411cacb0ee791c81ead",
+      "stage": 0,
+      "path": "services/workspace/src/sprints/outcomes.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "868efe19169435396d6289a4c7dd36d632ed50ee",
+      "stage": 0,
+      "path": "services/workspace/src/sprints/store.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "25d250a69dbc531a0e3e7a81d8517546cc2df2a2",
+      "stage": 0,
+      "path": "services/workspace/src/sprints/types.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "46ec30f66840c795f2765b03d27047b3634fc3ff",
+      "stage": 0,
+      "path": "services/workspace/src/tasks/authority.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "1b797ca86871c9adb6d87bab031edbbe79145115",
+      "stage": 0,
+      "path": "services/workspace/src/tasks/http.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "78f723f5fb2edc4f00a0450ed20c6543e68ec886",
+      "stage": 0,
+      "path": "services/workspace/src/tasks/mutation-outcomes.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "e05ecca90ba4c23a15f5b6ea36c43361cbcab5df",
+      "stage": 0,
+      "path": "services/workspace/src/tasks/outcomes.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "6991134e60fabd58dd36da6335f3e966800de5f2",
+      "stage": 0,
+      "path": "services/workspace/src/tasks/store.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "406edac6c1a38fd8c26a5c89bfd9fcd58503c109",
+      "stage": 0,
+      "path": "services/workspace/src/tasks/types.ts"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "82058622c760890d97732538b457c1ab3748bc9d",
+      "stage": 0,
+      "path": "tests/workspace/fixture.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "129b9e6e946c0e2aba97ca53d783dce8a607ce93",
+      "stage": 0,
+      "path": "tests/workspace/http.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "1498b7d39dbb721488c209f053e2b070eb81050d",
+      "stage": 0,
+      "path": "tests/workspace/lifecycle.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "c51e3b8424617d453b98e4575fbe06e8f8c94db4",
+      "stage": 0,
+      "path": "tests/workspace/membership-lifecycle.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "9a50707663a633b56ff27e62d6016c7fbd938b77",
+      "stage": 0,
+      "path": "tests/workspace/membership-removal.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "ec8c0f4196a6b6bb989a15c2a996518bb907182b",
+      "stage": 0,
+      "path": "tests/workspace/persistence.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "4ad3c636ac2f3655857030e713067c5c375d9d94",
+      "stage": 0,
+      "path": "tests/workspace/project-authority.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "62924f13f7858e0c2068408cd9d829f424cf2c77",
+      "stage": 0,
+      "path": "tests/workspace/project-browser-fixture.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "f01683baa436640341cb374790185c1c81f25654",
+      "stage": 0,
+      "path": "tests/workspace/project-browser.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "d2a5cfdc7bdf7fd3808ab3f46ec6b93e52bb7b5c",
+      "stage": 0,
+      "path": "tests/workspace/project-capabilities.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "a6207a83a2672dd746da7b94066e9eadd2862dd0",
+      "stage": 0,
+      "path": "tests/workspace/project-concurrency.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "fbbe3eef834efeaf0ec4fd30a37b27ce627cc0e1",
+      "stage": 0,
+      "path": "tests/workspace/project-cursor.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "2c3160cdc2677e9384963a55879572dfcf890fa0",
+      "stage": 0,
+      "path": "tests/workspace/project-fixture.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "7b7a0a1d2a8f10b161272949ddd7e21af70328a0",
+      "stage": 0,
+      "path": "tests/workspace/project-http.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "275f3842248c521a3a4100c536b15c76bff9c90f",
+      "stage": 0,
+      "path": "tests/workspace/project-outcomes.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "4675ce3a191d66d64f76e230ecc8f24ae9d199fb",
+      "stage": 0,
+      "path": "tests/workspace/project-reads.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "a663bc0917a61139d06faa603d46e01acd9d364c",
+      "stage": 0,
+      "path": "tests/workspace/project-transaction-null.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "7d918997ed8c8193e89ffc02cdcc410ffb34f942",
+      "stage": 0,
+      "path": "tests/workspace/project-ui-controller.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "f7914daf70cd5787a844f60ad4a66b5fae7e3031",
+      "stage": 0,
+      "path": "tests/workspace/project-ui-fixture.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "f9c05f5d4931a16465cca5bda0db3d72dd13b6b3",
+      "stage": 0,
+      "path": "tests/workspace/project-ui.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "12cc8655b1faf18e898fd21ed0688ef5da9741d0",
+      "stage": 0,
+      "path": "tests/workspace/session-transaction.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "60db4502a83c49674e1d8626cc3399c434064c80",
+      "stage": 0,
+      "path": "tests/workspace/sp02-contract-preparation.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "c59b2caa16bb83880e86bbf4baa81a12b5ebce93",
+      "stage": 0,
+      "path": "tests/workspace/sprint-browser.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "98819e5b0dbbb0508921e3560e70081f6218966e",
+      "stage": 0,
+      "path": "tests/workspace/sprint-concurrency.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "100654ac6ac8810f6ed7a641dda11869769d4ec7",
+      "stage": 0,
+      "path": "tests/workspace/sprint-controller.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "23efe8eaa614ae4dbc31d2c905ea00f01ceccbc7",
+      "stage": 0,
+      "path": "tests/workspace/sprint-fixture.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "692193cee76b0842338f5e6f4090ff420d493af1",
+      "stage": 0,
+      "path": "tests/workspace/sprint-http.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "77f8612ee343ebda9c5beec87aafe92ae0292cec",
+      "stage": 0,
+      "path": "tests/workspace/sprint-security.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "ee2823cc13dc09ec5d07c7db4cbdabfced0469d6",
+      "stage": 0,
+      "path": "tests/workspace/sprint-storage.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "4bf90d2f4dd1d7e31912540972ee101e3c835fdb",
+      "stage": 0,
+      "path": "tests/workspace/sprint-ui-fixture.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "091200dcf9f3c2ee43546a784306e36f56ad1d68",
+      "stage": 0,
+      "path": "tests/workspace/sprint-ui.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "da7b273195f9776e0051860cc4f54c439ccec661",
+      "stage": 0,
+      "path": "tests/workspace/task-assignment.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "e087664bd47f4d480317e6a0204cef577d176d85",
+      "stage": 0,
+      "path": "tests/workspace/task-authority.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "333db9827c86ec2978b180b92d2d86b9d8750162",
+      "stage": 0,
+      "path": "tests/workspace/task-blocker.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "1a0f8f03f42431613818196a1b71db1b7a779a2e",
+      "stage": 0,
+      "path": "tests/workspace/task-browser.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "65335baddde3e1bfdfb876aff2a3f500f90944c9",
+      "stage": 0,
+      "path": "tests/workspace/task-concurrency.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "9b547a926e1141323faad21d328a289207540f09",
+      "stage": 0,
+      "path": "tests/workspace/task-edit.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "f37c0e6f7bcc53e01fb8f70dbc8591bb95d66d23",
+      "stage": 0,
+      "path": "tests/workspace/task-fixture.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "d3a4ad75e8b7cc2ed855f994629cfd73423ddd81",
+      "stage": 0,
+      "path": "tests/workspace/task-http.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "b44b33a825d126c2c2661424015613d0714f074e",
+      "stage": 0,
+      "path": "tests/workspace/task-mutation-authority.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "a59465d046b912a09cf2a31f89564acf7bf17a79",
+      "stage": 0,
+      "path": "tests/workspace/task-mutation-browser.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "f3ad6cdd5b82125ce5f9ed747dfaf61df1345c3e",
+      "stage": 0,
+      "path": "tests/workspace/task-mutation-fixture.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "ae379d85e9cf23f212cb189241a7d781a09a9d2f",
+      "stage": 0,
+      "path": "tests/workspace/task-mutation-integration.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "b2e41df9e7251d3c3eba008c18c293de16e423f0",
+      "stage": 0,
+      "path": "tests/workspace/task-mutation-storage.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "2f164cc7f3167988283aaefbae23047eae6fd1e7",
+      "stage": 0,
+      "path": "tests/workspace/task-mutation-ui-controller.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "7aa87fea6fd904fafa24fc47fb1de866a47ae36a",
+      "stage": 0,
+      "path": "tests/workspace/task-mutation-ui.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "ca63b461882cc979f2e88b4aba820fb8139e407e",
+      "stage": 0,
+      "path": "tests/workspace/task-reads.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "592f6d7079644d30596670fb5b9d26f5d8dc1787",
+      "stage": 0,
+      "path": "tests/workspace/task-state.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "43f5b160c176dbb6e5525de128163511602897ed",
+      "stage": 0,
+      "path": "tests/workspace/task-storage.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "00362fb984b9cb793fd8a810a23b361ef3f176c3",
+      "stage": 0,
+      "path": "tests/workspace/task-ui-controller.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "e00c057e604b58f0efc065e5494cf487f524bfdc",
+      "stage": 0,
+      "path": "tests/workspace/task-ui-fixture.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "4f8231275f1d6c2398f322a1245bc788f7df4471",
+      "stage": 0,
+      "path": "tests/workspace/task-ui.test.mjs"
+    },
+    {
+      "mode": "100644",
+      "gitBlobOid": "f5ef296a0199a5b008ddc39d39c642be40af32cf",
+      "stage": 0,
+      "path": "tests/workspace/ui.test.mjs"
+    }
+  ]
+}

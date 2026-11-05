@@ -1,0 +1,764 @@
+▶ P09 actual signIn/getSession handlers with owned PostgreSQL
+  ✔ invalid/excess/poisoned credential bodies reject before KDF or session writes without mutation (41.6939ms)
+  ✔ Origin/custom-header negatives do not reach credentials; configured transport errors have Error shape (6.4924ms)
+  ✔ known wrong and unknown credentials run KDF and have identical generic failures with no session (1144.5871ms)
+  ✔ valid login commits session/audit, issues fresh secure host-only cookie and server request correlation (425.2414ms)
+  ✔ GET actor comes only from cookie; forged headers/query/old cookie name do not grant identity (22.5805ms)
+  ✔ manual disable rejects current token and credentials with the same public failure (1108.3187ms)
+  ✔ real expired and revoked sessions deny GET with declared shape (515.7708ms)
+  ✔ real session audit failure rolls back and never sends a success cookie (318.229ms)
+  ✔ DB read failures and unready clock return unavailable, never unrestricted success (524.5284ms)
+  ✔ KDF saturation maps to declared 503 without creating a session (42.1552ms)
+  ✔ actual captured normal/error logs omit password, cookie, URL and internal error canaries (0.3294ms)
+  ✔ actual trusted HTTPS verifies success wire shape and cookie expiry (301.8656ms)
+  ✔ invalid internal output is withheld before projection and drops already-prepared cookie (260.6024ms)
+  ✔ compiled server actually wires runtime credentials/origin and session routes (936.5248ms)
+✔ P09 actual signIn/getSession handlers with owned PostgreSQL (11148.2163ms)
+ℹ {"container":"sp01-p08-test-3f8f9dfc24c0","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","scope":"Actual P09 POST/GET plus real PostgreSQL; no logout/renewal/browser/D-07 acceptance"}
+▶ P10 actual lifecycle handlers and PostgreSQL serialization
+  ✔ 006 empty reverse/forward/repeat preserves previous migration identity (1961.4143ms)
+  ✔ GET renews from DB deadline, preserves token, captures audit and refreshes secure cookie (46.1708ms)
+  ✔ idle boundary is strict at microsecond precision; expired GET cannot revive it (24.3817ms)
+  ✔ absolute cap never slides; equal/repeated/parallel renewal at cap writes no false mutation (66.0542ms)
+  ✔ parallel renewals produce one extension and one audit, with an immutable absolute deadline (39.9473ms)
+  ✔ DELETE checks Origin/header and absent body, including bounded transport errors (12.4872ms)
+  ✔ logout commits before empty 204, clears host cookie, denies old token and preserves independent session (60.6123ms)
+  ✔ expired logout is idempotent 204 and still durably revokes the known session (23.2567ms)
+  ✔ renew and revoke audit failures roll back state and suppress success cookies (55.4549ms)
+  ✔ logout-first and renewal-first reach actual SQL lock barriers; confirmed logout always wins future reads (112.0376ms)
+  ✔ renewal queued before expiry samples after its lock wait and cannot resurrect expired state (32.9649ms)
+  ✔ receipt loss after actual COMMIT returns 503 without cookie; no automatic retry or false logout confirmation (35.2552ms)
+  ✔ response corruption suppresses GET cookie rather than projecting leaked fields (58.6267ms)
+  ✔ real trusted HTTPS DELETE transmits an empty 204 and expiring Secure host cookie (71.3563ms)
+  ✔ observed backward time latches renewal denial after catch-up; audited logout remains possible (61.0854ms)
+  ✔ missing clock denies known logout; failed clock denies renewal but still permits audited revocation (38.2038ms)
+  ✔ DB privilege failure refuses logout; retained audit refuses destructive lifecycle rollback (14.0671ms)
+✔ P10 actual lifecycle handlers and PostgreSQL serialization (6210.5342ms)
+ℹ {"container":"sp01-p08-test-5f74f8d556e4","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","scope":"Actual P10 GET/DELETE, owned PostgreSQL and HTTPS; injected time separated from real DB time; browser/D-07 not verified"}
+▶ P05/P06 actual membership lifecycle and current action authority
+  ✔ new memberships have exact revisions and role labels grant no capabilities (107.0808ms)
+  ✔ minimal member paging supplies removal revision and no email/history/permission inventory (74.7997ms)
+  ✔ addMember owns rejoin: fresh generation/revision and no old read/capability/assignment revival (82.7252ms)
+  ✔ unknown target and current scope failures disclose no account directory (47.392ms)
+  ✔ real DB CHECK rejection maps to controlled conflict and creates no membership/audit (31.7881ms)
+✔ P05/P06 actual membership lifecycle and current action authority (4293.8097ms)
+▶ P06 actual atomic removal, retained history and no-revival replay
+  ✔ last manager rejection leaves membership, grants, tasks and business audit unchanged (15.7206ms)
+  ✔ removal co-commits all grant invalidation, task revision/unassignment and audit; history/other project stay (47.455ms)
+  ✔ old removal replay never removes rejoined membership; stale new-key removal conflicts (67.4051ms)
+  ✔ audit and saved-outcome failures roll back removal completely (55.738ms)
+  ✔ task revision overflow rejects before any membership or grant changes (21.5553ms)
+  ✔ two manager removal requests serialize and cannot leave zero managers (40.3458ms)
+✔ P06 actual atomic removal, retained history and no-revival replay (5309.3027ms)
+▶ P08 real PostgreSQL owned persistence and operator boundary
+  ✔ 005 forward/reapply/empty reverse/forward; nonempty legacy is refused without deletion (3340.448ms)
+  ✔ runtime cannot provision/disable accounts, rewrite audit, reset clock or reach Knowledge (110.317ms)
+  ✔ initial clock unready withholds session; operator provisions and explicitly initializes (32.5011ms)
+  ✔ issue only binds current credential revision; digest-only storage and exact private credential lookup (230.3886ms)
+  ✔ required session audit failure rolls back every owned row and never returns token (16.3783ms)
+  ✔ immutable absolute deadline, missing token and expired/revoked state fail closed (44.5224ms)
+  ✔ manual disable rolls back with audit failure, then denies login and all existing sessions (57.157ms)
+  ✔ actual observed clock backstep latches fault and survives real PostgreSQL restart (920.6408ms)
+  ✔ recovery rejects stale/mismatched attestation; audit rollback preserves fault; all old tokens remain revoked (878.0492ms)
+  ✔ missing clock row and read error do not authorize access (34.1339ms)
+  ✔ real cancellation, failed rollback discard and bounded later pool health (35.5894ms)
+  ✔ singleton contention is bounded and later requests recover; no throughput SLA (1028.4893ms)
+  ℹ {"lockTimeoutObservationMs":1015.6090999999997,"configuredLockTimeoutMs":1000,"poolWaiting":0}
+  ✔ disable-first and issue-first schedules observe SQL waits and cannot revive disabled access (173.3583ms)
+  ✔ injected receipt loss after actual COMMIT stays unknown, discards and never retries (24.4968ms)
+  ✔ actual private operator CLI provisions via stdin and reports state without secrets (699.649ms)
+  ✔ nonempty rollback refused, original migration bytes unchanged and bigint generation exact (11.2388ms)
+✔ P08 real PostgreSQL owned persistence and operator boundary (11190.5176ms)
+ℹ {"container":"sp01-p08-test-db4df4827fe5","volume":"sp01-p08-test-db4df4827fe5-data","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","postgres":"PostgreSQL 17.10 (Debian 17.10-1.pgdg12+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit","scope":"P08 adapters/operator/owned SQL only; no HTTP handlers","role":"workspace_app for runtime; workspace_owner for operator"}
+▶ P03 additive 007/private authority and bootstrap on disposable PostgreSQL
+  ✔ 007 refuses ambiguous legacy project and retains original data/checksums (3110.685ms)
+  ✔ empty 007 reverse/forward preserves SP-01 fault latch, audit and sessions (1097.1073ms)
+  ✔ runtime cannot bootstrap, access global provisioning audit or rewrite immutable evidence (32.9542ms)
+  ✔ explicit bootstrap/revoke/recovery, same-state no-op and expected revision are audited (46.3878ms)
+  ✔ private audit failure rolls back authority; disabled targets never bootstrap (37.0117ms)
+  ✔ project provisioning uses current membership and serialized last-manager rule (46.3988ms)
+  ✔ project origin and numeric revision bounds enforce DB constraints; unsafe down retains everything (16.0507ms)
+  ✔ private CLI reads scoped authority through operator configuration without dumping secrets (220.7411ms)
+✔ P03 additive 007/private authority and bootstrap on disposable PostgreSQL (7857.9358ms)
+ℹ {"schema":"007 only; no outcome/cursor table","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","oldMigrations":["001-store","002-registered-policy","003-work-location","004-protected-claims","005-session-foundation","006-session-lifecycle"],"sourceHash":"cb7216447397b9ef4104230725e5037a4fba12971976507cf29f396c412481f6"}
+▶ HF42-RF02 shared grant predicate with actual010 handler authority
+  ✔ same-client helper returns exact valid project/actor/action grant predicates (62.5708ms)
+  ✔ role/create authority does not imply edit or membership-management; resource scope remains in callers (119.0278ms)
+  ✔ explicit issue/revoke/regrant changes lookup without altering query scope or business state (176.2077ms)
+  ✔ a real runtime database privilege failure propagates to generic503, never false or allow (73.0101ms)
+  ✔ actual edit succeeds after dependency recovery and current grant check; batch discovery still advertises live operations (67.6669ms)
+✔ HF42-RF02 shared grant predicate with actual010 handler authority (4977.2918ms)
+▶ P07 measured SQL barriers for actual handlers and labelled future-writer doubles
+  ✔ two actual manager-removal requests wait on the real shared lock, then leave one effective manager (179.5545ms)
+  ✔ controlled assignment SQL writer commits first; actual removal invalidates its result (113.764ms)
+  ✔ controlled read-grant SQL writer commits first; actual removal invalidates its result (108.716ms)
+  ✔ actual removal first makes controlled assignment SQL writer reject departed membership (74.8193ms)
+  ✔ actual removal first makes controlled read-grant SQL writer reject departed membership (64.2166ms)
+  ✔ actual private grant queued before removal is invalidated, and a later grant cannot revive it (76.2385ms)
+  ✔ lost actual removal COMMIT acknowledgement reconciles old key without repeating mutation (83.1762ms)
+✔ P07 measured SQL barriers for actual handlers and labelled future-writer doubles (4570.7861ms)
+ℹ Assignment/read-grant writers above are controlled Workspace SQL protocol doubles. Actual SP-04/SP-06 handlers and D-07 protected transport remain follow-up SP02-F01; not measured here.
+✔ P04 actor/scope/generation/expiry cursor binding is stateless and rejects forgery (2.8644ms)
+▶ P04C real project create, exact replay and failure boundaries
+  ✔ denied, unauthenticated, forged/extra/blank inputs create no project (50.4068ms)
+  ✔ atomic creation persists server actor/time and only explicit initial capability (23.9436ms)
+  ✔ same/concurrent keys return original project once; changed payload conflicts (41.3328ms)
+  ✔ audit and outcome failures roll back the entire business transaction (68.5387ms)
+  ✔ lost COMMIT acknowledgement is unknown and same-key retry reconciles without a second create (68.861ms)
+  ✔ current authority and membership are rechecked before old result disclosure (41.9102ms)
+  ✔ declared body bounds and final serializer reject untrusted/error shapes (97.1087ms)
+  ✔ actual trusted HTTPS transports a project response with no session cookie rewrite (147.5169ms)
+✔ P04C real project create, exact replay and failure boundaries (4327.9928ms)
+▶ P04B separate 008 durable compact outcomes
+  ✔ legacy outcome refusal, empty reverse/forward/repeat, separate 007 identity (5341.3584ms)
+  ✔ runtime saves original typed fields atomically and replays without reading current entities (33.6116ms)
+  ✔ null/malformed/extra snapshot fields and unsafe revisions cannot pass SQL three-valued checks (24.6834ms)
+  ✔ committed identity/result cannot change or expire; failed transaction retains no receipt (30.8341ms)
+  ✔ existing protected handoff claim keeps its original shape and no snapshot (4.6027ms)
+✔ P04B separate 008 durable compact outcomes (9046.1174ms)
+▶ P04 current project reads and full-projection watermarks
+  ✔ fixed 50-item pages expose only current memberships in stable order (69.0811ms)
+  ✔ unknown and foreign direct reads are indistinguishable; body actor claims do not apply (39.6909ms)
+  ✔ foreign actor/tampered cursor rejected; same actor relogin alone keeps a cursor valid (76.8715ms)
+  ✔ name changes and remove/rejoin generations invalidate complete projection watermark (75.5275ms)
+  ✔ missing or rotated server key fails closed without a cursor table (117.8434ms)
+  ✔ DB dependency failure is not empty success (12.1953ms)
+  ✔ session expiry during actual project lock wait is checked before output (320.5867ms)
+✔ P04 current project reads and full-projection watermarks (4804.8862ms)
+▶ HF42-RF03 actual010 unexpected-null rollback contract and recorded-denial distinctions
+  ✔ legitimate false/zero and204 outcome objects with null body retain normal commit semantics (167.0535ms)
+  ✔ known thrown callback failure rolls back actual attempted business effects before COMMIT (45.5748ms)
+  ✔ unexpected null with no recorded denial must roll back Task, audit and immutable original outcome (92.2483ms)
+  ✔ protected HTTP null fault returns the existing generic503 envelope without internal detail (66.9936ms)
+  ✔ ordinary authentication denial never runs callback or invents clock-fault audit (4.3187ms)
+  ✔ actual initial/final clock faults retain their durable latch/audit while withholding business effects (146.2652ms)
+  ✔ actual lost COMMIT acknowledgement remains unknown and original-key replay does not mutate twice (69.7941ms)
+✔ HF42-RF03 actual010 unexpected-null rollback contract and recorded-denial distinctions (4709.0457ms)
+ℹ {"fixture":"sp01-p08-test-89c6289cc184","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","ceiling":"010","scope":"Controlled callbacks on actual PostgreSQL; not a production incident or new public mutation"}
+ℹ {"case":"unexpected-null","reachedNull":true,"returnedNull":false,"failureStatus":503,"before":{"task":{"title":"Synthetic transaction original","description":"","revision":"1"},"audits":"1","outcomes":"1"},"after":{"task":{"title":"Synthetic transaction original","description":"","revision":"1"},"audits":"1","outcomes":"1"}}
+✔ unknown mutation survives reload with the exact original request; no automatic fresh key (25.5487ms)
+✔ permission denial on reconciliation does not claim an earlier unknown operation rolled back (0.3453ms)
+✔ stale read completion cannot restore a removed project or advisory actions (0.6981ms)
+✔ malformed protected data is withheld and blocked storage sends no mutation (0.506ms)
+✔ a foreign actor cannot recover or display the saved operation payload (0.2465ms)
+▶ P08 actual React DOM + same-origin HTTPS + current 008 PostgreSQL
+  ✔ fresh directory/create/member views use real current IDs/revisions and explicit labels (389.5774ms)
+  ✔ add/remove are explicit; removal sends the displayed revision and preserves an effective manager (362.0345ms)
+  ✔ real committed response loss keeps original identity across component reload and never duplicates (163.8683ms)
+  ✔ outage and actual membership removal hide records/actions; no stale protected pane survives (215.5591ms)
+✔ P08 actual React DOM + same-origin HTTPS + current 008 PostgreSQL (5471.8686ms)
+ℹ Real HTTPS transport with explicit synthetic cookie jar; DOM checks do not claim browser cookie enforcement. Browser gate is separate.
+▶ P03A session validation uses caller transaction and preserves fault/rollback boundaries
+  ✔ caller rollback rolls back its own writes; token is not independently reissued (21.9282ms)
+  ✔ fault outcome commits latch and audit without entering the protected write branch (16.3811ms)
+✔ P03A session validation uses caller transaction and preserves fault/rollback boundaries (3266.4469ms)
+✔ SP02 preparation: CreateProject accepts descriptive inputs but rejects actor/authority/identity injection (1.4996ms)
+✔ SP02 preparation: AddMember requires a known-ID selector shape and a descriptive contract role (0.294ms)
+✔ SP02 preparation: public Project/Member responses reject credential and grant inventories (0.3974ms)
+✔ SP02 preparation: actual operations declare idempotency/removal revision and distinct paging parameters (0.1878ms)
+✔ SP02 preparation: advisory action shape excludes unknown/internal operation names (0.5462ms)
+✔ SP02 preparation: retain known schema gaps as observations, not application permission passes (0.1075ms)
+▶ SP05 actual competing starts/allocations and SP04 complete/reopen integration
+  ✔ two actual starts queued after first state write yield one Active Sprint (293.5314ms)
+  ✔ competing actual allocations cannot give one Task two live associations (306.0958ms)
+  ✔ actual completion-first rejects stale reopen, then explicit reopen and later allocation preserve A history (464.8524ms)
+  ✔ reopen-first during Active work makes actual completion return unfinished To Do (370.0783ms)
+  ✔ actual completion return invalidates a queued whole-Backlog reorder without partial positions (240.2904ms)
+✔ SP05 actual competing starts/allocations and SP04 complete/reopen integration (6097.9926ms)
+▶ SP05 each mutation rolls back audit/receipt failures and lost real COMMIT replays once
+  ✔ createSprint (180.9201ms)
+  ✔ allocateTask (262.3163ms)
+  ✔ startSprint (300.9492ms)
+  ✔ completeSprint (343.837ms)
+  ✔ reorderBacklog (215.0417ms)
+✔ SP05 each mutation rolls back audit/receipt failures and lost real COMMIT replays once (5615.5912ms)
+✔ sequential selection persists independent exact keys and resumes one lost committed item without repeating earlier success (20.3734ms)
+✔ mixed item conflict leaves later success committed and never retries the entire selection (1.6027ms)
+✔ revoked/unknown outcomes preserve the original body/key, block new changes and clear protected data (1.1792ms)
+✔ foreign actor or tampered payload cannot restore recovery; explicit signout clears it (0.9231ms)
+✔ mixed Backlog generations and wrong Sprint discovery scope cannot expose partial work or enable writes (1.004ms)
+✔ storage failure prevents mutation and current read failure never renders a receipt as current Sprint (1.3097ms)
+▶ SP05 actual011 private authority, lifecycle, full reorder and original outcomes
+  ✔ creator/role labels grant none; private audit failure rolls back and runtime cannot grant (77.5986ms)
+  ✔ invalid date/goal/body/media/CSRF and foreign scopes leave no business state (26.4473ms)
+  ✔ create/read keeps server timestamps; actor/key/hash, revoke and changed payload are enforced (95.8383ms)
+  ✔ single Task allocation changes location and Sprint revision, rejects competing allocation and stale request (155.0999ms)
+  ✔ actual Planned start and mixed completion co-commit state/history/counts; replay does not recompute (282.2207ms)
+  ✔ real completed reopen then real later allocation retains old association and completion counts (124.6706ms)
+  ✔ empty Sprint starts/completes with zero counts and typed originals cannot be changed/deleted (65.6414ms)
+  ✔ reorder is exact full permutation, no-op does not audit/revise, originals survive later changes (203.9771ms)
+  ✔ Sprint pages invalidate on actual updates; foreign/tampered cursors and removed members disclose no items (1035.8075ms)
+✔ SP05 actual011 private authority, lifecycle, full reorder and original outcomes (6666.8374ms)
+▶ SP05 actual revoke-first schedules withhold every saved original and changed-payload request
+  ✔ createSprint (184.9183ms)
+  ✔ allocateTask (170.3729ms)
+  ✔ startSprint (150.9357ms)
+  ✔ completeSprint (287.8689ms)
+  ✔ reorderBacklog (166.4911ms)
+✔ SP05 actual revoke-first schedules withhold every saved original and changed-payload request (5496.9512ms)
+▶ SP05 post-wait expiry withholds every write/read and leaves business evidence unchanged
+  ✔ createSprint (4833.4667ms)
+  ✔ allocateTask (4786.4865ms)
+  ✔ startSprint (4902.4812ms)
+  ✔ completeSprint (4798.8546ms)
+  ✔ reorderBacklog (4785.4244ms)
+  ✔ getSprint (4809.9092ms)
+  ✔ listSprints (5044.1124ms)
+  ✔ listSprintItems (4922.1222ms)
+✔ SP05 post-wait expiry withholds every write/read and leaves business evidence unchanged (38885.5244ms)
+✔ SP05 additive011 empty reverse/reapply and typed receipts (4044.1251ms)
+▶ SP05 live HTTPS/PG native forms, sequential allocation and complete/recovery DOM
+  ✖ labelled create and full-list reorder save real state (8.3681ms)
+  ✖ native multi-selection allocates separately and completion reconstructs retained/current associations (3.051ms)
+  ✔ lost committed creation replays exact key/body once; revoked controls and outage withhold content (388.3729ms)
+✖ SP05 live HTTPS/PG native forms, sequential allocation and complete/recovery DOM (5882.1993ms)
+▶ SP04 actual assignment, current eligibility and removal races
+  ✔ scope/action before target eligibility and strict shape (135.2352ms)
+  ✔ enabled member/null assignment, no-op, exact historical replay and stale conflict (122.5859ms)
+  ✔ update/audit/outcome failure rolls back with recoverable same key (293.0542ms)
+  ✔ assign-first actual SQL schedule then removal clears assignment and replay never restores it (306.3987ms)
+  ✔ remove-first actual producer blocks assignment; rejoin restores no current assignment (154.1694ms)
+  ✔ concurrent assignments and duplicate keys; overflow and authority revocation (243.0933ms)
+  ✔ post-lock session expiry rejects new assignment (537.8202ms)
+✔ SP04 actual assignment, current eligibility and removal races (6016.4313ms)
+▶ P03C private audited backlog authors and controlled membership ordering
+  ✔ creator and descriptive roles do not grant authors; explicit grant/revoke is private, revisioned and co-audited (95.2722ms)
+  ✔ runtime cannot provision, revive or read private audit; unknown/nonmember/disabled/empty reason are denied (62.7328ms)
+  ✔ private audit insert failure rolls back the author grant and keeps its old revision (22.8415ms)
+  ✔ real removal invalidates authors and same-role rejoin restores none; unsupported operations stay unadvertised (72.1732ms)
+  ✔ actual grant commits first behind a SQL barrier; waiting removal invalidates that grant (106.9309ms)
+  ✔ actual removal commits first behind a SQL barrier; waiting grant rejects departed membership (118.4038ms)
+  ✔ private CLI accepts author grant/revoke with audited reason and emits no database configuration (588.6898ms)
+✔ P03C private audited backlog authors and controlled membership ordering (5042.8548ms)
+▶ SP04 append-only blocker commands and scoped history pages
+  ✔ history needs membership not audit/action; commands require exact authority; strict validation (119.0981ms)
+  ✔ retrospective resolution, repeated Open and later Resolved append every distinct event; sequence is truth (471.7888ms)
+  ✔ event/task/audit/outcome faults roll back entire append and retry uses original identity (547.6161ms)
+  ✔ concurrent writes conflict; duplicate keys append once; default outcome canonicalizes null (156.5311ms)
+  ✔ ascending pages bind actor/task/full dataset; current login survives but stale/foreign/malformed fails (1678.1216ms)
+  ✔ expired signed cursors, missing signing key and removal/rejoin deny or invalidate history (164.8545ms)
+  ✔ revision and sequence upper bounds reject writes; revoked replay denies (96.9999ms)
+  ✔ actual history read wait rechecks session before returning any page (468.9276ms)
+✔ SP04 append-only blocker commands and scoped history pages (8570.887ms)
+▶ P07 observed SQL schedules on actual Task producers and current authority
+  ✔ two authorized appends queued at a real barrier keep both exact numeric positions and two generation increments (187.0612ms)
+  ✔ same actor/key queued together creates one outcome/task/audit; changed payload conflicts (86.484ms)
+  ✔ actual create decision first; queued revoke then blocks replay disclosure (121.3659ms)
+  ✔ actual create decision first; queued remove then blocks replay disclosure (167.0422ms)
+  ✔ actual revoke decision first; queued create sees current denial and writes nothing (66.5363ms)
+  ✔ actual remove decision first; queued create sees current denial and writes nothing (108.4049ms)
+  ✔ a guarded page decision precedes queued append; next page rejects the old full-projection watermark (132.466ms)
+  ✔ one rollback producer alongside a successful append has no partial audit/outcome/generation; exact failed key can reconcile (108.8663ms)
+  ✔ actual account disable decision first; queued current session cannot create or replay its old result (99.7841ms)
+✔ P07 observed SQL schedules on actual Task producers and current authority (4943.899ms)
+ℹ Decision boundary: actual owned PostgreSQL transaction/clock and Project guards. No source/socket exclusion, future SP-04/SP-06 handler or complete SC-06 claim.
+▶ SP04-P03D1 actual Backlog edit, recovery, rollback and authority schedules
+  ✔ explicit action only; cross-project/nonmember/missing identities conceal existence (148.6972ms)
+  ✔ strict shape/media/origin/header/text/body bounds make no change (66.8613ms)
+  ✔ confirmed edit persists exact text, audit and original200; omission preserves description; changed hash conflicts (390.8265ms)
+  ✔ empty and same-value no-ops retain their own200 without revision/audit; missing and empty fields hash differently (246.5642ms)
+  ✔ new edits reject non-Backlog placement; retained replay bypasses current placement and revision (273.2113ms)
+  ✔ safe revision ceiling permits no-op but refuses increment (129.6188ms)
+  ✔ task UPDATE, audit and outcome faults roll back every business effect (392.7836ms)
+  ✔ same-revision competing edits have one winner; concurrent duplicate key writes once (244.3886ms)
+  ✔ edit-first actual lock schedule commits once then current revoked authority denies replay (239.7473ms)
+  ✔ revoke-first actual producer denies waiting new edit and original replay (147.9287ms)
+  ✔ actual removal before edit denies the former member and rejoin restores no edit grant (233.9129ms)
+  ✔ live discovery advertises only implemented edit with current authority and clears after revoke (94.3634ms)
+  ✔ session expiry during a paused actual read withholds edit before business writes (672.648ms)
+✔ SP04-P03D1 actual Backlog edit, recovery, rollback and authority schedules (9550.8931ms)
+ℹ {"fixture":"sp01-p08-test-52e5a06d651d","volume":"sp01-p08-test-52e5a06d651d-data","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","ceiling":"010"}
+▶ P04 real task HTTP, explicit authority and atomic exact-key recovery
+  ✔ creator/manager/role labels alone deny; malformed/foreign/unknown targets and unauthenticated requests disclose no data (132.6043ms)
+  ✔ strict input, same-origin, bounded JSON/media and empty keys reject without a task or successful evidence (21.2983ms)
+  ✔ story/task/bug persist exact initial projection, server time and audit with one Backlog increment (95.8711ms)
+  ✔ forged actor/project headers cannot replace authenticated actor or target scope in persisted audit (29.5298ms)
+  ✔ same concurrent key returns original once, normalizes omitted description and project UUID case; changed request conflicts (140.0173ms)
+  ✔ task/storage/audit/outcome faults roll back task, Backlog generation and evidence with generic errors (142.3283ms)
+  ✔ lost COMMIT acknowledgement is unknown, then original-key recovery creates no second task (67.0546ms)
+  ✔ current authority blocks replay; removal/rejoin restores no grant and only a new explicit grant permits old result (172.1481ms)
+  ✔ only registered operations are advertised to actual authors; final serializer rejects malformed date-time or extra output (229.1497ms)
+  ✔ session expires during the actual Project lock wait and is rechecked before first Task write (347.1285ms)
+  ✔ expired and disabled sessions and a faulted clock withhold success without partial task writes (211.1998ms)
+  ✔ trusted HTTPS transports the actual Task response without replacing its secure session cookie (171.3458ms)
+✔ P04 real task HTTP, explicit authority and atomic exact-key recovery (5901.3594ms)
+▶ SP04-P03C private Task action grants and exact Task discovery
+  ✔ create/creator/member roles imply no mutation action; live HTTP returns exact read target and registered handlers only (71.6983ms)
+  ✔ four independent private grants have issue-ID provenance, revisioned revoke/regrant, and audited no-op/stale semantics (255.0985ms)
+  ✔ future registry projection checks independent rights and Backlog edit context without claiming those handlers exist (70.1706ms)
+  ✔ missing/foreign/nonmember targets conceal identity and malformed or asserted selectors fail bounded validation (75.4366ms)
+  ✔ disabled/nonmember/unknown targets, unsupported actions and ordinary runtime cannot provision or inspect private audit (43.5357ms)
+  ✔ unprovenanced selected rows are retained and rejected even for an apparent no-op (39.7493ms)
+  ✔ failed private audit persistence rolls back grant issuance (22.331ms)
+  ✔ actual removal invalidates all four actions; rejoin restores none and explicit regrant keeps provenance (81.1951ms)
+  ✔ both actual grant/removal lock orderings preserve revocation without deadlock or grant resurrection (169.5973ms)
+  ✔ private CLI supports selected grant/revoke/state and generic failure without configuration disclosure (881.2136ms)
+  ✔ required authority failure withholds discovery; app without Task handlers advertises no Task endpoint (175.2768ms)
+  ✔ session expiry during an observed Project lock wait withholds allowed operations (331.6391ms)
+✔ SP04-P03C private Task action grants and exact Task discovery (6412.8226ms)
+ℹ {"fixture":"sp01-p08-test-5b3cb3de43c8","volume":"sp01-p08-test-5b3cb3de43c8-data","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","postgres":"17.10 (Debian 17.10-1.pgdg12+1)","ceiling":"010"}
+▶ SP04 cross-producer original outcomes, concurrent writes and revocation schedules
+  ✔ four competing real changed writes share one revision; exactly one business change wins (250.7648ms)
+  ✔ lost actual COMMIT acknowledgement preserves business/audit/outcome; same key returns original once (1119.5865ms)
+  ✔ actual revoke-first lock schedules deny waiting writes and retained replays for every action (697.7717ms)
+✔ SP04 cross-producer original outcomes, concurrent writes and revocation schedules (6485.8997ms)
+▶ SP04-P03B additive010 mutation storage, real roles and permanent originals
+  ✔ legacy keys, invalidated grants, history and both audits refuse before DDL and preserve seeded rows (49.786ms)
+  ✖ upgrade/repeat/reverse/reapply preserve009 receipts, definitions and prior checksums (3056.0421ms)
+  ✖ each retained mutation receipt/grant/audit/event independently refuses destructive down (7.7708ms)
+  ✖ total SQL validators reject NULL, every missing/extra/wrong field, unsafe values and malformed placement/time (4.197ms)
+  ✖ all valid Task locations/states and Blocker UTC precisions/nullable outcome retain exact wire snapshots (6.8001ms)
+  ✖ new-operation status/hash/key/state/expiry/ref constraints and OLD/NEW immutability are enforced (109.4909ms)
+  ✖ actor/operation/key/hash/Task/project/event binding rejects cross-scope replay without current-state substitution (4.882ms)
+  ✖ private action scope/uniqueness, runtime issue/revival/rewrite denial and real member removal/rejoin (5.4223ms)
+  ✖ physical blocker history rejects unsafe sequence and nonfinite time before any wire serialization (6.1221ms)
+  ✖ Task/event/audit/result writes roll back together on audit or outcome persistence failure (20.3205ms)
+  ✖ lost real COMMIT acknowledgement is unknown, with one durable original and no current-state replacement (8.3968ms)
+  ✔ old project/member/createTask and protected-handoff branches still function and old SQL checksums match (37.5588ms)
+✖ SP04-P03B additive010 mutation storage, real roles and permanent originals (7457.196ms)
+ℹ {"fixture":"sp01-p08-test-4d1a29f1af40","volume":"sp01-p08-test-4d1a29f1af40-data","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","postgres":"17.10 (Debian 17.10-1.pgdg12+1)","ceiling":"explicit009 ->010"}
+✔ each mutation uses exact target actions, persists original identity before sending and refreshes current state after historical receipt (31.1624ms)
+✔ conflicts refresh separately, never automatically issue a new key; denial/outage retain recovery and clear content (3.4628ms)
+✔ foreign actor, malformed stored input and missing exact action cannot issue mutations; logout clears recovery (0.5551ms)
+✔ a confirmed write followed by unavailable current reads never presents its historical receipt as current (0.5447ms)
+✔ history pagination validates ascending events, refreshes current scope and discards stale pages (2.7399ms)
+▶ SP04 real mutation DOM over HTTPS and disposable010
+  ✔ native labelled forms perform actual persisted edit/state/assignment/blocker updates (1108.2732ms)
+  ✔ stale revision conflict refreshes current detail without overwriting a later actual producer (207.8185ms)
+  ✔ lost committed edit recovers same body/key and displays a fresh later state, not old receipt (426.6585ms)
+  ✔ denial and outage remove protected panes and forms; current authority refresh removes revoked controls (352.7832ms)
+✔ SP04 real mutation DOM over HTTPS and disposable010 (9495.1871ms)
+▶ P05 real scoped Task reconstruction and actor/projection-bound numeric paging
+  ✔ fresh detail exposes immutable creation time, current location and highest committed blocker sequence (92.9882ms)
+  ✔ 50-item pages preserve numeric position then UUID across descending IDs/equal positions, and all uses UUID order (251.0113ms)
+  ✔ unknown/foreign/nonmember reads share generic 404 and invalid selectors cannot assert scope (107.9087ms)
+  ✔ cursor binds actor/filter and current projection while same-actor relogin remains valid (191.779ms)
+  ✔ highest blocker changes invalidate projection without advancing Backlog set/order generation (68.4471ms)
+  ✔ verified expired or absent bookmark returns conflict without a partial page, never an implicit restart (60.5273ms)
+  ✔ missing/rotated key or database faults fail closed; detail still needs no cursor key (223.3766ms)
+  ✔ removed membership denies old cursor; same-role rejoin invalidates its generation without author revival (134.3746ms)
+  ✔ post-wait session expiry withholds protected page (342.2177ms)
+  ✔ post-wait session expiry withholds protected detail (329.9046ms)
+✔ P05 real scoped Task reconstruction and actor/projection-bound numeric paging (6354.7693ms)
+▶ SP04 state handler and completed placement persistence
+  ✔ explicit authority, concealed foreign targets and strict request validation (77.6706ms)
+  ✔ all direct transitions and no-ops; stale and changed-input retries preserve state (1157.9805ms)
+  ✔ both completed reopen targets normalize atomically, append exact numeric position and preserve allocation (157.14ms)
+  ✔ audit/outcome/update faults roll back and original-key retries recover; overflow rejects change (387.3223ms)
+  ✔ concurrent revision writes have one winner; duplicate requests commit once; revoked replay denies (361.9779ms)
+  ✔ session expiry after actual Task lock withholds mutation (600.4518ms)
+✔ SP04 state handler and completed placement persistence (7261.6051ms)
+▶ P03B additive 009 task origins, permanent typed results and safe refusal
+  ✔ legacy task, key and any author grant each refuse before DDL without removing rows (4470.3931ms)
+  ✔ forward, repeated upgrade and empty-compatible reverse preserve old migrations and project receipts (4413.2174ms)
+  ✔ each retained result, author grant, author audit or task business audit independently blocks down (23.5799ms)
+  ✔ typed original Task outcome binds task identity and project snapshot, with immutable indefinite retention (52.0487ms)
+  ✔ total SQL validation rejects missing/null/extra/type/origin/location/revision errors (178.3168ms)
+  ✔ immutable server origin and complete rollback preserve generation/task/audit/result atomicity (40.271ms)
+  ✔ existing project/member/protected result shapes and owner-only author audit stay intact (26.8862ms)
+✔ P03B additive 009 task origins, permanent typed results and safe refusal (13252.5002ms)
+✔ unknown task creation survives reload with exact actor/body/key; confirmed replay refreshes current details (18.0826ms)
+✔ denied/expired/conflicting reconciliation retains uncertainty and hides protected data; no new key is generated (1.0614ms)
+✔ foreign actor or malformed recovery storage cannot reveal/replay saved request input (0.6797ms)
+✔ only current advisory create authority and valid bounded supported input permit a persisted mutation (0.7453ms)
+✔ blocked or silently discarded browser storage sends no mutation while current reads still work (0.5976ms)
+✔ late reads cannot restore a revoked task, list or advisory create controls (0.5133ms)
+✔ cursor conflict discards previous pages and loads a fresh first page without stale accumulation (0.5797ms)
+✔ malformed, wrong-project and secret-bearing protected output is withheld; malformed 201 preserves original recovery identity (1.4372ms)
+✔ explicit sign-out cleanup removes the stored operation while expiry alone retains it for the same actor (0.3886ms)
+▶ P08 real Task React DOM with HTTPS and disposable 009 PostgreSQL
+  ✔ empty/create/detail uses real server IDs/time/location and accessible native fields/feedback (485.0873ms)
+  ✔ fresh component reload and current detail reconstruct persisted state rather than an earlier receipt (368.071ms)
+  ✔ real changed cursor discards accumulated pages and reconstructs the current first page (354.3439ms)
+  ✔ real committed response loss survives component reload with exact original request and one stored Task (316.5325ms)
+  ✔ outage and actual author revoke clear protected panes and keep an earlier result uncertain (241.5211ms)
+  ✔ actual membership removal and disabled session withhold task UI and notify session loss (92.4546ms)
+✔ P08 real Task React DOM with HTTPS and disposable 009 PostgreSQL (6866.8738ms)
+ℹ Actual HTTPS/API/PG with a synthetic cookie jar and React DOM. Browser cookie/TLS/profile enforcement is a separate gate. Direct state/Sprint data setup is a fixture, not an update API claim.
+▶ P11 actual React DOM with Workspace/PostgreSQL through same-origin HTTPS
+  ✔ initial reload checks server before showing sign-in; labels and autocomplete are explicit (84.8368ms)
+  ✔ wrong credentials show generic inline feedback and move focus without secret persistence (366.1789ms)
+  ✔ actual sign-in renders server-confirmed state through secure proxy and clears password (405.926ms)
+  ✔ workspace navigation and reload-style controller recheck use real server state (61.4473ms)
+  ✔ dependency outage hides authenticated subtree immediately; recovery revalidates explicitly (85.2377ms)
+  ✔ actual expired DB session is denied on focus, clears workspace and requests sign-in (45.5092ms)
+  ✔ confirmed logout hides state, clears cookie and rejects old session after reload (441.265ms)
+  ✔ built HTTPS preview serves its icon and bundled entry without a development WebSocket client (137.1266ms)
+  ✔ controlled local expiry timer hides UI without making a renewal request (228.1536ms)
+✔ P11 actual React DOM with Workspace/PostgreSQL through same-origin HTTPS (6192.1868ms)
+ℹ {"image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","scope":"Actual React DOM + real Workspace/PostgreSQL through trusted-client HTTPS proxy; explicit simulated cookie jar, not browser cookie evidence; final timer case uses controlled transport"}
+ℹ tests 339
+ℹ suites 0
+ℹ pass 325
+ℹ fail 14
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 286487.9202
+
+✖ failing tests:
+
+test at tests\workspace\sprint-ui.test.mjs:15:10
+✖ labelled create and full-list reorder save real state (8.3681ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + ''
+  - 'sprint-end-date'
+  
+      at TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-ui.test.mjs:15:533)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-ui.test.mjs:15:2)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: 'sprint-end-date',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\workspace\sprint-ui.test.mjs:16:10
+✖ native multi-selection allocates separately and completion reconstructs retained/current associations (3.051ms)
+  AssertionError [ERR_ASSERTION]: Missing Allocate selected tasks
+      at click (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-ui.test.mjs:12:113)
+      at TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-ui.test.mjs:16:252)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-ui.test.mjs:16:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests\workspace\task-mutation-storage.test.mjs:57:10
+✖ upgrade/repeat/reverse/reapply preserve009 receipts, definitions and prior checksums (3056.0421ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      {
+        definition: "CHECK ((action = ANY (ARRAY['create-project'::text, 'membership-manage'::text, 'project-administrator'::text, 'backlog-author'::text])))",
+        name: 'authority_provisioning_audit_action_check',
+        object: 'workspace.authority_provisioning_audit'
+  ...
+          ' LANGUAGE plpgsql\n' +
+  +       'AS $function$\r\n' +
+  +       'BEGIN\r\n' +
+  +       " IF OLD.operation IN ('createProject','addMember','removeMember','createTask') OR (TG_OP='UPDATE' AND NEW.operation IN ('createProject','addMember','removeMember','createTask')) THEN\r\n" +
+  +       "  RAISE EXCEPTION 'Committed project/task outcome identity is immutable' USING ERRCODE='23514';\r\n" +
+  +       ' END IF;\r\n' +
+  +       " IF TG_OP='DELETE' THEN RETURN OLD; END IF;\r\n" +
+  +       ' RETURN NEW;\r\n' +
+  -       'AS $function$\n' +
+  -       'BEGIN\n' +
+  -       " IF OLD.operation IN ('createProject','addMember','removeMember','createTask') OR (TG_OP='UPDATE' AND NEW.operation IN ('createProject','addMember','removeMember','createTask')) THEN\n" +
+  -       "  RAISE EXCEPTION 'Committed project/task outcome identity is immutable' USING ERRCODE='23514';\n" +
+  -       ' END IF;\n' +
+  -       " IF TG_OP='DELETE' THEN RETURN OLD; END IF;\n" +
+  -       ' RETURN NEW;\n' +
+          'END $function$\n',
+        name: 'function',
+        object: 'workspace.protect_project_outcome'
+      }
+    ]
+  
+      at TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:60:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:57:2)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { object: 'workspace.authority_provisioning_audit', name: 'authority_provisioning_audit_action_check', definition: "CHECK ((action = ANY (ARRAY['create-project'::text, 'membership-manage'::text, 'project-administrator'::text, 'backlog-author'::text])))" }, { object: 'workspace.authority_provisioning_audit', name: 'authority_provisioning_audit_check', definition: 'CHECK ((revision > previous_revision))' }, { object: 'workspace.authority_provisioning_audit', name: 'authority_provisioning_audit_check1', definition: "CHECK ((((action = 'create-project'::text) AND (project_id IS NULL)) OR ((action <> 'create-project'::text) AND (project_id IS NOT NULL))))" }, { object: 'workspace.authority_provisioning_audit', name: 'authority_provisioning_audit_operator_ref_check', definition: 'CHECK (((octet_length(operator_ref) >= 1) AND (octet_length(operator_ref) <= 1024)))' }, { object: 'workspace.authority_provisioning_audit', name: 'authority_provisioning_audit_pkey', definition: 'PRIMARY KEY (event_id)' }, { object: 'workspace.authority_provisioning_audit', name: 'authority_provisioning_audit_previous_revision_check', definition: 'CHECK ((previous_revision >= 0))' }, { object: 'workspace.authority_provisioning_audit', name: 'authority_provisioning_audit_project_id_fkey', definition: 'FOREIGN KEY (project_id) REFERENCES workspace.project(project_id)' }, { object: 'workspace.authority_provisioning_audit', name: 'authority_provisioning_audit_reason_check', definition: 'CHECK (((octet_length(reason) >= 1) AND (octet_length(reason) <= 1024)))' }, { object: 'workspace.authority_provisioning_audit', name: 'authority_provisioning_audit_target_user_id_fkey', definition: 'FOREIGN KEY (target_user_id) REFERENCES workspace.auth_account(user_id)' }, { object: 'workspace.blocker_event', name: 'blocker_event_pkey', definition: 'PRIMARY KEY (event_id)' }, { object: 'workspace.blocker_event', name: 'blocker_event_sequence_check', definition: 'CHECK ((sequence > 0))' }, { object: 'workspace.blocker_event', name: 'blocker_event_status_check', definition: "CHECK ((status = ANY (ARRAY['open'::text, 'resolved'::text])))" }, { object: 'workspace.blocker_event', name: 'blocker_event_task_id_fkey', definition: 'FOREIGN KEY (task_id) REFERENCES workspace.task(task_id)' }, { object: 'workspace.blocker_event', name: 'blocker_event_task_id_sequence_key', definition: 'UNIQUE (task_id, sequence)' }, { object: 'workspace.capability_grant', name: 'capability_grant_permission_revision_check', definition: 'CHECK ((permission_revision > 0))' }, { object: 'workspace.capability_grant', name: 'capability_grant_pkey', definition: 'PRIMARY KEY (grant_id)' }, { object: 'workspace.capability_grant', name: 'capability_grant_project_id_fkey', definition: 'FOREIGN KEY (project_id) REFERENCES workspace.project(project_id)' }, { object: 'workspace.idempotency_record', name: 'idempotency_record_pkey', definition: 'PRIMARY KEY (actor_id, operation, idempotency_key)' }, { object: 'workspace.idempotency_record', name: 'idempotency_record_state_check', definition: "CHECK ((state = ANY (ARRAY['pending'::text, 'committed'::text, 'failed'::text])))" }, { object: 'workspace.idempotency_record', name: 'project_outcome_shape', definition: "CHECK (((((operation = 'createTask'::text) AND (state = 'committed'::text) AND (expires_at = 'infinity'::timestamp with time zone) AND (payload_hash ~ '^[a-f0-9]{64}$'::text) AND (length(idempotency_key) > 0) AND (result_ref IS NOT NULL) AND (result_status = 201) AND workspace.valid_task_creation_snapshot(result_snapshot, result_ref)) OR ((operation <> 'createTask'::text) AND ((((operation <> ALL (ARRAY['createProject'::text, 'addMember'::text, 'removeMember'::text])) AND (result_status IS NULL) AND (result_snapshot IS NULL)) OR ((operation = ANY (ARRAY['createProject'::text, 'addMember'::text, 'removeMember'::text])) AND (state = 'committed'::text) AND (expires_at = 'infinity'::timestamp with time zone) AND (payload_hash ~ '^[a-f0-9]{64}$'::text) AND (length(idempotency_key) > 0) AND (result_ref IS NOT NULL) AND (result_status IS NOT NULL) AND (((operation = 'removeMember'::text) AND (result_status = 204) AND (result_snapshot IS NULL)) OR ((operation = ANY (ARRAY['createProject'::text, 'addMember'::text])) AND (result_status = 201) AND (result_snapshot IS NOT NULL) AND (jsonb_typeof(result_snapshot) = 'object'::text) AND ((result_snapshot ->> 'project_id'::text) = result_ref) AND (result_snapshot ? 'revision'::text) AND (jsonb_typeof((result_snapshot -> 'revision'::text)) = 'number'::text) AND ((result_snapshot ->> 'revision'::text) ~ '^[1-9][0-9]*$'::text) AND (((result_snapshot ->> 'revision'::text))::numeric <= ('9007199254740991'::bigint)::numeric) AND (((operation = 'createProject'::text) AND (result_snapshot ?& ARRAY['project_id'::text, 'name'::text, 'description'::text, 'revision'::text]) AND ((result_snapshot - ARRAY['project_id'::text, 'name'::text, 'description'::text, 'revision'::text]) = '{}'::jsonb) AND (jsonb_typeof((result_snapshot -> 'name'::text)) = 'string'::text) AND (jsonb_typeof((result_snapshot -> 'description'::text)) = 'string'::text)) OR ((operation = 'addMember'::text) AND (result_snapshot ?& ARRAY['project_id'::text, 'user_id'::text, 'role'::text, 'revision'::text]) AND ((result_snapshot - ARRAY['project_id'::text, 'user_id'::text, 'role'::text, 'revision'::text]) = '{}'::jsonb) AND (jsonb_typeof((result_snapshot -> 'user_id'::text)) = 'string'::text) AND ((result_snapshot ->> 'role'::text) = ANY (ARRAY['product_owner'::text, 'scrum_master'::text, 'developer'::text, 'viewer'::text])))))))) IS TRUE))) IS TRUE))" }, { object: 'workspace.idempotency_record', name: 'protected_claim_identity', definition: 'UNIQUE (actor_id, operation, idempotency_key, claim_fence)' }, { object: 'workspace.idempotency_record', name: 'protected_claim_shape', definition: "CHECK ((((operation = 'protected_handoff'::text) AND (claim_fence IS NOT NULL) AND (process_ref IS NOT NULL) AND (state = 'pending'::text) AND (result_ref IS NULL) AND (expires_at = 'infinity'::timestamp with time zone) AND (length(idempotency_key) > 0) AND (payload_hash ~ '^[a-f0-9]{64}$'::text)) OR ((operation <> 'protected_handoff'::text) AND (claim_fence IS NULL) AND (process_ref IS NULL))))" }, { object: 'workspace.protect_project_outcome', name: 'function', definition: "CREATE OR REPLACE FUNCTION workspace.protect_project_outcome()\n RETURNS trigger\n LANGUAGE plpgsql\nAS $function$\r\nBEGIN\r\n IF OLD.operation IN ('createProject','addMember','removeMember','createTask') OR (TG_OP='UPDATE' AND NEW.operation IN ('createProject','addMember','removeMember','createTask')) THEN\r\n  RAISE EXCEPTION 'Committed project/task outcome identity is immutable' USING ERRCODE='23514';\r\n END IF;\r\n IF TG_OP='DELETE' THEN RETURN OLD; END IF;\r\n RETURN NEW;\r\nEND $function$\n" } ],
+    expected: [ { object: 'workspace.authority_provisioning_audit', name: 'authority_provisioning_audit_action_check', definition: "CHECK ((action = ANY (ARRAY['create-project'::text, 'membership-manage'::text, 'project-administrator'::text, 'backlog-author'::text])))" }, { object: 'workspace.authority_provisioning_audit', name: 'authority_provisioning_audit_check', definition: 'CHECK ((revision > previous_revision))' }, { object: 'workspace.authority_provisioning_audit', name: 'authority_provisioning_audit_check1', definition: "CHECK ((((action = 'create-project'::text) AND (project_id IS NULL)) OR ((action <> 'create-project'::text) AND (project_id IS NOT NULL))))" }, { object: 'workspace.authority_provisioning_audit', name: 'authority_provisioning_audit_operator_ref_check', definition: 'CHECK (((octet_length(operator_ref) >= 1) AND (octet_length(operator_ref) <= 1024)))' }, { object: 'workspace.authority_provisioning_audit', name: 'authority_provisioning_audit_pkey', definition: 'PRIMARY KEY (event_id)' }, { object: 'workspace.authority_provisioning_audit', name: 'authority_provisioning_audit_previous_revision_check', definition: 'CHECK ((previous_revision >= 0))' }, { object: 'workspace.authority_provisioning_audit', name: 'authority_provisioning_audit_project_id_fkey', definition: 'FOREIGN KEY (project_id) REFERENCES workspace.project(project_id)' }, { object: 'workspace.authority_provisioning_audit', name: 'authority_provisioning_audit_reason_check', definition: 'CHECK (((octet_length(reason) >= 1) AND (octet_length(reason) <= 1024)))' }, { object: 'workspace.authority_provisioning_audit', name: 'authority_provisioning_audit_target_user_id_fkey', definition: 'FOREIGN KEY (target_user_id) REFERENCES workspace.auth_account(user_id)' }, { object: 'workspace.blocker_event', name: 'blocker_event_pkey', definition: 'PRIMARY KEY (event_id)' }, { object: 'workspace.blocker_event', name: 'blocker_event_sequence_check', definition: 'CHECK ((sequence > 0))' }, { object: 'workspace.blocker_event', name: 'blocker_event_status_check', definition: "CHECK ((status = ANY (ARRAY['open'::text, 'resolved'::text])))" }, { object: 'workspace.blocker_event', name: 'blocker_event_task_id_fkey', definition: 'FOREIGN KEY (task_id) REFERENCES workspace.task(task_id)' }, { object: 'workspace.blocker_event', name: 'blocker_event_task_id_sequence_key', definition: 'UNIQUE (task_id, sequence)' }, { object: 'workspace.capability_grant', name: 'capability_grant_permission_revision_check', definition: 'CHECK ((permission_revision > 0))' }, { object: 'workspace.capability_grant', name: 'capability_grant_pkey', definition: 'PRIMARY KEY (grant_id)' }, { object: 'workspace.capability_grant', name: 'capability_grant_project_id_fkey', definition: 'FOREIGN KEY (project_id) REFERENCES workspace.project(project_id)' }, { object: 'workspace.idempotency_record', name: 'idempotency_record_pkey', definition: 'PRIMARY KEY (actor_id, operation, idempotency_key)' }, { object: 'workspace.idempotency_record', name: 'idempotency_record_state_check', definition: "CHECK ((state = ANY (ARRAY['pending'::text, 'committed'::text, 'failed'::text])))" }, { object: 'workspace.idempotency_record', name: 'project_outcome_shape', definition: "CHECK (((((operation = 'createTask'::text) AND (state = 'committed'::text) AND (expires_at = 'infinity'::timestamp with time zone) AND (payload_hash ~ '^[a-f0-9]{64}$'::text) AND (length(idempotency_key) > 0) AND (result_ref IS NOT NULL) AND (result_status = 201) AND workspace.valid_task_creation_snapshot(result_snapshot, result_ref)) OR ((operation <> 'createTask'::text) AND ((((operation <> ALL (ARRAY['createProject'::text, 'addMember'::text, 'removeMember'::text])) AND (result_status IS NULL) AND (result_snapshot IS NULL)) OR ((operation = ANY (ARRAY['createProject'::text, 'addMember'::text, 'removeMember'::text])) AND (state = 'committed'::text) AND (expires_at = 'infinity'::timestamp with time zone) AND (payload_hash ~ '^[a-f0-9]{64}$'::text) AND (length(idempotency_key) > 0) AND (result_ref IS NOT NULL) AND (result_status IS NOT NULL) AND (((operation = 'removeMember'::text) AND (result_status = 204) AND (result_snapshot IS NULL)) OR ((operation = ANY (ARRAY['createProject'::text, 'addMember'::text])) AND (result_status = 201) AND (result_snapshot IS NOT NULL) AND (jsonb_typeof(result_snapshot) = 'object'::text) AND ((result_snapshot ->> 'project_id'::text) = result_ref) AND (result_snapshot ? 'revision'::text) AND (jsonb_typeof((result_snapshot -> 'revision'::text)) = 'number'::text) AND ((result_snapshot ->> 'revision'::text) ~ '^[1-9][0-9]*$'::text) AND (((result_snapshot ->> 'revision'::text))::numeric <= ('9007199254740991'::bigint)::numeric) AND (((operation = 'createProject'::text) AND (result_snapshot ?& ARRAY['project_id'::text, 'name'::text, 'description'::text, 'revision'::text]) AND ((result_snapshot - ARRAY['project_id'::text, 'name'::text, 'description'::text, 'revision'::text]) = '{}'::jsonb) AND (jsonb_typeof((result_snapshot -> 'name'::text)) = 'string'::text) AND (jsonb_typeof((result_snapshot -> 'description'::text)) = 'string'::text)) OR ((operation = 'addMember'::text) AND (result_snapshot ?& ARRAY['project_id'::text, 'user_id'::text, 'role'::text, 'revision'::text]) AND ((result_snapshot - ARRAY['project_id'::text, 'user_id'::text, 'role'::text, 'revision'::text]) = '{}'::jsonb) AND (jsonb_typeof((result_snapshot -> 'user_id'::text)) = 'string'::text) AND ((result_snapshot ->> 'role'::text) = ANY (ARRAY['product_owner'::text, 'scrum_master'::text, 'developer'::text, 'viewer'::text])))))))) IS TRUE))) IS TRUE))" }, { object: 'workspace.idempotency_record', name: 'protected_claim_identity', definition: 'UNIQUE (actor_id, operation, idempotency_key, claim_fence)' }, { object: 'workspace.idempotency_record', name: 'protected_claim_shape', definition: "CHECK ((((operation = 'protected_handoff'::text) AND (claim_fence IS NOT NULL) AND (process_ref IS NOT NULL) AND (state = 'pending'::text) AND (result_ref IS NULL) AND (expires_at = 'infinity'::timestamp with time zone) AND (length(idempotency_key) > 0) AND (payload_hash ~ '^[a-f0-9]{64}$'::text)) OR ((operation <> 'protected_handoff'::text) AND (claim_fence IS NULL) AND (process_ref IS NULL))))" }, { object: 'workspace.protect_project_outcome', name: 'function', definition: "CREATE OR REPLACE FUNCTION workspace.protect_project_outcome()\n RETURNS trigger\n LANGUAGE plpgsql\nAS $function$\nBEGIN\n IF OLD.operation IN ('createProject','addMember','removeMember','createTask') OR (TG_OP='UPDATE' AND NEW.operation IN ('createProject','addMember','removeMember','createTask')) THEN\n  RAISE EXCEPTION 'Committed project/task outcome identity is immutable' USING ERRCODE='23514';\n END IF;\n IF TG_OP='DELETE' THEN RETURN OLD; END IF;\n RETURN NEW;\nEND $function$\n" } ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\workspace\task-mutation-storage.test.mjs:65:10
+✖ each retained mutation receipt/grant/audit/event independently refuses destructive down (7.7708ms)
+  Error: Session persistence unavailable
+      at ownedTransaction (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/services/workspace/src/session/database.ts:28:9)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:67:27)
+      ... 3 lines matching cause stack trace ...
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    commitOutcome: 'not-committed',
+    [cause]: error: new row for relation "idempotency_record" violates check constraint "project_outcome_shape"
+        at C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\pg\lib\client.js:694:17
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:68:44
+        at async ownedTransaction (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/services/workspace/src/session/database.ts:24:16)
+        at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:67:27)
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:65:2)
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+      length: 529,
+      severity: 'ERROR',
+      code: '23514',
+      detail: 'Failing row contains (edb3dd0c-52f6-44b7-8597-79444ee1609b, editTask, a7fd35b2-402e-4f08-9929-42f3947e338e, ee2ae737f4db609e98f2fa09bcd7102c256ef5771a6033bf18bd7157b82d1e42, committed, 2eb0988a-e6f0-41bc-af3e-5458ae152817, infinity, null, null, 200, {"type": "task", "state": "todo", "title": "Original text", "blo...).',
+      hint: undefined,
+      position: undefined,
+      internalPosition: undefined,
+      internalQuery: undefined,
+      where: undefined,
+      schema: 'workspace',
+      table: 'idempotency_record',
+      column: undefined,
+      dataType: undefined,
+      constraint: 'project_outcome_shape',
+      file: 'execMain.c',
+      line: '2074',
+      routine: 'ExecConstraints'
+    }
+  }
+
+test at tests\workspace\task-mutation-storage.test.mjs:74:10
+✖ total SQL validators reject NULL, every missing/extra/wrong field, unsafe values and malformed placement/time (4.197ms)
+  error: function workspace.valid_task_mutation_snapshot(unknown, unknown) does not exist
+      at C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\pg-pool\index.js:45:11
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:81:18)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:74:2)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    length: 248,
+    severity: 'ERROR',
+    code: '42883',
+    detail: undefined,
+    hint: 'No function matches the given name and argument types. You might need to add explicit type casts.',
+    position: '8',
+    internalPosition: undefined,
+    internalQuery: undefined,
+    where: undefined,
+    schema: undefined,
+    table: undefined,
+    column: undefined,
+    dataType: undefined,
+    constraint: undefined,
+    file: 'parse_func.c',
+    line: '629',
+    routine: 'ParseFuncOrColumn'
+  }
+
+test at tests\workspace\task-mutation-storage.test.mjs:86:10
+✖ all valid Task locations/states and Blocker UTC precisions/nullable outcome retain exact wire snapshots (6.8001ms)
+  Error: Session persistence unavailable
+      at ownedTransaction (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/services/workspace/src/session/database.ts:28:9)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:88:29)
+      ... 3 lines matching cause stack trace ...
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    commitOutcome: 'not-committed',
+    [cause]: error: new row for relation "idempotency_record" violates check constraint "project_outcome_shape"
+        at C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\pg\lib\client.js:694:17
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async saveMutationOutcome (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/services/workspace/src/tasks/mutation-outcomes.ts:43:2)
+        at async ownedTransaction (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/services/workspace/src/session/database.ts:24:16)
+        at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:88:29)
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:86:2)
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+      length: 529,
+      severity: 'ERROR',
+      code: '23514',
+      detail: 'Failing row contains (edb3dd0c-52f6-44b7-8597-79444ee1609b, editTask, 3406b528-4f37-4743-b346-fd77e1b722ba, ee2ae737f4db609e98f2fa09bcd7102c256ef5771a6033bf18bd7157b82d1e42, committed, 2eb0988a-e6f0-41bc-af3e-5458ae152817, infinity, null, null, 200, {"type": "task", "state": "todo", "title": "Original text", "blo...).',
+      hint: undefined,
+      position: undefined,
+      internalPosition: undefined,
+      internalQuery: undefined,
+      where: undefined,
+      schema: 'workspace',
+      table: 'idempotency_record',
+      column: undefined,
+      dataType: undefined,
+      constraint: 'project_outcome_shape',
+      file: 'execMain.c',
+      line: '2074',
+      routine: 'ExecConstraints'
+    }
+  }
+
+test at tests\workspace\task-mutation-storage.test.mjs:91:10
+✖ new-operation status/hash/key/state/expiry/ref constraints and OLD/NEW immutability are enforced (109.4909ms)
+  Error: Session persistence unavailable
+      at ownedTransaction (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/services/workspace/src/session/database.ts:28:9)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:93:3)
+      ... 3 lines matching cause stack trace ...
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    commitOutcome: 'not-committed',
+    [cause]: error: new row for relation "idempotency_record" violates check constraint "project_outcome_shape"
+        at C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\pg\lib\client.js:694:17
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async saveMutationOutcome (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/services/workspace/src/tasks/mutation-outcomes.ts:43:2)
+        at async ownedTransaction (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/services/workspace/src/session/database.ts:24:16)
+        at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:93:3)
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:91:2)
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+      length: 502,
+      severity: 'ERROR',
+      code: '23514',
+      detail: 'Failing row contains (edb3dd0c-52f6-44b7-8597-79444ee1609b, editTask, immutable, ee2ae737f4db609e98f2fa09bcd7102c256ef5771a6033bf18bd7157b82d1e42, committed, 2eb0988a-e6f0-41bc-af3e-5458ae152817, infinity, null, null, 200, {"type": "task", "state": "todo", "title": "Original text", "blo...).',
+      hint: undefined,
+      position: undefined,
+      internalPosition: undefined,
+      internalQuery: undefined,
+      where: undefined,
+      schema: 'workspace',
+      table: 'idempotency_record',
+      column: undefined,
+      dataType: undefined,
+      constraint: 'project_outcome_shape',
+      file: 'execMain.c',
+      line: '2074',
+      routine: 'ExecConstraints'
+    }
+  }
+
+test at tests\workspace\task-mutation-storage.test.mjs:100:10
+✖ actor/operation/key/hash/Task/project/event binding rejects cross-scope replay without current-state substitution (4.882ms)
+  Error: Session persistence unavailable
+      at ownedTransaction (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/services/workspace/src/session/database.ts:28:9)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:101:77)
+      ... 3 lines matching cause stack trace ...
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    commitOutcome: 'not-committed',
+    [cause]: error: new row for relation "idempotency_record" violates check constraint "project_outcome_shape"
+        at C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\pg\lib\client.js:694:17
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async saveMutationOutcome (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/services/workspace/src/tasks/mutation-outcomes.ts:43:2)
+        at async ownedTransaction (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/services/workspace/src/session/database.ts:24:16)
+        at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:101:77)
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:100:2)
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+      length: 501,
+      severity: 'ERROR',
+      code: '23514',
+      detail: 'Failing row contains (edb3dd0c-52f6-44b7-8597-79444ee1609b, editTask, same-key, ee2ae737f4db609e98f2fa09bcd7102c256ef5771a6033bf18bd7157b82d1e42, committed, 2eb0988a-e6f0-41bc-af3e-5458ae152817, infinity, null, null, 200, {"type": "task", "state": "todo", "title": "Original text", "blo...).',
+      hint: undefined,
+      position: undefined,
+      internalPosition: undefined,
+      internalQuery: undefined,
+      where: undefined,
+      schema: 'workspace',
+      table: 'idempotency_record',
+      column: undefined,
+      dataType: undefined,
+      constraint: 'project_outcome_shape',
+      file: 'execMain.c',
+      line: '2074',
+      routine: 'ExecConstraints'
+    }
+  }
+
+test at tests\workspace\task-mutation-storage.test.mjs:115:10
+✖ private action scope/uniqueness, runtime issue/revival/rewrite denial and real member removal/rejoin (5.4223ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:117:4)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:115:2)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\workspace\task-mutation-storage.test.mjs:138:10
+✖ physical blocker history rejects unsafe sequence and nonfinite time before any wire serialization (6.1221ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:139:91)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:138:2)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\workspace\task-mutation-storage.test.mjs:142:10
+✖ Task/event/audit/result writes roll back together on audit or outcome persistence failure (20.3205ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  '1' !== '0'
+  
+      at TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:152:11)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:142:2)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '1',
+    expected: '0',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\workspace\task-mutation-storage.test.mjs:157:10
+✖ lost real COMMIT acknowledgement is unknown, with one durable original and no current-state replacement (8.3968ms)
+  AssertionError [ERR_ASSERTION]: The validation function is expected to return "true". Received false
+  
+  Caught error:
+  
+  Error: Session persistence unavailable
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:161:3)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:157:2)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Session persistence unavailable
+        at ownedTransaction (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/services/workspace/src/session/database.ts:28:9)
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async waitForActual (node:assert:646:5)
+        ... 2 lines matching cause stack trace ...
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:157:2)
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+      [cause]: error: new row for relation "idempotency_record" violates check constraint "project_outcome_shape"
+          at C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\pg\lib\client.js:694:17
+          at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+          at async Proxy.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:160:171)
+          at async saveMutationOutcome (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/services/workspace/src/tasks/mutation-outcomes.ts:43:2)
+          at async file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:161:208
+          at async ownedTransaction (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/services/workspace/src/session/database.ts:24:16)
+          at async waitForActual (node:assert:646:5)
+          at async strict.rejects (node:assert:769:25)
+          at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/task-mutation-storage.test.mjs:161:3)
+          at async Test.run (node:internal/test_runner/test:1409:7)
+    },
+    operator: 'rejects',
+    diff: 'simple'
+  }

@@ -1,7 +1,7 @@
 # Feature specifications and execution rules
 
 **Artifact ID:** SPEC-INDEX  
-**Version/date:** 0.8.3 Draft · 4 November 2026\
+**Version/date:** 0.8.4 Draft · 5 November 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
 **Inputs:** PRD-01 v0.10.2; [PLAN-01](../docs/planning/five-month-plan.md); [architecture](../docs/architecture.md); [contracts](../contracts/README.md).\
 **Author:** development agent acting sequentially; owner reviews business choices.
@@ -27,3 +27,5 @@ Read AGENTS and full rules, then one spec/contract. All 13 specs remain Draft; S
 First implement SP-01 → SP-02 → SP-03 → SP-04 with SP-11 capture in each operation. SP-05–SP-08 follow, then SP-09/SP-10. SP-13 human inspection is later and does not block capture. SP-12 evaluation protects Month 5 from new feature work. Checklist: Pass for index/trace; Gap for application command wiring.
 
 Index `service` identifies the owners of the listed HTTP operations, not every orchestration consumer. `both` (legacy alias `knowledge + workspace`) denotes both API owners. SP-06 spans both; SP-10 operations belong to Workspace, while Knowledge consumes observations through SP-09. The harness validates operation ownership.
+
+SP-05 current navigation: [FEAT-SP05-01](../docs/implementation/features/sp-05-sprint-lifecycle/plan.md) owns bounded Sprint lifecycle/read/reorder implementation and actual coordinated SP04-P08 verification. FR66/67 remain excluded; independent/release gates remain separate.

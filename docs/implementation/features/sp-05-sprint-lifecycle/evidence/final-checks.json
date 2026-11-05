@@ -1,0 +1,67 @@
+{
+  "node": "v24.22.1",
+  "results": [
+    {
+      "name": "context-lint",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "context:lint"
+      ],
+      "exit_code": 0,
+      "error": null,
+      "seconds": 0.642,
+      "log": "context-lint-final.txt"
+    },
+    {
+      "name": "context-check",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/verify-context.mjs"
+      ],
+      "exit_code": 0,
+      "error": null,
+      "seconds": 0.157,
+      "log": "context-check-final.txt"
+    },
+    {
+      "name": "docs-lint",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/docs/verify-docs.mjs"
+      ],
+      "exit_code": 0,
+      "error": null,
+      "seconds": 5.076,
+      "log": "docs-lint-final.txt"
+    },
+    {
+      "name": "metadata",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/docs/docs-metadata.mjs",
+        "--check"
+      ],
+      "exit_code": 0,
+      "error": null,
+      "seconds": 0.1,
+      "log": "metadata-final.txt"
+    },
+    {
+      "name": "structural-tests",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "--test",
+        "tests/context/context.test.mjs",
+        "tests/contracts/contract-schemas.test.mjs",
+        "tests/contracts/handoff-bytes.test.mjs",
+        "tests/docs/docs.test.mjs"
+      ],
+      "exit_code": 0,
+      "error": null,
+      "seconds": 3.181,
+      "log": "structural-tests-final.txt"
+    }
+  ]
+}

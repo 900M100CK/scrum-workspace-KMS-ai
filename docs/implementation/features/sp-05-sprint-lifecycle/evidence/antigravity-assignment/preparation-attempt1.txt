@@ -1,0 +1,1 @@
+Assignment preparation check, Node24.22.1, exit1: AssertionError Broken brief link: ../evidence/antigravity-assignment/reviewer-inputs.json. The check ran before its planned manifest was written; dependency order corrected. No runtime source changed or tests executed in that attempt.

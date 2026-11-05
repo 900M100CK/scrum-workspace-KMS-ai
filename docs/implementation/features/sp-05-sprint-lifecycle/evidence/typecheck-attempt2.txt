@@ -1,0 +1,16 @@
+
+> scrum-workspace-kms-context@0.1.0 typecheck
+> npm run typecheck --workspaces --if-present
+
+
+> @sacw/web@0.1.0 typecheck
+> tsc --noEmit
+
+
+> @sacw/workspace@0.1.0 typecheck
+> tsc --noEmit
+
+
+> @sacw/knowledge@0.1.0 typecheck
+> tsc --noEmit
+

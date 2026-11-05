@@ -1,0 +1,4 @@
+Linked input version drift in docs/sdlc/references/document-review-register.md: ../artifact-register.md
+
+'0.123' !== '0.124'
+

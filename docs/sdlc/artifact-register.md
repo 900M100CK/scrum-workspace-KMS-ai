@@ -39,7 +39,7 @@ Prior OWNER-Q-01 verification: combined Node 24.21.0 run `node --test tests/docs
 ## Current register and handoffs
 
 **Artifact ID:** REG-00
-**Version/date:** 0.123 Draft · 4 November 2026
+**Version/date:** 0.127 Draft · 5 November 2026
 **Status:** Draft; confirmed policy corrections in progress, full coverage and remaining decisions explicit.
 **Source versions:** Proposed ADR-0024/0025 for SP-01.1; [BRD stable entry](../BRD.md) → [English BRD v1.0](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md) and two Proposed addenda, [AGENTS.md v1.13](../../AGENTS.md), [workflow](../../agents/WORKFLOW.md), PRD-01 v0.10.2, UC-02 v0.8.3, SAD-03 v0.19.1 and ADR-0007–ADR-0017. Prior review inputs remain historical. Storage has measured test evidence; bounded session runtime evidence exists; interviews, pilot and full application acceptance remain absent.; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; Proposed ADR-0026; Proposed ADR-0029 v0.1
 
@@ -76,10 +76,10 @@ Prior OWNER-Q-01 verification: combined Node 24.21.0 run `node --test tests/docs
 | 2 / UC-02 | docs/sdlc/use-cases.md | Use-case author | 0.8 Draft | PRD-01 v0.10.2; owner-confirmed ADRs | BR-01–BR-14; SC-01–SC-08 | Delegation/retention and runtime exception execution |
 | 3 / SAD-03 | docs/architecture.md; docs/sdlc/SAD.md entry | Architect | SAD-03 v0.19.1; SAD-03-ENTRY v0.18 Draft | Current PRD/use cases; Proposed ADR-0018–ADR-0023 | BR-01–BR-14; SC-01–SC-08 | Isolated handoff storage supplied; active process/guard/adapter evidence open |
 | Architecture reference / TECH-STACK-01 | `docs/tech-stack.md` | Architect | v1.6; owner-selected framework foundation, prototype and unimplemented protected mechanics separated | SAD-03 v0.19.1; ADR-0004 v0.2; official-source check 26 October; existing slice/algorithm mapping | BR-07, BR-08, BR-13; SC-02, SC-08 | Framework foundation selected; session/guard/provider/DB-adapter and pilot evidence remain open |
-| 4 / DATA-04 | docs/sdlc/data-design.md; contracts/data-model.json | Data designer | DATA-04 v0.16.3 Draft; logical model v0.10 | SAD-03 v0.19.1; confirmed policy and corrective Proposed ADRs | BR-01–BR-14; SC-01–SC-08 | Applied storage foundation distinct from unimplemented logical additions |
-| 5 / API-05 | docs/sdlc/api-design.md; contracts/ | API designer | API-05 v0.23.2; Workspace v0.2.11 / Knowledge v0.2.9; 66 operations | DATA-04 v0.16.3; SAD-03 v0.19.1; Proposed ADR-0018–ADR-0023 | BR-01–BR-14; SC-01–SC-08 | Handler/consumer-provider/access tests and unimplemented opaque token/receipt handlers |
+| 4 / DATA-04 | docs/sdlc/data-design.md; contracts/data-model.json | Data designer | DATA-04 v0.16.4 Draft; logical model v0.10 | SAD-03 v0.19.1; confirmed policy and corrective Proposed ADRs | BR-01–BR-14; SC-01–SC-08 | Applied storage foundation distinct from unimplemented logical additions |
+| 5 / API-05 | docs/sdlc/api-design.md; contracts/ | API designer | API-05 v0.23.2; Workspace v0.2.11 / Knowledge v0.2.9; 66 operations | DATA-04 v0.16.4; SAD-03 v0.19.1; Proposed ADR-0018–ADR-0023 | BR-01–BR-14; SC-01–SC-08 | Handler/consumer-provider/access tests and unimplemented opaque token/receipt handlers |
 | 6 / UX-06 | docs/sdlc/ui-ux-spec.md; docs/ux/ | UX designer | UX-06 v0.13.3; Board v0.10, AI v0.9, Docs v0.9, sitemap v0.10, matrix v0.11, personas v0.5 | Current PRD/use cases/SAD and contract drafts | BR-01–BR-14; SC-01–SC-08 | Token/receipt handlers, visual tokens/viewports, usability/accessibility and application evidence |
-| 7 / UML-07 | `docs/sdlc/diagrams/README.md`; five type folders; `docs/sdlc/diagrams/review-2026-10-16.md`; historical `review.md` | Diagram author | UML-07 v0.25.8; DGM-REVIEW-02 v0.1; current versions below | Current UC/UX/SAD sources and owner-confirmed direction | BR-01–BR-14; SC-01–SC-08 as applicable | RV-09 rendered routing/readability and full semantic review |
+| 7 / UML-07 | `docs/sdlc/diagrams/README.md`; five type folders; `docs/sdlc/diagrams/review-2026-10-16.md`; historical `review.md` | Diagram author | UML-07 v0.25.9; DGM-REVIEW-02 v0.1; current versions below | Current UC/UX/SAD sources and owner-confirmed direction | BR-01–BR-14; SC-01–SC-08 as applicable | RV-09 rendered routing/readability and full semantic review |
 | 8 / TEST-08 | docs/sdlc/test-plan.md; test-coverage.md; requirement-verification.md; eval/ | Test author | TEST-08 v0.24.2; TEST-COVERAGE-01 v0.11.1; VERIFY-01 v0.12.1; EVAL-CASES-ENTRY v0.8.2 | Current PRD/use cases/specs/corrective contracts | BR-01–BR-14; SC-01–SC-08 planned | Bounded P09/P10 session evidence exists; full application/permission/guard/provider evaluation acceptance remains open |
 | 9 / SPEC-REVIEW-01 (Stage alias REVIEW-09) | docs/sdlc/spec-review.md | Sequential reviewer | 0.30 Draft; original v0.4 history preserved | Snapshot inputs retained in source; no execution or review rerun | BR-01–BR-15; SC-01–SC-08 | Bounded handoff, owner-policy gaps and all runtime acceptance |
 | Budget checkpoint / PROGRESS-01 | docs/sdlc/reports/progress-report-2026-10-18.md | Coordinator / author | 0.2 Draft | Correction queue and executed evidence; account 5% observation | BR-01–BR-14; SC-01–SC-08 | Budget-stop reporting complete; application, owner and rendered UI gates remain open |
@@ -133,8 +133,8 @@ The BRD leaves architecture to design while AGENTS.md directs minimal microservi
 <!-- BEGIN GENERATED:artifact-versions -->
 | Artifact ID | Version | Canonical source |
 | --- | --- | --- |
-| UML-07 | v0.25.8 | [Source](diagrams/README.md) |
-| REG-00 | v0.123 | [Source](artifact-register.md) |
+| UML-07 | v0.25.9 | [Source](diagrams/README.md) |
+| REG-00 | v0.127 | [Source](artifact-register.md) |
 | SAD-03 | v0.19.1 | [Source](../architecture.md) |
 | UX-PERM-MATRIX-02 | v0.11.3 | [Source](../ux/permission-matrix.md) |
 | UX-PERSONAS-01 | v0.5.3 | [Source](../ux/personas.md) |
@@ -155,7 +155,7 @@ The BRD leaves architecture to design while AGENTS.md directs minimal microservi
 | DGM-UC-01 | v0.5 | [Source](diagrams/use-case/use-case-diagram.mmd) |
 | DGM-REVIEW-02 | v0.1 | [Source](diagrams/review-2026-10-16.md) |
 | DGM-REVIEW-03 | v0.1 | [Source](diagrams/review-2026-10-17.md) |
-| DATA-04 | v0.16.3 | [Source](data-design.md) |
+| DATA-04 | v0.16.4 | [Source](data-design.md) |
 | DGM-DESIGN-01 | v0.1 | [Source](diagrams/design-foundation-2026-10-17.md) |
 | DGM-C4-01 | v0.1 | [Source](diagrams/c4/system-context.mmd) |
 | DGM-C4-02 | v0.1 | [Source](diagrams/c4/containers.mmd) |
@@ -745,3 +745,29 @@ P01 registers HF42-P01-RESULT v0.1: verified local candidate, actual PostgreSQL1
 ## P01 actual publication receipt — 4 November 2026
 
 [HF42-P01-RESULT v0.2](../implementation/features/hotfix-backend-layering/p01-report.md) / HOTFIX-BACKEND-42-01 v0.11 / P01v0.4 / entry0.8 record actual dde2933 hotfix push, exact-commit CI success and verified main fast-forward/publication. Earlier pending receipts remain historical observations. Final audit receipt/cleanup follow normal checked publication; parent SP05/P08/D07/independent/release gates remain open.
+
+[FEAT-SP05-01 v0.1](../implementation/features/sp-05-sprint-lifecycle/plan.md) / [entry0.1](../implementation/features/sp-05-sprint-lifecycle/README.md) / [SP05-WBS-01v0.1](../implementation/features/sp-05-sprint-lifecycle/breakdown.md) and SP05-P00–P15v0.1 register owner-approved Must implementation for SP-05.1–05.4 / PLAN-01 Month2/M-03, FR06/07/08/41/42 and co-delivered31. Separate five actions; FR66/67 excluded; SP04-P08 actual integration mandatory. Status belongs only to plan; no publication or independent acceptance.
+
+
+## SP-05 bounded local delivery — 5 November 2026
+
+[FEAT-SP05-01 v0.2](../implementation/features/sp-05-sprint-lifecycle/plan.md) / entry v0.2 owns P00–P15 execution; [SP05-RESULT-01 v0.1](../implementation/features/sp-05-sprint-lifecycle/handoff.md) maps Must AC/UC/TC to actual evidence; [SP05-PR-DRAFT-01 v0.1](../implementation/features/sp-05-sprint-lifecycle/pull-request.md) prepares local review text. WORKSPACE-SPRINTS-01 v0.1, Proposed ADR0030 v0.1, SP-05 v0.7.4 and SP-04 v0.7.7, FEAT-SP04-01 v0.15 / SP04-P08 v0.3 record bounded actual-producer integration. Test-plan/coverage/verification current entries point to the owning result. These local observations supersede earlier pending SP05/P08 snapshots only; M03 other gates, CI, deployment and independent/release acceptance remain open. No commit/push/PR or valuable-data migration.
+
+
+## SP05-AG01 written reviewer assignment — 5 November 2026
+
+[FEAT-SP05-01 v0.3](../implementation/features/sp-05-sprint-lifecycle/plan.md) / entry v0.3 / SP05-WBS-01 v0.2 registers [SP05-AG01 v0.1](../implementation/features/sp-05-sprint-lifecycle/tasks/AG01-antigravity-tracking-testing.md), the owner-requested Antigravity P00–P15 tracking, source review and actual regression/browser verification brief for SP-05.1–05.4 / PLAN-01 Month2 / M-03 and coordinated SP04-P08. Reviewer inputs are frozen separately under evidence/antigravity-assignment/reviewer-inputs.json; old author evidence is immutable. Planned output SP05-AG01-RESULT v0.1 belongs to a new timestamped reviewer run. Preparation/manual delivery only: no dispatch, reviewer execution/result, source fix, commit or independent/release acceptance. The parent owns mutable assignment status.
+
+## Historical SP05-AG01 registration metadata — 5 November 2026
+
+DOC-REVIEW-REG-01 v0.64 carries only the current REG-00 v0.125 alias and a bounded registration note; historical review results unchanged. Planned SP05-AG01-TRACKING v0.1 is a reviewer assessment snapshot, not another mutable task-status register.
+
+
+## SP05-PUB01 Draft PR authority — 5 November 2026
+
+[FEAT-SP05-01 v0.4](../implementation/features/sp-05-sprint-lifecycle/plan.md) / entry v0.4 registers [SP05-PUB01 v0.1](../implementation/features/sp-05-sprint-lifecycle/tasks/PUB01-draft-publication.md), owner-authorised agent commit, normal push and one Draft PR codex/sp-05 to main so Antigravity can later review. SP05-AG01 v0.2 supports the actual published head instead of requiring the historical base HEAD; original source/evidence snapshots remain unchanged. Planned SP05-PUBLICATION-01 v0.1 records actual publication only after execution. No merge, main update, reviewer result, valuable-data migration or independent/release acceptance. PLAN-01 Month2/M-03 and SP04-P08 trace unchanged.
+
+
+## SP05-PUB01 actual Draft PR receipt — 5 November 2026
+
+[FEAT-SP05-01 v0.5](../implementation/features/sp-05-sprint-lifecycle/plan.md) / entry v0.5 / [SP05-PUBLICATION-01 v0.1](../implementation/features/sp-05-sprint-lifecycle/publication.md) record normal feature commit0bb0f57 push and actual open [Draft PR #1](https://github.com/900M100CK/scrum-workspace-KMS-ai/pull/1), codex/sp-05 to main. SP05-PR-DRAFT-01 v0.3 links the actual PR. Runtime Git blob identities and fresh011 format-only storage proof are retained with old failures. First context CI was pending; final head/check state is verified after the documentation receipt push. No merge, reviewer execution or independent/release acceptance. Parent status remains canonical.

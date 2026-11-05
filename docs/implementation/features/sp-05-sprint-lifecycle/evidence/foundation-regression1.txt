@@ -1,0 +1,66 @@
+
+> scrum-workspace-kms-context@0.1.0 test:foundation
+> npm run test --workspace @sacw/web && npm run test --workspace @sacw/workspace && npm run test --workspace @sacw/knowledge
+
+
+> @sacw/web@0.1.0 test
+> node --test test/*.test.ts
+
+✔ the actual Vite-transformed React entry renders a locked checking state before server confirmation (193.9622ms)
+The request id "C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\.tmp\local-https\localhost.key" is outside of Vite serving allow list.
+
+- C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai
+
+Refer to docs https://vite.dev/config/server-options.html#server-fs-allow for configurations and more details.
+
+✔ opt-in trusted local HTTPS serves UI and proxies the actual Workspace without exposing keys (267.5004ms)
+✔ development TLS is opt-in and incomplete or missing key material fails explicitly (1.5107ms)
+✔ session client uses only fixed same-origin cookie transport and exact credential fields (25.5576ms)
+✔ 401 is generic, unavailable bodies never reach UI, and malformed success fails closed (1.0365ms)
+✔ late GET and response-body completion cannot restore identity after logout (3.0335ms)
+✔ uncertain mutation hides current state without retrying or claiming logout success (0.5943ms)
+✔ expiry or canceled observations cannot restore protected state (0.794ms)
+✔ a stalled request is aborted at the fixed timeout and leaves unavailable state (10008.3377ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10160.792
+
+> @sacw/workspace@0.1.0 test
+> node --test test/*.test.ts
+
+✔ workspace liveness is separate from protected functionality (107.6409ms)
+✔ invalid port never silently changes the listening address (0.5988ms)
+✔ real localhost HTTP serves liveness and conceals unknown routes (73.3932ms)
+✔ strong scrypt has explicit memory, unique salts and real correct/wrong/dummy work (1257.7967ms)
+✔ KDF admits exactly two jobs without an unbounded queue and later recovers (460.2743ms)
+ℹ {"kind":"local synthetic resource observation; not deployment calibration","twoJobsAndLaterMilliseconds":459.49689999999987,"fsReadDuringJobsMilliseconds":1.4445000000000618,"uvThreadpool":"Node default (4)","maxResidentKiB":324684}
+✔ session starting values are configurable without silently accepting invalid duration units (1.3685ms)
+✔ runtime configuration cannot silently use an operator or another database (2.3669ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1849.4633
+
+> @sacw/knowledge@0.1.0 test
+> node --test test/*.test.ts
+
+✔ knowledge liveness is separate from protected functionality (98.6802ms)
+✔ invalid port never silently changes the listening address (0.4209ms)
+✔ real localhost HTTP serves liveness and conceals unknown routes (35.0156ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 323.9809

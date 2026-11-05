@@ -1,0 +1,453 @@
+{
+  "node": "v24.22.1",
+  "base": "1cb54f3cfdfd650caef35dce6d5fd0fd1e32a1d6",
+  "branch": "codex/sp-05",
+  "uncommitted": true,
+  "sources": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "bbe880369cfc1b7b58b9fb4ce5ca54cd014104700922402d5fd783760420bd56"
+    },
+    {
+      "path": "apps/web/src/App.tsx",
+      "sha256": "6b103fabe56ad861c690e40f23fe08101a4cd7f571613990b441bcb84a494508"
+    },
+    {
+      "path": "apps/web/src/ProjectWorkspace.tsx",
+      "sha256": "ded9afdaa912844d08a74a275624c2175ad4e6ef6f797457ca64a5b81ac546e7"
+    },
+    {
+      "path": "apps/web/src/SprintWorkspace.tsx",
+      "sha256": "5543290b5455cf2b3bea3958eb3b0681e3daf537c55ba842ec3f15ce3f613ce1"
+    },
+    {
+      "path": "apps/web/src/sprints.ts",
+      "sha256": "63aaf315a890c58dded30f34e002b22197352569d1e4a03b3c56fd5c53da0f97"
+    },
+    {
+      "path": "apps/web/src/styles.css",
+      "sha256": "701e073adf8f49b7c17fd3523256d1a317342ae15121b78f08e44bfc9c781659"
+    },
+    {
+      "path": "contracts/README.md",
+      "sha256": "c830eba20758a8bc5682ad30f3b42182c6a001b03d03ff69a3d685917a9d13a9"
+    },
+    {
+      "path": "contracts/data-model.json",
+      "sha256": "4c4fc17bd185fa477cb91cf6cf45fdad8e96613ee9b3884d14478c7737661749"
+    },
+    {
+      "path": "contracts/openapi/workspace.openapi.json",
+      "sha256": "04b13b28cf514f4c2f89ab07c98fd6a8cefabac269b6ac342961c27cc16b2b50"
+    },
+    {
+      "path": "docs/adr/0030-sprint-lifecycle-mechanics.md",
+      "sha256": "ce9147277a005b1c9440e497caf84219ce23c7232d6629f746c853d61729dd01"
+    },
+    {
+      "path": "docs/adr/README.md",
+      "sha256": "c5b1edf6228033579f0ce7f8231f1f37b439f87b729471b70aaff898d90ddef6"
+    },
+    {
+      "path": "docs/implementation/features/README.md",
+      "sha256": "fd4d8fe2b62e44c7312eb412d3797c66f67aa691826b2d2320f3c6cc6d8d11d7"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/plan.md",
+      "sha256": "93f4c3ac2846603cb80c1cf7c884bf9e51f8fd3f89435dae88824032d9ecf0f6"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/tasks/P08-sp05-integration.md",
+      "sha256": "df3ec278ed14f60aaddf5261273fc32e91fe613491d3b4143573080cd6624bcc"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/.gitattributes",
+      "sha256": "d9599b8574fa2fb38be7d67483261759dab7f5332a248fbf5287e197da073788"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/README.md",
+      "sha256": "d87b277e0270a5bc5829738ce7fecac070b1ab11f0cce91822b820482834a89c"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/breakdown.md",
+      "sha256": "21a0c5a3da96004eaaf1452314ccc334d09a9b7563f9a85495d9d80f6386043e"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/handoff.md",
+      "sha256": "f24dff5f80fa896c503472c86dc4f77613338e11d2c02312056ac2033d445748"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/plan.md",
+      "sha256": "af63c95d131144b6b8476bd6108032241807d6fd63cdca11a2b2218e9f233cee"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/pull-request.md",
+      "sha256": "7de3e285c6ee78e1427c9b98207670d770437fac5256b8737c4aba6254d322b3"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/P00-source-branch.md",
+      "sha256": "f7f7596a9e17f2f60293c4db1f2c641f8d1f58ac043c98e1b0063eb237dcbd5c"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/P01-registration.md",
+      "sha256": "0fe3138842803a1374136b309805437fa71f7ccf18c8fbe152e217ad92153c34"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/P02-source-contract.md",
+      "sha256": "99cae12feba286728295ca5c2b44c6b2d896eb58049c610eb50174a759957ed6"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/P03-storage-receipts.md",
+      "sha256": "10cb3f9267e6f34b61808290c8e7fe1500b8344023f47dcace90cdbe53a87d1a"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/P04-authority-discovery.md",
+      "sha256": "5f187018027dfb5da81674f18fe1886f386ddd8909eaef7e626247bfb61a0b6a"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/P05-create.md",
+      "sha256": "2734b956351cd764c28ec57fcdcaff56c844bd945affb4f2c17602ed5306f172"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/P06-reads.md",
+      "sha256": "1e48fd69e70d44ae65570071fb26d0d39668793ba105a375cbc9ca7626f2eb11"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/P07-allocate.md",
+      "sha256": "1afaf9eec7f3da1f15fb79c349f94958db8d97dacd99ed9bc8973019e9c54c25"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/P08-start.md",
+      "sha256": "dc9e30751808deee6d280dcbe1717648488fa9a4c0fd3da027f4b45c290e6fde"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/P09-complete.md",
+      "sha256": "2d8b39f4a60e804000970abc53c17b84fb0235ec59f8ce5384ed05530877394b"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/P10-reorder.md",
+      "sha256": "b42c9cf9adbaca04ffecb40f1d281f46f235b571bb113cf4f65b76883bb9d337"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/P11-sprint-ui.md",
+      "sha256": "436c6d5bb2bb72b3a1862fd64bb79508f552df64be1a2ff271ee52efa48a36dd"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/P12-allocation-ui.md",
+      "sha256": "25074e6c1abc5b7f643930d63b2c945eacab5b43b64c37d0ef1e7bb36c9b1178"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/P13-reorder-ui.md",
+      "sha256": "311f7a56d59e77d182d47bb4de1d302afa476335c6ce9f89d812ce6a37912637"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/P14-integration.md",
+      "sha256": "2c74db51ae83395a63512f05a05f7894c652963f952e1bec3fde97218119483a"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/P15-handoff.md",
+      "sha256": "c250b4deb23120def54edd6774432c6dc27c09294a9b27ff27c195973933478f"
+    },
+    {
+      "path": "docs/implementation/register.md",
+      "sha256": "ed15bb5627d046a52cb4556a0deffd52258ea913a8bc1e2e95f03ec56483c7c3"
+    },
+    {
+      "path": "docs/implementation/roadmap.md",
+      "sha256": "00e1ef719f4467ceff0c27e3e4d5eb9cc2bf6bdfaf6663149b75fb7af16fea0a"
+    },
+    {
+      "path": "docs/implementation/tasks/05-sprint-lifecycle.md",
+      "sha256": "38191bc66fb97cb834f514ac1d87f07c744165d331f65f19a209260b0a691261"
+    },
+    {
+      "path": "docs/sdlc/api-design.md",
+      "sha256": "086cc0dadb9d7b2e68d203ab2b9820b0274e4672f08ef8784f878a0683f2a783"
+    },
+    {
+      "path": "docs/sdlc/artifact-register.md",
+      "sha256": "926005ade2742de25ca912960054779d487c15f47413bc8cf3f2ecf2e08dfb00"
+    },
+    {
+      "path": "docs/sdlc/data-design.md",
+      "sha256": "daab093c38bb86f43e45ee8afa4611ffcb451246754f1907ab944173761e4e9e"
+    },
+    {
+      "path": "docs/sdlc/diagrams/README.md",
+      "sha256": "e9123eb3518ace65f5c271439996834e1a824e1319956bc1a2dab804074cedc2"
+    },
+    {
+      "path": "docs/sdlc/diagrams/architecture/README.md",
+      "sha256": "bb554c66e9aec4a15adf07a3e05729b94194e1b5e68344c28d82e3d3ca38a88a"
+    },
+    {
+      "path": "docs/sdlc/diagrams/c4/README.md",
+      "sha256": "eb5421b239a5ca07cd2bd968972dc5c58aec3397f6c483efc3fb8f975f371207"
+    },
+    {
+      "path": "docs/sdlc/diagrams/c4/containers.drawio",
+      "sha256": "c8e5991bcdc6ce35e0e01f5049222ca22979283538b59066ad9a3683a9613a47"
+    },
+    {
+      "path": "docs/sdlc/diagrams/c4/containers.mmd",
+      "sha256": "7f2158efe7d0f90124b5521706458e9e83105a277135798f62887a5bb583e023"
+    },
+    {
+      "path": "docs/sdlc/diagrams/c4/system-context.drawio",
+      "sha256": "b6e9b96377690a34e75b056869cc5b25dc02afab7f819971e02752c117641e99"
+    },
+    {
+      "path": "docs/sdlc/diagrams/c4/system-context.mmd",
+      "sha256": "ffcfbe4a245dbeee7ee3354c2482221c8b1b8ab05595eb9f9008458e24e98d4b"
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/README.md",
+      "sha256": "0993f39efd4dc8e5a7031358a07c2a12f2104d7cec987623f5fd7c65d5cfc88e"
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/handoff-logical-model.drawio",
+      "sha256": "94ae812fb52e6876427e53802227f69580ef0d98e3c9f22385d93148ece13841"
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/handoff-logical-model.mmd",
+      "sha256": "99d91c4ca8c2c4b9b7a7cb2aba57c733403b00f746db66edb17c0e62e538f83d"
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/knowledge-erd.drawio",
+      "sha256": "f47e812d7c2bf0d7024ba1532e1ba5cd954a877881e2802bd34c9327093f2437"
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/knowledge-erd.mmd",
+      "sha256": "efe1472ffff04fc9aa25b1b9cb097e73c89e225bec806649532148b6022e3e7d"
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/workspace-erd.drawio",
+      "sha256": "eb39db0979ab196289d45a888bc1c2fdb750607a58c96fb380eea0626f8a257e"
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/workspace-erd.mmd",
+      "sha256": "d750bb0057eeb3a0f22c86c5bb298176805928366afbfb8bc778b61224a0ef24"
+    },
+    {
+      "path": "docs/sdlc/diagrams/deployment/README.md",
+      "sha256": "51489f7024ecc981008c0852b28088c1c1e969d4aeb632cf865895d2b7941665"
+    },
+    {
+      "path": "docs/sdlc/diagrams/deployment/local-development.drawio",
+      "sha256": "4c3f66aba71159cce87476734cdd2b6aa0aa04413a1cb82b21012c0460a5dba8"
+    },
+    {
+      "path": "docs/sdlc/diagrams/deployment/local-development.mmd",
+      "sha256": "45d3c496d45b2b2b44643e86a4f8c5e9b1ce26e2d93f2f836d6ee026eb4a477d"
+    },
+    {
+      "path": "docs/sdlc/diagrams/development/README.md",
+      "sha256": "ec2165cc522851dd83714e1a6d05f7d2c23a6f7c697c402195b2062c35700c9f"
+    },
+    {
+      "path": "docs/sdlc/diagrams/development/package-ownership.drawio",
+      "sha256": "87457c044ca56d1f1c3171484c20f6ce4dd7db938e3604fb43901f182e73de68"
+    },
+    {
+      "path": "docs/sdlc/diagrams/development/package-ownership.mmd",
+      "sha256": "72fb27bc81565c377f16047a2ffc280624400ee5160884c559b432597002573e"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/README.md",
+      "sha256": "d5075be943438e764d8e7b12c8c0dd589136091eb009188cb49c41abc1d93a40"
+    },
+    {
+      "path": "docs/sdlc/diagrams/manifest.json",
+      "sha256": "8a4c997a1f0d565e8a7732e029dc6660bb89fe2286c1a7afde714f982f208fe3"
+    },
+    {
+      "path": "docs/sdlc/diagrams/sequence/README.md",
+      "sha256": "6f9d5e8aa4708142e97865bc7898bb0865d88aa40e36f2063b71b7a2a9527f31"
+    },
+    {
+      "path": "docs/sdlc/diagrams/sequence/document-creation.drawio",
+      "sha256": "ed341987214a166133cfba11e6cb052e7e0d76fb24b8badd234e52db730b1151"
+    },
+    {
+      "path": "docs/sdlc/diagrams/sequence/document-creation.mmd",
+      "sha256": "df14d37b6a526238ada46dc08220fdb97077b5fa6a4bc6e738dee7227ad6297e"
+    },
+    {
+      "path": "docs/sdlc/diagrams/sequence/protected-handoff.drawio",
+      "sha256": "a1304198c2036afa4f3962ba51032fa72debfdebd49fafb1713b9f59ca60fb08"
+    },
+    {
+      "path": "docs/sdlc/diagrams/sequence/protected-handoff.mmd",
+      "sha256": "8c96daf24a58c8ee49ba6797f4e4dad1fac475130ba906eba9fda8bfca99277b"
+    },
+    {
+      "path": "docs/sdlc/diagrams/sitemap/README.md",
+      "sha256": "e32097e662169d36544a6b31fb0cda208662254637a31717ada587734f378656"
+    },
+    {
+      "path": "docs/sdlc/diagrams/state/README.md",
+      "sha256": "48dcbfa98a4b18942bcfc3765892f7c6413f1add334cab4cc87f4914028fa12f"
+    },
+    {
+      "path": "docs/sdlc/diagrams/state/document-and-readiness.drawio",
+      "sha256": "b66dafd7f889409a89e988a3300f2c3455cf1ab1698a03ee70b809c77e5b2a50"
+    },
+    {
+      "path": "docs/sdlc/diagrams/state/document-and-readiness.mmd",
+      "sha256": "c01c44f0316b4d11460c073fc34a5b74c45a7c5ec487586f33372724634f10f0"
+    },
+    {
+      "path": "docs/sdlc/diagrams/state/sprint-task-allocation.drawio",
+      "sha256": "6f9018faf702ad5ef4a5c730493b735e9931b88d76f761d69c532b9a8bf47df6"
+    },
+    {
+      "path": "docs/sdlc/diagrams/state/sprint-task-allocation.mmd",
+      "sha256": "b4a1d1bc22984bab2d52e7af004b7e539eac3249382301197334beac68baef04"
+    },
+    {
+      "path": "docs/sdlc/diagrams/use-case/README.md",
+      "sha256": "13366db196f612e88b2027aac11d238869cc9dedba2eb1e11f2ff30b78145316"
+    },
+    {
+      "path": "docs/sdlc/diagrams/user-journey/README.md",
+      "sha256": "3e118e3d0eaed6e9fc3813c4a53f4ccc4cc195f4df85a0561f79d70d2a5be4de"
+    },
+    {
+      "path": "docs/sdlc/evaluation-cases.md",
+      "sha256": "777db92f6c3079e874c6ccc569e802a20985e36be9b605763f92bfe4ae2481ce"
+    },
+    {
+      "path": "docs/sdlc/references/document-review-register.md",
+      "sha256": "56c0751caa3fe904c31d0157683aeb5a4fc506954c0390d4efd1fc89ce993163"
+    },
+    {
+      "path": "docs/sdlc/requirement-verification.md",
+      "sha256": "378d1961ba89f46c3e26f35b50042322bc8ee68bcea14d1d49c99f8a71bda912"
+    },
+    {
+      "path": "docs/sdlc/test-coverage.md",
+      "sha256": "d6ede1f8a679815a0cd2a2635852f7994edb3f6af0e6ce0762053fdfcd502187"
+    },
+    {
+      "path": "docs/sdlc/test-plan.md",
+      "sha256": "3c36aa0ead626d8501602020c999127aeada6a77c0c7935b506c70164a85121c"
+    },
+    {
+      "path": "docs/ux/wireframe-workplan.md",
+      "sha256": "556d7ad0def180d9f32129dee438a12b5ea9628af5f3f902082897a55a6f4061"
+    },
+    {
+      "path": "services/workspace/README.md",
+      "sha256": "13afdbb2b87bc2bf2e75b062cacf5d9ab8ae215e32d6c8653c40ae6dec23cb1f"
+    },
+    {
+      "path": "services/workspace/SPRINTS.md",
+      "sha256": "c9bab7bbb7fcda36b9f435a466661e598045f605b689fdc7e1d5447438c51f6b"
+    },
+    {
+      "path": "services/workspace/migrations/011-sprint-lifecycle.down.sql",
+      "sha256": "0b034f7624a9a299e37ac3480c54bde09a5dcacf4aa40be5f2a4adbb8a755564"
+    },
+    {
+      "path": "services/workspace/migrations/011-sprint-lifecycle.up.sql",
+      "sha256": "7eaac2a86e40e4d28a5009e338310b1d763986ae298692135b3141283e411809"
+    },
+    {
+      "path": "services/workspace/src/app.ts",
+      "sha256": "61c8ba315398dad3692b044e053afbc92bc2179765daa8229e5fb4c22ba56385"
+    },
+    {
+      "path": "services/workspace/src/projects/http.ts",
+      "sha256": "9747b00276c92492c369f21fdc7cac6ef41295f3b27ad9637310d5ccd3d482af"
+    },
+    {
+      "path": "services/workspace/src/projects/operator.ts",
+      "sha256": "37a08edfda0947d1b83c1950fb48f1416878c2a71e1ac10f206a6c7ceb5a0db7"
+    },
+    {
+      "path": "services/workspace/src/projects/store.ts",
+      "sha256": "7fb27e55784e98965d9c14724bb40055b4b1e7ed767204f3cc6a85341f88c763"
+    },
+    {
+      "path": "services/workspace/src/server.ts",
+      "sha256": "85e6477df7110f8b4fba74f344ff7be4022863389bee03f99fe6b95843d7a4a5"
+    },
+    {
+      "path": "services/workspace/src/sprints/authority.ts",
+      "sha256": "509593a5d6975894246a8197f275a7422cf1830dd61e13f1ff1e160f946672ac"
+    },
+    {
+      "path": "services/workspace/src/sprints/http.ts",
+      "sha256": "80d29e1c9480ec80dff9831a123412f100c07950a998b957f82925a615df7df3"
+    },
+    {
+      "path": "services/workspace/src/sprints/outcomes.ts",
+      "sha256": "6a9a1da97646cf0de3df14cb81ae13d9ec8cf080f94a6a1f970cb511bd19c5f4"
+    },
+    {
+      "path": "services/workspace/src/sprints/store.ts",
+      "sha256": "f177fc8930e0f4f393b684744881d4a704b3efc0a72ac7c31f2d907aef42d74f"
+    },
+    {
+      "path": "services/workspace/src/sprints/types.ts",
+      "sha256": "1f9dc99fc2687dac7bd359fc72597bec8fcf55ca6165dbfd2e3f565ecfb9aa44"
+    },
+    {
+      "path": "services/workspace/src/tasks/store.ts",
+      "sha256": "c223a8c8db1b5e84dfc0127cccfc2c5833b17932c3452146307e4f5dca7d75ac"
+    },
+    {
+      "path": "specs/004-update-task.md",
+      "sha256": "6c13ebf1f99774688f4fb1f9f712ba0914fdcdd0ffc301f18e069309f19bfc51"
+    },
+    {
+      "path": "specs/005-sprint-lifecycle.md",
+      "sha256": "81f37b44c13faff732d68b389095c31adf1b412fb273ba63803c590b4f806a39"
+    },
+    {
+      "path": "specs/README.md",
+      "sha256": "61509bf377380c8e2588c0107df706a377ed36f520f6460f94946437b9fabd49"
+    },
+    {
+      "path": "tests/workspace/sprint-browser.test.mjs",
+      "sha256": "ef24c9480f70f1759ee6746b96c4d64fd7ce6b8f8c209545165652d56022b5d3"
+    },
+    {
+      "path": "tests/workspace/sprint-concurrency.test.mjs",
+      "sha256": "30d2ef06c63fc583af1e902d22caecc55d3acc7d71ed64a03bddaaa04fcb7e10"
+    },
+    {
+      "path": "tests/workspace/sprint-controller.test.mjs",
+      "sha256": "cfe50cc56fa632d53721bd69d31b7d627b5c6d94e42f07ce996a12aee6e63663"
+    },
+    {
+      "path": "tests/workspace/sprint-fixture.mjs",
+      "sha256": "930c6f04fc6b060ba5ab9327f498bc1802819c0c343a487b28fad9d8982eeeee"
+    },
+    {
+      "path": "tests/workspace/sprint-http.test.mjs",
+      "sha256": "9d93d48410dc06343537b8dfed70690d18387859159664d9f2600f4edbf5dc88"
+    },
+    {
+      "path": "tests/workspace/sprint-security.test.mjs",
+      "sha256": "e17faf7eb13e1fba568590b71ad9f302b858b6b3b0d7607aba2cf91a50e2a60c"
+    },
+    {
+      "path": "tests/workspace/sprint-storage.test.mjs",
+      "sha256": "c422f469f4405c46df98b14d927b0584d8d0fd39c5595494fce6f168fd23ffa9"
+    },
+    {
+      "path": "tests/workspace/sprint-ui-fixture.mjs",
+      "sha256": "da46bd22c33fc1e4468eef61e499e8a34b1d0e17dcb789230baf5a0f91e15b5b"
+    },
+    {
+      "path": "tests/workspace/sprint-ui.test.mjs",
+      "sha256": "49c82db7445c07268aa6e3a41e652e8efd245da16cee08c52d937e0b9f5bfc9a"
+    },
+    {
+      "path": "tests/workspace/task-mutation-storage.test.mjs",
+      "sha256": "e068b31811e51f816be0c5d75acd5d71ef78d9853ee01ff1a068fd2b16ad19d9"
+    }
+  ],
+  "proof": "Runtime/tests compared against regression2-source and focused final concurrency/controller hashes; old immutable files compared against HEAD with checkout CRLF normalisation."
+}

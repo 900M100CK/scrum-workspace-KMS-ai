@@ -1,0 +1,2 @@
+# Preserve captured evidence bytes; logs are not source-format lint targets.
+evidence/** -text -whitespace

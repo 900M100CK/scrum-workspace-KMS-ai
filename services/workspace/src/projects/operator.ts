@@ -1,9 +1,10 @@
+import {SPRINT_ACTIONS} from '../sprints/authority.ts';
 import {randomUUID} from 'node:crypto';
 import type {Pool,PoolClient} from 'pg';
 import {ownedTransaction} from '../session/database.ts';
 import {TASK_ACTIONS} from '../tasks/authority.ts';
 
-export const PROJECT_CAPABILITIES=['membership-manage','project-administrator','backlog-author',...Object.values(TASK_ACTIONS)] as const;
+export const PROJECT_CAPABILITIES=['membership-manage','project-administrator','backlog-author',...Object.values(TASK_ACTIONS),...Object.values(SPRINT_ACTIONS)] as const;
 export type ProjectCapability=typeof PROJECT_CAPABILITIES[number];
 export const isProjectCapability=(value:unknown):value is ProjectCapability=>PROJECT_CAPABILITIES.some(action=>action===value);
 const reference=(value:string)=>{if(typeof value!=='string'||!value.trim()||Buffer.byteLength(value)>1024)throw new Error('Operator reference/reason required');};
@@ -45,7 +46,7 @@ export class WorkspaceProjectOperator {
    if(!(await c.query('SELECT project_id FROM workspace.project WHERE project_id=$1 FOR UPDATE',[projectId])).rowCount)throw new Error('Project unavailable');
    if(!(await c.query('SELECT user_id FROM workspace.membership WHERE project_id=$1 AND user_id=$2 AND active FOR UPDATE',[projectId,userId])).rowCount)throw new Error('Current membership required');
    const rows=(await c.query("SELECT g.grant_id,g.valid,g.permission_revision::text revision,EXISTS(SELECT 1 FROM workspace.authority_provisioning_audit a WHERE a.event_id=g.grant_id AND a.target_user_id=g.subject_id AND a.project_id=g.project_id AND a.action=g.action AND a.allowed AND a.revision=g.permission_revision-CASE WHEN g.valid THEN 0 ELSE 1 END) provenanced FROM workspace.capability_grant g WHERE g.project_id=$1 AND g.subject_id=$2 AND g.resource_kind='project' AND g.resource_id=$1 AND g.action=$3 ORDER BY g.permission_revision DESC,g.grant_id FOR UPDATE OF g",[projectId,userId,action])).rows;
-   const taskAction=Object.values(TASK_ACTIONS).some(value=>value===action);
+   const taskAction=[...Object.values(TASK_ACTIONS),...Object.values(SPRINT_ACTIONS)].some(value=>value===action);
    if(taskAction&&rows.some(row=>!row.provenanced))throw new Error('Task authority provenance requires explicit reconciliation');
    const before=rows[0]?.revision??'0',current=rows.find(row=>row.valid);if(before!==expected)throw new Error('Stale capability revision');
    if(!!current===allowed)return {changed:false,revision:before};

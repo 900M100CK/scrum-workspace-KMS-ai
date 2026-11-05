@@ -1,0 +1,38 @@
+{
+  "node": "v24.22.1",
+  "scope": "Documentation publication receipt only;122 runtime/test/contract/config Git blob identities unchanged from published feature",
+  "checks": [
+    {
+      "name": "docs-lint",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/docs/verify-docs.mjs"
+      ],
+      "exit_code": 0,
+      "log": "receipt-docs-lint.txt"
+    },
+    {
+      "name": "metadata",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/docs/docs-metadata.mjs",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": "receipt-metadata.txt"
+    },
+    {
+      "name": "structural-tests",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "--test",
+        "tests/context/context.test.mjs",
+        "tests/contracts/contract-schemas.test.mjs",
+        "tests/contracts/handoff-bytes.test.mjs",
+        "tests/docs/docs.test.mjs"
+      ],
+      "exit_code": 0,
+      "log": "receipt-structural-tests.txt"
+    }
+  ]
+}

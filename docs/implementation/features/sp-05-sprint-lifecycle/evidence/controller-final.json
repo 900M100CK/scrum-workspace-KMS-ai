@@ -1,0 +1,13 @@
+{
+  "command": [
+    "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "--test",
+    "tests/workspace/sprint-controller.test.mjs"
+  ],
+  "source": {
+    "path": "tests/workspace/sprint-controller.test.mjs",
+    "sha256": "cfe50cc56fa632d53721bd69d31b7d627b5c6d94e42f07ce996a12aee6e63663"
+  },
+  "exit_code": 0,
+  "log": "controller-final.txt"
+}

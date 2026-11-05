@@ -1,7 +1,7 @@
 # Logical data and lifecycle design
 
 **Artifact ID:** DATA-04  
-**Version/date:** 0.16.3 Draft · 4 November 2026
+**Version/date:** 0.16.4 Draft · 5 November 2026
 **Status:** Draft for owner review; proposed policies/deferrals are not approved.
 **Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.10.2; UC-02 v0.8.3; [SAD-03](../architecture.md) v0.19.1; [logical entities](../../contracts/data-model.json) v0.13; owner-authorised ADR-0004 implementation; ADR-0007–ADR-0017.; Proposed ADR-0018.; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; [ADR-0024](../adr/0024-backend-session-foundation.md); [ADR-0025](../adr/0025-opaque-session-candidate.md); Proposed ADR-0026; Proposed ADR-0028 v0.1
 **Author:** development agent acting sequentially; owner reviews business choices.
@@ -179,3 +179,5 @@ The actual [owner directions](../implementation/features/sp-04-update-task/owner
 [Proposed ADR-0028](../adr/0028-task-mutation-authority-and-outcomes.md) bounds the proposed four private audited action grants, DB issue/revival protection, safe total typed validators and preserved 009 outcome branches. New assignment keeps target-account-before-Project order; committed replay checks current action/read but does not reapply current revision/old target eligibility or restore state. Reopen uses existing location/backlog_position and 003 generation trigger, preserves completed history and immutable created_at. Distinct blocker events advance Task revision with sequence-ordered history; proposed no-ops retain originals without fake change audit. Minimum before/after audit must have unambiguous resolvable retained references, not an unsupported digest.
 
 Future additive storage needs its own P03B brief and explicit disposable forward/reverse/repeat/refusal/old-operation evidence. Applied 001–009 and historical fixture ceilings remain unchanged. No source-only check establishes runtime permission, SQL correctness, complete historical chart data, D-07 transport or actual SP-05 race acceptance.
+
+SP-05 registered support: FEAT-SP05-01v0.1 / SP-05v0.7.4 / Workspace0.2.14 / Proposed ADR0030v0.1 align separate actions, Sprint revision preconditions, nullable server lifecycle times, scoped Sprint pages and explicit transport errors before011/producers. Original directions and historical results are preserved; FR66/67 excluded, P08 actual SP04 integration remains mandatory. No runtime acceptance.

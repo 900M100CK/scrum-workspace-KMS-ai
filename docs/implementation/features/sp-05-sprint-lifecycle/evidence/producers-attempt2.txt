@@ -1,0 +1,19 @@
+▶ SP05 actual011 private authority, lifecycle, full reorder and original outcomes
+  ✔ creator/role labels grant none; private audit failure rolls back and runtime cannot grant (77.1017ms)
+  ✔ invalid date/goal/body/media/CSRF and foreign scopes leave no business state (28.0559ms)
+  ✔ create/read keeps server timestamps; actor/key/hash, revoke and changed payload are enforced (112.2943ms)
+  ✔ single Task allocation changes location and Sprint revision, rejects competing allocation and stale request (336.3256ms)
+  ✔ actual Planned start and mixed completion co-commit state/history/counts; replay does not recompute (259.0867ms)
+  ✔ real completed reopen then real later allocation retains old association and completion counts (122.8996ms)
+  ✔ empty Sprint starts/completes with zero counts and typed originals cannot be changed/deleted (71.7347ms)
+  ✔ reorder is exact full permutation, no-op does not audit/revise, originals survive later changes (217.2183ms)
+  ✔ Sprint pages invalidate on actual updates; foreign/tampered cursors and removed members disclose no items (1062.0777ms)
+✔ SP05 actual011 private authority, lifecycle, full reorder and original outcomes (6855.6163ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7260.9935

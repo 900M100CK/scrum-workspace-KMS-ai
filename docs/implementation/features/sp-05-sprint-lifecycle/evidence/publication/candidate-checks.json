@@ -1,0 +1,66 @@
+{
+  "node": "v24.22.1",
+  "kind": "Publication preparation; runtime/test behavior preserved from captured regression; focused tests and011 trailing-whitespace-only source/storage proof recorded",
+  "checkedRuntimeFiles": 115,
+  "secretScan": "passed",
+  "scope": "Only reviewed SP05 paths and owning feature registration/evidence; unrelated worktrees excluded",
+  "checks": [
+    {
+      "name": "context-lint",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "context:lint"
+      ],
+      "exit_code": 0,
+      "error": null,
+      "log": "context-lint-final.txt"
+    },
+    {
+      "name": "context-check",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/verify-context.mjs"
+      ],
+      "exit_code": 0,
+      "error": null,
+      "log": "context-check-final.txt"
+    },
+    {
+      "name": "docs-lint",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/docs/verify-docs.mjs"
+      ],
+      "exit_code": 0,
+      "error": null,
+      "log": "docs-lint-final.txt"
+    },
+    {
+      "name": "metadata",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/docs/docs-metadata.mjs",
+        "--check"
+      ],
+      "exit_code": 0,
+      "error": null,
+      "log": "metadata-final.txt"
+    },
+    {
+      "name": "structural-tests",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "--test",
+        "tests/context/context.test.mjs",
+        "tests/contracts/contract-schemas.test.mjs",
+        "tests/contracts/handoff-bytes.test.mjs",
+        "tests/docs/docs.test.mjs"
+      ],
+      "exit_code": 0,
+      "error": null,
+      "log": "structural-tests-final.txt"
+    }
+  ]
+}

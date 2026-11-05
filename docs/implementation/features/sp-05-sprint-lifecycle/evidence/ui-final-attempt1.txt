@@ -1,0 +1,36 @@
+Error: Uncaught [TypeError: activeElement$1.attachEvent is not a function]
+    at reportException (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\jsdom\lib\jsdom\living\helpers\runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:353:9)
+    at invokeEventListeners (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLInputElementImpl._dispatch (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+    at exports.fireFocusEventWithTargetAdjustment (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\jsdom\lib\jsdom\living\helpers\focusing.js:103:10)
+    at HTMLInputElementImpl.focus (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\jsdom\lib\jsdom\living\nodes\HTMLOrSVGElement-impl.js:72:14)
+    at HTMLInputElement.focus (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\jsdom\lib\jsdom\living\generated\HTMLElement.js:128:34)
+    at create (C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/apps/web/src/SprintWorkspace.tsx:39:8)
+    at executeDispatch (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\apps\web\node_modules\react-dom\cjs\react-dom-client.development.js:20804:9)
+    at runWithFiberInDEV (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\apps\web\node_modules\react-dom\cjs\react-dom-client.development.js:1045:30) TypeError: activeElement$1.attachEvent is not a function
+    at handleEventsForInputEventPolyfill (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\apps\web\node_modules\react-dom\cjs\react-dom-client.development.js:3755:27)
+    at C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\apps\web\node_modules\react-dom\cjs\react-dom-client.development.js:21299:15
+    at batchedUpdates$1 (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\apps\web\node_modules\react-dom\cjs\react-dom-client.development.js:3434:40)
+    at dispatchEventForPluginEventSystem (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\apps\web\node_modules\react-dom\cjs\react-dom-client.development.js:21008:7)
+    at dispatchEvent (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\apps\web\node_modules\react-dom\cjs\react-dom-client.development.js:26142:11)
+    at dispatchDiscreteEvent (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\apps\web\node_modules\react-dom\cjs\react-dom-client.development.js:26110:11)
+    at HTMLDivElement.callTheUserObjectsOperation (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\jsdom\lib\jsdom\living\generated\EventListener.js:26:30)
+    at innerInvokeEventListeners (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:350:25)
+    at invokeEventListeners (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLInputElementImpl._dispatch (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+▶ SP05 live HTTPS/PG native forms, sequential allocation and complete/recovery DOM
+  ✔ labelled create and full-list reorder save real state (475.3086ms)
+  ✔ native multi-selection allocates separately and completion reconstructs retained/current associations (600.7839ms)
+  ✔ actual permission change between selected items preserves first commit and reconciles second original after regrant (1005.7056ms)
+  ✔ actual competing allocation yields mixed confirmed/rejected UI results without rolling back the earlier item (504.4983ms)
+  ✔ lost committed creation replays exact key/body once; revoked controls and outage withhold content (481.1002ms)
+✔ SP05 live HTTPS/PG native forms, sequential allocation and complete/recovery DOM (9037.271ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9830.5284

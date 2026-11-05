@@ -1,0 +1,27 @@
+▶ SP05 actual competing starts/allocations and SP04 complete/reopen integration
+  ✔ two actual starts queued after first state write yield one Active Sprint (329.4966ms)
+  ✔ competing actual allocations cannot give one Task two live associations (280.0432ms)
+  ✔ actual completion-first rejects stale reopen, then explicit reopen and later allocation preserve A history (528.0849ms)
+  ✔ reopen-first during Active work makes actual completion return unfinished To Do (369.8738ms)
+  ✔ actual completed reopen versus later allocation: reopen-first (423.4744ms)
+  ✔ actual completed reopen versus later allocation: allocate-first (302.2772ms)
+  ✔ actual create invalidates a queued full-Backlog reorder without partial writes (148.5532ms)
+  ✔ actual allocate invalidates a queued full-Backlog reorder without partial writes (180.6908ms)
+  ✔ actual reopen invalidates a queued full-Backlog reorder without partial writes (312.7954ms)
+  ✔ actual completion return invalidates a queued whole-Backlog reorder without partial positions (236.9783ms)
+✔ SP05 actual competing starts/allocations and SP04 complete/reopen integration (8094.3398ms)
+▶ SP05 each mutation rolls back audit/receipt failures and lost real COMMIT replays once
+  ✔ createSprint (305.4268ms)
+  ✔ allocateTask (351.1596ms)
+  ✔ startSprint (296.5501ms)
+  ✔ completeSprint (312.7866ms)
+  ✔ reorderBacklog (227.3926ms)
+✔ SP05 each mutation rolls back audit/receipt failures and lost real COMMIT replays once (5955.4088ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14682.5177

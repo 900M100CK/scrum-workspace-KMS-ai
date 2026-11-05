@@ -185,3 +185,5 @@ export class WorkspaceTaskStore {
   });
  }
 }
+
+export {taskProjection,projection as taskProjectionSql};

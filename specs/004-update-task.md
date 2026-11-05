@@ -1,12 +1,12 @@
 # Update work state and record blockers
 
 **Artifact ID:** SP-04  
-**Version/date:** 0.7.6 Draft · 4 November 2026
+**Version/date:** 0.7.7 Draft · 5 November 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
-**Inputs:** PRD-01 v0.10.2; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-04--update-work-state-and-record-blockers); [contract pack](../contracts/README.md) v0.25.2; PLAN-01 v0.4.\; Proposed ADR-0028 v0.1; Proposed ADR-0029 v0.1
+**Inputs:** PRD-01 v0.10.2; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-04--update-work-state-and-record-blockers); [contract pack](../contracts/README.md) v0.25.3; PLAN-01 v0.4.\; Proposed ADR-0028 v0.1; Proposed ADR-0029 v0.1
 **Author:** development agent acting sequentially; owner reviews business choices.
 
-**Status:** Task handlers and connected UI have bounded evidence; actual SP-05 integration remains open. **Target:** Month 1.
+**Status:** Task handlers/UI and coordinated actual SP-05 P08 producer integration have bounded local evidence; independent/release acceptance remains open. **Target:** Month 1.
 **Dependencies:** SP-03.   
 **Trace:** FR-09, FR-40, FR-43, FR-44; BR-03, BR-02, BR-06; SC-03, SC-04.
 
@@ -78,3 +78,5 @@ The owner authorised remaining Task commands/history/UI and a checkpoint commit 
 ## Hotfix RF01–RF05 coordinated support — 4 November 2026
 
 HOTFIX-BACKEND-42-01 v0.6 owns the separate owner-authorised shared-query/null follow-up on the committed SP-04 baseline. Runtime paths remain services/workspace/** and tests/workspace/**. Bounded support additionally permits new Proposed docs/adr/0029-unexpected-null-transaction-result.md, ADR index and this current spec backlink, owning hotfix plan/brief/evidence plus registration/current metadata only. RF03 specifies/reproduces the contract without implementing the guard; RF04 remains separate. No existing ADR, wire schema, SQL001–010, FR/AC priority, other-service write or P08 actual-SP05 acceptance changes.
+
+Current coordinated P08 navigation (5 November): [SP-05 plan](../docs/implementation/features/sp-05-sprint-lifecycle/plan.md) supplies actual completion/allocation-versus-reopen evidence; the owning SP04 task table links the result. Historical missing-producer statements retain their original stage context and are superseded by that current row only. No AC or Must priority changes.

@@ -1,3 +1,4 @@
+import {SPRINT_ACTIONS} from '../sprints/authority.ts';
 import {randomUUID} from 'node:crypto';
 import type {Pool,PoolClient} from 'pg';
 import {ownedTransaction} from '../session/database.ts';
@@ -133,7 +134,7 @@ export class WorkspaceProjectStore {
    const result={status:204,body:null,projectId};await saveOutcome(c,actor,'removeMember',key,hash,result);return result;
   });
  }
- async actions(token:string,kind:string,id?:string,taskOperations:ReadonlySet<TaskOperation>=new Set(),resourceId?:string){
+ async actions(token:string,kind:string,id?:string,taskOperations:ReadonlySet<TaskOperation>=new Set(),resourceId?:string,sprintOperations:ReadonlySet<string>=new Set()){
   return this.transaction(token,async(c,actor,guard)=>{
    let operations:string[];
    if(kind==='global'){
@@ -145,7 +146,16 @@ export class WorkspaceProjectStore {
     if((await c.query("SELECT 1 FROM workspace.capability_grant WHERE project_id=$1 AND subject_id=$2 AND resource_kind='project' AND resource_id=$1 AND action='membership-manage' AND valid LIMIT 1",[id,actor])).rowCount)operations.push('addMember','removeMember');
     if(taskOperations.has('listTasks'))operations.push('listTasks');
     if(taskOperations.has('createTask')&&(await c.query("SELECT 1 FROM workspace.capability_grant WHERE project_id=$1 AND subject_id=$2 AND resource_kind='project' AND resource_id=$1 AND action='backlog-author' AND valid LIMIT 1",[id,actor])).rowCount)operations.push('createTask');
+    if(sprintOperations.has('listSprints'))operations.push('listSprints');
+    for(const operation of ['createSprint','reorderBacklog'] as const)if(sprintOperations.has(operation)&&await hasCapability(c,actor,id!,SPRINT_ACTIONS[operation]))operations.push(operation);
+   }else if(kind==='sprint'){
+    if(!id||!uuid(id)||!resourceId||!uuid(resourceId))throw invalid();
+    const access=await projectAccess(c,actor,id);id=access.project.project_id;resourceId=resourceId.toLowerCase();
+    const sprint=(await c.query('SELECT state FROM workspace.sprint WHERE sprint_id=$1 AND project_id=$2',[resourceId,id])).rows[0];if(!sprint)throw missing();operations=['getAllowedActions'];
+    for(const operation of ['getSprint','listSprintItems'])if(sprintOperations.has(operation))operations.push(operation);
+    for(const operation of ['allocateTask','startSprint','completeSprint'] as const){const lifecycle=operation==='allocateTask'?sprint.state!=='completed':operation==='startSprint'?sprint.state==='planned':sprint.state==='active';if(lifecycle&&sprintOperations.has(operation)&&await hasCapability(c,actor,id!,SPRINT_ACTIONS[operation]))operations.push(operation);}
    }else if(kind==='task'){
+
     if(!id||!uuid(id)||!resourceId||!uuid(resourceId))throw invalid();
     const access=await projectAccess(c,actor,id),projectId:string=access.project.project_id;id=projectId;resourceId=resourceId.toLowerCase();
     const task=(await c.query('SELECT location_kind FROM workspace.task WHERE task_id=$1 AND project_id=$2',[resourceId,projectId])).rows[0];
@@ -153,7 +163,7 @@ export class WorkspaceProjectStore {
     operations=await discoverTaskOperations(c,actor,projectId,task.location_kind,taskOperations);
    }else throw missing();
    if(!await guard())return null;
-   return {resource_kind:kind,project_id:kind==='global'?null:id,resource_id:kind==='task'?resourceId:null,document_id:null,version_id:null,allowed_operations:operations.sort()};
+   return {resource_kind:kind,project_id:kind==='global'?null:id,resource_id:kind==='task'||kind==='sprint'?resourceId:null,document_id:null,version_id:null,allowed_operations:operations.sort()};
   });
  }
  async page(c:PoolClient,actor:string,route:string,project:string|null,rows:Record<string,any>[],limit:number,token:string|undefined,shape:(row:Record<string,any>)=>unknown,idField:string,authority:unknown=null){

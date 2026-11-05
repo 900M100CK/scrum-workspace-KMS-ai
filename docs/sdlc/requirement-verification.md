@@ -1,8 +1,8 @@
 # Functional and alternate-flow verification design
 
 **Artifact ID:** VERIFY-01
-**Version/date:** 0.12.2 Draft · 4 November 2026
-**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.10.2; UC-02 v0.8.3; TEST-08 v0.24.3; ADR-0007 through ADR-0017; release-scope v0.2.; Proposed ADR-0028 v0.1
+**Version/date:** 0.12.3 Draft · 5 November 2026
+**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.10.2; UC-02 v0.8.3; TEST-08 v0.24.4; ADR-0007 through ADR-0017; release-scope v0.2.; Proposed ADR-0028 v0.1
 **Status:** Verification design with bounded SP-01 and SP-02 handler/DOM/browser evidence; complete application acceptance remains open. No independent approval.
 **Trace:** BR-01 through BR-15; SC-01 through SC-08 through TEST-COVERAGE-01.
 
@@ -205,3 +205,9 @@ UC-03 EX-01 and EX-02 now have bounded creation evidence. EX-03/Alt-1 editing an
 ## SP-04 P03A2 planned verification alignment — 3 November 2026
 
 Existing TC-07/08/13/14/16/18/19/22 and FR-09/40/43/44 trace now include [actual owner directions](../implementation/features/sp-04-update-task/owner-decisions.md) and [Proposed ADR-0028](../adr/0028-task-mutation-authority-and-outcomes.md). All new/refined assertions are Specified, not executed runtime results. Actual handler/DB/DOM/browser and SP-05 producer race evidence belongs to the future owning producers; source/schema passes close none of those gates. No test-case/EX/FR ID, priority, expected-answer fixture or historical result is changed.
+
+## SP-05 bounded implementation evidence — 5 November 2026
+
+[FEAT-SP05-01](../implementation/features/sp-05-sprint-lifecycle/plan.md) / SP05-P00–P15 owns the only current status. FR06/AC06: real create/date/goal/timestamp and original-result tests in sprint-http; FR07/AC07: actual exclusive allocations/mixed outcomes and separate keys in sprint-http/concurrency/controller/live DOM; FR08/AC08: actual competing starts and empty lifecycle in sprint-http/concurrency; FR41/AC41: complete permutation/string generation/partial rejection/no-op/numeric position revision in sprint-http and live DOM/browser; FR42/AC42: real completion retains Done and returns unfinished To Do with original counts, audit and receipts, followed by actual reopen/allocation with preserved history in sprint-http/concurrency. FR31 capture and rollback/lost COMMIT apply to all five producers; sprint-security tests actual revoke-first and all eight post-wait expiry boundaries. TC07/13/14/16/18/19/21/22 and UC05 denial/alternate branches are exercised only to these named boundaries. FR66/67 remain excluded Could, not failed Must gates.
+
+Exact positive/negative runs, initial failed339-run, focused corrections, final rerun source hashes, isolated Edge and unrun/independent/release limits are retained in the feature handoff/evidence. A fixture or schema pass alone does not close a handler/permission gate; no whole SC03/04/06, protected transport D07, provider/evaluation, deployment or independent acceptance is claimed.

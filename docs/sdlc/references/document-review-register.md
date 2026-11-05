@@ -1,9 +1,9 @@
 # Supporting document review register
 
 **Artifact ID:** DOC-REVIEW-REG-01\
-**Version/date:** 0.63 Draft · 4 November 2026\
+**Version/date:** 0.66 Draft · 5 November 2026\
 **Status:** Review planning with bounded author rechecks recorded below; no full document-type review or approval.\
-**Inputs:** [Development rules](../../development-rules.md) v1.13; [PREFLIGHT-01](../../agent-preflight-checklist.md) v0.1; [REG-00](../artifact-register.md) v0.123; [SDLC-INDEX-01](../README.md) v0.3; [SDLC workflow](../../../agents/WORKFLOW.md), unversioned working guide.\
+**Inputs:** [Development rules](../../development-rules.md) v1.13; [PREFLIGHT-01](../../agent-preflight-checklist.md) v0.1; [REG-00](../artifact-register.md) v0.127; [SDLC-INDEX-01](../README.md) v0.3; [SDLC workflow](../../../agents/WORKFLOW.md), unversioned working guide.\
 **Trace:** Supports navigation and review of existing BR-01–BR-15 / SC-01–SC-08 documentation; no new requirement, application slice or acceptance criterion.\
 **Owner role:** SDLC coordinator; review assignments remain unassigned.
 
@@ -169,3 +169,10 @@ Planning-only handoff: HOTFIX-BACKEND-42-01 v0.5/WBS0.3 prepares HF42-RF01–RF0
 
 
 RF01 baseline source: existing FEAT-SP04-01 v0.14 at e6f2337 is restored as committed source/evidence, retaining its P08 actual-SP05 gate. HOTFIX-BACKEND-42-01 v0.6 owns only the new RF01–RF05 changes. Baseline integration creates no Git merge/commit or new wire/schema policy.
+
+
+SP05-AG01 registration metadata only: current REG-00 input follows v0.125 for the written Antigravity tracking/testing assignment. No previous document-review observation was revalidated or changed.
+
+SP05-PUB01 current input alias only: REG-00 v0.126 registers Draft PR publication authority. No historical review result is changed or revalidated.
+
+SP05-PUB01 receipt metadata alias: REG-00 v0.127 registers the actual Draft PR; earlier review observations remain unchanged.

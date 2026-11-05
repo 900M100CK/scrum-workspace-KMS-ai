@@ -13,8 +13,8 @@ test('SP04-P03B additive010 mutation storage, real roles and permanent originals
  const f=await taskMutationFixture({through:'009'});t.after(()=>f.close());const {db,ids,project,tokens}=f;
  t.diagnostic(JSON.stringify({fixture:db.name,volume:db.volume,image:db.image,postgres:(await db.admin.query("SELECT current_setting('server_version') version")).rows[0].version,ceiling:'explicit009 ->010'}));
  const owner=work=>ownedTransaction(db.admin,'operator',work),runtime=work=>ownedTransaction(db.runtime,'runtime',work);
- const upSQL=await readFile('services/workspace/migrations/010-task-mutations.up.sql','utf8');
- const downSQL=await readFile('services/workspace/migrations/010-task-mutations.down.sql','utf8');
+ const upSQL=(await readFile('services/workspace/migrations/010-task-mutations.up.sql','utf8')).replaceAll('\r\n','\n');
+ const downSQL=(await readFile('services/workspace/migrations/010-task-mutations.down.sql','utf8')).replaceAll('\r\n','\n');
  const up=()=>migrate(db.name,'workspace','up',{through:'010'});
  const checksums=async()=>(await db.admin.query("SELECT id,checksum FROM _migrations.applied WHERE id<'010' ORDER BY id")).rows;
  const definitions=async()=>(await db.admin.query("SELECT conrelid::regclass::text object,conname name,pg_get_constraintdef(oid) definition FROM pg_constraint WHERE conrelid IN ('workspace.idempotency_record'::regclass,'workspace.capability_grant'::regclass,'workspace.authority_provisioning_audit'::regclass,'workspace.blocker_event'::regclass) UNION ALL SELECT 'workspace.protect_project_outcome','function',pg_get_functiondef('workspace.protect_project_outcome()'::regprocedure) ORDER BY object,name")).rows;
