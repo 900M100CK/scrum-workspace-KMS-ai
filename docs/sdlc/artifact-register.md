@@ -39,7 +39,7 @@ Prior OWNER-Q-01 verification: combined Node 24.21.0 run `node --test tests/docs
 ## Current register and handoffs
 
 **Artifact ID:** REG-00
-**Version/date:** 0.127 Draft · 5 November 2026
+**Version/date:** 0.130 Draft · 5 November 2026
 **Status:** Draft; confirmed policy corrections in progress, full coverage and remaining decisions explicit.
 **Source versions:** Proposed ADR-0024/0025 for SP-01.1; [BRD stable entry](../BRD.md) → [English BRD v1.0](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md) and two Proposed addenda, [AGENTS.md v1.13](../../AGENTS.md), [workflow](../../agents/WORKFLOW.md), PRD-01 v0.10.2, UC-02 v0.8.3, SAD-03 v0.19.1 and ADR-0007–ADR-0017. Prior review inputs remain historical. Storage has measured test evidence; bounded session runtime evidence exists; interviews, pilot and full application acceptance remain absent.; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; Proposed ADR-0026; Proposed ADR-0029 v0.1
 
@@ -134,7 +134,7 @@ The BRD leaves architecture to design while AGENTS.md directs minimal microservi
 | Artifact ID | Version | Canonical source |
 | --- | --- | --- |
 | UML-07 | v0.25.9 | [Source](diagrams/README.md) |
-| REG-00 | v0.127 | [Source](artifact-register.md) |
+| REG-00 | v0.130 | [Source](artifact-register.md) |
 | SAD-03 | v0.19.1 | [Source](../architecture.md) |
 | UX-PERM-MATRIX-02 | v0.11.3 | [Source](../ux/permission-matrix.md) |
 | UX-PERSONAS-01 | v0.5.3 | [Source](../ux/personas.md) |
@@ -771,3 +771,21 @@ DOC-REVIEW-REG-01 v0.64 carries only the current REG-00 v0.125 alias and a bound
 ## SP05-PUB01 actual Draft PR receipt — 5 November 2026
 
 [FEAT-SP05-01 v0.5](../implementation/features/sp-05-sprint-lifecycle/plan.md) / entry v0.5 / [SP05-PUBLICATION-01 v0.1](../implementation/features/sp-05-sprint-lifecycle/publication.md) record normal feature commit0bb0f57 push and actual open [Draft PR #1](https://github.com/900M100CK/scrum-workspace-KMS-ai/pull/1), codex/sp-05 to main. SP05-PR-DRAFT-01 v0.3 links the actual PR. Runtime Git blob identities and fresh011 format-only storage proof are retained with old failures. First context CI was pending; final head/check state is verified after the documentation receipt push. No merge, reviewer execution or independent/release acceptance. Parent status remains canonical.
+
+
+## SP05-V01 runtime verification continuation — 5 November 2026
+
+[FEAT-SP05-01 v0.6](../implementation/features/sp-05-sprint-lifecycle/plan.md) / entry v0.6 / WBS v0.3 registers [SP05-V01 v0.1](../implementation/features/sp-05-sprint-lifecycle/tasks/V01-runtime-verification.md) and [SP05-RUNTIME-GUIDE-01 v0.1](../implementation/features/sp-05-sprint-lifecycle/verification/README.md), with planned SP05-RUNTIME-RESULT-01 v0.1. Owner requested runtime follow-up after AG01 bounded static v0.2.1. Exact published source/tree, Node24/Docker/TLS/browser prerequisites, pure-controller separation and actual command/cleanup evidence govern execution. PLAN-01 Month2/M-03 and SP04-P08 trace unchanged. Codex runs are supplemental author evidence; no reviewer impersonation, acceptance, production edit, valuable-data migration or publication. Parent plan owns status.
+
+
+SP05-V01 bounded result: [SP05-RUNTIME-RESULT-01 v0.1](../implementation/features/sp-05-sprint-lifecycle/verification/runtime-report.md) records Codex supplemental execution on122 unchanged published inputs: Workspace347/347, isolated Edge1/1, structural92/92 and root build/typecheck/foundation/prototype success; pure controller7/7 also runs when Docker access is denied. Runner/guide v0.1 provides explicit-Node phased reproduction; no new resource leftovers or production changes. Antigravity runtime remains unexecuted/open; no independent/release acceptance or commit/push.
+
+
+## AG01 v0.4 bounded runtime handback — 5 November 2026
+
+[FEAT-SP05-01 v0.7](../implementation/features/sp-05-sprint-lifecycle/plan.md) / entry v0.7 / [SP05-AG01-DISPOSITION-01 v0.1](../implementation/features/sp-05-sprint-lifecycle/verification/antigravity-reconciliation.md) receive Antigravity report/tracking v0.4, manifest v0.3.1 and runtime record v1.0. Seven reported SP05 suites57/57;18 static and122 published blobs matched. SP05-RUNTIME-GUIDE-01 v0.2 links the later disposition. F-ENV-01 resolved within named runs; broader independent40-file regression not reported and not waived. Original raw inputs preserved; other-suite stdout granularity and browser capture origin noted. No production fix, commit/push or milestone/release acceptance. Parent owns current status.
+
+
+## SP05-PUB02 final dossier publication — 5 November 2026
+
+[FEAT-SP05-01 v0.8](../implementation/features/sp-05-sprint-lifecycle/plan.md) / entry v0.8 / [SP05-PUB02 v0.1](../implementation/features/sp-05-sprint-lifecycle/tasks/PUB02-verification-publication.md) register owner-authorised docs/runner/evidence commit/push and a Draft PR. [SP05-FINAL-HANDOFF-01 v0.1](../implementation/features/sp-05-sprint-lifecycle/verification/final-handoff.md), SP05-AG01-DISPOSITION-01 v0.2, canonical SP05-AG01-RESULT/TRACKING v0.4.1 and immutable final input snapshots retain reviewer57 versus author347. F-REG-01 explicitly open/not waived; M03/release separate. No runtime/schema/test/package edit, production migration, force push or merge. PUB02-RESULT v0.1 is planned after actual publication.

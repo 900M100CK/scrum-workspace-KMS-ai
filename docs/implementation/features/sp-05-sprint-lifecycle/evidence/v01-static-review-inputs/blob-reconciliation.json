@@ -1,0 +1,78 @@
+{
+  "note": "The initial receipt counted only runtime/tests groups (17). This full traversal also verifies the separate contracts group; raw snapshots and initial receipt are retained.",
+  "matched": 18,
+  "paths": [
+    {
+      "path": "contracts/openapi/workspace.openapi.json",
+      "gitBlobOid": "3e85581561d32677f3ad7e8606ec26754819b942"
+    },
+    {
+      "path": "services/workspace/src/sprints/store.ts",
+      "gitBlobOid": "868efe19169435396d6289a4c7dd36d632ed50ee"
+    },
+    {
+      "path": "services/workspace/src/sprints/http.ts",
+      "gitBlobOid": "0d1d07946878bfdc4c27cfb103e53fa2c3cb9210"
+    },
+    {
+      "path": "services/workspace/src/sprints/authority.ts",
+      "gitBlobOid": "a8f9598ec8ac637c67ca5433a672813694caef03"
+    },
+    {
+      "path": "services/workspace/src/sprints/types.ts",
+      "gitBlobOid": "25d250a69dbc531a0e3e7a81d8517546cc2df2a2"
+    },
+    {
+      "path": "services/workspace/src/sprints/outcomes.ts",
+      "gitBlobOid": "0ca126ab0824dee2b569f411cacb0ee791c81ead"
+    },
+    {
+      "path": "services/workspace/migrations/011-sprint-lifecycle.up.sql",
+      "gitBlobOid": "e7a69899b0eb82d369e764606f7e49b0d4e2af0d"
+    },
+    {
+      "path": "services/workspace/migrations/011-sprint-lifecycle.down.sql",
+      "gitBlobOid": "ed7ada80db6c626e6a447ce5fcf12cbdfb547d82"
+    },
+    {
+      "path": "apps/web/src/SprintWorkspace.tsx",
+      "gitBlobOid": "c2e8fed2358027b9254b1b2d8a8c9f71f0b14682"
+    },
+    {
+      "path": "apps/web/src/sprints.ts",
+      "gitBlobOid": "522cc0cd34e15d4b8fa08026c2a7ae76b6a320d9"
+    },
+    {
+      "path": "tests/workspace/sprint-storage.test.mjs",
+      "gitBlobOid": "ee2823cc13dc09ec5d07c7db4cbdabfced0469d6"
+    },
+    {
+      "path": "tests/workspace/sprint-http.test.mjs",
+      "gitBlobOid": "692193cee76b0842338f5e6f4090ff420d493af1"
+    },
+    {
+      "path": "tests/workspace/sprint-security.test.mjs",
+      "gitBlobOid": "77f8612ee343ebda9c5beec87aafe92ae0292cec"
+    },
+    {
+      "path": "tests/workspace/sprint-concurrency.test.mjs",
+      "gitBlobOid": "98819e5b0dbbb0508921e3560e70081f6218966e"
+    },
+    {
+      "path": "tests/workspace/sprint-controller.test.mjs",
+      "gitBlobOid": "100654ac6ac8810f6ed7a641dda11869769d4ec7"
+    },
+    {
+      "path": "tests/workspace/sprint-ui.test.mjs",
+      "gitBlobOid": "091200dcf9f3c2ee43546a784306e36f56ad1d68"
+    },
+    {
+      "path": "tests/workspace/sprint-browser.test.mjs",
+      "gitBlobOid": "c59b2caa16bb83880e86bbf4baa81a12b5ebce93"
+    },
+    {
+      "path": "tests/workspace/sprint-fixture.mjs",
+      "gitBlobOid": "23efe8eaa614ae4dbc31d2c905ea00f01ceccbc7"
+    }
+  ]
+}

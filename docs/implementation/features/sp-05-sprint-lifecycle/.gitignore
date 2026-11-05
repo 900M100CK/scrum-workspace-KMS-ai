@@ -1,0 +1,2 @@
+# Retain returned reviewer stdout inside the bounded feature evidence dossier.
+!evidence/**/*.log

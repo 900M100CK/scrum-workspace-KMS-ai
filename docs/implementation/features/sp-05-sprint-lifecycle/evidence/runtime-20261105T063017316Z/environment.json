@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-05T06:30:24.873Z",
+  "executor": "Codex",
+  "executorIdentity": "self-reported; runner cannot authenticate another agent",
+  "node": "v24.22.1",
+  "nodeExecutable": "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+  "dockerReady": true,
+  "tlsReady": true,
+  "certIdentity": {
+    "fingerprint256": "FD:E7:DE:6C:F4:2E:02:56:D2:52:19:48:CB:71:46:6F:00:CA:CF:E9:B8:FC:D6:98:70:21:F6:BE:57:20:6F:D2",
+    "validTo": "Nov 27 02:48:58 2026 GMT"
+  },
+  "browserRunnerReady": true,
+  "playwrightModule": "file:///C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.mjs",
+  "npmCli": "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+  "dependencyTreePresent": true,
+  "tlsBypass": false,
+  "personalBrowserProfile": false
+}

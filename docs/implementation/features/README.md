@@ -1,9 +1,9 @@
 # Work plan register and template
 
 **Artifact ID:** IMPL-FEATURES-01\
-**Version/date:** 0.53 Draft · 5 November 2026
+**Version/date:** 0.56 Draft · 5 November 2026
 **Status:** Planning entry; no application feature accepted or implemented by this file.\
-**Inputs:** [Development rules](../../development-rules.md) v1.13; [implementation roadmap](../roadmap.md) v0.46; [PLAN-01](../../planning/five-month-plan.md) v0.4; [spec index](../../../specs/README.md) v0.8.2; [source register](../register.md).\
+**Inputs:** [Development rules](../../development-rules.md) v1.13; [implementation roadmap](../roadmap.md) v0.49; [PLAN-01](../../planning/five-month-plan.md) v0.4; [spec index](../../../specs/README.md) v0.8.2; [source register](../register.md).\
 **Trace:** Existing feature FR/AC/BR/SC through its canonical spec; no added scope.\
 **Owner role:** Sequential development coordinator.
 
@@ -217,3 +217,21 @@ RF05 bounded result: HOTFIX-BACKEND-42-01 v0.8 / HF42-RF05-RESULT v0.1 verifies 
 ## SP05-PUB01 actual Draft PR receipt — 5 November 2026
 
 [FEAT-SP05-01 v0.5](sp-05-sprint-lifecycle/plan.md) / entry v0.5 / [SP05-PUBLICATION-01 v0.1](sp-05-sprint-lifecycle/publication.md) record normal feature commit0bb0f57 push and actual open [Draft PR #1](https://github.com/900M100CK/scrum-workspace-KMS-ai/pull/1), codex/sp-05 to main. SP05-PR-DRAFT-01 v0.3 links the actual PR. Runtime Git blob identities and fresh011 format-only storage proof are retained with old failures. First context CI was pending; final head/check state is verified after the documentation receipt push. No merge, reviewer execution or independent/release acceptance. Parent status remains canonical.
+
+
+## SP05-V01 runtime verification continuation — 5 November 2026
+
+[FEAT-SP05-01 v0.6](sp-05-sprint-lifecycle/plan.md) / entry v0.6 / WBS v0.3 registers [SP05-V01 v0.1](sp-05-sprint-lifecycle/tasks/V01-runtime-verification.md) and [SP05-RUNTIME-GUIDE-01 v0.1](sp-05-sprint-lifecycle/verification/README.md), with planned SP05-RUNTIME-RESULT-01 v0.1. Owner requested runtime follow-up after AG01 bounded static v0.2.1. Exact published source/tree, Node24/Docker/TLS/browser prerequisites, pure-controller separation and actual command/cleanup evidence govern execution. PLAN-01 Month2/M-03 and SP04-P08 trace unchanged. Codex runs are supplemental author evidence; no reviewer impersonation, acceptance, production edit, valuable-data migration or publication. Parent plan owns status.
+
+
+SP05-V01 bounded result: [SP05-RUNTIME-RESULT-01 v0.1](sp-05-sprint-lifecycle/verification/runtime-report.md) records Codex supplemental execution on122 unchanged published inputs: Workspace347/347, isolated Edge1/1, structural92/92 and root build/typecheck/foundation/prototype success; pure controller7/7 also runs when Docker access is denied. Runner/guide v0.1 provides explicit-Node phased reproduction; no new resource leftovers or production changes. Antigravity runtime remains unexecuted/open; no independent/release acceptance or commit/push.
+
+
+## AG01 v0.4 bounded runtime handback — 5 November 2026
+
+[FEAT-SP05-01 v0.7](sp-05-sprint-lifecycle/plan.md) / entry v0.7 / [SP05-AG01-DISPOSITION-01 v0.1](sp-05-sprint-lifecycle/verification/antigravity-reconciliation.md) receive Antigravity report/tracking v0.4, manifest v0.3.1 and runtime record v1.0. Seven reported SP05 suites57/57;18 static and122 published blobs matched. SP05-RUNTIME-GUIDE-01 v0.2 links the later disposition. F-ENV-01 resolved within named runs; broader independent40-file regression not reported and not waived. Original raw inputs preserved; other-suite stdout granularity and browser capture origin noted. No production fix, commit/push or milestone/release acceptance. Parent owns current status.
+
+
+## SP05-PUB02 final dossier publication — 5 November 2026
+
+[FEAT-SP05-01 v0.8](sp-05-sprint-lifecycle/plan.md) / entry v0.8 / [SP05-PUB02 v0.1](sp-05-sprint-lifecycle/tasks/PUB02-verification-publication.md) register owner-authorised docs/runner/evidence commit/push and a Draft PR. [SP05-FINAL-HANDOFF-01 v0.1](sp-05-sprint-lifecycle/verification/final-handoff.md), SP05-AG01-DISPOSITION-01 v0.2, canonical SP05-AG01-RESULT/TRACKING v0.4.1 and immutable final input snapshots retain reviewer57 versus author347. F-REG-01 explicitly open/not waived; M03/release separate. No runtime/schema/test/package edit, production migration, force push or merge. PUB02-RESULT v0.1 is planned after actual publication.

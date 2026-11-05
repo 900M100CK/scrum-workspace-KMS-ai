@@ -1,0 +1,43 @@
+{
+  "node": "v24.22.1",
+  "scope": "Returned reviewer handback reconciliation only; no coordinator runtime rerun or acceptance waiver",
+  "copiedInputHashes": "matched",
+  "reviewerInputsReadOnly": true,
+  "originalBrowserCaptureUntouched": true,
+  "links": "passed",
+  "secretScan": "passed",
+  "runtimeTestsSchemasPackages": "unchanged",
+  "index": "unstaged",
+  "checks": [
+    {
+      "name": "docs-lint",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/docs/verify-docs.mjs"
+      ],
+      "exit_code": 0,
+      "log": "coordinator-docs-lint.txt"
+    },
+    {
+      "name": "metadata",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/docs/docs-metadata.mjs",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": "coordinator-metadata.txt"
+    },
+    {
+      "name": "docs-tests",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "--test",
+        "tests/docs/docs.test.mjs"
+      ],
+      "exit_code": 0,
+      "log": "coordinator-docs-tests.txt"
+    }
+  ],
+  "remainingBoundary": "Independent seven-suite SP05 result received; original broader40-file reviewer campaign not reported; full milestone/release acceptance not granted"
+}

@@ -1,0 +1,81 @@
+{
+  "node": "v24.22.1",
+  "base": "b40a01439e9cb2f1ce51f887bf238fe3bff9dd73",
+  "branch": "codex/sp-05",
+  "scope": "Docs/verification runner/evidence only; no application/schema/test/package delta vs main",
+  "runtimeBlobCount": 122,
+  "finalInputCopiesMatched": 13,
+  "secretScan": "passed",
+  "linkedRawLogs": "included by bounded feature ignore exception",
+  "links": "passed",
+  "checks": [
+    {
+      "name": "context-lint",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "context:lint"
+      ],
+      "exit_code": 0,
+      "error": null,
+      "log": "context-lint.txt"
+    },
+    {
+      "name": "context-check",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/verify-context.mjs"
+      ],
+      "exit_code": 0,
+      "error": null,
+      "log": "context-check.txt"
+    },
+    {
+      "name": "docs-lint",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/docs/verify-docs.mjs"
+      ],
+      "exit_code": 0,
+      "error": null,
+      "log": "docs-lint.txt"
+    },
+    {
+      "name": "metadata",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/docs/docs-metadata.mjs",
+        "--check"
+      ],
+      "exit_code": 0,
+      "error": null,
+      "log": "metadata.txt"
+    },
+    {
+      "name": "structural-tests",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "--test",
+        "tests/context/context.test.mjs",
+        "tests/contracts/contract-schemas.test.mjs",
+        "tests/contracts/handoff-bytes.test.mjs",
+        "tests/docs/docs.test.mjs"
+      ],
+      "exit_code": 0,
+      "error": null,
+      "log": "structural-tests.txt"
+    },
+    {
+      "name": "runner-syntax",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "--check",
+        "docs/implementation/features/sp-05-sprint-lifecycle/verification/run-runtime.mjs"
+      ],
+      "exit_code": 0,
+      "error": null,
+      "log": "runner-syntax.txt"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "date": "2026-11-05",
+  "kind": "Final read-only Antigravity handback receipt; raw returned text preserved, including original language",
+  "versions": {
+    "report": "0.4.1",
+    "tracking": "0.4.1",
+    "sourceManifest": "0.3.1",
+    "runtime": "1.0",
+    "controller": "1.0.1"
+  },
+  "boundaries": {
+    "F_REG_01": "Open;40-file347-record Workspace campaign has not been independently executed or waived",
+    "M03": "Not accepted by this dossier",
+    "release": "Not accepted by this dossier"
+  },
+  "copied": [
+    {
+      "source": "D:/scrum-workspace-KMS-ai/docs/implementation/features/sp-05-sprint-lifecycle/reviews/antigravity-20261105T120000/report.md",
+      "snapshot": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/ag01-v041-final/report-v0.4.1.md",
+      "sha256": "ba825d18048c2543f953e33c10d11608a33afc28f0006a6b11d5d1e23c6146f5"
+    },
+    {
+      "source": "D:/scrum-workspace-KMS-ai/docs/implementation/features/sp-05-sprint-lifecycle/reviews/antigravity-20261105T120000/report.md",
+      "snapshot": "docs/implementation/features/sp-05-sprint-lifecycle/reviews/antigravity-20261105T120000/report.md",
+      "sha256": "ba825d18048c2543f953e33c10d11608a33afc28f0006a6b11d5d1e23c6146f5"
+    },
+    {
+      "source": "D:/scrum-workspace-KMS-ai/docs/implementation/features/sp-05-sprint-lifecycle/reviews/antigravity-20261105T120000/tracking.md",
+      "snapshot": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/ag01-v041-final/tracking-v0.4.1.md",
+      "sha256": "173f4cf5dcd647669cce3478cfa8ce3b1afdea205d1e417369a682bf8326eb16"
+    },
+    {
+      "source": "D:/scrum-workspace-KMS-ai/docs/implementation/features/sp-05-sprint-lifecycle/reviews/antigravity-20261105T120000/tracking.md",
+      "snapshot": "docs/implementation/features/sp-05-sprint-lifecycle/reviews/antigravity-20261105T120000/tracking.md",
+      "sha256": "173f4cf5dcd647669cce3478cfa8ce3b1afdea205d1e417369a682bf8326eb16"
+    },
+    {
+      "source": "D:/scrum-workspace-KMS-ai/docs/implementation/features/sp-05-sprint-lifecycle/evidence/antigravity-20261105T120000/source-manifest.json",
+      "snapshot": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/ag01-v041-final/source-manifest.json",
+      "sha256": "281a1cd11d44bd2904e606d4ecb088314b3a8796a4b5808df0cf748256a90384"
+    },
+    {
+      "source": "D:/scrum-workspace-KMS-ai/docs/implementation/features/sp-05-sprint-lifecycle/evidence/antigravity-20261105T120000/source-manifest.json",
+      "snapshot": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/antigravity-20261105T120000/source-manifest.json",
+      "sha256": "281a1cd11d44bd2904e606d4ecb088314b3a8796a4b5808df0cf748256a90384"
+    },
+    {
+      "source": "D:/scrum-workspace-KMS-ai/docs/implementation/features/sp-05-sprint-lifecycle/evidence/antigravity-20261105T120000/controller-run.json",
+      "snapshot": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/ag01-v041-final/controller-run.json",
+      "sha256": "897a0553dcf32b8a2e46535365223ab8d8e60aa30e8a4cdf80dd1f581420f708"
+    },
+    {
+      "source": "D:/scrum-workspace-KMS-ai/docs/implementation/features/sp-05-sprint-lifecycle/evidence/antigravity-20261105T120000/controller-run.json",
+      "snapshot": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/antigravity-20261105T120000/controller-run.json",
+      "sha256": "897a0553dcf32b8a2e46535365223ab8d8e60aa30e8a4cdf80dd1f581420f708"
+    },
+    {
+      "source": "D:/scrum-workspace-KMS-ai/docs/implementation/features/sp-05-sprint-lifecycle/evidence/antigravity-20261105T120000/controller-run.log",
+      "snapshot": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/ag01-v041-final/controller-run.log",
+      "sha256": "ff0fbfafdf8b764c9cb229ce8418bb7f29fdb73b7feb534cdbfcc2a13b58a177"
+    },
+    {
+      "source": "D:/scrum-workspace-KMS-ai/docs/implementation/features/sp-05-sprint-lifecycle/evidence/antigravity-20261105T120000/controller-run.log",
+      "snapshot": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/antigravity-20261105T120000/controller-run.log",
+      "sha256": "ff0fbfafdf8b764c9cb229ce8418bb7f29fdb73b7feb534cdbfcc2a13b58a177"
+    },
+    {
+      "source": "D:/scrum-workspace-KMS-ai/docs/implementation/features/sp-05-sprint-lifecycle/evidence/antigravity-20261105T120000/runtime-execution.json",
+      "snapshot": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/ag01-v041-final/runtime-execution.json",
+      "sha256": "d9d8dd5e49418545302a586d158c91846f732c41ad236c6e6b09d2a9338f25bc"
+    },
+    {
+      "source": "D:/scrum-workspace-KMS-ai/docs/implementation/features/sp-05-sprint-lifecycle/evidence/antigravity-20261105T120000/runtime-execution.json",
+      "snapshot": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/antigravity-20261105T120000/runtime-execution.json",
+      "sha256": "d9d8dd5e49418545302a586d158c91846f732c41ad236c6e6b09d2a9338f25bc"
+    },
+    {
+      "source": "docs/implementation/features/sp-05-sprint-lifecycle/verification/antigravity-reconciliation.md",
+      "snapshot": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/ag01-v041-final/coordinator-disposition-v0.1.md",
+      "sha256": "82f6785a841593ee6cd6bfe2866bf0d62acfc8e966ee94dd21ae44a183a2c3e1"
+    }
+  ]
+}
