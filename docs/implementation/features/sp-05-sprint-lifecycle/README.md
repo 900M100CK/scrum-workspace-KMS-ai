@@ -1,7 +1,7 @@
 # SP-05 implementation entry
 
 **Artifact ID:** FEAT-SP05-ENTRY\
-**Version/date:** 0.8 Draft · 5 November 2026
+**Version/date:** 0.9 Draft · 5 November 2026
 
 [Plan](plan.md) owns current status; [breakdown](breakdown.md) maps the owner-approved tasks. Follow registered tasks sequentially; no publication or feature acceptance.
 
@@ -18,3 +18,5 @@
 [Antigravity v0.4 reconciliation](verification/antigravity-reconciliation.md) records the later seven-suite reviewer handback; the earlier V01 supplement remains author evidence.
 
 [Final technical handoff](verification/final-handoff.md), [canonical reviewer v0.4.1](reviews/antigravity-20261105T120000/report.md) and [PUB02](tasks/PUB02-verification-publication.md) prepare the documentation-only publication; F-REG-01 remains open and not waived.
+
+[Draft PR #2](https://github.com/900M100CK/scrum-workspace-KMS-ai/pull/2) publishes the verification dossier; [actual receipt](verification/publication-receipt.md) records its bounded outcome without closing F-REG-01 or milestone/release acceptance.

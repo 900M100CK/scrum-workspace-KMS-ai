@@ -1,9 +1,9 @@
 # Work plan register and template
 
 **Artifact ID:** IMPL-FEATURES-01\
-**Version/date:** 0.56 Draft · 5 November 2026
+**Version/date:** 0.57 Draft · 5 November 2026
 **Status:** Planning entry; no application feature accepted or implemented by this file.\
-**Inputs:** [Development rules](../../development-rules.md) v1.13; [implementation roadmap](../roadmap.md) v0.49; [PLAN-01](../../planning/five-month-plan.md) v0.4; [spec index](../../../specs/README.md) v0.8.2; [source register](../register.md).\
+**Inputs:** [Development rules](../../development-rules.md) v1.13; [implementation roadmap](../roadmap.md) v0.50; [PLAN-01](../../planning/five-month-plan.md) v0.4; [spec index](../../../specs/README.md) v0.8.2; [source register](../register.md).\
 **Trace:** Existing feature FR/AC/BR/SC through its canonical spec; no added scope.\
 **Owner role:** Sequential development coordinator.
 
@@ -235,3 +235,8 @@ SP05-V01 bounded result: [SP05-RUNTIME-RESULT-01 v0.1](sp-05-sprint-lifecycle/ve
 ## SP05-PUB02 final dossier publication — 5 November 2026
 
 [FEAT-SP05-01 v0.8](sp-05-sprint-lifecycle/plan.md) / entry v0.8 / [SP05-PUB02 v0.1](sp-05-sprint-lifecycle/tasks/PUB02-verification-publication.md) register owner-authorised docs/runner/evidence commit/push and a Draft PR. [SP05-FINAL-HANDOFF-01 v0.1](sp-05-sprint-lifecycle/verification/final-handoff.md), SP05-AG01-DISPOSITION-01 v0.2, canonical SP05-AG01-RESULT/TRACKING v0.4.1 and immutable final input snapshots retain reviewer57 versus author347. F-REG-01 explicitly open/not waived; M03/release separate. No runtime/schema/test/package edit, production migration, force push or merge. PUB02-RESULT v0.1 is planned after actual publication.
+
+
+## PUB02 actual verification dossier publication — 5 November 2026
+
+[FEAT-SP05-01 v0.9](sp-05-sprint-lifecycle/plan.md) / entry v0.9 / [SP05-PUB02-RESULT-01 v0.1](sp-05-sprint-lifecycle/verification/publication-receipt.md) record normal commit6e3d662 push and actual open [Draft PR #2](https://github.com/900M100CK/scrum-workspace-KMS-ai/pull/2), codex/sp-05 to main. Final receipt head/check state is verified after its push. Runtime122 unchanged, final AG01 v0.4.1 preserved. F-REG-01 explicitly remains open/not waived; no merge, production change or M03/release acceptance.

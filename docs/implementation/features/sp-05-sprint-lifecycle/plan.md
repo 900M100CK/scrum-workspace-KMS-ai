@@ -1,7 +1,7 @@
 # SP-05 Sprint lifecycle implementation
 
 **Artifact ID:** FEAT-SP05-01\
-**Version/date:** 0.8 Draft · 5 November 2026\
+**Version/date:** 0.9 Draft · 5 November 2026\
 **Status:** SP05 published/integrated; Codex supplement and bounded Antigravity seven-suite handback reconciled; broader independent regression/milestone/release acceptance remains separate.\
 **Planning mode:** Owner supplied the completed Plan-mode plan; execution now in Default mode. This saved written gate precedes code/tests.\
 **Work kind:** Feature\
@@ -50,7 +50,7 @@ Allocation expected_revision is Sprint.revision; read/current-scope/location of 
 | [AG01](tasks/AG01-antigravity-tracking-testing.md) | Antigravity source-identified P00–P15 coverage assessment, actual independent reruns, concrete findings and handback | P15 local handoff; source/branch/runtime identity confirmed by reviewer | Reconciled v0.4.1 bounded static18 and seven-suite57/57; F-ENV-01 resolved for named runs; F-REG-01 open/not waived |
 | [PUB01](tasks/PUB01-draft-publication.md) | Commit/push the verified SP05 candidate and open one Draft PR to main for later Antigravity review | P15; owner publication request; source/preservation and final checks | Verified normal feature push and open Draft PR #1; receipt/current-head verification follows; no merge |
 | [V01](tasks/V01-runtime-verification.md) | Remove reproducible environment setup gaps, rerun actual published runtime and supply reviewer invocation/evidence | AG01 bounded static v0.2.1; published PR head/tree identity; owner execution request | Verified Codex supplement:347 Workspace/1 Edge/92 structural; later Antigravity seven-suite57/57 handback reconciled separately |
-| [PUB02](tasks/PUB02-verification-publication.md) | Publish V01 and final AG01 v0.4.1 reconciliation through a docs-only PR | Completed bounded handbacks; owner request to implement remaining closure | In progress: written publication gate; F-REG-01 and M03/release remain open |
+| [PUB02](tasks/PUB02-verification-publication.md) | Publish V01 and final AG01 v0.4.1 reconciliation through a docs-only PR | Completed bounded handbacks; owner request to implement remaining closure | Verified dossier commit/push and open Draft PR #2; final receipt/head checks follow; F-REG-01 and M03/release remain open |
 
 ## Verification and handoff
 
@@ -130,3 +130,5 @@ Allowed writes: owning feature folder, verification runner and exact evidence al
 PUB02 input closure: final Antigravity report/tracking v0.4.1 and unchanged runtime/controller/manifest files copied read-only into canonical review/evidence paths plus immutable evidence/ag01-v041-final/. [SP05-FINAL-HANDOFF-01](verification/final-handoff.md) and disposition v0.2 explicitly retain F-REG-01 (347 Workspace not independently run/not waived) and separate M03/release acceptance. Publication candidate includes V01/local reconciliation only; runtime122 inputs remain unchanged.
 
 PUB02 evidence preservation: root *.log ignore excluded returned controller stdout. A feature-local .gitignore exception now includes evidence/**/*.log only within this owning dossier; root/global ignore and private .tmp setup remain unchanged. All candidate evidence still receives the explicit cookie/token/key scan.
+
+PUB02 actual publication: dossier commit6e3d6624ed442146a229ff5fa932a6c1f6bbe106 pushed normally; [Draft PR #2](https://github.com/900M100CK/scrum-workspace-KMS-ai/pull/2) open codex/sp-05 → main. [SP05-PUB02-RESULT-01](verification/publication-receipt.md) records actual API receipt and source/check boundaries. Final documentation receipt commit/head/check state is verified after push. No code changes, merge or waiver of F-REG-01/M03/release.
