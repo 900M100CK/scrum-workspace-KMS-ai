@@ -1,0 +1,30 @@
+{
+  "testRun": {
+    "suite": "workspace-full-regression",
+    "scope": "All non-browser Workspace tests (40 test files)",
+    "executedBy": "Antigravity",
+    "timestamp": "2026-11-05T14:10:24Z",
+    "environment": {
+      "platform": "win32",
+      "node": "v24.22.1",
+      "nodePath": "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "worktree": "C:\\Users\\MCK\\.codex\\worktrees\\sp-05-lifecycle\\scrum-workspace-KMS-ai",
+      "commit": "b40a01439e9cb2f1ce51f887bf238fe3bff9dd73",
+      "databaseImage": "pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966"
+    },
+    "command": "node --test --test-concurrency=1 <40 tests/workspace/*.test.mjs files excluding browser>",
+    "metrics": {
+      "files": 40,
+      "totalTests": 347,
+      "passed": 347,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "todo": 0,
+      "durationMs": 281266.1972,
+      "durationSeconds": 281.35,
+      "exitCode": 0
+    },
+    "logFile": "workspace-full-regression.log"
+  }
+}

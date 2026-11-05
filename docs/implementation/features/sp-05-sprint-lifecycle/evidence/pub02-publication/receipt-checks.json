@@ -1,0 +1,38 @@
+{
+  "node": "v24.22.1",
+  "scope": "Actual Draft PR receipt only;122 runtime/test/config inputs and executed runner hash unchanged",
+  "F_REG_01": "Open/not waived",
+  "links": "passed",
+  "whitespace": "passed",
+  "checks": [
+    {
+      "name": "docs-lint",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/docs/verify-docs.mjs"
+      ],
+      "exit_code": 0,
+      "log": "receipt-docs-lint.txt"
+    },
+    {
+      "name": "metadata",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/docs/docs-metadata.mjs",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": "receipt-metadata.txt"
+    },
+    {
+      "name": "docs-tests",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "--test",
+        "tests/docs/docs.test.mjs"
+      ],
+      "exit_code": 0,
+      "log": "receipt-docs-tests.txt"
+    }
+  ]
+}

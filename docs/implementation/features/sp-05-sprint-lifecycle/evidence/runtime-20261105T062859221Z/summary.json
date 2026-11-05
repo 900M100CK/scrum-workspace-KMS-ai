@@ -1,0 +1,40 @@
+{
+  "phase": "controller",
+  "runId": "runtime-20261105T062859221Z",
+  "executor": "Codex",
+  "startedSource": "ff93ebe44306553da1a602a171cb9560455c58d3",
+  "targetMerge": "b40a01439e9cb2f1ce51f887bf238fe3bff9dd73",
+  "sourcePreserved": true,
+  "results": [
+    {
+      "name": "docker-probe",
+      "command": [
+        "docker",
+        "info",
+        "--format",
+        "{{.ServerVersion}}"
+      ],
+      "started": "2026-11-05T06:29:09.989Z",
+      "finished": "2026-11-05T06:29:10.271Z",
+      "exit_code": 1,
+      "error": null,
+      "log": "docker-probe.txt"
+    },
+    {
+      "name": "controller",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "--test",
+        "--test-concurrency=1",
+        "tests/workspace/sprint-controller.test.mjs"
+      ],
+      "started": "2026-11-05T06:29:11.510Z",
+      "finished": "2026-11-05T06:29:11.750Z",
+      "exit_code": 0,
+      "error": null,
+      "log": "controller.txt"
+    }
+  ],
+  "passed": true,
+  "interpretation": "Supplemental execution by named executor; does not prove Antigravity reproduction or independent acceptance."
+}

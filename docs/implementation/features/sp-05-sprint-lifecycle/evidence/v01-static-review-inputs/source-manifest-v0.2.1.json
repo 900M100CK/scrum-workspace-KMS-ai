@@ -1,0 +1,89 @@
+{
+  "artifact": "SP05-AG01 reviewer source manifest",
+  "version": "0.2.1",
+  "date": "2026-11-05",
+  "run_id": "antigravity-20261105T120000",
+  "reviewer": "Antigravity (Google DeepMind Advanced Agentic Coding)",
+  "scope_note": "Bounded static inspection manifest. Lists 18 core runtime, contract, migration, and test fixture files verified via git blob hashes at merge commit b40a014. Does not represent the entire repository source tree.",
+
+  "commit_boundary": {
+    "merge_commit": "b40a014",
+    "pr_head": "ff93ebe44306553da1a602a171cb9560455c58d3",
+    "feature_commit": "0bb0f57d9fe3893fb66a0aded3939aed2605eaf8",
+    "base": "1cb54f3cfdfd650caef35dce6d5fd0fd1e32a1d6",
+    "tree_inspected": "b40a014 (origin/main via git show)"
+  },
+
+  "git_blob_hashes": {
+    "note": "Resolved via: git rev-parse b40a014:<path>",
+    "contracts": {
+      "contracts/openapi/workspace.openapi.json":   "3e85581561d32677f3ad7e8606ec26754819b942"
+    },
+    "runtime": {
+      "services/workspace/src/sprints/store.ts":    "868efe19169435396d6289a4c7dd36d632ed50ee",
+      "services/workspace/src/sprints/http.ts":     "0d1d07946878bfdc4c27cfb103e53fa2c3cb9210",
+      "services/workspace/src/sprints/authority.ts":"a8f9598ec8ac637c67ca5433a672813694caef03",
+      "services/workspace/src/sprints/types.ts":    "25d250a69dbc531a0e3e7a81d8517546cc2df2a2",
+      "services/workspace/src/sprints/outcomes.ts": "0ca126ab0824dee2b569f411cacb0ee791c81ead",
+      "services/workspace/migrations/011-sprint-lifecycle.up.sql":  "e7a69899b0eb82d369e764606f7e49b0d4e2af0d",
+      "services/workspace/migrations/011-sprint-lifecycle.down.sql":"ed7ada80db6c626e6a447ce5fcf12cbdfb547d82",
+      "apps/web/src/SprintWorkspace.tsx":           "c2e8fed2358027b9254b1b2d8a8c9f71f0b14682",
+      "apps/web/src/sprints.ts":                    "522cc0cd34e15d4b8fa08026c2a7ae76b6a320d9"
+    },
+    "tests": {
+      "tests/workspace/sprint-storage.test.mjs":    "ee2823cc13dc09ec5d07c7db4cbdabfced0469d6",
+      "tests/workspace/sprint-http.test.mjs":       "692193cee76b0842338f5e6f4090ff420d493af1",
+      "tests/workspace/sprint-security.test.mjs":   "77f8612ee343ebda9c5beec87aafe92ae0292cec",
+      "tests/workspace/sprint-concurrency.test.mjs":"98819e5b0dbbb0508921e3560e70081f6218966e",
+      "tests/workspace/sprint-controller.test.mjs": "100654ac6ac8810f6ed7a641dda11869769d4ec7",
+      "tests/workspace/sprint-ui.test.mjs":         "091200dcf9f3c2ee43546a784306e36f56ad1d68",
+      "tests/workspace/sprint-browser.test.mjs":    "c59b2caa16bb83880e86bbf4baa81a12b5ebce93",
+      "tests/workspace/sprint-fixture.mjs":         "23efe8eaa614ae4dbc31d2c905ea00f01ceccbc7"
+    }
+  },
+
+  "source_inspected": [
+    "contracts/openapi/workspace.openapi.json",
+    "docs/implementation/features/sp-05-sprint-lifecycle/plan.md",
+    "docs/implementation/features/sp-05-sprint-lifecycle/handoff.md",
+    "docs/implementation/features/sp-05-sprint-lifecycle/breakdown.md",
+    "docs/implementation/features/sp-05-sprint-lifecycle/tasks/AG01-antigravity-tracking-testing.md",
+    "docs/implementation/features/sp-05-sprint-lifecycle/evidence/antigravity-assignment/reviewer-inputs.json",
+    "docs/implementation/features/sp-05-sprint-lifecycle/evidence/final-source.json",
+    "docs/implementation/features/sp-05-sprint-lifecycle/evidence/final-checks.json",
+    "docs/implementation/features/sp-05-sprint-lifecycle/evidence/final-preflight.json",
+    "docs/implementation/features/sp-05-sprint-lifecycle/evidence/regression2.json",
+    "docs/implementation/features/sp-05-sprint-lifecycle/evidence/reorder-races-final.json",
+    "docs/implementation/features/sp-05-sprint-lifecycle/evidence/controller-final.json",
+    "docs/implementation/features/sp-05-sprint-lifecycle/evidence/browser-final.json",
+    "services/workspace/src/sprints/store.ts",
+    "services/workspace/src/sprints/http.ts",
+    "services/workspace/src/sprints/authority.ts",
+    "services/workspace/src/sprints/types.ts",
+    "services/workspace/src/sprints/outcomes.ts",
+    "services/workspace/migrations/011-sprint-lifecycle.up.sql",
+    "services/workspace/migrations/011-sprint-lifecycle.down.sql",
+    "apps/web/src/SprintWorkspace.tsx",
+    "apps/web/src/sprints.ts",
+    "tests/workspace/sprint-storage.test.mjs",
+    "tests/workspace/sprint-http.test.mjs",
+    "tests/workspace/sprint-security.test.mjs",
+    "tests/workspace/sprint-concurrency.test.mjs",
+    "tests/workspace/sprint-controller.test.mjs",
+    "tests/workspace/sprint-ui.test.mjs",
+    "tests/workspace/sprint-browser.test.mjs",
+    "tests/workspace/sprint-fixture.mjs",
+    "tests/workspace/sprint-ui-fixture.mjs"
+  ],
+
+  "runtime_executed": false,
+  "runtime_blocked_reason": {
+    "F-ENV-01-DB-HTTPS": "sprint-storage, sprint-http, sprint-security, sprint-concurrency, sprint-ui require real PostgreSQL/Docker (and HTTPS for sprint-ui via sprint-ui-fixture.mjs)",
+    "F-ENV-01-BROWSER": "sprint-browser requires HTTPS/TLS setup and Playwright/Edge runner",
+    "F-ENV-01-CONTROLLER": "sprint-controller is pure JS/in-memory (no PostgreSQL, mock transport) — not run due to Node runtime unavailability in reviewer sandbox"
+  },
+
+  "findings": ["F-ENV-01", "F-COMMIT-01", "F-SCOPE-01"],
+  "confirmed_defects": [],
+  "recommendation": "Verification incomplete: F-ENV-01"
+}

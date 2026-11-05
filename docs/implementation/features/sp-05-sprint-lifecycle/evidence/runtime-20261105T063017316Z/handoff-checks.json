@@ -1,0 +1,51 @@
+{
+  "node": "v24.22.1",
+  "sourceFilesPreserved": 122,
+  "runnerMatchesExecutedSource": true,
+  "links": "passed",
+  "secretScan": "passed",
+  "trackedWhitespace": "passed",
+  "scope": "Only owning feature docs/runner/evidence and registered navigation/version support; no runtime/test/schema/package/Git publication change",
+  "independentRuntime": "Not executed by Antigravity; supplement does not close AG01",
+  "results": [
+    {
+      "name": "docs-lint",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/docs/verify-docs.mjs"
+      ],
+      "exit_code": 0,
+      "log": "handoff-docs-lint.txt"
+    },
+    {
+      "name": "metadata",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/docs/docs-metadata.mjs",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": "handoff-metadata.txt"
+    },
+    {
+      "name": "docs-test",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "--test",
+        "tests/docs/docs.test.mjs"
+      ],
+      "exit_code": 0,
+      "log": "handoff-docs-test.txt"
+    },
+    {
+      "name": "runner-syntax",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "--check",
+        "docs/implementation/features/sp-05-sprint-lifecycle/verification/run-runtime.mjs"
+      ],
+      "exit_code": 0,
+      "log": "handoff-runner-syntax.txt"
+    }
+  ]
+}

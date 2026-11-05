@@ -1,0 +1,16 @@
+# SP05-V01 — Published runtime verification and reviewer setup
+
+**Artifact ID:** SP05-V01\
+**Version/date:** 0.1 Draft · 5 November 2026
+
+Parent [FEAT-SP05-01](../plan.md) owns mutable status and the pre-execution scope amendment. Dependencies: actual published tree and AG01 v0.2.1 bounded static handback. Trace: SP-05.1–05.4 / PLAN-01 Month2 / M-03, Must FR06/07/08/41/42 plus31 and actual SP04-P08 integration; AC/UC/TC references inherited from AG01. Plan mode unavailable; registered written gate precedes execution.
+
+Deliver one reproducible reviewer invocation plus a source-identified supplemental Codex runtime report. Work sequentially: environment/source freeze → runner/probe and pure-controller path → actual build/foundation/full Workspace/HTTPS DOM/browser regression → source/cleanup/evidence handback. Run only existing tests without weakening assertions. Source identity uses the122 published Git blob IDs and normalized working bytes; current ff93ebe tree equals the targeted b40a014 merge tree. Bind the runner itself by SHA-256.
+
+Allowed paths: owning feature folder and registration-only supports enumerated before edits in the parent. Preserve production, old tests/fixtures/migrations/contracts/package files and all old evidence. Use installed Node24, pinned disposable Docker fixtures, trusted ignored TLS material and isolated Edge. Local environment/process changes are scoped to child execution; never print credentials or disable TLS verification. Default Docker pipe denial may require authorised execution outside that boundary; a script cannot grant its own sandbox permissions.
+
+Commands: node verification/run-runtime.mjs probe; controller; checks; workspace; browser; or all, each with an explicit executor label. Use the actual Node executable path if PATH is unsuitable. Guide and runner resolve root from their own location; stages record complete argv, exits, runtime versions, captured source and redacted logs. The all phase includes root typecheck/build/foundation/prototype, context/docs/contracts/metadata, all current top-level Workspace non-browser suites and the separate real browser suite. Independent gates can still run when another environment prerequisite is blocked.
+
+Assertions: correct source/commit/tree, Node24 and exact child Node, DB/DOM/browser prerequisites distinguished, existing all-operation rights/replay/revision/audit/rollback/concurrency assertions run on actual handlers/PG; existing pure-controller runs without PostgreSQL; browser has no TLS bypass/personal profile; source remains unchanged and fixtures clean up owned resources. Missing prerequisites produce Blocked/Not run with command evidence, not Pass. Report counters include parents/overlap and are not unique requirements.
+
+DoR: written gate/registrations, source hashes, actual prerequisite probes. DoD: a fresh run folder with full command/results/source/cleanup identity and a guide Antigravity can invoke; unresolved reviewer execution distinguished from successful Codex runs. Result: verification/runtime-report.md, linked from plan. Estimate relative M, confidence medium due runtime setup; no calendar commitment. Recovery closes only owned apps/browser/disposable fixtures; no unrelated resource deletion. No new agents, commit/push/PR/merge or independent approval is authorised by this continuation.

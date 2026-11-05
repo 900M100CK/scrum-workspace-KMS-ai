@@ -1,0 +1,21 @@
+{
+  "kind": "Read-only receipt of Antigravity bounded static v0.2.1, not new reviewer execution",
+  "captured": [
+    {
+      "source": "D:/scrum-workspace-KMS-ai/docs/implementation/features/sp-05-sprint-lifecycle/reviews/antigravity-20261105T120000/report.md",
+      "snapshot": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/v01-static-review-inputs/report-v0.2.1.md",
+      "sha256": "d59ea7f767529ba1d96d7871745b9a4227ebf37282fa9250a88bf03584e78aeb"
+    },
+    {
+      "source": "D:/scrum-workspace-KMS-ai/docs/implementation/features/sp-05-sprint-lifecycle/reviews/antigravity-20261105T120000/tracking.md",
+      "snapshot": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/v01-static-review-inputs/tracking-v0.2.1.md",
+      "sha256": "da90b8d5bb9bce0862d960a29190fdac91e53e1dff5ef84edb36a74f3bc70144"
+    },
+    {
+      "source": "D:/scrum-workspace-KMS-ai/docs/implementation/features/sp-05-sprint-lifecycle/evidence/antigravity-20261105T120000/source-manifest.json",
+      "snapshot": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/v01-static-review-inputs/source-manifest-v0.2.1.json",
+      "sha256": "91712258e682029e9de08968cd97ab41ce302830b2a767a11e5fac44b547a047"
+    }
+  ],
+  "matchedGitBlobs": 17
+}

@@ -1,0 +1,36 @@
+{
+  "phase": "controller",
+  "executor": "Codex",
+  "status": "finished",
+  "passed": true,
+  "results": [
+    {
+      "name": "docker-probe",
+      "command": [
+        "docker",
+        "info",
+        "--format",
+        "{{.ServerVersion}}"
+      ],
+      "started": "2026-11-05T06:29:09.989Z",
+      "finished": "2026-11-05T06:29:10.271Z",
+      "exit_code": 1,
+      "error": null,
+      "log": "docker-probe.txt"
+    },
+    {
+      "name": "controller",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "--test",
+        "--test-concurrency=1",
+        "tests/workspace/sprint-controller.test.mjs"
+      ],
+      "started": "2026-11-05T06:29:11.510Z",
+      "finished": "2026-11-05T06:29:11.750Z",
+      "exit_code": 0,
+      "error": null,
+      "log": "controller.txt"
+    }
+  ]
+}

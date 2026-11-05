@@ -1,0 +1,215 @@
+{
+  "phase": "all",
+  "executor": "Codex",
+  "status": "finished",
+  "passed": true,
+  "results": [
+    {
+      "name": "docker-probe",
+      "command": [
+        "docker",
+        "info",
+        "--format",
+        "{{.ServerVersion}}"
+      ],
+      "started": "2026-11-05T06:30:24.141Z",
+      "finished": "2026-11-05T06:30:24.369Z",
+      "exit_code": 0,
+      "error": null,
+      "log": "docker-probe.txt"
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "typecheck"
+      ],
+      "started": "2026-11-05T06:30:24.875Z",
+      "finished": "2026-11-05T06:30:36.542Z",
+      "exit_code": 0,
+      "error": null,
+      "log": "typecheck.txt"
+    },
+    {
+      "name": "build",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "build"
+      ],
+      "started": "2026-11-05T06:30:36.542Z",
+      "finished": "2026-11-05T06:30:42.737Z",
+      "exit_code": 0,
+      "error": null,
+      "log": "build.txt"
+    },
+    {
+      "name": "test-foundation",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "test:foundation"
+      ],
+      "started": "2026-11-05T06:30:42.738Z",
+      "finished": "2026-11-05T06:30:56.445Z",
+      "exit_code": 0,
+      "error": null,
+      "log": "test-foundation.txt"
+    },
+    {
+      "name": "test-prototype",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "test:prototype"
+      ],
+      "started": "2026-11-05T06:30:56.446Z",
+      "finished": "2026-11-05T06:30:59.003Z",
+      "exit_code": 0,
+      "error": null,
+      "log": "test-prototype.txt"
+    },
+    {
+      "name": "context-lint",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "context:lint"
+      ],
+      "started": "2026-11-05T06:30:59.004Z",
+      "finished": "2026-11-05T06:30:59.307Z",
+      "exit_code": 0,
+      "error": null,
+      "log": "context-lint.txt"
+    },
+    {
+      "name": "context-check",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "context:check"
+      ],
+      "started": "2026-11-05T06:30:59.308Z",
+      "finished": "2026-11-05T06:30:59.649Z",
+      "exit_code": 0,
+      "error": null,
+      "log": "context-check.txt"
+    },
+    {
+      "name": "docs-lint",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/docs/verify-docs.mjs"
+      ],
+      "started": "2026-11-05T06:30:59.650Z",
+      "finished": "2026-11-05T06:31:08.575Z",
+      "exit_code": 0,
+      "error": null,
+      "log": "docs-lint.txt"
+    },
+    {
+      "name": "metadata",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/docs/docs-metadata.mjs",
+        "--check"
+      ],
+      "started": "2026-11-05T06:31:08.576Z",
+      "finished": "2026-11-05T06:31:08.667Z",
+      "exit_code": 0,
+      "error": null,
+      "log": "metadata.txt"
+    },
+    {
+      "name": "context-docs-contracts",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "--test",
+        "--test-concurrency=1",
+        "tests/context/context.test.mjs",
+        "tests/contracts/contract-schemas.test.mjs",
+        "tests/contracts/handoff-bytes.test.mjs",
+        "tests/docs/docs.test.mjs"
+      ],
+      "started": "2026-11-05T06:31:08.668Z",
+      "finished": "2026-11-05T06:31:12.697Z",
+      "exit_code": 0,
+      "error": null,
+      "log": "context-docs-contracts.txt"
+    },
+    {
+      "name": "workspace",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "--test",
+        "--test-concurrency=1",
+        "tests/workspace/http.test.mjs",
+        "tests/workspace/lifecycle.test.mjs",
+        "tests/workspace/membership-lifecycle.test.mjs",
+        "tests/workspace/membership-removal.test.mjs",
+        "tests/workspace/persistence.test.mjs",
+        "tests/workspace/project-authority.test.mjs",
+        "tests/workspace/project-capabilities.test.mjs",
+        "tests/workspace/project-concurrency.test.mjs",
+        "tests/workspace/project-cursor.test.mjs",
+        "tests/workspace/project-http.test.mjs",
+        "tests/workspace/project-outcomes.test.mjs",
+        "tests/workspace/project-reads.test.mjs",
+        "tests/workspace/project-transaction-null.test.mjs",
+        "tests/workspace/project-ui-controller.test.mjs",
+        "tests/workspace/project-ui.test.mjs",
+        "tests/workspace/session-transaction.test.mjs",
+        "tests/workspace/sp02-contract-preparation.test.mjs",
+        "tests/workspace/sprint-concurrency.test.mjs",
+        "tests/workspace/sprint-controller.test.mjs",
+        "tests/workspace/sprint-http.test.mjs",
+        "tests/workspace/sprint-security.test.mjs",
+        "tests/workspace/sprint-storage.test.mjs",
+        "tests/workspace/sprint-ui.test.mjs",
+        "tests/workspace/task-assignment.test.mjs",
+        "tests/workspace/task-authority.test.mjs",
+        "tests/workspace/task-blocker.test.mjs",
+        "tests/workspace/task-concurrency.test.mjs",
+        "tests/workspace/task-edit.test.mjs",
+        "tests/workspace/task-http.test.mjs",
+        "tests/workspace/task-mutation-authority.test.mjs",
+        "tests/workspace/task-mutation-integration.test.mjs",
+        "tests/workspace/task-mutation-storage.test.mjs",
+        "tests/workspace/task-mutation-ui-controller.test.mjs",
+        "tests/workspace/task-mutation-ui.test.mjs",
+        "tests/workspace/task-reads.test.mjs",
+        "tests/workspace/task-state.test.mjs",
+        "tests/workspace/task-storage.test.mjs",
+        "tests/workspace/task-ui-controller.test.mjs",
+        "tests/workspace/task-ui.test.mjs",
+        "tests/workspace/ui.test.mjs"
+      ],
+      "started": "2026-11-05T06:31:12.698Z",
+      "finished": "2026-11-05T06:35:43.292Z",
+      "exit_code": 0,
+      "error": null,
+      "log": "workspace.txt"
+    },
+    {
+      "name": "browser",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "--test",
+        "--test-concurrency=1",
+        "tests/workspace/sprint-browser.test.mjs"
+      ],
+      "started": "2026-11-05T06:35:43.293Z",
+      "finished": "2026-11-05T06:35:57.054Z",
+      "exit_code": 0,
+      "error": null,
+      "log": "browser.txt"
+    }
+  ]
+}
