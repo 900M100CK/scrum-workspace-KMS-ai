@@ -1,9 +1,9 @@
 # Supporting document review register
 
 **Artifact ID:** DOC-REVIEW-REG-01\
-**Version/date:** 0.70 Draft · 5 November 2026\
+**Version/date:** 0.71 Draft · 5 November 2026\
 **Status:** Review planning with bounded author rechecks recorded below; no full document-type review or approval.\
-**Inputs:** [Development rules](../../development-rules.md) v1.13; [PREFLIGHT-01](../../agent-preflight-checklist.md) v0.1; [REG-00](../artifact-register.md) v0.131; [SDLC-INDEX-01](../README.md) v0.3; [SDLC workflow](../../../agents/WORKFLOW.md), unversioned working guide.\
+**Inputs:** [Development rules](../../development-rules.md) v1.13; [PREFLIGHT-01](../../agent-preflight-checklist.md) v0.1; [REG-00](../artifact-register.md) v0.132; [SDLC-INDEX-01](../README.md) v0.3; [SDLC workflow](../../../agents/WORKFLOW.md), unversioned working guide.\
 **Trace:** Supports navigation and review of existing BR-01–BR-15 / SC-01–SC-08 documentation; no new requirement, application slice or acceptance criterion.\
 **Owner role:** SDLC coordinator; review assignments remain unassigned.
 
@@ -184,3 +184,5 @@ AG01 v0.4 receipt alias only: REG-00 v0.129 registers the bounded reviewer handb
 PUB02 current metadata alias only: REG-00 v0.130 registers final SP05 dossier publication authority; prior review observations remain unchanged.
 
 PUB02 actual receipt alias only: REG-00 v0.131 registers Draft PR #2; earlier review observations are preserved unchanged.
+
+AG01 v0.5 current alias only: REG-00 v0.132 registers actual independent full regression closure; prior review observations are historical and unchanged.

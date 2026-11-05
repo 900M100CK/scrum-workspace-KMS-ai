@@ -39,7 +39,7 @@ Prior OWNER-Q-01 verification: combined Node 24.21.0 run `node --test tests/docs
 ## Current register and handoffs
 
 **Artifact ID:** REG-00
-**Version/date:** 0.131 Draft · 5 November 2026
+**Version/date:** 0.132 Draft · 5 November 2026
 **Status:** Draft; confirmed policy corrections in progress, full coverage and remaining decisions explicit.
 **Source versions:** Proposed ADR-0024/0025 for SP-01.1; [BRD stable entry](../BRD.md) → [English BRD v1.0](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md) and two Proposed addenda, [AGENTS.md v1.13](../../AGENTS.md), [workflow](../../agents/WORKFLOW.md), PRD-01 v0.10.2, UC-02 v0.8.3, SAD-03 v0.19.1 and ADR-0007–ADR-0017. Prior review inputs remain historical. Storage has measured test evidence; bounded session runtime evidence exists; interviews, pilot and full application acceptance remain absent.; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; Proposed ADR-0026; Proposed ADR-0029 v0.1
 
@@ -134,7 +134,7 @@ The BRD leaves architecture to design while AGENTS.md directs minimal microservi
 | Artifact ID | Version | Canonical source |
 | --- | --- | --- |
 | UML-07 | v0.25.9 | [Source](diagrams/README.md) |
-| REG-00 | v0.131 | [Source](artifact-register.md) |
+| REG-00 | v0.132 | [Source](artifact-register.md) |
 | SAD-03 | v0.19.1 | [Source](../architecture.md) |
 | UX-PERM-MATRIX-02 | v0.11.3 | [Source](../ux/permission-matrix.md) |
 | UX-PERSONAS-01 | v0.5.3 | [Source](../ux/personas.md) |
@@ -794,3 +794,8 @@ SP05-V01 bounded result: [SP05-RUNTIME-RESULT-01 v0.1](../implementation/feature
 ## PUB02 actual verification dossier publication — 5 November 2026
 
 [FEAT-SP05-01 v0.9](../implementation/features/sp-05-sprint-lifecycle/plan.md) / entry v0.9 / [SP05-PUB02-RESULT-01 v0.1](../implementation/features/sp-05-sprint-lifecycle/verification/publication-receipt.md) record normal commit6e3d662 push and actual open [Draft PR #2](https://github.com/900M100CK/scrum-workspace-KMS-ai/pull/2), codex/sp-05 to main. Final receipt head/check state is verified after its push. Runtime122 unchanged, final AG01 v0.4.1 preserved. F-REG-01 explicitly remains open/not waived; no merge, production change or M03/release acceptance.
+
+
+## AG01 v0.5 full Workspace regression closure — 5 November 2026
+
+[FEAT-SP05-01 v0.10](../implementation/features/sp-05-sprint-lifecycle/plan.md) / entry v0.10 / [SP05-FREG-CLOSURE-01 v0.1](../implementation/features/sp-05-sprint-lifecycle/verification/regression-closure.md) receive Antigravity report/tracking v0.5 and actual full40-file347/347 log/record.40 source markers and122 published inputs match; F-REG-01 resolved by execution, not waived. SP05-AG01-DISPOSITION-01 v0.3, SP05-FINAL-HANDOFF-01 v0.2 and SP05-RUNTIME-GUIDE-01 v0.3 reflect the newer boundary. [SP05-M03-READINESS-01 v0.1](../implementation/features/sp-05-sprint-lifecycle/verification/m03-readiness.md) prepares owner review with actual roles/states/test names; no M03/release acceptance, product edit or new runtime rerun. Existing docs PR #2 publishes this continuation.

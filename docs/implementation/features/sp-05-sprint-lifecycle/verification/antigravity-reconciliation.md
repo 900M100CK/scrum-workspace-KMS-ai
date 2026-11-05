@@ -1,9 +1,9 @@
 # SP05-AG01 returned runtime reconciliation
 
 **Artifact ID:** SP05-AG01-DISPOSITION-01\
-**Version/date:** 0.2 Draft · 5 November 2026\
+**Version/date:** 0.3 Draft · 5 November 2026\
 **Coordinator:** Codex, implementation author; reconciliation is not formal independent product acceptance.\
-**Inputs:** Antigravity initial report/tracking v0.4 plus final v0.4.1, source manifest v0.3.1, runtime execution record v1.0, controller record v1.0.1 and unchanged controller stdout; owner-provided execution transcript.\
+**Inputs:** Antigravity report/tracking v0.4/v0.4.1 and returned v0.5 full regression, source manifest v0.3.1, runtime execution record v1.0, controller record v1.0.1 and unchanged controller stdout; owner-provided execution transcript.\
 **Parent:** [FEAT-SP05-01](../plan.md), AG01/V01; SP-05.1–05.4 / PLAN-01 Month2/M-03 / actual SP04-P08.
 
 ## Disposition
@@ -43,7 +43,7 @@ Exact Node path, commands, durations and image identity are retained in [runtime
 | F-COMMIT-01 | Correct full merge SHA and distinct PR/feature boundaries verified against actual Git objects. Old snapshots remain preserved. |
 | F-SCOPE-01 | editSprint/removeAllocation remain declared Could contract operations, unimplemented and undiscovered at runtime as scoped; no product defect inferred. |
 
-## Limits and next owner boundary
+## Historical v0.4 limits and owner boundary
 
 The bounded reviewer run covers the seven Sprint suites, not a fresh independent run of all40 Workspace regression files, all foundational/structural checks or a wider browser/load matrix. The original AG01 brief names the broader regression; its reviewer execution is **not reported** in this handback. The347-record Workspace/92 structural/build/foundation/prototype evidence remains Codex author execution, with existing exact-commit CI recorded separately. Do not silently mark unreported broader gates independently passed or waived. A whole-AG01 acceptance decision beyond this bounded handback stays open unless the owner explicitly narrows/accepts that remaining boundary or the reviewer supplies it.
 
@@ -52,3 +52,7 @@ No confirmed implementation defect was returned. No application/schema/test/pack
 ## Final v0.4.1 handback and F-REG-01 — 5 November 2026
 
 The owner supplied report/tracking v0.4.1 explicitly recording F-REG-01. [Canonical report](../reviews/antigravity-20261105T120000/report.md), [tracking](../reviews/antigravity-20261105T120000/tracking.md) and [unchanged final inputs](../evidence/ag01-v041-final/receipt.json) are now included with the dossier. Raw returned text is preserved without translating or silently editing reviewer statements; this coordinator document supplies the English disposition. Seven SP05 reviewer suites57/57 remain distinct from Codex40-file347/347. F-REG-01 is open: broader independent Workspace regression is neither reported passed nor waived. M03/release require separate prerequisites and owner acceptance. The owner authorised publishing this documentation/runner/evidence dossier under PUB02; earlier uncommitted/no-publication statements describe their recorded execution stages, not the new publication authority. No runtime re-execution or application fix was required for this update.
+
+## Current v0.5 full regression disposition — 5 November 2026
+
+[Returned report v0.5](../reviews/antigravity-20261105T120000/report.md) and [tracking](../reviews/antigravity-20261105T120000/tracking.md) now supply independent full Workspace regression. [F-REG-01 closure](regression-closure.md) matches the raw UTF16LE log347/347, exit0 record, all40 source test markers and122 published input identities. F-REG-01 is resolved by execution, not waiver. Earlier v0.4/v0.4.1 unrun statements remain historical; current runtime attribution now includes both reviewer seven-suite57 and full40-file347 runs, kept distinct from Codex reruns. Counts overlap. The original report, metadata and log are preserved; coordinator did not rerun the suite. [M03 checklist](m03-readiness.md) is prepared for owner review; formal M03/release acceptance remains separate.

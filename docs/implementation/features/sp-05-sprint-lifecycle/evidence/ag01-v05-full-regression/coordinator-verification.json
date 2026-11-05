@@ -1,0 +1,294 @@
+{
+  "kind": "Read-only reconciliation of Antigravity full regression; no coordinator rerun",
+  "coordinator": "Codex",
+  "commit": "b40a01439e9cb2f1ce51f887bf238fe3bff9dd73",
+  "reviewerAttribution": "Antigravity",
+  "reportedExitCode": 0,
+  "rawLogEncoding": "utf16le",
+  "rawLogSha256": "6ea9fab952c747ac102f75764c75eced6216420c4f45ab0975db65fda2ef8485",
+  "rawFooter": {
+    "tests": 347,
+    "pass": 347,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "duration_ms": 281266.1972
+  },
+  "matchedPublishedInputs": 122,
+  "expectedTestFiles": 40,
+  "expectedInventoryOrigin": "Coordinator resolved from target Git tree; reviewer command is a placeholder, not an expanded argv capture",
+  "testMarkersFound": 40,
+  "inventory": [
+    {
+      "path": "tests/workspace/http.test.mjs",
+      "gitBlobOid": "129b9e6e946c0e2aba97ca53d783dce8a607ce93",
+      "firstStaticTestMarker": "P09 actual signIn/getSession handlers with owned PostgreSQL",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/lifecycle.test.mjs",
+      "gitBlobOid": "1498b7d39dbb721488c209f053e2b070eb81050d",
+      "firstStaticTestMarker": "P10 actual lifecycle handlers and PostgreSQL serialization",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/membership-lifecycle.test.mjs",
+      "gitBlobOid": "c51e3b8424617d453b98e4575fbe06e8f8c94db4",
+      "firstStaticTestMarker": "P05/P06 actual membership lifecycle and current action authority",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/membership-removal.test.mjs",
+      "gitBlobOid": "9a50707663a633b56ff27e62d6016c7fbd938b77",
+      "firstStaticTestMarker": "P06 actual atomic removal, retained history and no-revival replay",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/persistence.test.mjs",
+      "gitBlobOid": "ec8c0f4196a6b6bb989a15c2a996518bb907182b",
+      "firstStaticTestMarker": "P08 real PostgreSQL owned persistence and operator boundary",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/project-authority.test.mjs",
+      "gitBlobOid": "4ad3c636ac2f3655857030e713067c5c375d9d94",
+      "firstStaticTestMarker": "P03 additive 007/private authority and bootstrap on disposable PostgreSQL",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/project-capabilities.test.mjs",
+      "gitBlobOid": "d2a5cfdc7bdf7fd3808ab3f46ec6b93e52bb7b5c",
+      "firstStaticTestMarker": "HF42-RF02 shared grant predicate with actual010 handler authority",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/project-concurrency.test.mjs",
+      "gitBlobOid": "a6207a83a2672dd746da7b94066e9eadd2862dd0",
+      "firstStaticTestMarker": "P07 measured SQL barriers for actual handlers and labelled future-writer doubles",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/project-cursor.test.mjs",
+      "gitBlobOid": "fbbe3eef834efeaf0ec4fd30a37b27ce627cc0e1",
+      "firstStaticTestMarker": "P04 actor/scope/generation/expiry cursor binding is stateless and rejects forgery",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/project-http.test.mjs",
+      "gitBlobOid": "7b7a0a1d2a8f10b161272949ddd7e21af70328a0",
+      "firstStaticTestMarker": "P04C real project create, exact replay and failure boundaries",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/project-outcomes.test.mjs",
+      "gitBlobOid": "275f3842248c521a3a4100c536b15c76bff9c90f",
+      "firstStaticTestMarker": "P04B separate 008 durable compact outcomes",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/project-reads.test.mjs",
+      "gitBlobOid": "4675ce3a191d66d64f76e230ecc8f24ae9d199fb",
+      "firstStaticTestMarker": "P04 current project reads and full-projection watermarks",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/project-transaction-null.test.mjs",
+      "gitBlobOid": "a663bc0917a61139d06faa603d46e01acd9d364c",
+      "firstStaticTestMarker": "HF42-RF03 actual010 unexpected-null rollback contract and recorded-denial distinctions",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/project-ui-controller.test.mjs",
+      "gitBlobOid": "7d918997ed8c8193e89ffc02cdcc410ffb34f942",
+      "firstStaticTestMarker": "unknown mutation survives reload with the exact original request; no automatic fresh key",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/project-ui.test.mjs",
+      "gitBlobOid": "f9c05f5d4931a16465cca5bda0db3d72dd13b6b3",
+      "firstStaticTestMarker": "P08 actual React DOM + same-origin HTTPS + current 008 PostgreSQL",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/session-transaction.test.mjs",
+      "gitBlobOid": "12cc8655b1faf18e898fd21ed0688ef5da9741d0",
+      "firstStaticTestMarker": "P03A session validation uses caller transaction and preserves fault/rollback boundaries",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/sp02-contract-preparation.test.mjs",
+      "gitBlobOid": "60db4502a83c49674e1d8626cc3399c434064c80",
+      "firstStaticTestMarker": "SP02 preparation: CreateProject accepts descriptive inputs but rejects actor/authority/identity injection",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/sprint-concurrency.test.mjs",
+      "gitBlobOid": "98819e5b0dbbb0508921e3560e70081f6218966e",
+      "firstStaticTestMarker": "SP05 actual competing starts/allocations and SP04 complete/reopen integration",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/sprint-controller.test.mjs",
+      "gitBlobOid": "100654ac6ac8810f6ed7a641dda11869769d4ec7",
+      "firstStaticTestMarker": "sequential selection persists independent exact keys and resumes one lost committed item without repeating earlier success",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/sprint-http.test.mjs",
+      "gitBlobOid": "692193cee76b0842338f5e6f4090ff420d493af1",
+      "firstStaticTestMarker": "SP05 actual011 private authority, lifecycle, full reorder and original outcomes",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/sprint-security.test.mjs",
+      "gitBlobOid": "77f8612ee343ebda9c5beec87aafe92ae0292cec",
+      "firstStaticTestMarker": "SP05 actual revoke-first schedules withhold every saved original and changed-payload request",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/sprint-storage.test.mjs",
+      "gitBlobOid": "ee2823cc13dc09ec5d07c7db4cbdabfced0469d6",
+      "firstStaticTestMarker": "SP05 additive011 empty reverse/reapply and typed receipts",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/sprint-ui.test.mjs",
+      "gitBlobOid": "091200dcf9f3c2ee43546a784306e36f56ad1d68",
+      "firstStaticTestMarker": "SP05 live HTTPS/PG native forms, sequential allocation and complete/recovery DOM",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/task-assignment.test.mjs",
+      "gitBlobOid": "da7b273195f9776e0051860cc4f54c439ccec661",
+      "firstStaticTestMarker": "SP04 actual assignment, current eligibility and removal races",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/task-authority.test.mjs",
+      "gitBlobOid": "e087664bd47f4d480317e6a0204cef577d176d85",
+      "firstStaticTestMarker": "P03C private audited backlog authors and controlled membership ordering",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/task-blocker.test.mjs",
+      "gitBlobOid": "333db9827c86ec2978b180b92d2d86b9d8750162",
+      "firstStaticTestMarker": "SP04 append-only blocker commands and scoped history pages",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/task-concurrency.test.mjs",
+      "gitBlobOid": "65335baddde3e1bfdfb876aff2a3f500f90944c9",
+      "firstStaticTestMarker": "P07 observed SQL schedules on actual Task producers and current authority",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/task-edit.test.mjs",
+      "gitBlobOid": "9b547a926e1141323faad21d328a289207540f09",
+      "firstStaticTestMarker": "SP04-P03D1 actual Backlog edit, recovery, rollback and authority schedules",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/task-http.test.mjs",
+      "gitBlobOid": "d3a4ad75e8b7cc2ed855f994629cfd73423ddd81",
+      "firstStaticTestMarker": "P04 real task HTTP, explicit authority and atomic exact-key recovery",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/task-mutation-authority.test.mjs",
+      "gitBlobOid": "b44b33a825d126c2c2661424015613d0714f074e",
+      "firstStaticTestMarker": "SP04-P03C private Task action grants and exact Task discovery",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/task-mutation-integration.test.mjs",
+      "gitBlobOid": "ae379d85e9cf23f212cb189241a7d781a09a9d2f",
+      "firstStaticTestMarker": "SP04 cross-producer original outcomes, concurrent writes and revocation schedules",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/task-mutation-storage.test.mjs",
+      "gitBlobOid": "b2e41df9e7251d3c3eba008c18c293de16e423f0",
+      "firstStaticTestMarker": "SP04-P03B additive010 mutation storage, real roles and permanent originals",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/task-mutation-ui-controller.test.mjs",
+      "gitBlobOid": "2f164cc7f3167988283aaefbae23047eae6fd1e7",
+      "firstStaticTestMarker": "each mutation uses exact target actions, persists original identity before sending and refreshes current state after historical receipt",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/task-mutation-ui.test.mjs",
+      "gitBlobOid": "7aa87fea6fd904fafa24fc47fb1de866a47ae36a",
+      "firstStaticTestMarker": "SP04 real mutation DOM over HTTPS and disposable010",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/task-reads.test.mjs",
+      "gitBlobOid": "ca63b461882cc979f2e88b4aba820fb8139e407e",
+      "firstStaticTestMarker": "P05 real scoped Task reconstruction and actor/projection-bound numeric paging",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/task-state.test.mjs",
+      "gitBlobOid": "592f6d7079644d30596670fb5b9d26f5d8dc1787",
+      "firstStaticTestMarker": "SP04 state handler and completed placement persistence",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/task-storage.test.mjs",
+      "gitBlobOid": "43f5b160c176dbb6e5525de128163511602897ed",
+      "firstStaticTestMarker": "P03B additive 009 task origins, permanent typed results and safe refusal",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/task-ui-controller.test.mjs",
+      "gitBlobOid": "00362fb984b9cb793fd8a810a23b361ef3f176c3",
+      "firstStaticTestMarker": "unknown task creation survives reload with exact actor/body/key; confirmed replay refreshes current details",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/task-ui.test.mjs",
+      "gitBlobOid": "4f8231275f1d6c2398f322a1245bc788f7df4471",
+      "firstStaticTestMarker": "P08 real Task React DOM with HTTPS and disposable 009 PostgreSQL",
+      "markerFoundInLog": true
+    },
+    {
+      "path": "tests/workspace/ui.test.mjs",
+      "gitBlobOid": "f5ef296a0199a5b008ddc39d39c642be40af32cf",
+      "firstStaticTestMarker": "P11 actual React DOM with Workspace/PostgreSQL through same-origin HTTPS",
+      "markerFoundInLog": true
+    }
+  ],
+  "copies": [
+    {
+      "source": "docs/implementation/features/sp-05-sprint-lifecycle/reviews/antigravity-20261105T120000/report.md",
+      "snapshot": "report-v0.5.md",
+      "sha256": "7e29635dd59c92e0112b76cd52feff54eb808b9b8ca4c36c6d286be14b39ddef"
+    },
+    {
+      "source": "docs/implementation/features/sp-05-sprint-lifecycle/reviews/antigravity-20261105T120000/tracking.md",
+      "snapshot": "tracking-v0.5.md",
+      "sha256": "edd435d9a213d07be55c1fae59e510c80ae7db5365c16f3b2561bdfcc42e9a25"
+    },
+    {
+      "source": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/antigravity-20261105T120000/workspace-full-regression.json",
+      "snapshot": "workspace-full-regression.json",
+      "sha256": "cf90c72a1a8fd7a64370d35e93c744e35f48b7e511e76a54a303edf17089e86f"
+    },
+    {
+      "source": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/antigravity-20261105T120000/workspace-full-regression.log",
+      "snapshot": "workspace-full-regression.log",
+      "sha256": "6ea9fab952c747ac102f75764c75eced6216420c4f45ab0975db65fda2ef8485"
+    },
+    {
+      "source": "C:/Users/MCK/.codex/attachments/3b2c938e-5c51-43ab-a409-7401b72ecfd7/Pasted text.txt",
+      "snapshot": "owner-execution-transcript.txt",
+      "sha256": "b4a1205c2439e593a4fcbd058257d43b729d8fdf48ded0cc4ae376f700d912b4"
+    }
+  ],
+  "encodingNote": "UTF16LE BOM detected; raw bytes retained, parsed in memory; display glyph encoding artefacts do not alter matched English titles/footers",
+  "durationNote": "Raw durationMs281266.1972; approximate reported durationSeconds281.35 retained unchanged",
+  "disposition": "F-REG-01 resolved by reported independent run with source/counter/log reconciliation, not waived; M03/release not accepted"
+}

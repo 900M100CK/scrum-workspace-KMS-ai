@@ -1,0 +1,1 @@
+Coordinator probe initially assumed UTF-8 and could not parse the supplied log footer. The raw log has a UTF-16LE BOM; decode accordingly in memory. No runtime test failed or was rerun, and raw evidence bytes are unchanged.

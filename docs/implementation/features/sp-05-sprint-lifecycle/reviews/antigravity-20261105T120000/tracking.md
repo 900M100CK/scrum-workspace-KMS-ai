@@ -1,7 +1,7 @@
 # SP05-AG01 tracking snapshot
 
 **Artifact ID:** SP05-AG01-TRACKING\
-**Version/date:** 0.4.1 Draft · 5 November 2026\
+**Version/date:** 0.5 Draft · 5 November 2026\
 **Run ID:** antigravity-20261105T120000\
 **Reviewer:** Antigravity (Google DeepMind Advanced Agentic Coding)\
 **Inspected Merge Commit:** `b40a01439e9cb2f1ce51f887bf238fe3bff9dd73` (`b40a014`, Merge PR #1 from `codex/sp-05`)\
@@ -10,13 +10,15 @@
 **Base Commit:** `1cb54f3cfdfd650caef35dce6d5fd0fd1e32a1d6` (`1cb54f3`)\
 **Reviewer Inputs Manifest:** `evidence/antigravity-assignment/reviewer-inputs.json`\
 **Reviewer Git Blob Manifest:** `evidence/antigravity-20261105T120000/source-manifest.json`\
-**Full Independent Execution Record:** `evidence/antigravity-20261105T120000/runtime-execution.json`\
+**Runtime Execution Record (SP-05):** `evidence/antigravity-20261105T120000/runtime-execution.json`\
+**Full Workspace Regression Record:** `evidence/antigravity-20261105T120000/workspace-full-regression.json` · `workspace-full-regression.log`\
 **Browser Capture:** `docs/implementation/features/sp-05-sprint-lifecycle/evidence/browser-1793864279622/`
 
 > **Scope & Boundary Enforcement:**
-> - Antigravity độc lập thực thi 7 suite chuyên biệt của SP-05 (57/57 test records đạt).
-> - **Toàn bộ regression Workspace mở rộng (40 test files, 347 test records) CHƯA được Antigravity chạy độc lập, và bước này KHÔNG được ghi nhận là đã qua độc lập hoặc được miễn trừ.** Lượt chạy 347 records vẫn thuần túy là bằng chứng của tác giả (Codex).
-> - **Nghiệm thu chính thức Milestone M-03 và Release Acceptance vẫn hoàn toàn tách riêng**, không được đóng hay suy diễn hoàn thành qua báo cáo này.
+> - Antigravity đã độc lập thực thi 7 suite chuyên biệt của SP-05 (57/57 test records đạt 100%).
+> - Antigravity đã độc lập thực thi toàn bộ 40 test files Workspace regression mở rộng (347/347 test records đạt 100%, exit code 0).
+> - **Rào cản F-REG-01 đã chính thức giải quyết.**
+> - **Nghiệm thu chính thức Milestone M-03 và Release Acceptance vẫn hoàn toàn tách riêng.**
 > - `FEAT-SP05-01 plan.md` là bảng trạng thái có thẩm quyền duy nhất cho P00–P15.
 
 ---
@@ -50,7 +52,7 @@
 | **P12** | Allocation UI: sequential multi-select; per-item outcomes; reload recovery | `apps/web/src/sprints.ts` (`SprintController.allocate`), executed `sprint-controller.test.mjs` (7/7), `sprint-ui.test.mjs`, `sprint-browser.test.mjs` | **Pass (Antigravity executed: Controller 7/7, DOM 6/6, Edge 1/1)** | Closed |
 | **P13** | Reorder UI: full-list up/down; 409 discard and refresh; no automatic resend | `apps/web/src/sprints.ts` (`SprintController.reorder`, `move`), executed `sprint-controller.test.mjs`, `sprint-ui.test.mjs`, `sprint-browser.test.mjs` | **Pass (Antigravity executed)** | Closed |
 | **P14** | Actual producer races (SP04-P08 integration) with real DB barriers | Executed `sprint-concurrency.test.mjs` (17/17 race/barrier schedules) | **Pass (Antigravity executed: 17/17)** | Closed |
-| **P15** | Consolidated regression and handoff | 7 SP-05 suites (57/57) executed independently. Broad Workspace regression (347/347) is author evidence; **not run independently by Antigravity, not waived** | **Bounded SP-05 Pass; Full Workspace regression unrun independently** | Open (Full Workspace regression gate) |
+| **P15** | Consolidated regression and handoff | 7 SP-05 suites (57/57) VÀ full Workspace regression 40 test files (347/347) đã được Antigravity tự thực thi độc lập (exit code 0, duration 281.35s). | **Pass (Antigravity executed full Workspace: 347/347)** | Closed |
 
 ---
 
@@ -80,7 +82,7 @@ All static code invariants were verified and confirmed via actual runtime execut
 | 6 | `sprint-browser.test.mjs` | Live E2E / Browser | `node --test --test-concurrency=1 tests/workspace/sprint-browser.test.mjs` | 15.44s | 1/1 | **PASS** |
 | 7 | `sprint-controller.test.mjs` | Pure In-Memory Controller | `node --test --test-concurrency=1 tests/workspace/sprint-controller.test.mjs` | 0.20s | 7/7 | **PASS** |
 | **Σ** | **7 Suites SP-05** | **Độc lập bởi Antigravity** | — | **~106.8s** | **57/57** | **100% PASS** |
-| — | **Full Workspace (40 files)** | **Broad Regression** | `node --test --test-concurrency=1 @workspaceTests` | — | 347/347 | **Chưa chạy độc lập (Lượt Codex)** |
+| **Σ+** | **Full Workspace (40 files)** | **Broad Regression độc lập** | `node --test --test-concurrency=1 @workspaceTests` | **281.35s** | **347/347** | **100% PASS** |
 
 ---
 
@@ -89,7 +91,7 @@ All static code invariants were verified and confirmed via actual runtime execut
 | ID | Severity | Category | Detail |
 |----|----------|----------|--------|
 | **F-ENV-01** | Environment Blocker | **Resolved in SP-05 Scope** | 7 suite chuyên biệt của SP-05 đã hoàn thành kiểm thử độc lập. Rào cản môi trường cho phạm vi SP-05 đã giải quyết. |
-| **F-REG-01** | Bounded Scope Note | **Phân định rõ ranh giới** | Toàn bộ 40 test files của Workspace regression (347 test records) chưa được Antigravity chạy độc lập; bước này không được xem là đã qua độc lập hay được miễn trừ. |
+| **F-REG-01** | Full Regression | **Resolved in v0.5** | Antigravity đã tự thực thi độc lập toàn bộ 40 test files Workspace regression (347/347 passed, 281.35s, exit 0), lưu log và json đầy đủ. |
 | **F-COMMIT-01** | Documentation / Alignment | Resolved in v0.2 / v0.3.1 | Corrected PR HEAD to `ff93ebe` and full merge commit SHA to `b40a01439e9cb2f1ce51f887bf238fe3bff9dd73`. |
 | **F-SCOPE-01** | Scope Clarification | Clarified in v0.2.1 | FR-66 (`editSprint`) and FR-67 (`removeAllocation`) are declared in `workspace.openapi.json`, but are unimplemented in runtime handlers and not advertised via discovery (ADR-0010 Could tier). |
 
@@ -97,8 +99,8 @@ All static code invariants were verified and confirmed via actual runtime execut
 
 ## 6. Recommendation
 
-**`Ready for Codex reconciliation (SP-05 Feature Scope)`**
+**`Verification Complete for SP-05 & Workspace Regression — Ready for Milestone M-03 Checklist`**
 
-- **Phạm vi hoàn tất của Antigravity:** Bounded static review trên 18 file và kiểm thử độc lập 7 suite SP-05 (57/57 test records, 100% pass) đã hoàn tất và sẵn sàng đối chiếu với Codex.
-- **Phạm vi chưa chạy độc lập:** Toàn bộ regression mở rộng của Workspace (347 test records) vẫn thuộc về lượt chạy của Codex; không ghi nhận là Antigravity đã chạy độc lập hay được miễn.
-- **Nghiệm thu cấp cao:** Nghiệm thu chính thức Milestone M-03 và Release Acceptance vẫn tách riêng, không được đóng qua báo cáo này.
+- **Kiểm thử độc lập của Antigravity:** Đạt 100% cho cả 7 suite SP-05 (57/57) và broad Workspace regression 40 test files (347/347).
+- **Rào cản F-REG-01:** Đã đóng.
+- **Tiếp theo:** Đối chiếu checklist Scrum Milestone M-03.

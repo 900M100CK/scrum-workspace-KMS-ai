@@ -1,8 +1,8 @@
 # SP-05 Sprint lifecycle implementation
 
 **Artifact ID:** FEAT-SP05-01\
-**Version/date:** 0.9 Draft · 5 November 2026\
-**Status:** SP05 published/integrated; Codex supplement and bounded Antigravity seven-suite handback reconciled; broader independent regression/milestone/release acceptance remains separate.\
+**Version/date:** 0.10 Draft · 5 November 2026\
+**Status:** SP05 technical implementation/testing handoff reconciled; Antigravity full regression resolves F-REG-01; M03/release acceptance remains a separate owner boundary.\
 **Planning mode:** Owner supplied the completed Plan-mode plan; execution now in Default mode. This saved written gate precedes code/tests.\
 **Work kind:** Feature\
 **Trace:** FR-06/07/08/41/42 and FR-31; BR-01/02/03/06/10/11/14; SC-03/04/06; UC-05 and SP04-P08; TC-07/13/14/16/18/19/21/22.
@@ -47,10 +47,10 @@ Allocation expected_revision is Sprint.revision; read/current-scope/location of 
 | [P13](tasks/P13-reorder-ui.md) | Full-list up/down ordering; stale restart; no partial-list write | P10/P11 | Verified full-list UI order, mixed-generation discard and generic stale denial |
 | [P14](tasks/P14-integration.md) | Actual complete/reopen/allocate/reorder races; close SP04-P08 only with evidence | P07–P13 | Verified actual SP04 completion/reopen/allocation schedules and four stale reorder races |
 | [P15](tasks/P15-handoff.md) | Relevant regression/AC mapping and reviewable PR preparation, no publication | P14 | Verified final regression/structure/source/preflight; handoff and local PR text ready; no publication |
-| [AG01](tasks/AG01-antigravity-tracking-testing.md) | Antigravity source-identified P00–P15 coverage assessment, actual independent reruns, concrete findings and handback | P15 local handoff; source/branch/runtime identity confirmed by reviewer | Reconciled v0.4.1 bounded static18 and seven-suite57/57; F-ENV-01 resolved for named runs; F-REG-01 open/not waived |
+| [AG01](tasks/AG01-antigravity-tracking-testing.md) | Antigravity source-identified P00–P15 coverage assessment, actual independent reruns, concrete findings and handback | P15 local handoff; source/branch/runtime identity confirmed by reviewer | Reconciled v0.5 static18, seven-suite57/57 and full Workspace347/347; F-ENV-01/F-REG-01 resolved; owner milestone/release separate |
 | [PUB01](tasks/PUB01-draft-publication.md) | Commit/push the verified SP05 candidate and open one Draft PR to main for later Antigravity review | P15; owner publication request; source/preservation and final checks | Verified normal feature push and open Draft PR #1; receipt/current-head verification follows; no merge |
 | [V01](tasks/V01-runtime-verification.md) | Remove reproducible environment setup gaps, rerun actual published runtime and supply reviewer invocation/evidence | AG01 bounded static v0.2.1; published PR head/tree identity; owner execution request | Verified Codex supplement:347 Workspace/1 Edge/92 structural; later Antigravity seven-suite57/57 handback reconciled separately |
-| [PUB02](tasks/PUB02-verification-publication.md) | Publish V01 and final AG01 v0.4.1 reconciliation through a docs-only PR | Completed bounded handbacks; owner request to implement remaining closure | Verified dossier commit/push and open Draft PR #2; final receipt/head checks follow; F-REG-01 and M03/release remain open |
+| [PUB02](tasks/PUB02-verification-publication.md) | Publish V01 and final AG01 v0.4.1 reconciliation through a docs-only PR | Completed bounded handbacks; owner request to implement remaining closure | Verified dossier PR #2; v0.5 regression closure update under existing authority; M03/release not accepted |
 
 ## Verification and handoff
 
@@ -132,3 +132,11 @@ PUB02 input closure: final Antigravity report/tracking v0.4.1 and unchanged runt
 PUB02 evidence preservation: root *.log ignore excluded returned controller stdout. A feature-local .gitignore exception now includes evidence/**/*.log only within this owning dossier; root/global ignore and private .tmp setup remain unchanged. All candidate evidence still receives the explicit cookie/token/key scan.
 
 PUB02 actual publication: dossier commit6e3d6624ed442146a229ff5fa932a6c1f6bbe106 pushed normally; [Draft PR #2](https://github.com/900M100CK/scrum-workspace-KMS-ai/pull/2) open codex/sp-05 → main. [SP05-PUB02-RESULT-01](verification/publication-receipt.md) records actual API receipt and source/check boundaries. Final documentation receipt commit/head/check state is verified after push. No code changes, merge or waiver of F-REG-01/M03/release.
+
+## AG01 v0.5 full regression closure — 5 November 2026
+
+The owner supplied Antigravity full Workspace execution and report/tracking v0.5 in this worktree. Resume AG01/PUB02 reconciliation/publication. Plan mode unavailable; this written gate precedes coordinator edits. Preserve the two user-edited reports and raw JSON/log by fresh immutable snapshots; old v0.4.1 Git versions/snapshots remain historical. Validate target commit and122 unchanged published source inputs, resolve the expected40 non-browser test paths from the target Git tree, reconcile raw footer347/0/0 and reported exit0/runtime/image, and bind input hashes. No coordinator rerun can replace the returned reviewer execution.
+
+After evidence matches, mark F-REG-01 resolved by actual Antigravity regression (not waiver). Update current plan/handoff/disposition and source/feature/roadmap/central/required aliases, and publish through the already open docs-only PR #2 under existing PUB02 authority. No new product source, tests, schema, dependency, acceptance waiver, main merge or extra agents. Prepare a source-correct M03 readiness checklist; correct unsupported in_review/role/test-name wording from the pasted summary in coordinator notes without rewriting original input. Formal M03/release remains an owner acceptance boundary. Keep timestamp/log encoding/argv granularity as reported rather than silently editing raw evidence.
+
+AG01 v0.5 current closure: [SP05-FREG-CLOSURE-01](verification/regression-closure.md) verifies reviewer347/347 raw footer, matching JSON exit0,40/40 test markers and122 published source identities. F-REG-01 resolved by execution (not waiver). [SP05-M03-READINESS-01](verification/m03-readiness.md) prepares source-correct milestone review and corrects unsupported summary wording; no owner milestone/release acceptance is recorded. Raw reports/log/JSON/transcript snapshots and coordinator parsing failure are preserved under evidence/ag01-v05-full-regression/. Existing docs PR #2 carries the update; no runtime rerun or source/schema/test edit.

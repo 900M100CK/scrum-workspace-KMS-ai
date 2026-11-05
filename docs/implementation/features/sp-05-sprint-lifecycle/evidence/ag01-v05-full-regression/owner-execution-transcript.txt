@@ -1,0 +1,109 @@
+Ran run full 40-file Workspace regression suite
+Checked task Run full 40-file Workspace regression suite
+Analyzed database.mjs:L1-60
+Ran check docker context and info · Exited with code 1
+Ran check docker process and services
+Ran start Docker Desktop
+Ran wait for Docker engine to become ready
+Checked task Wait for Docker engine to become ready
+Checked task Wait for Docker engine to become ready
+Checked task Wait for Docker engine to become ready
+Checked task Wait for Docker engine to become ready
+Checked task Wait for Docker engine to become ready
+Checked task Wait for Docker engine to become ready
+Checked task Wait for Docker engine to become ready
+Checked task Wait for Docker engine to become ready
+Checked task Wait for Docker engine to become ready
+Checked task Wait for Docker engine to become ready
+Checked task Wait for Docker engine to become ready
+Checked task Wait for Docker engine to become ready
+Timed 15s
+
+Đang khởi động Docker Desktop daemon để sẵn sàng cho các suite integration có PostgreSQL/Docker, và sẽ tiến hành chạy toàn bộ 40 file regression của Workspace ngay khi daemon sẵn sàng.
+
+Checked task Wait for Docker engine to become ready
+Ran check Docker process status
+Ran start Docker Desktop service
+Ran list WSL distributions
+Ran check docker in docker-desktop WSL · Exited with code 1
+Ran cat docker daemon config in WSL · Exited with code 1
+Ran list docker named pipes
+Ran test docker ps
+Ran run full 40-file Workspace regression suite
+
+Docker Desktop đã được kết nối lại thành công và toàn bộ 40 file regression test Workspace (loại trừ browser) đang được Antigravity thực thi độc lập bằng Node 24 (`--test-concurrency=1`). 
+
+Quá trình này dự kiến mất khoảng 4–5 phút. Tôi sẽ đợi hệ thống hoàn tất và cập nhật ngay khi có kết quả exit code, tổng số test pass, thời gian thực thi cùng bằng chứng log.
+
+Ran check workspace regression log
+Created workspace-full-regression.json
+Analyzed report.md:L1-86
+Analyzed tracking.md:L1-100
+Writing report.md
+Edited report.md
+Edited tracking.md
+Analyzed roadmap.md:L1-100
+Analyzed roadmap.md:L101-198
+Analyzed five-month-plan.md:L1-120
+Ran search milestone M-03 documents
+Analyzed README.md:L1-60
+Analyzed README.md:L61-140
+Analyzed README.md:L141-242
+Analyzed final-handoff.md:L1-12
+Analyzed antigravity-reconciliation.md:L1-54
+
+### 1. Kết quả thực thi kiểm thử hồi quy độc lập (F-REG-01: ĐÃ ĐÓNG)
+
+Antigravity đã tự thực thi độc lập toàn bộ **40 file Workspace regression test** (loại trừ browser test) trên môi trường chuẩn của dự án:
+- **Runtime:** Node `v24.22.1` (`C:\Users\MCK\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe`)
+- **Database:** PostgreSQL 17.10 disposable containers qua `pgvector/pgvector:0.8.2-pg17-bookworm` (Docker Desktop named pipes)
+- **Transport & Security:** HTTPS nội bộ với chứng chỉ TLS cục bộ và cơ chế bảo mật role/trigger 011
+- **Lệnh thực thi:** `node --test --test-concurrency=1 @workspaceTests`
+
+#### Số liệu thực thi chi tiết:
+- **Số file test:** 40/40 file `.test.mjs`
+- **Tổng số test records:** **347/347 PASS (100%)**
+- **Thất bại (fail):** 0
+- **Bỏ qua (skipped / cancelled / todo):** 0
+- **Thời gian thực thi:** **281.35 giây** (~4 phút 41 giây)
+- **Exit code:** **0**
+
+#### Hồ sơ bằng chứng đã lưu trữ:
+- **Log thô toàn bộ lượt chạy:** [`workspace-full-regression.log`](file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/docs/implementation/features/sp-05-sprint-lifecycle/evidence/antigravity-20261105T120000/workspace-full-regression.log) (84.990 bytes)
+- **Metadata JSON:** [`workspace-full-regression.json`](file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/docs/implementation/features/sp-05-sprint-lifecycle/evidence/antigravity-20261105T120000/workspace-full-regression.json)
+- **Tài liệu cập nhật:** Đã nâng [`report.md`](file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/docs/implementation/features/sp-05-sprint-lifecycle/reviews/antigravity-20261105T120000/report.md) và [`tracking.md`](file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/docs/implementation/features/sp-05-sprint-lifecycle/reviews/antigravity-20261105T120000/tracking.md) lên **v0.5 Draft**:
+  - Ghi nhận `F-REG-01: Resolved in v0.5`.
+  - Mục `P15` chuyển trạng thái sang **Pass / Closed** (347/347 pass độc lập bởi Antigravity).
+
+---
+
+### 2. Bảng đối chiếu Checklist Nghiệm thu Milestone M-03 (Complete Scrum Behaviour)
+
+Theo quy định tại [Roadmap IMPL-ROADMAP-01 (M-03)](file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/docs/implementation/roadmap.md#L16) và [Kế hoạch 5 tháng PLAN-01 Month 2](file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/docs/planning/five-month-plan.md#L33), điều kiện nghiệm thu thoát (exit evidence) của Milestone M-03 bao gồm:
+
+| Hạng mục / Gói tính năng | Tiêu chí nghiệm thu M-03 | Kết quả kiểm chứng thực tế | Trạng thái |
+|---|---|---|:---:|
+| **SP-02**<br>Quản lý Dự án & Thành viên | - Tạo Project, phân quyền vai trò mô tả (`owner`, `manager`, `contributor`, `viewer`).<br>- Cursor pagination, idempotency key replay.<br>- Xóa thành viên nguyên tử (atomic removal), lưu giữ audit trail.<br>- Bảo vệ Last-manager (ngăn xóa hoặc giáng cấp manager cuối cùng).<br>- Chặn hồi sinh thành viên cũ (no-revival replay). | Đã kiểm chứng qua các bộ test `member-*.test.mjs`, `project-*.test.mjs` (đều nằm trong 347 test cases đã pass). | **ĐẠT** |
+| **SP-03**<br>Khởi tạo Task & Tác quyền | - Tạo Task (Schema 009), lưu trữ bất biến kết quả gốc (`task_origins`).<br>- Phân quyền tác quyền riêng biệt (`private author authority/CLI`).<br>- Atomic rollback khi phát sinh lỗi audit. | Đã kiểm chứng qua `task-storage.test.mjs`, `task-author.test.mjs`, `task-http.test.mjs`, `task-ui.test.mjs`. | **ĐẠT** |
+| **SP-04**<br>Vòng đời Task & Blocker | - Chuyển đổi trạng thái Task (`todo` → `in_progress` → `in_review` → `done`).<br>- Gán việc, kiểm tra điều kiện thành viên hợp lệ (eligibility).<br>- Ghi nhận blocker dạng append-only, lịch sử có phân trang.<br>- Phục hồi xung đột optimistic concurrency (409 conflict). | Đã kiểm chứng qua `task-mutation-*.test.mjs`, `task-state.test.mjs`, `task-blocker.test.mjs`. | **ĐẠT** |
+| **SP-05**<br>Vòng đời Sprint & Thứ tự Backlog | - Vòng đời Sprint chuẩn: `planned` → `active` → `completed`.<br>- Bất biến chỉ 1 Sprint Active duy nhất tại một thời điểm.<br>- Phân bổ Task độc quyền (Backlog hoặc đúng 1 Sprint), khóa hàng đợi `FOR UPDATE`.<br>- Hoán vị toàn bộ Backlog (complete permutation), chặn >1MiB, nuốt audit khi no-op.<br>- Hoàn thành Sprint: Task Done giữ lại, Task dở dang về `todo` nối cuối Backlog theo thứ tự `task_id`.<br>- 5 action kiểm toán riêng biệt với trigger `protect_sprint_action`. | Đã kiểm chứng độc lập qua 7 suite chuyên biệt SP-05 (57/57 pass) gồm cả Storage, HTTP API, Security, Concurrency, DOM HTTPS và Live Edge E2E. | **ĐẠT** |
+| **SP04-P08**<br>Tích hợp cạnh tranh thực tế | - Khóa SQL và lịch sử ghi nhận khi Task mutation chạy đồng thời với Sprint allocation / completion. | 17 kịch bản chạy đua (race conditions & SQL barrier schedules) trong `sprint-concurrency.test.mjs` đạt 100%. | **ĐẠT** |
+| **Hồi quy toàn hệ thống** | - Toàn bộ 40 file Workspace test (347 test records) phải được chạy và đạt kết quả exit code 0. | Antigravity đã tự thực thi độc lập: **347/347 pass**, 0 fail, 0 skip. | **ĐẠT** |
+
+---
+
+### 3. Phân định ranh giới Nghiệm thu & Khuyến nghị tiếp theo
+
+1. **Về phía SP-05 và Milestone M-03:**
+   - Cả 7 suite chuyên biệt của SP-05 (57 test records) và toàn bộ 40 test files của Workspace (347 test records) đều đã được Antigravity thực thi độc lập đạt 100%.
+   - **`F-REG-01` đã chính thức được đóng.**
+   - Các tiêu chí của **Milestone M-03 (Scrum completeness SP-02 đến SP-05)** đã hội đủ điều kiện để chủ trì nghiệm thu.
+
+2. **Về ranh giới Release toàn dự án (Release Acceptance):**
+   - Vẫn được duy trì tách biệt hoàn toàn theo đúng nguyên tắc roadmap.
+   - Các Milestone tiếp theo:
+     - **M-04:** Knowledge access (SP-06 / SP-07)
+     - **M-05:** Useful context without AI (SP-08)
+     - **M-06:** Evidence-backed AI (SP-09 / SP-10 / SP-11)
+     - **M-07 & M-08:** Scoped inspection & Release verification (SP-12 / SP-13)
+     sẽ được triển khai và nghiệm thu ở các giai đoạn sau.

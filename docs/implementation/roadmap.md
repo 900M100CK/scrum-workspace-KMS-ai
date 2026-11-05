@@ -1,7 +1,7 @@
 # Dependency-based implementation roadmap
 
 **Artifact ID:** IMPL-ROADMAP-01\
-**Version/date:** 0.50 Draft · 5 November 2026
+**Version/date:** 0.51 Draft · 5 November 2026
 **Status:** Planning order, not completed work or scope acceptance.\
 **Inputs:** PRD-01 v0.10.2; SPEC-INDEX v0.8.2; PLAN-01 v0.4; [decisions](decisions.md); [task catalogue](tasks/README.md).\
 **Trace:** BR-01–BR-14; SC-01–SC-08.\
@@ -196,3 +196,8 @@ SP05-V01 bounded result: [SP05-RUNTIME-RESULT-01 v0.1](features/sp-05-sprint-lif
 ## PUB02 actual verification dossier publication — 5 November 2026
 
 [FEAT-SP05-01 v0.9](features/sp-05-sprint-lifecycle/plan.md) / entry v0.9 / [SP05-PUB02-RESULT-01 v0.1](features/sp-05-sprint-lifecycle/verification/publication-receipt.md) record normal commit6e3d662 push and actual open [Draft PR #2](https://github.com/900M100CK/scrum-workspace-KMS-ai/pull/2), codex/sp-05 to main. Final receipt head/check state is verified after its push. Runtime122 unchanged, final AG01 v0.4.1 preserved. F-REG-01 explicitly remains open/not waived; no merge, production change or M03/release acceptance.
+
+
+## AG01 v0.5 full Workspace regression closure — 5 November 2026
+
+[FEAT-SP05-01 v0.10](features/sp-05-sprint-lifecycle/plan.md) / entry v0.10 / [SP05-FREG-CLOSURE-01 v0.1](features/sp-05-sprint-lifecycle/verification/regression-closure.md) receive Antigravity report/tracking v0.5 and actual full40-file347/347 log/record.40 source markers and122 published inputs match; F-REG-01 resolved by execution, not waived. SP05-AG01-DISPOSITION-01 v0.3, SP05-FINAL-HANDOFF-01 v0.2 and SP05-RUNTIME-GUIDE-01 v0.3 reflect the newer boundary. [SP05-M03-READINESS-01 v0.1](features/sp-05-sprint-lifecycle/verification/m03-readiness.md) prepares owner review with actual roles/states/test names; no M03/release acceptance, product edit or new runtime rerun. Existing docs PR #2 publishes this continuation.

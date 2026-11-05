@@ -1,7 +1,7 @@
 # SP-05 runtime verification entry
 
 **Artifact ID:** SP05-RUNTIME-GUIDE-01\
-**Version/date:** 0.2 Draft · 5 November 2026
+**Version/date:** 0.3 Draft · 5 November 2026
 
 [V01](../tasks/V01-runtime-verification.md) and the [parent plan](../plan.md) own scope/status. This runner uses existing tests and writes one fresh evidence directory per invocation. It never grants sandbox access, installs dependencies, weakens assertions or calls another agent's execution independent. No commit/push is part of V01.
 
@@ -30,3 +30,7 @@ Node counters include parent tests. Do not add overlapping phase counts as uniqu
 ## Later reviewer handback — 5 November 2026
 
 [AG01 v0.4 disposition](antigravity-reconciliation.md) receives the reviewer-reported seven-suite57/57 runtime execution. F-ENV-01 is resolved for those runs. This does not relabel the Codex supplement or imply independent execution of the full40-file Workspace campaign; see the disposition for remaining scope/evidence limits.
+
+## Later full regression handback — 5 November 2026
+
+[AG01 v0.5 closure](regression-closure.md) reconciles actual independent40-file347/347 execution. F-REG-01 is now resolved by execution, not waiver; previous guide notes describe the earlier handback state. Formal [M03 review](m03-readiness.md) and release acceptance remain separate.
