@@ -1,0 +1,35 @@
+import {useEffect,useRef,useState,useSyncExternalStore} from 'react';
+import {SprintController} from './sprints.ts';
+export function SprintWorkspace({userId,projectId,onSessionLost,onWorkChanged,onAccessLost,controller:provided}:{userId:string;projectId:string;onSessionLost:()=>void;onWorkChanged:()=>void;onAccessLost?:()=>void;controller?:SprintController}){
+ const [controller]=useState(()=>provided??new SprintController(userId,projectId,onSessionLost,undefined,undefined,onWorkChanged,onAccessLost));
+ const state=useSyncExternalStore(controller.subscribe,controller.getSnapshot,controller.getSnapshot),feedback=useRef<HTMLParagraphElement>(null),wasBusy=useRef(false);
+ const [selected,setSelected]=useState<string[]>([]);const locked=state.busy||state.pending;
+ useEffect(()=>{void controller.refresh();return()=>controller.cancel();},[controller]);
+ useEffect(()=>{setSelected([]);},[state.backlogRevision]);
+ useEffect(()=>{if(wasBusy.current&&!state.busy)feedback.current?.focus();wasBusy.current=state.busy;},[state.busy]);
+ function create(event:React.SubmitEvent<HTMLFormElement>){event.preventDefault();const form=event.currentTarget,values=new FormData(form),goal=String(values.get('goal')??''),field=form.elements.namedItem('goal') as HTMLTextAreaElement;field.setCustomValidity(goal.trim()?'':'Enter a Sprint goal.');if(!field.reportValidity()){field.focus();return;}const end=form.elements.namedItem('end_date') as HTMLInputElement;end.setCustomValidity(String(values.get('start_date'))<String(values.get('end_date'))?'':'End date must be after start date.');if(!end.reportValidity()){end.focus();return;}void controller.mutate('createSprint',{goal,start_date:String(values.get('start_date')??''),end_date:String(values.get('end_date')??'')});}
+ return <section className="task-workspace sprint-workspace" aria-labelledby="sprints-title" aria-busy={state.busy}>
+  <h3 id="sprints-title">Sprints and Product Backlog</h3>
+  <p ref={feedback} role="status" aria-live="polite" tabIndex={-1}>{state.message}</p>
+  <div className="actions"><button disabled={state.busy} onClick={()=>void controller.refresh()}>Refresh Sprint work</button>{state.pending?<button disabled={state.busy} onClick={()=>void controller.retry()}>Check original Sprint operation</button>:null}</div>
+  {!state.busy?<>
+   {state.projectActions.includes('createSprint')?<form onSubmit={create} autoComplete="off"><h4>Create a planned Sprint</h4><label htmlFor="sprint-goal">Sprint goal</label><textarea id="sprint-goal" name="goal" required disabled={locked} onInput={e=>e.currentTarget.setCustomValidity('')}/><label htmlFor="sprint-start-date">Sprint start date</label><input id="sprint-start-date" name="start_date" type="date" required disabled={locked}/><label htmlFor="sprint-end-date">Sprint end date</label><input id="sprint-end-date" name="end_date" type="date" required disabled={locked} onInput={e=>e.currentTarget.setCustomValidity('')}/><button disabled={locked}>Create Sprint</button></form>:null}
+   <ul className="task-list">{state.sprints.map(s=><li key={s.sprint_id}><button disabled={state.busy} onClick={()=>void controller.select(s.sprint_id)}>{s.goal}</button><p>{s.state} · {s.start_date} to {s.end_date}</p></li>)}</ul>
+   {!state.sprints.length&&state.projectActions.includes('listSprints')?<p>No Sprints yet.</p>:null}
+   {state.selected?<div className="task-detail"><h4>Selected Sprint: {state.selected.goal}</h4><p>State: {state.selected.state} · revision {state.selected.revision}</p>
+    {state.selected.started_at?<p>Started: <time dateTime={state.selected.started_at}>{new Intl.DateTimeFormat(undefined,{dateStyle:'medium',timeStyle:'short'}).format(new Date(state.selected.started_at))}</time></p>:null}
+    {state.selected.completed_at?<p>Completed: <time dateTime={state.selected.completed_at}>{new Intl.DateTimeFormat(undefined,{dateStyle:'medium',timeStyle:'short'}).format(new Date(state.selected.completed_at))}</time></p>:null}
+    <div className="actions">{state.actions.includes('startSprint')?<button disabled={locked} onClick={()=>void controller.mutate('startSprint',{expected_revision:state.selected!.revision})}>Start Sprint</button>:null}{state.actions.includes('completeSprint')?<button disabled={locked} onClick={()=>void controller.mutate('completeSprint',{expected_revision:state.selected!.revision})}>Complete Sprint</button>:null}</div>
+    <h5>Sprint associations</h5><p>Association history is retained. Task state and location below are current values.</p>
+    <ul>{state.items.map(i=><li key={i.task.task_id}><strong>{i.task.title}</strong><p>Association: {i.allocation_state} · current state: {i.task.state.replaceAll('_',' ')} · current location: {i.task.work_location.kind}</p></li>)}</ul>{!state.items.length?<p>No associated items.</p>:null}
+   </div>:null}
+   {state.backlogRevision?<div><h4>Product Backlog</h4><p>Complete Backlog loaded. Save to apply the order; refresh discards unsaved moves.</p><ol>{state.backlog.map((item,index)=><li key={item.task_id}>
+    {state.actions.includes('allocateTask')?<label className="backlog-choice"><input type="checkbox" checked={selected.includes(item.task_id)} disabled={locked} onChange={e=>setSelected(old=>e.target.checked?[...old,item.task_id]:old.filter(id=>id!==item.task_id))}/>{item.title}</label>:<span>{item.title}</span>}
+    {state.projectActions.includes('reorderBacklog')?<div className="actions"><button disabled={locked||index===0} aria-label={'Move up '+item.title} onClick={()=>controller.move(item.task_id,-1)}>Move up</button><button disabled={locked||index===state.backlog.length-1} aria-label={'Move down '+item.title} onClick={()=>controller.move(item.task_id,1)}>Move down</button></div>:null}
+   </li>)}</ol>{!state.backlog.length?<p>Backlog is empty.</p>:null}
+    <div className="actions">{state.actions.includes('allocateTask')?<button disabled={locked||!selected.length} onClick={()=>void controller.allocate(selected)}>Allocate selected tasks</button>:null}{state.projectActions.includes('reorderBacklog')?<button disabled={locked} onClick={()=>void controller.reorder()}>Save Backlog order</button>:null}</div>
+   </div>:null}
+   {state.results.length?<ul aria-label="Allocation results">{state.results.map((r,i)=><li key={r.task_id??i}>{r.task_id??'Sprint operation'}: {r.status==='unknown'?'unconfirmed':r.status==='queued'?'waiting':r.status}</li>)}</ul>:null}
+  </>:null}
+ </section>;
+}

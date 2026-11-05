@@ -1,7 +1,7 @@
 # Central diagram index
 
 **Artifact ID:** UML-07
-**Version/date:** 0.25.8 Draft · 4 November 2026
+**Version/date:** 0.25.9 Draft · 4 November 2026
 **Status:** Draft; Ready for downstream inventory use; C4 primary views with a 4+1 coverage crosswalk are recommended; see the 17 October report for corrections and remaining design/implementation gates.
 **Source versions:** BRD English v1.0; PRD-01 v0.10.2; UC-02 v0.8.3; SAD-03 v0.19.1; UX Docs v0.9 / sitemap v0.10 / personas v0.5 / matrix v0.11 / Board v0.10 / AI v0.9; ADR-0004 v0.2; ADR-0007–ADR-0017; Proposed ADR-0018–ADR-0023; PLAN-01 v0.4.
 
@@ -168,8 +168,8 @@ Current filesystem inspection found eight Draw.io files in the five type folders
 <!-- BEGIN GENERATED:artifact-versions -->
 | Artifact ID | Version | Canonical source |
 | --- | --- | --- |
-| UML-07 | v0.25.8 | [Source](README.md) |
-| REG-00 | v0.123 | [Source](../artifact-register.md) |
+| UML-07 | v0.25.9 | [Source](README.md) |
+| REG-00 | v0.126 | [Source](../artifact-register.md) |
 | SAD-03 | v0.19.1 | [Source](../../architecture.md) |
 | UX-PERM-MATRIX-02 | v0.11.3 | [Source](../../ux/permission-matrix.md) |
 | UX-PERSONAS-01 | v0.5.3 | [Source](../../ux/personas.md) |
@@ -190,7 +190,7 @@ Current filesystem inspection found eight Draw.io files in the five type folders
 | DGM-UC-01 | v0.5 | [Source](use-case/use-case-diagram.mmd) |
 | DGM-REVIEW-02 | v0.1 | [Source](review-2026-10-16.md) |
 | DGM-REVIEW-03 | v0.1 | [Source](review-2026-10-17.md) |
-| DATA-04 | v0.16.3 | [Source](../data-design.md) |
+| DATA-04 | v0.16.4 | [Source](../data-design.md) |
 | DGM-DESIGN-01 | v0.1 | [Source](design-foundation-2026-10-17.md) |
 | DGM-C4-01 | v0.1 | [Source](c4/system-context.mmd) |
 | DGM-C4-02 | v0.1 | [Source](c4/containers.mmd) |

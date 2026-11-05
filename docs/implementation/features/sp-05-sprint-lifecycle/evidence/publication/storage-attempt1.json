@@ -1,0 +1,14 @@
+{
+  "command": [
+    "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "--test",
+    "--test-concurrency=1",
+    "tests/workspace/sprint-storage.test.mjs"
+  ],
+  "exit_code": 1,
+  "source": {
+    "path": "services/workspace/migrations/011-sprint-lifecycle.up.sql",
+    "sha256": "95c27d00789c44da7cd0d962fdabbe5920f2faa66a36f58cbdbdb9c371f05b66"
+  },
+  "log": "storage-final.txt"
+}

@@ -1,7 +1,7 @@
 # Dependency-based implementation roadmap
 
 **Artifact ID:** IMPL-ROADMAP-01\
-**Version/date:** 0.42 Draft · 4 November 2026\
+**Version/date:** 0.45 Draft · 5 November 2026
 **Status:** Planning order, not completed work or scope acceptance.\
 **Inputs:** PRD-01 v0.10.2; SPEC-INDEX v0.8.2; PLAN-01 v0.4; [decisions](decisions.md); [task catalogue](tasks/README.md).\
 **Trace:** BR-01–BR-14; SC-01–SC-08.\
@@ -151,3 +151,20 @@ RF05 bounded result: HOTFIX-BACKEND-42-01 v0.8 / HF42-RF05-RESULT v0.1 verifies 
 ## P01 actual publication receipt — 4 November 2026
 
 [HF42-P01-RESULT v0.2](features/hotfix-backend-layering/p01-report.md) / HOTFIX-BACKEND-42-01 v0.11 / P01v0.4 / entry0.8 record actual dde2933 hotfix push, exact-commit CI success and verified main fast-forward/publication. Earlier pending receipts remain historical observations. Final audit receipt/cleanup follow normal checked publication; parent SP05/P08/D07/independent/release gates remain open.
+
+[FEAT-SP05-01 v0.1](features/sp-05-sprint-lifecycle/plan.md) / [entry0.1](features/sp-05-sprint-lifecycle/README.md) / [SP05-WBS-01v0.1](features/sp-05-sprint-lifecycle/breakdown.md) and SP05-P00–P15v0.1 register owner-approved Must implementation for SP-05.1–05.4 / PLAN-01 Month2/M-03, FR06/07/08/41/42 and co-delivered31. Separate five actions; FR66/67 excluded; SP04-P08 actual integration mandatory. Status belongs only to plan; no publication or independent acceptance.
+
+
+## SP-05 bounded local delivery — 5 November 2026
+
+[FEAT-SP05-01 v0.2](features/sp-05-sprint-lifecycle/plan.md) / entry v0.2 owns P00–P15 execution; [SP05-RESULT-01 v0.1](features/sp-05-sprint-lifecycle/handoff.md) maps Must AC/UC/TC to actual evidence; [SP05-PR-DRAFT-01 v0.1](features/sp-05-sprint-lifecycle/pull-request.md) prepares local review text. WORKSPACE-SPRINTS-01 v0.1, Proposed ADR0030 v0.1, SP-05 v0.7.4 and SP-04 v0.7.7, FEAT-SP04-01 v0.15 / SP04-P08 v0.3 record bounded actual-producer integration. Test-plan/coverage/verification current entries point to the owning result. These local observations supersede earlier pending SP05/P08 snapshots only; M03 other gates, CI, deployment and independent/release acceptance remain open. No commit/push/PR or valuable-data migration.
+
+
+## SP05-AG01 written reviewer assignment — 5 November 2026
+
+[FEAT-SP05-01 v0.3](features/sp-05-sprint-lifecycle/plan.md) / entry v0.3 / SP05-WBS-01 v0.2 registers [SP05-AG01 v0.1](features/sp-05-sprint-lifecycle/tasks/AG01-antigravity-tracking-testing.md), the owner-requested Antigravity P00–P15 tracking, source review and actual regression/browser verification brief for SP-05.1–05.4 / PLAN-01 Month2 / M-03 and coordinated SP04-P08. Reviewer inputs are frozen separately under evidence/antigravity-assignment/reviewer-inputs.json; old author evidence is immutable. Planned output SP05-AG01-RESULT v0.1 belongs to a new timestamped reviewer run. Preparation/manual delivery only: no dispatch, reviewer execution/result, source fix, commit or independent/release acceptance. The parent owns mutable assignment status.
+
+
+## SP05-PUB01 Draft PR authority — 5 November 2026
+
+[FEAT-SP05-01 v0.4](features/sp-05-sprint-lifecycle/plan.md) / entry v0.4 registers [SP05-PUB01 v0.1](features/sp-05-sprint-lifecycle/tasks/PUB01-draft-publication.md), owner-authorised agent commit, normal push and one Draft PR codex/sp-05 to main so Antigravity can later review. SP05-AG01 v0.2 supports the actual published head instead of requiring the historical base HEAD; original source/evidence snapshots remain unchanged. Planned SP05-PUBLICATION-01 v0.1 records actual publication only after execution. No merge, main update, reviewer result, valuable-data migration or independent/release acceptance. PLAN-01 Month2/M-03 and SP04-P08 trace unchanged.

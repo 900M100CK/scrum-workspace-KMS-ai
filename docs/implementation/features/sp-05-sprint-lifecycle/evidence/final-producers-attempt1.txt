@@ -1,0 +1,35 @@
+▶ SP05 actual competing starts/allocations and SP04 complete/reopen integration
+  ✔ two actual starts queued after first state write yield one Active Sprint (288.5248ms)
+  ✔ competing actual allocations cannot give one Task two live associations (235.8457ms)
+  ✔ actual completion-first rejects stale reopen, then explicit reopen and later allocation preserve A history (486.3076ms)
+  ✔ reopen-first during Active work makes actual completion return unfinished To Do (348.4236ms)
+  ✔ actual completed reopen versus later allocation: reopen-first (452.0639ms)
+  ✔ actual completed reopen versus later allocation: allocate-first (428.2466ms)
+  ✔ actual completion return invalidates a queued whole-Backlog reorder without partial positions (339.3979ms)
+✔ SP05 actual competing starts/allocations and SP04 complete/reopen integration (7492.3258ms)
+▶ SP05 each mutation rolls back audit/receipt failures and lost real COMMIT replays once
+  ✔ createSprint (292.0736ms)
+  ✔ allocateTask (343.4581ms)
+  ✔ startSprint (327.7358ms)
+  ✔ completeSprint (397.1011ms)
+  ✔ reorderBacklog (290.8551ms)
+✔ SP05 each mutation rolls back audit/receipt failures and lost real COMMIT replays once (6205.6937ms)
+▶ SP05 actual011 private authority, lifecycle, full reorder and original outcomes
+  ✔ creator/role labels grant none; private audit failure rolls back and runtime cannot grant (119.9539ms)
+  ✔ invalid date/goal/body/media/CSRF and foreign scopes leave no business state (40.7133ms)
+  ✔ create/read keeps server timestamps; actor/key/hash, revoke and changed payload are enforced (129.6074ms)
+  ✔ single Task allocation changes location and Sprint revision, rejects competing allocation and stale request (265.2979ms)
+  ✔ actual Planned start and mixed completion co-commit state/history/counts; replay does not recompute (335.3163ms)
+  ✔ real completed reopen then real later allocation retains old association and completion counts (201.4741ms)
+  ✔ empty Sprint starts/completes with zero counts and typed originals cannot be changed/deleted (273.8396ms)
+  ✔ reorder is exact full permutation, no-op does not audit/revise, originals survive later changes (606.3702ms)
+  ✔ Sprint pages invalidate on actual updates; foreign/tampered cursors and removed members disclose no items (1684.4847ms)
+✔ SP05 actual011 private authority, lifecycle, full reorder and original outcomes (10461.2222ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 25225.6962

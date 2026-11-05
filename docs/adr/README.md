@@ -1,7 +1,7 @@
 # Architecture decision index
 
 **Artifact ID:** ADR-INDEX-01\
-**Version/date:** 0.4 Draft · 4 November 2026\
+**Version/date:** 0.5 Draft · 5 November 2026\
 **Inputs:** Existing ADR entries below; Proposed ADR-0027 v0.2; no change to existing decisions.; Proposed ADR-0028 v0.1; Proposed ADR-0029 v0.1
 
 Updated 3 November 2026. Owner-confirmed direction is distinct from implemented and tested behaviour. No commit or independent review is implied by this index.
@@ -53,3 +53,5 @@ The [business review](../analyst/business-review-2026-10-13.md) records the sour
 ## RF03 bounded proposal
 
 [0029: unexpected authenticated-transaction null result](0029-unexpected-null-transaction-result.md) — Proposed generic503/rollback contract; RF03 reproduction only, RF04 implementation remains separate.
+
+[0030: bounded Sprint lifecycle mechanics](0030-sprint-lifecycle-mechanics.md) — Proposed v0.1; owner-selected action separation/Must scope; actual bounded evidence belongs to FEAT-SP05-01.

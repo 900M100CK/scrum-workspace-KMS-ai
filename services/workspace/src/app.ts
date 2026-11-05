@@ -1,3 +1,4 @@
+import {registerSprintHttp,SPRINT_OPERATIONS,type SprintHttpOptions} from './sprints/http.ts';
 import Fastify from 'fastify';
 import {randomUUID} from 'node:crypto';
 import type {ServerOptions} from 'node:https';
@@ -8,7 +9,7 @@ import {registerProjectHttp} from './projects/http.ts';
 import type {ProjectHttpOptions} from './projects/http.ts';
 import {registerTaskHttp,TASK_OPERATIONS} from './tasks/http.ts';
 import type {TaskHttpOptions} from './tasks/http.ts';
-export function buildApp(options:SessionHttpOptions&ProjectHttpOptions&TaskHttpOptions&{tls?:ServerOptions;logStream?:Writable}={}) {
+export function buildApp(options:SessionHttpOptions&ProjectHttpOptions&TaskHttpOptions&SprintHttpOptions&{tls?:ServerOptions;logStream?:Writable}={}) {
  const app = Fastify({
   ...(options.tls?{https:options.tls}:{}),
   logger: options.logStream?{level:'info',stream:options.logStream,serializers:{req:(request:{method:string})=>({method:request.method}),res:(response:{statusCode:number})=>({statusCode:response.statusCode})},redact:['req.headers.cookie','req.body.password','res.headers["set-cookie"]']}:false,
@@ -22,8 +23,9 @@ export function buildApp(options:SessionHttpOptions&ProjectHttpOptions&TaskHttpO
   return reply.code(status).send({code:status===503?'access_unavailable':'validation_failed',message:status===503?'Session unavailable':'Invalid request',run_id:null});
  });
  app.register(async scope=>registerSessionHttp(scope,options));
- app.register(async scope=>registerProjectHttp(scope,{...options,taskOperations:options.tasks?TASK_OPERATIONS:new Set()}));
+ app.register(async scope=>registerProjectHttp(scope,{...options,taskOperations:options.tasks?TASK_OPERATIONS:new Set(),sprintOperations:options.sprints?SPRINT_OPERATIONS:new Set()}));
  app.register(async scope=>registerTaskHttp(scope,options));
+ app.register(async scope=>registerSprintHttp(scope,options));
  app.get('/healthz', async () => ({ status: 'ok', service: 'workspace' }));
  app.setNotFoundHandler((_request, reply) => reply.code(404).send({ code: 'not_found', message: 'Resource unavailable' }));
  return app;

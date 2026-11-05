@@ -1,0 +1,15 @@
+{
+  "command": [
+    "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "--test",
+    "--test-concurrency=1",
+    "tests/workspace/sprint-concurrency.test.mjs"
+  ],
+  "source": {
+    "path": "tests/workspace/sprint-concurrency.test.mjs",
+    "sha256": "30d2ef06c63fc583af1e902d22caecc55d3acc7d71ed64a03bddaaa04fcb7e10"
+  },
+  "exit_code": 0,
+  "seconds": 14.747,
+  "log": "reorder-races-final.txt"
+}

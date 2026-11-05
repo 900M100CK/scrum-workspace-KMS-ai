@@ -1,0 +1,4 @@
+Linked input version drift in docs/sdlc/api-design.md: ../../contracts/README.md
+
+'0.25.2' !== '0.25.3'
+

@@ -1,0 +1,4 @@
+Current reference version drift in docs/sdlc/artifact-register.md: UML-07
+
+'0.25.8' !== '0.25.9'
+

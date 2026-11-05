@@ -1,0 +1,82 @@
+▶ SP05 actual011 private authority, lifecycle, full reorder and original outcomes
+  ✔ creator/role labels grant none; private audit failure rolls back and runtime cannot grant (109.2864ms)
+  ✔ invalid date/goal/body/media/CSRF and foreign scopes leave no business state (36.5546ms)
+  ✔ create/read keeps server timestamps; actor/key/hash, revoke and changed payload are enforced (108.9453ms)
+  ✔ single Task allocation changes location and Sprint revision, rejects competing allocation and stale request (398.9441ms)
+  ✔ actual Planned start and mixed completion co-commit state/history/counts; replay does not recompute (344.5226ms)
+  ✔ real completed reopen then real later allocation retains old association and completion counts (187.8572ms)
+  ✔ empty Sprint starts/completes with zero counts and typed originals cannot be changed/deleted (164.5308ms)
+  ✖ reorder is exact full permutation, no-op does not audit/revise, originals survive later changes (262.8497ms)
+  ✔ Sprint pages invalidate on actual updates; foreign/tampered cursors and removed members disclose no items (1528.8222ms)
+✖ SP05 actual011 private authority, lifecycle, full reorder and original outcomes (8355.9975ms)
+Error: Uncaught [TypeError: activeElement$1.attachEvent is not a function]
+    at reportException (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\jsdom\lib\jsdom\living\helpers\runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:353:9)
+    at invokeEventListeners (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLInputElementImpl._dispatch (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+    at exports.fireFocusEventWithTargetAdjustment (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\jsdom\lib\jsdom\living\helpers\focusing.js:103:10)
+    at HTMLInputElementImpl.focus (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\jsdom\lib\jsdom\living\nodes\HTMLOrSVGElement-impl.js:72:14)
+    at HTMLInputElement.focus (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\jsdom\lib\jsdom\living\generated\HTMLElement.js:128:34)
+    at create (C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/apps/web/src/SprintWorkspace.tsx:39:8)
+    at executeDispatch (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\apps\web\node_modules\react-dom\cjs\react-dom-client.development.js:20804:9)
+    at runWithFiberInDEV (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\apps\web\node_modules\react-dom\cjs\react-dom-client.development.js:1045:30) TypeError: activeElement$1.attachEvent is not a function
+    at handleEventsForInputEventPolyfill (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\apps\web\node_modules\react-dom\cjs\react-dom-client.development.js:3755:27)
+    at C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\apps\web\node_modules\react-dom\cjs\react-dom-client.development.js:21299:15
+    at batchedUpdates$1 (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\apps\web\node_modules\react-dom\cjs\react-dom-client.development.js:3434:40)
+    at dispatchEventForPluginEventSystem (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\apps\web\node_modules\react-dom\cjs\react-dom-client.development.js:21008:7)
+    at dispatchEvent (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\apps\web\node_modules\react-dom\cjs\react-dom-client.development.js:26142:11)
+    at dispatchDiscreteEvent (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\apps\web\node_modules\react-dom\cjs\react-dom-client.development.js:26110:11)
+    at HTMLDivElement.callTheUserObjectsOperation (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\jsdom\lib\jsdom\living\generated\EventListener.js:26:30)
+    at innerInvokeEventListeners (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:350:25)
+    at invokeEventListeners (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:286:3)
+    at HTMLInputElementImpl._dispatch (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\jsdom\lib\jsdom\living\events\EventTarget-impl.js:233:9)
+▶ SP05 live HTTPS/PG native forms, sequential allocation and complete/recovery DOM
+  ✔ labelled create and full-list reorder save real state (352.2077ms)
+  ✔ native multi-selection allocates separately and completion reconstructs retained/current associations (606.818ms)
+  ✔ lost committed creation replays exact key/body once; revoked controls and outage withhold content (385.7174ms)
+✔ SP05 live HTTPS/PG native forms, sequential allocation and complete/recovery DOM (6423.7436ms)
+▶ SP04-P03B additive010 mutation storage, real roles and permanent originals
+  ✔ legacy keys, invalidated grants, history and both audits refuse before DDL and preserve seeded rows (47.2912ms)
+  ✔ upgrade/repeat/reverse/reapply preserve009 receipts, definitions and prior checksums (4821.1657ms)
+  ✔ each retained mutation receipt/grant/audit/event independently refuses destructive down (74.6568ms)
+  ✔ total SQL validators reject NULL, every missing/extra/wrong field, unsafe values and malformed placement/time (464.4563ms)
+  ✔ all valid Task locations/states and Blocker UTC precisions/nullable outcome retain exact wire snapshots (50.4941ms)
+  ✔ new-operation status/hash/key/state/expiry/ref constraints and OLD/NEW immutability are enforced (196.895ms)
+  ✔ actor/operation/key/hash/Task/project/event binding rejects cross-scope replay without current-state substitution (109.5841ms)
+  ✔ private action scope/uniqueness, runtime issue/revival/rewrite denial and real member removal/rejoin (184.2795ms)
+  ✔ physical blocker history rejects unsafe sequence and nonfinite time before any wire serialization (18.3515ms)
+  ✔ Task/event/audit/result writes roll back together on audit or outcome persistence failure (29.9005ms)
+  ✔ lost real COMMIT acknowledgement is unknown, with one durable original and no current-state replacement (33.7408ms)
+  ✔ old project/member/createTask and protected-handoff branches still function and old SQL checksums match (35.7908ms)
+✔ SP04-P03B additive010 mutation storage, real roles and permanent originals (10039.8416ms)
+ℹ {"fixture":"sp01-p08-test-7eb92362ea45","volume":"sp01-p08-test-7eb92362ea45-data","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","postgres":"17.10 (Debian 17.10-1.pgdg12+1)","ceiling":"explicit009 ->010"}
+ℹ tests 27
+ℹ suites 0
+ℹ pass 25
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 26819.8663
+
+✖ failing tests:
+
+test at tests\workspace\sprint-http.test.mjs:63:10
+✖ reorder is exact full permutation, no-op does not audit/revise, originals survive later changes (262.8497ms)
+  AssertionError [ERR_ASSERTION]: unchanged numeric positions keep their revision
+  
+  1 !== '1'
+  
+      at TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-http.test.mjs:68:248)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-http.test.mjs:63:2)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: '1',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

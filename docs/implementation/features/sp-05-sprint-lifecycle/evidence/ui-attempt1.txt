@@ -1,0 +1,13 @@
+▶ SP05 live HTTPS/PG native forms, sequential allocation and complete/recovery DOM
+  ✔ labelled create and full-list reorder save real state (550.171ms)
+  ✔ native multi-selection allocates separately and completion reconstructs retained/current associations (803.1391ms)
+  ✔ lost committed creation replays exact key/body once; revoked controls and outage withhold content (482.2278ms)
+✔ SP05 live HTTPS/PG native forms, sequential allocation and complete/recovery DOM (8286.6827ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9352.3778

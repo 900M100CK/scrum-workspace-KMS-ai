@@ -1,8 +1,8 @@
 {
   "artifactId": "DATA-04",
-  "version": "0.13",
+  "version": "0.14",
   "status": "Draft",
-  "storageDecision": "ADR-0004 foundation plus Workspace 003 work location, Knowledge 003 immutable handoffs and Workspace 004 permanent protected claims; isolated storage evidence is not handler or guard acceptance. Workspace 005 owner-authorised session persistence and private authentication clock/audit; no public auth handler acceptance. Workspace 007 adds immutable project origin and private explicit create authority/audit; separate 008 adds permanent minimal project-operation snapshots. Tested disposable storage/handlers do not authorise a development upgrade or D-07 transport acceptance. SP-03 owner selected immutable Task.created_at and permanent original createTask result retention with current access checks; additive 009 and Task handlers now have bounded local evidence in FEAT-SP03-01. Logical schema checks alone remain distinct from permission/handler verification. SP-04 P03A2 records owner-selected separate edit authority, enabled new-assignee eligibility and indefinite original Task200/Blocker201 retention with current read/action checks. ADR-0028 mechanics are Proposed; this metadata/constraint refinement adds no entity/field/relationship and no physical migration or handler.",
+  "storageDecision": "ADR-0004 foundation plus Workspace 003 work location, Knowledge 003 immutable handoffs and Workspace 004 permanent protected claims; isolated storage evidence is not handler or guard acceptance. Workspace 005 owner-authorised session persistence and private authentication clock/audit; no public auth handler acceptance. Workspace 007 adds immutable project origin and private explicit create authority/audit; separate 008 adds permanent minimal project-operation snapshots. Tested disposable storage/handlers do not authorise a development upgrade or D-07 transport acceptance. SP-03 owner selected immutable Task.created_at and permanent original createTask result retention with current access checks; additive 009 and Task handlers now have bounded local evidence in FEAT-SP03-01. Logical schema checks alone remain distinct from permission/handler verification. SP-04 P03A2 records owner-selected separate edit authority, enabled new-assignee eligibility and indefinite original Task200/Blocker201 retention with current read/action checks. ADR-0028 mechanics are Proposed; this metadata/constraint refinement adds no entity/field/relationship and no physical migration or handler. SP-05 selected separate actions and nullable observed Sprint lifecycle timestamps under FEAT-SP05-01;011/producers need actual evidence.",
   "entities": [
     {
       "name": "Project",
@@ -75,7 +75,10 @@
         "start_date",
         "end_date",
         "state",
-        "revision"
+        "revision",
+        "created_at",
+        "started_at",
+        "completed_at"
       ]
     },
     {

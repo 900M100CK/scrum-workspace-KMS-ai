@@ -1,7 +1,7 @@
 # Contract-first interface pack
 
 **Artifact ID:** CONTRACT-01  
-**Version/date:** 0.25.2 Draft · 4 November 2026
+**Version/date:** 0.25.3 Draft · 5 November 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0011 direction is owner-confirmed; remaining protocol/policy gaps and handler evidence are pending.\
 **Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.10.2; [architecture](../docs/architecture.md); [data design](../docs/sdlc/data-design.md); PLAN-01 v0.4.\; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; Proposed ADR-0028 v0.1
 **Author:** development agent acting sequentially; owner reviews business choices.
@@ -125,3 +125,5 @@ Workspace v0.2.13 declares bounded transport error responses HTTP 413 (Payload T
 Keep original edit/state/assignment200 Task (including title/description) and blocker201 indefinitely with consumed actor/operation/key/hash. Committed same-input replay checks current read/action, then returns the original historical result without applying live write revision/placement/old-assignee checks or mutating again. Changed input conflicts. UI reads current state separately. New same-value/empty edits, same-state or same-assignee requests are proposed business no-ops after all new-write checks: retain original200 without revision/change audit; distinct blocker keys append and advance revision. Omitted blocker outcome normalizes to null, edit omission leaves unchanged and explicit null remains invalid for nonnullable fields.
 
 C01: generic409 state_conflict contains no current_revision field; client performs fresh authorised getTask before a new user-approved write. C02: recordBlocker201 contains only Blocker, so fresh Task/history supplies current blocked/revision. C03: known rollback is atomic; uncertain COMMIT/HTTP acknowledgement remains unknown and recovers only the same original actor/operation/key/body. Do not introduce a pending wire schema or automatically retry under a fresh key. Existing413/415 declarations are not runtime evidence.
+
+SP-05 registered support: FEAT-SP05-01v0.1 / SP-05v0.7.4 / Workspace0.2.14 / Proposed ADR0030v0.1 align separate actions, Sprint revision preconditions, nullable server lifecycle times, scoped Sprint pages and explicit transport errors before011/producers. Original directions and historical results are preserved; FR66/67 excluded, P08 actual SP04 integration remains mandatory. No runtime acceptance.

@@ -1,0 +1,7 @@
+{
+  "path": "services/workspace/migrations/011-sprint-lifecycle.up.sql",
+  "previousSha256": "7eaac2a86e40e4d28a5009e338310b1d763986ae298692135b3141283e411809",
+  "sha256": "95c27d00789c44da7cd0d962fdabbe5920f2faa66a36f58cbdbdb9c371f05b66",
+  "change": "Remove only extra blank line at end of new011 up SQL; identical trimEnd SQL content",
+  "oldMigrationsChanged": false
+}

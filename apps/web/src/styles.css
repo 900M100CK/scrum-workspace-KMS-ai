@@ -49,3 +49,8 @@ textarea { min-height: 6rem; resize: vertical; }
 .task-detail dd { margin: .3rem 0 1rem; overflow-wrap: anywhere; }
 .task-workspace label[for="task-location"] { display: block; margin-top: 1rem; }
 .member-list li > div { min-width: 0; flex: 1 1 12rem; }
+
+.sprint-workspace .backlog-choice { display: flex; align-items: center; gap: 0.65rem; min-height: 2.75rem; min-width: 0; }
+.sprint-workspace .backlog-choice input[type="checkbox"] { width: 1.1rem; height: 1.1rem; min-height: 1.1rem; margin: 0; flex: 0 0 auto; }
+
+.sprint-workspace li { overflow-wrap: anywhere; }

@@ -1,0 +1,11 @@
+{
+  "command": [
+    "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "--test",
+    "tests/workspace/sprint-browser.test.mjs"
+  ],
+  "exit_code": 0,
+  "error": null,
+  "seconds": 11.925,
+  "log": "browser-final.txt"
+}

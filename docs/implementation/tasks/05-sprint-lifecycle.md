@@ -1,7 +1,7 @@
 # SP-05: Run the fixed Scrum lifecycle without introducing a workflow configuration engine.
 
 **Artifact ID:** IMPL-SP-05\
-**Version/date:** 0.1 Draft · 26 October 2026\
+**Version/date:** 0.2 Draft · 5 November 2026
 **Status:** Breakdown only; all child steps Not started.\
 **Inputs:** [Canonical SP-05](../../../specs/005-sprint-lifecycle.md) v0.7; SPEC-INDEX v0.4; PRD-01 v0.9; [source register](../register.md); [decisions](../decisions.md).\
 **Trace:** FR-06, FR-07, FR-08, FR-41, FR-42, FR-66, FR-67; BR-02; SC-03.\
@@ -62,3 +62,9 @@ Use [execution rules](../execution.md): real handlers/persisted state, relevant 
 Record command/runtime, source revision or dirty-worktree digest, fixture/config identity, asserted boundary, results/failed attempts, unrun checks and open decisions in a dated [handoff](../handoff-template.md). Link it from the child status row and update the [catalogue](README.md) when pack state changes.
 
 **Checklist/handoff:** Pass for bounded breakdown and canonical references; Gap for missing decisions and all application acceptance. Ready for preparation within these limits; no implementation, release completion or independent acceptance is claimed.
+
+SP-05 registered support: FEAT-SP05-01v0.1 / SP-05v0.7.4 / Workspace0.2.14 / Proposed ADR0030v0.1 align separate actions, Sprint revision preconditions, nullable server lifecycle times, scoped Sprint pages and explicit transport errors before011/producers. Original directions and historical results are preserved; FR66/67 excluded, P08 actual SP04 integration remains mandatory. No runtime acceptance.
+
+## Current execution navigation — 5 November 2026
+
+[FEAT-SP05-01](../features/sp-05-sprint-lifecycle/plan.md) owns P00–P15 status and supersedes the initial Not-started snapshot above. Scope is Must FR06/07/08/41/42 plus co-delivered31; five separately provisioned actions. See the owning handoff for actual producer/UI/concurrency results and preserved failures. No optional edit/remove, production migration or release/independent acceptance.

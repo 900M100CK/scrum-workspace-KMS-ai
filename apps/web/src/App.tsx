@@ -1,3 +1,4 @@
+import {SprintController} from './sprints.ts';
 import {useEffect,useRef,useState,useSyncExternalStore} from 'react';
 import {SessionController} from './session.ts';
 import {ProjectWorkspace} from './ProjectWorkspace.tsx';
@@ -36,7 +37,7 @@ export function App({controller:provided}:{controller?:SessionController}={}) {
   (form.elements.namedItem('password') as HTMLInputElement).value='';
   void controller.signIn(username,password);
  }
- function signOut(){TaskController.clearPending();void controller.signOut();}
+ function signOut(){SprintController.clearPending();TaskController.clearPending();void controller.signOut();}
  return <>
   <a className="skip-link" href="#main">Skip to content</a>
   <header className="brand"><span className="brand-mark" aria-hidden="true">tw</span><span translate="no">Threadwork</span></header>

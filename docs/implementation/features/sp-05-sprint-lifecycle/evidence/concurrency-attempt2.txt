@@ -1,0 +1,44 @@
+▶ SP05 actual competing starts/allocations and SP04 complete/reopen integration
+  ✔ two actual starts queued after first state write yield one Active Sprint (265.7689ms)
+  ✔ competing actual allocations cannot give one Task two live associations (244.4716ms)
+  ✔ actual completion-first rejects stale reopen, then explicit reopen and later allocation preserve A history (443.3467ms)
+  ✔ reopen-first during Active work makes actual completion return unfinished To Do (374.5977ms)
+  ✔ actual completion return invalidates a queued whole-Backlog reorder without partial positions (350.5563ms)
+✔ SP05 actual competing starts/allocations and SP04 complete/reopen integration (7715.8049ms)
+▶ SP05 each mutation rolls back audit/receipt failures and lost real COMMIT replays once
+  ✔ createSprint (207.3115ms)
+  ✔ allocateTask (333.6775ms)
+  ✔ startSprint (341.3099ms)
+  ✔ completeSprint (644.8802ms)
+  ✖ reorderBacklog (308.566ms)
+✖ SP05 each mutation rolls back audit/receipt failures and lost real COMMIT replays once (6436.9149ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 10
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14619.6142
+
+✖ failing tests:
+
+test at tests\workspace\sprint-concurrency.test.mjs:41:33
+✖ reorderBacklog (308.566ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  400 !== 409
+  
+      at TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-concurrency.test.mjs:52:294)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-concurrency.test.mjs:41:25)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 400,
+    expected: 409,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
