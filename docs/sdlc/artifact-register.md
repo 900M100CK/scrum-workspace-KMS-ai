@@ -39,7 +39,7 @@ Prior OWNER-Q-01 verification: combined Node 24.21.0 run `node --test tests/docs
 ## Current register and handoffs
 
 **Artifact ID:** REG-00
-**Version/date:** 0.126 Draft · 5 November 2026
+**Version/date:** 0.127 Draft · 5 November 2026
 **Status:** Draft; confirmed policy corrections in progress, full coverage and remaining decisions explicit.
 **Source versions:** Proposed ADR-0024/0025 for SP-01.1; [BRD stable entry](../BRD.md) → [English BRD v1.0](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md) and two Proposed addenda, [AGENTS.md v1.13](../../AGENTS.md), [workflow](../../agents/WORKFLOW.md), PRD-01 v0.10.2, UC-02 v0.8.3, SAD-03 v0.19.1 and ADR-0007–ADR-0017. Prior review inputs remain historical. Storage has measured test evidence; bounded session runtime evidence exists; interviews, pilot and full application acceptance remain absent.; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; Proposed ADR-0026; Proposed ADR-0029 v0.1
 
@@ -134,7 +134,7 @@ The BRD leaves architecture to design while AGENTS.md directs minimal microservi
 | Artifact ID | Version | Canonical source |
 | --- | --- | --- |
 | UML-07 | v0.25.9 | [Source](diagrams/README.md) |
-| REG-00 | v0.126 | [Source](artifact-register.md) |
+| REG-00 | v0.127 | [Source](artifact-register.md) |
 | SAD-03 | v0.19.1 | [Source](../architecture.md) |
 | UX-PERM-MATRIX-02 | v0.11.3 | [Source](../ux/permission-matrix.md) |
 | UX-PERSONAS-01 | v0.5.3 | [Source](../ux/personas.md) |
@@ -766,3 +766,8 @@ DOC-REVIEW-REG-01 v0.64 carries only the current REG-00 v0.125 alias and a bound
 ## SP05-PUB01 Draft PR authority — 5 November 2026
 
 [FEAT-SP05-01 v0.4](../implementation/features/sp-05-sprint-lifecycle/plan.md) / entry v0.4 registers [SP05-PUB01 v0.1](../implementation/features/sp-05-sprint-lifecycle/tasks/PUB01-draft-publication.md), owner-authorised agent commit, normal push and one Draft PR codex/sp-05 to main so Antigravity can later review. SP05-AG01 v0.2 supports the actual published head instead of requiring the historical base HEAD; original source/evidence snapshots remain unchanged. Planned SP05-PUBLICATION-01 v0.1 records actual publication only after execution. No merge, main update, reviewer result, valuable-data migration or independent/release acceptance. PLAN-01 Month2/M-03 and SP04-P08 trace unchanged.
+
+
+## SP05-PUB01 actual Draft PR receipt — 5 November 2026
+
+[FEAT-SP05-01 v0.5](../implementation/features/sp-05-sprint-lifecycle/plan.md) / entry v0.5 / [SP05-PUBLICATION-01 v0.1](../implementation/features/sp-05-sprint-lifecycle/publication.md) record normal feature commit0bb0f57 push and actual open [Draft PR #1](https://github.com/900M100CK/scrum-workspace-KMS-ai/pull/1), codex/sp-05 to main. SP05-PR-DRAFT-01 v0.3 links the actual PR. Runtime Git blob identities and fresh011 format-only storage proof are retained with old failures. First context CI was pending; final head/check state is verified after the documentation receipt push. No merge, reviewer execution or independent/release acceptance. Parent status remains canonical.

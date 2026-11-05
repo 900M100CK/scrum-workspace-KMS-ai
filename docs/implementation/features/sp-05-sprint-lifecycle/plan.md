@@ -1,7 +1,7 @@
 # SP-05 Sprint lifecycle implementation
 
 **Artifact ID:** FEAT-SP05-01\
-**Version/date:** 0.4 Draft · 5 November 2026\
+**Version/date:** 0.5 Draft · 5 November 2026\
 **Status:** Bounded Must implementation verified locally; publication and independent/release acceptance remain open.\
 **Planning mode:** Owner supplied the completed Plan-mode plan; execution now in Default mode. This saved written gate precedes code/tests.\
 **Work kind:** Feature\
@@ -48,7 +48,7 @@ Allocation expected_revision is Sprint.revision; read/current-scope/location of 
 | [P14](tasks/P14-integration.md) | Actual complete/reopen/allocate/reorder races; close SP04-P08 only with evidence | P07–P13 | Verified actual SP04 completion/reopen/allocation schedules and four stale reorder races |
 | [P15](tasks/P15-handoff.md) | Relevant regression/AC mapping and reviewable PR preparation, no publication | P14 | Verified final regression/structure/source/preflight; handoff and local PR text ready; no publication |
 | [AG01](tasks/AG01-antigravity-tracking-testing.md) | Antigravity source-identified P00–P15 coverage assessment, actual independent reruns, concrete findings and handback | P15 local handoff; source/branch/runtime identity confirmed by reviewer | Written assignment prepared for manual delivery; receipt, execution and reviewer verdict not confirmed |
-| [PUB01](tasks/PUB01-draft-publication.md) | Commit/push the verified SP05 candidate and open one Draft PR to main for later Antigravity review | P15; owner publication request; source/preservation and final checks | In progress: owner-authorised publication preparation; no merge authorised |
+| [PUB01](tasks/PUB01-draft-publication.md) | Commit/push the verified SP05 candidate and open one Draft PR to main for later Antigravity review | P15; owner publication request; source/preservation and final checks | Verified normal feature push and open Draft PR #1; receipt/current-head verification follows; no merge |
 
 ## Verification and handoff
 
@@ -94,3 +94,5 @@ The owner explicitly requested creating the PR so Antigravity can review it afte
 Use existing verified runtime/tests, confirm source hashes and immutable evidence, inspect the full tracked/untracked candidate and exclude ignored secrets/local setup. Current support scope: this feature folder, registration-only feature/source/central/roadmap and required REG-00/input/generated metadata. Preserve prior evidence and label later publication/coordination snapshots separately. Temporary credential/API or body helpers may live only in ignored .tmp; secrets remain in memory and are never logged. Check actual remote main/branch/PR, preserve remote changes, commit with Codex identity/byline and publish normally. Final P15/AG01 source review follows the published head, with old source manifests retained as historical snapshots. Draft PR is not merge/release/independent approval.
 
 PUB01 staging format correction: git diff --cached --check exposed one extra blank line at the end of new011 up SQL, previously invisible to tracked-only checks while untracked. Remove only trailing file whitespace; SQL content is identical after trimEnd. Applied001–010 remain unchanged. Record the old/new SHA and rerun the existing disposable011 storage suite; retain earlier author snapshots rather than claim identical raw SQL bytes.
+
+PUB01 actual result: feature commit0bb0f57d9fe3893fb66a0aded3939aed2605eaf8 pushed normally; [Draft PR #1](https://github.com/900M100CK/scrum-workspace-KMS-ai/pull/1) open to main. [SP05-PUBLICATION-01](publication.md) and created-pr/first-pr-checks evidence preserve observed head/base/draft and pending CI separately from local verification. A documentation-only receipt commit follows; final current remote SHA/check status are verified after push. No merge or Antigravity execution/acceptance.

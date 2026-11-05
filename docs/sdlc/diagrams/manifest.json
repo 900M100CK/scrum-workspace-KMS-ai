@@ -10,7 +10,7 @@
     {
       "id": "REG-00",
       "path": "docs/sdlc/artifact-register.md",
-      "version": "0.126",
+      "version": "0.127",
       "adrs": [],
       "date": "5 November 2026"
     },

@@ -1,9 +1,9 @@
 # Implement SP-05 Sprint lifecycle and full Backlog ordering
 
 **Artifact ID:** SP05-PR-DRAFT-01\
-**Version/date:** 0.2 Draft · 5 November 2026
+**Version/date:** 0.3 Draft · 5 November 2026
 
-Owner-authorised publication candidate under PUB01. Base: main; head: codex/sp-05. Actual URL/head/check state belong to the publication receipt after execution.
+Published as [Draft PR #1](https://github.com/900M100CK/scrum-workspace-KMS-ai/pull/1) under PUB01. Base: main; head: codex/sp-05. See publication.md for the actual receipt and check-state limits.
 
 ## Behavior
 

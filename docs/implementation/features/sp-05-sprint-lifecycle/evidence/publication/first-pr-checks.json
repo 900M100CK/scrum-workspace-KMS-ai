@@ -1,0 +1,30 @@
+{
+  "number": 1,
+  "url": "https://github.com/900M100CK/scrum-workspace-KMS-ai/pull/1",
+  "draft": true,
+  "state": "open",
+  "head": "0bb0f57d9fe3893fb66a0aded3939aed2605eaf8",
+  "base": "main",
+  "merged": false,
+  "checks": [
+    {
+      "name": "context",
+      "status": "in_progress",
+      "conclusion": null,
+      "url": "https://github.com/900M100CK/scrum-workspace-KMS-ai/actions/runs/41970002305/job/127055768529"
+    },
+    {
+      "name": "GitGuardian Security Checks",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/900M100CK/scrum-workspace-KMS-ai/runs/127055764013"
+    },
+    {
+      "name": "context",
+      "status": "in_progress",
+      "conclusion": null,
+      "url": "https://github.com/900M100CK/scrum-workspace-KMS-ai/actions/runs/41969997467/job/127055753006"
+    }
+  ],
+  "commitStatus": "pending"
+}

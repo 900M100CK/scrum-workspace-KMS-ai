@@ -1,7 +1,7 @@
 # Implementation source and artifact register
 
 **Artifact ID:** IMPL-REG-01\
-**Version/date:** 0.57 Draft · 5 November 2026
+**Version/date:** 0.58 Draft · 5 November 2026
 **Status:** Source snapshot and navigation, not approval or runtime evidence.\
 **Inputs:** REG-00; PRD-01 v0.10.2; SPEC-INDEX v0.8.2; PLAN-01 v0.4; SAD-03 v0.19.1; ADR-0001–ADR-0026.\; Proposed ADR-0029 v0.1
 **Trace:** Existing BR-01–BR-14 / SC-01–SC-08.\
@@ -254,3 +254,8 @@ RF05 bounded result: HOTFIX-BACKEND-42-01 v0.8 / HF42-RF05-RESULT v0.1 verifies 
 ## SP05-PUB01 Draft PR authority — 5 November 2026
 
 [FEAT-SP05-01 v0.4](features/sp-05-sprint-lifecycle/plan.md) / entry v0.4 registers [SP05-PUB01 v0.1](features/sp-05-sprint-lifecycle/tasks/PUB01-draft-publication.md), owner-authorised agent commit, normal push and one Draft PR codex/sp-05 to main so Antigravity can later review. SP05-AG01 v0.2 supports the actual published head instead of requiring the historical base HEAD; original source/evidence snapshots remain unchanged. Planned SP05-PUBLICATION-01 v0.1 records actual publication only after execution. No merge, main update, reviewer result, valuable-data migration or independent/release acceptance. PLAN-01 Month2/M-03 and SP04-P08 trace unchanged.
+
+
+## SP05-PUB01 actual Draft PR receipt — 5 November 2026
+
+[FEAT-SP05-01 v0.5](features/sp-05-sprint-lifecycle/plan.md) / entry v0.5 / [SP05-PUBLICATION-01 v0.1](features/sp-05-sprint-lifecycle/publication.md) record normal feature commit0bb0f57 push and actual open [Draft PR #1](https://github.com/900M100CK/scrum-workspace-KMS-ai/pull/1), codex/sp-05 to main. SP05-PR-DRAFT-01 v0.3 links the actual PR. Runtime Git blob identities and fresh011 format-only storage proof are retained with old failures. First context CI was pending; final head/check state is verified after the documentation receipt push. No merge, reviewer execution or independent/release acceptance. Parent status remains canonical.
