@@ -10,8 +10,8 @@ import {taskFixture} from './task-fixture.mjs';
 import {buildApp} from '../../services/workspace/src/app.ts';
 import {ScryptVerifier} from '../../services/workspace/src/session/kdf.ts';
 const requireWeb=createRequire(new URL('../../apps/web/package.json',import.meta.url));
-export async function sprintUiFixture(){
- const f=await taskFixture({through:'011'});let backend,vite;
+export async function sprintUiFixture({through='011'}={}){
+ const f=await taskFixture({through});let backend,vite;
  try{
   await f.operator.project(f.ids[0],f.project,'backlog-author',true,'0','synthetic-task-ui','explicit fixture author');
   const listener=createServer();await new Promise(r=>listener.listen(0,'127.0.0.1',r));const port=listener.address().port;await new Promise(r=>listener.close(r));
@@ -23,7 +23,7 @@ export async function sprintUiFixture(){
   await f.authOperator.provision(browserUser,username,await new ScryptVerifier().hash(password),'synthetic-task-ui');
   await f.projects.add(f.tokens[0],f.project,{user_id:browserUser,role:'viewer'},randomUUID());
   await f.operator.project(browserUser,f.project,'backlog-author',true,'0','synthetic-task-ui','explicit viewer author; no role inference');
-  for(const user of [f.ids[0],browserUser])for(const action of [...Object.values(SPRINT_ACTIONS),'task-state'])await f.operator.project(user,f.project,action,true,'0','synthetic-sprint-ui','explicit selected right');
+  for(const user of [f.ids[0],browserUser])for(const action of [...Object.values(SPRINT_ACTIONS).filter(action=>through>='012'||!['sprint-edit','sprint-deallocate'].includes(action)),'task-state'])await f.operator.project(user,f.project,action,true,'0','synthetic-sprint-ui','explicit selected right');
   let cookie=f.headers().cookie;
   const transport=(url,init)=>new Promise((resolve,reject)=>{
    const req=request({host:'127.0.0.1',port,path:url,method:init.method,ca:cert,headers:{...Object.fromEntries(new Headers(init.headers)),origin,cookie},signal:init.signal},res=>{let body='';res.on('data',c=>body+=c);res.on('end',()=>{if(res.headers['set-cookie']?.[0])cookie=res.headers['set-cookie'][0].split(';')[0];resolve(new Response(res.statusCode===204?null:body,{status:res.statusCode,headers:{'content-type':res.headers['content-type']??''}}));});});req.on('error',reject);req.end(init.body);

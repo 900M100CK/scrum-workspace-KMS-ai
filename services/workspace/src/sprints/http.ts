@@ -11,8 +11,8 @@ import type {SprintOperation,CreateSprint,Allocation,ExpectedRevision,Reorder} f
 const addFormats=createRequire(import.meta.url)('ajv-formats') as typeof import('ajv-formats').default;
 const api=JSON.parse(readFileSync(new URL('../../../../contracts/openapi/workspace.openapi.json',import.meta.url),'utf8'));
 const ajv=new Ajv2020({strict:false,removeAdditional:false,coerceTypes:false,useDefaults:false});addFormats(ajv);ajv.addSchema({$id:'urn:sacw:sprints',components:api.components});
-export const sprintValidators=Object.fromEntries(['Sprint','SprintList','SprintItemList','SprintCompletion','ReorderResult','CreateSprint','Allocation','ExpectedRevision','Reorder'].map(name=>[name,ajv.compile({$ref:'urn:sacw:sprints#/components/schemas/'+name})]));
-export const SPRINT_OPERATIONS:ReadonlySet<string>=new Set(['createSprint','listSprints','getSprint','listSprintItems','allocateTask','startSprint','completeSprint','reorderBacklog']);
+export const sprintValidators=Object.fromEntries(['Sprint','SprintList','SprintItemList','SprintCompletion','ReorderResult','CreateSprint','Allocation','ExpectedRevision','Reorder','EditSprint'].map(name=>[name,ajv.compile({$ref:'urn:sacw:sprints#/components/schemas/'+name})]));
+export const SPRINT_OPERATIONS:ReadonlySet<string>=new Set(['createSprint','listSprints','getSprint','listSprintItems','allocateTask','startSprint','completeSprint','reorderBacklog','editSprint','removeAllocation']);
 export interface SprintHttpOptions {sprints?:WorkspaceSprintStore;origin?:string}
 const responses=(status:number,name:string)=>Object.fromEntries([[status,{$ref:'urn:sacw:sprints#/components/schemas/'+name}],...[400,401,403,404,409,413,415,503].map(n=>[n,{}])]);
 export async function registerSprintHttp(app:FastifyInstance,options:SprintHttpOptions){
@@ -44,6 +44,17 @@ export async function registerSprintHttp(app:FastifyInstance,options:SprintHttpO
   const key=request.headers['idempotency-key'];if(typeof key!=='string'||!key)throw new ProjectFault(400,'validation_failed');
   const params=request.params as {sprint_id?:string;project_id?:string};const result=await options.sprints!.execute(request.cookies[SESSION_COOKIE]!,operation as SprintOperation,(params.sprint_id??params.project_id)!,request.body as CreateSprint|Allocation|ExpectedRevision|Reorder,key,request.id);return reply.code(result.status).send(result.body);
  });}
+ app.patch('/sprints/:sprint_id',{bodyLimit:8192,onRequest:async request=>{if(!/^application\/json(?:\s*;|$)/i.test(request.headers['content-type']??''))throw new ProjectFault(415,'validation_failed');},schema:{response:responses(200,'Sprint')}},async(request,reply)=>{
+  if(Object.keys(request.query as object).length||!sprintValidators.EditSprint!(request.body))throw new ProjectFault(400,'validation_failed');
+  const key=request.headers['idempotency-key'];if(typeof key!=='string'||!key)throw new ProjectFault(400,'validation_failed');
+  const result=await options.sprints!.execute(request.cookies[SESSION_COOKIE]!,'editSprint',(request.params as {sprint_id:string}).sprint_id,request.body as ExpectedRevision,key,request.id);return reply.code(result.status).send(result.body);
+ });
+ app.delete('/sprints/:sprint_id/items/:task_id',{bodyLimit:8192,schema:{response:responses(200,'Sprint')}},async(request,reply)=>{
+  const header=request.headers['x-expected-revision'],key=request.headers['idempotency-key'];
+  if(request.body!==undefined||Object.keys(request.query as object).length||typeof header!=='string'||! /^[1-9][0-9]*$/.test(header)||!Number.isSafeInteger(Number(header))||typeof key!=='string'||!key)throw new ProjectFault(400,'validation_failed');
+  const params=request.params as {sprint_id:string;task_id:string};
+  const result=await options.sprints!.execute(request.cookies[SESSION_COOKIE]!,'removeAllocation',params.sprint_id,{task_id:params.task_id,expected_revision:Number(header)},key,request.id);return reply.code(result.status).send(result.body);
+ });
  for(const [url,kind,responseName] of [['/projects/:project_id/sprints','list','SprintList'],['/sprints/:sprint_id','get','Sprint'],['/sprints/:sprint_id/items','items','SprintItemList']] as const){app.get(url,{schema:{response:responses(200,responseName)}},async request=>{
   const q=request.query as Record<string,unknown>;if(Object.keys(q).some(k=>k!=='cursor'||kind==='get')||(q.cursor!==undefined&&(typeof q.cursor!=='string'||!q.cursor)))throw new ProjectFault(400,'validation_failed');
   const p=request.params as {sprint_id?:string;project_id?:string},token=request.cookies[SESSION_COOKIE]!;

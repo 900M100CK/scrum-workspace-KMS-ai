@@ -1,0 +1,8 @@
+{
+  "containers": [
+    "sp01-p08-test-738769743c05"
+  ],
+  "volumes": [
+    "sp01-p08-test-738769743c05-data"
+  ]
+}

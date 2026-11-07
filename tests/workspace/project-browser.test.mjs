@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {mkdir,writeFile} from 'node:fs/promises';
+import {mkdir,mkdtemp,writeFile} from 'node:fs/promises';
 import {projectUiFixture} from './project-ui-fixture.mjs';
 
 test('P08 isolated Microsoft Edge: real cookies, current UI, unknown outcome and reload',{timeout:180000},async t=>{
@@ -20,7 +20,7 @@ test('P08 isolated Microsoft Edge: real cookies, current UI, unknown outcome and
  await page.reload();await page.getByRole('button',{name:'Check original operation',exact:true}).waitFor();await page.getByRole('button',{name:'Check original operation',exact:true}).click();await page.getByRole('button',{name:'Browser project',exact:true}).waitFor();assert.equal(requests.length,2);assert.deepEqual(requests[0],requests[1]);
  const projects=(await f.db.admin.query('SELECT project_id FROM workspace.project WHERE created_by=$1',[f.browserUser])).rows;assert.equal(projects.length,1);const project=projects[0].project_id;
  await page.getByRole('button',{name:'Browser project',exact:true}).click();await page.getByLabel('Registered user ID',{exact:true}).fill(f.ids[0]);await page.getByLabel('Descriptive role',{exact:true}).selectOption('developer');await page.getByRole('button',{name:'Add member',exact:true}).click();await page.getByRole('button',{name:'Browser project',exact:true}).click();await page.getByText(f.ids[0],{exact:true}).waitFor();
- const directory='docs/sdlc/reports/evidence/SP-02-2026-11-01';await mkdir(directory,{recursive:true});await page.screenshot({path:directory+'/project-desktop.png',fullPage:true});
+ const base='docs/sdlc/reports/evidence/SP-02-2026-11-01/runs';await mkdir(base,{recursive:true});const directory=await mkdtemp(base+'/run-'+Date.now()+'-');await page.screenshot({path:directory+'/project-desktop.png',fullPage:true});
  await page.setViewportSize({width:390,height:844});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth));await page.screenshot({path:directory+'/project-mobile.png',fullPage:true});
  // Native keyboard activation reaches the explicit confirmation before any removal.
  const remove=page.getByRole('button',{name:'Remove member '+f.ids[0],exact:true});await remove.focus();await page.keyboard.press('Enter');await page.getByRole('button',{name:'Confirm removal',exact:true}).waitFor();assert.equal((await f.db.admin.query('SELECT active FROM workspace.membership WHERE project_id=$1 AND user_id=$2',[project,f.ids[0]])).rows[0].active,true);await page.getByRole('button',{name:'Cancel removal',exact:true}).click();

@@ -4,7 +4,7 @@
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="diagram-title" parent="1" style="text;html=1;whiteSpace=wrap;fontSize=18;fontStyle=1;align=left;" value="DGM-ARCH-01 v0.9 Draft | Service composition and trust boundaries | 18 October 2026 | Sources: SAD-03 v0.19.1; PRD-01 v0.10.2; UC-02 v0.8.3; ADR-0004; ADR-0006; ADR-0007; ADR-0009; ADR-0011; ADR-0012" vertex="1">
+                <mxCell id="diagram-title" parent="1" style="text;html=1;whiteSpace=wrap;fontSize=18;fontStyle=1;align=left;" value="DGM-ARCH-01 v0.9 Draft | Service composition and trust boundaries | 18 October 2026 | Sources: SAD-03 v0.19.1; PRD-01 v0.10.3; UC-02 v0.8.4; ADR-0004; ADR-0006; ADR-0007; ADR-0009; ADR-0011; ADR-0012" vertex="1">
                     <mxGeometry height="100" width="2700" x="80" y="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="User" parent="1" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;whiteSpace=wrap;html=1;fontSize=14;spacing=12;" value="Member" vertex="1">

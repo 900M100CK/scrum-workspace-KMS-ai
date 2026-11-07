@@ -1,0 +1,96 @@
+{
+  "kind": "C01 structural/source validation only; no runtime behavior verified",
+  "results": [
+    {
+      "name": "metadata-sync",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "scripts/docs/docs-metadata.mjs"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "node",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "--version"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "context-lint",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "--check",
+        "scripts/verify-context.mjs"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "routing-lint",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "--check",
+        "scripts/context/verify-api-routing.mjs"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "context-test-lint",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "--check",
+        "tests/context/context.test.mjs"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "context",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "scripts/verify-context.mjs"
+      ],
+      "exit_code": 1
+    },
+    {
+      "name": "docs",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "scripts/docs/verify-docs.mjs"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "structural",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "--test",
+        "tests/context/context.test.mjs",
+        "tests/docs/docs.test.mjs",
+        "tests/contracts/contract-schemas.test.mjs",
+        "tests/contracts/handoff-bytes.test.mjs"
+      ],
+      "exit_code": 1
+    },
+    {
+      "name": "metadata",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "scripts/docs/docs-metadata.mjs",
+        "--check"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "diff-check",
+      "argv": [
+        "git",
+        "-c",
+        "core.safecrlf=false",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+✔ SP05 Could PATCH strict partial merge, no-op, original replay and current independent authority (7962.0259ms)
+✔ SP05 Could DELETE unfinished Planned/Active returns, Done/location denial, numeric append and immutable replay (7487.0864ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15960.1219

@@ -1,0 +1,172 @@
+{
+  "status": "finished",
+  "passed": true,
+  "results": [
+    {
+      "name": "typecheck",
+      "argv": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "typecheck"
+      ],
+      "started": "2026-11-06T03:55:17.952Z",
+      "finished": "2026-11-06T03:55:22.610Z",
+      "exit_code": 0,
+      "error": null,
+      "log": "typecheck.txt"
+    },
+    {
+      "name": "build",
+      "argv": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "build"
+      ],
+      "started": "2026-11-06T03:55:22.613Z",
+      "finished": "2026-11-06T03:55:28.799Z",
+      "exit_code": 0,
+      "error": null,
+      "log": "build.txt"
+    },
+    {
+      "name": "test-foundation",
+      "argv": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "test:foundation"
+      ],
+      "started": "2026-11-06T03:55:28.801Z",
+      "finished": "2026-11-06T03:55:42.393Z",
+      "exit_code": 0,
+      "error": null,
+      "log": "test-foundation.txt",
+      "counts": {
+        "tests": 19,
+        "pass": 19,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "name": "test-prototype",
+      "argv": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "test:prototype"
+      ],
+      "started": "2026-11-06T03:55:42.394Z",
+      "finished": "2026-11-06T03:55:44.384Z",
+      "exit_code": 0,
+      "error": null,
+      "log": "test-prototype.txt",
+      "counts": {
+        "tests": 20,
+        "pass": 20,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "name": "context-lint",
+      "argv": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "context:lint"
+      ],
+      "started": "2026-11-06T03:55:44.385Z",
+      "finished": "2026-11-06T03:55:44.675Z",
+      "exit_code": 0,
+      "error": null,
+      "log": "context-lint.txt"
+    },
+    {
+      "name": "context-check",
+      "argv": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "context:check"
+      ],
+      "started": "2026-11-06T03:55:44.675Z",
+      "finished": "2026-11-06T03:55:44.945Z",
+      "exit_code": 0,
+      "error": null,
+      "log": "context-check.txt"
+    },
+    {
+      "name": "docs-lint",
+      "argv": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "docs:lint"
+      ],
+      "started": "2026-11-06T03:55:44.946Z",
+      "finished": "2026-11-06T03:55:47.967Z",
+      "exit_code": 0,
+      "error": null,
+      "log": "docs-lint.txt"
+    },
+    {
+      "name": "structural",
+      "argv": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "--test",
+        "tests/context/context.test.mjs",
+        "tests/docs/docs.test.mjs",
+        "tests/contracts/contract-schemas.test.mjs",
+        "tests/contracts/handoff-bytes.test.mjs"
+      ],
+      "started": "2026-11-06T03:55:47.968Z",
+      "finished": "2026-11-06T03:55:50.651Z",
+      "exit_code": 0,
+      "error": null,
+      "log": "structural.txt",
+      "counts": {
+        "tests": 92,
+        "pass": 92,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "name": "metadata",
+      "argv": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/docs/docs-metadata.mjs",
+        "--check"
+      ],
+      "started": "2026-11-06T03:55:50.652Z",
+      "finished": "2026-11-06T03:55:50.736Z",
+      "exit_code": 0,
+      "error": null,
+      "log": "metadata.txt"
+    },
+    {
+      "name": "diff-check",
+      "argv": [
+        "git",
+        "-c",
+        "core.safecrlf=false",
+        "diff",
+        "--check"
+      ],
+      "started": "2026-11-06T03:55:50.736Z",
+      "finished": "2026-11-06T03:55:50.873Z",
+      "exit_code": 0,
+      "error": null,
+      "log": "diff-check.txt"
+    }
+  ]
+}

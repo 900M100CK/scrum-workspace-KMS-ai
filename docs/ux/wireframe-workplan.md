@@ -3,7 +3,7 @@
 **Artifact ID:** UX-PLAN-01  
 **Version/date:** 0.4.4 Draft · 4 November 2026\
 **Status:** Planning/textual interaction brief; initial native frames and previews exist, while full WF acceptance and usability/runtime evidence remain open.\
-**Inputs:** PRD-01 v0.10.2; UC-02 v0.8.3; SAD-03 v0.19.1; API-05 v0.23.4; UX-06 v0.13.4; UX-CHECK-01 v0.2; UX-HANDOFF-01 v0.9; current sitemap/permission/flow drafts.\
+**Inputs:** PRD-01 v0.10.3; UC-02 v0.8.4; SAD-03 v0.19.1; API-05 v0.23.6; UX-06 v0.13.4; UX-CHECK-01 v0.2; UX-HANDOFF-01 v0.9; current sitemap/permission/flow drafts.\
 **Trace:** BR-01–BR-14; SC-01–SC-08; NFR-01–NFR-04; U03–U18/U20–U23 and B19 in the detailed checklist review.
 
 ## Scope and order

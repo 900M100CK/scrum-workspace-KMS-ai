@@ -1,0 +1,67 @@
+✔ SP05 Could013 exact boolean provenance without private audit read; empty down/up and retained refusal (8709.2429ms)
+▶ SP05 Could deterministic actual edit/start, remove/complete/state/reallocation/reorder commit orders
+  ✔ edit/start edit-first (243.8102ms)
+  ✔ edit/start start-first (245.8608ms)
+  ✔ remove/complete remove-first (402.1009ms)
+  ✔ remove/complete complete-first (264.156ms)
+  ✔ remove/Done remove-first (186.3256ms)
+  ✔ remove/Done Done-first (244.0202ms)
+  ✔ remove/reallocate remove-first (222.4381ms)
+  ✔ remove/reallocate allocate-first (270.1825ms)
+  ✔ remove/reorder remove-first (209.3072ms)
+  ✔ remove/reorder reorder-first (260.0659ms)
+✔ SP05 Could deterministic actual edit/start, remove/complete/state/reallocation/reorder commit orders (7613.3681ms)
+▶ SP05 Could actual revoke-first replay and unavailable authority fail closed without duplicate state/audit
+  ✔ editSprint (263.4467ms)
+  ✔ removeAllocation (294.813ms)
+✔ SP05 Could actual revoke-first replay and unavailable authority fail closed without duplicate state/audit (5536.5018ms)
+▶ SP05 Could post-wait real expiry denies new writes and original replay at Sprint/Task lock boundaries
+  ✔ editSprint new (5070.2359ms)
+  ✔ editSprint replay (5188.1152ms)
+  ✔ removeAllocation new (5237.4333ms)
+  ✔ removeAllocation replay (4956.3378ms)
+✔ SP05 Could post-wait real expiry denies new writes and original replay at Sprint/Task lock boundaries (20453.8753ms)
+✖ SP05 Could unknown provisioning is denied and removal preserves blockers/history with hidden Task scope (4586.2321ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 20
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 48309.0544
+
+✖ failing tests:
+
+test at tests\workspace\sprint-could-security.test.mjs:22:1
+✖ SP05 Could unknown provisioning is denied and removal preserves blockers/history with hidden Task scope (4586.2321ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /provenance/. Input:
+  
+  'Error: Session persistence unavailable'
+  
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-security.test.mjs:24:304)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Session persistence unavailable
+        at ownedTransaction (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/services/workspace/src/session/database.ts:28:9)
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async waitForActual (node:assert:646:5)
+        ... 3 lines matching cause stack trace ...
+        at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+      [cause]: Error: Task authority provenance requires explicit reconciliation
+          at file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/services/workspace/src/projects/operator.ts:50:58
+          at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+          at async ownedTransaction (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/services/workspace/src/session/database.ts:24:16)
+          at async waitForActual (node:assert:646:5)
+          at async strict.rejects (node:assert:769:25)
+          at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-security.test.mjs:24:304)
+          at async Test.run (node:internal/test_runner/test:1409:7)
+          at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+    },
+    expected: /provenance/,
+    operator: 'rejects',
+    diff: 'simple'
+  }

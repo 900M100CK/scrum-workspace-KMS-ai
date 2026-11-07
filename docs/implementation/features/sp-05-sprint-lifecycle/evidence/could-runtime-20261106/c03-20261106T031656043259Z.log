@@ -1,0 +1,48 @@
+✖ SP05 Could private independent actions, registration-gated discovery, revoke/remove/rejoin and audited rollback (5478.4553ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5987.0386
+
+✖ failing tests:
+
+test at tests\workspace\sprint-could-authority.test.mjs:2:1
+✖ SP05 Could private independent actions, registration-gated discovery, revoke/remove/rejoin and audited rollback (5478.4553ms)
+  AssertionError [ERR_ASSERTION]: The validation function is expected to return "true". Received false
+  
+  Caught error:
+  
+  Error: Session persistence unavailable
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-authority.test.mjs:13:72)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Session persistence unavailable
+        at ownedTransaction (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/services/workspace/src/session/database.ts:28:9)
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async WorkspaceProjectStore.transaction (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/services/workspace/src/projects/store.ts:33:16)
+        ... 2 lines matching cause stack trace ...
+        at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-authority.test.mjs:13:72)
+        at async Test.run (node:internal/test_runner/test:1409:7)
+        at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+      [cause]: Error: not_found
+          at missing (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/services/workspace/src/projects/outcomes.ts:8:26)
+          at projectAccess (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/services/workspace/src/projects/store.ts:22:29)
+          at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+          at async file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/services/workspace/src/projects/store.ts:153:18
+          at async file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/services/workspace/src/projects/store.ts:42:16
+          at async ownedTransaction (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/services/workspace/src/session/database.ts:24:16)
+          at async WorkspaceProjectStore.transaction (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/services/workspace/src/projects/store.ts:33:16)
+          at async waitForActual (node:assert:646:5)
+          at async strict.rejects (node:assert:769:25)
+          at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-authority.test.mjs:13:72)
+    },
+    operator: 'rejects',
+    diff: 'simple'
+  }

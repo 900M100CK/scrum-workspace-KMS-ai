@@ -1,0 +1,10 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {readFile} from 'node:fs/promises';import {randomUUID} from 'node:crypto';import {taskFixture} from './task-fixture.mjs';
+test('SP05 Could013 exact boolean provenance without private audit read; empty down/up and retained refusal',{timeout:180000},async t=>{
+ const f=await taskFixture({through:'013'});t.after(()=>f.close());const up=await readFile('services/workspace/migrations/013-sprint-could-authority.up.sql','utf8'),down=await readFile('services/workspace/migrations/013-sprint-could-authority.down.sql','utf8');f.db.migrate();
+ async function sql(s){await f.db.admin.query('BEGIN');try{await f.db.admin.query('SET LOCAL ROLE workspace_owner');await f.db.admin.query(s);await f.db.admin.query('COMMIT');}catch(e){await f.db.admin.query('ROLLBACK');throw e;}}
+ await sql(down);await sql(up);await assert.rejects(f.db.runtime.query('SELECT * FROM workspace.authority_provisioning_audit'),e=>e.code==='42501');
+ const allowed=(actor=f.ids[0],project=f.project,action='sprint-edit')=>f.db.runtime.query('SELECT workspace.has_sprint_could_action($1,$2,$3) allowed',[actor,project,action]).then(r=>r.rows[0].allowed);
+ assert.equal(await allowed(),false);await f.operator.project(f.ids[0],f.project,'sprint-edit',true,'0','synthetic','audited authority');assert.equal(await allowed(),true);assert.equal(await allowed(randomUUID()),false);assert.equal(await allowed(f.ids[0],randomUUID()),false);assert.equal(await allowed(f.ids[0],f.project,'sprint-deallocate'),false);assert.equal(await allowed(f.ids[0],f.project,'membership-manage'),false);await assert.rejects(sql(down),e=>e.code==='23514');
+ await f.operator.project(f.ids[0],f.project,'sprint-edit',false,'1','synthetic','explicit revoke');assert.equal(await allowed(),false);
+ const definition=(await f.db.admin.query("SELECT pg_get_functiondef('workspace.has_sprint_could_action(uuid,uuid,text)'::regprocedure) value")).rows[0].value;assert.match(definition,/SECURITY DEFINER/);assert.match(definition,/search_path TO 'pg_catalog'/);
+});

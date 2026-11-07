@@ -3,7 +3,7 @@
 **Artifact ID:** SP-03  
 **Version/date:** 0.8.2 Draft · 4 November 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; bounded local implementation/evidence exists; independent/release acceptance remains open.\
-**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.10.2; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-03--create-a-task-in-the-project-backlog); [contract pack](../contracts/README.md); PLAN-01 v0.4.\
+**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.10.3; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-03--create-a-task-in-the-project-backlog); [contract pack](../contracts/README.md); PLAN-01 v0.4.\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Implemented locally; final regression/handoff verification is recorded in FEAT-SP03-01. **Target:** Month 1.

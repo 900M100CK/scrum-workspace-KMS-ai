@@ -1,0 +1,31 @@
+✔ SP05 isolated Edge actual HTTPS lifecycle/multiselect/reorder/reload and revocation (14825.064ms)
+✖ SP05 Could isolated Edge actual HTTPS/PG013 edit/remove, keyboard, Done denial and exact DELETE reload (8560.8608ms)
+✔ SP05 Could live HTTPS/PG prefilled Planned edit validation/focus, exact reload recovery and revoked controls (6954.5448ms)
+✔ SP05 Could live HTTPS unfinished removal/Done race/history, exact reload and permission/lifecycle controls (6433.5641ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 38729.832
+
+✖ failing tests:
+
+test at tests\workspace\sprint-could-browser.test.mjs:2:1
+✖ SP05 Could isolated Edge actual HTTPS/PG013 edit/remove, keyboard, Done denial and exact DELETE reload (8560.8608ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(await page.getByRole('button',{name:'Save Sprint changes',exact:true}).evaluate(e=>document.activeElement===e))
+  
+      at TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-browser.test.mjs:13:158)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

@@ -1,0 +1,142 @@
+[
+  {
+    "path": "docs/architecture.md",
+    "before_sha256": "64f9cd656f630c8e12efa8714e242322853d3c34576adb077a9768817f0cb52a"
+  },
+  {
+    "path": "contracts/README.md",
+    "before_sha256": "c5384fc40e7a12368f0fbaa25959d25d1430c14aa81f439b1987254be4406515"
+  },
+  {
+    "path": "docs/sdlc/api-design.md",
+    "before_sha256": "3df9300f8f6ed675c28b45ec586127e472ac4cccf3bcf3216206c68c2bd1764e"
+  },
+  {
+    "path": "docs/sdlc/artifact-register.md",
+    "before_sha256": "f9d35e244c9796a3552f1316b81ac44dfaf9dbe812a3229360f0f2e538a9630d"
+  },
+  {
+    "path": "docs/sdlc/data-design.md",
+    "before_sha256": "1e399bd68e93cbfd48a3eb36b3d174edc30843851249f3bbe0e0b7a9579c4cb9"
+  },
+  {
+    "path": "docs/sdlc/evaluation-cases.md",
+    "before_sha256": "777db92f6c3079e874c6ccc569e802a20985e36be9b605763f92bfe4ae2481ce"
+  },
+  {
+    "path": "docs/sdlc/requirement-verification.md",
+    "before_sha256": "9b4b9f4b63d730bd6b89dd90be99e2c6c473ee83fe48eaed289c41f383729ba9"
+  },
+  {
+    "path": "docs/sdlc/SAD.md",
+    "before_sha256": "eec2c88170680b9f3e2f4d3b23a86e23ed80cc415677cd6c6555cdd9d4e76f12"
+  },
+  {
+    "path": "docs/sdlc/test-coverage.md",
+    "before_sha256": "3cdc9067dc2df583f7e06db091b6be2e7ce25518fac5b72a3757cda009ae271e"
+  },
+  {
+    "path": "docs/sdlc/test-plan.md",
+    "before_sha256": "437307716b2e2129e85eb13b5a801988f98d19de0f2009f59038e1f1935cfd8c"
+  },
+  {
+    "path": "docs/sdlc/ui-ux-blueprint.md",
+    "before_sha256": "344f8f01e464b8f00a5dca097f60a26b4b2cfe1fcb1d061d758f6c42fb6a04ce"
+  },
+  {
+    "path": "docs/sdlc/ui-ux-spec.md",
+    "before_sha256": "72ed98556155c1c058330883c6875d2cf5b5be43b46b42fe468ddbb57b303b66"
+  },
+  {
+    "path": "docs/sdlc/use-cases.md",
+    "before_sha256": "58444d12f6faf448ae0c67133f940b35aeb16af49bc19d3d16c41f85b99d0882"
+  },
+  {
+    "path": "docs/sdlc/references/document-review-register.md",
+    "before_sha256": "b5cce0e393698af2218f4d5954f6fb0596567cbc72b0265ad5c457b2a0d44c4b"
+  },
+  {
+    "path": "specs/001-session.md",
+    "before_sha256": "042ea0edee7519728d0e509d5399ea0af40b387a4c3e2c1fc3b258717ef5bf94"
+  },
+  {
+    "path": "specs/002-project-membership.md",
+    "before_sha256": "9c67f19c159a7a39345d103ba6ad0394c95bfa03b8f1ba29413e3f6284c75704"
+  },
+  {
+    "path": "specs/003-create-task.md",
+    "before_sha256": "56907d618125a2a1a1511b4c55757c90259e74c3645e9d516cd77b054f1ef57b"
+  },
+  {
+    "path": "specs/004-update-task.md",
+    "before_sha256": "6c13ebf1f99774688f4fb1f9f712ba0914fdcdd0ffc301f18e069309f19bfc51"
+  },
+  {
+    "path": "specs/005-sprint-lifecycle.md",
+    "before_sha256": "d4660e3298cd6181e61dcf65a6f013f84d3fcf95a1b2bfd4e7c9f6333909914e"
+  },
+  {
+    "path": "specs/006-document-access.md",
+    "before_sha256": "86e7e461ab1c9685ec88cec7a215cb2404e7d9dda56cc41f395859dc315a06c3"
+  },
+  {
+    "path": "specs/007-version-publication.md",
+    "before_sha256": "34d238ddeac32700839a6d6b00a1ce8492e2e41ffe35dddcf58fd8d683e5be51"
+  },
+  {
+    "path": "specs/008-linked-keyword-search.md",
+    "before_sha256": "82a001050bb77e879acd9911e697cbb4b42fe09dcb951f97db784d4e1a205dae"
+  },
+  {
+    "path": "specs/009-cited-question.md",
+    "before_sha256": "ed8f4b152d3fcbfbc1ba39a937f60400db69d6abb3269da213855bc5cc222c14"
+  },
+  {
+    "path": "specs/010-current-work-question.md",
+    "before_sha256": "28dfdad8721678f5252d68a2ad4188735f1edf4f63cc370364c180856c613f55"
+  },
+  {
+    "path": "specs/011-audit-and-source-inspection.md",
+    "before_sha256": "b64bac53cdd1433dd1ce753bbfdf51233eebdd052057548d712f6a545243c6e2"
+  },
+  {
+    "path": "specs/012-failure-and-evaluation.md",
+    "before_sha256": "21ae8a31c9b74e4fba0d4b849caf8fed60ac3276ad75994c82b9b1dcee15214d"
+  },
+  {
+    "path": "specs/013-scoped-inspection.md",
+    "before_sha256": "423dab46c0d2e37249b65bbbac85cdd0e02f789a4b3da75d88bd344853ee2281"
+  },
+  {
+    "path": "specs/README.md",
+    "before_sha256": "59766bc78afbc8ec38e389a3dc9789f2303290d40aedc7bf2398b9f1c10e7576"
+  },
+  {
+    "path": "docs/ux/permission-matrix.md",
+    "before_sha256": "f3ffb2445ff8d844eed798bb9ffad76853c4b413042fc347594d38af0cab8623"
+  },
+  {
+    "path": "docs/ux/personas.md",
+    "before_sha256": "dfec4d1c2247ccee9dc401d2eb827826bb954b9cc2dd92283eaceed2a45dcd5a"
+  },
+  {
+    "path": "docs/ux/wireframe-workplan.md",
+    "before_sha256": "556d7ad0def180d9f32129dee438a12b5ea9628af5f3f902082897a55a6f4061"
+  },
+  {
+    "path": "docs/ux/flows/ai-qa-flow.md",
+    "before_sha256": "0cba1eedae1a97755d91f7faf4bfe420fb61138f6408d6230a77c1581824969b"
+  },
+  {
+    "path": "docs/ux/flows/board-flow.md",
+    "before_sha256": "7df4ccdeb0f0d80afc1de2f4cda59568741afcd6450ea113ea7f5131f29249cf"
+  },
+  {
+    "path": "docs/ux/flows/docs-flow.md",
+    "before_sha256": "f92f87e248d27d2fdeec5a532da78a47179bc54f0ec7747ab65ee8b122b01bcc"
+  },
+  {
+    "path": "docs/ux/wireframes/README.md",
+    "before_sha256": "cbc7536ced26d87f01c68071427dc7769717bf861e02349dc4d71c8df8dcf83a"
+  }
+]

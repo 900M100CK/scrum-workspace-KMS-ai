@@ -1,7 +1,7 @@
 # Implementation task catalogue
 
 **Artifact ID:** IMPL-TASKS-01\
-**Version/date:** 0.6 Draft · 2 November 2026\
+**Version/date:** 0.7 Draft · 6 November 2026\
 **Status:** SP-01 has bounded implemented session/UI regression evidence; wider release gates remain open; SP-02 now has bounded project/member/UI evidence; SP-03 now has a registered local implementation/evidence handoff; later packs remain unimplemented.\
 **Inputs:** [SPEC-INDEX](../../../specs/README.md) v0.8; [machine index](../../../specs/index.json) v0.5; [release tiers](../../planning/release-scope.json) v0.4; [source register](../register.md).\
 **Trace:** Existing BR-01–BR-14 / SC-01–SC-08 through the linked spec FR/ACs.\
@@ -30,3 +30,5 @@ SP-11.1 is co-delivered with the first required mutation record, rather than wai
 **Checklist/handoff:** Pass for all canonical slice/FR mappings and initial child IDs; Gap for decisions and runtime acceptance. Next preparation: SP-01.1 and the corresponding SP-11.1 capture brief. Update status only with actual evidence and version/register changes.
 
 1 November handoff: SP-02 bounded verification is recorded in its registered plan. SP-03 is next; no later feature is implemented or accepted by this index update.
+
+SP-05 selected Could continuation is registered in [owning plan](../features/sp-05-sprint-lifecycle/plan.md): C01 source support, then C02–C11 storage/producers/UI/verification. Current status is held only by that plan; prior Must evidence is historical.

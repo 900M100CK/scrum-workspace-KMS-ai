@@ -1,0 +1,124 @@
+Ran check Node version and Docker status · Exited with code 1
+Ran check Node 24 executable
+Ran check Docker processes
+
+Error: API error (attempt 1): UNAVAILABLE (code 503): No capacity available for model gemini-3.8-flash-medium on the server (Error ID: a44a078b-1b54-4b83-b7f7-d4f84238e1d6-83-2010)
+
+Error: API error (attempt 2): UNAVAILABLE (code 503): No capacity available for model gemini-3.8-flash-medium on the server (Error ID: a44a078b-1b54-4b83-b7f7-d4f84238e1d6-84-2010)
+
+Error: API error (attempt 3): UNAVAILABLE (code 503): No capacity available for model gemini-3.8-flash-medium on the server (Error ID: a44a078b-1b54-4b83-b7f7-d4f84238e1d6-85-2010)
+
+Error: API error (attempt 4): UNAVAILABLE (code 503): No capacity available for model gemini-3.8-flash-medium on the server (Error ID: a44a078b-1b54-4b83-b7f7-d4f84238e1d6-86-2010)
+
+Ran check Docker context · Exited with code 1
+Ran check docker default context and WSL
+Ran start docker-desktop WSL
+Ran check docker ps again · Exited with code 1
+Ran check Docker services
+
+Error: API error (attempt 1): UNAVAILABLE (code 503): No capacity available for model gemini-3.8-flash-medium on the server (Error ID: a44a078b-1b54-4b83-b7f7-d4f84238e1d6-97-2010)
+
+Error: API error (attempt 2): UNAVAILABLE (code 503): No capacity available for model gemini-3.8-flash-medium on the server (Error ID: a44a078b-1b54-4b83-b7f7-d4f84238e1d6-98-2010)
+
+Ran attempt to start Docker service · Exited with code 1
+Ran run could checks suite · Exited with code 1
+Checked task Run could checks suite
+Checked task Run could checks suite
+Checked task Run could checks suite
+Checked task Run could checks suite
+Checked task Run could checks suite
+Checked task Run could checks suite
+Ran read task-102 log tail
+Ran check files in latest evidence directory
+Ran read fatal.json
+Ran read cleanup-before.json
+Ran run sprint-controller test
+Ran run other UI controller tests
+Ran read 012-sprint-could.up.sql
+Ran read 013-sprint-could-authority.up.sql
+Ran read down migrations
+Ran search editSprint and removeAllocation in store.ts
+Ran search PATCH and DELETE routes in http.ts
+Ran read ADR-0031 header
+Ran search editSprint and removeAllocation in sprints.ts
+Ran check editSprint and removeAllocation in OpenAPI
+Ran read sprint-could-authority test head
+Ran read workspace.txt tail
+Ran read browser.txt
+Ran git diff stat on sp-05-could
+
+# Báo cáo kiểm chứng độc lập: Selected Could Runtime Verification (SP05-COULD-RUNTIME-01)
+
+**Artifact ID:** `SP05-COULD-AG01-REVIEW`  
+**Ngày/Phiên bản:** 0.1 Draft · 7 Tháng 11 2026  
+**Người kiểm chứng:** Antigravity (Google DeepMind Advanced Agentic Coding)  
+**Đối tượng kiểm chứng:** Báo cáo tác giả `SP05-COULD-RUNTIME-01` (`could-runtime-result.md`) và Handoff brief `SP05-COULD-REVIEW-01` (`could-review-assignment.md`)  
+**Worktree / Branch:** `codex/sp-05-could` trên base `cfe0dbe61eeba4e34583b77317ec7f2e41fe4a6e` (`C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai`)  
+**Traceability:** FR/AC-66 (`editSprint`), FR/AC-67 (`removeAllocation`), FR/AC-31 (Authority & Business Audit); ADR-0031 (Proposed).
+
+---
+
+## 1. Kết quả kiểm chứng tĩnh và đối chiếu mã nguồn (Static & Contract Inspection)
+
+| Thành phần | Quy cách kỹ thuật & Bất biến kiểm chứng | Đánh giá |
+| :--- | :--- | :--- |
+| **OpenAPI Contract** | Khai báo đầy đủ `editSprint` (`PATCH /sprints/{sprint_id}`) và `removeAllocation` (`DELETE /sprints/{sprint_id}/items/{task_id}`). Priority `Could` được bảo toàn; schema `EditSprint` và error code `task_already_done` (409) định nghĩa chuẩn xác. | **ĐẠT** |
+| **Migration 012 (`012-sprint-could`)** | Bổ sung 2 capability độc lập `sprint-edit`, `sprint-deallocate`. Khóa trigger `protect_sprint_action` và ràng buộc `idempotency_record` bảo vệ tính bất biến của biên nhận kết quả gốc (typed original receipt). Rollback down script từ chối nếu có dữ liệu Could (`ERRCODE='23514'`). | **ĐẠT** |
+| **Migration 013 (`013-sprint-could-authority`)** | Hàm boolean `has_sprint_could_action(actor, project, action)` (`SECURITY DEFINER`, fixed `search_path=pg_catalog`, `REVOKE FROM PUBLIC`, cấp riêng cho `workspace_app`). Giải quyết bài toán kiểm tra provenance mà không cần cấp quyền `SELECT` lên bảng audit riêng tư. | **ĐẠT** |
+| **Store & Producer (`store.ts`)** | **`editSprint`**: Chỉ cho phép ở trạng thái `planned`, kiểm tra ngày bắt đầu < kết thúc, revision khớp. No-op edit không tăng revision và không ghi audit thừa.<br>**`removeAllocation`**: Chỉ nhận bodyless DELETE + header `X-Expected-Revision`. Trạng thái `done` trả về 409 `task_already_done` (bảo toàn attribution). Task dang dở quay về `todo` và append sau `MAX(position)` của Backlog. | **ĐẠT** |
+| **Client Recovery (`sprints.ts`)** | Nâng cấp storage lên v2 (`sacw.sprint.pending.v2`), tự động migrate hợp lệ từ v1. Lưu trạng thái `unknown` trước khi gọi mạng; xóa cache optimistic và fetch lại current state khi gặp xung đột. Xử lý chuẩn thông báo `task_already_done`. | **ĐẠT** |
+| **Proposed ADR-0031** | Ghi nhận chi tiết thiết kế, ranh giới và trade-off mà không tự ý đổi trạng thái sang Accepted. | **ĐẠT** |
+
+---
+
+## 2. Kết quả thực thi kiểm thử độc lập bởi Antigravity
+
+Antigravity đã trực tiếp kích hoạt Node v24.22.1 trên worktree `codex/sp-05-could` để tái hiện độc lập các gate kiểm tra:
+
+### A. Bộ kiểm tra nền tảng, cấu trúc và tài liệu (Checks Suite)
+
+Toàn bộ **10/10** bài kiểm tra thành phần đã chạy thành công và đạt kết quả mong đợi:
+
+| Bài kiểm tra (Check) | Lệnh thực thi | Kết quả quan sát | Trạng thái |
+| :--- | :--- | :--- | :--- |
+| `typecheck` | `npm run typecheck` | Exit code 0 | **PASS** |
+| `build` | `npm run build` | Exit code 0 | **PASS** |
+| `test:foundation` | `npm run test:foundation` | 19/19 tests pass (0 skipped) | **PASS** |
+| `test:prototype` | `npm run test:prototype` | 20/20 tests pass (0 skipped) | **PASS** |
+| `context:lint` | `npm run context:lint` | Exit code 0 | **PASS** |
+| `context:check` | `npm run context:check` | Exit code 0 | **PASS** |
+| `docs:lint` | `npm run docs:lint` | Exit code 0 | **PASS** |
+| `structural` | Node test cấu trúc (context, docs, contracts) | 92/92 tests pass (0 skipped) | **PASS** |
+| `metadata` | `scripts/docs/docs-metadata.mjs --check` | Exit code 0 | **PASS** |
+| `diff-check` | `git -c core.safecrlf=false diff --check` | Exit code 0 | **PASS** |
+
+### B. Pure In-Memory Controller Tests
+
+- `sprint-controller.test.mjs`: **9/9 tests pass 100%** (bao gồm 2 test case Could mới: reload request DELETE/PATCH không xác định, migration v1 → v2 và xóa dữ liệu khi signout).
+- Bộ 3 controller UI liên quan (`project-ui-controller`, `task-ui-controller`, `task-mutation-ui-controller`): **19/19 tests pass 100%**.
+
+---
+
+## 3. Ranh giới môi trường và phát hiện (Finding Register)
+
+| Mã phát hiện | Mức độ | Phân loại | Chi tiết |
+| :--- | :--- | :--- | :--- |
+| **`F-ENV-01`** | Bounded Blocker | Docker Daemon Inactive | Dịch vụ `Docker Desktop Service` trên máy hiện tại đang ở trạng thái `Stopped` (`com.docker.service Stopped`), khiến Antigravity không thể tự động khởi chạy disposable PostgreSQL container để tái thực thi trực tiếp 48 file Workspace integration tests (379 tests) và 5 suite browser (Edge) trong phiên này. |
+| **`F-RUNNER-01`** | Tooling / Teardown | Resource Probe in Runner | Trong `run-could-runtime.mjs`, logic kiểm tra rò rỉ tài nguyên sau chạy (`resources()`) kỳ vọng Docker CLI trả về exit code 0. Do Docker daemon tắt, hàm trả về `null` và kích hoạt ngoại lệ `New disposable resources remain; inspect ownership` tại `fatal.json`, dù toàn bộ 10 bước checks đều đã pass với exit code 0. |
+
+> **Lưu ý đối chiếu với bằng chứng của tác giả (Codex):**  
+> Trong thư mục bằng chứng `could-final-workspace-20261106T034059603Z` và `could-final-browser-20261106T035716055Z`, kết quả thực thi của tác giả với Docker PostgreSQL 17.10 và Edge headless đã ghi nhận đầy đủ:
+> - **Workspace regression:** 379/379 pass (duration: ~399s).
+> - **Browser suite:** 5/5 pass (duration: ~50.7s).
+> - **Closure receipt:** File `closure.json` ghi nhận đầy đủ SHA-256 của toàn bộ 172 input files và trạng thái cô lập tài nguyên.
+
+---
+
+## 4. Kết luận và khuyến nghị
+
+1. **Tính xác thực của tài liệu SP05-COULD-RUNTIME-01:**  
+   Báo cáo của tác giả phản ánh đúng mã nguồn, cấu trúc migration `012`/`013`, các bất biến nghiệp vụ FR/AC-66, 67, 31 và kết quả chạy đã lưu lại trong thư mục bằng chứng.
+2. **Trạng thái sẵn sàng:**  
+   Mã nguồn và tài liệu hoàn toàn sẵn sàng cho bước bàn giao rà soát (Review Handoff).  
+3. **Ranh giới nghiệm thu:**  
+   Theo đúng quy tắc của dự án, các bài kiểm tra do tác giả thực hiện là dữ liệu đầu vào. Việc nghiệm thu Milestone M-03 và Release Acceptance vẫn tách biệt hoàn toàn và thuộc thẩm quyền quyết định của chủ dự án (Owner).

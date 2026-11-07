@@ -1,0 +1,30 @@
+✔ SP05 Could PATCH strict partial merge, no-op, original replay and current independent authority (5075.8382ms)
+✖ SP05 Could DELETE unfinished Planned/Active returns, Done/location denial, numeric append and immutable replay (5538.9576ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11138.1066
+
+✖ failing tests:
+
+test at tests\workspace\sprint-could-http.test.mjs:20:1
+✖ SP05 Could DELETE unfinished Planned/Active returns, Done/location denial, numeric append and immutable replay (5538.9576ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  503 !== 409
+  
+      at TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-http.test.mjs:36:71)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 503,
+    expected: 409,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

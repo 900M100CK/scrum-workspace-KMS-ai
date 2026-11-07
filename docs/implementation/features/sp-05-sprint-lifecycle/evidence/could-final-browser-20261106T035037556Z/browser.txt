@@ -1,0 +1,27 @@
+✔ P08 isolated Microsoft Edge: real cookies, current UI, unknown outcome and reload (6999.044ms)
+✔ SP05 isolated Edge actual HTTPS lifecycle/multiselect/reorder/reload and revocation (9375.9858ms)
+✔ SP05 Could isolated Edge actual HTTPS/PG013 edit/remove, keyboard, Done denial and exact DELETE reload (10114.5813ms)
+✖ P08 isolated Edge: Task keyboard/create/reload, exact recovery and current denial (36278.4864ms)
+✔ SP04 isolated Edge live mutations and original recovery (10116.872ms)
+ℹ docs/implementation/features/sp-04-update-task/evidence/continuation/browser-1793937111363
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 74753.8655
+
+✖ failing tests:
+
+test at tests\workspace\task-browser.test.mjs:7:1
+✖ P08 isolated Edge: Task keyboard/create/reload, exact recovery and current denial (36278.4864ms)
+  locator.waitFor: Timeout 30000ms exceeded.
+  Call log:
+  [2m  - waiting for locator('section[aria-labelledby="tasks-title"]').getByRole('status').filter({ hasText: 'Creation confirmed' }) to be visible[22m
+  
+      at TestContext.<anonymous> (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\tests\workspace\task-browser.test.mjs:17:155) {
+    name: 'TimeoutError',
+    log: [ `  - waiting for locator('section[aria-labelledby="tasks-title"]').getByRole('status').filter({ hasText: 'Creation confirmed' }) to be visible` ]
+  }

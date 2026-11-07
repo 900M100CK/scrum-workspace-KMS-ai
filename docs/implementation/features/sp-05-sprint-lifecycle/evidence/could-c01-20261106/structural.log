@@ -1,0 +1,78 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Missing GWT: FR-66
+    at parseRequirements (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/scripts/verify-context.mjs:20:7)
+    at file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/context/context.test.mjs:11:22 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+✖ tests\context\context.test.mjs (97.1402ms)
+✔ Task requires a valid server creation time while create input rejects origin and authority fields (2.3905ms)
+✔ both complete contract documents pass the pinned OpenAPI 3.1 structure check (9.2216ms)
+✔ document structure validator calibrates valid schemas and rejects malformed API objects (0.5237ms)
+✔ all named component schemas compile using JSON Schema 2020-12 (0.1571ms)
+✔ inline parameter, body and response schemas also compile without network resolution (0.841ms)
+✔ malformed inline schemas fail compilation while example data stays opaque (186.9967ms)
+✔ metrics distinguish measured zero, unavailable and unexecuted without fabricated values (0.749ms)
+✔ unexecuted inspection steps cannot carry queries, timing, usage or an error (1.2754ms)
+✔ inspection sources preserve exact document locators or operational observations (1.2442ms)
+✔ version action discovery requires the full parent locator and denies internal names (0.6914ms)
+✔ non-reading command preconditions are action-specific minimal projections (0.4527ms)
+✔ document commands require exactly one valid concurrency selector (0.9118ms)
+✔ mutation receipts acknowledge only the command and applicable version identity (0.3975ms)
+✔ both transport purposes validate complete mixed-evidence manifest shape (5.6142ms)
+✔ work location alternatives stay separate and reorder revisions stay exact strings (0.6257ms)
+✔ strict base64 rejects permissive decoder inputs, nonzero padding bits and byte overrun (5.0344ms)
+✔ manifest JSON rejects duplicate decoded keys, malformed UTF-8 and trailing data (1.9609ms)
+✔ numeric revision/count parsing rejects rounding and accepts exact integer equivalents (0.7019ms)
+✔ native-serialized nested JSON survives the duplicate-key token walk unchanged (3.6003ms)
+✔ both purposes bind exact bytes and full mixed evidence without granting send authority (6.2429ms)
+✔ authoritative receipt, identity and destination mismatches fail before any binding result (2.9632ms)
+✔ manifest hashing preserves raw whitespace, order and Unicode bytes (1.9393ms)
+✔ payload digest and byte count reject even semantically equivalent reserialization (1.5952ms)
+✔ uncited changed, omitted, duplicate and cross-project evidence cannot hide behind a valid document citation (1.7203ms)
+✔ answer citations and claim references bind exact prepared source identities (2.5677ms)
+✔ typed/byte disagreement and numeric precision loss are rejected despite valid schema shapes (0.6603ms)
+✔ zero-evidence insufficiency retains exact no-answer state without fabricated sources (0.3082ms)
+✔ all registered docs and diagram pairs pass (1038.5542ms)
+✔ preflight exception counts agree with current use-case definitions (1.2104ms)
+✔ architecture FR trace rows stay inside one continuous Markdown table (0.7356ms)
+✔ unselected retrieval mechanisms need explicit status in current text (1.0657ms)
+✔ Draw.io status belongs to its own label, not an unrelated cell on the same XML line (0.7364ms)
+✔ Sources contains every body ADR, including shorthand and ranges, not just the highest ID (0.9021ms)
+✔ manifest version/ADR changes propagate to all generated inventories and both diagram headers (16.7027ms)
+✔ AI checkpoint sources retain the unavailable, partial-answer and member-removal decisions (0.8231ms)
+✔ use-case associations are undirected; generalization/include retain direction and native UML style (47.5428ms)
+✔ operation references fail on facade path/ID or actual node label drift (0.6257ms)
+✔ input headers name the latest cited ADR and current input versions (0.3507ms)
+✔ real Mermaid parser rejects invalid syntax (4.0782ms)
+✔ flowchart adapter compares labels, direction and parallel-edge counts (10.3468ms)
+✔ invalid XML and dangling/undirected edges fail closed (0.7967ms)
+✔ current version drift and missing rows fail; historical versions are allowed (0.2949ms)
+✔ journey actors and scores are compared, not merely grammar-checked (2.6229ms)
+✔ current prose references cannot disagree with headers while historical snapshots can (0.3874ms)
+✔ current linked input aliases use target versions while snapshot evidence stays historical (0.2139ms)
+✔ design pairs reject reversed sequence handoffs and changed native multiplicities (29.9801ms)
+✔ physical diagram entity inventory matches owned CREATE TABLE definitions (2.9326ms)
+ℹ tests 48
+ℹ suites 0
+ℹ pass 47
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2809.3502
+
+✖ failing tests:
+
+test at tests\context\context.test.mjs:1:1
+✖ tests\context\context.test.mjs (97.1402ms)
+  'test failed'

@@ -1,0 +1,15 @@
+✔ P08 isolated Microsoft Edge: real cookies, current UI, unknown outcome and reload (6984.3206ms)
+✔ SP05 isolated Edge actual HTTPS lifecycle/multiselect/reorder/reload and revocation (9493.0828ms)
+✔ SP05 Could isolated Edge actual HTTPS/PG013 edit/remove, keyboard, Done denial and exact DELETE reload (10222.0885ms)
+✔ P08 isolated Edge: Task keyboard/create/reload, exact recovery and current denial (12305.8976ms)
+ℹ Synthetic browser evidence: docs/implementation/features/sp-03-create-task/evidence/ui-2026-11-02/runs/run-1793937473201-84d873d8
+✔ SP04 isolated Edge live mutations and original recovery (9869.3394ms)
+ℹ docs/implementation/features/sp-04-update-task/evidence/continuation/browser-1793937486129
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 50749.9272

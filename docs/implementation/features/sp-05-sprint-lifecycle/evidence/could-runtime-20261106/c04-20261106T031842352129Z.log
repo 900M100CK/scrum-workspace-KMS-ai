@@ -1,0 +1,12 @@
+▶ SP05 Could producer atomic audit/receipt failure and lost real COMMIT recovery
+  ✔ editSprint (348.3394ms)
+✔ SP05 Could producer atomic audit/receipt failure and lost real COMMIT recovery (6754.2283ms)
+✔ SP05 Could PATCH strict partial merge, no-op, original replay and current independent authority (6072.7394ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13849.4901

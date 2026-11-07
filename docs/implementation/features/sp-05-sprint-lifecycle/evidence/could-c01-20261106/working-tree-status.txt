@@ -1,0 +1,106 @@
+M contracts/README.md
+ M contracts/data-model.json
+ M contracts/openapi/workspace.openapi.json
+ M docs/adr/README.md
+ M docs/architecture.md
+ M docs/implementation/features/README.md
+ M docs/implementation/features/sp-05-sprint-lifecycle/README.md
+ M docs/implementation/features/sp-05-sprint-lifecycle/breakdown.md
+ M docs/implementation/features/sp-05-sprint-lifecycle/plan.md
+ M docs/implementation/register.md
+ M docs/implementation/roadmap.md
+ M docs/implementation/tasks/05-sprint-lifecycle.md
+ M docs/implementation/tasks/README.md
+ M docs/sdlc/PRD_SRS.md
+ M docs/sdlc/SAD.md
+ M docs/sdlc/api-design.md
+ M docs/sdlc/artifact-register.md
+ M docs/sdlc/data-design.md
+ M docs/sdlc/diagrams/README.md
+ M docs/sdlc/diagrams/architecture/service-composition.drawio
+ M docs/sdlc/diagrams/architecture/service-composition.mmd
+ M docs/sdlc/diagrams/c4/containers.drawio
+ M docs/sdlc/diagrams/c4/containers.mmd
+ M docs/sdlc/diagrams/c4/system-context.drawio
+ M docs/sdlc/diagrams/c4/system-context.mmd
+ M docs/sdlc/diagrams/data/handoff-logical-model.drawio
+ M docs/sdlc/diagrams/data/handoff-logical-model.mmd
+ M docs/sdlc/diagrams/data/knowledge-erd.drawio
+ M docs/sdlc/diagrams/data/knowledge-erd.mmd
+ M docs/sdlc/diagrams/data/workspace-erd.drawio
+ M docs/sdlc/diagrams/data/workspace-erd.mmd
+ M docs/sdlc/diagrams/deployment/local-development.drawio
+ M docs/sdlc/diagrams/deployment/local-development.mmd
+ M docs/sdlc/diagrams/development/package-ownership.drawio
+ M docs/sdlc/diagrams/development/package-ownership.mmd
+ M docs/sdlc/diagrams/flowchart/ai-qa-flow.drawio
+ M docs/sdlc/diagrams/flowchart/ai-qa-flow.mmd
+ M docs/sdlc/diagrams/flowchart/board-flow.drawio
+ M docs/sdlc/diagrams/flowchart/board-flow.mmd
+ M docs/sdlc/diagrams/flowchart/docs-flow.drawio
+ M docs/sdlc/diagrams/flowchart/docs-flow.mmd
+ M docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.drawio
+ M docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.mmd
+ M docs/sdlc/diagrams/flowchart/permission-read-flow.drawio
+ M docs/sdlc/diagrams/flowchart/permission-read-flow.mmd
+ M docs/sdlc/diagrams/manifest.json
+ M docs/sdlc/diagrams/sequence/document-creation.drawio
+ M docs/sdlc/diagrams/sequence/document-creation.mmd
+ M docs/sdlc/diagrams/sequence/protected-handoff.drawio
+ M docs/sdlc/diagrams/sequence/protected-handoff.mmd
+ M docs/sdlc/diagrams/sitemap/application-sitemap.drawio
+ M docs/sdlc/diagrams/sitemap/application-sitemap.mmd
+ M docs/sdlc/diagrams/state/document-and-readiness.drawio
+ M docs/sdlc/diagrams/state/document-and-readiness.mmd
+ M docs/sdlc/diagrams/state/sprint-task-allocation.drawio
+ M docs/sdlc/diagrams/state/sprint-task-allocation.mmd
+ M docs/sdlc/diagrams/use-case/use-case-diagram.drawio
+ M docs/sdlc/diagrams/use-case/use-case-diagram.mmd
+ M docs/sdlc/diagrams/user-journey/core-user-journeys.drawio
+ M docs/sdlc/diagrams/user-journey/core-user-journeys.mmd
+ M docs/sdlc/evaluation-cases.md
+ M docs/sdlc/references/document-review-register.md
+ M docs/sdlc/requirement-verification.md
+ M docs/sdlc/test-coverage.md
+ M docs/sdlc/test-plan.md
+ M docs/sdlc/ui-ux-blueprint.md
+ M docs/sdlc/ui-ux-spec.md
+ M docs/sdlc/use-cases.md
+ M docs/ux/flows/ai-qa-flow.md
+ M docs/ux/flows/board-flow.md
+ M docs/ux/flows/docs-flow.md
+ M docs/ux/permission-matrix.md
+ M docs/ux/personas.md
+ M docs/ux/wireframe-workplan.md
+ M docs/ux/wireframes/README.md
+ M specs/001-session.md
+ M specs/002-project-membership.md
+ M specs/003-create-task.md
+ M specs/004-update-task.md
+ M specs/005-sprint-lifecycle.md
+ M specs/006-document-access.md
+ M specs/007-version-publication.md
+ M specs/008-linked-keyword-search.md
+ M specs/009-cited-question.md
+ M specs/010-current-work-question.md
+ M specs/011-audit-and-source-inspection.md
+ M specs/012-failure-and-evaluation.md
+ M specs/013-scoped-inspection.md
+ M specs/README.md
+?? docs/adr/0031-sprint-could-edit-and-removal.md
+?? docs/implementation/features/sp-05-sprint-lifecycle/could-decisions.md
+?? docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/
+?? docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-planning-20261105/
+?? docs/implementation/features/sp-05-sprint-lifecycle/tasks/C00-could-planning.md
+?? docs/implementation/features/sp-05-sprint-lifecycle/tasks/C01-could-source-contract.md
+?? docs/implementation/features/sp-05-sprint-lifecycle/tasks/C02-could-storage.md
+?? docs/implementation/features/sp-05-sprint-lifecycle/tasks/C03-could-authority.md
+?? docs/implementation/features/sp-05-sprint-lifecycle/tasks/C04-edit-producer.md
+?? docs/implementation/features/sp-05-sprint-lifecycle/tasks/C05-remove-producer.md
+?? docs/implementation/features/sp-05-sprint-lifecycle/tasks/C06-could-recovery.md
+?? docs/implementation/features/sp-05-sprint-lifecycle/tasks/C07-edit-ui.md
+?? docs/implementation/features/sp-05-sprint-lifecycle/tasks/C08-remove-ui.md
+?? docs/implementation/features/sp-05-sprint-lifecycle/tasks/C09-could-concurrency.md
+?? docs/implementation/features/sp-05-sprint-lifecycle/tasks/C10-could-browser.md
+?? docs/implementation/features/sp-05-sprint-lifecycle/tasks/C11-could-handoff.md
+?? docs/implementation/features/sp-05-sprint-lifecycle/verification/c01-source-contract.md

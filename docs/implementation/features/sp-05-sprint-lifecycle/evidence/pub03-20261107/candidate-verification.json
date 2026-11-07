@@ -1,0 +1,23 @@
+{
+  "kind": "Publication candidate inspection, not new independent runtime execution",
+  "feature_source_comparison": {
+    "author_source_inputs": 172,
+    "reviewer_source_inputs": 172,
+    "reviewer_matches_author_inputs": true,
+    "post_acceptance_changes": [
+      "docs/implementation/features/sp-05-sprint-lifecycle/verification/run-could-runtime.mjs",
+      "tests/workspace/project-browser.test.mjs"
+    ],
+    "browser_change": "Only atomic fresh capture directory/import; every behavior/assertion matches original HEAD"
+  },
+  "checks_directory": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045401023Z",
+  "checks_all_exit0": true,
+  "docker_off_cleanup_assessment": {
+    "status": "not_applicable",
+    "newContainers": null,
+    "newVolumes": null,
+    "message": "Checks phase owns no database resources; Docker probe unavailable, not evidence of a leak"
+  },
+  "historical_project_capture_restored": true,
+  "focused_project_browser": "Not rerun: Docker daemon remains unavailable; parser and exact behavior-diff check performed, original author browser5/5 remains source-bound"
+}

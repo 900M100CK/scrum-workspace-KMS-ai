@@ -1,0 +1,10 @@
+✔ SP05 Could live HTTPS/PG prefilled Planned edit validation/focus, exact reload recovery and revoked controls (16092.6834ms)
+✔ SP05 Could live HTTPS unfinished removal/Done race/history, exact reload and permission/lifecycle controls (6491.0545ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 24271.0144

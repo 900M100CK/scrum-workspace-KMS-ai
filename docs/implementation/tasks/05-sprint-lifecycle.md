@@ -1,9 +1,9 @@
 # SP-05: Run the fixed Scrum lifecycle without introducing a workflow configuration engine.
 
 **Artifact ID:** IMPL-SP-05\
-**Version/date:** 0.2 Draft · 5 November 2026
+**Version/date:** 0.4 Draft · 6 November 2026
 **Status:** Breakdown only; all child steps Not started.\
-**Inputs:** [Canonical SP-05](../../../specs/005-sprint-lifecycle.md) v0.7; SPEC-INDEX v0.4; PRD-01 v0.9; [source register](../register.md); [decisions](../decisions.md).\
+**Inputs:** [Canonical SP-05](../../../specs/005-sprint-lifecycle.md) v0.7.6; SPEC-INDEX v0.4; PRD-01 v0.10.3; [source register](../register.md); [decisions](../decisions.md).\
 **Trace:** FR-06, FR-07, FR-08, FR-41, FR-42, FR-66, FR-67; BR-02; SC-03.\
 **Owner role:** Sequential implementer; no independent approval claimed.
 
@@ -68,3 +68,11 @@ SP-05 registered support: FEAT-SP05-01v0.1 / SP-05v0.7.4 / Workspace0.2.14 / Pro
 ## Current execution navigation — 5 November 2026
 
 [FEAT-SP05-01](../features/sp-05-sprint-lifecycle/plan.md) owns P00–P15 status and supersedes the initial Not-started snapshot above. Scope is Must FR06/07/08/41/42 plus co-delivered31; five separately provisioned actions. See the owning handoff for actual producer/UI/concurrency results and preserved failures. No optional edit/remove, production migration or release/independent acceptance.
+
+## Selected Could continuation — 6 November 2026
+
+[FEAT-SP05-01](../features/sp-05-sprint-lifecycle/plan.md) is the sole mutable status for C00–C11. SP-05.1/C01 aligns existing editSprint/removeAllocation and source/contract scope before SP-05.2/C02–C08 storage/producers/UI and SP-05.4/C09–C11 races/browser/regression. FR66/67 remain Could; earlier exclusions are original Must snapshots. Independent sprint-edit gates Planned goal/date editing; sprint-deallocate gates only current todo/in_progress removal in Planned/Active. Done and Completed reject to preserve completed-work attribution and future Sprint metrics. See the canonical spec for coordinated paths and the contract entry/Proposed ADR-0031 for Sprint revision, no-op, immutable replay, atomic audit/return and transport semantics. C01 has no runtime result; later producers require fresh evidence.
+
+## Selected Could runtime navigation — 6 November 2026
+
+[FEAT-SP05-01](../features/sp-05-sprint-lifecycle/plan.md) owns the C02–C11 implementation and current verification status; [author handoff](../features/sp-05-sprint-lifecycle/verification/could-runtime-result.md) maps actual source/test inputs. Existing rights, routes,200 Sprint and Could tiers remain. New012/013 support keeps private audit owner-only and returns a provenance boolean to Workspace. Earlier no-optional statements are original Must snapshots. Independent/M03/release acceptance remains separate.

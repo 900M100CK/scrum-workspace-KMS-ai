@@ -1,0 +1,74 @@
+{
+  "owner_statement": "đã nghiệm thu, bạn có thể tạo PR rồi tiếp với sp-06",
+  "input_sha256": "864aff5a996c9b8ec84b56d230a7c55e1d8903286d51d25e7dbf95ba0e6f7d8f",
+  "reviewer_checks": [
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/build.txt",
+      "sha256": "ebb69e171905adbef5fa6eb99318ac99b24d32217269d8c3c2ded829a435db98"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/cleanup-after.json",
+      "sha256": "92eb437ec687fd913090dbb02aa29d85873b8c9f2ca9d2bb1cacee5a4f1a8ab5"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/cleanup-before.json",
+      "sha256": "92eb437ec687fd913090dbb02aa29d85873b8c9f2ca9d2bb1cacee5a4f1a8ab5"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/context-check.txt",
+      "sha256": "728b10ef7a165ebc12f7494bc57d5bda330d3125c1e68adb938642214d3c4bdb"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/context-lint.txt",
+      "sha256": "9728c7eb07f5b81500770fc53ba6f655d7428448c71fa3bee5d078aae1c81c63"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/diff-check.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/docs-lint.txt",
+      "sha256": "770e9481af98f896a8d0f3e806262bf8122b6d5efb1773b2f0fdcc54de8245cb"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/environment.json",
+      "sha256": "ba8f3b7e73aec8c76678c9a6de21c2b121d6b23253b610e1b1b3302b9399a507"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/fatal.json",
+      "sha256": "84c9506e89e7ac8535dfa222d5392dfc15e0a4484966a4600dfe8bad129a12ab"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/metadata.txt",
+      "sha256": "c8bca8f66821fa6d07f78acfd28d6031ca53864495543883369844cb7856827f"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/progress.json",
+      "sha256": "0ae04ae0518199fd379e424af21e9dbd2ae965a1d5bea14eb360e704c82592fc"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/results.json",
+      "sha256": "7a02eea38feab9f01bf3e6d1506300b7fbe050210d464eca283c2daf7d4a701b"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/source.json",
+      "sha256": "a9ee4c293dfd957316df9979498df399abc55cf407e58a18483f5dac16ff49fa"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/structural.txt",
+      "sha256": "aaa669e880ede8961394b30777a7076ae15a2cf98a81e57eb977128027996d7e"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/test-foundation.txt",
+      "sha256": "0df489f72669cfea681cec0907c609897a92c0b0258a777469a8e156e83947c0"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/test-prototype.txt",
+      "sha256": "465aa42bae29f86d487615df25def032329611b86ffe968d5bc61ff9f6ef8145"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/typecheck.txt",
+      "sha256": "e1a410b8d5f08d72b0ac6cbce22c2a24329240103e26e49d2094322ac1aff65d"
+    }
+  ]
+}

@@ -1,9 +1,9 @@
 # Feature specifications and execution rules
 
 **Artifact ID:** SPEC-INDEX  
-**Version/date:** 0.8.4 Draft · 5 November 2026
+**Version/date:** 0.8.6 Draft · 6 November 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
-**Inputs:** PRD-01 v0.10.2; [PLAN-01](../docs/planning/five-month-plan.md); [architecture](../docs/architecture.md); [contracts](../contracts/README.md).\
+**Inputs:** PRD-01 v0.10.3; [PLAN-01](../docs/planning/five-month-plan.md); [architecture](../docs/architecture.md); [contracts](../contracts/README.md).\
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 Read AGENTS and full rules, then one spec/contract. All 13 specs remain Draft; SP-01 has a bounded POST/GET/DELETE session implementation with renewal/logout; UI and bounded integrated regression have local evidence; wider release/guard acceptance remains open. SP-02 now has bounded project/member handlers and live UI; its evidence is recorded in the registered SP-02 plan. Other feature handlers are unimplemented. Shared contracts have one editing owner at a time. No agents are spawned by this plan. Context checks are available; actual session persistence/HTTP tests are wired; see the registered SP-01 feature plan.
@@ -29,3 +29,7 @@ First implement SP-01 → SP-02 → SP-03 → SP-04 with SP-11 capture in each o
 Index `service` identifies the owners of the listed HTTP operations, not every orchestration consumer. `both` (legacy alias `knowledge + workspace`) denotes both API owners. SP-06 spans both; SP-10 operations belong to Workspace, while Knowledge consumes observations through SP-09. The harness validates operation ownership.
 
 SP-05 current navigation: [FEAT-SP05-01](../docs/implementation/features/sp-05-sprint-lifecycle/plan.md) owns bounded Sprint lifecycle/read/reorder implementation and actual coordinated SP04-P08 verification. FR66/67 remain excluded; independent/release gates remain separate.
+
+SP-05 selected Could continuation: [canonical spec](005-sprint-lifecycle.md) and FEAT-SP05-01 C01 align FR/AC-66/67 source support; these operations retain Could priority and have no new runtime evidence.
+
+Selected SP-05 Could now has implemented producers/UI and fresh author runtime verification under [owning handoff](../docs/implementation/features/sp-05-sprint-lifecycle/verification/could-runtime-result.md); no independent or release acceptance is inferred.

@@ -1,0 +1,54 @@
+[
+  {
+    "path": "docs/sdlc/api-design.md",
+    "previous_sha256": "0d88eb98025df60ad249996a843b3004336468033a4748cfd5432811ff7d8535"
+  },
+  {
+    "path": "docs/sdlc/evaluation-cases.md",
+    "previous_sha256": "733b796f1dae567fa89d2e1bc9f7db22be23e233a2c18aa5ece46d31e17d8e50"
+  },
+  {
+    "path": "docs/sdlc/requirement-verification.md",
+    "previous_sha256": "afa8dd8cc4ffac1099e6c95c62083ce61a7cc75e9da5ef7567eabd90e355d87d"
+  },
+  {
+    "path": "docs/sdlc/test-coverage.md",
+    "previous_sha256": "64e5168f0d5e8beee65cf31f2bb4d92882ba9ef535c66543232a3e0869ac3b9a"
+  },
+  {
+    "path": "docs/sdlc/test-plan.md",
+    "previous_sha256": "46d210d8019ffea7c853000769d79b4a2cc6be9013fae5d942b223c71cf03e53"
+  },
+  {
+    "path": "docs/sdlc/references/document-review-register.md",
+    "previous_sha256": "5361a4ec413e9043cf5d04028c4283f16c25cdcf7060abf89eeab93313517bfa"
+  },
+  {
+    "path": "specs/004-update-task.md",
+    "previous_sha256": "05b9f9bca5b2816f8dacc06ef391c12bbf5467429500bdc25c1ff911c3d6b740"
+  },
+  {
+    "path": "docs/ux/wireframe-workplan.md",
+    "previous_sha256": "59eb53ead79218f74a494ef2b0f188f3275a91c3711e14c92b58b81a1c805fb6"
+  },
+  {
+    "path": "docs/implementation/features/README.md",
+    "previous_sha256": "700ab392d411d47976708dfdbe5b194ceb3b8907d5bc475502142e152f3a746b"
+  },
+  {
+    "path": "docs/implementation/register.md",
+    "previous_sha256": "f510e4ea3366459982748fa0c0e8aed2242af6f022d4914bdbc3be21679f1f06"
+  },
+  {
+    "path": "docs/implementation/roadmap.md",
+    "previous_sha256": "1f44b4f0fbc79456da8d72904bbd05e0f67a5a4b1de49f129c5ce28e3bea1b02"
+  },
+  {
+    "path": "docs/adr/0031-sprint-could-edit-and-removal.md",
+    "previous_sha256": "b8abc1ae741001c5e2e40da506316d189c984fd4f8c3be2c0580292349bd39ef"
+  },
+  {
+    "path": "docs/implementation/tasks/05-sprint-lifecycle.md",
+    "previous_sha256": "303675d57937165083f905c48452ebf969bac983f191eef8d7bc008d7f545936"
+  }
+]
