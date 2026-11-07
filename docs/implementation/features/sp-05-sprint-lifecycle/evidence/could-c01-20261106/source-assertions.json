@@ -1,0 +1,49 @@
+{
+  "kind": "Bounded source inspection, not handler tests",
+  "assertions": [
+    {
+      "assertion": "Both existing mutations retain 200 Sprint and Could priority",
+      "result": "passed structural/source inspection; not runtime"
+    },
+    {
+      "assertion": "PATCH uses existing partial EditSprint; DELETE has no body or added Task header",
+      "result": "passed structural/source inspection; not runtime"
+    },
+    {
+      "assertion": "Both operations declare bounded standard transport and error responses",
+      "result": "passed structural/source inspection; not runtime"
+    },
+    {
+      "assertion": "Done reason uses existing Error response schema",
+      "result": "passed structural/source inspection; not runtime"
+    },
+    {
+      "assertion": "All other OpenAPI operations, schemas, headers and inventory are unchanged",
+      "result": "passed structural/source inspection; not runtime"
+    },
+    {
+      "assertion": "No runtime/test/schema/package/baseline changes",
+      "result": "passed structural/source inspection; not runtime"
+    },
+    {
+      "assertion": "Existing ADR-0001 through ADR-0030 unchanged",
+      "result": "passed structural/source inspection; not runtime"
+    },
+    {
+      "assertion": "Current docs/sdlc/PRD_SRS.md records unfinished-only rule and attribution rationale",
+      "result": "passed structural/source inspection; not runtime"
+    },
+    {
+      "assertion": "Current docs/sdlc/use-cases.md records unfinished-only rule and attribution rationale",
+      "result": "passed structural/source inspection; not runtime"
+    },
+    {
+      "assertion": "Current docs/sdlc/data-design.md records unfinished-only rule and attribution rationale",
+      "result": "passed structural/source inspection; not runtime"
+    },
+    {
+      "assertion": "Current specs/005-sprint-lifecycle.md records unfinished-only rule and attribution rationale",
+      "result": "passed structural/source inspection; not runtime"
+    }
+  ]
+}

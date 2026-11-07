@@ -3,7 +3,7 @@
 **Artifact ID:** SP-11  
 **Version/date:** 0.10.3 Draft · 4 November 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
-**Inputs:** PRD-01 v0.10.2; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-11--capture-business-audit-and-answer-provenance); [contract pack](../contracts/README.md); PLAN-01 v0.4.\; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0023
+**Inputs:** PRD-01 v0.10.3; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-11--capture-business-audit-and-answer-provenance); [contract pack](../contracts/README.md); PLAN-01 v0.4.\; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0023
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 1 mutation capture; Month 3 answer receipts.  

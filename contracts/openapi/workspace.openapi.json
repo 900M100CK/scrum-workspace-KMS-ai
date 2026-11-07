@@ -2,7 +2,7 @@
   "openapi": "3.1.1",
   "info": {
     "title": "Workspace service public facade and internal policy",
-    "version": "0.2.14",
+    "version": "0.2.16",
     "description": "Draft contract; policy/stack decisions remain proposed. Schema validation proves shape only."
   },
   "x-status": "Draft",
@@ -1788,7 +1788,7 @@
         "x-requirements": [
           "FR-66"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "Selected Could FR/AC-66: independent sprint-edit. New writes require Planned and expected_revision = Sprint.revision. Merge partial goal/dates with locked current Sprint before validating nonblank goal, strict calendar dates and start_date < end_date. Omitted fields remain unchanged; identical fields or expected_revision alone store acknowledgement without revision/change audit after state/revision checks. Actual edits advance Sprint revision with audit. Reject extra query, invalid fields or dates with 400; stale/lifecycle conflict is 409 state_conflict. JSON required, 8192-byte limit; 413 oversized and 415 unsupported media. Current server session/member/read/action checks precede immutable actor/operation/key/payload-hash original-result lookup. Original lookup precedes live lifecycle/revision/location restrictions; same input returns the original historical 200 Sprint, changed input returns 409 state_conflict. State, minimum audit and typed receipt co-commit; unknown COMMIT/response reconciles the same exact key/body/header. Generic hidden-resource 404 applies before semantic disclosure; readable insufficient action is 403; authority/storage failure is 503. No implicit role/create/allocate grant. Current state must be refreshed separately.",
         "parameters": [
           {
             "name": "sprint_id",
@@ -1859,6 +1859,26 @@
           },
           "503": {
             "$ref": "#/components/responses/Unavailable"
+          },
+          "413": {
+            "description": "Request body exceeds transport bound; no partial application",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "JSON media type required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           }
         },
         "requestBody": {
@@ -2125,7 +2145,7 @@
         "x-requirements": [
           "FR-67"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. ADR-0008 v0.3: unfinished tasks returned to Product Backlog become To Do; commit allocation return, task revision and minimum audit atomically, preserve Done/completed history, and reconcile same-key replay.",
+        "description": "Selected Could FR/AC-67: independent sprint-deallocate. New writes allow only current todo/in_progress allocations in Planned/Active with X-Expected-Revision = Sprint.revision (not Task.revision). After current access, expected Sprint revision and current allocation/location checks, Done returns 409 task_already_done in existing Error shape; Completed, stale or noncurrent association returns state_conflict. Preserve completed-work attribution and future Sprint metrics. Atomically mark Returned, clear current Sprint, return Task as todo/Backlog after numeric MAX(position), advance allocation/Task/Sprint revisions and Backlog generation; preserve assignee/blockers/history. Audit includes source Sprint, prior Task state/location, resulting position and actor/operation/key/hash. No request body or query allowed (400); oversized unexpected body is 413, unsupported unexpected media is 415; empty DELETE needs no Content-Type. Current server session/member/read/action checks precede immutable actor/operation/key/payload-hash original-result lookup; removal also rechecks current Task read access. Original lookup precedes live lifecycle/revision/location restrictions; same input returns the original historical 200 Sprint, changed input returns 409 state_conflict. State, minimum audit and typed receipt co-commit; unknown COMMIT/response reconciles the same exact key/body/header. Generic hidden-resource 404 applies before semantic disclosure; readable insufficient action is 403; authority/storage failure is 503. No implicit role/create/allocate grant. Current state must be refreshed separately.",
         "parameters": [
           {
             "name": "sprint_id",
@@ -2163,7 +2183,7 @@
               "type": "integer",
               "minimum": 1
             },
-            "description": "Must match the current owned resource revision; stale request fails without mutation."
+            "description": "Sprint.revision for a new removal, never Task.revision. Preserve this exact original header for same-key reconciliation; replay follows current access/action before live revision/location checks."
           }
         ],
         "responses": {
@@ -2204,7 +2224,7 @@
             "$ref": "#/components/responses/NotFound"
           },
           "409": {
-            "description": "Stale state or idempotency conflict",
+            "description": "task_already_done only after current access, Sprint revision and current allocation/location checks; other lifecycle/stale/idempotency conflicts use state_conflict; no current revision or hidden metadata disclosed",
             "content": {
               "application/json": {
                 "schema": {
@@ -2215,6 +2235,26 @@
           },
           "503": {
             "$ref": "#/components/responses/Unavailable"
+          },
+          "413": {
+            "description": "Request body exceeds transport bound; no partial application",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported media type on an unexpected request body; empty DELETE needs no Content-Type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           }
         },
         "x-release-priority": "Could"
@@ -3799,7 +3839,8 @@
               "provider_unavailable",
               "provider_timeout",
               "budget_exhausted",
-              "index_unavailable"
+              "index_unavailable",
+              "task_already_done"
             ]
           },
           "message": {
@@ -4329,7 +4370,8 @@
         },
         "required": [
           "expected_revision"
-        ]
+        ],
+        "description": "Partial Planned Sprint edit; expected_revision is Sprint.revision. Merge omitted fields with locked current values before strict calendar-date/start-before-end and nonblank-goal validation. Same values or revision alone acknowledge without revision/change audit; new-key state/revision checks still apply."
       },
       "ExpectedRevision": {
         "type": "object",

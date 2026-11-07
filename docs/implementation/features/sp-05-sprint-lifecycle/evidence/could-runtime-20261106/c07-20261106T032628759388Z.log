@@ -1,0 +1,17 @@
+10:26:41 AM [vite] (client) Re-optimizing dependencies because vite config has changed
+✔ SP05 Could live HTTPS/PG prefilled Planned edit validation/focus, exact reload recovery and revoked controls (9771.2984ms)
+▶ SP05 live HTTPS/PG native forms, sequential allocation and complete/recovery DOM
+  ✔ labelled create and full-list reorder save real state (489.5276ms)
+  ✔ native multi-selection allocates separately and completion reconstructs retained/current associations (826.1775ms)
+  ✔ actual permission change between selected items preserves first commit and reconciles second original after regrant (1074.9031ms)
+  ✔ actual competing allocation yields mixed confirmed/rejected UI results without rolling back the earlier item (588.1638ms)
+  ✔ lost committed creation replays exact key/body once; revoked controls and outage withhold content (380.8444ms)
+✔ SP05 live HTTPS/PG native forms, sequential allocation and complete/recovery DOM (9330.55ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 25996.7031

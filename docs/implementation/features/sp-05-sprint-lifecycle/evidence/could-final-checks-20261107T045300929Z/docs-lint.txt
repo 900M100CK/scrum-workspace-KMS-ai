@@ -1,0 +1,8 @@
+
+> scrum-workspace-kms-context@0.1.0 docs:lint
+> node scripts/docs/verify-docs.mjs
+
+Linked input version drift in docs/sdlc/references/document-review-register.md: ../artifact-register.md
+
+'0.135' !== '0.136'
+

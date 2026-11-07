@@ -1,0 +1,2242 @@
+{
+  "owner_request": "Accepted selected Could; create PR then continue SP-06. No merge or other-feature publication.",
+  "records": [
+    {
+      "path": "apps/web/src/SprintWorkspace.tsx",
+      "sha256": "f97fe773502b0d6cbb63c0fc1a4dab1b7af70aabe2d90605b1287c7317ab762f",
+      "scope_evidence": "Exact accepted author/reviewer source SHA-256; matches frozen172 input manifest"
+    },
+    {
+      "path": "apps/web/src/sprints.ts",
+      "sha256": "718f770c2dc479d413b49d39b7295f2ccca209009590d9445405fcb27c7badce",
+      "scope_evidence": "Exact accepted author/reviewer source SHA-256; matches frozen172 input manifest"
+    },
+    {
+      "path": "contracts/README.md",
+      "sha256": "1249393415163ad2678f9cc531c33070b697bbc126114287402ba74ce1a7912e",
+      "scope_evidence": "Exact accepted author/reviewer source SHA-256; matches frozen172 input manifest"
+    },
+    {
+      "path": "contracts/data-model.json",
+      "sha256": "05df6ea4f8083fe18c06943fb3219a9248c64da23b0ef236b62dc6391469d4dd",
+      "scope_evidence": "Exact accepted author/reviewer source SHA-256; matches frozen172 input manifest"
+    },
+    {
+      "path": "contracts/openapi/workspace.openapi.json",
+      "sha256": "c8f0e3de49d3fe2684b694d252c97f1baa30ea7157c12ecce5f1652dbcb6006f",
+      "scope_evidence": "Exact accepted author/reviewer source SHA-256; matches frozen172 input manifest"
+    },
+    {
+      "path": "docs/adr/0031-sprint-could-edit-and-removal.md",
+      "sha256": "2d1a433f868d825279634434662e571e3bb7b31b3ffccc0f1f687dbe22880c07",
+      "scope_evidence": "Explicit C01/C11/PUB03 coordinated source or registration support, read/reconciled in task scope"
+    },
+    {
+      "path": "docs/adr/README.md",
+      "sha256": "c80b6468530c1231c37dbb8ef680869736069f6ed3476a3a8cca4a1b1abdee11",
+      "scope_evidence": "Explicit C01/C11/PUB03 coordinated source or registration support, read/reconciled in task scope"
+    },
+    {
+      "path": "docs/architecture.md",
+      "sha256": "42cc6e242f479e67b33252d99f8059794697c647941778fe804a1198f34d2097",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/implementation/features/README.md",
+      "sha256": "a94f5e25583f705f7445905886f24e751427b1629608271df35dd3b581466ced",
+      "scope_evidence": "Explicit C01/C11/PUB03 coordinated source or registration support, read/reconciled in task scope"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/.gitattributes",
+      "sha256": "d4ae6d4c84eb086a6878e8ef5d84d26b8adb6beae88323e3dc7e35148e5ef964",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/README.md",
+      "sha256": "cedc7e3ff2b21c9d55e098476044a31242eb39bf4b7f87e34556d8e775a0d03c",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/breakdown.md",
+      "sha256": "11266054855452a1f33287bbe1443d6cbc02e7fb5dc078014756254975f9e8a0",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/could-decisions.md",
+      "sha256": "d12231746cf8b932530c233e773e46f205b1c603d5ae664ef426d7d3d21d836a",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/browser-1793936222226/desktop.png",
+      "sha256": "d090fd61591f5f2c5bec3448281008188e408ff6af0cc7fc7919e9442d791014",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/browser-1793936222226/mobile.png",
+      "sha256": "7cf0f109b13bf4e0d1a237c1af5dd980ca9b2a0c55ba44fff90970f1ff542630",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/browser-1793936222226/summary.json",
+      "sha256": "90f24fc46beab72df49af21246a3d614c94e67d217b6f1ca9cc016048b3d0a55",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/browser-1793937053577/desktop.png",
+      "sha256": "a18e11f16cb352e13133c6ed00b6443623e5721058bb3ba4abc2a8d4a4602d83",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/browser-1793937053577/mobile.png",
+      "sha256": "c0bec2690c7eb2a29c75dd92bb2ba251778bc0fbc359ed533ded201ed46efdd2",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/browser-1793937053577/summary.json",
+      "sha256": "90f24fc46beab72df49af21246a3d614c94e67d217b6f1ca9cc016048b3d0a55",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/browser-1793937452301/desktop.png",
+      "sha256": "d135f67d08ab4c9f23e03f968730098282af10b1542c7b12b59cb68fef0aa77c",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/browser-1793937452301/mobile.png",
+      "sha256": "08c5dd6de5b3dea52f26c9f67b590a487ecacb5270df324413d6276f83fa934f",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/browser-1793937452301/summary.json",
+      "sha256": "90f24fc46beab72df49af21246a3d614c94e67d217b6f1ca9cc016048b3d0a55",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/checks-100304.json",
+      "sha256": "d40da867ff4ddef8f1823ef0a03097a45a3c5573d522906562bb64c29cc1a331",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/checks-100333.json",
+      "sha256": "61ee0703e04beef9b400c15a67e2884562324c5c2b86b0ab02da862042964b17",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/checks-100544.json",
+      "sha256": "0e0743d507de08f4f8a910e1a66802967b2bfc3b6f8b96811da46713be2c01a6",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/context-100328.log",
+      "sha256": "65bd8cbbf70fce0536509c7c32560fa39e51d70a92ed0424e2eec10fe621ab08",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/context-100535.log",
+      "sha256": "65bd8cbbf70fce0536509c7c32560fa39e51d70a92ed0424e2eec10fe621ab08",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/context-lint-100328.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/context-lint-100535.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/context-lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/context-test-lint-100328.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/context-test-lint-100535.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/context-test-lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/context.log",
+      "sha256": "ec86c9d697cd5455957a3fbe7cb2cbe47d769b380b0bf34f9de1dc8d72bafe64",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/diff-check-100333.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/diff-check-100544.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/diff-check.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/docs-100331.log",
+      "sha256": "0ac1178dfc2969d5c14c02246fb5bfaf6b5592fc9619f015c03a642877de5251",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/docs-100540.log",
+      "sha256": "0ac1178dfc2969d5c14c02246fb5bfaf6b5592fc9619f015c03a642877de5251",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/docs.log",
+      "sha256": "0ac1178dfc2969d5c14c02246fb5bfaf6b5592fc9619f015c03a642877de5251",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/edit-inputs.json",
+      "sha256": "e8f26c29b09d8d59e4a590c3f0f6e03c10d61cec0a5fcb7e8f2212f00cdb492b",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/final-checks.json",
+      "sha256": "b9d62b04ed3025ba85c50226a60ebd3e190dda6a300b62073560211f908f06a1",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/final-diff.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/final-docs.log",
+      "sha256": "0ac1178dfc2969d5c14c02246fb5bfaf6b5592fc9619f015c03a642877de5251",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/final-metadata.log",
+      "sha256": "c8bca8f66821fa6d07f78acfd28d6031ca53864495543883369844cb7856827f",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/metadata-100333.log",
+      "sha256": "c8bca8f66821fa6d07f78acfd28d6031ca53864495543883369844cb7856827f",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/metadata-100544.log",
+      "sha256": "c8bca8f66821fa6d07f78acfd28d6031ca53864495543883369844cb7856827f",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/metadata-aliases.json",
+      "sha256": "a6ac872cadee3f7dea37ba0f5744a6aef60ca088f2302202a665997f902bc98e",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/metadata-sync.log",
+      "sha256": "f0f4452d26f04ff5247cdbda249442178d0d7ceb5eade3f013ed0e57f97c4cb8",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/metadata.log",
+      "sha256": "c8bca8f66821fa6d07f78acfd28d6031ca53864495543883369844cb7856827f",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/node-100328.log",
+      "sha256": "b8a527ca60b496131eccd1fcbeccf289ebc0a7e63be57e4b4c6f8f67648bcc07",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/node-100535.log",
+      "sha256": "b8a527ca60b496131eccd1fcbeccf289ebc0a7e63be57e4b4c6f8f67648bcc07",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/node.log",
+      "sha256": "b8a527ca60b496131eccd1fcbeccf289ebc0a7e63be57e4b4c6f8f67648bcc07",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/routing-lint-100328.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/routing-lint-100535.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/routing-lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/source-assertions.json",
+      "sha256": "c195d26dd50175ea2113dfe8e1ed740c783b5b403c82e547fe23acc498feb8c3",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/source-inputs.json",
+      "sha256": "e471c2f591d1fc75ef37539d06dd015e08983507398ade344b705f529e6218b0",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/source-inspection-failure.txt",
+      "sha256": "0990a7675e6dc6a9ceae98d6af259c704657665098957d3d2c2a8de138354f00",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/structural-100333.log",
+      "sha256": "579185c759f6efdf7ce11a9dbae35cd029fcf1663fb4fc917bd9914ee7d99410",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/structural-100544.log",
+      "sha256": "2f4701fb3c5c430385ebb2f5cceeab69ca1ebf19eb1ac4e33618d4e16d880562",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/structural.log",
+      "sha256": "add1088b38948078e948b257c67743910f642a5700a74b5f43e428eb45b7f80d",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-c01-20261106/working-tree-status.txt",
+      "sha256": "86f7413f88474155dc40a0a891f3d8132b40e4f2faf6efe0d1765b8e39c6a48f",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-browser-20261106T035037556Z/browser.txt",
+      "sha256": "f72641685fde07602d2e31566d1aada7dd2c2f25eb0d69469f393f2d24a250aa",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-browser-20261106T035037556Z/cleanup-after.json",
+      "sha256": "32af5e641e1a4dcd5c8cb6f924a0e38fd4d6536283a64bfadf85518e21cf7093",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-browser-20261106T035037556Z/cleanup-before.json",
+      "sha256": "32af5e641e1a4dcd5c8cb6f924a0e38fd4d6536283a64bfadf85518e21cf7093",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-browser-20261106T035037556Z/environment.json",
+      "sha256": "cd1c5c90bd0a793d1db45aed14384ed70e1b6c3625aeb20e6da9c00af89ef770",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-browser-20261106T035037556Z/progress.json",
+      "sha256": "5d02ea161e0ead027603ff502dda7dbb5fec17033721dded113d55bd7196c643",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-browser-20261106T035037556Z/results.json",
+      "sha256": "2dd6388fb3a3d812c2a43157973431ca3d3bc786f36b206b5658152773f5ae22",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-browser-20261106T035037556Z/source.json",
+      "sha256": "a04626957ac7638c36c3a8cb28d099a6bffcfb168e1a490c0ed87c60c2cf6be6",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-browser-20261106T035037556Z/summary.json",
+      "sha256": "949478e506ba51d05513e565584842b6018905bcb1f5c36bc75cb59950e6e366",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-browser-20261106T035037556Z/test-files.json",
+      "sha256": "861a17337fa5571a3e4cf0b8518984a1f610ed8690d7b8e1432f74ab394cb48c",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-browser-20261106T035716055Z/browser.txt",
+      "sha256": "b0cdf6eb51c219907691d72a2a89b270ee18ae37fa6cc9de88bf360747defed8",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-browser-20261106T035716055Z/cleanup-after.json",
+      "sha256": "32af5e641e1a4dcd5c8cb6f924a0e38fd4d6536283a64bfadf85518e21cf7093",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-browser-20261106T035716055Z/cleanup-before.json",
+      "sha256": "32af5e641e1a4dcd5c8cb6f924a0e38fd4d6536283a64bfadf85518e21cf7093",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-browser-20261106T035716055Z/environment.json",
+      "sha256": "cd1c5c90bd0a793d1db45aed14384ed70e1b6c3625aeb20e6da9c00af89ef770",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-browser-20261106T035716055Z/progress.json",
+      "sha256": "66ce7d5b17a24cd862afe63171514d3d11ce1df1206ca39090fbc13d4a267995",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-browser-20261106T035716055Z/results.json",
+      "sha256": "2ca2664c24f7afa20d7e3103ad34126f7a33bd6a8ff8b22c3179787a8ad33a0a",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-browser-20261106T035716055Z/source.json",
+      "sha256": "a9ee4c293dfd957316df9979498df399abc55cf407e58a18483f5dac16ff49fa",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-browser-20261106T035716055Z/summary.json",
+      "sha256": "8d04e80c6e5bbc8645a1deef5dbec11fc29aebafab3601923e70f91b6c34f3da",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-browser-20261106T035716055Z/test-files.json",
+      "sha256": "861a17337fa5571a3e4cf0b8518984a1f610ed8690d7b8e1432f74ab394cb48c",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T034858707Z/build.txt",
+      "sha256": "ca1d6e34e24d7434196b229a64f94793792a03d89d76c3f1fec189428a61238e",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T034858707Z/cleanup-after.json",
+      "sha256": "32af5e641e1a4dcd5c8cb6f924a0e38fd4d6536283a64bfadf85518e21cf7093",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T034858707Z/cleanup-before.json",
+      "sha256": "32af5e641e1a4dcd5c8cb6f924a0e38fd4d6536283a64bfadf85518e21cf7093",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T034858707Z/context-check.txt",
+      "sha256": "728b10ef7a165ebc12f7494bc57d5bda330d3125c1e68adb938642214d3c4bdb",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T034858707Z/context-lint.txt",
+      "sha256": "9728c7eb07f5b81500770fc53ba6f655d7428448c71fa3bee5d078aae1c81c63",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T034858707Z/diff-check.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T034858707Z/docs-lint.txt",
+      "sha256": "770e9481af98f896a8d0f3e806262bf8122b6d5efb1773b2f0fdcc54de8245cb",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T034858707Z/environment.json",
+      "sha256": "ba8f3b7e73aec8c76678c9a6de21c2b121d6b23253b610e1b1b3302b9399a507",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T034858707Z/metadata.txt",
+      "sha256": "c8bca8f66821fa6d07f78acfd28d6031ca53864495543883369844cb7856827f",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T034858707Z/progress.json",
+      "sha256": "04db13689a6c23f21289bc89834334a0bdb153961a5e91d19d96b45d7bc99715",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T034858707Z/results.json",
+      "sha256": "859bb245ac387e5615b5c04309f3134a49a5614dad68e0412f42af9b772c6e78",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T034858707Z/source.json",
+      "sha256": "a04626957ac7638c36c3a8cb28d099a6bffcfb168e1a490c0ed87c60c2cf6be6",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T034858707Z/structural.txt",
+      "sha256": "23c9b5b2253f7830e018607d8563b89fd626d4409a9195ccd88491d064656d3b",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T034858707Z/summary.json",
+      "sha256": "32c09556664ff3da65364500a0b8d53ce0db53cb66f5c33397100a5a5bf93ec0",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T034858707Z/test-foundation.txt",
+      "sha256": "ed26e42ee5cd4a921d5ed3f0108dc5111a5730146ab20c302dd8f78532925946",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T034858707Z/test-prototype.txt",
+      "sha256": "084c498d6a7f182374b7ace0a2ddff00abd0dfb186583fe5c5864a9512cac219",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T034858707Z/typecheck.txt",
+      "sha256": "e1a410b8d5f08d72b0ac6cbce22c2a24329240103e26e49d2094322ac1aff65d",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T035517720Z/build.txt",
+      "sha256": "db668ec2d38f6796318fc69cd8b8bf154e4a420310ebe9b577eab48003dc7bbd",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T035517720Z/cleanup-after.json",
+      "sha256": "32af5e641e1a4dcd5c8cb6f924a0e38fd4d6536283a64bfadf85518e21cf7093",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T035517720Z/cleanup-before.json",
+      "sha256": "32af5e641e1a4dcd5c8cb6f924a0e38fd4d6536283a64bfadf85518e21cf7093",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T035517720Z/context-check.txt",
+      "sha256": "728b10ef7a165ebc12f7494bc57d5bda330d3125c1e68adb938642214d3c4bdb",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T035517720Z/context-lint.txt",
+      "sha256": "9728c7eb07f5b81500770fc53ba6f655d7428448c71fa3bee5d078aae1c81c63",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T035517720Z/diff-check.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T035517720Z/docs-lint.txt",
+      "sha256": "770e9481af98f896a8d0f3e806262bf8122b6d5efb1773b2f0fdcc54de8245cb",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T035517720Z/environment.json",
+      "sha256": "ba8f3b7e73aec8c76678c9a6de21c2b121d6b23253b610e1b1b3302b9399a507",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T035517720Z/metadata.txt",
+      "sha256": "c8bca8f66821fa6d07f78acfd28d6031ca53864495543883369844cb7856827f",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T035517720Z/progress.json",
+      "sha256": "73ca5a607943828026eafe420c4e5a2045150de2701d0f1036f30aef41ac4d9a",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T035517720Z/results.json",
+      "sha256": "0f77b69e94b7a4663ba23e0ccffb7bd6561286c70bf80484bb8d86bc243c0998",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T035517720Z/source.json",
+      "sha256": "a9ee4c293dfd957316df9979498df399abc55cf407e58a18483f5dac16ff49fa",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T035517720Z/structural.txt",
+      "sha256": "710e83dd5ae2381fd5bc31596cdf9c796057f7b1066800f226cc64a7f6349a7e",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T035517720Z/summary.json",
+      "sha256": "0d0008171ab906e786e91bc47aad69cb364952b3f199c9efc6fc77b1ca98ef7b",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T035517720Z/test-foundation.txt",
+      "sha256": "5614a33ce665e4ac09ef21bc3ea399447d2953c1a5e3acc9fbd43b7a7fc92a97",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T035517720Z/test-prototype.txt",
+      "sha256": "076ff727ce5ca4623b28b2bc360e2e735302994e97a6274f4a44b4129fccd9be",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261106T035517720Z/typecheck.txt",
+      "sha256": "e1a410b8d5f08d72b0ac6cbce22c2a24329240103e26e49d2094322ac1aff65d",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/build.txt",
+      "sha256": "ebb69e171905adbef5fa6eb99318ac99b24d32217269d8c3c2ded829a435db98",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/cleanup-after.json",
+      "sha256": "92eb437ec687fd913090dbb02aa29d85873b8c9f2ca9d2bb1cacee5a4f1a8ab5",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/cleanup-before.json",
+      "sha256": "92eb437ec687fd913090dbb02aa29d85873b8c9f2ca9d2bb1cacee5a4f1a8ab5",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/context-check.txt",
+      "sha256": "728b10ef7a165ebc12f7494bc57d5bda330d3125c1e68adb938642214d3c4bdb",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/context-lint.txt",
+      "sha256": "9728c7eb07f5b81500770fc53ba6f655d7428448c71fa3bee5d078aae1c81c63",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/diff-check.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/docs-lint.txt",
+      "sha256": "770e9481af98f896a8d0f3e806262bf8122b6d5efb1773b2f0fdcc54de8245cb",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/environment.json",
+      "sha256": "ba8f3b7e73aec8c76678c9a6de21c2b121d6b23253b610e1b1b3302b9399a507",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/fatal.json",
+      "sha256": "84c9506e89e7ac8535dfa222d5392dfc15e0a4484966a4600dfe8bad129a12ab",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/metadata.txt",
+      "sha256": "c8bca8f66821fa6d07f78acfd28d6031ca53864495543883369844cb7856827f",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/progress.json",
+      "sha256": "0ae04ae0518199fd379e424af21e9dbd2ae965a1d5bea14eb360e704c82592fc",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/results.json",
+      "sha256": "7a02eea38feab9f01bf3e6d1506300b7fbe050210d464eca283c2daf7d4a701b",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/source.json",
+      "sha256": "a9ee4c293dfd957316df9979498df399abc55cf407e58a18483f5dac16ff49fa",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/structural.txt",
+      "sha256": "aaa669e880ede8961394b30777a7076ae15a2cf98a81e57eb977128027996d7e",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/test-foundation.txt",
+      "sha256": "0df489f72669cfea681cec0907c609897a92c0b0258a777469a8e156e83947c0",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/test-prototype.txt",
+      "sha256": "465aa42bae29f86d487615df25def032329611b86ffe968d5bc61ff9f6ef8145",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T043519193Z/typecheck.txt",
+      "sha256": "e1a410b8d5f08d72b0ac6cbce22c2a24329240103e26e49d2094322ac1aff65d",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045300929Z/build.txt",
+      "sha256": "8c6c505a3df0f12197104d324d04d446b030b74c4e55e3f3fcd3a737c912087a",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045300929Z/cleanup-after.json",
+      "sha256": "92eb437ec687fd913090dbb02aa29d85873b8c9f2ca9d2bb1cacee5a4f1a8ab5",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045300929Z/cleanup-assessment.json",
+      "sha256": "30a91a0fdcd782ad173a14eced31a31b705adeed124038febf0b715407d1c0aa",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045300929Z/cleanup-before.json",
+      "sha256": "92eb437ec687fd913090dbb02aa29d85873b8c9f2ca9d2bb1cacee5a4f1a8ab5",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045300929Z/context-check.txt",
+      "sha256": "728b10ef7a165ebc12f7494bc57d5bda330d3125c1e68adb938642214d3c4bdb",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045300929Z/context-lint.txt",
+      "sha256": "9728c7eb07f5b81500770fc53ba6f655d7428448c71fa3bee5d078aae1c81c63",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045300929Z/diff-check.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045300929Z/docs-lint.txt",
+      "sha256": "6d7e3481dd198d6782541ed69e30fc45020d481bc0d1ee1f237cead572c1b6e1",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045300929Z/environment.json",
+      "sha256": "ba8f3b7e73aec8c76678c9a6de21c2b121d6b23253b610e1b1b3302b9399a507",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045300929Z/metadata.txt",
+      "sha256": "c8bca8f66821fa6d07f78acfd28d6031ca53864495543883369844cb7856827f",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045300929Z/progress.json",
+      "sha256": "5cca8f7a0d62b74f323adc6ad788f3ca2005c97996c535df279f2daf23836585",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045300929Z/results.json",
+      "sha256": "049abb67f9a2053cea58fd2329a5cb1ceabc7d75ec7a0b5bdc52bef01278c8d9",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045300929Z/source.json",
+      "sha256": "ac2473c26cbe5621a64c1d805030bafce43e3177d39d875f7f7b2fa9ecfa902f",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045300929Z/structural.txt",
+      "sha256": "383fcdf63677a93ee089261cc5eb1fa955636a33dfc532b601cf0f63e4fb1ccb",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045300929Z/summary.json",
+      "sha256": "3562cd8e1693bd2ee7af0530c890d804a9d7049e0bb3c4c79eecf04029986c7c",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045300929Z/test-foundation.txt",
+      "sha256": "96833b8c12639fcda898db8ad23a86cfd19d05099e2f1c45d26dfd4910f71267",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045300929Z/test-prototype.txt",
+      "sha256": "2b1bd15135df0bce2a1bc02a8b6e252b9b21ab081abf7e8b94459445420d2540",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045300929Z/typecheck.txt",
+      "sha256": "e1a410b8d5f08d72b0ac6cbce22c2a24329240103e26e49d2094322ac1aff65d",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045401023Z/build.txt",
+      "sha256": "b07198a59d2fb1039e2be245b5b0f3346517812f0c1c49dbe85c25c3afa36af3",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045401023Z/cleanup-after.json",
+      "sha256": "92eb437ec687fd913090dbb02aa29d85873b8c9f2ca9d2bb1cacee5a4f1a8ab5",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045401023Z/cleanup-assessment.json",
+      "sha256": "30a91a0fdcd782ad173a14eced31a31b705adeed124038febf0b715407d1c0aa",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045401023Z/cleanup-before.json",
+      "sha256": "92eb437ec687fd913090dbb02aa29d85873b8c9f2ca9d2bb1cacee5a4f1a8ab5",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045401023Z/context-check.txt",
+      "sha256": "728b10ef7a165ebc12f7494bc57d5bda330d3125c1e68adb938642214d3c4bdb",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045401023Z/context-lint.txt",
+      "sha256": "9728c7eb07f5b81500770fc53ba6f655d7428448c71fa3bee5d078aae1c81c63",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045401023Z/diff-check.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045401023Z/docs-lint.txt",
+      "sha256": "770e9481af98f896a8d0f3e806262bf8122b6d5efb1773b2f0fdcc54de8245cb",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045401023Z/environment.json",
+      "sha256": "ba8f3b7e73aec8c76678c9a6de21c2b121d6b23253b610e1b1b3302b9399a507",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045401023Z/metadata.txt",
+      "sha256": "c8bca8f66821fa6d07f78acfd28d6031ca53864495543883369844cb7856827f",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045401023Z/progress.json",
+      "sha256": "3ed6501b92d31c17503ea0dbee191c5800ecb9061431ee3717aa3cc8e59991a3",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045401023Z/results.json",
+      "sha256": "c1bd8e159ce0fb3794697ff43ed0525e6324bf028c214011a49450e478838f69",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045401023Z/source.json",
+      "sha256": "ac2473c26cbe5621a64c1d805030bafce43e3177d39d875f7f7b2fa9ecfa902f",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045401023Z/structural.txt",
+      "sha256": "675dca6bcb440d97179dbdd14d499177ad2d9aada7302bbc3d5e4952b4657493",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045401023Z/summary.json",
+      "sha256": "e907012eeb8571233545bcf765bcea5389386c231b1665edf95b934b12a6e4d5",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045401023Z/test-foundation.txt",
+      "sha256": "468aae35a3b2d4a73057febede3995864277ccd74cbdf0451ed3b08c7c4d3ccf",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045401023Z/test-prototype.txt",
+      "sha256": "7d858a4e4e37bd5e302df687e080494cec11afc6bf78d3b8f390202b2b886a43",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-checks-20261107T045401023Z/typecheck.txt",
+      "sha256": "e1a410b8d5f08d72b0ac6cbce22c2a24329240103e26e49d2094322ac1aff65d",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-workspace-20261106T034059603Z/cleanup-after.json",
+      "sha256": "32af5e641e1a4dcd5c8cb6f924a0e38fd4d6536283a64bfadf85518e21cf7093",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-workspace-20261106T034059603Z/cleanup-before.json",
+      "sha256": "32af5e641e1a4dcd5c8cb6f924a0e38fd4d6536283a64bfadf85518e21cf7093",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-workspace-20261106T034059603Z/environment.json",
+      "sha256": "8458247377b48fe615128fe7d500bdadd65179a952f737d1b9a3ec49c82fad35",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-workspace-20261106T034059603Z/progress.json",
+      "sha256": "00147eaf7229aa6ba444632a57d91b03d5a9b278eb3f07418037379e5fd43d20",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-workspace-20261106T034059603Z/results.json",
+      "sha256": "fd8e958a4c7eb27e821ba199c8cf0044ad0108f70f1cacdebbd50916a707abee",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-workspace-20261106T034059603Z/source.json",
+      "sha256": "abf429c195fa4f1803ab6bf08f5e786a0922eec06eec990a1540e8678e5df22a",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-workspace-20261106T034059603Z/summary.json",
+      "sha256": "597e7aed39452b25deb10ef349764630170460996322c787be8f53627cd52cfd",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-workspace-20261106T034059603Z/test-files.json",
+      "sha256": "32c450fa65b32e40f046b10526a3c01505757964c4497a8f4ac5e2058e6371fa",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-final-workspace-20261106T034059603Z/workspace.txt",
+      "sha256": "db477fcfbd467ce354e7c00685ab7181bff474741f425b9e30fc3042ec58cab0",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-planning-20261105/checks.json",
+      "sha256": "36d07176344ced3c9e85e511f314ad4c4635281145e2be7406ed88d41eadd59c",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-planning-20261105/context-lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-planning-20261105/context-test-lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-planning-20261105/context.log",
+      "sha256": "65bd8cbbf70fce0536509c7c32560fa39e51d70a92ed0424e2eec10fe621ab08",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-planning-20261105/docs.log",
+      "sha256": "0ac1178dfc2969d5c14c02246fb5bfaf6b5592fc9619f015c03a642877de5251",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-planning-20261105/metadata.log",
+      "sha256": "c8bca8f66821fa6d07f78acfd28d6031ca53864495543883369844cb7856827f",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-planning-20261105/routing-lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-planning-20261105/structural.log",
+      "sha256": "80f8b7bc38c81a3dd03e4ee7e1801ac0f15b3c8635688cc52736d7f05e3a446b",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/browser-1793936329395/desktop.png",
+      "sha256": "28e422cd66830c3ed85f7fd39e13e6a0dbf987ac446bade1c2df72fa24f52c73",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/browser-1793936329395/mobile.png",
+      "sha256": "ba1e31973d7d015650038532822b93d3764f6161045cfa8ad8d8fe4f649ecb14",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/browser-1793936329395/summary.json",
+      "sha256": "54bdedaa13275afbbe5571c0a470dc1249c3e1d3642901c08e7621400f5d7337",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/browser-1793937064521/desktop.png",
+      "sha256": "d713d51ee2749ab2d056ae3463af3eb54a9da4c2f9c1c6319c030b009987c50f",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/browser-1793937064521/mobile.png",
+      "sha256": "9fa177ba2d36113e972606f67dc4acb72fa80d11e70ff48a32008e1b9388e88f",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/browser-1793937064521/summary.json",
+      "sha256": "54bdedaa13275afbbe5571c0a470dc1249c3e1d3642901c08e7621400f5d7337",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/browser-1793937463145/desktop.png",
+      "sha256": "1b77d5b42ffed6bb5baad1807fcffd5bb9f860723c9103aaf9df99dedc8b2dfa",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/browser-1793937463145/mobile.png",
+      "sha256": "f1792c7371ccbd8d49aa7f0867578f6c020809939fc5a23a67e86e8cde8d99bb",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/browser-1793937463145/summary.json",
+      "sha256": "54bdedaa13275afbbe5571c0a470dc1249c3e1d3642901c08e7621400f5d7337",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c02-20261106T031430796187Z.json",
+      "sha256": "0caaae5d183b9cd848f484805352136c3165204aa8193d12bbab924bad3b8b47",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c02-20261106T031430796187Z.log",
+      "sha256": "47e9e1bdd3e4c61c8391672516db9369343bebb2d9977ab319c22c9f7d025244",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c02-20261106T031516485246Z.json",
+      "sha256": "02a8316b36dbd94873ef53087099ac409fd408b9628446740ecb1829a180e65f",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c02-20261106T031516485246Z.log",
+      "sha256": "c635ce92701550afc84494ca7278f0da8a172bfa1db70e14bf1aa1174061c1ff",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c03-20261106T031656043259Z.json",
+      "sha256": "913a0e614b622db5ec40569a1843377a98d95248ea1f4149b864fd535e406850",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c03-20261106T031656043259Z.log",
+      "sha256": "3c0db3bfed50c793c8b189485a113539bb5c264d9fb2a5b1f31be731bd9ac2cf",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c03-20261106T031719353671Z.json",
+      "sha256": "7dd3981c3d7297aadd491583b52f4f1602b6092d93b63ea3b00775f5fdfb33ea",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c03-20261106T031719353671Z.log",
+      "sha256": "02b2da545b6936d6cd6347b8f5462d5996ea21b8531cbac1ac1f3060939e490e",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c04-20261106T031842352129Z.json",
+      "sha256": "5b8fffd62aa08f88cdfa3755cb506eb53725b67644b9e566dfb6ecea2df697ed",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c04-20261106T031842352129Z.log",
+      "sha256": "46f8afda6c9ec3aa6927296b7ab499e14930bebcb81dc11dfd531ce2cd43db91",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c05-20261106T032038831132Z.json",
+      "sha256": "efb907026ed2d504f2928fa02701b9542b1a1e6265a1c484db0d74ab00d5bc45",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c05-20261106T032038831132Z.log",
+      "sha256": "dc6253c737be50f48dc7a5b7a52567806984e97feb565f0c76dea5ca61552c61",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c05-20261106T032126443827Z.json",
+      "sha256": "e296a69164f41fd2a6b8f2b129ac7bba9a62bdc3397e69ce41e735e30525f405",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c05-20261106T032126443827Z.log",
+      "sha256": "c646f55445d8152926ae4af2ff9c7d270fa2e275aa9df9e8e020744851b0ad3a",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c05-20261106T032255700238Z.json",
+      "sha256": "75c05de7bb3d6f11611bde39f280fc17db0a2c4c033ef09ab71b18a28013564c",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c05-20261106T032255700238Z.log",
+      "sha256": "bae239456cf5ea27428d0c11873b3b103b5d17d45408e8f6b2861cec870018fb",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c06-20261106T032444685140Z.json",
+      "sha256": "1aabadcdb74abbcb469acd0472a72cf4b0c32e1a2051bb2a59c3db0c084c55b5",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c06-20261106T032444685140Z.log",
+      "sha256": "b7d640bfb5535b7a385cc3f082d145960abd9bc3f95ca7d4b59c05ac429967d6",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c07-20261106T032628759388Z.json",
+      "sha256": "86a215cb2d91800c40bfe377071645823e63cc9a7101fea2f082b883cee6b3f0",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c07-20261106T032628759388Z.log",
+      "sha256": "afaf17f6ad4ca8b60180eba102e84c74f2c1386baed65fcf85b421c657a1d729",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c08-20261106T032808423250Z.json",
+      "sha256": "b0fbbf9ba84ae79f41d97cca9196f72b40b28ac0e88d1dc8ed293a2d775190f9",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c08-20261106T032808423250Z.log",
+      "sha256": "79651034cd3c247162bb788fbdd9b9bc2ee8c695092cf3a7aec86d23799978c9",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c09-20261106T033100193604Z.json",
+      "sha256": "76bc2879f416c2fb7777cc41069cac71bcae1a767ccb6cb0f9faa4f7431af0e2",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c09-20261106T033100193604Z.log",
+      "sha256": "ace10778df13b501337e591d760de4421c3cc0cde0a67cb53356f3bd3ee93c8a",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c09-authority-20261106T033416866316Z.json",
+      "sha256": "51ccf2239ec245d0c4aa71eab3a66998f1c707e184e25248cdbd042dbffa187d",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c09-authority-20261106T033416866316Z.log",
+      "sha256": "c5b803486da0e2b709d7e2863adc245664df02c86254b8005a9a5d0316a0cf37",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c09-last-20261106T033535396810Z.json",
+      "sha256": "529eb3a04d792eb38a4d6b913940da1581022f5bf66db18bfa25042489bb3c7e",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c09-last-20261106T033535396810Z.log",
+      "sha256": "2353f5b65eafb2e1ad4caafe881976b1fbca67ae72cccd56f08c960ddcd63d87",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c10-20261106T033648275090Z.json",
+      "sha256": "e6a2f2916fe670eb3690e71d71aa544777c372615c735288b6b64a790c7c5b8d",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c10-20261106T033648275090Z.log",
+      "sha256": "a1db8e7366b505bd77addbbe4697abd49fe2b41aef7f6b4aec0be33db669c89b",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c10-browser-20261106T033834094703Z.json",
+      "sha256": "e33c3cae079ccf39f7027605dddd9a53b6c320b7cd0bbc00a25222122275f7cf",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c10-browser-20261106T033834094703Z.log",
+      "sha256": "d5157eb6ea4af3621557a1e35f278e1d6a9673c354f3edc5b30081229c06f1cf",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c11-browser-20261106T035037457087Z.json",
+      "sha256": "fcf2212c6725a092aac63d9f6a6228fef6f83e43204d98e5c92038b85e98d2e1",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c11-browser-20261106T035037457087Z.log",
+      "sha256": "57672e8e039229c7165c26cd8b9f7e0a505e27b055d22c9ac5abd84da318977b",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c11-browser-final-20261106T035715950165Z.json",
+      "sha256": "443b982dbb035d226593a396ba9ff25686cb9afa301382b57a6a7abd57527955",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c11-browser-final-20261106T035715950165Z.log",
+      "sha256": "f392fe6f580947c82f453d2ab511342eb41b90c72dcae3c77ee657b6ebd993cf",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c11-checks-20261106T034858603904Z.json",
+      "sha256": "f47ee327dcef370944983c00ebf2eed06ca468e0972741686198a169be2e8a47",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c11-checks-20261106T034858603904Z.log",
+      "sha256": "1bcbfb49c01a7fb2414f83175a47d50e17b646a67e6f0be5902008ab3a1e4b95",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c11-checks-final-20261106T035517578103Z.json",
+      "sha256": "e737ae9db11ad0b6462ada91fb23e5b9137d18812713c7b244c1238a9a6a27a1",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c11-checks-final-20261106T035517578103Z.log",
+      "sha256": "11f41ae4531d8a7acaff1f06b26c8e51dd0709eb2858dc2a5a1fd7b7b4103fc9",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c11-metadata-20261106T034858173062Z.json",
+      "sha256": "c76fa6939d5538b96617caf189d884af41f4bdf6a60bd561b493894587f0d183",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c11-metadata-20261106T034858173062Z.log",
+      "sha256": "167b5ff0a209d57ce7b2be5406ec6830d389c92e306ab2e1efd4ebe0b4c49839",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c11-task-browser-triage-20261106T035313199924Z.json",
+      "sha256": "6c16a45c0e0400d0d9a066e3de422da2c56c233b33d1dba04383d2f15fe9178c",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c11-task-browser-triage-20261106T035313199924Z.log",
+      "sha256": "0869dfbc12d66e2ff9f04048a4a62afd837d5e38fdaa8757f8f65a1ff84c1e3e",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c11-workspace-20261106T034059359704Z.json",
+      "sha256": "52d3f2920c57840eeb7981306cd3e18cdf241d2b3f4ea1cbc4137d26a4df7b32",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/c11-workspace-20261106T034059359704Z.log",
+      "sha256": "1ac996ceaa4e88f7495b70f0b4529f4a6a9529eb9af8ffc37e6136978e9f94f6",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/closure.json",
+      "sha256": "9100fea7ff28f80a22c6d82122882b3e30478123a4e3f7fe257ad8aaaf0cf720",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/current-metadata-aliases.json",
+      "sha256": "db1b57d9b1c4c7325d24c48b15da30cd4288b74f19a967586bfffa21c37e3bc3",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/final-diff-20261106T040006122173Z.json",
+      "sha256": "e95cc0f59a9d3a0cde6dc56134dadb1ee094de94a1b0bff75d13c5a8030f78b4",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/final-diff-20261106T040006122173Z.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/final-docs-20261106T040003434289Z.json",
+      "sha256": "160aa96f87d01f4b0169a6d21e2be5e5f63deeecf5d341d1e22fda8538b05bc9",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/final-docs-20261106T040003434289Z.log",
+      "sha256": "0ac1178dfc2969d5c14c02246fb5bfaf6b5592fc9619f015c03a642877de5251",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/final-metadata-20261106T040005908230Z.json",
+      "sha256": "47b1739de5c67dc76596bbe8fed5ad748d1d015d2dd542a998880516a6e5e30e",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/final-metadata-20261106T040005908230Z.log",
+      "sha256": "c8bca8f66821fa6d07f78acfd28d6031ca53864495543883369844cb7856827f",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/handoff-docs-20261106T040049207310Z.json",
+      "sha256": "fa99049573fad74c74046ef700543b9ec22856b498cd3aabacd181c15e98250a",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/handoff-docs-20261106T040049207310Z.log",
+      "sha256": "0ac1178dfc2969d5c14c02246fb5bfaf6b5592fc9619f015c03a642877de5251",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/pub03-browser-syntax-20261107T045751666539Z.json",
+      "sha256": "52653cc29991b09f65becce03e3820d2a44219da50cba2887ab31ec04ab653d5",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/pub03-browser-syntax-20261107T045751666539Z.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/pub03-checks-20261107T045300791937Z.json",
+      "sha256": "c0d199d8e25acab99144f2cc5e862add99516520d46c8abf2c4d3999758b4fa6",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/pub03-checks-20261107T045300791937Z.log",
+      "sha256": "a0879e2b902466ae393170abcf3a4b1be3f7b98532b2f03529de571c41ac8742",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/pub03-checks-fixed-20261107T045400914160Z.json",
+      "sha256": "c75f6dc5fa67a0b049b6aa4048259b1b30d537778c69f1f9138ab69d99d7a608",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/pub03-checks-fixed-20261107T045400914160Z.log",
+      "sha256": "338df595c7db24e1366d9d4e12e51a7faf0dd18f53d4fba06e9224e40fc77a22",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/pub03-classifier-20261107T044937038587Z.json",
+      "sha256": "85678859ccba7b02a80a1e953848dfa7e078e269ee7ae724c96488f0b911498f",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/pub03-classifier-20261107T044937038587Z.log",
+      "sha256": "04bfbfe87ba9cd832ee3f1eeaf063eb3a0b54bf8857aef549cb5d8134132a922",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/pub03-docs-20261107T045751859563Z.json",
+      "sha256": "cf62acca564d2c089a5229507e4c9f1eb327b56ca09a89d7a7e93fd782e40010",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/pub03-docs-20261107T045751859563Z.log",
+      "sha256": "0ac1178dfc2969d5c14c02246fb5bfaf6b5592fc9619f015c03a642877de5251",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/pub03-exact-docs-20261107T050307993900Z.json",
+      "sha256": "7cbced684918e17265b85fb28c9109f9c46a7df90ff6311ddca09d709189e55e",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/pub03-exact-docs-20261107T050307993900Z.log",
+      "sha256": "0ac1178dfc2969d5c14c02246fb5bfaf6b5592fc9619f015c03a642877de5251",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/pub03-exact-structural-20261107T050311220990Z.json",
+      "sha256": "2be12dca5874113e38eece17442101bf42a463f83de910c882a0d29293290776",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/pub03-exact-structural-20261107T050311220990Z.log",
+      "sha256": "ed7132e33a0ab7e277a34eaa918cb4a118f6239b677ca073e9a92efab6b9a52a",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/pub03-metadata-20261107T045300538978Z.json",
+      "sha256": "73a0760d38dcd22a64c82543bea9508a2cd4474d2b471be9d594ef33a18f2cd2",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/pub03-metadata-20261107T045300538978Z.log",
+      "sha256": "9e38029b0ea7318943b1bd98ff6dba31ff0390e86f89acb9a801dbe341982945",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/pub03-metadata-check-20261107T045754669157Z.json",
+      "sha256": "f4c7b8f556c128991fd3bcd060e01c9dbb692a863062ad9bb030a7bf5da825fd",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/pub03-metadata-check-20261107T045754669157Z.log",
+      "sha256": "c8bca8f66821fa6d07f78acfd28d6031ca53864495543883369844cb7856827f",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/typecheck-20261106T032445281862Z.json",
+      "sha256": "82277749871a297af414a6b677e166d427327c1d0309450575d81e6838c56cfa",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/could-runtime-20261106/typecheck-20261106T032445281862Z.log",
+      "sha256": "e1a410b8d5f08d72b0ac6cbce22c2a24329240103e26e49d2094322ac1aff65d",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/pub03-20261107/author-project-capture-receipt/browser-summary.json",
+      "sha256": "0b51b129836811e9536064c0a4829efd54b4b6d205c43aa9f300ee446b89b030",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/pub03-20261107/author-project-capture-receipt/manifest.json",
+      "sha256": "1a1436def2558dc13e7fb8737a5a95ef3dc518a9d4185cab9a5d72aabff7016a",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/pub03-20261107/author-project-capture-receipt/project-desktop.png",
+      "sha256": "df98b139531057a950ded0c88cd9b2b9d5c512d9e66e31bdd388b43df5d7a0f7",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/pub03-20261107/author-project-capture-receipt/project-mobile.png",
+      "sha256": "bf6221c839d91bfe09e230b9bd1da2f58d169ad92820ede7948bc4dde6facd74",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/pub03-20261107/candidate-files.json",
+      "sha256": "6dbbb8496e9b4d4b72a04c67c81c1359a847e1611ee3d9943e7c439d388d6bcb",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/pub03-20261107/candidate-verification.json",
+      "sha256": "58b691f23ffbbce8d9bb982c2d915feba470b16f0957cd5385421540a8fb9d50",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/pub03-20261107/input-receipt.json",
+      "sha256": "b1f1ab3da374344975de3fe41298f4f65dbb8e6b4ccba46befac4637dbb28eed",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/pub03-20261107/metadata-aliases.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/pub03-20261107/owner-supplied-review.txt",
+      "sha256": "864aff5a996c9b8ec84b56d230a7c55e1d8903286d51d25e7dbf95ba0e6f7d8f",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/pub03-20261107/reviewer-checks-original/build.txt",
+      "sha256": "ebb69e171905adbef5fa6eb99318ac99b24d32217269d8c3c2ded829a435db98",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/pub03-20261107/reviewer-checks-original/cleanup-after.json",
+      "sha256": "92eb437ec687fd913090dbb02aa29d85873b8c9f2ca9d2bb1cacee5a4f1a8ab5",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/pub03-20261107/reviewer-checks-original/cleanup-before.json",
+      "sha256": "92eb437ec687fd913090dbb02aa29d85873b8c9f2ca9d2bb1cacee5a4f1a8ab5",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/pub03-20261107/reviewer-checks-original/context-check.txt",
+      "sha256": "728b10ef7a165ebc12f7494bc57d5bda330d3125c1e68adb938642214d3c4bdb",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/pub03-20261107/reviewer-checks-original/context-lint.txt",
+      "sha256": "9728c7eb07f5b81500770fc53ba6f655d7428448c71fa3bee5d078aae1c81c63",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/pub03-20261107/reviewer-checks-original/diff-check.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/pub03-20261107/reviewer-checks-original/docs-lint.txt",
+      "sha256": "770e9481af98f896a8d0f3e806262bf8122b6d5efb1773b2f0fdcc54de8245cb",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/pub03-20261107/reviewer-checks-original/environment.json",
+      "sha256": "ba8f3b7e73aec8c76678c9a6de21c2b121d6b23253b610e1b1b3302b9399a507",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/pub03-20261107/reviewer-checks-original/fatal.json",
+      "sha256": "84c9506e89e7ac8535dfa222d5392dfc15e0a4484966a4600dfe8bad129a12ab",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/pub03-20261107/reviewer-checks-original/metadata.txt",
+      "sha256": "c8bca8f66821fa6d07f78acfd28d6031ca53864495543883369844cb7856827f",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/pub03-20261107/reviewer-checks-original/progress.json",
+      "sha256": "0ae04ae0518199fd379e424af21e9dbd2ae965a1d5bea14eb360e704c82592fc",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/pub03-20261107/reviewer-checks-original/results.json",
+      "sha256": "7a02eea38feab9f01bf3e6d1506300b7fbe050210d464eca283c2daf7d4a701b",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/pub03-20261107/reviewer-checks-original/source.json",
+      "sha256": "a9ee4c293dfd957316df9979498df399abc55cf407e58a18483f5dac16ff49fa",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/pub03-20261107/reviewer-checks-original/structural.txt",
+      "sha256": "aaa669e880ede8961394b30777a7076ae15a2cf98a81e57eb977128027996d7e",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/pub03-20261107/reviewer-checks-original/test-foundation.txt",
+      "sha256": "0df489f72669cfea681cec0907c609897a92c0b0258a777469a8e156e83947c0",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/pub03-20261107/reviewer-checks-original/test-prototype.txt",
+      "sha256": "465aa42bae29f86d487615df25def032329611b86ffe968d5bc61ff9f6ef8145",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/pub03-20261107/reviewer-checks-original/typecheck.txt",
+      "sha256": "e1a410b8d5f08d72b0ac6cbce22c2a24329240103e26e49d2094322ac1aff65d",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/evidence/pub03-20261107/support-scope-review.json",
+      "sha256": "9b5af81a10beec5d00a5dcd10431a89b1e4efdf2d3885d0a146461cd27a96584",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/plan.md",
+      "sha256": "f1ef944377c93685e3686242d168d5d44a2bc791e3866ed23c2c9620468e72ed",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/reviews/could-antigravity-20261107/report.txt",
+      "sha256": "864aff5a996c9b8ec84b56d230a7c55e1d8903286d51d25e7dbf95ba0e6f7d8f",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C00-could-planning.md",
+      "sha256": "861156d0a75427fcbe1d47d90a9f7bbc06984e1af156732be4cfef7bc83dab13",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C01-could-source-contract.md",
+      "sha256": "8e7ebbcdf2fe6339956a9c4f92b5ad79cd51534f013122d11f85b28ac6089da8",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C02-could-storage.md",
+      "sha256": "97d1625bd8d0944c1c9c582a15028f66282d17c55b8a3ee53f87f8f39c19d81f",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C03-could-authority.md",
+      "sha256": "f7e1c6a3d3778a178b7820f47d8aa4ab701cafea14ade46d303e40fdb9e08c54",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C04-edit-producer.md",
+      "sha256": "7fc9245c2b51566180d185a22fd97dd19aa3f47f20663182a8bf56e8b0aa2d20",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C05-remove-producer.md",
+      "sha256": "89acc04ee440b44a30f7478765ce738d72d5b9ecff1bfa24494adfbcb3c9faf3",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C06-could-recovery.md",
+      "sha256": "ed9f475d64ecde61ece1881f8d4d7ebdad55b0767462aa85515aaab37e05ab92",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C07-edit-ui.md",
+      "sha256": "65205301369728750dc3213d744f2fa97b5086fc4753da3a6f4063b28f8ffae5",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C08-remove-ui.md",
+      "sha256": "3821ce8d5d9bc4b58a54f2f5ab6b2dcdb4ade138445a94c4cae8d2599b477168",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C09-could-concurrency.md",
+      "sha256": "63b136e02bc801f414fe79b4ded5ef03b3f4f14582b1af4ea7f5128ba25ab6a6",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C10-could-browser.md",
+      "sha256": "fcab548464c049354e3cc8b8da08e86a28af42fdf4d0504e9af72093cfbe4215",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C11-could-handoff.md",
+      "sha256": "cd826d00279814353a0105cbe17034660101dd22e6b41532a551847e67c10bdf",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/PUB03-could-publication.md",
+      "sha256": "1bae8c69d8e634b0e4bc5348b2301786cc871eb2b16c28d2b700ab2b907cff83",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/verification/c01-source-contract.md",
+      "sha256": "fbdd1735534e8cebe1af15b45803fcc2f7a5f8d241af60604eb23f5d9265ad5a",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/verification/could-resources.mjs",
+      "sha256": "5b947d6d07dd44cb7d7864e2c51ea7e7ae51987f99d24f18bcae54fff4f7a270",
+      "scope_evidence": "PUB03 resource classification helper; exact unit tests"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/verification/could-resources.test.mjs",
+      "sha256": "99201ece470e781c25e501459ef2589e10115d2d4f36c5cc1ac42fca73d2db68",
+      "scope_evidence": "PUB03 meaningful classifier regression2/2"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/verification/could-review-assignment.md",
+      "sha256": "a4c8f545595a92811d81bbb1162e8733f0bb393be6aeb7b3960fe55b5851d6b0",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/verification/could-review-disposition.md",
+      "sha256": "02bdaf71f1af0271d2d47129c6b1e7084ff98f7911c8abe2a40bb8425f65f01b",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/verification/could-runtime-result.md",
+      "sha256": "7d3dde32dab1ae42840fef564559f3d0821c944b9512416f920119a96a1a0363",
+      "scope_evidence": "Owning SP05 C00\u2013C11/PUB03 registered task, mutable status, immutable author/reviewer evidence or handoff"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/verification/run-could-runtime.mjs",
+      "sha256": "c8e92ef40b8a34de6bcd4e6018e59d5129b9b3bcd8fa27985bcce4b3bba95055",
+      "scope_evidence": "PUB03 F-RUNNER-01 bounded correction; classifier2/2 and actual checks10/10"
+    },
+    {
+      "path": "docs/implementation/register.md",
+      "sha256": "bb50e8aff04a3ba9b8434feaf635ef780584fa0f129f078293f54b5e6e7b7730",
+      "scope_evidence": "Explicit C01/C11/PUB03 coordinated source or registration support, read/reconciled in task scope"
+    },
+    {
+      "path": "docs/implementation/roadmap.md",
+      "sha256": "94fa760a8e3cb6d4a6bf83da730f310958db3b5abe20b91b0c7d34e204db8926",
+      "scope_evidence": "Explicit C01/C11/PUB03 coordinated source or registration support, read/reconciled in task scope"
+    },
+    {
+      "path": "docs/implementation/tasks/05-sprint-lifecycle.md",
+      "sha256": "40519a868e823469f031e7e747e5ea524ef262d34fdef91d088ef60436831078",
+      "scope_evidence": "Explicit C01/C11/PUB03 coordinated source or registration support, read/reconciled in task scope"
+    },
+    {
+      "path": "docs/implementation/tasks/README.md",
+      "sha256": "5e2aee8b2fc9358e6c4777ad60dcb31764707010749b0510c130a0a82bb0f497",
+      "scope_evidence": "Explicit C01/C11/PUB03 coordinated source or registration support, read/reconciled in task scope"
+    },
+    {
+      "path": "docs/sdlc/PRD_SRS.md",
+      "sha256": "0c0910964fbc98a84f419e1a3c2fec2062f10fd5da422c21d9e52b07f2a5f001",
+      "scope_evidence": "Explicit C01/C11/PUB03 coordinated source or registration support, read/reconciled in task scope"
+    },
+    {
+      "path": "docs/sdlc/SAD.md",
+      "sha256": "a173a25a65d5265ebb14d1a36782e83b9b7b05e4f3b5cfeff7a1d747d943c5b5",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/api-design.md",
+      "sha256": "4c11868b810970edb6b11e121d480ce2b36778ec42527544621a2c9e112157ae",
+      "scope_evidence": "Explicit C01/C11/PUB03 coordinated source or registration support, read/reconciled in task scope"
+    },
+    {
+      "path": "docs/sdlc/artifact-register.md",
+      "sha256": "52ff4a412c75cf2f877f577dbfb70c6ab512f563ee48f975725c10ea8987083b",
+      "scope_evidence": "Explicit C01/C11/PUB03 coordinated source or registration support, read/reconciled in task scope"
+    },
+    {
+      "path": "docs/sdlc/data-design.md",
+      "sha256": "2408196c7d81b2dd51f925a5168c5c79ce96406e8c40f42fcd7cfac8ae5bcb6e",
+      "scope_evidence": "Explicit C01/C11/PUB03 coordinated source or registration support, read/reconciled in task scope"
+    },
+    {
+      "path": "docs/sdlc/diagrams/README.md",
+      "sha256": "47efe6ece831bb3ec3bc26c7476f23e64acb667fbdcd572a8f9a3b2fa8dac849",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/architecture/service-composition.drawio",
+      "sha256": "6bc210efb6fa5319207b40b433c0e467395643116370241785c494401cdac7b0",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/architecture/service-composition.mmd",
+      "sha256": "d3c477a3eef68e43fb3e82face0c0c67e28dd87ef0cde8c89d842cc298bab4ba",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/c4/containers.drawio",
+      "sha256": "eb719cf3b9b62a6cca865b0821ec867d728a67db76135f869e5050da674162fd",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/c4/containers.mmd",
+      "sha256": "20e75c5eda693c47a04d4f3971efce089ee7c0d1573ec4bedb3e901e0fc3e8f7",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/c4/system-context.drawio",
+      "sha256": "cf0847d8653b0128f60528f84a68315608b22fb63a4073eeede512aac987bc22",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/c4/system-context.mmd",
+      "sha256": "20654ffa248e10845dd33c537ee704eda853ec79da94ec56672e39473405c40c",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/handoff-logical-model.drawio",
+      "sha256": "04048cb50228ee6ef617339b295d82bd6686c931533458ba4fe67bc2f6b4f33d",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/handoff-logical-model.mmd",
+      "sha256": "294b40b44f6c5ba012187cd13defb25d82cbfad497fc999f30b7ce3f7d573186",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/knowledge-erd.drawio",
+      "sha256": "cf7047e2ca6c954172caaa4cdc5d453dc24128da26da2aff2f69dd2bdfbaf4c8",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/knowledge-erd.mmd",
+      "sha256": "b0c5cedc6a40bb3dfde6f8d4b39102c04547c29b20704f6f5cb0fc8e9c9fbc45",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/workspace-erd.drawio",
+      "sha256": "446dbee08128093462c2bb75f6d16ecec4e24c7c106742c442d85f4bef5e2764",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/workspace-erd.mmd",
+      "sha256": "af86502deb5ace7ec703a5b00a84e7256d7e4320d3c01764442dc710ec11c925",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/deployment/local-development.drawio",
+      "sha256": "6da969552fd62dd9c08aa7a2fac8b22c8d51fcf111a72c53e98204d7d6b37867",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/deployment/local-development.mmd",
+      "sha256": "ead095a7d927645a04b46d2926f681292c90c5493c1170af48fc2366af17125a",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/development/package-ownership.drawio",
+      "sha256": "d28f5069b876c67af358badaf205c17fa853d7937a1e7d9bf42d028933ffe02f",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/development/package-ownership.mmd",
+      "sha256": "ae9b29297e595f2ddcb680bfae2814507714380055a394e07ce8f2ad165c763c",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/ai-qa-flow.drawio",
+      "sha256": "0918d0e48c358fe7f2f453b1528c06e3e2a3fb6b6c78e1a33939b0bd31a65239",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/ai-qa-flow.mmd",
+      "sha256": "98852df4d8cb16bf0cf6174539d0866697697a31d2f89a56315d1f5fb09721bf",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/board-flow.drawio",
+      "sha256": "db80efcd3be73b38557a817367f2ea3bd4b0da7ade18abb8564455001c0ce684",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/board-flow.mmd",
+      "sha256": "cdd43c0c19e94f4e4d56dc8058608a04fc9e3d55662b893460026642205d8271",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/docs-flow.drawio",
+      "sha256": "a9e8babf2ea3909087eea9baedf8e30dbd86bfd933e421b769d8588210f2020f",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/docs-flow.mmd",
+      "sha256": "e90e99a0b55a41c6dfb6c35c753487f50caaff55f2879861b0f86b8b6d8567d3",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.drawio",
+      "sha256": "5d8cca5138647ede588806a52df3827a8b80ec7578a83502f2037e3f4968dd57",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.mmd",
+      "sha256": "e7f13ef7863e5b00c71b029c23e7e2859e87f4a1bd86d5e9c940a998c3cfb400",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/permission-read-flow.drawio",
+      "sha256": "0ed479483f4a794099f89399bdaa409a9a71011b41953f8013ee38365bdff1c1",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/permission-read-flow.mmd",
+      "sha256": "edef16e7137853a5ce5cf6e22aa67ece2f16b930592afb9f11741943851ed8a9",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/manifest.json",
+      "sha256": "74c88b30d40ef9cc32ad689ad8902e503b5a11144e161222efed20b9218df04f",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/sequence/document-creation.drawio",
+      "sha256": "77ff95265ff0f4b1b4ed573fa4007739c2509fe53cb3203c8118cf5ba4e0a6b5",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/sequence/document-creation.mmd",
+      "sha256": "c6c907049a2715a671b4ef70765b7054d91c2fa8c5023e680aa1c42bc528976d",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/sequence/protected-handoff.drawio",
+      "sha256": "5a23620ba4556b2ff84b703d9a2c747d5076a333e240c808e976842c6dc17c73",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/sequence/protected-handoff.mmd",
+      "sha256": "a16dfd79926ae0e5e26242a5f3a48f0da56c86eb19cd71b05456ab2fce544804",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/sitemap/application-sitemap.drawio",
+      "sha256": "7c973e4e705efe62b3797e5f1e87bc93726c2e72d326c400e93ca8d5b9b0d5e1",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/sitemap/application-sitemap.mmd",
+      "sha256": "2f34531e093bab87cedfcd9b735bdac8ff1fa36e24ca3bc60c9573da240b47ca",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/state/document-and-readiness.drawio",
+      "sha256": "ce02c36eaf9ffc938383fd16b3bcd9e28d7221f0967c4e37a9041f2fa3a3cbc6",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/state/document-and-readiness.mmd",
+      "sha256": "cc75f9133d6ead791416c15fb03b067adf6a1ece56e382899085ca87e77e3847",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/state/sprint-task-allocation.drawio",
+      "sha256": "17d66bbd5642b2950cad35579343be4f3f4f676752191b81c427a9ac9948f8d7",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/state/sprint-task-allocation.mmd",
+      "sha256": "9626e3fc034594786f5c6783ddba410f27f5921fff27d18ddf93b0fd4e35f695",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/use-case/use-case-diagram.drawio",
+      "sha256": "98a571b4e5550805c75f52dfd93aa65b05aaacd22c612155b183594400bac551",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/use-case/use-case-diagram.mmd",
+      "sha256": "cf85be013d18ca348e9df7cbdb530b8d3e6a05970c9547b0b69cac688b95538d",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/user-journey/core-user-journeys.drawio",
+      "sha256": "6791aeb71d4eb16b35f9b10fcecae9b79998c5763638ae9d69a377a6fb30e2b3",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/diagrams/user-journey/core-user-journeys.mmd",
+      "sha256": "03c2c3c45737481715bc233f26543b7ce884af0fe1e20cd386999fe8a536ec68",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/evaluation-cases.md",
+      "sha256": "6b533400d23a06a7baebcffe8cebdbaa1111e1c701151db45c90beb903dbb923",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/references/document-review-register.md",
+      "sha256": "1c0efee102f41772d5ccb49f0cae014961443f1c3ff08c6acabc9891f07341fe",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/requirement-verification.md",
+      "sha256": "3fd520dbfda2d7e1aea190aa0748930f92011889004d81e78ff604a36c11ddef",
+      "scope_evidence": "Explicit C01/C11/PUB03 coordinated source or registration support, read/reconciled in task scope"
+    },
+    {
+      "path": "docs/sdlc/test-coverage.md",
+      "sha256": "377a9f8789fef8bf12c593752a62a09db76af699506477af9ac76d8530d6fb32",
+      "scope_evidence": "Explicit C01/C11/PUB03 coordinated source or registration support, read/reconciled in task scope"
+    },
+    {
+      "path": "docs/sdlc/test-plan.md",
+      "sha256": "67d4862d45af988b7ca422f7b066aa5f9782e780c240047dc3242302ce892e05",
+      "scope_evidence": "Explicit C01/C11/PUB03 coordinated source or registration support, read/reconciled in task scope"
+    },
+    {
+      "path": "docs/sdlc/ui-ux-blueprint.md",
+      "sha256": "c818e4676981f887ec6c72040dabde94139a7d85cc7ed2d802b9160536db7f2f",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/ui-ux-spec.md",
+      "sha256": "04a8f89d46e6a562ffbe93b7f73c9f0916ad94605d4895f6eebfb2d3c60e6d23",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/sdlc/use-cases.md",
+      "sha256": "74910bb38606440756272609c14b6ed3d1a0cce73e9ba056d1719e16e1340cdf",
+      "scope_evidence": "Explicit C01/C11/PUB03 coordinated source or registration support, read/reconciled in task scope"
+    },
+    {
+      "path": "docs/ux/flows/ai-qa-flow.md",
+      "sha256": "b5fbbae1fe73f71f1078939e6ae09dd309d62342f530d64d04c444d3370038ac",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/ux/flows/board-flow.md",
+      "sha256": "b0065adba6b2d75ee526227b6bd618af7fa003afb6d6ea23d459507537c3e8b4",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/ux/flows/docs-flow.md",
+      "sha256": "7f310cdcffd313bf3bc750c12169fe47898f0cc06c71f2d5db78938bb0ab45d8",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/ux/permission-matrix.md",
+      "sha256": "ebb6087864533ec873e49791a88a383dc820e5ad9ff50187ca7fd9cc022feb66",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/ux/personas.md",
+      "sha256": "d176c69d9c8c7edcbd9892dcfdc92d72bac8e9b9619e2dc71b5b468e9a308da5",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/ux/wireframe-workplan.md",
+      "sha256": "57d06fab1d37c7a1549fd00c7315faca218100adf7f1055eed7250371b989180",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "docs/ux/wireframes/README.md",
+      "sha256": "caa2e6afa4d862096855e395b79a253dff2884e1bdf1898714f36154afa546b2",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "services/workspace/SPRINTS.md",
+      "sha256": "86f45700dffd449cca41bd9679718589e99a3ebfd58f5ef1659fb506272e7616",
+      "scope_evidence": "Explicit C01/C11/PUB03 coordinated source or registration support, read/reconciled in task scope"
+    },
+    {
+      "path": "services/workspace/migrations/012-sprint-could.down.sql",
+      "sha256": "fd1e5387f03ac8e2b626d753f9947a068599e84aaf78d571510f4627bb1b0e28",
+      "scope_evidence": "Exact accepted author/reviewer source SHA-256; matches frozen172 input manifest"
+    },
+    {
+      "path": "services/workspace/migrations/012-sprint-could.up.sql",
+      "sha256": "de09f96c7c08a06be84660b29548b35003ee36baa6aad38784fc14cbed9a451d",
+      "scope_evidence": "Exact accepted author/reviewer source SHA-256; matches frozen172 input manifest"
+    },
+    {
+      "path": "services/workspace/migrations/013-sprint-could-authority.down.sql",
+      "sha256": "79cdb1a10114f00b474db3824a1c28a42df6829967a707bf143f3e612aa3395e",
+      "scope_evidence": "Exact accepted author/reviewer source SHA-256; matches frozen172 input manifest"
+    },
+    {
+      "path": "services/workspace/migrations/013-sprint-could-authority.up.sql",
+      "sha256": "71971f383e8ff33de07ab596bf41fde138605a2882bdb858c2c2819d58b34adf",
+      "scope_evidence": "Exact accepted author/reviewer source SHA-256; matches frozen172 input manifest"
+    },
+    {
+      "path": "services/workspace/src/projects/store.ts",
+      "sha256": "34741b820c629f95ec6a82a30065df342585f1215e338145a9c0072d286bc300",
+      "scope_evidence": "Exact accepted author/reviewer source SHA-256; matches frozen172 input manifest"
+    },
+    {
+      "path": "services/workspace/src/sprints/authority.ts",
+      "sha256": "cc48c50b22edba94e52def8cd6c957222592f8ab6cc362de78216c3c4021e06f",
+      "scope_evidence": "Exact accepted author/reviewer source SHA-256; matches frozen172 input manifest"
+    },
+    {
+      "path": "services/workspace/src/sprints/http.ts",
+      "sha256": "6c8ef0e50ebe95b241fd2ddd8aff0ca93271992b77018a60e1443314b266ae2f",
+      "scope_evidence": "Exact accepted author/reviewer source SHA-256; matches frozen172 input manifest"
+    },
+    {
+      "path": "services/workspace/src/sprints/store.ts",
+      "sha256": "296d91de5530d5e187a414303654cf57881b2410ae1a5d29fc92bfb479c35ae3",
+      "scope_evidence": "Exact accepted author/reviewer source SHA-256; matches frozen172 input manifest"
+    },
+    {
+      "path": "services/workspace/src/sprints/types.ts",
+      "sha256": "a5df139c779d16a42d161269a5d57ce01d1387a00bef0ed6fe42f068d2e7c5e8",
+      "scope_evidence": "Exact accepted author/reviewer source SHA-256; matches frozen172 input manifest"
+    },
+    {
+      "path": "specs/001-session.md",
+      "sha256": "b36b224050581ed366440f60fd72c9fb6d7a26a69a549b4b143234839ba4f606",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "specs/002-project-membership.md",
+      "sha256": "e904478f81a4dc8af3fe0f3441978405bc008196f22b8e9e0207cdfaa7d0d7b4",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "specs/003-create-task.md",
+      "sha256": "80b86d2ad223e10d749c8e73a7a38b525d72f8094d4f935d8619a1000a956014",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "specs/004-update-task.md",
+      "sha256": "7c15f1391b8e7ef8b3c27a424c3d8fc6b82b1eb43cadb76a0218a91490d35fec",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "specs/005-sprint-lifecycle.md",
+      "sha256": "9d04463851f08d0468c383dffa9f92ed54e9431477349c881b02ed52dc5e41f9",
+      "scope_evidence": "Explicit C01/C11/PUB03 coordinated source or registration support, read/reconciled in task scope"
+    },
+    {
+      "path": "specs/006-document-access.md",
+      "sha256": "9160a4b2d10e654ae799364218f7aa1477d9ce9cf153afa13d408d59fcccff1a",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "specs/007-version-publication.md",
+      "sha256": "164dba19f7eb6d82f2523ca88014fa4c6efed0f9fd2401a2eb06c80b45605dff",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "specs/008-linked-keyword-search.md",
+      "sha256": "009c4f28c37ee136f37dc8c8382645e9d7f7b90838a7ae8afbfdb248de8f6c1f",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "specs/009-cited-question.md",
+      "sha256": "694235e66a1713783156e00bed239083609fde42c5853fa570810a7c30b64006",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "specs/010-current-work-question.md",
+      "sha256": "b369bbd9b011bc622fb1de1aeb9a192735be26be2f41ead16e8fabf6be12e04f",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "specs/011-audit-and-source-inspection.md",
+      "sha256": "df2533df954c3d939b47162cdb954f804b745a201577aa4018ecc93d629073bd",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "specs/012-failure-and-evaluation.md",
+      "sha256": "32f4232c5d7e5701eadefc300d035cc605ce61257f7305f6f9e2d8ef0c8b5a94",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "specs/013-scoped-inspection.md",
+      "sha256": "ef6547274c789651fc97cc02592065803f431785709b4e4ee425cda9b2321a18",
+      "scope_evidence": "Required metadata only; other HEAD bytes identical after removing named metadata fields"
+    },
+    {
+      "path": "specs/README.md",
+      "sha256": "b8b18caed92c56087188a709c2684c188e2006b669fa23efba6eea37592ef818",
+      "scope_evidence": "Explicit C01/C11/PUB03 coordinated source or registration support, read/reconciled in task scope"
+    },
+    {
+      "path": "tests/workspace/project-browser.test.mjs",
+      "sha256": "c851011e84173667bbecad2582b34dbc628497d75d0bde70abba44e1b147f7db",
+      "scope_evidence": "PUB03 capture-only correction; behavior diff verified against HEAD"
+    },
+    {
+      "path": "tests/workspace/sprint-controller.test.mjs",
+      "sha256": "db92262878eedcaf7582f63de85a99a2b920da50a198af7585dce03580d8a6ee",
+      "scope_evidence": "Exact accepted author/reviewer source SHA-256; matches frozen172 input manifest"
+    },
+    {
+      "path": "tests/workspace/sprint-could-authority-storage.test.mjs",
+      "sha256": "50f3c90684ccc19c4c551a671cd4fbf80df93645540a35c127e8583905e306d5",
+      "scope_evidence": "Exact accepted author/reviewer source SHA-256; matches frozen172 input manifest"
+    },
+    {
+      "path": "tests/workspace/sprint-could-authority.test.mjs",
+      "sha256": "27a12f60785f31eebdc6996bcc8296572af79d7b1b02bd32f4318ba0e1e0e2ad",
+      "scope_evidence": "Exact accepted author/reviewer source SHA-256; matches frozen172 input manifest"
+    },
+    {
+      "path": "tests/workspace/sprint-could-browser.test.mjs",
+      "sha256": "b2d6d31800dbfdc42738805d2cd3c4999c5a575f281c37fde0fa926f95a83d6d",
+      "scope_evidence": "Exact accepted author/reviewer source SHA-256; matches frozen172 input manifest"
+    },
+    {
+      "path": "tests/workspace/sprint-could-concurrency.test.mjs",
+      "sha256": "358681a28a95554f19d2e3f84adf88be643decd26e85d7412f48334a7904e546",
+      "scope_evidence": "Exact accepted author/reviewer source SHA-256; matches frozen172 input manifest"
+    },
+    {
+      "path": "tests/workspace/sprint-could-fault.test.mjs",
+      "sha256": "9cbffb2523a3b8f4c88b0858a565e5aa856afc4f57ee01392c5befca0babc9a2",
+      "scope_evidence": "Exact accepted author/reviewer source SHA-256; matches frozen172 input manifest"
+    },
+    {
+      "path": "tests/workspace/sprint-could-fixture.mjs",
+      "sha256": "6df248a83c8be2e6eabed0a271cf3062faa8f2c19094befaf8bdcd2782a386e2",
+      "scope_evidence": "Exact accepted author/reviewer source SHA-256; matches frozen172 input manifest"
+    },
+    {
+      "path": "tests/workspace/sprint-could-http.test.mjs",
+      "sha256": "7af105b2065fd255f8bb4e703bafd1ccd64f8f8c96ce0277d7f28fcc87e539ae",
+      "scope_evidence": "Exact accepted author/reviewer source SHA-256; matches frozen172 input manifest"
+    },
+    {
+      "path": "tests/workspace/sprint-could-security.test.mjs",
+      "sha256": "9138c134fa5fa739ccf3558e684c311465250b8722a4930a1525364245256f45",
+      "scope_evidence": "Exact accepted author/reviewer source SHA-256; matches frozen172 input manifest"
+    },
+    {
+      "path": "tests/workspace/sprint-could-storage.test.mjs",
+      "sha256": "8983c864f872b86a17f6332f18bfcb81af2b9223121f6d630c82f6426c973faa",
+      "scope_evidence": "Exact accepted author/reviewer source SHA-256; matches frozen172 input manifest"
+    },
+    {
+      "path": "tests/workspace/sprint-could-ui-fixture.mjs",
+      "sha256": "ba5985e98a25ce6f7e17571d53bf8ca37955a28d84d131c26ebf95d2c24900c1",
+      "scope_evidence": "Exact accepted author/reviewer source SHA-256; matches frozen172 input manifest"
+    },
+    {
+      "path": "tests/workspace/sprint-could-ui.test.mjs",
+      "sha256": "5217a8b877aba27d6c09f6c59fe457b8109312a57123f0d7c3cebac9133426aa",
+      "scope_evidence": "Exact accepted author/reviewer source SHA-256; matches frozen172 input manifest"
+    },
+    {
+      "path": "tests/workspace/sprint-fixture.mjs",
+      "sha256": "92facbd2368c2845b9ee15164e092b001d6b17cd636a5dc40e2ada49a12e46c8",
+      "scope_evidence": "Exact accepted author/reviewer source SHA-256; matches frozen172 input manifest"
+    },
+    {
+      "path": "tests/workspace/sprint-ui-fixture.mjs",
+      "sha256": "da786ab3e65fe55f3602dbc6085a9782ccf3b4fc91b3b5043088a3f6d33c65c5",
+      "scope_evidence": "Exact accepted author/reviewer source SHA-256; matches frozen172 input manifest"
+    },
+    {
+      "path": "tests/workspace/task-browser.test.mjs",
+      "sha256": "930fe9592ba4260d7d19a71b860c9bd4d52546f41298108febf9a2abfc099078",
+      "scope_evidence": "Exact accepted author/reviewer source SHA-256; matches frozen172 input manifest"
+    }
+  ],
+  "excluded_preserved": [
+    {
+      "path": "docs/implementation/features/sp-03-create-task/evidence/ui-2026-11-02/runs/run-1793937473201-84d873d8/browser-summary.json",
+      "reason": "Other-feature generated regression capture; preserved locally, deliberately excluded from selected Could PR"
+    },
+    {
+      "path": "docs/implementation/features/sp-03-create-task/evidence/ui-2026-11-02/runs/run-1793937473201-84d873d8/task-desktop.png",
+      "reason": "Other-feature generated regression capture; preserved locally, deliberately excluded from selected Could PR"
+    },
+    {
+      "path": "docs/implementation/features/sp-03-create-task/evidence/ui-2026-11-02/runs/run-1793937473201-84d873d8/task-mobile-long-title.png",
+      "reason": "Other-feature generated regression capture; preserved locally, deliberately excluded from selected Could PR"
+    },
+    {
+      "path": "docs/implementation/features/sp-03-create-task/evidence/ui-2026-11-02/runs/run-1793937473201-84d873d8/task-mobile.png",
+      "reason": "Other-feature generated regression capture; preserved locally, deliberately excluded from selected Could PR"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/browser-1793937111363/desktop.png",
+      "reason": "Other-feature generated regression capture; preserved locally, deliberately excluded from selected Could PR"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/browser-1793937111363/mobile.png",
+      "reason": "Other-feature generated regression capture; preserved locally, deliberately excluded from selected Could PR"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/browser-1793937111363/summary.json",
+      "reason": "Other-feature generated regression capture; preserved locally, deliberately excluded from selected Could PR"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/browser-1793937486129/desktop.png",
+      "reason": "Other-feature generated regression capture; preserved locally, deliberately excluded from selected Could PR"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/browser-1793937486129/mobile.png",
+      "reason": "Other-feature generated regression capture; preserved locally, deliberately excluded from selected Could PR"
+    },
+    {
+      "path": "docs/implementation/features/sp-04-update-task/evidence/continuation/browser-1793937486129/summary.json",
+      "reason": "Other-feature generated regression capture; preserved locally, deliberately excluded from selected Could PR"
+    }
+  ],
+  "metadata_proof_paths": [
+    "docs/architecture.md",
+    "docs/sdlc/SAD.md",
+    "docs/sdlc/diagrams/README.md",
+    "docs/sdlc/diagrams/architecture/service-composition.drawio",
+    "docs/sdlc/diagrams/architecture/service-composition.mmd",
+    "docs/sdlc/diagrams/c4/containers.drawio",
+    "docs/sdlc/diagrams/c4/containers.mmd",
+    "docs/sdlc/diagrams/c4/system-context.drawio",
+    "docs/sdlc/diagrams/c4/system-context.mmd",
+    "docs/sdlc/diagrams/data/handoff-logical-model.drawio",
+    "docs/sdlc/diagrams/data/handoff-logical-model.mmd",
+    "docs/sdlc/diagrams/data/knowledge-erd.drawio",
+    "docs/sdlc/diagrams/data/knowledge-erd.mmd",
+    "docs/sdlc/diagrams/data/workspace-erd.drawio",
+    "docs/sdlc/diagrams/data/workspace-erd.mmd",
+    "docs/sdlc/diagrams/deployment/local-development.drawio",
+    "docs/sdlc/diagrams/deployment/local-development.mmd",
+    "docs/sdlc/diagrams/development/package-ownership.drawio",
+    "docs/sdlc/diagrams/development/package-ownership.mmd",
+    "docs/sdlc/diagrams/flowchart/ai-qa-flow.drawio",
+    "docs/sdlc/diagrams/flowchart/ai-qa-flow.mmd",
+    "docs/sdlc/diagrams/flowchart/board-flow.drawio",
+    "docs/sdlc/diagrams/flowchart/board-flow.mmd",
+    "docs/sdlc/diagrams/flowchart/docs-flow.drawio",
+    "docs/sdlc/diagrams/flowchart/docs-flow.mmd",
+    "docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.drawio",
+    "docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.mmd",
+    "docs/sdlc/diagrams/flowchart/permission-read-flow.drawio",
+    "docs/sdlc/diagrams/flowchart/permission-read-flow.mmd",
+    "docs/sdlc/diagrams/manifest.json",
+    "docs/sdlc/diagrams/sequence/document-creation.drawio",
+    "docs/sdlc/diagrams/sequence/document-creation.mmd",
+    "docs/sdlc/diagrams/sequence/protected-handoff.drawio",
+    "docs/sdlc/diagrams/sequence/protected-handoff.mmd",
+    "docs/sdlc/diagrams/sitemap/application-sitemap.drawio",
+    "docs/sdlc/diagrams/sitemap/application-sitemap.mmd",
+    "docs/sdlc/diagrams/state/document-and-readiness.drawio",
+    "docs/sdlc/diagrams/state/document-and-readiness.mmd",
+    "docs/sdlc/diagrams/state/sprint-task-allocation.drawio",
+    "docs/sdlc/diagrams/state/sprint-task-allocation.mmd",
+    "docs/sdlc/diagrams/use-case/use-case-diagram.drawio",
+    "docs/sdlc/diagrams/use-case/use-case-diagram.mmd",
+    "docs/sdlc/diagrams/user-journey/core-user-journeys.drawio",
+    "docs/sdlc/diagrams/user-journey/core-user-journeys.mmd",
+    "docs/sdlc/evaluation-cases.md",
+    "docs/sdlc/references/document-review-register.md",
+    "docs/sdlc/ui-ux-blueprint.md",
+    "docs/sdlc/ui-ux-spec.md",
+    "docs/ux/flows/ai-qa-flow.md",
+    "docs/ux/flows/board-flow.md",
+    "docs/ux/flows/docs-flow.md",
+    "docs/ux/permission-matrix.md",
+    "docs/ux/personas.md",
+    "docs/ux/wireframe-workplan.md",
+    "docs/ux/wireframes/README.md",
+    "specs/001-session.md",
+    "specs/002-project-membership.md",
+    "specs/003-create-task.md",
+    "specs/004-update-task.md",
+    "specs/006-document-access.md",
+    "specs/007-version-publication.md",
+    "specs/008-linked-keyword-search.md",
+    "specs/009-cited-question.md",
+    "specs/010-current-work-question.md",
+    "specs/011-audit-and-source-inspection.md",
+    "specs/012-failure-and-evaluation.md",
+    "specs/013-scoped-inspection.md"
+  ],
+  "historical_metadata_note": "Restore original P01 PRD0.10.2 and C01 DATA0.16.5 snapshot labels under explicit Historical headings; no old execution evidence rewritten."
+}

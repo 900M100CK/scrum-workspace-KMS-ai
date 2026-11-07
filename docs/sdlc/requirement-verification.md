@@ -1,8 +1,8 @@
 # Functional and alternate-flow verification design
 
 **Artifact ID:** VERIFY-01
-**Version/date:** 0.12.3 Draft · 5 November 2026
-**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.10.2; UC-02 v0.8.3; TEST-08 v0.24.4; ADR-0007 through ADR-0017; release-scope v0.2.; Proposed ADR-0028 v0.1
+**Version/date:** 0.12.5 Draft · 6 November 2026
+**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.10.3; UC-02 v0.8.4; TEST-08 v0.24.6; ADR-0007 through ADR-0017; release-scope v0.2.; Proposed ADR-0028 v0.1; Proposed ADR-0031 v0.1
 **Status:** Verification design with bounded SP-01 and SP-02 handler/DOM/browser evidence; complete application acceptance remains open. No independent approval.
 **Trace:** BR-01 through BR-15; SC-01 through SC-08 through TEST-COVERAGE-01.
 
@@ -81,8 +81,8 @@ For every applicable mutation add authority denial, stale revision, replay, owni
 | FR-63 / AC-63 | UC-08/09 results | TC-23 | Result title/identity/version/validity matches authoritative source; denied metadata absent. Defined. |
 | FR-64 / AC-64 | UC-02 Alt-2 | TC-24 | Optional project name/description edit preserves project ID and memberships. Explicit optional UC branch now matches AC/contract. |
 | FR-65 / AC-65 | UC-06 Alt-3 | TC-20 | Optional owner/label edit leaves immutable version content and citation locators unchanged. Defined. |
-| FR-66 / AC-66 | UC-05 Alt-3 | TC-13, TC-21 | Optional Planned dates/goal edit persists valid values; invalid dates reject. Defined. |
-| FR-67 / AC-67 | UC-05 Alt-2 | TC-21 | Optional removal returns item to Product Backlog without deletion or Done transition. Defined. |
+| FR-66 / AC-66 | UC-05 Alt-3 | TC-13, TC-21 | Could: independent sprint-edit; Planned-only partial merge, strict dates/goal, stale/lifecycle denial, no-op acknowledgement and current-authority immutable original replay. C01 source-aligned; runtime Not run (C04/C07/C09/C10). |
+| FR-67 / AC-67 | UC-05 Alt-2 | TC-21 | Could: independent sprint-deallocate; only current todo/in_progress in Planned/Active returns To Do with atomic numeric append/revisions/audit/receipt. Done 409 task_already_done after access/revision/location; Completed denied. C01 source-aligned; runtime Not run (C05/C08/C09/C10). |
 | FR-68 / AC-68 | UC-01 EX-02 | TC-01, TC-22 | Expired session yields no protected result and asks sign-in; configurable starting limits selected. P09 server denial measured; UI prompt remains unrun. |
 | FR-69 / AC-69 | UC-12 EX-01 | TC-10, TC-18 | Each required AI dependency failure category returns no generated answer with recorded run/error; healthy operations survive. Defined. |
 | FR-70 / AC-70 | UC-08 Alt-5 | TC-25 | Owner-added Should: scoped title/description keyword search, independent of AI/Knowledge, with paging rechecks and no hidden counts. Defined by ADR-0016. |
@@ -101,8 +101,8 @@ Rows are branch-specific, not claims that the enclosing UC has passed. UC-01 ext
 | UC-04 / Alt-1 | TC-16 | Direct state moves; reopening completed-Sprint task preserves history and returns to Backlog. |
 | UC-04 / Alt-2 | TC-08 | Resolved without earlier Open persists as history and leaves Not Blocked. |
 | UC-05 / Alt-1 | TC-07, TC-21 | Owner confirmed multiple selected tasks with per-task partial results. Successful tasks remain; conflicting tasks do not change. ADR-0014 uses per-task keys and same-payload replay; uncertain outcomes stay unconfirmed. |
-| UC-05 / Alt-2 | TC-21 | Optional removal returns item without deletion/completion. |
-| UC-05 / Alt-3 | TC-13, TC-21 | Optional planned goal/dates edit validates before commit. |
+| UC-05 / Alt-2 | TC-21 | Could unfinished-only removal as above; Done/Completed denial protects completed-work attribution and future Sprint metrics. Runtime Not run. |
+| UC-05 / Alt-3 | TC-13, TC-21 | Could independent sprint-edit and Planned-only partial validation/no-op/replay as above. Runtime Not run. |
 | UC-06 / Alt-1 | TC-13, TC-20 | Optional supported import follows the same Workspace-first policy and immutable creation flow. |
 | UC-06 / Alt-2 | TC-03 | Reclassification requires manage-access and affects renewed protected reads. |
 | UC-06 / Alt-3 | TC-20 | Optional metadata edit preserves evidence bytes/locators. |
@@ -211,3 +211,31 @@ Existing TC-07/08/13/14/16/18/19/22 and FR-09/40/43/44 trace now include [actual
 [FEAT-SP05-01](../implementation/features/sp-05-sprint-lifecycle/plan.md) / SP05-P00–P15 owns the only current status. FR06/AC06: real create/date/goal/timestamp and original-result tests in sprint-http; FR07/AC07: actual exclusive allocations/mixed outcomes and separate keys in sprint-http/concurrency/controller/live DOM; FR08/AC08: actual competing starts and empty lifecycle in sprint-http/concurrency; FR41/AC41: complete permutation/string generation/partial rejection/no-op/numeric position revision in sprint-http and live DOM/browser; FR42/AC42: real completion retains Done and returns unfinished To Do with original counts, audit and receipts, followed by actual reopen/allocation with preserved history in sprint-http/concurrency. FR31 capture and rollback/lost COMMIT apply to all five producers; sprint-security tests actual revoke-first and all eight post-wait expiry boundaries. TC07/13/14/16/18/19/21/22 and UC05 denial/alternate branches are exercised only to these named boundaries. FR66/67 remain excluded Could, not failed Must gates.
 
 Exact positive/negative runs, initial failed339-run, focused corrections, final rerun source hashes, isolated Edge and unrun/independent/release limits are retained in the feature handoff/evidence. A fixture or schema pass alone does not close a handler/permission gate; no whole SC03/04/06, protected transport D07, provider/evaluation, deployment or independent acceptance is claimed.
+
+## Selected Could verification design — 6 November 2026
+
+FR/AC-66/67/31 and UC-05 Alt-2/3 remain Could and are source-aligned by C01, not runtime-verified. [FEAT-SP05-01](../implementation/features/sp-05-sprint-lifecycle/plan.md) owns fresh execution status; original Must evidence remains historical.
+
+| Assertion / boundary | Planned TC and producer | Runtime evidence |
+| --- | --- | --- |
+| Independent sprint-edit / sprint-deallocate, no role/create/allocate implication; current membership/read/action, revoked/rejoined/unknown/cross-project scope, post-wait expiry and generic hidden404 | TC-13/18/19/22; C03/C04/C05 | Not run for Could |
+| Planned-only partial edit: omitted values preserved; full merged strict date/goal validation; equal/reversed/invalid dates, null/extra fields, stale revision and Active/Completed reject; identical/revision-only no-op retains one acknowledgement without revision/change audit | TC-13/21; C04 | Not run for Could |
+| todo/in_progress current allocation in Planned/Active returns To Do with numeric append, Backlog generation and allocation/Task/Sprint revisions; assignee/blockers/history preserved; audit binds source/prior state/location/result position and actor/operation/key/hash | TC-16/21; C05 | Not run for Could |
+| Done is unchanged and returns task_already_done only after current access/Sprint revision/location; Completed/noncurrent association rejects; inaccessible Task never leaks Done status | TC-13/18/21; C05 | Not run for Could |
+| Original 200 Sprint after later state/revision/location changes under renewed current rights; changed payload conflicts; new key for returned association conflicts; audit/receipt failure rolls back; lost COMMIT/response remains unknown and reconciles exact original identity without duplicate audit/mutation | TC-14/16/19/21; C04/C05/C06 | Not run for Could |
+| Actual handler edit/start, remove/complete, remove/reorder, Done transition/removal and duplicate-key races preserve lock order, atomicity and history; no structural test substitutes for these | TC-07/14/21; C09 | Not run for Could |
+| Existing 200 Sprint shapes, PATCH8192/media/extra-query negatives, empty DELETE/no-body/query/revision-header transport; durable recovery v2 preserves v1 identities and queued allocation; reload409 without automatic fresh key; accessible existing-design UI/HTTPS/Edge reconstructs current state separately from historical receipt | TC-13/19/21/22; C06/C07/C08/C10 | Not run for Could |
+
+TC-21 Done removal exclusion preserves completed-work attribution and future Sprint metrics. C11 consolidates source-bound regression/trace and prepares independent review without self-approval. C02 tests additive012 forward/repeat/safe-empty-down and retained-data refusal separately; historical schema ceilings stay unchanged.
+
+## Selected Could author runtime navigation — 6 November 2026
+
+[FEAT-SP05-01](../implementation/features/sp-05-sprint-lifecycle/plan.md) and [SP05-COULD-RUNTIME-01](../implementation/features/sp-05-sprint-lifecycle/verification/could-runtime-result.md) now hold source-bound author results for the selected continuation. Earlier C01 Not-run rows describe the source-only checkpoint. They are not rewritten as passed historical execution. Independent review remains unexecuted.
+
+| Trace | Actual assertion source | Evidence boundary |
+| --- | --- | --- |
+| AC-66 / UC-05 Alt-3 / TC-13/21 | sprint-could-http, fault, concurrency, security, controller, UI and browser tests | Planned partial validation/no-op/denials, immutable replay and atomic rollback, real edit/start ordering, post-wait expiry and HTTPS/Edge current refresh |
+| AC-67 / UC-05 Alt-2 / TC-07/13/16/21 | sprint-could-http, fault, concurrency, security, UI and browser tests | todo/in_progress return; Done409 after scope/revision/location; Completed/current-location denial; numeric append/revisions/audit; assignee/blocker/history; exact DELETE recovery; both completion/Done/reallocate/reorder commit orders |
+| AC-31 / TC-14/18/19/22 | sprint-could-storage, authority-storage, authority, fault and security tests | Private independent grants, no role inference, immutable receipts,012/013 safe reverse/refusal, private-audit isolation/boolean provenance, revoke/rejoin, unavailable authority, rollback and lost actual COMMIT |
+
+The fresh final runner lists every current Workspace test path and actual footer, browser separately. Structural92 checks, build/typecheck/foundation/prototype are distinct from actual PG/HTTP/DOM/Edge behaviors; see the result for final actual status/counts and unrun independent/valuable-data/deployment gates. No prior347/57 result is reused as evidence for changed source.

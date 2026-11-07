@@ -1,9 +1,9 @@
 # Work plan register and template
 
 **Artifact ID:** IMPL-FEATURES-01\
-**Version/date:** 0.58 Draft · 5 November 2026
+**Version/date:** 0.62 Draft · 7 November 2026
 **Status:** Planning entry; no application feature accepted or implemented by this file.\
-**Inputs:** [Development rules](../../development-rules.md) v1.13; [implementation roadmap](../roadmap.md) v0.51; [PLAN-01](../../planning/five-month-plan.md) v0.4; [spec index](../../../specs/README.md) v0.8.2; [source register](../register.md).\
+**Inputs:** [Development rules](../../development-rules.md) v1.13; [implementation roadmap](../roadmap.md) v0.54; [PLAN-01](../../planning/five-month-plan.md) v0.4; [spec index](../../../specs/README.md) v0.8.6; [source register](../register.md).\
 **Trace:** Existing feature FR/AC/BR/SC through its canonical spec; no added scope.\
 **Owner role:** Sequential development coordinator.
 
@@ -245,3 +245,21 @@ SP05-V01 bounded result: [SP05-RUNTIME-RESULT-01 v0.1](sp-05-sprint-lifecycle/ve
 ## AG01 v0.5 full Workspace regression closure — 5 November 2026
 
 [FEAT-SP05-01 v0.10](sp-05-sprint-lifecycle/plan.md) / entry v0.10 / [SP05-FREG-CLOSURE-01 v0.1](sp-05-sprint-lifecycle/verification/regression-closure.md) receive Antigravity report/tracking v0.5 and actual full40-file347/347 log/record.40 source markers and122 published inputs match; F-REG-01 resolved by execution, not waived. SP05-AG01-DISPOSITION-01 v0.3, SP05-FINAL-HANDOFF-01 v0.2 and SP05-RUNTIME-GUIDE-01 v0.3 reflect the newer boundary. [SP05-M03-READINESS-01 v0.1](sp-05-sprint-lifecycle/verification/m03-readiness.md) prepares owner review with actual roles/states/test names; no M03/release acceptance, product edit or new runtime rerun. Existing docs PR #2 publishes this continuation.
+
+## SP-05 selected Could planning — 5 November 2026
+
+[FEAT-SP05-01 v0.11](sp-05-sprint-lifecycle/plan.md), entry v0.11 and [SP05-WBS-01 v0.4](sp-05-sprint-lifecycle/breakdown.md) register SP05-C00–C11 v0.1 and [SP05-COULD-DECISIONS-01 v0.1](sp-05-sprint-lifecycle/could-decisions.md) under SP-05 / PLAN-01 Month 2 / M-03. Owner selected FR-66/67 Could implementation planning, two private actions sprint-edit/sprint-deallocate, Planned-only editing, and removal of unfinished Tasks only in Planned/Active. Done and Completed removal are excluded to protect completed-work attribution and Sprint metrics. Branch codex/sp-05-could starts at merged main cfe0dbe. Only the owning plan stores mutable task status. Planning/briefs only; C01 source alignment must precede producers,012 is planned not applied, Must evidence remains historical, and M03/release acceptance remains separate. No new runtime result, publication or reviewer dispatch.
+
+## SP05 C01 source/contract continuation — 6 November 2026
+
+[FEAT-SP05-01 v0.12](sp-05-sprint-lifecycle/plan.md) records owner-requested C01 under SP-05.1–05.4 / PLAN-01 Month 2 / M-03. PRD-01 v0.10.3, UC-02 v0.8.4, SP-05 v0.7.5, IMPL-SP-05 v0.3, Workspace0.2.15/logical0.15, CONTRACT-01 v0.25.4, DATA-04 v0.16.5, API-05 v0.23.5, TEST-08 v0.24.5, coverage0.11.4 and verification0.12.4 align independent sprint-edit/sprint-deallocate, Planned partial edits and unfinished-only current removal in Planned/Active. Done/Completed exclusion preserves completed-work attribution and future Sprint metrics. [Proposed ADR-0031](../../adr/0031-sprint-could-edit-and-removal.md) records bounded mechanics; accepted ADRs/baseline and historical evidence remain unchanged. Existing two operations keep 200 Sprint and Could priority. Registration/source structure is not runtime permission evidence; C02–C11 remain separate. No runtime/schema/UI/dependency edit, commit/push or independent acceptance.
+
+## Selected Could runtime registration — 6 November 2026
+
+FEAT-SP05-01 v0.13 / entry v0.13 records C02–C11 selected FR/AC-66/67/31 under SP-05.1–05.4 / PLAN-01 Month 2 / M-03. Workspace0.2.16, CONTRACT-01 v0.25.5, API-05 v0.23.6, DATA-04 v0.16.6, Proposed ADR-0031 v0.2 / ADR index0.7, canonical SP-05 v0.7.6 / IMPL-SP-05 v0.4 and TEST-08 v0.24.6 / coverage0.11.5 / verification0.12.5 navigate actual selected Could runtime work.012 plus additive013 preserve independent private rights and provenance without direct runtime audit read. WORKSPACE-SPRINTS-01 v0.2 documents reproduction and rollback limits. SP05-C09 v0.2 records its bounded companion amendment. Current statuses/results belong only to the owning plan and source-bound SP05-COULD-RUNTIME-01 v0.1; prepared SP05-COULD-REVIEW-01 v0.1 is not independent execution. Existing200 Sprint/Could priorities and historical evidence remain unchanged; no commit/push, production upgrade, accepted ADR change or owner milestone/release acceptance.
+
+[SP05-COULD-RUNTIME-01 v0.1](sp-05-sprint-lifecycle/verification/could-runtime-result.md) records final author379/379 Workspace,5/5 Edge,19/19 foundation,20/20 prototype and92/92 structural plus build/typecheck/metadata. Prepared SP05-COULD-REVIEW-01 v0.1 remains unexecuted; current status belongs only to FEAT-SP05-01.
+
+## PUB03 selected Could acceptance/publication — 7 November 2026
+
+FEAT-SP05-01/entry v0.14 registers SP05-PUB03 v0.1, SP05-COULD-REVIEW-DISPOSITION-01 v0.1 and current author result/review assignment v0.2 under SP-05 / PLAN-01 Month2/M-03. Owner explicitly accepted selected Could and requested PR then SP-06. Exact supplied reviewer text/checks are preserved, with independent PG/Edge blocked/unrun distinct from author379/5. Bounded runner resource-probe and immutable capture-destination corrections are verified separately. Publication authority includes necessary agent commit/normal push/one PR, not main merge, production migration, accepted ADR change, independent runtime fabrication or M03/release acceptance. Actual PR/head belongs to the owning plan/publication receipt after creation; SP-06 is separate.

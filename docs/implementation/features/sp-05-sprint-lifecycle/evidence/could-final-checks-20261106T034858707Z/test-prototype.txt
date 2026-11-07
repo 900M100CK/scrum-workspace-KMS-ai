@@ -1,0 +1,36 @@
+
+> scrum-workspace-kms-context@0.1.0 test:prototype
+> npm test --workspace @sacw/prototype
+
+
+> test
+> node --test tests/*.test.mjs
+
+✔ dark theme tokens meet text and non-text contrast thresholds (7.7651ms)
+✔ Light theme tokens retain readable surfaces, controls and primary action (3.3351ms)
+✔ project selection, current placement and filtering remain separate (95.0805ms)
+✔ denial, loading and failure do not retain task rows (26.2928ms)
+✔ read-only controls and direct task state transitions are presentation only (50.7168ms)
+✔ sample creation escapes markup and stays in Backlog; expiry clears workspace (36.552ms)
+✔ denied and unknown authority clear the entire project shell, counts, task context and source modal (19.3019ms)
+✔ Backlog reorder is a complete explicit permutation; partial and filtered views disable it (48.708ms)
+✔ conflict discards a pending order and selection and requires explicit reload (36.4534ms)
+✔ mixed allocation retains confirmations and prevents unknown task resubmission after navigation (71.4467ms)
+✔ task inspector preserves blocker order, supports assignment and opens only the selected exact source (59.5671ms)
+✔ Sprint completion returns unfinished work as To Do, retains Done history and permits only one Active Sprint (79.6044ms)
+✔ planning a Sprint validates dates before creating a Planned sample (19.6669ms)
+✔ task panel Escape restores focus and assignment selectors stay within the selected sample project (28.2434ms)
+✔ project menu exposes state, closes with Escape and closes on view navigation (27.1522ms)
+✔ preview server serves only its allowlisted UI assets, with no network connection policy (73.7136ms)
+✔ theme toggle retains unsaved task text and survives navigation and denied scope (27.7292ms)
+✔ Board keeps source and planning controls while exposing only the latest open blocker note (36.3575ms)
+✔ Sprint progress counts the full active Sprint, updates after changes and clears with scope (32.4338ms)
+✔ source chips identify readable links only and empty Done copy makes no drag promise (40.0748ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1305.7138

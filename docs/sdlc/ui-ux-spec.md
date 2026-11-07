@@ -3,7 +3,7 @@
 **Artifact ID:** UX-06
 **Version/date:** 0.13.4 Draft · 4 November 2026
 **Status:** Consolidated design requirements; no rendered application, usability study or accessibility certification.
-**Inputs:** PRD-01 v0.10.2; UC-02 v0.8.3; SAD-03 v0.19.1; Workspace/Knowledge contract drafts; ADR-0007 through ADR-0017; Stage 6 profile and local UI/UX and Blueprint checklists; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022
+**Inputs:** PRD-01 v0.10.3; UC-02 v0.8.4; SAD-03 v0.19.1; Workspace/Knowledge contract drafts; ADR-0007 through ADR-0017; Stage 6 profile and local UI/UX and Blueprint checklists; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022
 **Trace:** BR-01 through BR-14; SC-01 through SC-08. Enhanced reports and Future Work remain outside these journeys.
 
 ## Sources and authority

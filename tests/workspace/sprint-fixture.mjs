@@ -2,7 +2,7 @@ import {randomUUID} from 'node:crypto';
 import {taskFixture} from './task-fixture.mjs';
 import {WorkspaceSprintStore} from '../../services/workspace/src/sprints/store.ts';
 import {buildApp} from '../../services/workspace/src/app.ts';
-export async function sprintFixture(){const f=await taskFixture({through:'011'});let app;try{
+export async function sprintFixture({through='011'}={}){const f=await taskFixture({through});let app;try{
  const sprints=new WorkspaceSprintStore(f.db.runtime,f.sessions,f.cursorKey);app=buildApp({store:f.sessions,projects:f.projects,tasks:f.tasks,sprints,origin:'https://localhost'});await app.ready();
  const call=(url,payload,method='POST',key=randomUUID(),token=f.tokens[0],target=app)=>target.inject({method,url,headers:{...f.headers(token),'idempotency-key':key,...(payload===undefined?{}:{'content-type':'application/json'})},...(payload===undefined?{}:{payload})});
  const create=(input={type:'task',title:'Synthetic task'},key=randomUUID())=>call('/projects/'+f.project+'/tasks',input,'POST',key);

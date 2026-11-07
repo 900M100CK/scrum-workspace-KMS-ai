@@ -1,0 +1,6 @@
+{
+  "status": "not_applicable",
+  "newContainers": null,
+  "newVolumes": null,
+  "message": "Checks phase owns no database resources; Docker probe unavailable, not evidence of a leak"
+}

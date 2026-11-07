@@ -1,0 +1,7 @@
+[
+  "tests/workspace/project-browser.test.mjs",
+  "tests/workspace/sprint-browser.test.mjs",
+  "tests/workspace/sprint-could-browser.test.mjs",
+  "tests/workspace/task-browser.test.mjs",
+  "tests/workspace/task-mutation-browser.test.mjs"
+]

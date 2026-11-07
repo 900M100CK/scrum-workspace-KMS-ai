@@ -1,0 +1,274 @@
+[
+  {
+    "path": "docs/architecture.md",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/SAD.md",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/artifact-register.md",
+    "classification": "needs review"
+  },
+  {
+    "path": "docs/sdlc/diagrams/README.md",
+    "classification": "needs review"
+  },
+  {
+    "path": "docs/sdlc/diagrams/architecture/service-composition.drawio",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/architecture/service-composition.mmd",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/c4/containers.drawio",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/c4/containers.mmd",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/c4/system-context.drawio",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/c4/system-context.mmd",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/data/handoff-logical-model.drawio",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/data/handoff-logical-model.mmd",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/data/knowledge-erd.drawio",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/data/knowledge-erd.mmd",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/data/workspace-erd.drawio",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/data/workspace-erd.mmd",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/deployment/local-development.drawio",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/deployment/local-development.mmd",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/development/package-ownership.drawio",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/development/package-ownership.mmd",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/flowchart/ai-qa-flow.drawio",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/flowchart/ai-qa-flow.mmd",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/flowchart/board-flow.drawio",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/flowchart/board-flow.mmd",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/flowchart/docs-flow.drawio",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/flowchart/docs-flow.mmd",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.drawio",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.mmd",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/flowchart/permission-read-flow.drawio",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/flowchart/permission-read-flow.mmd",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/manifest.json",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/sequence/document-creation.drawio",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/sequence/document-creation.mmd",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/sequence/protected-handoff.drawio",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/sequence/protected-handoff.mmd",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/sitemap/application-sitemap.drawio",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/sitemap/application-sitemap.mmd",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/state/document-and-readiness.drawio",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/state/document-and-readiness.mmd",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/state/sprint-task-allocation.drawio",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/state/sprint-task-allocation.mmd",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/use-case/use-case-diagram.drawio",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/use-case/use-case-diagram.mmd",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/user-journey/core-user-journeys.drawio",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/diagrams/user-journey/core-user-journeys.mmd",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/evaluation-cases.md",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/references/document-review-register.md",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/ui-ux-blueprint.md",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/sdlc/ui-ux-spec.md",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/ux/flows/ai-qa-flow.md",
+    "classification": "needs review"
+  },
+  {
+    "path": "docs/ux/flows/board-flow.md",
+    "classification": "needs review"
+  },
+  {
+    "path": "docs/ux/flows/docs-flow.md",
+    "classification": "needs review"
+  },
+  {
+    "path": "docs/ux/permission-matrix.md",
+    "classification": "needs review"
+  },
+  {
+    "path": "docs/ux/personas.md",
+    "classification": "needs review"
+  },
+  {
+    "path": "docs/ux/wireframe-workplan.md",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "docs/ux/wireframes/README.md",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "specs/001-session.md",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "specs/002-project-membership.md",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "specs/003-create-task.md",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "specs/004-update-task.md",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "specs/006-document-access.md",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "specs/007-version-publication.md",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "specs/008-linked-keyword-search.md",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "specs/009-cited-question.md",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "specs/010-current-work-question.md",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "specs/011-audit-and-source-inspection.md",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "specs/012-failure-and-evaluation.md",
+    "classification": "metadata only; other bytes identical to HEAD"
+  },
+  {
+    "path": "specs/013-scoped-inspection.md",
+    "classification": "metadata only; other bytes identical to HEAD"
+  }
+]

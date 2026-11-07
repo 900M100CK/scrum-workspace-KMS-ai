@@ -1,9 +1,9 @@
 # Contract-first interface pack
 
 **Artifact ID:** CONTRACT-01  
-**Version/date:** 0.25.3 Draft · 5 November 2026
+**Version/date:** 0.25.5 Draft · 6 November 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0011 direction is owner-confirmed; remaining protocol/policy gaps and handler evidence are pending.\
-**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.10.2; [architecture](../docs/architecture.md); [data design](../docs/sdlc/data-design.md); PLAN-01 v0.4.\; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; Proposed ADR-0028 v0.1
+**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.10.3; [architecture](../docs/architecture.md); [data design](../docs/sdlc/data-design.md); PLAN-01 v0.4.\; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; Proposed ADR-0028 v0.1; Proposed ADR-0031 v0.1
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 ## Status and ownership
@@ -127,3 +127,17 @@ Keep original edit/state/assignment200 Task (including title/description) and bl
 C01: generic409 state_conflict contains no current_revision field; client performs fresh authorised getTask before a new user-approved write. C02: recordBlocker201 contains only Blocker, so fresh Task/history supplies current blocked/revision. C03: known rollback is atomic; uncertain COMMIT/HTTP acknowledgement remains unknown and recovers only the same original actor/operation/key/body. Do not introduce a pending wire schema or automatically retry under a fresh key. Existing413/415 declarations are not runtime evidence.
 
 SP-05 registered support: FEAT-SP05-01v0.1 / SP-05v0.7.4 / Workspace0.2.14 / Proposed ADR0030v0.1 align separate actions, Sprint revision preconditions, nullable server lifecycle times, scoped Sprint pages and explicit transport errors before011/producers. Original directions and historical results are preserved; FR66/67 excluded, P08 actual SP04 integration remains mandatory. No runtime acceptance.
+
+## Selected Sprint Could contract — 6 November 2026
+
+The owner-selected [Could decisions](../docs/implementation/features/sp-05-sprint-lifecycle/could-decisions.md) refine FR/AC-66/67/31; release priority stays Could. C01 aligns sources only; producers and runtime assertions remain unimplemented. Current authority is required for writes and original-result disclosure. Independent sprint-edit and sprint-deallocate are privately audited grants; no role/create/allocate inference. Unknown/hidden resource access remains generic 404, readable but insufficient action is 403, unavailable authority/storage is 503.
+
+editSprint accepts partial goal/dates plus expected_revision = Sprint.revision, only in Planned. Merge against locked current values, validate nonblank goal and strict dates/start_date < end_date. Identical values (including revision alone) acknowledge without change audit/revision. removeAllocation accepts no body/query; X-Expected-Revision is Sprint.revision, never Task.revision. Only current todo/in_progress allocations in Planned/Active return as To Do to Backlog. Done returns 409 task_already_done after current access/revision/location checks; other lifecycle/stale/idempotency conflicts use state_conflict. Completed rejects; preserving Done attribution protects future Sprint metrics.
+
+Project → Sprint → Task locks and post-wait session guards apply. Current action/read (including Task read for removal replay) precedes immutable actor/operation/key/payload-hash original-result lookup; lookup precedes live lifecycle/revision/location restrictions. Changed payload conflicts. Removal marks Returned, clears current Sprint, appends using PostgreSQL numeric MAX(position), advances allocation/Task/Sprint revisions and Backlog generation, preserves assignee/blockers/history, and records source Sprint, prior Task state/location and resulting Backlog position linked to the operation. State, minimum audit and typed original 200 Sprint commit together; audit/receipt failure rolls back. Unknown commit/transport outcome reconciles the same exact key/body/header, never a fresh automatic key. Original receipts are historical; refresh current state separately.
+
+PATCH has the existing 8192-byte JSON limit and explicit 400/401/403/404/409/413/415/503. DELETE rejects unexpected body/query (400), with transport 413 for oversized unexpected bodies and 415 for unsupported unexpected media; no Content-Type is required on an empty DELETE. Both keep existing 200 Sprint and operation IDs. Planned migration 012 extends private grant/provisioning-audit/typed receipt constraints and immutability; down refuses retained Could grants, provisioning/mutation audit or receipts. Applied 001–011 and historical fixture ceilings are unchanged. No runtime AI mutation, new service or new operation.
+
+## Selected Could runtime correction and handoff — 6 November 2026
+
+Workspace0.2.16 adds task_already_done to the existing Error.code enum; C01 had described the reason but omitted the enum member, so real serializer verification initially withheld the409 as503. Actual producer/HTTP tests now enforce the enum and Done409. Existing66 operation inventory, 200 Sprint shapes, Could priorities and Knowledge contract remain unchanged. Both Could handlers, private action discovery, exact method/header recovery v2 and existing-design UI are implemented; see [author runtime result](../docs/implementation/features/sp-05-sprint-lifecycle/verification/could-runtime-result.md). Schema012 receipts/actions plus013 boolean provenance preserve owner-only provisioning audit; runtime has no direct audit read. Earlier C01 source-only observations remain historical and do not constitute runtime evidence for the final code.

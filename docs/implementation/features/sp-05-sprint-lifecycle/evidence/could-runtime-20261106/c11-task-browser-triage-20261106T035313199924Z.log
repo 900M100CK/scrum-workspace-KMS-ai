@@ -1,0 +1,22 @@
+✖ P08 isolated Edge: Task keyboard/create/reload, exact recovery and current denial (36361.0865ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 36744.1122
+
+✖ failing tests:
+
+test at tests\workspace\task-browser.test.mjs:7:1
+✖ P08 isolated Edge: Task keyboard/create/reload, exact recovery and current denial (36361.0865ms)
+  locator.waitFor: Timeout 30000ms exceeded.
+  Call log:
+  [2m  - waiting for locator('section[aria-labelledby="tasks-title"]').getByRole('status').filter({ hasText: 'Creation confirmed' }) to be visible[22m
+  
+      at TestContext.<anonymous> (C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\tests\workspace\task-browser.test.mjs:17:155) {
+    name: 'TimeoutError',
+    log: [ `  - waiting for locator('section[aria-labelledby="tasks-title"]').getByRole('status').filter({ hasText: 'Creation confirmed' }) to be visible` ]
+  }

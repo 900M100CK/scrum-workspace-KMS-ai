@@ -1,15 +1,15 @@
 # Workspace Sprint lifecycle
 
 **Artifact ID:** WORKSPACE-SPRINTS-01\
-**Version/date:** 0.1 Draft · 5 November 2026
+**Version/date:** 0.2 Draft · 6 November 2026
 
-[SP-05 plan](../../docs/implementation/features/sp-05-sprint-lifecycle/plan.md) owns exact task status/evidence. Must scope: create, allocate, start, complete, full Backlog reorder and current reads. editSprint/removeAllocation are not implemented or advertised. Workspace owns all data, authority and audit; no Knowledge or provider call is involved.
+[SP-05 plan](../../docs/implementation/features/sp-05-sprint-lifecycle/plan.md) owns exact task status/evidence. Must scope: create, allocate, start, complete, full Backlog reorder and current reads. Selected Could editSprint/removeAllocation are now implemented under the same owning plan. Workspace owns all data, authority and audit; no Knowledge or provider call is involved.
 
 ## Configuration and private authority
 
-Reuse the [session configuration](SESSION-HTTP.md) and project cursor key. Startup never migrates. New operations require reviewed schema011; existing006/008/009/010 fixture ceilings remain explicit. No valuable-data migration is performed by tests or this guide. [PostgreSQL runbook](../../infra/postgres/README.md) governs any separately authorised development upgrade.
+Reuse the [session configuration](SESSION-HTTP.md) and project cursor key. Startup never migrates. Current Could operations require reviewed012 plus additive013; existing Must handlers and historical fixtures retain011. existing006/008/009/010 fixture ceilings remain explicit. No valuable-data migration is performed by tests or this guide. [PostgreSQL runbook](../../infra/postgres/README.md) governs any separately authorised development upgrade.
 
-Each enabled current project member needs its own private action: sprint-create, sprint-allocate, sprint-start, sprint-complete or backlog-order. Role/creator labels supply none. Reuse projects/cli.ts project with private SACW_OPERATOR_DATABASE_URL/SACW_OPERATOR_REF and JSON user_id, project_id, action, allowed, expected_revision, reason, as documented in [project operations](PROJECTS.md). Never print credentials. Revoke/regrant is revisioned/co-audited; membership removal invalidates grants and rejoin restores none. Runtime cannot issue or rewrite those grants.
+Each enabled current project member needs its own private action: sprint-create, sprint-allocate, sprint-start, sprint-complete backlog-order, sprint-edit or sprint-deallocate. Role/creator labels supply none. Reuse projects/cli.ts project with private SACW_OPERATOR_DATABASE_URL/SACW_OPERATOR_REF and JSON user_id, project_id, action, allowed, expected_revision, reason, as documented in [project operations](PROJECTS.md). Never print credentials. Revoke/regrant is revisioned/co-audited; membership removal invalidates grants and rejoin restores none. Runtime cannot issue or rewrite those grants.
 
 ## HTTP and recovery
 
@@ -36,3 +36,19 @@ Node24+, installed lockfile dependencies and pinned Docker image are required. A
 UI/real-browser tests require existing trusted .tmp/local-https localhost certificate/key, never committed. The separate browser runner reuses installed Playwright through SACW_PLAYWRIGHT_MODULE and isolated headless Edge; no personal profile or TLS bypass. For route.fetch test interception, use process-local NODE_USE_SYSTEM_CA=1/NODE_EXTRA_CA_CERTS pointing at the trusted local cert. Never disable TLS verification. Runtime fixtures/logs must redact cookies; retain failure semantics and source identity.
 
 Migration011 down refuses retained Sprint outcomes, authority/audit or non-null observation timestamps; it is not a valuable-data recovery shortcut. No CI, push, PR, merge, deployment or independent review is implied by local observations.
+
+## Selected Could operations and verification — 6 November 2026
+
+PATCH /sprints/:sprint_id accepts partial goal/dates plus expected_revision = Sprint.revision and needs independent sprint-edit. Only Planned may change. Validate merged strict dates/start-before-end and nonblank goal. Same values or revision alone acknowledge without change audit/revision. DELETE /sprints/:sprint_id/items/:task_id has no body/query and requires positive Sprint X-Expected-Revision plus independent sprint-deallocate. Only a current todo/in_progress allocation in Planned/Active returns To Do to Backlog. Done409 task_already_done is disclosed only after current access/revision/location checks; Completed/noncurrent/stale state conflicts. Both return the existing200 Sprint; Workspace0.2.16 enumerates the Done code.
+
+Return atomically marks Returned, clears current Sprint, appends by PostgreSQL numeric MAX(position)+1 and advances allocation/Task/Sprint revisions and Backlog generation, with before/result audit and immutable original receipt. Preserve assignee/blockers/completed history. Current session/membership/read/action (including Task read for removal replay) precedes original lookup; lookup precedes live lifecycle/revision/location restrictions. Unknown outcome reuses the exact original key/body/header, never a fresh automatic key. Browser recovery v2 explicitly stores validated known method and DELETE revision; valid v1 identities migrate unchanged and signout clears both versions. Current data is refreshed independently of the historical receipt.
+
+Additive013 retains grant provenance using workspace.has_sprint_could_action(actor,project,action), a boolean-only SECURITY DEFINER function owned by workspace_owner, fixed pg_catalog search_path, PUBLIC execution revoked and runtime execute only. Runtime still cannot SELECT private authority_provisioning_audit. Both private grant and matching immutable issuance audit must exist. Missing required function/storage fails closed; startup never migrates. 012 and013 downs refuse retained Could grants/provisioning audit/mutation audit/receipts. Historical001–011 and already-tested012 are unchanged.
+
+Reproduce author gates with Node24 and installed dependencies/TLS/Edge, from the repository root:
+
+- node docs/implementation/features/sp-05-sprint-lifecycle/verification/run-could-runtime.mjs workspace
+- node docs/implementation/features/sp-05-sprint-lifecycle/verification/run-could-runtime.mjs browser
+- node docs/implementation/features/sp-05-sprint-lifecycle/verification/run-could-runtime.mjs checks
+
+The runner enumerates all current Workspace files (browser separately), freezes actual dirty-source hashes, records environment/argv/exit/raw output and checks disposable cleanup. New current Could producer/UI fixtures use013; dedicated012 storage and original011 regressions keep their own ceilings. See the owning Could runtime result for actual counts, retained failures and independent-review limits. No valuable-data upgrade, commit/push or production release follows from these commands.

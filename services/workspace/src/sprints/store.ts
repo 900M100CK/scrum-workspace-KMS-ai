@@ -2,13 +2,12 @@ import {randomUUID} from 'node:crypto';
 import type {Pool,PoolClient} from 'pg';
 import type {WorkspaceSessionStore} from '../session/store.ts';
 import {WorkspaceProjectStore,projectAccess,uuid,businessAudit} from '../projects/store.ts';
-import {hasCapability} from '../projects/capabilities.ts';
 import {ProjectFault,conflict,invalid,missing,requestHash,wireRevision} from '../projects/outcomes.ts';
 import type {CursorKey} from '../projects/cursor.ts';
 import {taskProjection,taskProjectionSql} from '../tasks/store.ts';
-import {SPRINT_ACTIONS} from './authority.ts';
+import {SPRINT_ACTIONS,hasSprintCapability} from './authority.ts';
 import {sprintOutcome,saveSprintOutcome} from './outcomes.ts';
-import type {Sprint,SprintOperation,SprintBody,SprintOutcome,CreateSprint,Allocation,ExpectedRevision,Reorder} from './types.ts';
+import type {Sprint,SprintOperation,SprintBody,SprintOutcome,CreateSprint,Allocation,ExpectedRevision,Reorder,EditSprint,RemoveAllocation} from './types.ts';
 const columns='sprint_id,project_id,goal,start_date::text,end_date::text,state,revision::text,created_at,started_at,completed_at';
 const text=(v:unknown):v is string=>typeof v==='string'&&!v.includes('\0')&&Buffer.from(v).toString('utf8')===v;
 const object=(v:unknown):v is Record<string,unknown>=>!!v&&typeof v==='object'&&!Array.isArray(v);
@@ -41,21 +40,26 @@ export class WorkspaceSprintStore {
    const result=await this.projects.page(c,actor,'listSprintItems:'+id,projectId,rows,50,cursor,r=>({task:taskProjection(r),allocation_state:r.allocation_state}),'task_id',access.member);if(!await guard())return null;return result;
   });
  }
- async execute(token:string,operation:SprintOperation,id:string,input:CreateSprint|Allocation|ExpectedRevision|Reorder,key:string,correlation:string=randomUUID()):Promise<SprintOutcome>{
+ async execute(token:string,operation:SprintOperation,id:string,input:CreateSprint|Allocation|ExpectedRevision|Reorder|EditSprint|RemoveAllocation,key:string,correlation:string=randomUUID()):Promise<SprintOutcome>{
   if(!uuid(id))throw missing();id=id.toLowerCase();
   if(!Object.hasOwn(SPRINT_ACTIONS,operation)||typeof key!=='string'||!key||!object(input))throw invalid();
-  const fields:Record<SprintOperation,string[]>={createSprint:['goal','start_date','end_date'],allocateTask:['task_id','expected_revision'],startSprint:['expected_revision'],completeSprint:['expected_revision'],reorderBacklog:['task_ids','expected_revision']};
-  if(Object.keys(input).sort().join(',')!==fields[operation].sort().join(','))throw invalid();
+  const fields:Record<SprintOperation,string[]>={createSprint:['goal','start_date','end_date'],allocateTask:['task_id','expected_revision'],startSprint:['expected_revision'],completeSprint:['expected_revision'],reorderBacklog:['task_ids','expected_revision'],editSprint:['goal','start_date','end_date','expected_revision'],removeAllocation:['task_id','expected_revision']};
+  if(operation==='editSprint'?Object.keys(input).some(k=>!fields.editSprint.includes(k))||!Object.hasOwn(input,'expected_revision'):Object.keys(input).sort().join(',')!==fields[operation].sort().join(','))throw invalid();
   let normalized:Record<string,any>;
   if(operation==='createSprint'){const v=input as CreateSprint;if(!text(v.goal)||!v.goal.trim()||!date(v.start_date)||!date(v.end_date)||v.start_date>=v.end_date)throw invalid();normalized={goal:v.goal,start_date:v.start_date,end_date:v.end_date};}
   else if(operation==='reorderBacklog'){const v=input as Reorder;if(!Array.isArray(v.task_ids)||!v.task_ids.every(x=>typeof x==='string'&&uuid(x))||typeof v.expected_revision!=='string'||! /^[1-9][0-9]*$/.test(v.expected_revision))throw invalid();const ids=v.task_ids.map(x=>x.toLowerCase());if(new Set(ids).size!==ids.length)throw invalid();normalized={task_ids:ids,expected_revision:v.expected_revision};}
-  else{const v=input as ExpectedRevision;if(!Number.isSafeInteger(v.expected_revision)||v.expected_revision<1)throw invalid();normalized={expected_revision:v.expected_revision};if(operation==='allocateTask'){const taskId=(input as Allocation).task_id;if(typeof taskId!=='string'||!uuid(taskId))throw invalid();normalized.task_id=taskId.toLowerCase();}}
+  else{const v=input as ExpectedRevision;if(!Number.isSafeInteger(v.expected_revision)||v.expected_revision<1)throw invalid();normalized={expected_revision:v.expected_revision};if(operation==='editSprint'){for(const field of ['goal','start_date','end_date'] as const)if(Object.hasOwn(input,field)){const value=(input as EditSprint)[field];if(field==='goal'?!text(value)||!value.trim():!date(value))throw invalid();normalized[field]=value;}}if(operation==='allocateTask'||operation==='removeAllocation'){const taskId=(input as Allocation).task_id;if(typeof taskId!=='string'||!uuid(taskId))throw invalid();normalized.task_id=taskId.toLowerCase();}}
   const hash=requestHash([operation,id,normalized]);
   return this.projects.transaction(token,async(c,actor,guard)=>{
    const projectOperation=operation==='createSprint'||operation==='reorderBacklog';
    const scope=projectOperation?{projectId:id,row:null}:await this.scoped(c,actor,id);
    const projectId=scope.projectId;if(projectOperation)await projectAccess(c,actor,projectId);
-   if(!await hasCapability(c,actor,projectId,SPRINT_ACTIONS[operation]))throw new ProjectFault(403,'forbidden');
+   let removalTask:Record<string,any>|undefined;
+   if(operation==='removeAllocation'){
+    removalTask=(await c.query('SELECT task_id,state,revision::text,location_kind,location_sprint_id FROM workspace.task WHERE project_id=$1 AND task_id=$2 FOR UPDATE',[projectId,normalized.task_id])).rows[0];
+    if(!await guard())return null;if(!removalTask)throw missing();
+   }
+   if(!await hasSprintCapability(c,actor,projectId,SPRINT_ACTIONS[operation]))throw new ProjectFault(403,'forbidden');
    if(operation==='allocateTask'){
     const task=(await c.query('SELECT project_id FROM workspace.task WHERE task_id=$1',[normalized.task_id])).rows[0];if(!task||task.project_id!==projectId)throw missing();
    }
@@ -81,8 +85,29 @@ export class WorkspaceSprintStore {
     body={project_id:projectId,backlog_revision:(await c.query('SELECT backlog_revision::text value FROM workspace.project WHERE project_id=$1',[projectId])).rows[0].value};
    }else{
     const row=scope.row!;const current=sprintProjection(row);if(current.revision!==normalized.expected_revision)throw conflict();
-    const revision=wireRevision((BigInt(current.revision)+1n).toString());
-    if(operation==='allocateTask'){
+    let revision=operation==='editSprint'?current.revision:wireRevision((BigInt(current.revision)+1n).toString());
+    if(operation==='editSprint'){
+     if(current.state!=='planned')throw conflict();
+     const goal=normalized.goal??current.goal,start=normalized.start_date??current.start_date,end=normalized.end_date??current.end_date;if(start>=end)throw invalid();
+     if(goal!==current.goal||start!==current.start_date||end!==current.end_date){
+      revision=wireRevision((BigInt(current.revision)+1n).toString());
+      await c.query('UPDATE workspace.sprint SET goal=$2,start_date=$3,end_date=$4,revision=$5 WHERE sprint_id=$1',[id,goal,start,end,revision]);
+      await businessAudit(c,actor,projectId,'sprint-edit',id,correlation,JSON.stringify(current),JSON.stringify({goal,start_date:start,end_date:end,revision,operation,key,payload_hash:hash}));
+     }
+    }else if(operation==='removeAllocation'){
+     if(!['planned','active'].includes(current.state))throw conflict();
+     const task=removalTask!,allocation=(await c.query('SELECT allocation_state,revision::text FROM workspace.sprint_allocation WHERE sprint_id=$1 AND task_id=$2 FOR UPDATE',[id,normalized.task_id])).rows[0];
+     if(!await guard())return null;
+     if(!allocation||allocation.allocation_state!=='allocated'||task.location_kind!=='sprint'||task.location_sprint_id!==id)throw conflict();
+     if(task.state==='done')throw new ProjectFault(409,'task_already_done');
+     if(!['todo','in_progress'].includes(task.state))throw conflict();
+     const position=(await c.query("SELECT (coalesce(max(backlog_position),0)+1)::text value FROM workspace.task WHERE project_id=$1 AND location_kind='backlog'",[projectId])).rows[0].value;
+     const taskRevision=wireRevision((BigInt(task.revision)+1n).toString()),allocationRevision=wireRevision((BigInt(allocation.revision)+1n).toString());
+     await c.query("UPDATE workspace.sprint_allocation SET allocation_state='returned',revision=$3 WHERE sprint_id=$1 AND task_id=$2",[id,task.task_id,allocationRevision]);
+     await c.query("UPDATE workspace.task SET state='todo',location_kind='backlog',location_sprint_id=NULL,backlog_position=$2,revision=$3 WHERE task_id=$1",[task.task_id,position,taskRevision]);
+     await c.query('UPDATE workspace.sprint SET revision=$2 WHERE sprint_id=$1',[id,revision]);
+     await businessAudit(c,actor,projectId,'sprint-deallocate',task.task_id,correlation,JSON.stringify({sprint_id:id,state:task.state,location_kind:task.location_kind,location_sprint_id:task.location_sprint_id,task_revision:task.revision,allocation_revision:allocation.revision,sprint_revision:current.revision}),JSON.stringify({sprint_id:id,state:'todo',location_kind:'backlog',position,task_revision:taskRevision,allocation_revision:allocationRevision,sprint_revision:revision,operation,key,payload_hash:hash}));
+    }else if(operation==='allocateTask'){
      if(!['planned','active'].includes(current.state))throw conflict();
      const task=(await c.query('SELECT task_id,revision::text,location_kind FROM workspace.task WHERE project_id=$1 AND task_id=$2 FOR UPDATE',[projectId,normalized.task_id])).rows[0];if(!task)throw missing();if(task.location_kind!=='backlog')throw conflict();if(!await guard())return null;
      const retained=(await c.query('SELECT allocation_state,revision::text FROM workspace.sprint_allocation WHERE sprint_id=$1 AND task_id=$2',[id,task.task_id])).rows[0];if(retained?.allocation_state==='completed')throw conflict();

@@ -1,0 +1,29 @@
+▶ SP05 Could producer atomic audit/receipt failure and lost real COMMIT recovery
+  ✔ editSprint (320.1645ms)
+  ✔ removeAllocation (373.5314ms)
+✔ SP05 Could producer atomic audit/receipt failure and lost real COMMIT recovery (5511.2371ms)
+✔ SP05 Could PATCH strict partial merge, no-op, original replay and current independent authority (4913.6886ms)
+✖ SP05 Could DELETE unfinished Planned/Active returns, Done/location denial, numeric append and immutable replay (4709.9563ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16080.0391
+
+✖ failing tests:
+
+test at tests\workspace\sprint-could-http.test.mjs:20:1
+✖ SP05 Could DELETE unfinished Planned/Active returns, Done/location denial, numeric append and immutable replay (4709.9563ms)
+  Error: not_found
+      at missing (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/services/workspace/src/projects/outcomes.ts:8:26)
+      at WorkspaceTaskStore.get (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/services/workspace/src/tasks/store.ts:161:22)
+      at TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-http.test.mjs:27:31)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    status: 404,
+    code: 'not_found'
+  }

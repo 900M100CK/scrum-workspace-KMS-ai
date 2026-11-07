@@ -1,9 +1,9 @@
 # Goal-level use cases for the five-month release
 
 **Artifact ID:** UC-02  
-**Version/date:** 0.8.3 Draft · 4 November 2026
+**Version/date:** 0.8.4 Draft · 6 November 2026
 **Status:** Owner-confirmed ADR-0007–ADR-0011 direction; remaining policy and application evidence gaps are explicit.
-**Inputs:** BRD v1.0; [PRD-01](PRD_SRS.md) v0.10.2; [PLAN-01](../planning/five-month-plan.md) v0.4; ADR-0007–ADR-0017; repository UC prompt/checklist.; Proposed ADR-0022; Proposed ADR-0028 v0.1
+**Inputs:** BRD v1.0; [PRD-01](PRD_SRS.md) v0.10.3; [PLAN-01](../planning/five-month-plan.md) v0.4; ADR-0007–ADR-0017; repository UC prompt/checklist.; Proposed ADR-0022; Proposed ADR-0028 v0.1; Proposed ADR-0031 v0.1
 **Author:** development agent acting sequentially; owner reviews business choices.  
 **Changes v0.1 → v0.2:** Replaced boilerplate trigger/flow template with per-UC specific triggers, detailed numbered main success scenarios, separate alternate (Alt-*) and exception (EX-*) flows, and inline Business Rules. All FR/BR/SC traces, postconditions, relationship notes and handoff statements preserved unchanged.
 **Revision note (12 October 2026, version unchanged):** Corrected the UML relationship specification and `use-case-diagram.drawio` so UC-02, UC-03, UC-07 and UC-13 are associated with their scoped actors instead of Authorised Member; added the FR-35 trace note below. No UC flow, FR/BR/SC trace or postcondition changed.
@@ -218,7 +218,7 @@ For an already committed matching original identity/input, after current read/ac
 **Supporting system:** None required outside product.  
 **Trace:** FR-06, FR-07, FR-08, FR-41, FR-42, FR-66, FR-67; BR-02; SC-03.  
 **Trigger:** Sprint manager submits one of: create-sprint request with goal/dates; add-to-sprint or remove-from-sprint request with item IDs; start-sprint request; or complete-sprint request with Sprint ID.  
-**Precondition:** Valid session; requester holds Sprint-manager capability in the target project.
+**Precondition:** Valid current server session, membership and read scope; requester holds the specific private action for the requested operation in the target project. Sprint-manager is a descriptive actor, not an implicit grant. editSprint requires sprint-edit; removeAllocation requires sprint-deallocate independently of create/allocate and each other.
 
 ### Main Success Scenario — Create planned Sprint
 
@@ -256,8 +256,8 @@ For an already committed matching original identity/input, after current read/ac
 ### Alternate Flows
 
 - **Alt-1 (Step 3 — Allocate):** One or more items in the list fail the allocation check (already allocated to another Active/Planned Sprint) → System allocates valid items, rejects conflicting items individually with reason, and reports a partial result. Valid items remain allocated (AC-07).
-- **Alt-2 (Step 1 — Remove from Sprint, FR-67):** Sprint manager submits remove-from-sprint request with Sprint ID and item ID → System removes the item from Sprint Backlog; item returns to Product Backlog without deletion or implicit completion; unfinished items become To Do with task revision and audit in the same transaction (AC-67).
-- **Alt-3 (Step 1 — Edit Sprint, FR-66):** Sprint manager submits edit-sprint request to update goal/dates on a Planned Sprint → System validates dates and persists changes; Invalid dates are rejected (AC-66).
+- **Alt-2 (Step 1 — Remove from Sprint, FR-67):** Authorised member with sprint-deallocate submits one current allocation and expected Sprint revision. After current Sprint/Task access and action checks, return an unfinished todo/in_progress Task from Planned/Active to Backlog as To Do; mark allocation Returned, clear current Sprint, append after numeric MAX(position), advance allocation/Task/Sprint revisions and Backlog generation, and co-commit audit plus immutable original result. Audit records source Sprint, prior state/location and resulting position linked to actor/operation/key/hash. Keep assignee/blocker/history unchanged. Reject Completed, stale revision or noncurrent allocation with state_conflict; reject Done with 409 task_already_done only after current access/revision/location checks. No hidden resource is disclosed. Done exclusion preserves completed-work attribution and future Sprint metrics. Same-key replay rechecks current access/action (including Task read) before returning the original 200 Sprint without repeating changes (AC-67).
+- **Alt-3 (Step 1 — Edit Sprint, FR-66):** Authorised member with sprint-edit submits partial goal/dates and expected Sprint revision for a Planned Sprint. Merge omitted fields from the locked Sprint and validate nonblank goal, strict dates and start_date before end_date. Invalid input, stale revision and Active/Completed reject without changes. Identical values or expected_revision alone store an immutable acknowledgement without change audit/revision; new keys still require state/revision checks. Actual edits co-commit state, audit and original result. After renewed current access/action, same-key replay returns the original 200 Sprint before live lifecycle/revision checks; changed input conflicts. Unknown outcomes reconcile the exact original identity; refresh current state separately (AC-66).
 
 ### Exception Flows
 

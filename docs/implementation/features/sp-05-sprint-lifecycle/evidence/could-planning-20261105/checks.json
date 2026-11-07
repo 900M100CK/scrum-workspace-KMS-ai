@@ -1,0 +1,141 @@
+{
+  "kind": "Planning/documentation verification only; no runtime behavior verified",
+  "node": "v24.22.1",
+  "base": "cfe0dbe61eeba4e34583b77317ec7f2e41fe4a6e",
+  "branch": "codex/sp-05-could",
+  "results": [
+    {
+      "name": "context-lint",
+      "argv": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "--check",
+        "scripts/verify-context.mjs"
+      ],
+      "exit_code": 0,
+      "error": null
+    },
+    {
+      "name": "routing-lint",
+      "argv": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "--check",
+        "scripts/context/verify-api-routing.mjs"
+      ],
+      "exit_code": 0,
+      "error": null
+    },
+    {
+      "name": "context-test-lint",
+      "argv": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "--check",
+        "tests/context/context.test.mjs"
+      ],
+      "exit_code": 0,
+      "error": null
+    },
+    {
+      "name": "context",
+      "argv": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/verify-context.mjs"
+      ],
+      "exit_code": 0,
+      "error": null
+    },
+    {
+      "name": "docs",
+      "argv": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/docs/verify-docs.mjs"
+      ],
+      "exit_code": 0,
+      "error": null
+    },
+    {
+      "name": "structural",
+      "argv": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "--test",
+        "tests/context/context.test.mjs",
+        "tests/docs/docs.test.mjs",
+        "tests/contracts/contract-schemas.test.mjs",
+        "tests/contracts/handoff-bytes.test.mjs"
+      ],
+      "exit_code": 0,
+      "error": null
+    },
+    {
+      "name": "metadata",
+      "argv": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/docs/docs-metadata.mjs",
+        "--check"
+      ],
+      "exit_code": 0,
+      "error": null
+    }
+  ],
+  "sources": [
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/plan.md",
+      "sha256": "7d1cac09f32d0835b770cb95cbd3d4186c6b6156058ddd1aed1fae99e74b93e3"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/breakdown.md",
+      "sha256": "11266054855452a1f33287bbe1443d6cbc02e7fb5dc078014756254975f9e8a0"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/could-decisions.md",
+      "sha256": "c2f62141009d150ed7af7467a32e400b64c9a2a89629a6acd551935ff84f6444"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C00-could-planning.md",
+      "sha256": "70eb27beb674af165a273d5a694efaba22489fca1dd79e5953221e46828f2de0"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C01-could-source-contract.md",
+      "sha256": "83d86a16ff5e9bcf4501eb6aa57ee070b6ad11a5d991eac660c4111cacca0291"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C02-could-storage.md",
+      "sha256": "9bdb03891ed2e250b4725f1da89cb20eb9643c1b878daf6acb8e61e45e4f57e1"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C03-could-authority.md",
+      "sha256": "6461a4019b2cd707bf7f06de951e9d47abe19ada19bafc475d85c3a503549df3"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C04-edit-producer.md",
+      "sha256": "d20041df1983fc93ffaf0d7ce459962ddaa60c1e33fdee0eab58e3140c50e31e"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C05-remove-producer.md",
+      "sha256": "b58b73bb2c1cc6dcbd735f4d54df1133b3cb8ae851563f76fdeb725260722445"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C06-could-recovery.md",
+      "sha256": "9b7535f5b6561cce8a42c32ebc3e61ea4d0af9f514ffa7aa32a5713dfd6473a7"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C07-edit-ui.md",
+      "sha256": "dee4dae6a6d0886a23f7b7de919dbd84f9aa6575e393565fababdc764cd9cb8f"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C08-remove-ui.md",
+      "sha256": "325b5656793a2c3e310adc33c44a53b5c0a0ba3837058890e078d1d6ddbc014b"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C09-could-concurrency.md",
+      "sha256": "6ea90ff74bc83768eecc278ef2bf6b5231dc6096dc663113bf7545382b317524"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C10-could-browser.md",
+      "sha256": "e3dbe0a45992767c686ccc8eec55bfd19efe09c869e871172fa030e3283cde19"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C11-could-handoff.md",
+      "sha256": "8b4380eaedaed8220df21991106fa0c5edf429dd209492475985fd62209c6d9c"
+    }
+  ]
+}

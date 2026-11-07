@@ -1,4 +1,4 @@
-import {SPRINT_ACTIONS} from '../sprints/authority.ts';
+import {SPRINT_ACTIONS,hasSprintCapability} from '../sprints/authority.ts';
 import {randomUUID} from 'node:crypto';
 import type {Pool,PoolClient} from 'pg';
 import {ownedTransaction} from '../session/database.ts';
@@ -153,7 +153,7 @@ export class WorkspaceProjectStore {
     const access=await projectAccess(c,actor,id);id=access.project.project_id;resourceId=resourceId.toLowerCase();
     const sprint=(await c.query('SELECT state FROM workspace.sprint WHERE sprint_id=$1 AND project_id=$2',[resourceId,id])).rows[0];if(!sprint)throw missing();operations=['getAllowedActions'];
     for(const operation of ['getSprint','listSprintItems'])if(sprintOperations.has(operation))operations.push(operation);
-    for(const operation of ['allocateTask','startSprint','completeSprint'] as const){const lifecycle=operation==='allocateTask'?sprint.state!=='completed':operation==='startSprint'?sprint.state==='planned':sprint.state==='active';if(lifecycle&&sprintOperations.has(operation)&&await hasCapability(c,actor,id!,SPRINT_ACTIONS[operation]))operations.push(operation);}
+    for(const operation of ['allocateTask','startSprint','completeSprint','editSprint','removeAllocation'] as const){const lifecycle=operation==='allocateTask'||operation==='removeAllocation'?sprint.state!=='completed':operation==='startSprint'||operation==='editSprint'?sprint.state==='planned':sprint.state==='active';if(lifecycle&&sprintOperations.has(operation)&&await hasSprintCapability(c,actor,id!,SPRINT_ACTIONS[operation]))operations.push(operation);}
    }else if(kind==='task'){
 
     if(!id||!uuid(id)||!resourceId||!uuid(resourceId))throw invalid();

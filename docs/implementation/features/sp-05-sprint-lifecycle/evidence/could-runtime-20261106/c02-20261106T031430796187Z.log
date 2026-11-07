@@ -1,0 +1,39 @@
+✖ SP05 Could012 repeat/empty down/up, private scope, typed immutable receipts and retained-evidence refusal (24182.8348ms)
+✔ SP05 additive011 empty reverse/reapply and typed receipts (4516.6686ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 32879.1279
+
+✖ failing tests:
+
+test at tests\workspace\sprint-could-storage.test.mjs:2:1
+✖ SP05 Could012 repeat/empty down/up, private scope, typed immutable receipts and retained-evidence refusal (24182.8348ms)
+  error: column "entity_ref" of relation "business_audit" does not exist
+      at C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\pg-pool\index.js:45:11
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-storage.test.mjs:22:22)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    length: 137,
+    severity: 'ERROR',
+    code: '42703',
+    detail: undefined,
+    hint: undefined,
+    position: '74',
+    internalPosition: undefined,
+    internalQuery: undefined,
+    where: undefined,
+    schema: undefined,
+    table: undefined,
+    column: undefined,
+    dataType: undefined,
+    constraint: undefined,
+    file: 'parse_target.c',
+    line: '1065',
+    routine: 'checkInsertTargets'
+  }

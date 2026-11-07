@@ -1,0 +1,265 @@
+▶ SP05 Could deterministic actual edit/start, remove/complete/state/reallocation/reorder commit orders
+  ✖ edit/start edit-first (163.4265ms)
+  ✖ edit/start start-first (142.7393ms)
+  ✖ remove/complete remove-first (99.6753ms)
+  ✖ remove/complete complete-first (86.3171ms)
+  ✖ remove/Done remove-first (193.7135ms)
+  ✖ remove/Done Done-first (191.9856ms)
+  ✖ remove/reallocate remove-first (172.3398ms)
+  ✖ remove/reallocate allocate-first (186.5458ms)
+  ✖ remove/reorder remove-first (174.4133ms)
+  ✖ remove/reorder reorder-first (247.3182ms)
+✖ SP05 Could deterministic actual edit/start, remove/complete/state/reallocation/reorder commit orders (6776.8217ms)
+▶ SP05 Could actual revoke-first replay and unavailable authority fail closed without duplicate state/audit
+  ✖ editSprint (116.5102ms)
+  ✖ removeAllocation (82.2389ms)
+✖ SP05 Could actual revoke-first replay and unavailable authority fail closed without duplicate state/audit (4966.3942ms)
+▶ SP05 Could post-wait real expiry denies new writes and original replay at Sprint/Task lock boundaries
+  ✖ editSprint new (5002.6958ms)
+  ✖ editSprint replay (4745.9202ms)
+  ✔ removeAllocation new (5275.0911ms)
+  ✖ removeAllocation replay (5162.6886ms)
+✖ SP05 Could post-wait real expiry denies new writes and original replay at Sprint/Task lock boundaries (20188.4627ms)
+✖ SP05 Could unknown provisioning is denied and removal preserves blockers/history with hidden Task scope (4825.7492ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 1
+ℹ fail 19
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 37792.1521
+
+✖ failing tests:
+
+test at tests\workspace\sprint-could-concurrency.test.mjs:8:46
+✖ edit/start edit-first (163.4265ms)
+  Error: SQL barrier absent: 503
+      at file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-concurrency.test.mjs:3:90
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async ready (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-concurrency.test.mjs:3:36)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-concurrency.test.mjs:10:92)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-concurrency.test.mjs:8:38)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests\workspace\sprint-could-concurrency.test.mjs:8:46
+✖ edit/start start-first (142.7393ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  503 !== 409
+  
+      at TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-concurrency.test.mjs:11:29)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-concurrency.test.mjs:8:38)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 503,
+    expected: 409,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\workspace\sprint-could-concurrency.test.mjs:13:48
+✖ remove/complete remove-first (99.6753ms)
+  Error: Expected 200, got 409: {"code":"state_conflict","message":"State conflict","run_id":null}
+      at value (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-fixture.mjs:2:68)
+      at TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-concurrency.test.mjs:14:82)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-concurrency.test.mjs:13:40)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests\workspace\sprint-could-concurrency.test.mjs:13:48
+✖ remove/complete complete-first (86.3171ms)
+  Error: Expected 200, got 409: {"code":"state_conflict","message":"State conflict","run_id":null}
+      at value (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-fixture.mjs:2:68)
+      at TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-concurrency.test.mjs:14:82)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-concurrency.test.mjs:13:40)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests\workspace\sprint-could-concurrency.test.mjs:18:48
+✖ remove/Done remove-first (193.7135ms)
+  Error: SQL barrier absent: 503
+      at file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-concurrency.test.mjs:3:90
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async ready (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-concurrency.test.mjs:3:36)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-concurrency.test.mjs:20:80)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-concurrency.test.mjs:18:40)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests\workspace\sprint-could-concurrency.test.mjs:18:48
+✖ remove/Done Done-first (191.9856ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  503 !== 409
+  
+      at TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-concurrency.test.mjs:21:50)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-concurrency.test.mjs:18:40)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 503,
+    expected: 409,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\workspace\sprint-could-concurrency.test.mjs:23:48
+✖ remove/reallocate remove-first (172.3398ms)
+  Error: SQL barrier absent: 503
+      at file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-concurrency.test.mjs:3:90
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async ready (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-concurrency.test.mjs:3:36)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-concurrency.test.mjs:25:93)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-concurrency.test.mjs:23:40)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests\workspace\sprint-could-concurrency.test.mjs:23:48
+✖ remove/reallocate allocate-first (186.5458ms)
+  Error: Expected 200, got 503: {"code":"access_unavailable","message":"Access unavailable","run_id":null}
+      at value (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-fixture.mjs:2:68)
+      at TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-concurrency.test.mjs:26:62)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-concurrency.test.mjs:23:40)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests\workspace\sprint-could-concurrency.test.mjs:28:48
+✖ remove/reorder remove-first (174.4133ms)
+  Error: SQL barrier absent: 503
+      at file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-concurrency.test.mjs:3:90
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async ready (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-concurrency.test.mjs:3:36)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-concurrency.test.mjs:30:82)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-concurrency.test.mjs:28:40)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests\workspace\sprint-could-concurrency.test.mjs:28:48
+✖ remove/reorder reorder-first (247.3182ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  503 !== 200
+  
+      at TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-concurrency.test.mjs:31:29)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-concurrency.test.mjs:28:40)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 503,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\workspace\sprint-could-security.test.mjs:7:106
+✖ editSprint (116.5102ms)
+  Error: Expected 200, got 503: {"code":"access_unavailable","message":"Access unavailable","run_id":null}
+      at value (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-fixture.mjs:2:68)
+      at TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-security.test.mjs:8:59)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-security.test.mjs:7:98)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests\workspace\sprint-could-security.test.mjs:7:106
+✖ removeAllocation (82.2389ms)
+  Error: Expected 200, got 503: {"code":"access_unavailable","message":"Access unavailable","run_id":null}
+      at value (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-fixture.mjs:2:68)
+      at TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-security.test.mjs:8:59)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-security.test.mjs:7:98)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests\workspace\sprint-could-security.test.mjs:14:93
+✖ editSprint new (5002.6958ms)
+  AssertionError [ERR_ASSERTION]: {"code":"access_unavailable","message":"Access unavailable","run_id":null}
+  
+  503 !== 401
+  
+      at TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-security.test.mjs:18:37)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-security.test.mjs:14:85)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 503,
+    expected: 401,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\workspace\sprint-could-security.test.mjs:14:93
+✖ editSprint replay (4745.9202ms)
+  Error: Expected 200, got 503: {"code":"access_unavailable","message":"Access unavailable","run_id":null}
+      at value (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-fixture.mjs:2:68)
+      at TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-security.test.mjs:15:114)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-security.test.mjs:14:85)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\workspace\sprint-could-security.test.mjs:14:93
+✖ removeAllocation replay (5162.6886ms)
+  Error: Expected 200, got 503: {"code":"access_unavailable","message":"Access unavailable","run_id":null}
+      at value (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-fixture.mjs:2:68)
+      at TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-security.test.mjs:15:114)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-security.test.mjs:14:85)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests\workspace\sprint-could-security.test.mjs:22:1
+✖ SP05 Could unknown provisioning is denied and removal preserves blockers/history with hidden Task scope (4825.7492ms)
+  error: Private Sprint provisioning required
+      at C:\Users\MCK\.codex\worktrees\sp-05-lifecycle\scrum-workspace-KMS-ai\node_modules\pg-pool\index.js:45:11
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///C:/Users/MCK/.codex/worktrees/sp-05-lifecycle/scrum-workspace-KMS-ai/tests/workspace/sprint-could-security.test.mjs:24:2)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    length: 167,
+    severity: 'ERROR',
+    code: '42501',
+    detail: undefined,
+    hint: undefined,
+    position: undefined,
+    internalPosition: undefined,
+    internalQuery: undefined,
+    where: 'PL/pgSQL function workspace.protect_sprint_action() line 3 at RAISE',
+    schema: undefined,
+    table: undefined,
+    column: undefined,
+    dataType: undefined,
+    constraint: undefined,
+    file: 'pl_exec.c',
+    line: '3897',
+    routine: 'exec_stmt_raise'
+  }

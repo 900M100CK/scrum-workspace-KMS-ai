@@ -3,7 +3,7 @@
 **Artifact ID:** SAD-03-ENTRY
 **Version/date:** 0.18.1 Draft · 4 November 2026
 **Status:** Draft; recorded owner-confirmed directions apply, while remaining choices and runtime acceptance are open.
-**Inputs:** SAD-03 v0.19.1; PRD-01 v0.10.2; PLAN-01 v0.4; ADR-0004 v0.2; ADR-0007–ADR-0017.; Proposed ADR-0018–ADR-0023
+**Inputs:** SAD-03 v0.19.1; PRD-01 v0.10.3; PLAN-01 v0.4; ADR-0004 v0.2; ADR-0007–ADR-0017.; Proposed ADR-0018–ADR-0023
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 Read [the complete architecture](../architecture.md). It is the single design source; this entry preserves the workflow path without duplicating design.

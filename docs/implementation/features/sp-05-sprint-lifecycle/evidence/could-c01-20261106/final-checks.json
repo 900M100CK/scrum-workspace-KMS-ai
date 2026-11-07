@@ -1,0 +1,33 @@
+[
+  {
+    "name": "final-docs",
+    "argv": [
+      "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "scripts/docs/verify-docs.mjs"
+    ],
+    "exit_code": 0,
+    "log": "final-docs.log"
+  },
+  {
+    "name": "final-metadata",
+    "argv": [
+      "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+      "scripts/docs/docs-metadata.mjs",
+      "--check"
+    ],
+    "exit_code": 0,
+    "log": "final-metadata.log"
+  },
+  {
+    "name": "final-diff",
+    "argv": [
+      "git",
+      "-c",
+      "core.safecrlf=false",
+      "diff",
+      "--check"
+    ],
+    "exit_code": 0,
+    "log": "final-diff.log"
+  }
+]

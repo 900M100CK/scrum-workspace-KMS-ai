@@ -1,2 +1,3 @@
-# Preserve captured evidence bytes; logs are not source-format lint targets.
+# Immutable returned inputs and raw evidence retain exact bytes, including meaningful whitespace.
 evidence/** -text -whitespace
+reviews/** -text -whitespace

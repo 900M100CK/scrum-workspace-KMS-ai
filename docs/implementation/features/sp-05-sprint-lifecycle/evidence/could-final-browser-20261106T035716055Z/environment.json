@@ -1,0 +1,15 @@
+{
+  "executor": "Codex author",
+  "node": "v24.22.1",
+  "executable": "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+  "phase": "browser",
+  "image": "Pinned by scripts/database.mjs",
+  "tls": {
+    "localhost": true,
+    "validTo": "Nov 27 02:48:58 2026 GMT",
+    "fingerprint256": "FD:E7:DE:6C:F4:2E:02:56:D2:52:19:48:CB:71:46:6F:00:CA:CF:E9:B8:FC:D6:98:70:21:F6:BE:57:20:6F:D2"
+  },
+  "tlsBypass": false,
+  "personalBrowserProfile": false,
+  "playwrightModule": "file:///C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.mjs"
+}

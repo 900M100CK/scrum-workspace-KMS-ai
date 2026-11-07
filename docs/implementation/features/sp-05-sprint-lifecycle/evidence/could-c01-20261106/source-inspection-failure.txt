@@ -1,0 +1,1 @@
+Author source inspection initially failed: canonical SP-05 did not use the explicit phrase 'completed-work attribution' required by the source checklist. Existing 'Done attribution' wording was made explicit before rerunning the same assertion. Runtime was not tested.

@@ -3,7 +3,7 @@
 **Artifact ID:** SAD-03
 **Version/date:** 0.19.1 Draft · 4 November 2026
 **Status:** Draft for owner review; organized into 4+1 views; ADR-0007–ADR-0017 directions are owner-confirmed; implementation and remaining policy details are unverified.\
-**Inputs:** [BRD](BRD.md) v1.0; [PRD](sdlc/PRD_SRS.md) v0.10.2; [use cases](sdlc/use-cases.md) v0.8.3; [delivery plan](planning/five-month-plan.md) v0.4; [ADR-0004](adr/0004-knowledge-store.md) v0.2; ADR-0007–ADR-0017; AGENTS rules; owner confirmation to retain minimal microservices. Input-number reconciliation does not establish full semantic or runtime acceptance.; Proposed ADR-0018–ADR-0023
+**Inputs:** [BRD](BRD.md) v1.0; [PRD](sdlc/PRD_SRS.md) v0.10.3; [use cases](sdlc/use-cases.md) v0.8.4; [delivery plan](planning/five-month-plan.md) v0.4; [ADR-0004](adr/0004-knowledge-store.md) v0.2; ADR-0007–ADR-0017; AGENTS rules; owner confirmation to retain minimal microservices. Input-number reconciliation does not establish full semantic or runtime acceptance.; Proposed ADR-0018–ADR-0023
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 ---

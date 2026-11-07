@@ -1,0 +1,425 @@
+{
+  "kind": "Final C01 dirty-worktree source identities; includes preserved pre-existing C00 documents; not a new runtime result",
+  "branch": "codex/sp-05-could",
+  "base": "cfe0dbe61eeba4e34583b77317ec7f2e41fe4a6e",
+  "source_files": [
+    {
+      "path": "contracts/README.md",
+      "sha256": "7057bb1dcec92a96f15fe48cff47e64d6b2da0d786e23f92444f088dab340138"
+    },
+    {
+      "path": "contracts/data-model.json",
+      "sha256": "05df6ea4f8083fe18c06943fb3219a9248c64da23b0ef236b62dc6391469d4dd"
+    },
+    {
+      "path": "contracts/openapi/workspace.openapi.json",
+      "sha256": "081e32ff0ec38801e3ec3ff3a7137d9341e9fed276fe8c42d3f9077c7030000e"
+    },
+    {
+      "path": "docs/adr/0031-sprint-could-edit-and-removal.md",
+      "sha256": "891792d8e5c325c285bc48a35d6241998f1c6a6924459a39f52aa96c0c7fac8d"
+    },
+    {
+      "path": "docs/adr/README.md",
+      "sha256": "5a58c8d06c9a80a396792d1d757911fe132b5f659dc03bda48a5db775a5064b3"
+    },
+    {
+      "path": "docs/architecture.md",
+      "sha256": "42cc6e242f479e67b33252d99f8059794697c647941778fe804a1198f34d2097"
+    },
+    {
+      "path": "docs/implementation/features/README.md",
+      "sha256": "ef28b3cb05fe4a2596842c332e94bea08e626a63aba5ae0813cbd3205acace9d"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/README.md",
+      "sha256": "b69e7f0f5aa205dca832febcc50c731e67da5ca5e9f5438af73cd13a987d0f29"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/breakdown.md",
+      "sha256": "11266054855452a1f33287bbe1443d6cbc02e7fb5dc078014756254975f9e8a0"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/could-decisions.md",
+      "sha256": "c2f62141009d150ed7af7467a32e400b64c9a2a89629a6acd551935ff84f6444"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/plan.md",
+      "sha256": "469d13725fbf519a10c70d8039a53727c16290929cb023ef31f9cd21043ee85f"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C00-could-planning.md",
+      "sha256": "70eb27beb674af165a273d5a694efaba22489fca1dd79e5953221e46828f2de0"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C01-could-source-contract.md",
+      "sha256": "83d86a16ff5e9bcf4501eb6aa57ee070b6ad11a5d991eac660c4111cacca0291"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C02-could-storage.md",
+      "sha256": "9bdb03891ed2e250b4725f1da89cb20eb9643c1b878daf6acb8e61e45e4f57e1"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C03-could-authority.md",
+      "sha256": "6461a4019b2cd707bf7f06de951e9d47abe19ada19bafc475d85c3a503549df3"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C04-edit-producer.md",
+      "sha256": "d20041df1983fc93ffaf0d7ce459962ddaa60c1e33fdee0eab58e3140c50e31e"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C05-remove-producer.md",
+      "sha256": "b58b73bb2c1cc6dcbd735f4d54df1133b3cb8ae851563f76fdeb725260722445"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C06-could-recovery.md",
+      "sha256": "9b7535f5b6561cce8a42c32ebc3e61ea4d0af9f514ffa7aa32a5713dfd6473a7"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C07-edit-ui.md",
+      "sha256": "dee4dae6a6d0886a23f7b7de919dbd84f9aa6575e393565fababdc764cd9cb8f"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C08-remove-ui.md",
+      "sha256": "325b5656793a2c3e310adc33c44a53b5c0a0ba3837058890e078d1d6ddbc014b"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C09-could-concurrency.md",
+      "sha256": "6ea90ff74bc83768eecc278ef2bf6b5231dc6096dc663113bf7545382b317524"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C10-could-browser.md",
+      "sha256": "e3dbe0a45992767c686ccc8eec55bfd19efe09c869e871172fa030e3283cde19"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/tasks/C11-could-handoff.md",
+      "sha256": "8b4380eaedaed8220df21991106fa0c5edf429dd209492475985fd62209c6d9c"
+    },
+    {
+      "path": "docs/implementation/features/sp-05-sprint-lifecycle/verification/c01-source-contract.md",
+      "sha256": "fbdd1735534e8cebe1af15b45803fcc2f7a5f8d241af60604eb23f5d9265ad5a"
+    },
+    {
+      "path": "docs/implementation/register.md",
+      "sha256": "66de38081d90b9974b0dc17cd419b267dc6c0a5494b3da6416cec7ef35907499"
+    },
+    {
+      "path": "docs/implementation/roadmap.md",
+      "sha256": "ff4748d060f715a6b9f583ef3406b741416bf621fb74428329ba4f8e64193005"
+    },
+    {
+      "path": "docs/implementation/tasks/05-sprint-lifecycle.md",
+      "sha256": "45de8ec762234b873d5f54fdf79efe7c33ac865bc565b44d0c579ceb8c7d1050"
+    },
+    {
+      "path": "docs/implementation/tasks/README.md",
+      "sha256": "5e2aee8b2fc9358e6c4777ad60dcb31764707010749b0510c130a0a82bb0f497"
+    },
+    {
+      "path": "docs/sdlc/PRD_SRS.md",
+      "sha256": "0c0910964fbc98a84f419e1a3c2fec2062f10fd5da422c21d9e52b07f2a5f001"
+    },
+    {
+      "path": "docs/sdlc/SAD.md",
+      "sha256": "a173a25a65d5265ebb14d1a36782e83b9b7b05e4f3b5cfeff7a1d747d943c5b5"
+    },
+    {
+      "path": "docs/sdlc/api-design.md",
+      "sha256": "71bec89c601639eea1a01510cbf9422861485a681972a371318eb6242346bb0e"
+    },
+    {
+      "path": "docs/sdlc/artifact-register.md",
+      "sha256": "be60177d72981f50aad3166c72677939f030bb907af2183e4c39c5dab0ccccb6"
+    },
+    {
+      "path": "docs/sdlc/data-design.md",
+      "sha256": "b6d2dd7bde123c059041db73765b0b12fbe1732492d7a1914796effc25de8ea2"
+    },
+    {
+      "path": "docs/sdlc/diagrams/README.md",
+      "sha256": "3710cd08e21d38029de9c09a6278dbd0f07a2f617d54d6b351c747b16e4e600f"
+    },
+    {
+      "path": "docs/sdlc/diagrams/architecture/service-composition.drawio",
+      "sha256": "6bc210efb6fa5319207b40b433c0e467395643116370241785c494401cdac7b0"
+    },
+    {
+      "path": "docs/sdlc/diagrams/architecture/service-composition.mmd",
+      "sha256": "d3c477a3eef68e43fb3e82face0c0c67e28dd87ef0cde8c89d842cc298bab4ba"
+    },
+    {
+      "path": "docs/sdlc/diagrams/c4/containers.drawio",
+      "sha256": "a3564ac3e8cf4d9a9543e44c4cef3f60e81e1f39ab22f7bff8b9845f125fa5fb"
+    },
+    {
+      "path": "docs/sdlc/diagrams/c4/containers.mmd",
+      "sha256": "5c407065c6bfa35e12b146ef1717712ff91bb94ea0a5fbde74d641362dbe209d"
+    },
+    {
+      "path": "docs/sdlc/diagrams/c4/system-context.drawio",
+      "sha256": "532547f787117058015127122a9bd7cd0159da12e5d948a37b98fa4d18e46506"
+    },
+    {
+      "path": "docs/sdlc/diagrams/c4/system-context.mmd",
+      "sha256": "4e252c7a5f046612a68af0f2b6bee5ebcfecf936e75f8824f277b2e60a3c866d"
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/handoff-logical-model.drawio",
+      "sha256": "a1459c0da0ba301dfec60e477e01252f34b39effd725d4900229f58823017d03"
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/handoff-logical-model.mmd",
+      "sha256": "133b8e72bc0707ec9c8135a35a4bf8a7232d6910d37025c3d98592e3338bf9af"
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/knowledge-erd.drawio",
+      "sha256": "f0dce4859303018fa8900d1adab0c7bd117181e297511fcd2e22fee092f2b1e2"
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/knowledge-erd.mmd",
+      "sha256": "de376a88ef51b01a2a880fe63d5aabdb07aa8693b0c26378497e66763f971efe"
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/workspace-erd.drawio",
+      "sha256": "85e3ba4a96d9bac3d1fec32b5e695559bab1bc00f4b0e45186edf561ebf2e67c"
+    },
+    {
+      "path": "docs/sdlc/diagrams/data/workspace-erd.mmd",
+      "sha256": "393ff9faf01f415c076bfdc3c2649823ddbedcfba3bee7670ca03ec3434c1ea5"
+    },
+    {
+      "path": "docs/sdlc/diagrams/deployment/local-development.drawio",
+      "sha256": "0bbad377e691e8099cbc6cb2e63fa1f2ecbedfd53a2823aa75aece3121ae6f7c"
+    },
+    {
+      "path": "docs/sdlc/diagrams/deployment/local-development.mmd",
+      "sha256": "399fb2e0f86d24ec6cfe7861cd6674ce811492e886b35dd57ff3ea7f953c2ac9"
+    },
+    {
+      "path": "docs/sdlc/diagrams/development/package-ownership.drawio",
+      "sha256": "9f9f271a0615b2da3b750a6b394ddb848f4713a11b0f9fcbb42221180270336b"
+    },
+    {
+      "path": "docs/sdlc/diagrams/development/package-ownership.mmd",
+      "sha256": "9e81a1381ec7738541220c7542ef9d43698c49bd9e1533bb8c5a2f6e97e829a5"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/ai-qa-flow.drawio",
+      "sha256": "0918d0e48c358fe7f2f453b1528c06e3e2a3fb6b6c78e1a33939b0bd31a65239"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/ai-qa-flow.mmd",
+      "sha256": "98852df4d8cb16bf0cf6174539d0866697697a31d2f89a56315d1f5fb09721bf"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/board-flow.drawio",
+      "sha256": "db80efcd3be73b38557a817367f2ea3bd4b0da7ade18abb8564455001c0ce684"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/board-flow.mmd",
+      "sha256": "cdd43c0c19e94f4e4d56dc8058608a04fc9e3d55662b893460026642205d8271"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/docs-flow.drawio",
+      "sha256": "a9e8babf2ea3909087eea9baedf8e30dbd86bfd933e421b769d8588210f2020f"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/docs-flow.mmd",
+      "sha256": "e90e99a0b55a41c6dfb6c35c753487f50caaff55f2879861b0f86b8b6d8567d3"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.drawio",
+      "sha256": "5d8cca5138647ede588806a52df3827a8b80ec7578a83502f2037e3f4968dd57"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/permission-ai-checkpoints.mmd",
+      "sha256": "e7f13ef7863e5b00c71b029c23e7e2859e87f4a1bd86d5e9c940a998c3cfb400"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/permission-read-flow.drawio",
+      "sha256": "0ed479483f4a794099f89399bdaa409a9a71011b41953f8013ee38365bdff1c1"
+    },
+    {
+      "path": "docs/sdlc/diagrams/flowchart/permission-read-flow.mmd",
+      "sha256": "edef16e7137853a5ce5cf6e22aa67ece2f16b930592afb9f11741943851ed8a9"
+    },
+    {
+      "path": "docs/sdlc/diagrams/manifest.json",
+      "sha256": "080f2504c9620bf3c73daa268a2c388f39f050f57efcd37234819031c809b3de"
+    },
+    {
+      "path": "docs/sdlc/diagrams/sequence/document-creation.drawio",
+      "sha256": "ba160ed086641d61fcfcd66f1d52f8c994644455731165b4e9beb7ce43dacfcc"
+    },
+    {
+      "path": "docs/sdlc/diagrams/sequence/document-creation.mmd",
+      "sha256": "488e97155d64db06386a2829a4d73ec631f1c976cf7c2b2c579b8afc100775ed"
+    },
+    {
+      "path": "docs/sdlc/diagrams/sequence/protected-handoff.drawio",
+      "sha256": "0ccfdefbb92a66bf5fe12d999ba78620ffa5b5f7f6a2ad3cc08907587bda81e6"
+    },
+    {
+      "path": "docs/sdlc/diagrams/sequence/protected-handoff.mmd",
+      "sha256": "0e3f7a89a3c66692e79b7391914f93c8b316b4851c4768808a177e8d3bef95c8"
+    },
+    {
+      "path": "docs/sdlc/diagrams/sitemap/application-sitemap.drawio",
+      "sha256": "7c973e4e705efe62b3797e5f1e87bc93726c2e72d326c400e93ca8d5b9b0d5e1"
+    },
+    {
+      "path": "docs/sdlc/diagrams/sitemap/application-sitemap.mmd",
+      "sha256": "2f34531e093bab87cedfcd9b735bdac8ff1fa36e24ca3bc60c9573da240b47ca"
+    },
+    {
+      "path": "docs/sdlc/diagrams/state/document-and-readiness.drawio",
+      "sha256": "d50364467cce1461f73ae908fda6679eef13c12817aca414a0846b742d99df10"
+    },
+    {
+      "path": "docs/sdlc/diagrams/state/document-and-readiness.mmd",
+      "sha256": "37335b910e52923d0ce089ca111e5309f4de18ca85d0a418a3ad0d3279e769ba"
+    },
+    {
+      "path": "docs/sdlc/diagrams/state/sprint-task-allocation.drawio",
+      "sha256": "b6e830ba51529d469ee2f5657776e2b968ef19669fedaa0fed2435661f48f9aa"
+    },
+    {
+      "path": "docs/sdlc/diagrams/state/sprint-task-allocation.mmd",
+      "sha256": "763c5776549547d16ce81c4687990515c6188a1c65b95623d8800bea551a246e"
+    },
+    {
+      "path": "docs/sdlc/diagrams/use-case/use-case-diagram.drawio",
+      "sha256": "98a571b4e5550805c75f52dfd93aa65b05aaacd22c612155b183594400bac551"
+    },
+    {
+      "path": "docs/sdlc/diagrams/use-case/use-case-diagram.mmd",
+      "sha256": "cf85be013d18ca348e9df7cbdb530b8d3e6a05970c9547b0b69cac688b95538d"
+    },
+    {
+      "path": "docs/sdlc/diagrams/user-journey/core-user-journeys.drawio",
+      "sha256": "6791aeb71d4eb16b35f9b10fcecae9b79998c5763638ae9d69a377a6fb30e2b3"
+    },
+    {
+      "path": "docs/sdlc/diagrams/user-journey/core-user-journeys.mmd",
+      "sha256": "03c2c3c45737481715bc233f26543b7ce884af0fe1e20cd386999fe8a536ec68"
+    },
+    {
+      "path": "docs/sdlc/evaluation-cases.md",
+      "sha256": "733b796f1dae567fa89d2e1bc9f7db22be23e233a2c18aa5ece46d31e17d8e50"
+    },
+    {
+      "path": "docs/sdlc/references/document-review-register.md",
+      "sha256": "5361a4ec413e9043cf5d04028c4283f16c25cdcf7060abf89eeab93313517bfa"
+    },
+    {
+      "path": "docs/sdlc/requirement-verification.md",
+      "sha256": "fcd865c5bdb5da382e222e968661083165c9d8c22fb2f23d89d16b1dd2e9ada5"
+    },
+    {
+      "path": "docs/sdlc/test-coverage.md",
+      "sha256": "585cc4139cd203b1bec1a705a0476dfb7721ceb123c4070ee71fcd3b57f3c0ac"
+    },
+    {
+      "path": "docs/sdlc/test-plan.md",
+      "sha256": "a921455b77a3d41cb970800288346e93d6fdf21b1fab463fd53c7a5163abcd03"
+    },
+    {
+      "path": "docs/sdlc/ui-ux-blueprint.md",
+      "sha256": "c818e4676981f887ec6c72040dabde94139a7d85cc7ed2d802b9160536db7f2f"
+    },
+    {
+      "path": "docs/sdlc/ui-ux-spec.md",
+      "sha256": "04a8f89d46e6a562ffbe93b7f73c9f0916ad94605d4895f6eebfb2d3c60e6d23"
+    },
+    {
+      "path": "docs/sdlc/use-cases.md",
+      "sha256": "74910bb38606440756272609c14b6ed3d1a0cce73e9ba056d1719e16e1340cdf"
+    },
+    {
+      "path": "docs/ux/flows/ai-qa-flow.md",
+      "sha256": "b5fbbae1fe73f71f1078939e6ae09dd309d62342f530d64d04c444d3370038ac"
+    },
+    {
+      "path": "docs/ux/flows/board-flow.md",
+      "sha256": "b0065adba6b2d75ee526227b6bd618af7fa003afb6d6ea23d459507537c3e8b4"
+    },
+    {
+      "path": "docs/ux/flows/docs-flow.md",
+      "sha256": "7f310cdcffd313bf3bc750c12169fe47898f0cc06c71f2d5db78938bb0ab45d8"
+    },
+    {
+      "path": "docs/ux/permission-matrix.md",
+      "sha256": "ebb6087864533ec873e49791a88a383dc820e5ad9ff50187ca7fd9cc022feb66"
+    },
+    {
+      "path": "docs/ux/personas.md",
+      "sha256": "d176c69d9c8c7edcbd9892dcfdc92d72bac8e9b9619e2dc71b5b468e9a308da5"
+    },
+    {
+      "path": "docs/ux/wireframe-workplan.md",
+      "sha256": "59eb53ead79218f74a494ef2b0f188f3275a91c3711e14c92b58b81a1c805fb6"
+    },
+    {
+      "path": "docs/ux/wireframes/README.md",
+      "sha256": "caa2e6afa4d862096855e395b79a253dff2884e1bdf1898714f36154afa546b2"
+    },
+    {
+      "path": "specs/001-session.md",
+      "sha256": "b36b224050581ed366440f60fd72c9fb6d7a26a69a549b4b143234839ba4f606"
+    },
+    {
+      "path": "specs/002-project-membership.md",
+      "sha256": "e904478f81a4dc8af3fe0f3441978405bc008196f22b8e9e0207cdfaa7d0d7b4"
+    },
+    {
+      "path": "specs/003-create-task.md",
+      "sha256": "80b86d2ad223e10d749c8e73a7a38b525d72f8094d4f935d8619a1000a956014"
+    },
+    {
+      "path": "specs/004-update-task.md",
+      "sha256": "05b9f9bca5b2816f8dacc06ef391c12bbf5467429500bdc25c1ff911c3d6b740"
+    },
+    {
+      "path": "specs/005-sprint-lifecycle.md",
+      "sha256": "4779bcaca0a33eebe804c25a21907f21d2560ea949bb0ad041f1476ec0ef5df5"
+    },
+    {
+      "path": "specs/006-document-access.md",
+      "sha256": "9160a4b2d10e654ae799364218f7aa1477d9ce9cf153afa13d408d59fcccff1a"
+    },
+    {
+      "path": "specs/007-version-publication.md",
+      "sha256": "164dba19f7eb6d82f2523ca88014fa4c6efed0f9fd2401a2eb06c80b45605dff"
+    },
+    {
+      "path": "specs/008-linked-keyword-search.md",
+      "sha256": "009c4f28c37ee136f37dc8c8382645e9d7f7b90838a7ae8afbfdb248de8f6c1f"
+    },
+    {
+      "path": "specs/009-cited-question.md",
+      "sha256": "694235e66a1713783156e00bed239083609fde42c5853fa570810a7c30b64006"
+    },
+    {
+      "path": "specs/010-current-work-question.md",
+      "sha256": "b369bbd9b011bc622fb1de1aeb9a192735be26be2f41ead16e8fabf6be12e04f"
+    },
+    {
+      "path": "specs/011-audit-and-source-inspection.md",
+      "sha256": "df2533df954c3d939b47162cdb954f804b745a201577aa4018ecc93d629073bd"
+    },
+    {
+      "path": "specs/012-failure-and-evaluation.md",
+      "sha256": "32f4232c5d7e5701eadefc300d035cc605ce61257f7305f6f9e2d8ef0c8b5a94"
+    },
+    {
+      "path": "specs/013-scoped-inspection.md",
+      "sha256": "ef6547274c789651fc97cc02592065803f431785709b4e4ee425cda9b2321a18"
+    },
+    {
+      "path": "specs/README.md",
+      "sha256": "1b932775a189167fe7a91be32df2d2211473368c7c430ba8cc5595f3f29f6ab1"
+    }
+  ],
+  "protected_runtime_paths_unchanged": true,
+  "preflight": "Final checklist reviewed: selected Could scope, explicit authority, current aliases, immutable old evidence, actual structural results and unrun runtime gates separated; no commit/push or independent approval."
+}
