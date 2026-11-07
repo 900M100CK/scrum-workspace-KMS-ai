@@ -1,7 +1,7 @@
 # SP-05 implementation entry
 
 **Artifact ID:** FEAT-SP05-ENTRY\
-**Version/date:** 0.14 Draft · 7 November 2026
+**Version/date:** 0.15 Draft · 7 November 2026
 
 [Plan](plan.md) owns current status; [breakdown](breakdown.md) maps the owner-approved tasks. Follow registered tasks sequentially; no publication or feature acceptance.
 
@@ -36,3 +36,5 @@ C01 source/contract alignment and fresh structural evidence are linked from the 
 ## Owner acceptance and Could publication — 7 November 2026
 
 [Review disposition](verification/could-review-disposition.md) preserves the supplied bounded Antigravity review and owner acceptance; independent PG/Edge remains unexecuted by reviewer. [PUB03](tasks/PUB03-could-publication.md) owns actual publication, bounded resource-probe/capture corrections and PR receipt. No merge or M03/release acceptance is implied.
+
+[Selected Could PR #3 receipt](verification/could-publication-receipt.md) records actual publication after owner acceptance. Older no-publication statements above describe their historical checkpoints.

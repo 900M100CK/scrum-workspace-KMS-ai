@@ -39,7 +39,7 @@ Prior OWNER-Q-01 verification: combined Node 24.21.0 run `node --test tests/docs
 ## Current register and handoffs
 
 **Artifact ID:** REG-00
-**Version/date:** 0.136 Draft · 7 November 2026
+**Version/date:** 0.137 Draft · 7 November 2026
 **Status:** Draft; confirmed policy corrections in progress, full coverage and remaining decisions explicit.
 **Source versions:** Proposed ADR-0024/0025 for SP-01.1; [BRD stable entry](../BRD.md) → [English BRD v1.0](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md) and two Proposed addenda, [AGENTS.md v1.13](../../AGENTS.md), [workflow](../../agents/WORKFLOW.md), PRD-01 v0.10.3, UC-02 v0.8.4, SAD-03 v0.19.1 and ADR-0007–ADR-0017. Prior review inputs remain historical. Storage has measured test evidence; bounded session runtime evidence exists; interviews, pilot and full application acceptance remain absent.; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; Proposed ADR-0026; Proposed ADR-0029 v0.1
 
@@ -134,7 +134,7 @@ The BRD leaves architecture to design while AGENTS.md directs minimal microservi
 | Artifact ID | Version | Canonical source |
 | --- | --- | --- |
 | UML-07 | v0.25.9 | [Source](diagrams/README.md) |
-| REG-00 | v0.136 | [Source](artifact-register.md) |
+| REG-00 | v0.137 | [Source](artifact-register.md) |
 | SAD-03 | v0.19.1 | [Source](../architecture.md) |
 | UX-PERM-MATRIX-02 | v0.11.3 | [Source](../ux/permission-matrix.md) |
 | UX-PERSONAS-01 | v0.5.3 | [Source](../ux/personas.md) |
@@ -821,3 +821,7 @@ FEAT-SP05-01 v0.13 / entry v0.13 records C02–C11 selected FR/AC-66/67/31 under
 ## PUB03 selected Could acceptance/publication — 7 November 2026
 
 FEAT-SP05-01/entry v0.14 registers SP05-PUB03 v0.1, SP05-COULD-REVIEW-DISPOSITION-01 v0.1 and current author result/review assignment v0.2 under SP-05 / PLAN-01 Month2/M-03. Owner explicitly accepted selected Could and requested PR then SP-06. Exact supplied reviewer text/checks are preserved, with independent PG/Edge blocked/unrun distinct from author379/5. Bounded runner resource-probe and immutable capture-destination corrections are verified separately. Publication authority includes necessary agent commit/normal push/one PR, not main merge, production migration, accepted ADR change, independent runtime fabrication or M03/release acceptance. Actual PR/head belongs to the owning plan/publication receipt after creation; SP-06 is separate.
+
+## Selected Could publication result — 7 November 2026
+
+FEAT-SP05-01/entry v0.15 and [SP05-PUB03-RESULT-01 v0.1](../implementation/features/sp-05-sprint-lifecycle/verification/could-publication-receipt.md) record exact426-file commit8fa597c, normal push and ready PR #3 to main under owner acceptance. Only the owning plan stores task status. SP-05 / PLAN-01 Month2/M-03; original author/reviewer runtime limits preserved. SP-06 continuation is separate; no merge or M03/release acceptance.

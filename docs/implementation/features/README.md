@@ -1,7 +1,7 @@
 # Work plan register and template
 
 **Artifact ID:** IMPL-FEATURES-01\
-**Version/date:** 0.62 Draft · 7 November 2026
+**Version/date:** 0.63 Draft · 7 November 2026
 **Status:** Planning entry; no application feature accepted or implemented by this file.\
 **Inputs:** [Development rules](../../development-rules.md) v1.13; [implementation roadmap](../roadmap.md) v0.54; [PLAN-01](../../planning/five-month-plan.md) v0.4; [spec index](../../../specs/README.md) v0.8.6; [source register](../register.md).\
 **Trace:** Existing feature FR/AC/BR/SC through its canonical spec; no added scope.\
@@ -263,3 +263,7 @@ FEAT-SP05-01 v0.13 / entry v0.13 records C02–C11 selected FR/AC-66/67/31 under
 ## PUB03 selected Could acceptance/publication — 7 November 2026
 
 FEAT-SP05-01/entry v0.14 registers SP05-PUB03 v0.1, SP05-COULD-REVIEW-DISPOSITION-01 v0.1 and current author result/review assignment v0.2 under SP-05 / PLAN-01 Month2/M-03. Owner explicitly accepted selected Could and requested PR then SP-06. Exact supplied reviewer text/checks are preserved, with independent PG/Edge blocked/unrun distinct from author379/5. Bounded runner resource-probe and immutable capture-destination corrections are verified separately. Publication authority includes necessary agent commit/normal push/one PR, not main merge, production migration, accepted ADR change, independent runtime fabrication or M03/release acceptance. Actual PR/head belongs to the owning plan/publication receipt after creation; SP-06 is separate.
+
+## Selected Could publication result — 7 November 2026
+
+FEAT-SP05-01/entry v0.15 and [SP05-PUB03-RESULT-01 v0.1](sp-05-sprint-lifecycle/verification/could-publication-receipt.md) record exact426-file commit8fa597c, normal push and ready PR #3 to main under owner acceptance. Only the owning plan stores task status. SP-05 / PLAN-01 Month2/M-03; original author/reviewer runtime limits preserved. SP-06 continuation is separate; no merge or M03/release acceptance.
