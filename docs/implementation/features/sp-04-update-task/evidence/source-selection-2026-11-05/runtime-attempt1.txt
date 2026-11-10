@@ -1,0 +1,74 @@
+▶ HF42-RF03 actual010 unexpected-null rollback contract and recorded-denial distinctions
+  ✔ legitimate false/zero and204 outcome objects with null body retain normal commit semantics (299.8032ms)
+  ✔ known thrown callback failure rolls back actual attempted business effects before COMMIT (35.7613ms)
+  ✔ unexpected null with no recorded denial must roll back Task, audit and immutable original outcome (38.64ms)
+  ✔ protected HTTP null fault returns the existing generic503 envelope without internal detail (56.8865ms)
+  ✔ ordinary authentication denial never runs callback or invents clock-fault audit (3.594ms)
+  ✔ actual initial/final clock faults retain their durable latch/audit while withholding business effects (163.4929ms)
+  ✔ actual lost COMMIT acknowledgement remains unknown and original-key replay does not mutate twice (62.4814ms)
+✔ HF42-RF03 actual010 unexpected-null rollback contract and recorded-denial distinctions (7414.8724ms)
+ℹ {"fixture":"sp01-p08-test-680dbfdb0b39","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","ceiling":"010","scope":"Controlled callbacks on actual PostgreSQL; not a production incident or new public mutation"}
+ℹ {"case":"unexpected-null","reachedNull":true,"returnedNull":false,"failureStatus":503,"before":{"task":{"title":"Synthetic transaction original","description":"","revision":"1"},"audits":"1","outcomes":"1"},"after":{"task":{"title":"Synthetic transaction original","description":"","revision":"1"},"audits":"1","outcomes":"1"}}
+▶ SP04 actual assignment, current eligibility and removal races
+  ✔ scope/action before target eligibility and strict shape (128.8241ms)
+  ✔ enabled member/null assignment, no-op, exact historical replay and stale conflict (110.6811ms)
+  ✔ update/audit/outcome failure rolls back with recoverable same key (257.001ms)
+  ✔ assign-first actual SQL schedule then removal clears assignment and replay never restores it (240.9508ms)
+  ✔ remove-first actual producer blocks assignment; rejoin restores no current assignment (131.0785ms)
+  ✔ concurrent assignments and duplicate keys; overflow and authority revocation (180.8125ms)
+  ✔ post-lock session expiry rejects new assignment (491.7225ms)
+✔ SP04 actual assignment, current eligibility and removal races (5751.119ms)
+▶ SP04 append-only blocker commands and scoped history pages
+  ✔ history needs membership not audit/action; commands require exact authority; strict validation (52.0561ms)
+  ✔ retrospective resolution, repeated Open and later Resolved append every distinct event; sequence is truth (302.5012ms)
+  ✔ event/task/audit/outcome faults roll back entire append and retry uses original identity (429.9931ms)
+  ✔ concurrent writes conflict; duplicate keys append once; default outcome canonicalizes null (121.1428ms)
+  ✔ ascending pages bind actor/task/full dataset; current login survives but stale/foreign/malformed fails (1338.1942ms)
+  ✔ expired signed cursors, missing signing key and removal/rejoin deny or invalidate history (131.5531ms)
+  ✔ revision and sequence upper bounds reject writes; revoked replay denies (78.9104ms)
+  ✔ actual history read wait rechecks session before returning any page (470.943ms)
+✔ SP04 append-only blocker commands and scoped history pages (6995.7271ms)
+▶ SP04-P03D1 actual Backlog edit, recovery, rollback and authority schedules
+  ✔ explicit action only; cross-project/nonmember/missing identities conceal existence (70.043ms)
+  ✔ strict shape/media/origin/header/text/body bounds make no change (36.4794ms)
+  ✔ confirmed edit persists exact text, audit and original200; omission preserves description; changed hash conflicts (165.5591ms)
+  ✔ empty and same-value no-ops retain their own200 without revision/audit; missing and empty fields hash differently (83.5653ms)
+  ✔ new edits reject non-Backlog placement; retained replay bypasses current placement and revision (95.5161ms)
+  ✔ safe revision ceiling permits no-op but refuses increment (62.5138ms)
+  ✔ task UPDATE, audit and outcome faults roll back every business effect (205.0723ms)
+  ✔ same-revision competing edits have one winner; concurrent duplicate key writes once (162.0545ms)
+  ✔ edit-first actual lock schedule commits once then current revoked authority denies replay (83.8577ms)
+  ✔ revoke-first actual producer denies waiting new edit and original replay (79.1837ms)
+  ✔ actual removal before edit denies the former member and rejoin restores no edit grant (145.6035ms)
+  ✔ live discovery advertises only implemented edit with current authority and clears after revoke (66.164ms)
+  ✔ session expiry during a paused actual read withholds edit before business writes (520.3012ms)
+✔ SP04-P03D1 actual Backlog edit, recovery, rollback and authority schedules (5720.1134ms)
+ℹ {"fixture":"sp01-p08-test-61e7c58f22ba","volume":"sp01-p08-test-61e7c58f22ba-data","image":"pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966","ceiling":"010"}
+▶ SP04 cross-producer original outcomes, concurrent writes and revocation schedules
+  ✔ four competing real changed writes share one revision; exactly one business change wins (173.5768ms)
+  ✔ lost actual COMMIT acknowledgement preserves business/audit/outcome; same key returns original once (578.3253ms)
+  ✔ actual revoke-first lock schedules deny waiting writes and retained replays for every action (527.804ms)
+✔ SP04 cross-producer original outcomes, concurrent writes and revocation schedules (5322.6995ms)
+▶ SP04 retained edit replay binds current actor/action/hash after persisted placement changes
+  ✔ the same textual key has independent immutable results for two currently authorised actors (54.0355ms)
+  ✔ original replay survives completed placement while changed payload conflicts without revealing any original (102.9063ms)
+  ✔ current edit revocation takes precedence over saved success or changed-hash disclosure (65.9431ms)
+  ✔ actual membership removal denies that actors original receipt and leaves Task/history/results unchanged (57.253ms)
+✔ SP04 retained edit replay binds current actor/action/hash after persisted placement changes (4892.937ms)
+ℹ Unknown Task UUID checks generic404; no Task-delete handler is implemented or claimed. P08 remains open.
+▶ SP04 state handler and completed placement persistence
+  ✔ explicit authority, concealed foreign targets and strict request validation (50.8752ms)
+  ✔ all direct transitions and no-ops; stale and changed-input retries preserve state (1302.2418ms)
+  ✔ both completed reopen targets normalize atomically, append exact numeric position and preserve allocation (142.116ms)
+  ✔ audit/outcome/update faults roll back and original-key retries recover; overflow rejects change (371.8208ms)
+  ✔ concurrent revision writes have one winner; duplicate requests commit once; revoked replay denies (141.7499ms)
+  ✔ session expiry after actual Task lock withholds mutation (555.6359ms)
+✔ SP04 state handler and completed placement persistence (6643.6943ms)
+ℹ tests 55
+ℹ suites 0
+ℹ pass 55
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 47337.1476

@@ -1,0 +1,15 @@
+✔ each mutation uses exact target actions, persists original identity before sending and refreshes current state after historical receipt (38.2466ms)
+✔ conflicts refresh separately, never automatically issue a new key; denial/outage retain recovery and clear content (3.3207ms)
+✔ foreign actor, malformed stored input and missing exact action cannot issue mutations; logout clears recovery (0.5396ms)
+✔ a confirmed write followed by unavailable current reads never presents its historical receipt as current (0.631ms)
+✔ history pagination validates ascending events, refreshes current scope and discards stale pages (2.1347ms)
+✔ legacy recovery negative: tampered persisted payload is discarded without issuing any request (0.6751ms)
+✔ legacy scope/history negatives: wrong task discovery and malformed history withhold all protected panes (0.702ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 169.942

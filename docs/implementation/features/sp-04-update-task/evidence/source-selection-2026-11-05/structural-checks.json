@@ -1,0 +1,83 @@
+{
+  "node": "v24.22.1",
+  "checks": [
+    {
+      "name": "context-lint",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "--check",
+        "scripts/verify-context.mjs"
+      ],
+      "exit_code": 0,
+      "error": null,
+      "log": "context-lint-attempt1.txt"
+    },
+    {
+      "name": "routing-lint",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "--check",
+        "scripts/context/verify-api-routing.mjs"
+      ],
+      "exit_code": 0,
+      "error": null,
+      "log": "routing-lint-attempt1.txt"
+    },
+    {
+      "name": "context-test-lint",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "--check",
+        "tests/context/context.test.mjs"
+      ],
+      "exit_code": 0,
+      "error": null,
+      "log": "context-test-lint-attempt1.txt"
+    },
+    {
+      "name": "context-check",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/verify-context.mjs"
+      ],
+      "exit_code": 0,
+      "error": null,
+      "log": "context-check-attempt1.txt"
+    },
+    {
+      "name": "structural-tests",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "--test",
+        "tests/context/context.test.mjs",
+        "tests/contracts/contract-schemas.test.mjs",
+        "tests/contracts/handoff-bytes.test.mjs",
+        "tests/docs/docs.test.mjs"
+      ],
+      "exit_code": 0,
+      "error": null,
+      "log": "structural-tests-attempt1.txt"
+    },
+    {
+      "name": "docs-lint",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/docs/verify-docs.mjs"
+      ],
+      "exit_code": 0,
+      "error": null,
+      "log": "docs-lint-attempt1.txt"
+    },
+    {
+      "name": "metadata",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "scripts/docs/docs-metadata.mjs",
+        "--check"
+      ],
+      "exit_code": 0,
+      "error": null,
+      "log": "metadata-attempt1.txt"
+    }
+  ]
+}

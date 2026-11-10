@@ -1,0 +1,22 @@
+{
+  "node": "v24.22.1",
+  "browser": "156.0.4314.58",
+  "database": "17.10 (Debian 17.10-1.pgdg12+1)",
+  "image": "pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966",
+  "schema": "010",
+  "https": true,
+  "tlsBypass": false,
+  "personalProfile": false,
+  "checks": [
+    "native title validation/focus",
+    "keyboard edit",
+    "persisted state/assignment/events",
+    "lost committed PATCH original-key recovery across reload",
+    "fresh later state after historical receipt",
+    "revoked action controls removed",
+    "outage clears protected pane",
+    "desktop/mobile overflow",
+    "signout recovery cleared"
+  ],
+  "errors": []
+}
