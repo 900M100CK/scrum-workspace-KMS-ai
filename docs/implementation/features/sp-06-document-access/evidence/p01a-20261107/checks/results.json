@@ -1,0 +1,100 @@
+{
+  "task": "SP06-P01-A",
+  "time_utc": "2026-11-07T05:36:33.098987+00:00",
+  "node": "v24.22.1",
+  "commands": [
+    {
+      "name": "node",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "--version"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "metadata",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "scripts/docs/docs-metadata.mjs",
+        "--check"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "context:lint",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "context:lint"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "context:check",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "context:check"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "context:test",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "context:test"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "contracts:test",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "contracts:test"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "docs:lint",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "docs:lint"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "docs:test",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "docs:test"
+      ],
+      "exit": 0
+    }
+  ],
+  "structural_tests": {
+    "context": 45,
+    "contracts": 27,
+    "docs": 20,
+    "total": 92
+  },
+  "local_links": 60,
+  "unchanged_frozen_source_inputs": 65,
+  "original_snapshots_preserved": true,
+  "owner_selection": "B01 only",
+  "B02": "Not selected",
+  "B03": "Not selected",
+  "staged_paths": 0,
+  "branch": "codex/sp-06-document-access",
+  "application_contract_schema_dependency_changes": 0,
+  "runtime": "Not run; preparation-only task"
+}

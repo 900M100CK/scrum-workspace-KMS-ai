@@ -1,0 +1,3 @@
+Input version drift in docs/sdlc/evaluation-cases.md: TEST-08
+
+'0.24.6' !== '0.24.7'

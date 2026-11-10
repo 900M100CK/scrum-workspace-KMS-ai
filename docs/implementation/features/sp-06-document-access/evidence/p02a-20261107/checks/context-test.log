@@ -1,0 +1,57 @@
+
+> scrum-workspace-kms-context@0.1.0 context:test
+> node --test tests/context/context.test.mjs
+
+✔ every internal authentication alternative requires both service and actor context (35.1412ms)
+✔ protected public operations cannot opt out of session authentication or name unknown schemes (6.2835ms)
+✔ route templates reject extra, duplicate, missing and equivalent selectors (5.0353ms)
+✔ path parameters support inherited references and valid operation overrides (2.5665ms)
+✔ HEAD operations cannot bypass requirement trace validation (1.5171ms)
+✔ independent document commands expose opaque preconditions and minimal receipts only (10.9124ms)
+✔ readiness declarations cannot conflate semantic processing with keyword availability (3.8083ms)
+✔ inspection contracts preserve exact ranked evidence, actual steps and honest missing telemetry (13.2995ms)
+✔ AI transport contracts require exact durable mixed-evidence handoff binding (13.4675ms)
+✔ discovery contracts preserve minimal disclosure and read preconditions (20.5135ms)
+✔ UI action catalogue derives public operation membership from both current contracts (9.5179ms)
+✔ action discovery retains exact version binding and independent summary authority (5.3888ms)
+✔ fresh-client work contracts retain location, allocation history and blocker reads (16.9113ms)
+✔ spec owner cannot contradict the actual operation contract (2.3409ms)
+✔ partial answer must contain cited supported content and missing components (1.3462ms)
+✔ document-only answer cannot use a task selected by unavailable operational state (1.708ms)
+✔ partial supported answer is not an empty insufficiency response (1.1034ms)
+✔ unavailable citation cannot return an excerpt (1.3635ms)
+✔ unavailable citation must retain its exact passage identity (1.3019ms)
+✔ withheld answer cannot disclose an access-change reason (1.3151ms)
+✔ withheld answer cannot include source identities (1.2886ms)
+✔ context links and contracts are coherent (38.7047ms)
+✔ duplicate FR IDs are rejected (0.3897ms)
+✔ unknown release requirement is rejected (0.7391ms)
+✔ unresolved contract references are rejected (1.2634ms)
+✔ not-found response cannot add a source title (1.8302ms)
+✔ client task creation cannot assert permissions (1.7649ms)
+✔ retrieval response cannot expose Draft as validity (1.5213ms)
+✔ document citation requires exact version identity (2.3011ms)
+✔ internal request must require service plus actor context (1.1185ms)
+✔ withdrawn IDs cannot return through an API trace (1.2696ms)
+✔ withdrawn requirements cannot count as release Must (0.6036ms)
+✔ new Core deferral requires an explicit matching decision (0.6327ms)
+✔ missing withdrawal record cannot silently shrink the scope (0.5793ms)
+✔ document lifecycle rejects reintroducing Draft outside retrieval (1.4087ms)
+✔ research references reject restricted evidence without an explicit grant (0.9969ms)
+✔ document-only configuration cannot receive current-state credit (1.0094ms)
+✔ operational citation must match the frozen revision and observation time (0.9891ms)
+✔ fixture blocked flag cannot disagree with ordered evidence (0.3984ms)
+✔ regression fixture cannot reintroduce the removed Draft lifecycle (0.536ms)
+✔ revision scenario cannot overwrite an existing cited identity (0.7644ms)
+✔ unsaved editor scenario must stay outside ingested evidence (0.6854ms)
+✔ matching observation revision cannot hide a different value (0.3704ms)
+✔ source-task fixture links cannot cross projects (0.3953ms)
+✔ observations without source rows cannot be used as operational evidence (0.283ms)
+ℹ tests 45
+ℹ suites 0
+ℹ pass 45
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 288.79

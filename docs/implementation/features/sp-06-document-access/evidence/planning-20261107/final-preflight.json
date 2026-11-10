@@ -1,0 +1,12 @@
+{
+  "kind": "Final planning preflight, no runtime evidence",
+  "branch": "codex/sp-06-document-access",
+  "sp02_historical_capture_sha256": "085f4ee291399cd617f737811c087918a45a012c035a087ad96cf05dc4a50ad3",
+  "sp02_raw_equals_HEAD": true,
+  "staged_paths": 0,
+  "new_feature_files": 31,
+  "preserved_other_feature_captures": 10,
+  "product_code_contract_schema_changes": 0,
+  "owner_request": "Prepare SP06 plan only",
+  "runtime": "Not run"
+}

@@ -1,0 +1,125 @@
+{
+  "task": "SP06-P02-A",
+  "time_utc": "2026-11-07T05:44:07.715780+00:00",
+  "node": "v24.22.1",
+  "commands": [
+    {
+      "name": "node",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "--version"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "metadata",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "scripts/docs/docs-metadata.mjs",
+        "--check"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "context:lint",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "context:lint"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "context:check",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "context:check"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "context:test",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "context:test"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "contracts:test",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "contracts:test"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "docs:lint",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "docs:lint"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "docs:test",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "docs:test"
+      ],
+      "exit": 0
+    }
+  ],
+  "structural_tests": {
+    "context": 45,
+    "contracts": 27,
+    "docs": 20,
+    "total": 92
+  },
+  "changed_initial_source_inputs": [
+    "docs/sdlc/test-plan.md",
+    "docs/sdlc/test-coverage.md",
+    "docs/sdlc/requirement-verification.md",
+    "docs/implementation/decisions.md",
+    "docs/implementation/tasks/06-document-access.md",
+    "specs/006-document-access.md"
+  ],
+  "unchanged_initial_source_inputs": 59,
+  "tracked_delta_paths": [
+    "docs/adr/README.md",
+    "docs/implementation/decisions.md",
+    "docs/implementation/features/README.md",
+    "docs/implementation/register.md",
+    "docs/implementation/roadmap.md",
+    "docs/implementation/tasks/06-document-access.md",
+    "docs/implementation/tasks/README.md",
+    "docs/sdlc/artifact-register.md",
+    "docs/sdlc/diagrams/README.md",
+    "docs/sdlc/diagrams/manifest.json",
+    "docs/sdlc/evaluation-cases.md",
+    "docs/sdlc/references/document-review-register.md",
+    "docs/sdlc/requirement-verification.md",
+    "docs/sdlc/test-coverage.md",
+    "docs/sdlc/test-plan.md",
+    "specs/006-document-access.md",
+    "specs/README.md"
+  ],
+  "initial_snapshots_preserved": true,
+  "B01": "Selected, source aligned only",
+  "B02": "Not selected",
+  "B03": "Not selected",
+  "runtime": "Not run; source-only task",
+  "application_contract_schema_dependency_changes": 0,
+  "staged_paths": 0
+}

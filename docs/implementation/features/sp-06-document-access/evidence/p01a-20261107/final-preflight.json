@@ -1,0 +1,10 @@
+{
+  "task": "SP06-P01-A",
+  "current_links_checked": 64,
+  "frozen_inputs_unchanged": 65,
+  "branch": "codex/sp-06-document-access",
+  "staged_paths": 0,
+  "application_contract_schema_changes": 0,
+  "runtime": "Not run",
+  "next_task": "SP06-P02-A source alignment; B02/B03 unselected"
+}

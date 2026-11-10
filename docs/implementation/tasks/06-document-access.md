@@ -1,9 +1,9 @@
 # SP-06: Store an owned English text/Markdown source with explicit, independently enforced document access.
 
 **Artifact ID:** IMPL-SP-06\
-**Version/date:** 0.1 Draft · 26 October 2026\
-**Status:** Breakdown only; all child steps Not started.\
-**Inputs:** [Canonical SP-06](../../../specs/006-document-access.md) v0.6; SPEC-INDEX v0.4; PRD-01 v0.9; [source register](../register.md); [decisions](../decisions.md).\
+**Version/date:** 0.2 Draft · 7 November 2026
+**Status:** Bounded B01 source preparation recorded; runtime children remain unimplemented; state is in FEAT-SP06-01.\
+**Inputs:** [Canonical SP-06](../../../specs/006-document-access.md) v0.6.4; SPEC-INDEX v0.8.7; PRD-01 v0.10.3; [source register](../register.md); [decisions](../decisions.md).\; Proposed ADR-0032 v0.1
 **Trace:** FR-04, FR-10, FR-14, FR-50, FR-51, FR-52, FR-62, FR-65; BR-01, BR-10, BR-04, BR-14; SC-06.\
 **Owner role:** Sequential implementer; no independent approval claimed.
 
@@ -16,7 +16,7 @@
 - Declared operation IDs: `createDocument`, `getDocument`, `setClassification`, `grantDocumentRead`, `revokeDocumentRead`, `importDocument`, `editDocumentMetadata`, `registerDocumentPolicy`, `persistDocument`, `listDocuments`, `getDocumentPolicy`, `listDocumentReadGrants`, `getAllowedActions`, `listMembers`, `getDocumentCommandPrecondition`. Read exact contracts from the [source register](../register.md); these lists do not replace all supporting contract dependencies or grant a second handler owner.
 - Flow: [current interaction source](../../ux/flows/docs-flow.md).
 - Decision gates: D-03/D-04/D-05/D-07 as relevant to capability provisioning, discovery, independent commands and guarded source reads; D-09 before physical orphan cleanup.
-- Allowed paths, copied from canonical spec: services/knowledge/**, services/workspace/policy/**, apps/web/**, tests/**. Re-read the current spec before edits. Shared contract/root-script/guard changes outside these paths need a recorded coordinated-spec scope update; this breakdown does not authorise them.
+- Allowed paths: original Knowledge/web/tests paths plus the exact B01-only Workspace document-authority adapter, existing project operator/CLI integration, additive014, DOCUMENTS.md and document-authority tests/fixture, and the exact B03-only guard and transport service-auth modules and tests listed in [canonical SP-06](../../../specs/006-document-access.md#allowed-paths-and-done). The policy/** placeholder is corrected to explicit src paths. Shared gateway/guard/HTTP/other schema paths remain pending later amendment; no blanket Workspace src allowance.
 
 ## Child steps
 
@@ -62,3 +62,11 @@ Use [execution rules](../execution.md): real handlers/persisted state, relevant 
 Record command/runtime, source revision or dirty-worktree digest, fixture/config identity, asserted boundary, results/failed attempts, unrun checks and open decisions in a dated [handoff](../handoff-template.md). Link it from the child status row and update the [catalogue](README.md) when pack state changes.
 
 **Checklist/handoff:** Pass for bounded breakdown and canonical references; Gap for missing decisions and all application acceptance. Ready for preparation within these limits; no implementation, release completion or independent acceptance is claimed.
+
+## Selected B01 continuation — 7 November 2026
+
+[FEAT-SP06-01 v0.3](../features/sp-06-document-access/plan.md) owns execution state. P02-A aligns selected private project knowledge-author provisioning; [Proposed ADR-0032](../../adr/0032-private-document-create-authority.md) bounds the014 predicate/trigger/private audit design. P03-A prepares only this authority prerequisite, then P04 implements the existing private operator integration. This order does not require B02/B03 or implement creation/policy/Knowledge storage. Minimum provisioning audit is co-committed, exact issued grants only, no runtime audit SELECT; no role/read implication or rejoin revival. Canonical tests TC-13/18/19/24 and their explicit B01 assertions remain Not run. Later transport/projection tasks retain B03/B02 respectively; no public API changes.
+
+## Selected B03 continuation — 9 November 2026
+
+[FEAT-SP06-01 v0.4](../features/sp-06-document-access/plan.md) owns execution state. P02-B aligns selected B03 transport direction; [Proposed ADR-0033](../../adr/0033-guarded-transport-boundary.md) bounds the project-scoped reader-writer guard with writer preference, active socket destruction w/ deadline, fencing generation, and constant-time X-Service-Key comparison over trusted TLS. P05 prepares the runtime implementation and concurrency tests under disposable environments. This does not require B02 or public API changes.

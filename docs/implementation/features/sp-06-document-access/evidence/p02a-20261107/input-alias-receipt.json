@@ -1,0 +1,7 @@
+{
+  "path": "docs/sdlc/evaluation-cases.md",
+  "before_sha256": "6b533400d23a06a7baebcffe8cebdbaa1111e1c701151db45c90beb903dbb923",
+  "version": "0.8.4",
+  "reason": "Current TEST-08 input alias only; evaluation definitions/results unchanged",
+  "first_docs_lint_exit": 1
+}

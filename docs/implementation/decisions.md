@@ -1,9 +1,9 @@
 # Decision map for implementation
 
 **Artifact ID:** IMPL-DEC-01\
-**Version/date:** 0.14 Draft · 1 November 2026\
+**Version/date:** 0.15 Draft · 7 November 2026
 **Status:** Index of existing decisions; no new acceptance.\
-**Inputs:** PRD-01 v0.9; ADR-0001–ADR-0026; OWNER-Q-01 v0.1; [TECH-STACK-01](../tech-stack.md) v1.6; [source register](register.md).\
+**Inputs:** PRD-01 v0.10.3; ADR-0001–ADR-0026; OWNER-Q-01 v0.1; [TECH-STACK-01](../tech-stack.md) v1.6; [source register](register.md).\; Proposed ADR-0032 v0.1
 **Trace:** BR-01–BR-14; SC-01–SC-08.\
 **Owner role:** Sequential development coordinator.
 
@@ -81,3 +81,7 @@ The owner separately requested P10. Selected session lifecycle and additive audi
 ## SP-02 bounded disposition — 1 November 2026
 
 The owner explicitly authorised corrected sequential implementation: P03A session transaction reuse, reduced 007/private bootstrap, separate 008 compact permanent outcomes, current scoped project/member/action handlers and UI with session-independent HMAC projection cursors. Actual SQL/HTTP/DOM/Edge evidence is in SP02-EXECUTION-RESULT v0.2. ADR-0026 remains Proposed; optional FR-64, D-07, development upgrade and wider acceptance are not selected by this disposition.
+
+## SP06 bounded D-03 disposition — 7 November 2026
+
+The [B01 owner receipt](features/sp-06-document-access/evidence/p01a-20261107/owner-selection.json) selects private explicit per-member project document-create provisioning with operation recording. P02-A aligns project-scoped knowledge-author and its documented private operator/provenance path; [Proposed ADR-0032](../adr/0032-private-document-create-authority.md) specifies bounded mechanics. This resolves only the document-create provisioning question, not additional content/lifecycle/inspector delegation. Runtime proof is P03-A/P04. D-04/B02 document projection and D-07/B03 guarded service transport remain open; no whole-ADR acceptance. Initial scoped document author/read grants remain settled ADR-0007 defaults at creation only.

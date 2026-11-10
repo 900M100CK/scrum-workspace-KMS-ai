@@ -1,0 +1,21 @@
+{
+  "artifact_id": "SP06-B03-OWNER-RECEIPT-01",
+  "date": "9 November 2026",
+  "source": "Explicit owner response in this chat; no timestamp invented",
+  "question": "B03: Chọn cơ chế service authentication và guarded delivery cho transport Workspace-Knowledge.",
+  "selected_answer": "Fixed Workspace gateway + Workspace-only authority + trusted TLS/service key + forwarded actor session + project-scoped RW guard (writer preference, revocation destroys sockets with deadline) + deny on ambiguous restart + no automatic failover",
+  "constraints": [
+    "Delivery uses a shared reader lock; revocation/removal/authority changes use an exclusive writer lock.",
+    "Writer preference prevents revocation starvation under continuous streams.",
+    "Revocation sets a revoked flag, destroys affected sockets and waits for confirmed close until a bounded deadline; unconfirmed close is unknown.",
+    "New delivery re-checks the revoked flag before entering shared delivery.",
+    "Guard key is project-scoped; no document-plus-project lock ordering.",
+    "In-memory guard is lost on restart; fencing generation must be established before protected delivery resumes.",
+    "X-Service-Key is server-side, rotated and compared constant-time over trusted TLS.",
+    "X-Actor-Session is server-forwarded and never client/model authority.",
+    "Ambiguous restart or remote lifecycle state denies protected output; no automatic multi-authority failover."
+  ],
+  "scope": "B03 guarded transport direction only; B02 remains unselected; no whole Proposed ADR adoption or runtime implementation claim",
+  "next_gate": "P02/P05 map exact protocol, lock order, fencing lifecycle, socket-close deadline and runtime tests before code",
+  "status": "Owner-selected bounded direction"
+}

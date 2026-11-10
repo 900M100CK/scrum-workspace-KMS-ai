@@ -1,0 +1,19 @@
+# SP06-P02-A — B01 source alignment result
+
+**Artifact ID:** SP06-P02A-RESULT-01\
+**Version/date:** 0.1 Draft · 7 November 2026
+**Inputs:** FEAT-SP06-01 v0.3; SP-06 v0.6.4; IMPL-SP-06 v0.2; IMPL-DEC-01 v0.15; Proposed ADR-0032 v0.1; TEST-08 v0.24.7; coverage0.11.6 / verification0.12.6; exact B01 selection receipt.\
+**Trace:** FR/AC-10 plus supporting04/31/39/59/68; BR-01/04/10/11/14; SC-06; SP-06.1–06.2 / PLAN-01 Month2 / M-04.\
+**Owner role:** Sequential implementer; author source verification only.
+
+Canonical SP06 and its implementation pack now record B01 private project knowledge-author provisioning, exact future document-authority adapter/operator/CLI/014/test/runbook paths and planned permission negatives. The decision map resolves only this document-create provisioning question. The nonexistent policy/** application placeholder is corrected for this bounded increment; gateway/session/guard/HTTP and broader creation/Knowledge schema still require later decision-specific amendment. Public operation names/count, contracts, wire shapes, data schema, packages and application files are unchanged.
+
+[Proposed ADR-0032](../../../adr/0032-private-document-create-authority.md) reuses existing private operator transaction/revision/audit and013 boolean-predicate conventions. Workspace retains sole permission ownership: private issuance evidence remains unreadable by runtime; the future boolean predicate verifies exact valid issuance but does not replace enclosing current session/membership checks. Only private owner provisioning may create/revalidate/retarget authority; runtime may invalidate an exact old grant for removal. No role, read/write/manage/lifecycle implication or rejoin revival. Additive014/down refuses retained authority/audit evidence rather than deleting it. These are proposed mechanisms and assertions, not implemented security evidence.
+
+P03-A now isolates only the authority storage prerequisite (014) and its real-role PostgreSQL tests. After that prerequisite, P04 reuses the existing private operator/CLI; it no longer waits on unselected B02/B03. Broader P03 document policy/creation receipt and Knowledge storage remain outside A. B03 is still discussed before guarded transport, B02 before document projections/access UI. Optional import/metadata, provider/AI and additional capability delegation remain unselected.
+
+[Fresh checks](evidence/p02a-20261107/checks/results.json): Node24.22.1, context45/45, contracts27/27, docs20/20 (92 structural tests); context/docs lints, context check, metadata and diff checks passed. The first docs lint correctly rejected a stale TEST-08 alias in the evaluation entry; [original failure](evidence/p02a-20261107/initial-docs-lint.txt) is preserved. EVAL-CASES-ENTRY0.8.4 changes only current input/header metadata; evaluation definitions/results match the before source. Before snapshots retain original bytes; six of65 original source inputs intentionally changed for B01 source/trace alignment, with59 unchanged. New post-source/final receipts classify that delta instead of relabelling the old freeze.
+
+No application, SQL migration, contract, runtime test or dependency code was authored; no014 file exists yet. PostgreSQL/HTTP/DOM/Edge runtime, typecheck/build and independent review were not run for this source-only task. These checks establish source structure and bounded scope, not document handler or runtime permission behavior. Correct branch codex/sp-06-document-access; index empty; unrelated captures and earlier evidence preserved. No commit/push/PR/merge, valuable-data upgrade or accepted ADR change.
+
+**Checklist:** Source/scope/trace alignment and meaningful structural checks recorded; runtime proof and B02/B03 remain gaps. **Handoff:** P03-A is ready for implementation and actual disposable storage verification; only plan.md owns current task state.

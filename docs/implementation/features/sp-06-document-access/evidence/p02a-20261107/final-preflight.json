@@ -1,0 +1,12 @@
+{
+  "task": "SP06-P02-A",
+  "current_links_checked": 95,
+  "source_versions": "SP06 0.6.4; pack0.2; ADR0032 0.1 Proposed; plan0.3",
+  "application_contract_sql_dependency_changes": 0,
+  "current_branch": "codex/sp-06-document-access",
+  "staged_paths": 0,
+  "next_task": "SP06-P03-A",
+  "B02": "Not selected",
+  "B03": "Not selected",
+  "runtime": "Not run"
+}
