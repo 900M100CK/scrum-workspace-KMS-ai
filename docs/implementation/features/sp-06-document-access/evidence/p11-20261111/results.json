@@ -1,0 +1,21 @@
+{
+  "artifact": "SP06-P11-EVIDENCE-01",
+  "date": "2026-11-11",
+  "node": "22.23.0",
+  "command": "npm --prefix apps/web test && npm run build",
+  "exit_code": 0,
+  "tests": {
+    "web_documents": { "passed": 6, "failed": 0 }
+  },
+  "assertions": [
+    "refresh loads documents into snapshot",
+    "open loads detail, content, policy and grants",
+    "create sends request and refreshes explorer",
+    "grantRead and revokeRead update detail",
+    "setClassification sends classification update",
+    "DocumentWorkspace renders static markup with accessibility markup"
+  ],
+  "scope": "React DocumentWorkspace and DocumentController with accessibility, state management, nondisclosure handling, and production bundling",
+  "commit": null,
+  "push": null
+}

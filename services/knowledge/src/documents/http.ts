@@ -1,7 +1,7 @@
 import type {FastifyInstance} from 'fastify';
 import {KnowledgeDocumentStore, isUuid, KnowledgeFault} from './store.ts';
 import type {PersistDocumentInput} from './types.ts';
-import {verifyServiceKey} from '../../../workspace/src/transport/service-auth.ts';
+import {verifyServiceKey} from './auth.ts';
 
 export function registerKnowledgeDocumentHttp(
   app: FastifyInstance,
