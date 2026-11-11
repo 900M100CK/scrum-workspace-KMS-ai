@@ -1,0 +1,20 @@
+{
+  "artifact": "SP06-P06-EVIDENCE-01",
+  "date": "2026-11-11",
+  "node": "22.23.0",
+  "command": "node tests/workspace/document-policy.test.mjs",
+  "exit_code": 0,
+  "tests": {
+    "document_policy": { "passed": 5, "failed": 0 }
+  },
+  "assertions": [
+    "actor without knowledge-author capability is forbidden",
+    "missing or invalid classification is rejected",
+    "restricted registration commits policy, manage capability, author read grant and audit",
+    "project_shared registration commits policy and manage capability without requiring explicit read grant",
+    "audit failure rolls back the entire registration"
+  ],
+  "scope": "atomic policy registration, initial author capability/grants and business audit in Workspace owned transaction; no public gateway creation",
+  "commit": null,
+  "push": null
+}

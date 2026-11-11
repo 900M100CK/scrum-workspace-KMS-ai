@@ -49,7 +49,7 @@ Only this table stores mutable execution state. Every linked brief defines bound
 | [SP06-P03-A](tasks/P03-A-create-authority-storage.md) | Add only014 private document-create authority prerequisite | Verified P02-A; Proposed ADR-0032 exact bounded design | Verified storage slice; [evidence](evidence/p03a-20261109/results.json); P04 next |
 | [SP06-P04](tasks/P04-private-authority.md) | Provision project create authority without role bypass | Verified P02-A and P03-A; B01 selected | Verified operator slice; [evidence](evidence/p04-20261109/results.json); P05 next |
 | [SP06-P05](tasks/P05-guard-service-auth.md) | Implement and prove the selected guarded source transport boundary | Verified P02-B/P03-A/P04; B03 selected; exact protocol mapped | Verified guard/auth slice; [evidence](evidence/p05-20261110/results.json); 9/9 passed; P06 next |
-| [SP06-P06](tasks/P06-policy-registration.md) | Register Workspace identity, policy, initial grants and audit atomically | P03/P04/P05 | Not started; prerequisite gate applies |
+| [SP06-P06](tasks/P06-policy-registration.md) | Register Workspace identity, policy, initial grants and audit atomically | P03/P04/P05 | Verified atomic slice; [evidence](evidence/p06-20261111/results.json); P07 next |
 | [SP06-P07](tasks/P07-knowledge-persistence.md) | Persist one initial immutable Current in Knowledge | P03/P05/P06 | Not started; prerequisite gate applies |
 | [SP06-P08](tasks/P08-creation-orchestration.md) | Deliver public Workspace-first creation and exact-key recovery | P06/P07 | Not started; prerequisite gate applies |
 | [SP06-P09](tasks/P09-access-management.md) | Implement policy/grant reads and classification/grant/revoke commands | P03/P04/P05/P06 | Not started; prerequisite gate applies |
