@@ -56,8 +56,8 @@ Only this table stores mutable execution state. Every linked brief defines bound
 | [SP06-P10](tasks/P10-protected-reads.md) | Deliver read-filtered explorer and current document detail | P05/P07/P09; D-04 selected clauses | Verified protected reads slice; [evidence](evidence/p10-20261111/results.json); P11 next |
 | [SP06-P11](tasks/P11-web-ui.md) | Connect existing-design document and known-ID access flows | P08/P09/P10 | Verified Web UI slice; [evidence](evidence/p11-20261111/results.json); P12 next |
 | [SP06-P12](tasks/P12-concurrency-failures.md) | Verify revocation, removal, partial creation and failure boundaries | P08/P09/P10/P11 | Verified concurrency/failure slice; [evidence](evidence/p12-20261111/results.json); P13 next |
-| [SP06-P13](tasks/P13-runtime-browser.md) | Exercise installed-browser document journeys on real services | P11/P12; disposable PostgreSQL and trusted TLS available | Not started; prerequisite gate applies |
-| [SP06-P14](tasks/P14-handoff.md) | Consolidate source-bound SP06 handoff and review assignment | P00–P13 mandatory assertions verified or explicit unresolved result | Not started; prerequisite gate applies |
+| [SP06-P13](tasks/P13-runtime-browser.md) | Exercise installed-browser document journeys on real services | P11/P12; disposable PostgreSQL and trusted TLS available | Verified runtime DOM & browser slice; [evidence](evidence/p13-20261111/results.json); 6/6 passed; P14 next |
+| [SP06-P14](tasks/P14-handoff.md) | Consolidate source-bound SP06 handoff and review assignment | P00–P13 mandatory assertions verified or explicit unresolved result | Verified complete SP-06 feature handoff and test closure; ready for merge |
 
 ## Acceptance and verification strategy
 

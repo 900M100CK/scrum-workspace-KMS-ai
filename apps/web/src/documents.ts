@@ -91,7 +91,7 @@ export class DocumentController {
   async refresh() {
     this.publish({busy: true, message: ''});
     try {
-      const res = await this.transport(`/projects/${this.projectId}/documents`, {
+      const res = await this.transport(`/api/projects/${this.projectId}/documents`, {
         headers: {'x-sacw-request': '1'},
       });
       if (res.status === 401) {
@@ -112,7 +112,7 @@ export class DocumentController {
   async open(documentId: string) {
     this.publish({busy: true, message: ''});
     try {
-      const res = await this.transport(`/projects/${this.projectId}/documents/${documentId}`, {
+      const res = await this.transport(`/api/projects/${this.projectId}/documents/${documentId}`, {
         headers: {'x-sacw-request': '1'},
       });
       if (res.status === 401) {
@@ -133,12 +133,12 @@ export class DocumentController {
       let grants: DocumentReadGrant[] | undefined;
 
       try {
-        const policyRes = await this.transport(`/projects/${this.projectId}/documents/${documentId}/policy`, {
+        const policyRes = await this.transport(`/api/projects/${this.projectId}/documents/${documentId}/policy`, {
           headers: {'x-sacw-request': '1'},
         });
         if (policyRes.ok) {
           policy = await policyRes.json();
-          const grantsRes = await this.transport(`/projects/${this.projectId}/documents/${documentId}/read-grants`, {
+          const grantsRes = await this.transport(`/api/projects/${this.projectId}/documents/${documentId}/read-grants`, {
             headers: {'x-sacw-request': '1'},
           });
           if (grantsRes.ok) {
@@ -161,7 +161,7 @@ export class DocumentController {
   async create(title: string, classification: DocumentClassification, content: string) {
     this.publish({busy: true, message: ''});
     try {
-      const res = await this.transport(`/projects/${this.projectId}/documents`, {
+      const res = await this.transport(`/api/projects/${this.projectId}/documents`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -193,7 +193,7 @@ export class DocumentController {
   async grantRead(documentId: string, userId: string, expectedRevision: number) {
     this.publish({busy: true, message: ''});
     try {
-      const res = await this.transport(`/projects/${this.projectId}/documents/${documentId}/read-grants`, {
+      const res = await this.transport(`/api/projects/${this.projectId}/documents/${documentId}/read-grants`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -215,14 +215,13 @@ export class DocumentController {
   async revokeRead(documentId: string, userId: string, expectedRevision: number) {
     this.publish({busy: true, message: ''});
     try {
-      const res = await this.transport(`/projects/${this.projectId}/documents/${documentId}/read-grants/${userId}`, {
+      const res = await this.transport(`/api/projects/${this.projectId}/documents/${documentId}/read-grants/${userId}`, {
         method: 'DELETE',
         headers: {
-          'Content-Type': 'application/json',
           'x-sacw-request': '1',
+          'x-expected-revision': String(expectedRevision),
           'idempotency-key': crypto.randomUUID(),
         },
-        body: JSON.stringify({expected_revision: expectedRevision}),
       });
       if (!res.ok) {
         this.publish({busy: false, message: 'Revoking access failed.'});
@@ -237,7 +236,7 @@ export class DocumentController {
   async setClassification(documentId: string, classification: DocumentClassification, expectedRevision: number) {
     this.publish({busy: true, message: ''});
     try {
-      const res = await this.transport(`/projects/${this.projectId}/documents/${documentId}/classification`, {
+      const res = await this.transport(`/api/projects/${this.projectId}/documents/${documentId}/classification`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,4 +1,5 @@
 import {registerSprintHttp,SPRINT_OPERATIONS,type SprintHttpOptions} from './sprints/http.ts';
+import {registerDocumentHttp,type DocumentHttpOptions} from './documents/http.ts';
 import Fastify from 'fastify';
 import {randomUUID} from 'node:crypto';
 import type {ServerOptions} from 'node:https';
@@ -9,7 +10,7 @@ import {registerProjectHttp} from './projects/http.ts';
 import type {ProjectHttpOptions} from './projects/http.ts';
 import {registerTaskHttp,TASK_OPERATIONS} from './tasks/http.ts';
 import type {TaskHttpOptions} from './tasks/http.ts';
-export function buildApp(options:SessionHttpOptions&ProjectHttpOptions&TaskHttpOptions&SprintHttpOptions&{tls?:ServerOptions;logStream?:Writable}={}) {
+export function buildApp(options:SessionHttpOptions&ProjectHttpOptions&TaskHttpOptions&SprintHttpOptions&Partial<DocumentHttpOptions>&{tls?:ServerOptions;logStream?:Writable}={}) {
  const app = Fastify({
   ...(options.tls?{https:options.tls}:{}),
   logger: options.logStream?{level:'info',stream:options.logStream,serializers:{req:(request:{method:string})=>({method:request.method}),res:(response:{statusCode:number})=>({statusCode:response.statusCode})},redact:['req.headers.cookie','req.body.password','res.headers["set-cookie"]']}:false,
@@ -26,6 +27,7 @@ export function buildApp(options:SessionHttpOptions&ProjectHttpOptions&TaskHttpO
  app.register(async scope=>registerProjectHttp(scope,{...options,taskOperations:options.tasks?TASK_OPERATIONS:new Set(),sprintOperations:options.sprints?SPRINT_OPERATIONS:new Set()}));
  app.register(async scope=>registerTaskHttp(scope,options));
  app.register(async scope=>registerSprintHttp(scope,options));
+ if(options.docs&&options.orchestrator)app.register(async scope=>registerDocumentHttp(scope,options as DocumentHttpOptions));
  app.get('/healthz', async () => ({ status: 'ok', service: 'workspace' }));
  app.setNotFoundHandler((_request, reply) => reply.code(404).send({ code: 'not_found', message: 'Resource unavailable' }));
  return app;

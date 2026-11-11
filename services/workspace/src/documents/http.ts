@@ -133,12 +133,17 @@ export async function registerDocumentHttp(app: FastifyInstance, options: Docume
       document_id: string;
       user_id: string;
     };
+    const headerRev = request.headers['x-expected-revision'];
+    const body = (request.body as RevokeReadInput) ?? ({} as RevokeReadInput);
+    if (body.expected_revision === undefined && typeof headerRev === 'string' && /^[1-9][0-9]*$/.test(headerRev)) {
+      body.expected_revision = Number(headerRev);
+    }
     const res = await options.docs.revokeRead(
       request.cookies[SESSION_COOKIE]!,
       project_id,
       document_id,
       user_id,
-      request.body as RevokeReadInput,
+      body,
       key,
       extractCorrelation(request)
     );

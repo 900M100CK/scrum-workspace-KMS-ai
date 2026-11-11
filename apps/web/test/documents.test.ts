@@ -21,7 +21,7 @@ test('SP06 P11 DocumentController manages client state and document actions', as
   const fakeTransport = async (url: string, init: RequestInit = {}) => {
     requests.push({url, method: init.method, body: init.body ? JSON.parse(String(init.body)) : undefined});
 
-    if (url === `/projects/${project}/documents` && (!init.method || init.method === 'GET')) {
+    if (url === `/api/projects/${project}/documents` && (!init.method || init.method === 'GET')) {
       return new Response(
         JSON.stringify({
           items: [
@@ -42,7 +42,7 @@ test('SP06 P11 DocumentController manages client state and document actions', as
       );
     }
 
-    if (url === `/projects/${project}/documents` && init.method === 'POST') {
+    if (url === `/api/projects/${project}/documents` && init.method === 'POST') {
       return new Response(
         JSON.stringify({
           document_id: '00000000-0000-0000-0000-000000000004',
@@ -59,7 +59,7 @@ test('SP06 P11 DocumentController manages client state and document actions', as
       );
     }
 
-    if (url === `/projects/${project}/documents/${docId}` && (!init.method || init.method === 'GET')) {
+    if (url === `/api/projects/${project}/documents/${docId}` && (!init.method || init.method === 'GET')) {
       return new Response(
         JSON.stringify({
           document: {
@@ -79,7 +79,7 @@ test('SP06 P11 DocumentController manages client state and document actions', as
       );
     }
 
-    if (url === `/projects/${project}/documents/${docId}/policy`) {
+    if (url === `/api/projects/${project}/documents/${docId}/policy`) {
       return new Response(
         JSON.stringify({
           document_id: docId,
@@ -92,7 +92,7 @@ test('SP06 P11 DocumentController manages client state and document actions', as
       );
     }
 
-    if (url === `/projects/${project}/documents/${docId}/read-grants` && (!init.method || init.method === 'GET')) {
+    if (url === `/api/projects/${project}/documents/${docId}/read-grants` && (!init.method || init.method === 'GET')) {
       return new Response(
         JSON.stringify({
           document_id: docId,
@@ -104,7 +104,7 @@ test('SP06 P11 DocumentController manages client state and document actions', as
       );
     }
 
-    if (url === `/projects/${project}/documents/${docId}/read-grants` && init.method === 'POST') {
+    if (url === `/api/projects/${project}/documents/${docId}/read-grants` && init.method === 'POST') {
       return new Response(JSON.stringify({permission_revision: 2}), {
         status: 200,
         headers: {'Content-Type': 'application/json'},
@@ -118,7 +118,7 @@ test('SP06 P11 DocumentController manages client state and document actions', as
       });
     }
 
-    if (url === `/projects/${project}/documents/${docId}/classification` && init.method === 'POST') {
+    if (url === `/api/projects/${project}/documents/${docId}/classification` && init.method === 'POST') {
       return new Response(
         JSON.stringify({
           document_id: docId,
