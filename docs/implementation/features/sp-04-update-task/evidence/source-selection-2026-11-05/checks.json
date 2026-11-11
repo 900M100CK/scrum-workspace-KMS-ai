@@ -1,0 +1,36 @@
+{
+  "node": "v24.22.1",
+  "checks": [
+    {
+      "name": "controller",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "--test",
+        "tests/workspace/task-mutation-ui-controller.test.mjs"
+      ],
+      "exit_code": 0,
+      "error": null,
+      "seconds": 0.2,
+      "log": "controller-attempt1.txt"
+    },
+    {
+      "name": "runtime",
+      "command": [
+        "C:\\Users\\MCK\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+        "--test",
+        "--test-concurrency=1",
+        "tests/workspace/task-replay-scope.test.mjs",
+        "tests/workspace/task-edit.test.mjs",
+        "tests/workspace/task-state.test.mjs",
+        "tests/workspace/task-assignment.test.mjs",
+        "tests/workspace/task-blocker.test.mjs",
+        "tests/workspace/task-mutation-integration.test.mjs",
+        "tests/workspace/project-transaction-null.test.mjs"
+      ],
+      "exit_code": 0,
+      "error": null,
+      "seconds": 47.4,
+      "log": "runtime-attempt1.txt"
+    }
+  ]
+}

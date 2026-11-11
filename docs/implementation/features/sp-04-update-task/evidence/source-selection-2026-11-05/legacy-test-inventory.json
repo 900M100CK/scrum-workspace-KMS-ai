@@ -1,0 +1,69 @@
+{
+  "source": "8e8bd6a3b1779de7547f4367e7832baf60b6c7f6",
+  "files": [
+    {
+      "path": "tests/workspace/task-mutation-browser.test.mjs",
+      "sha256": "f7e5b9c73b323ae5bbfcd7afb0184cd42125053e805e1191f20500dc85d08044",
+      "assertionNames": [
+        "SP-04 isolated Edge: native updates/history, stale conflict, lost-response reload and current denial"
+      ]
+    },
+    {
+      "path": "tests/workspace/task-mutation-concurrency.test.mjs",
+      "sha256": "476459a42c52a034a96b65551fc42c04204623cc46799cadae56625f93152809",
+      "assertionNames": [
+        "SP-04 serialized actual mutation, removal and paging schedules",
+        "competing distinct edits at same revision commit one winner, never overwrite",
+        "same blocker identity queued twice returns one event/audit/revision; distinct stale blocker loses",
+        "assignment decision first then queued actual removal clears assignee and increments revision",
+        "removal decision first then queued assignment cannot restore removed assignee or authority after rejoin",
+        "post-Project-wait session expiry withholds ",
+        "history pagination binds actor/task/generation, rejects stale/expired cursors and rechecks current membership on every page",
+        "010 empty reverse/forward preserves 009 and legacy task authority refuses upgrade"
+      ]
+    },
+    {
+      "path": "tests/workspace/task-mutation-controller.test.mjs",
+      "sha256": "d0d72f3f77809c2a1658ba020b87b19e7e24b34a60f76c1f2fdd96eb5acdacf6",
+      "assertionNames": [
+        "lost update response persists exact actor/task/body/key across reload; original acknowledgement loads current values",
+        "declared stale revision rejection reloads current state; never resubmits automatically",
+        "denied/unavailable/malformed acknowledgement retains uncertainty and clears all protected panes",
+        "foreign actor/tampered input cannot restore or disclose a pending task command; signout removes original input",
+        "current exact-task actions, safe body and persistent storage precede network mutation",
+        "wrong task action scope, malformed history order and read outage never reveal earlier task content"
+      ]
+    },
+    {
+      "path": "tests/workspace/task-mutation-ui.test.mjs",
+      "sha256": "7766cdeb159790dabc1911ff79a21ee8f145266a43ce6f87fe64da4e29e0283c",
+      "assertionNames": [
+        "SP-04 actual React forms with HTTPS and disposable 010 PostgreSQL",
+        "labelled native forms save edit/state/assignment with current revision; feedback receives focus",
+        "Open plan and Resolved outcome render distinct ordered immutable history after a fresh mount",
+        "actual stale edit is rejected and reloads current winner without automatic overwrite",
+        "lost real committed blocker response survives reload and exact original-key recovery appends once",
+        "outage and revoked original replay hide protected forms/history; restored right permits exact recovery",
+        "current member removal clears task forms/history and session disable notifies expiry"
+      ]
+    },
+    {
+      "path": "tests/workspace/task-mutations.test.mjs",
+      "sha256": "ce8dc796047ddd2828c98e8ed1179693aaf2ec604a0bee971a23c01d34b28da5",
+      "assertionNames": [
+        "SP-04 real 010 handlers, authority, immutable recovery and blocker history",
+        "individual rights, exact task discovery and no viewer/manager role bypass",
+        "private grant audit failure rolls back; stale provisioning and role cannot bypass individual rights",
+        "strict input, empty edit, unsafe revisions, transport, no CSRF/extra selectors",
+        "content edits persist and old revision conflicts without overwrite",
+        "all six direct state transitions and no automatic approval",
+        "current member assignment, null unassignment, nonmember/disabled target rejection",
+        "append retrospective Resolved and repeated Open; latest sequence is the only blocked truth",
+        "original receipt is permanent/immutable and access precedes replay; revoked same-key replay denies",
+        "audit/result failure rolls back every Task/event/revision effect; lost COMMIT reconciles original key",
+        "Completed-Sprint reopen normalizes In Progress to Backlog/To Do and preserves immutable completion history",
+        "010 validators reject malformed/unsafe original results, private rights cannot be issued by runtime, retained down refuses"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "observation": "Initial stage normalized 182 frozen capture files to LF before new attributes were re-applied; the initial precommit helper failure did not halt its PowerShell wrapper and created a local provisional commit. No publication occurred.",
+  "correction": "Re-added frozen evidence using --renormalize -f under -text attributes; all365 existing frozen paths matched raw workspace bytes. The local provisional commit will be amended only after mandatory guarded verification succeeds.",
+  "application_change": false,
+  "original_workspace_bytes_rewritten": false
+}

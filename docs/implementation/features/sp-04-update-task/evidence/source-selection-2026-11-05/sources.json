@@ -1,0 +1,67 @@
+{
+  "main": "1cb54f3cfdfd650caef35dce6d5fd0fd1e32a1d6",
+  "retained": "e6f2337",
+  "legacy": "8e8bd6a3b1779de7547f4367e7832baf60b6c7f6",
+  "sources": [
+    {
+      "path": "AGENTS.md",
+      "version": "1.15 · 2 Nov 2026",
+      "sha256": "abe442a298ea1478ab365a607058617e2aa0cf80d413e7248c283c6b5b7b8512"
+    },
+    {
+      "path": "docs/development-rules.md",
+      "version": "1.14 · 2 Nov 2026",
+      "sha256": "f25e0f20e037b993efbf7cb24cd82555a4bf14360535f45eb7e33344422fc5ea"
+    },
+    {
+      "path": "specs/004-update-task.md",
+      "version": "0.7.6 Draft · 4 November 2026",
+      "sha256": "d9bf053284585d8ec365a798d46df935ac27078439a3c03782efd1abe33830a7"
+    },
+    {
+      "path": "docs/implementation/tasks/04-update-task.md",
+      "version": "0.3 Draft · 4 November 2026\\",
+      "sha256": "6f0c0e20ed96cc868c2b6b5192a9854ad47beb7b5d4a53c7492b9e55d983c3a1"
+    },
+    {
+      "path": "docs/sdlc/PRD_SRS.md",
+      "version": "0.10.2 Draft · 3 November 2026\\",
+      "sha256": "3ff2b075720253e2ebb012bc91a1ea613ffa37ea38f30a10e7851a34c9248f97"
+    },
+    {
+      "path": "docs/planning/five-month-plan.md",
+      "version": "0.4 Draft · 25 October 2026\\",
+      "sha256": "36ab17ddd0d694e269590e8f9f542cc13cb13c593c6221680b3690403dd123da"
+    },
+    {
+      "path": "docs/architecture.md",
+      "version": "0.19.1 Draft · 4 November 2026",
+      "sha256": "64f9cd656f630c8e12efa8714e242322853d3c34576adb077a9768817f0cb52a"
+    },
+    {
+      "path": "docs/adr/0028-task-mutation-authority-and-outcomes.md",
+      "version": "0.1 Proposed · 3 November 2026\\",
+      "sha256": "5ca454c399b3d5fdaffffb6704afc73fc77bfc981508c9fe593e77f1d10f3b15"
+    },
+    {
+      "path": "docs/adr/0029-unexpected-null-transaction-result.md",
+      "version": "0.1 Proposed · 4 November 2026\\",
+      "sha256": "39e47d37a28e358d3880d100cd4626d4f48c780b0baa71695d419f13991832ca"
+    },
+    {
+      "path": "services/workspace/src/tasks/store.ts",
+      "version": "unversioned",
+      "sha256": "fb5b71d4f76c6af747db6590fe36df5686d3a4598b56e9b204036f707fde6d89"
+    },
+    {
+      "path": "services/workspace/src/tasks/mutation-outcomes.ts",
+      "version": "unversioned",
+      "sha256": "917a0e2d01655296a2a507986b2baf4e70efb6a879caf4128beb49666bc7318a"
+    },
+    {
+      "path": "apps/web/src/tasks.ts",
+      "version": "unversioned",
+      "sha256": "7137777f4090f75fc0789ab60d9d6041df6979cff5a92fc18e3ff44a09470b9f"
+    }
+  ]
+}
