@@ -36,8 +36,11 @@ export class WorkspaceDocumentStore {
     if (!['project_shared', 'restricted'].includes(input.classification)) throw invalid();
     if (input.document_id !== undefined && !uuid(input.document_id)) throw invalid();
 
-    const docId = input.document_id ? input.document_id.toLowerCase() : randomUUID();
-    const hash = requestHash(['registerDocumentPolicy', projectId, docId, input.classification]);
+    const clientProvidedDocId = input.document_id ? input.document_id.toLowerCase() : null;
+    const hash =
+      typeof input.payload_hash === 'string' && input.payload_hash.length === 64
+        ? input.payload_hash
+        : requestHash(['registerDocumentPolicy', projectId, clientProvidedDocId, input.classification]);
 
     return this.projects.transaction(token, async (c, actor, guard) => {
       await projectAccess(c, actor, projectId);
@@ -76,6 +79,8 @@ export class WorkspaceDocumentStore {
       }
 
       if (!(await guard())) return null as any;
+
+      const docId = clientProvidedDocId ?? randomUUID();
 
       await c.query(
         `INSERT INTO workspace.document_policy(document_id, project_id, classification, registry_state, permission_revision)

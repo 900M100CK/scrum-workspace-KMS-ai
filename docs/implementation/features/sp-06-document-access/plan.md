@@ -51,7 +51,7 @@ Only this table stores mutable execution state. Every linked brief defines bound
 | [SP06-P05](tasks/P05-guard-service-auth.md) | Implement and prove the selected guarded source transport boundary | Verified P02-B/P03-A/P04; B03 selected; exact protocol mapped | Verified guard/auth slice; [evidence](evidence/p05-20261110/results.json); 9/9 passed; P06 next |
 | [SP06-P06](tasks/P06-policy-registration.md) | Register Workspace identity, policy, initial grants and audit atomically | P03/P04/P05 | Verified atomic slice; [evidence](evidence/p06-20261111/results.json); P07 next |
 | [SP06-P07](tasks/P07-knowledge-persistence.md) | Persist one initial immutable Current in Knowledge | P03/P05/P06 | Verified persistence slice; [evidence](evidence/p07-20261111/results.json); P08 next |
-| [SP06-P08](tasks/P08-creation-orchestration.md) | Deliver public Workspace-first creation and exact-key recovery | P06/P07 | Not started; prerequisite gate applies |
+| [SP06-P08](tasks/P08-creation-orchestration.md) | Deliver public Workspace-first creation and exact-key recovery | P06/P07 | Verified orchestration slice; [evidence](evidence/p08-20261111/results.json); P09 next |
 | [SP06-P09](tasks/P09-access-management.md) | Implement policy/grant reads and classification/grant/revoke commands | P03/P04/P05/P06 | Not started; prerequisite gate applies |
 | [SP06-P10](tasks/P10-protected-reads.md) | Deliver read-filtered explorer and current document detail | P05/P07/P09; D-04 selected clauses | Not started; prerequisite gate applies |
 | [SP06-P11](tasks/P11-web-ui.md) | Connect existing-design document and known-ID access flows | P08/P09/P10 | Not started; prerequisite gate applies |

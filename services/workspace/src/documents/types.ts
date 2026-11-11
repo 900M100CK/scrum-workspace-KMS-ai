@@ -5,6 +5,7 @@ export type RegistryState = 'active' | 'unavailable';
 export interface RegisterDocumentPolicyInput {
   document_id?: string;
   classification: DocumentClassification;
+  payload_hash?: string;
 }
 
 export interface DocumentPolicy {
