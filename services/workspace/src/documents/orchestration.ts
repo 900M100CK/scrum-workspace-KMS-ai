@@ -153,4 +153,86 @@ export class DocumentOrchestrator {
       release();
     }
   }
+
+  async getDocument(
+    token: string,
+    projectId: string,
+    documentId: string
+  ): Promise<{document: DocumentResponse; content: string}> {
+    const allowed = await this.docsStore.checkReadAccess(token, projectId, documentId);
+    if (!allowed) {
+      throw missing();
+    }
+
+    const policy = await this.docsStore.projects.transaction(token, async (c) => {
+      return (
+        await c.query(
+          'SELECT classification, permission_revision::text rev FROM workspace.document_policy WHERE document_id = $1',
+          [documentId]
+        )
+      ).rows[0];
+    });
+
+    const release = await this.guard.acquireShared(projectId, this.guard.getGeneration());
+    try {
+      const result = await this.transport.get(documentId);
+      if (!result) throw missing();
+
+      return {
+        document: {
+          document_id: result.document.document_id,
+          project_id: projectId,
+          title: result.document.title,
+          kind: result.document.kind,
+          content_owner_id: result.document.owner_id,
+          classification: policy.classification,
+          labels: result.document.labels ?? [],
+          current_version_id: result.document.current_version_id,
+          revision: result.document.revision,
+        },
+        content: result.content,
+      };
+    } finally {
+      release();
+    }
+  }
+
+  async listDocuments(token: string, projectId: string): Promise<DocumentResponse[]> {
+    const readableIds = await this.docsStore.listReadableDocumentIds(token, projectId);
+    if (readableIds.length === 0) return [];
+
+    const policies = await this.docsStore.projects.transaction(token, async (c) => {
+      return (
+        await c.query(
+          'SELECT document_id, classification FROM workspace.document_policy WHERE document_id = ANY($1::uuid[])',
+          [readableIds]
+        )
+      ).rows;
+    });
+    const policyMap = new Map(policies.map((p) => [p.document_id, p.classification]));
+
+    const release = await this.guard.acquireShared(projectId, this.guard.getGeneration());
+    try {
+      const items: DocumentResponse[] = [];
+      for (const id of readableIds) {
+        const doc = await this.transport.get(id);
+        if (doc) {
+          items.push({
+            document_id: doc.document.document_id,
+            project_id: projectId,
+            title: doc.document.title,
+            kind: doc.document.kind,
+            content_owner_id: doc.document.owner_id,
+            classification: policyMap.get(id) ?? 'restricted',
+            labels: doc.document.labels ?? [],
+            current_version_id: doc.document.current_version_id,
+            revision: doc.document.revision,
+          });
+        }
+      }
+      return items;
+    } finally {
+      release();
+    }
+  }
 }

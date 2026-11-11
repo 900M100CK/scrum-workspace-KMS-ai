@@ -144,4 +144,18 @@ export async function registerDocumentHttp(app: FastifyInstance, options: Docume
     );
     return reply.code(res.status).send({permission_revision: res.permission_revision});
   });
+
+  // GET /projects/:project_id/documents (Explorer read)
+  app.get('/projects/:project_id/documents', async (request, reply) => {
+    const {project_id} = request.params as {project_id: string};
+    const items = await options.orchestrator.listDocuments(request.cookies[SESSION_COOKIE]!, project_id);
+    return reply.code(200).send({items, next_cursor: null});
+  });
+
+  // GET /projects/:project_id/documents/:document_id (Detail read)
+  app.get('/projects/:project_id/documents/:document_id', async (request, reply) => {
+    const {project_id, document_id} = request.params as {project_id: string; document_id: string};
+    const detail = await options.orchestrator.getDocument(request.cookies[SESSION_COOKIE]!, project_id, document_id);
+    return reply.code(200).send(detail);
+  });
 }

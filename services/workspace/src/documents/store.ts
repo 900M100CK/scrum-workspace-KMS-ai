@@ -547,4 +547,55 @@ export class WorkspaceDocumentStore {
       return {status: 200, permission_revision: nextRev, projectId};
     });
   }
+
+  async listReadableDocumentIds(token: string, projectId: string): Promise<string[]> {
+    if (!uuid(projectId)) throw missing();
+    projectId = projectId.toLowerCase();
+
+    return this.projects.transaction(token, async (c, actor, guard) => {
+      const {member} = await projectAccess(c, actor, projectId);
+      if (!(await guard())) return null as any;
+
+      const memGen = member.membership_generation;
+      const rows = (
+        await c.query(
+          `SELECT p.document_id
+             FROM workspace.document_policy p
+            WHERE p.project_id = $1
+              AND p.registry_state = 'active'
+              AND (
+                p.classification = 'project_shared'
+                OR EXISTS (
+                  SELECT 1 FROM workspace.read_grant g
+                   WHERE g.project_id = p.project_id
+                     AND g.document_id = p.document_id
+                     AND g.user_id = $2
+                     AND g.valid
+                     AND g.membership_generation = $3
+                )
+              )
+            ORDER BY p.document_id`,
+          [projectId, actor, memGen]
+        )
+      ).rows;
+
+      return rows.map((r) => r.document_id);
+    });
+  }
+
+  async checkReadAccess(token: string, projectId: string, documentId: string): Promise<boolean> {
+    if (!uuid(projectId) || !uuid(documentId)) return false;
+    projectId = projectId.toLowerCase();
+    documentId = documentId.toLowerCase();
+
+    return this.projects.transaction(token, async (c, actor, guard) => {
+      try {
+        await projectAccess(c, actor, projectId);
+      } catch {
+        return false;
+      }
+      if (!(await guard())) return false;
+      return canReadDocument(c, actor, projectId, documentId);
+    });
+  }
 }

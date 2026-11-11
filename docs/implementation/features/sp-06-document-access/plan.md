@@ -53,7 +53,7 @@ Only this table stores mutable execution state. Every linked brief defines bound
 | [SP06-P07](tasks/P07-knowledge-persistence.md) | Persist one initial immutable Current in Knowledge | P03/P05/P06 | Verified persistence slice; [evidence](evidence/p07-20261111/results.json); P08 next |
 | [SP06-P08](tasks/P08-creation-orchestration.md) | Deliver public Workspace-first creation and exact-key recovery | P06/P07 | Verified orchestration slice; [evidence](evidence/p08-20261111/results.json); P09 next |
 | [SP06-P09](tasks/P09-access-management.md) | Implement policy/grant reads and classification/grant/revoke commands | P03/P04/P05/P06 | Verified access management slice; [evidence](evidence/p09-20261111/results.json); P10 next |
-| [SP06-P10](tasks/P10-protected-reads.md) | Deliver read-filtered explorer and current document detail | P05/P07/P09; D-04 selected clauses | Not started; prerequisite gate applies |
+| [SP06-P10](tasks/P10-protected-reads.md) | Deliver read-filtered explorer and current document detail | P05/P07/P09; D-04 selected clauses | Verified protected reads slice; [evidence](evidence/p10-20261111/results.json); P11 next |
 | [SP06-P11](tasks/P11-web-ui.md) | Connect existing-design document and known-ID access flows | P08/P09/P10 | Not started; prerequisite gate applies |
 | [SP06-P12](tasks/P12-concurrency-failures.md) | Verify revocation, removal, partial creation and failure boundaries | P08/P09/P10/P11 | Not started; prerequisite gate applies |
 | [SP06-P13](tasks/P13-runtime-browser.md) | Exercise installed-browser document journeys on real services | P11/P12; disposable PostgreSQL and trusted TLS available | Not started; prerequisite gate applies |

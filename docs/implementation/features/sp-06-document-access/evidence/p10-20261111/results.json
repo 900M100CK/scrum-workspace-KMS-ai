@@ -1,0 +1,18 @@
+{
+  "artifact": "SP06-P10-EVIDENCE-01",
+  "date": "2026-11-11",
+  "node": "22.23.0",
+  "command": "node tests/integration/document-reads.test.mjs",
+  "exit_code": 0,
+  "tests": {
+    "protected_reads": { "passed": 3, "failed": 0 }
+  },
+  "assertions": [
+    "explorer lists only documents permitted for the specific actor",
+    "detail read allows permitted reader and returns 404 nondisclosure for denied user",
+    "granting read makes restricted doc readable for memberB; revoking denies it immediately"
+  ],
+  "scope": "explorer list filtering and detail reads with dual-layer checks (project membership AND document read grant), and nondisclosure 404 on denied targets",
+  "commit": null,
+  "push": null
+}
