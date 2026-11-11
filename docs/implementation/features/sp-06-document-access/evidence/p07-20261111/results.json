@@ -1,0 +1,18 @@
+{
+  "artifact": "SP06-P07-EVIDENCE-01",
+  "date": "2026-11-11",
+  "node": "22.23.0",
+  "command": "node tests/knowledge/document-persistence.test.mjs",
+  "exit_code": 0,
+  "tests": {
+    "knowledge_persistence": { "passed": 3, "failed": 0 }
+  },
+  "assertions": [
+    "persistDocument stores document, current version, passages and audit atomically",
+    "protect_version trigger rejects direct mutation of immutable_content",
+    "internal HTTP endpoint requires valid X-Service-Key and persists over transport"
+  ],
+  "scope": "immutable initial Current document version and deterministic passages persistence in Knowledge, guarded by X-Service-Key internal transport; no cross-service write",
+  "commit": null,
+  "push": null
+}
