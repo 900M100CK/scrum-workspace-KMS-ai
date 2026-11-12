@@ -1,0 +1,30 @@
+{
+  "paths": [
+    "docs/implementation/features/sp-06-document-access/plan.md",
+    "docs/implementation/features/sp-06-document-access/README.md",
+    "docs/implementation/features/sp-06-document-access/breakdown.md",
+    "docs/implementation/features/sp-06-document-access/decision-batch.md",
+    "docs/implementation/features/sp-06-document-access/tasks/P02-A-provisioning-source.md",
+    "docs/implementation/features/sp-06-document-access/tasks/P03-owned-storage.md",
+    "docs/implementation/features/sp-06-document-access/tasks/P04-private-authority.md",
+    "specs/006-document-access.md",
+    "docs/implementation/tasks/06-document-access.md",
+    "docs/implementation/decisions.md",
+    "docs/sdlc/test-plan.md",
+    "docs/sdlc/test-coverage.md",
+    "docs/sdlc/requirement-verification.md",
+    "docs/adr/README.md",
+    "specs/README.md",
+    "docs/implementation/tasks/README.md",
+    "docs/implementation/features/README.md",
+    "docs/implementation/register.md",
+    "docs/implementation/roadmap.md",
+    "docs/sdlc/artifact-register.md",
+    "docs/sdlc/references/document-review-register.md",
+    "docs/adr/0032-private-document-create-authority.md",
+    "docs/implementation/features/sp-06-document-access/tasks/P03-A-create-authority-storage.md",
+    "docs/sdlc/diagrams/manifest.json",
+    "docs/sdlc/evaluation-cases.md"
+  ],
+  "purpose": "B01-only source alignment; generated metadata separately classified"
+}

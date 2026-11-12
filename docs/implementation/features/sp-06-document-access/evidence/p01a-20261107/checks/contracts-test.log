@@ -1,0 +1,39 @@
+
+> scrum-workspace-kms-context@0.1.0 contracts:test
+> node --test tests/contracts/contract-schemas.test.mjs tests/contracts/handoff-bytes.test.mjs
+
+✔ Task requires a valid server creation time while create input rejects origin and authority fields (2.3899ms)
+✔ both complete contract documents pass the pinned OpenAPI 3.1 structure check (10.6406ms)
+✔ document structure validator calibrates valid schemas and rejects malformed API objects (0.5271ms)
+✔ all named component schemas compile using JSON Schema 2020-12 (0.1708ms)
+✔ inline parameter, body and response schemas also compile without network resolution (0.2921ms)
+✔ malformed inline schemas fail compilation while example data stays opaque (197.4114ms)
+✔ metrics distinguish measured zero, unavailable and unexecuted without fabricated values (0.7561ms)
+✔ unexecuted inspection steps cannot carry queries, timing, usage or an error (1.1344ms)
+✔ inspection sources preserve exact document locators or operational observations (1.2744ms)
+✔ version action discovery requires the full parent locator and denies internal names (0.6646ms)
+✔ non-reading command preconditions are action-specific minimal projections (0.4576ms)
+✔ document commands require exactly one valid concurrency selector (0.9014ms)
+✔ mutation receipts acknowledge only the command and applicable version identity (0.3942ms)
+✔ both transport purposes validate complete mixed-evidence manifest shape (5.5363ms)
+✔ work location alternatives stay separate and reorder revisions stay exact strings (0.6869ms)
+✔ strict base64 rejects permissive decoder inputs, nonzero padding bits and byte overrun (5.1701ms)
+✔ manifest JSON rejects duplicate decoded keys, malformed UTF-8 and trailing data (3.0723ms)
+✔ numeric revision/count parsing rejects rounding and accepts exact integer equivalents (0.9494ms)
+✔ native-serialized nested JSON survives the duplicate-key token walk unchanged (2.7765ms)
+✔ both purposes bind exact bytes and full mixed evidence without granting send authority (6.0466ms)
+✔ authoritative receipt, identity and destination mismatches fail before any binding result (3.1104ms)
+✔ manifest hashing preserves raw whitespace, order and Unicode bytes (2.0828ms)
+✔ payload digest and byte count reject even semantically equivalent reserialization (1.6894ms)
+✔ uncited changed, omitted, duplicate and cross-project evidence cannot hide behind a valid document citation (1.9666ms)
+✔ answer citations and claim references bind exact prepared source identities (3.1826ms)
+✔ typed/byte disagreement and numeric precision loss are rejected despite valid schema shapes (0.7142ms)
+✔ zero-evidence insufficiency retains exact no-answer state without fabricated sources (0.3332ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2197.0606

@@ -1,0 +1,103 @@
+{
+  "kind": "Planning-only structural and scope checks, no application/permission/runtime evidence",
+  "time_utc": "2026-11-07T05:16:44.268126+00:00",
+  "node": "v24.22.1",
+  "commands": [
+    {
+      "name": "node-version",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "--version"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "metadata",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "scripts/docs/docs-metadata.mjs",
+        "--check"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "context:lint",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "context:lint"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "context:check",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "context:check"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "context:test",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "context:test"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "contracts:test",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "contracts:test"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "docs:lint",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "docs:lint"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "docs:test",
+      "argv": [
+        "C:/Users/MCK/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+        "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+        "run",
+        "docs:test"
+      ],
+      "exit": 0
+    }
+  ],
+  "brief_count": 15,
+  "local_links_checked": 50,
+  "source_inputs_unchanged": 65,
+  "changed_tracked_paths": [
+    "docs/implementation/features/README.md",
+    "docs/implementation/register.md",
+    "docs/implementation/roadmap.md",
+    "docs/sdlc/artifact-register.md",
+    "docs/sdlc/diagrams/README.md",
+    "docs/sdlc/diagrams/manifest.json",
+    "docs/sdlc/references/document-review-register.md"
+  ],
+  "implementation_changes": 0,
+  "runtime": "Not run; owner requested plan only",
+  "sp05_pr": {
+    "url": "https://github.com/900M100CK/scrum-workspace-KMS-ai/pull/3",
+    "head": "80315030108ba30604d9b88fa000269bf2fadb8b",
+    "observed_checks": "Two context jobs and GitGuardian succeeded"
+  }
+}

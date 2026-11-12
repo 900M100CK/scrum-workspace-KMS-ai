@@ -1,0 +1,16 @@
+{
+  "task_id": "SP07-P04",
+  "recorded_at": "2026-11-11T13:39:35+07:00",
+  "suite": "tests/integration/document-revisions.test.mjs",
+  "status": "passed",
+  "subtests": [
+    "active author can revise document and receive minimal receipt",
+    "member without knowledge-author capability is forbidden (403)",
+    "independent write authority: author can revise even when read access is revoked",
+    "archiveVersion archives specified version under exclusive guard",
+    "deleteDocument marks policy unavailable and returns 204"
+  ],
+  "passed": 6,
+  "failed": 0,
+  "duration_ms": 6129.4135
+}

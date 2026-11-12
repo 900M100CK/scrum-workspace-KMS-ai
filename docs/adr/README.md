@@ -1,8 +1,8 @@
 # Architecture decision index
 
 **Artifact ID:** ADR-INDEX-01\
-**Version/date:** 0.7 Draft · 6 November 2026\
-**Inputs:** Proposed ADR-0031 v0.1; Existing ADR entries below; Proposed ADR-0027 v0.2; no change to existing decisions.; Proposed ADR-0028 v0.1; Proposed ADR-0029 v0.1
+**Version/date:** 0.8 Draft · 7 November 2026
+**Inputs:** Proposed ADR-0032 v0.1;  Proposed ADR-0031 v0.1; Existing ADR entries below; Proposed ADR-0027 v0.2; no change to existing decisions.; Proposed ADR-0028 v0.1; Proposed ADR-0029 v0.1
 
 Updated 3 November 2026. Owner-confirmed direction is distinct from implemented and tested behaviour. No commit or independent review is implied by this index.
 
@@ -59,3 +59,7 @@ The [business review](../analyst/business-review-2026-10-13.md) records the sour
 [0031: selected Sprint editing and unfinished removal](0031-sprint-could-edit-and-removal.md) — v0.1 Proposed mechanics; owner direction preserved in SP05-COULD-DECISIONS-01. C01 source support only; C02–C11 runtime evidence remains separate.
 
 ADR-0031 v0.2 records actual bounded mechanics and companion013 boolean-only provenance under the owning Could runtime handoff; its status remains Proposed.
+
+[0032: private project document-create provisioning](0032-private-document-create-authority.md) — v0.1 Proposed mechanics implementing explicitly selected B01 only; reserved014 and private operator proof are P03-A/P04, not executed here. B02/B03 remain open.
+
+[0033: guarded service transport boundary](0033-guarded-transport-boundary.md) — v0.1 Proposed mechanics implementing explicitly selected B03 only; project-scoped reader-writer guard with writer preference, active socket destruction w/ deadline, fencing generation, constant-time service key, forwarded actor session, and deny-on-ambiguous restart. P05 provides runtime evidence.

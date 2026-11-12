@@ -1,0 +1,18 @@
+{
+  "artifact": "SP06-P08-EVIDENCE-01",
+  "date": "2026-11-11",
+  "node": "22.23.0",
+  "command": "node tests/integration/document-creation.test.mjs",
+  "exit_code": 0,
+  "tests": {
+    "creation_orchestration": { "passed": 3, "failed": 0 }
+  },
+  "assertions": [
+    "createDocument orchestrates policy and content creation",
+    "recovery when Knowledge fails on first attempt: same-key retry succeeds without duplicate ID",
+    "unauthorized actor cannot create document"
+  ],
+  "scope": "Workspace gateway creation orchestration with guarded transport to Knowledge, same-key replay and partial-failure recovery; no orphan duplicate",
+  "commit": null,
+  "push": null
+}

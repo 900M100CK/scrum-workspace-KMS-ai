@@ -1,0 +1,13 @@
+{
+  "task": "SP06-P03-A",
+  "date": "2026-11-09",
+  "branch": "codex/sp-06-document-access",
+  "node": "v24.22.1",
+  "test": "node --test --test-concurrency=1 tests/workspace/document-authority-storage.test.mjs",
+  "exit": 0,
+  "passed": 1,
+  "failed": 0,
+  "behaviors": ["exact private issuance provenance grants", "wrong actor/project and revoked grant deny", "workspace_app cannot insert or delete grants", "workspace_app can only invalidate exact grant with revision plus one", "runtime cannot read private audit", "down refuses retained evidence and up/down repeat restores helper"],
+  "resources": "Disposable PostgreSQL fixture created and cleaned by taskFixture.",
+  "unrun": ["P04 private operator integration", "public document creation", "B02 projections", "B03 guarded transport", "browser/cross-service journeys"]
+}

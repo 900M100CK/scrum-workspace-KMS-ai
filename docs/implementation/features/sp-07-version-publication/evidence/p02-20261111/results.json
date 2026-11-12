@@ -1,0 +1,16 @@
+{
+  "task_id": "SP07-P02",
+  "recorded_at": "2026-11-11T13:18:30+07:00",
+  "suite": "tests/knowledge/document-versioning.test.mjs",
+  "status": "passed",
+  "subtests": [
+    "reviseDocument atomically supersedes old Current, sets new Current, and advances revision",
+    "listVersions returns metadata list without content, correctly ordered and paginated",
+    "getVersion returns exact version details and content",
+    "archiveVersion transitions version to archived and updates document pointer if Current",
+    "deleteDocument sets unavailable = true and prevents future operations"
+  ],
+  "passed": 6,
+  "failed": 0,
+  "duration_ms": 5338.1391
+}

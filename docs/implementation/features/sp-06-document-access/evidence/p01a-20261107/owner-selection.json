@@ -1,0 +1,12 @@
+{
+  "artifact_id": "SP06-B01-OWNER-RECEIPT-01",
+  "date": "7 November 2026",
+  "source": "Explicit request_user_input response in this chat; no timestamp invented",
+  "question": "B01: Trong SP-06, bạn muốn ai được cấp quyền tạo tài liệu trong một dự án? Quyền đọc tài liệu vẫn được kiểm tra riêng.",
+  "selected_answer": "Cấp riêng khi vận hành (Recommended)",
+  "selected_description": "Bạn cấp/thu hồi quyền tạo cho từng thành viên bằng công cụ nội bộ hiện có; ít thay đổi và có ghi nhận thao tác.",
+  "followup_instruction": "ok triển khai task đầu tiên đi ở branch sp-06",
+  "working_preferences": "Always apply Ponytail and Karpathy Guidelines; implement and brainstorm incrementally",
+  "scope": "B01 private project document-create provisioning direction only; B02/B03 not selected; no global ADR acceptance or runtime verification",
+  "status": "Owner-selected direction, not implemented authority"
+}

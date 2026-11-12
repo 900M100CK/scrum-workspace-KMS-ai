@@ -1,0 +1,26 @@
+{
+  "artifact": "SP06-P04-EVIDENCE-01",
+  "date": "2026-11-09",
+  "node": "24.22.1",
+  "database": "disposable PostgreSQL via sessionFixture, migrations through 014",
+  "command": "node --test --test-concurrency=1 tests/workspace/document-authority-storage.test.mjs tests/workspace/document-authority-operator.test.mjs",
+  "exit_code": 0,
+  "initial_failures": [
+    "First focused attempt used direct message regexes against SessionStoreUnavailable wrappers; assertions were corrected to inspect the wrapped cause, with no product-code or database-state change required."
+  ],
+  "tests": {
+    "p04_operator": {"passed": 6, "failed": 0},
+    "p03a_storage_regression": {"passed": 1, "failed": 0}
+  },
+  "assertions": [
+    "knowledge-author grant and revoke use exact CAS revision and grant-id audit provenance",
+    "unknown, disabled, non-member and cross-project targets are denied",
+    "membership removal invalidates the individual grant and rejoin restores none",
+    "audit insertion failure rolls back the authority grant",
+    "private CLI accepts knowledge-author without exposing database details",
+    "P03-A migration/runtime-role/provenance regression remains passing"
+  ],
+  "scope": "private operator and owned storage only; no public document handler, B02/B03 adoption or browser evidence",
+  "commit": null,
+  "push": null
+}

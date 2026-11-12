@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-12",
+  "feature": "SP-07 Version Publication",
+  "branch": "codex/sp-07-version-publication",
+  "node": "v22.23.0",
+  "database": "17.10 (Debian 17.10-1.pgdg12+1)",
+  "image": "pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966",
+  "gates": {
+    "contextLint": "pass",
+    "contextCheck": "pass (69 requirements, 66 operations, 13 specs)",
+    "contextTest": "pass (45/45)",
+    "typecheck": "pass (web, workspace, knowledge: zero errors)",
+    "docsLint": "pass (20 diagrams, 35 artifacts, 324 nodes, 365 edges)",
+    "docsTest": "pass (20/20)",
+    "contractsTest": "pass (27/27)",
+    "webTest": "pass (18/18)",
+    "build": "pass (web, workspace, knowledge)"
+  },
+  "suites": {
+    "knowledgeStoreVersioning": "pass (5/5)",
+    "knowledgeInternalHttp": "pass (3/3)",
+    "workspaceRevisionOrchestration": "pass (5/5)",
+    "workspaceHistoryReads": "pass (4/4)",
+    "documentRevisionConcurrency": "pass (4/4)",
+    "documentVersionUiDom": "pass (6/6)",
+    "totalPassingTests": 33
+  },
+  "preflightStatus": "VERIFIED_ALL_PASS"
+}

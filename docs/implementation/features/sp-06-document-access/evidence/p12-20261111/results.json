@@ -1,0 +1,19 @@
+{
+  "artifact": "SP06-P12-EVIDENCE-01",
+  "date": "2026-11-11",
+  "node": "22.23.0",
+  "command": "node tests/integration/document-concurrency.test.mjs",
+  "exit_code": 0,
+  "tests": {
+    "concurrency_failures": { "passed": 4, "failed": 0 }
+  },
+  "assertions": [
+    "revocation barrier denies delivery when project access is revoked during transfer",
+    "generation fencing denies delivery with mismatched generation across restart",
+    "verifyServiceKey uses constant-time comparison and denies invalid keys",
+    "concurrent membership removal aborts document creation and preserves zero duplicate audit"
+  ],
+  "scope": "real concurrency barrier synchronization, generation fencing across restart, service auth constant-time verification, and membership removal race condition isolation",
+  "commit": null,
+  "push": null
+}

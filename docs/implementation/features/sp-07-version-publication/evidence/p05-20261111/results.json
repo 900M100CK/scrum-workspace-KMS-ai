@@ -1,0 +1,15 @@
+{
+  "task_id": "SP07-P05",
+  "recorded_at": "2026-11-11T13:47:18+07:00",
+  "suite": "tests/integration/document-history-reads.test.mjs",
+  "status": "passed",
+  "subtests": [
+    "permitted reader (memberA) can list versions without content and read exact historical version",
+    "unauthorized reader (memberB) receives 404 nondisclosure on version listing and reading",
+    "granting read immediately permits memberB; revoking read immediately restores 404 nondisclosure",
+    "project_shared document allows all active project members to read version history"
+  ],
+  "passed": 5,
+  "failed": 0,
+  "duration_ms": 6450.776
+}

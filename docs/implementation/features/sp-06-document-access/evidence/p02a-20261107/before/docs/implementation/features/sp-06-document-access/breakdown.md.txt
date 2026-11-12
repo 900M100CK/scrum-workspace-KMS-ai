@@ -1,0 +1,24 @@
+# SP-06 work breakdown
+
+**Artifact ID:** SP06-WBS-01\
+**Version/date:** 0.2 Draft · 7 November 2026
+**Inputs:** FEAT-SP06-01 v0.2; SP-06 v0.6.3; IMPL-SP-06 v0.1; PLAN-01 v0.4.\
+**Trace:** FR/AC-04/10/14/50/51/52; BR-01/04/10/14; SC-06.\
+**Owner role:** Sequential implementer; no independent approval.
+
+Current execution status is only in [plan.md](plan.md). Each leaf links to its brief there. Dependencies are sequential and include the named decision gates; overlapping paths do not authorise parallel agents.
+
+| Parent child | Leaf tasks / outcome | Relative size / basis |
+| --- | --- | --- |
+| SP-06.1 | P00 source reconciliation; P01 bounded decision batch; P02 coordinated source/contract/verification alignment | S / M / M: inspect existing sources, owner decisions, multiple consumer contracts |
+| SP-06.2 | P03 owned storage; P04 private authority; P05 guarded/service-auth foundation; P06 policy registration; P07 Knowledge initial Current; P08 creation orchestration/recovery | L / M / L / M / M / L: owned transactions, trust boundary and two-service uncertainty |
+| SP-06.3 | P09 policy/classification/grant/revoke; P10 guarded explorer/detail; P11 existing-design UI/recovery | L / L / L: independent nonreading management, cursor scope and live integration |
+| SP-06.4 | P12 deterministic concurrency/failure regression; P13 real HTTPS/Edge journeys; P14 evidence/trace handoff | L / M / M: real services/sockets, installed browser and source-bound coverage |
+
+S/M/L are relative complexity with medium confidence for preparation and low confidence for the unproven guarded transport; no durations or capacity assumed. Split a large leaf further before implementation if its concrete contract produces multiple independent outcomes; retain stable parent identity and register the amendment. Mutation tests remain with each producer; P12 adds integration and does not postpone basic negatives.
+
+Acceptance mapping, exact prerequisites, allowed paths, checks and risk handling are in the plan/briefs. Optional import/metadata editing and AI are excluded. Checklist: deliverables and dependencies mapped; owner selection and runtime evidence remain gaps.
+
+## Incremental decision/task decomposition
+
+Retain P00–P14 parent identities. P01-A records selected B01; P01-B discusses B03 before transport; P01-C discusses B02 before projections/access UI. P02-A aligns B01-only sources/paths/acceptance; further P02 increments must be registered before executing their selected clauses. Implementers must not require all three choices before independent B01 preparation, or adopt unselected clauses. Current states and links remain exclusively in plan.md. Relative leaf sizes: P01-A S, P01-B/C M, P02-A S; no calendar promise.

@@ -1,0 +1,50 @@
+[
+  {
+    "path": "docs/implementation/features/sp-06-document-access/plan.md",
+    "sha256": "3943d9140008409cac43a6ef702d1ed4426dd848080d4edd56f47eff0073f21e"
+  },
+  {
+    "path": "docs/implementation/features/sp-06-document-access/README.md",
+    "sha256": "287f8b9686cc2619a45a694f569d9c739227679a3fda3f4432c53a6cf7b5761a"
+  },
+  {
+    "path": "docs/implementation/features/sp-06-document-access/breakdown.md",
+    "sha256": "842fc9d0a2cba12c065323bddd2f69644d61e0c53abab95ee9d4a6f81599bc90"
+  },
+  {
+    "path": "docs/implementation/features/sp-06-document-access/decision-batch.md",
+    "sha256": "8d9c2a0863646496b215235a74383a5d626b55f44ad0482445fc2e34e7dd324c"
+  },
+  {
+    "path": "docs/implementation/features/sp-06-document-access/tasks/P01-decision-batch.md",
+    "sha256": "a1d3bb3db21bcecb25b4413a95490a3a33797a94a7caae2e23ac99bb75ded465"
+  },
+  {
+    "path": "docs/implementation/features/sp-06-document-access/tasks/P02-source-contract.md",
+    "sha256": "2473daccf228d5a7e69af3621936282886a34517c7479f890c936c4c7607727e"
+  },
+  {
+    "path": "docs/implementation/features/sp-06-document-access/tasks/P04-private-authority.md",
+    "sha256": "8d6bff3833d6057515788d0a3e829845024fcd4a3d8e015cc12dd637419187b8"
+  },
+  {
+    "path": "docs/implementation/features/README.md",
+    "sha256": "1604f1115ae8ffeacc6debd4b3de4a9203615ab17eca3e7ddd43ef58e791c7fe"
+  },
+  {
+    "path": "docs/implementation/register.md",
+    "sha256": "2d87f763c68511e4c8bb203b2c97b450fb50a82e06d4d780efeab783432c9886"
+  },
+  {
+    "path": "docs/implementation/roadmap.md",
+    "sha256": "dfdd2d346e8b935b65fd32ad438d6fed47c9a2829dbf577a820f3b0a850414d9"
+  },
+  {
+    "path": "docs/sdlc/artifact-register.md",
+    "sha256": "45625c17a1cde5944c4d1fb995ceb4515e89ac448dd13a25ee7e3494c84b115c"
+  },
+  {
+    "path": "docs/sdlc/references/document-review-register.md",
+    "sha256": "0885df2c5230acc4400dd1efc3ff77eff73fa8f3a56cde75de6fb46f705aa05f"
+  }
+]

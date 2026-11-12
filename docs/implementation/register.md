@@ -1,7 +1,7 @@
 # Implementation source and artifact register
 
 **Artifact ID:** IMPL-REG-01\
-**Version/date:** 0.68 Draft · 7 November 2026
+**Version/date:** 0.71 Draft · 7 November 2026
 **Status:** Source snapshot and navigation, not approval or runtime evidence.\
 **Inputs:** REG-00; PRD-01 v0.10.3; SPEC-INDEX v0.8.2; PLAN-01 v0.4; SAD-03 v0.19.1; ADR-0001–ADR-0026.\; Proposed ADR-0029 v0.1
 **Trace:** Existing BR-01–BR-14 / SC-01–SC-08.\
@@ -311,3 +311,19 @@ FEAT-SP05-01/entry v0.14 registers SP05-PUB03 v0.1, SP05-COULD-REVIEW-DISPOSITIO
 ## Selected Could publication result — 7 November 2026
 
 FEAT-SP05-01/entry v0.15 and [SP05-PUB03-RESULT-01 v0.1](features/sp-05-sprint-lifecycle/verification/could-publication-receipt.md) record exact426-file commit8fa597c, normal push and ready PR #3 to main under owner acceptance. Only the owning plan stores task status. SP-05 / PLAN-01 Month2/M-03; original author/reviewer runtime limits preserved. SP-06 continuation is separate; no merge or M03/release acceptance.
+
+## SP-06 planning registration — 7 November 2026
+
+[FEAT-SP06-01 v0.1](features/sp-06-document-access/plan.md), [FEAT-SP06-ENTRY v0.1](features/sp-06-document-access/README.md), [SP06-WBS-01 v0.1](features/sp-06-document-access/breakdown.md), SP06-P00–P14 v0.1 and SP06-DECISION-BATCH-01 / SP06-SOURCE-MAP-01 v0.1 register the owner-requested planning-only continuation. Parent PLAN-01 Month2 / M-04 / SP-06.1–06.4 with SP-11.1 capture; FR/AC-04/10/14/50/51/52, supporting31/39/59/68, BR-01/04/10/11/14, SC-06. Mutable task state belongs only to the plan. D-03/D-04/D-07 bounded owner choices and coordinated canonical path amendment precede dependent code. Optional import/metadata, SP07 lifecycle and AI excluded; no runtime/ADR acceptance, SP06 publication or master-milestone closure. Local stacked branch starts at published SP05 PR #3 head8031503, not merged main.
+
+
+## SP06 first-task B01 continuation — 7 November 2026
+
+FEAT-SP06-01 / entry / SP06-WBS-01 / SP06-DECISION-BATCH-01 v0.2 and parent briefs P01/P02/P04 v0.2 register P01-A/B/C and P02-A v0.1. Owner explicitly selected B01 private internal project document-create provisioning, then authorised first ready task on codex/sp-06-document-access. P01-A receives that decision; B03 is discussed before guarded transport, B02 before document projections/access UI. P02-A aligns selected B01 sources independently. Exact owner receipt and SP06-P01A-RESULT-01 v0.1 belong to the owning feature; the plan alone owns mutable state. Parent SP-06.1 / PLAN-01 Month2 / M-04, FR/AC-10 and supporting04/31/39/59/68, BR-01/04/10/11/14, SC-06. No application/schema/contract/dependency change, whole-ADR adoption, runtime pass, publication or milestone acceptance.
+
+
+## SP06 P02-A B01 source alignment — 7 November 2026
+
+FEAT-SP06-01/entry/WBS/decision v0.3, P02-A v0.2, P03 parent v0.2, P04 v0.3 and new P03-A v0.1 register selected B01-only source alignment. Canonical SP-06 v0.6.4 / IMPL-SP-06 v0.2, IMPL-DEC-01 v0.15, Proposed ADR-0032 v0.1 / ADR index0.8, TEST-08 v0.24.7 / coverage0.11.6 / verification0.12.6 and spec/task indices0.8.7/0.8 identify exact private knowledge-author scope/014/operator/test paths and planned authority negatives. SP06-P02A-RESULT-01 v0.1 records actual source checks when executed; current state only in plan.md. Parent SP-06.1–06.2 / PLAN-01 Month2 / M-04, FR/AC-10 plus04/31/39/59/68, BR-01/04/10/11/14, SC-06. No public operation/contract/application/schema/dependency edit, accepted ADR change, B02/B03 adoption, runtime pass or publication. P03-A storage is separate from broader document creation storage.
+
+P02-A input-only companion: EVAL-CASES-ENTRY v0.8.4 updates current TEST-08 alias after retained initial lint failure; no evaluation definition/result change.

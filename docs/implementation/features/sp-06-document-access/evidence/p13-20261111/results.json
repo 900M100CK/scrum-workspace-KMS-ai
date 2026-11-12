@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-11",
+  "node": "v22.23.0",
+  "database": "17.10 (Debian 17.10-1.pgdg12+1)",
+  "image": "pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966",
+  "https": true,
+  "tlsBypass": false,
+  "checks": [
+    "labelled document create form with native HTML controls",
+    "creation of restricted document with real Fastify and PG persistence",
+    "detail read with <pre> content rendering and policy inspection",
+    "manage access grant read to project member with CAS revision bump",
+    "manage access update classification to project_shared",
+    "manage access revoke read grant with atomic invalidation"
+  ],
+  "domErrors": []
+}

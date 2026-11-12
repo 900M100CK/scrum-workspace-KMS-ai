@@ -1,0 +1,24 @@
+{
+  "artifact": "SP06-P05-EVIDENCE-01",
+  "date": "2026-11-10",
+  "node": "24",
+  "command": "node --test tests/workspace/transport-guard.test.mjs",
+  "exit_code": 0,
+  "tests": {
+    "transport_guard": { "passed": 9, "failed": 0 }
+  },
+  "assertions": [
+    "parallel shared reads within same project do not block each other",
+    "writer preference blocks incoming readers when writer is waiting to prevent starvation",
+    "active socket destruction with confirmed closure returns revoked",
+    "socket fails to close before deadline returns unknown outcome",
+    "delivery re-checks revoked flag and rejects revoked project",
+    "generation fencing denies delivery with mismatched generation across restart",
+    "verifyServiceKey uses constant-time comparison",
+    "stripInternalHeaders removes x-service-key and x-actor-session at gateway boundary",
+    "buildInternalServiceHeaders constructs forward headers for trusted TLS handoff"
+  ],
+  "scope": "project-scoped reader-writer guard and service authentication transport boundary; no public document handler or B02 projection adoption",
+  "commit": null,
+  "push": null
+}

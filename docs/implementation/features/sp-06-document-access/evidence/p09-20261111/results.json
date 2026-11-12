@@ -1,0 +1,20 @@
+{
+  "artifact": "SP06-P09-EVIDENCE-01",
+  "date": "2026-11-11",
+  "node": "22.23.0",
+  "command": "node tests/workspace/document-access.test.mjs",
+  "exit_code": 0,
+  "tests": {
+    "access_management": { "passed": 5, "failed": 0 }
+  },
+  "assertions": [
+    "known-ID manager can read policy and initial grants list; ordinary reader without manage is forbidden",
+    "grant read to current member succeeds with CAS; non-member target rejected",
+    "classification transition shared -> restricted -> shared updates revision with CAS",
+    "self-revoke allows grantee to revoke their own grant without manage-access",
+    "membership removal invalidates grants and rejoin does not revive access"
+  ],
+  "scope": "policy/grant reads, classification changes, read grant and revocation with CAS revision checks, self-revoke and nondisclosure for non-readers",
+  "commit": null,
+  "push": null
+}

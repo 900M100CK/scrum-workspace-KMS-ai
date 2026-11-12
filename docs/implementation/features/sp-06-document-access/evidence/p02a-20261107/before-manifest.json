@@ -1,0 +1,86 @@
+[
+  {
+    "path": "docs/implementation/features/sp-06-document-access/plan.md",
+    "sha256": "da6414adb9d9a38d723e783d4a4f04e0f97377e81cd740606876237bb28a3cf7"
+  },
+  {
+    "path": "docs/implementation/features/sp-06-document-access/README.md",
+    "sha256": "b3282edc392a263278f302c16ea8dbcb9504dc7664774205cb50441d9a38ef4e"
+  },
+  {
+    "path": "docs/implementation/features/sp-06-document-access/breakdown.md",
+    "sha256": "a90e817a7dacce9af4b9a6a83421d5d90b46620e96333fa662262c4fb2af1b35"
+  },
+  {
+    "path": "docs/implementation/features/sp-06-document-access/decision-batch.md",
+    "sha256": "a28455f72d7b57f1eccc8bf8d80063f404fa722873ae86b8d1bb34edc4389bb2"
+  },
+  {
+    "path": "docs/implementation/features/sp-06-document-access/tasks/P02-A-provisioning-source.md",
+    "sha256": "c8c8bfa867aaa1c7ea5e3c76cf1e14c4aeda77327bb591224ff36a58d87cc125"
+  },
+  {
+    "path": "docs/implementation/features/sp-06-document-access/tasks/P03-owned-storage.md",
+    "sha256": "bae5fa1ed0841a9c8bb14d80d7e9b7bc1c38c3e28e0e510d43aae675c32d327a"
+  },
+  {
+    "path": "docs/implementation/features/sp-06-document-access/tasks/P04-private-authority.md",
+    "sha256": "d0e738e01314f84f22a97e955afce841514524962ea1d79a01fed001368ba1a5"
+  },
+  {
+    "path": "specs/006-document-access.md",
+    "sha256": "9160a4b2d10e654ae799364218f7aa1477d9ce9cf153afa13d408d59fcccff1a"
+  },
+  {
+    "path": "docs/implementation/tasks/06-document-access.md",
+    "sha256": "8bbb8c2b60c86d3cf39995e22a6ef7b55c2e2cc556c0a122a89ef65123d7c1e0"
+  },
+  {
+    "path": "docs/implementation/decisions.md",
+    "sha256": "beb3b83a4e5990b96bf2d97731e8ebd80942fceeb70570e16279d0f2c7cfb898"
+  },
+  {
+    "path": "docs/sdlc/test-plan.md",
+    "sha256": "67d4862d45af988b7ca422f7b066aa5f9782e780c240047dc3242302ce892e05"
+  },
+  {
+    "path": "docs/sdlc/test-coverage.md",
+    "sha256": "377a9f8789fef8bf12c593752a62a09db76af699506477af9ac76d8530d6fb32"
+  },
+  {
+    "path": "docs/sdlc/requirement-verification.md",
+    "sha256": "3fd520dbfda2d7e1aea190aa0748930f92011889004d81e78ff604a36c11ddef"
+  },
+  {
+    "path": "docs/adr/README.md",
+    "sha256": "c80b6468530c1231c37dbb8ef680869736069f6ed3476a3a8cca4a1b1abdee11"
+  },
+  {
+    "path": "specs/README.md",
+    "sha256": "b8b18caed92c56087188a709c2684c188e2006b669fa23efba6eea37592ef818"
+  },
+  {
+    "path": "docs/implementation/tasks/README.md",
+    "sha256": "5e2aee8b2fc9358e6c4777ad60dcb31764707010749b0510c130a0a82bb0f497"
+  },
+  {
+    "path": "docs/implementation/features/README.md",
+    "sha256": "9c8206a5a72af90657b239b630037554869d94aa208bb327e98186adef9a56bf"
+  },
+  {
+    "path": "docs/implementation/register.md",
+    "sha256": "6f4c9083ac6f93f03877888c8037dbce75cef5601b9206e87ac04a91850a2015"
+  },
+  {
+    "path": "docs/implementation/roadmap.md",
+    "sha256": "b1e2a700859e3337b68d59d656e57cf82b31e7f7fc8586382030aabeaa5031a1"
+  },
+  {
+    "path": "docs/sdlc/artifact-register.md",
+    "sha256": "1cccb35f4f6f49acf9f11ddd87bdcd6a570799a68ff64e55eda92895b5907592"
+  },
+  {
+    "path": "docs/sdlc/references/document-review-register.md",
+    "sha256": "4d569890dcce20453fc2e4139cd27af6936309670c2a91349fecb6e22adc7cb2"
+  }
+]

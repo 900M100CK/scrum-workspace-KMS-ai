@@ -1,7 +1,7 @@
 # Feature specifications and execution rules
 
 **Artifact ID:** SPEC-INDEX  
-**Version/date:** 0.8.6 Draft · 6 November 2026
+**Version/date:** 0.8.7 Draft · 7 November 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
 **Inputs:** PRD-01 v0.10.3; [PLAN-01](../docs/planning/five-month-plan.md); [architecture](../docs/architecture.md); [contracts](../contracts/README.md).\
 **Author:** development agent acting sequentially; owner reviews business choices.
@@ -33,3 +33,7 @@ SP-05 current navigation: [FEAT-SP05-01](../docs/implementation/features/sp-05-s
 SP-05 selected Could continuation: [canonical spec](005-sprint-lifecycle.md) and FEAT-SP05-01 C01 align FR/AC-66/67 source support; these operations retain Could priority and have no new runtime evidence.
 
 Selected SP-05 Could now has implemented producers/UI and fresh author runtime verification under [owning handoff](../docs/implementation/features/sp-05-sprint-lifecycle/verification/could-runtime-result.md); no independent or release acceptance is inferred.
+
+## SP06 B01 source increment — 7 November 2026
+
+[SP-06 v0.6.4](006-document-access.md) records selected private create provisioning and exact future014/operator/test paths. FEAT-SP06-01 P02-A is source alignment only; B02/B03, application and real permission evidence remain open. No operation or release-tier change.

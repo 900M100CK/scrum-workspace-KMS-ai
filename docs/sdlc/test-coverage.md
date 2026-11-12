@@ -1,8 +1,8 @@
 # Scenario and exception verification matrix
 
 **Artifact ID:** TEST-COVERAGE-01
-**Version/date:** 0.11.5 Draft · 6 November 2026
-**Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.10.3; UC-02 v0.8.4; TEST-08 v0.24.6; ADR-0007–ADR-0017.; Proposed ADR-0028 v0.1; Proposed ADR-0031 v0.1
+**Version/date:** 0.11.6 Draft · 7 November 2026
+**Inputs:** Proposed ADR-0032 v0.1;  Proposed ADR-0027 v0.2; PRD-01 v0.10.3; UC-02 v0.8.4; TEST-08 v0.24.7; ADR-0007–ADR-0017.; Proposed ADR-0028 v0.1; Proposed ADR-0031 v0.1
 **Status:** Planned assertions with bounded P09/P10/P11 measured subsets; no complete scenario or independent approval.
 
 ## Evidence rules
@@ -182,3 +182,11 @@ TC-21 Done removal exclusion preserves completed-work attribution and future Spr
 | AC-31 / TC-14/18/19/22 | sprint-could-storage, authority-storage, authority, fault and security tests | Private independent grants, no role inference, immutable receipts,012/013 safe reverse/refusal, private-audit isolation/boolean provenance, revoke/rejoin, unavailable authority, rollback and lost actual COMMIT |
 
 The fresh final runner lists every current Workspace test path and actual footer, browser separately. Structural92 checks, build/typecheck/foundation/prototype are distinct from actual PG/HTTP/DOM/Edge behaviors; see the result for final actual status/counts and unrun independent/valuable-data/deployment gates. No prior347/57 result is reused as evidence for changed source.
+
+## SP06 B01 provisioning trace — 7 November 2026
+
+| Requirement / flow | Planned assertion / owner | Status |
+| --- | --- | --- |
+| AC-10 / UC-06 EX-02; supporting AC-31/39/59/68; BR-01/04/10/11/14 / SC-06 | TEST-08 v0.24.7 B01 table, TC-13/14/18/19/24; exact private issuance/current membership/CAS/audit rollback, runtime-role isolation, no role/read implication, removal/rejoin and014 rollback refusal; FEAT-SP06-01 P03-A/P04 | Specified; runtime Not run |
+
+[SP-06 v0.6.4](../../specs/006-document-access.md) / Proposed ADR-0032 v0.1 define the selected B01 increment; no new FR/AC/operation. B02/B03 and all public document-handler evidence remain separate.

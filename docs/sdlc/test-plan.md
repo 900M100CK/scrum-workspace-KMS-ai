@@ -1,9 +1,9 @@
 # Minimum test and evidence plan
 
 **Artifact ID:** TEST-08
-**Version/date:** 0.24.6 Draft · 6 November 2026
+**Version/date:** 0.24.7 Draft · 7 November 2026
 **Status:** Planned application assertions; owner-confirmed policy direction, no release acceptance.
-**Inputs:** Proposed ADR-0027 v0.2; [PRD-01](PRD_SRS.md) v0.10.3; [UC-02](use-cases.md) v0.8.4; [SAD-03](../architecture.md) v0.19.1; DATA-04 v0.16.6; API-05 v0.23.6; ADR-0007 through ADR-0017; current UX/diagrams; [specs](../../specs/README.md); [evaluation](../../eval/README.md).; Proposed ADR-0018.; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; Proposed ADR-0028 v0.1; Proposed ADR-0031 v0.1
+**Inputs:** Proposed ADR-0032 v0.1;  Proposed ADR-0027 v0.2; [PRD-01](PRD_SRS.md) v0.10.3; [UC-02](use-cases.md) v0.8.4; [SAD-03](../architecture.md) v0.19.1; DATA-04 v0.16.6; API-05 v0.23.6; ADR-0007 through ADR-0017; current UX/diagrams; [specs](../../specs/README.md); [evaluation](../../eval/README.md).; Proposed ADR-0018.; Proposed ADR-0019; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; Proposed ADR-0028 v0.1; Proposed ADR-0031 v0.1
 **Author:** Development agent acting sequentially; no independent review claimed.
 
 ## Scope, levels and environment
@@ -219,3 +219,17 @@ TC-21 Done removal exclusion preserves completed-work attribution and future Spr
 | AC-31 / TC-14/18/19/22 | sprint-could-storage, authority-storage, authority, fault and security tests | Private independent grants, no role inference, immutable receipts,012/013 safe reverse/refusal, private-audit isolation/boolean provenance, revoke/rejoin, unavailable authority, rollback and lost actual COMMIT |
 
 The fresh final runner lists every current Workspace test path and actual footer, browser separately. Structural92 checks, build/typecheck/foundation/prototype are distinct from actual PG/HTTP/DOM/Edge behaviors; see the result for final actual status/counts and unrun independent/valuable-data/deployment gates. No prior347/57 result is reused as evidence for changed source.
+
+## SP06 B01 private document-create authority assertions — 7 November 2026
+
+This is planned verification for FR/AC-10 and supporting04/31/39/59/68 / BR-01/04/10/11/14 / SC-06; source SP-06 v0.6.4, [Proposed ADR-0032](../adr/0032-private-document-create-authority.md), owner receipt and FEAT-SP06-01 v0.3. No runtime tests executed here.
+
+| Assertion | Canonical TC / future task | Result |
+| --- | --- | --- |
+| Private project knowledge-author grant/revoke with current enabled membership, expected grant revision, co-committed private audit; stale/no-op and audit-failure atomicity | TC-13/14/18/19; P03-A/P04 | Not run |
+| Missing/forged/mismatched issuance provenance, duplicate or wrong-resource grant denied; runtime cannot create/retarget/revalidate/delete grants or read private provisioning audit; narrow boolean predicate only | TC-13/18/19; P03-A/P04 | Not run |
+| Role/Admin/project creator/read-only grants imply no document-create authority; knowledge-author implies no existing document-read/write/manage/lifecycle rights; unknown action rejected | TC-03/13/18/24; P04 and later P06/P10 integration | Not run |
+| Membership removal races private grant; runtime may invalidate exact old grant only; rejoin restores no individual create/read/command grant | TC-03/14/18/19; P03-A/P04 | Not run |
+| Additive014 up/down/repeat, prior actions and001–013 unchanged, rollback refuses retained authority/audit evidence; original fixture ceilings retained | TC-14/19; P03-A | Not run |
+
+P03-A storage tests are real PostgreSQL/role boundaries, not evidence of a createDocument handler. P04 private operator tests do not prove public source reads, revocation transport or B02/B03 adoption. Final producer integration still requires current session/project/document checks and its relevant decisions. Structural checks passing do not change these Not run statuses.
