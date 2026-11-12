@@ -58,3 +58,30 @@ export interface DocumentReadGrantsResponse {
     revision: number;
   }>;
 }
+
+export type VersionState = 'current' | 'superseded' | 'archived';
+
+export interface VersionSummary {
+  document_id: string;
+  version_id: string;
+  state: VersionState;
+  created_at: string;
+}
+
+export interface VersionList {
+  items: VersionSummary[];
+  next_cursor: string | null;
+  document_id: string;
+  document_revision: number;
+  current_version_id: string | null;
+}
+
+export interface KnowledgeVersion {
+  document_id: string;
+  version_id: string;
+  state: VersionState;
+  content: string;
+  content_format: 'text' | 'markdown';
+  created_at: string;
+  revision: number;
+}

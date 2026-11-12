@@ -1,0 +1,15 @@
+{
+  "task_id": "SP07-P07",
+  "recorded_at": "2026-11-11T17:07:06+07:00",
+  "suite": "tests/integration/document-revision-concurrency.test.mjs",
+  "status": "passed",
+  "subtests": [
+    "competing parallel revisions on same expected_revision: exactly one succeeds, other fails 409",
+    "competing parallel revise and archive on same expected_revision: exactly one succeeds",
+    "revocation of knowledge-author capability immediately blocks subsequent revisions with 403",
+    "revocation of read grant immediately restores 404 nondisclosure on version history reads"
+  ],
+  "passed": 5,
+  "failed": 0,
+  "duration_ms": 5288.169
+}

@@ -1,0 +1,20 @@
+{
+  "task_id": "SP07-P06",
+  "recorded_at": "2026-11-11T14:01:15+07:00",
+  "suite": "apps/web/test/documents.test.ts",
+  "status": "passed",
+  "subtests": [
+    "refresh loads documents into snapshot",
+    "open loads detail, content, policy and grants",
+    "create sends request and refreshes explorer",
+    "grantRead and revokeRead update detail",
+    "setClassification sends classification update",
+    "revise sends revision request and updates message",
+    "openVersion loads historical version and closeVersionView resets view",
+    "archiveVersion sends archive mutation request",
+    "DocumentWorkspace renders static markup with accessibility markup"
+  ],
+  "passed": 9,
+  "failed": 0,
+  "duration_ms": 239.0166
+}

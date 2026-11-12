@@ -61,6 +61,15 @@ export function DocumentWorkspace({
     void controller.setClassification(detail.document.document_id, newClass, detail.policy.permission_revision);
   }
 
+  function handleRevise(e: React.SubmitEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (!detail) return;
+    const values = new FormData(e.currentTarget);
+    const content = String(values.get('content') ?? '').trim();
+    if (!content) return;
+    void controller.revise(detail.document.document_id, content, detail.document.revision);
+  }
+
   return (
     <section className="document-workspace" aria-labelledby="documents-title" aria-busy={state.busy}>
       <h4 id="documents-title">Documents</h4>
@@ -124,9 +133,79 @@ export function DocumentWorkspace({
           </span>
           <p className="muted">Revision {detail.document.revision}</p>
 
+          {detail.viewingVersion ? (
+            <div className="viewing-version-banner" role="region" aria-label="Historical version alert">
+              <p>
+                <strong>Viewing Historical Version</strong> ({detail.viewingVersion.state.toUpperCase()}) — Created at{' '}
+                {detail.viewingVersion.created_at}
+              </p>
+              <div className="version-banner-actions">
+                <button type="button" onClick={() => controller.closeVersionView()} disabled={locked}>
+                  Return to Current version
+                </button>
+                {detail.viewingVersion.state !== 'archived' ? (
+                  <button
+                    type="button"
+                    onClick={() =>
+                      void controller.archiveVersion(
+                        detail.document.document_id,
+                        detail.viewingVersion!.version_id,
+                        detail.document.revision
+                      )
+                    }
+                    disabled={locked}
+                  >
+                    Archive this version
+                  </button>
+                ) : null}
+              </div>
+            </div>
+          ) : null}
+
           <div className="document-content">
-            <pre>{detail.content}</pre>
+            <pre>{detail.viewingVersion ? detail.viewingVersion.content : detail.content}</pre>
           </div>
+
+          {!detail.viewingVersion ? (
+            <form onSubmit={handleRevise} className="revise-document-form">
+              <h6>Publish Revision</h6>
+              <label htmlFor="revision-content">New revision content (Text / Markdown)</label>
+              <textarea
+                id="revision-content"
+                name="content"
+                rows={5}
+                required
+                defaultValue={detail.content}
+                disabled={locked}
+              />
+              <button type="submit" className="primary" disabled={locked}>
+                Publish revision
+              </button>
+            </form>
+          ) : null}
+
+          <section className="version-history-section" aria-labelledby="version-history-title">
+            <h6 id="version-history-title">Version History</h6>
+            {!detail.versions || detail.versions.length === 0 ? (
+              <p>No historical versions recorded.</p>
+            ) : (
+              <ul className="version-list">
+                {detail.versions.map((ver) => (
+                  <li key={ver.version_id} className={`version-item ${ver.state}`}>
+                    <span className={`badge ${ver.state}`}>{ver.state.toUpperCase()}</span>
+                    <span className="version-date">{ver.created_at}</span>
+                    <button
+                      type="button"
+                      disabled={locked}
+                      onClick={() => void controller.openVersion(detail.document.document_id, ver.version_id)}
+                    >
+                      View version
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
 
           <div className="actions">
             <button onClick={() => void controller.open(detail.document.document_id)} disabled={locked}>

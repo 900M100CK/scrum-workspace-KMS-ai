@@ -131,6 +131,65 @@ test('SP06 P11 DocumentController manages client state and document actions', as
       );
     }
 
+    if (url === `/api/projects/${project}/documents/${docId}/versions` && (!init.method || init.method === 'GET')) {
+      return new Response(
+        JSON.stringify({
+          items: [
+            {
+              document_id: docId,
+              version_id: 'v-1',
+              state: 'current',
+              created_at: '2026-11-01T10:00:00Z',
+            },
+          ],
+          next_cursor: null,
+          document_id: docId,
+          document_revision: 1,
+          current_version_id: 'v-1',
+        }),
+        {status: 200, headers: {'Content-Type': 'application/json'}}
+      );
+    }
+
+    if (url === `/api/projects/${project}/documents/${docId}/revisions` && init.method === 'POST') {
+      return new Response(
+        JSON.stringify({
+          document_id: docId,
+          operation: 'reviseDocument',
+          receipt_id: 'rcpt-1',
+          version_id: 'v-2',
+        }),
+        {status: 201, headers: {'Content-Type': 'application/json'}}
+      );
+    }
+
+    if (url === `/api/projects/${project}/documents/${docId}/versions/v-1` && (!init.method || init.method === 'GET')) {
+      return new Response(
+        JSON.stringify({
+          document_id: docId,
+          version_id: 'v-1',
+          state: 'superseded',
+          content: 'Historical content v1',
+          content_format: 'text',
+          created_at: '2026-11-01T10:00:00Z',
+          revision: 2,
+        }),
+        {status: 200, headers: {'Content-Type': 'application/json'}}
+      );
+    }
+
+    if (url === `/api/projects/${project}/documents/${docId}/versions/v-1/archive` && init.method === 'POST') {
+      return new Response(
+        JSON.stringify({
+          document_id: docId,
+          operation: 'archiveVersion',
+          receipt_id: 'rcpt-2',
+          version_id: 'v-1',
+        }),
+        {status: 200, headers: {'Content-Type': 'application/json'}}
+      );
+    }
+
     return new Response(JSON.stringify({code: 'not_found', message: 'Resource unavailable'}), {status: 404});
   };
 
@@ -179,6 +238,31 @@ test('SP06 P11 DocumentController manages client state and document actions', as
     assert(requests.some((r) => r.url.endsWith('/classification') && r.method === 'POST'));
   });
 
+  await t.test('revise sends revision request and updates message', async () => {
+    await controller.revise(docId, 'New revision text', 1);
+    assert(requests.some((r) => r.url.endsWith('/revisions') && r.method === 'POST'));
+    const snap = controller.getSnapshot();
+    assert(snap.message.includes('New version published successfully'));
+  });
+
+  await t.test('openVersion loads historical version and closeVersionView resets view', async () => {
+    await controller.openVersion(docId, 'v-1');
+    const snap = controller.getSnapshot();
+    assert(snap.detail?.viewingVersion);
+    assert.equal(snap.detail.viewingVersion.content, 'Historical content v1');
+
+    controller.closeVersionView();
+    const snapAfter = controller.getSnapshot();
+    assert.equal(snapAfter.detail?.viewingVersion, undefined);
+  });
+
+  await t.test('archiveVersion sends archive mutation request', async () => {
+    await controller.archiveVersion(docId, 'v-1', 2);
+    assert(requests.some((r) => r.url.endsWith('/versions/v-1/archive') && r.method === 'POST'));
+    const snap = controller.getSnapshot();
+    assert(snap.message.includes('Version archived successfully'));
+  });
+
   await t.test('DocumentWorkspace renders static markup with accessibility markup', async () => {
     const server = await createServer({
       root: fileURLToPath(new URL('..', import.meta.url)),
@@ -201,6 +285,8 @@ test('SP06 P11 DocumentController manages client state and document actions', as
       assert.match(html, /Test Guideline/);
       assert.match(html, /Secret architecture content/);
       assert.match(html, /Manage Access/);
+      assert.match(html, /Version History/);
+      assert.match(html, /Publish Revision/);
     } finally {
       await server.close();
     }

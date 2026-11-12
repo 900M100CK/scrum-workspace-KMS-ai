@@ -4,7 +4,7 @@ import type {WorkspaceSessionStore} from '../session/store.ts';
 import {WorkspaceProjectStore, projectAccess, uuid} from '../projects/store.ts';
 import type {CursorKey} from '../projects/cursor.ts';
 import {ProjectFault, invalid, missing, conflict, requestHash, wireRevision} from '../projects/outcomes.ts';
-import {canCreateDocument, canManageDocumentAccess, canReadDocument} from './authority.ts';
+import {canCreateDocument, canManageDocumentAccess, canReadDocument, canWriteDocument} from './authority.ts';
 import type {
   RegisterDocumentPolicyInput,
   RegisterDocumentPolicyOutcome,
@@ -596,6 +596,31 @@ export class WorkspaceDocumentStore {
       }
       if (!(await guard())) return false;
       return canReadDocument(c, actor, projectId, documentId);
+    });
+  }
+
+  async markUnavailable(
+    token: string,
+    projectId: string,
+    documentId: string
+  ): Promise<void> {
+    if (!uuid(projectId) || !uuid(documentId)) throw missing();
+    projectId = projectId.toLowerCase();
+    documentId = documentId.toLowerCase();
+
+    return this.projects.transaction(token, async (c, actor, guard) => {
+      await projectAccess(c, actor, projectId);
+      if (!(await canWriteDocument(c, actor, projectId, documentId))) {
+        throw new ProjectFault(403, 'forbidden');
+      }
+      if (!(await guard())) return null as any;
+
+      await c.query(
+        `UPDATE workspace.document_policy
+            SET registry_state = 'unavailable', permission_revision = permission_revision + 1
+          WHERE project_id = $1 AND document_id = $2`,
+        [projectId, documentId]
+      );
     });
   }
 }

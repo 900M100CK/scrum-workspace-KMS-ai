@@ -3,7 +3,12 @@ import cookie from '@fastify/cookie';
 import {SESSION_COOKIE, sessionOrigin} from '../session/http.ts';
 import {ProjectFault, projectFailure} from '../projects/outcomes.ts';
 import type {WorkspaceDocumentStore} from './store.ts';
-import type {DocumentOrchestrator, CreateDocumentInput} from './orchestration.ts';
+import type {
+  DocumentOrchestrator,
+  CreateDocumentInput,
+  ReviseDocumentInput,
+  ArchiveVersionInput,
+} from './orchestration.ts';
 import type {SetClassificationInput, GrantReadInput, RevokeReadInput} from './types.ts';
 
 import {uuid} from '../projects/store.ts';
@@ -162,5 +167,100 @@ export async function registerDocumentHttp(app: FastifyInstance, options: Docume
     const {project_id, document_id} = request.params as {project_id: string; document_id: string};
     const detail = await options.orchestrator.getDocument(request.cookies[SESSION_COOKIE]!, project_id, document_id);
     return reply.code(200).send(detail);
+  });
+
+  // GET /projects/:project_id/documents/:document_id/versions (History list)
+  app.get('/projects/:project_id/documents/:document_id/versions', async (request, reply) => {
+    const {project_id, document_id} = request.params as {project_id: string; document_id: string};
+    const query = (request.query ?? {}) as {cursor?: string; limit?: string};
+    const limit = query.limit ? parseInt(query.limit, 10) : undefined;
+    const list = await options.orchestrator.listVersions(
+      request.cookies[SESSION_COOKIE]!,
+      project_id,
+      document_id,
+      query.cursor,
+      limit
+    );
+    return reply.code(200).send(list);
+  });
+
+  // GET /projects/:project_id/documents/:document_id/versions/:version_id (Exact version read)
+  app.get('/projects/:project_id/documents/:document_id/versions/:version_id', async (request, reply) => {
+    const {project_id, document_id, version_id} = request.params as {
+      project_id: string;
+      document_id: string;
+      version_id: string;
+    };
+    const version = await options.orchestrator.getVersion(
+      request.cookies[SESSION_COOKIE]!,
+      project_id,
+      document_id,
+      version_id
+    );
+    return reply.code(200).send(version);
+  });
+
+  // POST /projects/:project_id/documents/:document_id/revisions
+  app.post('/projects/:project_id/documents/:document_id/revisions', {bodyLimit: 65536}, async (request, reply) => {
+    const key = request.headers['idempotency-key'];
+    if (typeof key !== 'string' || !key) throw new ProjectFault(400, 'validation_failed');
+    const {project_id, document_id} = request.params as {project_id: string; document_id: string};
+    const result = await options.orchestrator.reviseDocument(
+      request.cookies[SESSION_COOKIE]!,
+      project_id,
+      document_id,
+      request.body as ReviseDocumentInput,
+      key,
+      extractCorrelation(request)
+    );
+    return reply.code(result.status).send(result.receipt);
+  });
+
+  // POST /projects/:project_id/documents/:document_id/versions/:version_id/archive
+  app.post('/projects/:project_id/documents/:document_id/versions/:version_id/archive', async (request, reply) => {
+    const key = request.headers['idempotency-key'];
+    if (typeof key !== 'string' || !key) throw new ProjectFault(400, 'validation_failed');
+    const {project_id, document_id, version_id} = request.params as {
+      project_id: string;
+      document_id: string;
+      version_id: string;
+    };
+    const result = await options.orchestrator.archiveVersion(
+      request.cookies[SESSION_COOKIE]!,
+      project_id,
+      document_id,
+      version_id,
+      request.body as ArchiveVersionInput,
+      key,
+      extractCorrelation(request)
+    );
+    return reply.code(result.status).send(result.receipt);
+  });
+
+  // DELETE /projects/:project_id/documents/:document_id
+  app.delete('/projects/:project_id/documents/:document_id', async (request, reply) => {
+    const key = request.headers['idempotency-key'];
+    if (typeof key !== 'string' || !key) throw new ProjectFault(400, 'validation_failed');
+    const {project_id, document_id} = request.params as {project_id: string; document_id: string};
+
+    const headerRev = request.headers['x-expected-revision'];
+    const body = (request.body as {expected_revision?: number} | undefined) ?? {};
+    let expectedRev = body.expected_revision;
+    if (expectedRev === undefined && typeof headerRev === 'string' && /^[1-9][0-9]*$/.test(headerRev)) {
+      expectedRev = Number(headerRev);
+    }
+    if (typeof expectedRev !== 'number' || expectedRev < 1) {
+      throw new ProjectFault(400, 'validation_failed');
+    }
+
+    await options.orchestrator.deleteDocument(
+      request.cookies[SESSION_COOKIE]!,
+      project_id,
+      document_id,
+      expectedRev,
+      key,
+      extractCorrelation(request)
+    );
+    return reply.code(204).send();
   });
 }

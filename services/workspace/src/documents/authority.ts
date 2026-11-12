@@ -71,3 +71,47 @@ export async function canReadDocument(
   );
   return Boolean(grantRes.rowCount && grantRes.rowCount > 0);
 }
+
+export async function canWriteDocument(
+  c: PoolClient,
+  actor: string,
+  projectId: string,
+  documentId: string
+): Promise<boolean> {
+  // 1. Must be active member of project
+  const memberRes = await c.query(
+    `SELECT membership_generation FROM workspace.membership
+      WHERE project_id = $1 AND user_id = $2 AND active`,
+    [projectId, actor]
+  );
+  if (!memberRes.rowCount || memberRes.rowCount === 0) return false;
+
+  // 2. Fetch document policy
+  const policyRes = await c.query(
+    `SELECT classification, registry_state FROM workspace.document_policy
+      WHERE project_id = $1 AND document_id = $2`,
+    [projectId, documentId]
+  );
+  if (!policyRes.rowCount || policyRes.rowCount === 0) return false;
+  const policy = policyRes.rows[0];
+  if (policy.registry_state !== 'active') return false;
+
+  // 3. Must have content-write authority
+  if (await canCreateDocument(c, actor, projectId)) return true;
+
+  const grantRes = await c.query(
+    `SELECT 1 FROM workspace.capability_grant
+      WHERE project_id = $1
+        AND subject_id = $2
+        AND valid
+        AND (
+          (resource_kind = 'document' AND resource_id = $3 AND action IN ('document-edit', 'document-write', 'knowledge-author'))
+          OR (resource_kind = 'project' AND resource_id = $1 AND action IN ('knowledge-author', 'project-administrator'))
+        )
+      LIMIT 1`,
+    [projectId, actor, documentId]
+  );
+  return Boolean(grantRes.rowCount && grantRes.rowCount > 0);
+}
+
+export const hasDocumentWriteAuthority = canWriteDocument;

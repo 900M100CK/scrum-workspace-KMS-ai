@@ -1,6 +1,16 @@
 import {randomUUID, createHash} from 'node:crypto';
 import type {Pool} from 'pg';
-import type {PersistDocumentInput, KnowledgeDocument, DocumentKind} from './types.ts';
+import type {
+  PersistDocumentInput,
+  KnowledgeDocument,
+  DocumentKind,
+  ReviseDocumentInput,
+  ArchiveVersionInput,
+  DocumentMutationReceipt,
+  VersionList,
+  KnowledgeVersion,
+  VersionState,
+} from './types.ts';
 
 const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 export const isUuid = (s: string) => typeof s === 'string' && uuidRegex.test(s);
@@ -199,5 +209,492 @@ export class KnowledgeDocumentStore {
       },
       content: row.immutable_content,
     };
+  }
+
+  async reviseDocument(
+    actor: string,
+    projectId: string,
+    documentId: string,
+    input: ReviseDocumentInput,
+    key: string,
+    correlation: string = randomUUID()
+  ): Promise<{status: 200 | 201; receipt: DocumentMutationReceipt}> {
+    if (!isUuid(actor) || !isUuid(projectId) || !isUuid(documentId)) throw invalid();
+    if (!input || typeof input !== 'object') throw invalid();
+    if (typeof input.content !== 'string' || !input.content.trim()) throw invalid();
+    if (typeof input.expected_revision !== 'number' || input.expected_revision < 1 || !Number.isInteger(input.expected_revision)) {
+      throw invalid();
+    }
+    if (typeof key !== 'string' || !key.trim()) throw invalid();
+
+    const hash = requestHash(['reviseDocument', actor, projectId, documentId, input.content.trim(), input.expected_revision]);
+
+    const client = await this.pool.connect();
+    try {
+      await client.query('BEGIN');
+
+      const existing = (
+        await client.query(
+          `SELECT payload_hash, state, result_ref FROM knowledge.idempotency_record
+            WHERE actor_id = $1 AND operation = 'reviseDocument' AND idempotency_key = $2`,
+          [actor, key]
+        )
+      ).rows[0];
+
+      if (existing) {
+        if (existing.payload_hash !== hash || existing.state !== 'committed') {
+          await client.query('ROLLBACK');
+          throw conflict();
+        }
+        await client.query('COMMIT');
+        return {
+          status: 200,
+          receipt: JSON.parse(existing.result_ref),
+        };
+      }
+
+      const docRes = await client.query(
+        `SELECT document_id, project_id, current_version_id, revision::text rev, unavailable
+           FROM knowledge.document WHERE document_id = $1 FOR UPDATE`,
+        [documentId]
+      );
+      if ((docRes.rowCount ?? 0) === 0) {
+        await client.query('ROLLBACK');
+        throw missing();
+      }
+      const doc = docRes.rows[0];
+      if (doc.project_id !== projectId || doc.unavailable) {
+        await client.query('ROLLBACK');
+        throw missing();
+      }
+      if (Number(doc.rev) !== input.expected_revision) {
+        await client.query('ROLLBACK');
+        throw conflict();
+      }
+
+      if (doc.current_version_id) {
+        const curVerRes = await client.query(
+          `SELECT version_id, state FROM knowledge.document_version
+            WHERE document_id = $1 AND version_id = $2 FOR UPDATE`,
+          [documentId, doc.current_version_id]
+        );
+        if ((curVerRes.rowCount ?? 0) > 0 && curVerRes.rows[0].state === 'current') {
+          await client.query(
+            `UPDATE knowledge.document_version
+                SET state = 'superseded', revision = revision + 1
+              WHERE document_id = $1 AND version_id = $2`,
+            [documentId, doc.current_version_id]
+          );
+        }
+      }
+
+      const newVersionId = randomUUID();
+
+      await client.query(
+        `INSERT INTO knowledge.document_version(document_id, version_id, state, immutable_content, revision)
+          VALUES($1, $2, 'current', $3, 1)`,
+        [documentId, newVersionId, input.content]
+      );
+
+      const passages = splitPassages(input.content);
+      for (let i = 0; i < passages.length; i++) {
+        await client.query(
+          `INSERT INTO knowledge.passage(document_id, version_id, passage_id, locator, immutable_excerpt)
+            VALUES($1, $2, $3, $4, $5)`,
+          [documentId, newVersionId, randomUUID(), `p:${i + 1}`, passages[i]]
+        );
+      }
+
+      await client.query(
+        `UPDATE knowledge.document
+            SET current_version_id = $2, revision = revision + 1
+          WHERE document_id = $1`,
+        [documentId, newVersionId]
+      );
+
+      const receipt: DocumentMutationReceipt = {
+        document_id: documentId,
+        operation: 'reviseDocument',
+        receipt_id: randomUUID(),
+        version_id: newVersionId,
+      };
+
+      await client.query(
+        `INSERT INTO knowledge.business_audit(event_id, actor_id, project_id, action, entity_id, correlation_id, after_ref)
+          VALUES($1, $2, $3, 'document-revise', $4, $5, $6)`,
+        [
+          randomUUID(),
+          actor,
+          projectId,
+          documentId,
+          correlation,
+          JSON.stringify({version_id: newVersionId, receipt_id: receipt.receipt_id}),
+        ]
+      );
+
+      await client.query(
+        `INSERT INTO knowledge.idempotency_record(actor_id, operation, idempotency_key, payload_hash, state, result_ref, expires_at)
+          VALUES($1, 'reviseDocument', $2, $3, 'committed', $4, 'infinity')`,
+        [actor, key, hash, JSON.stringify(receipt)]
+      );
+
+      await client.query('COMMIT');
+
+      return {
+        status: 201,
+        receipt,
+      };
+    } catch (error) {
+      try {
+        await client.query('ROLLBACK');
+      } catch {}
+      throw error;
+    } finally {
+      client.release();
+    }
+  }
+
+  async archiveVersion(
+    actor: string,
+    projectId: string,
+    documentId: string,
+    versionId: string,
+    input: ArchiveVersionInput,
+    key: string,
+    correlation: string = randomUUID()
+  ): Promise<{status: 200; receipt: DocumentMutationReceipt}> {
+    if (!isUuid(actor) || !isUuid(projectId) || !isUuid(documentId) || !isUuid(versionId)) throw invalid();
+    if (!input || typeof input !== 'object') throw invalid();
+    if (typeof input.expected_revision !== 'number' || input.expected_revision < 1 || !Number.isInteger(input.expected_revision)) {
+      throw invalid();
+    }
+    if (typeof key !== 'string' || !key.trim()) throw invalid();
+
+    const hash = requestHash(['archiveVersion', actor, projectId, documentId, versionId, input.expected_revision]);
+
+    const client = await this.pool.connect();
+    try {
+      await client.query('BEGIN');
+
+      const existing = (
+        await client.query(
+          `SELECT payload_hash, state, result_ref FROM knowledge.idempotency_record
+            WHERE actor_id = $1 AND operation = 'archiveVersion' AND idempotency_key = $2`,
+          [actor, key]
+        )
+      ).rows[0];
+
+      if (existing) {
+        if (existing.payload_hash !== hash || existing.state !== 'committed') {
+          await client.query('ROLLBACK');
+          throw conflict();
+        }
+        await client.query('COMMIT');
+        return {
+          status: 200,
+          receipt: JSON.parse(existing.result_ref),
+        };
+      }
+
+      const docRes = await client.query(
+        `SELECT document_id, project_id, current_version_id, revision::text rev, unavailable
+           FROM knowledge.document WHERE document_id = $1 FOR UPDATE`,
+        [documentId]
+      );
+      if ((docRes.rowCount ?? 0) === 0) {
+        await client.query('ROLLBACK');
+        throw missing();
+      }
+      const doc = docRes.rows[0];
+      if (doc.project_id !== projectId || doc.unavailable) {
+        await client.query('ROLLBACK');
+        throw missing();
+      }
+      if (Number(doc.rev) !== input.expected_revision) {
+        await client.query('ROLLBACK');
+        throw conflict();
+      }
+
+      const verRes = await client.query(
+        `SELECT version_id, state FROM knowledge.document_version
+          WHERE document_id = $1 AND version_id = $2 FOR UPDATE`,
+        [documentId, versionId]
+      );
+      if ((verRes.rowCount ?? 0) === 0) {
+        await client.query('ROLLBACK');
+        throw missing();
+      }
+      const ver = verRes.rows[0];
+      if (ver.state === 'archived') {
+        await client.query('ROLLBACK');
+        throw conflict();
+      }
+
+      await client.query(
+        `UPDATE knowledge.document_version
+            SET state = 'archived', revision = revision + 1
+          WHERE document_id = $1 AND version_id = $2`,
+        [documentId, versionId]
+      );
+
+      const newCurrentVersionId = doc.current_version_id === versionId ? null : doc.current_version_id;
+      await client.query(
+        `UPDATE knowledge.document
+            SET current_version_id = $2, revision = revision + 1
+          WHERE document_id = $1`,
+        [documentId, newCurrentVersionId]
+      );
+
+      const receipt: DocumentMutationReceipt = {
+        document_id: documentId,
+        operation: 'archiveVersion',
+        receipt_id: randomUUID(),
+        version_id: versionId,
+      };
+
+      await client.query(
+        `INSERT INTO knowledge.business_audit(event_id, actor_id, project_id, action, entity_id, correlation_id, after_ref)
+          VALUES($1, $2, $3, 'version-archive', $4, $5, $6)`,
+        [
+          randomUUID(),
+          actor,
+          projectId,
+          documentId,
+          correlation,
+          JSON.stringify({version_id: versionId, receipt_id: receipt.receipt_id}),
+        ]
+      );
+
+      await client.query(
+        `INSERT INTO knowledge.idempotency_record(actor_id, operation, idempotency_key, payload_hash, state, result_ref, expires_at)
+          VALUES($1, 'archiveVersion', $2, $3, 'committed', $4, 'infinity')`,
+        [actor, key, hash, JSON.stringify(receipt)]
+      );
+
+      await client.query('COMMIT');
+
+      return {
+        status: 200,
+        receipt,
+      };
+    } catch (error) {
+      try {
+        await client.query('ROLLBACK');
+      } catch {}
+      throw error;
+    } finally {
+      client.release();
+    }
+  }
+
+  async listVersions(
+    projectId: string,
+    documentId: string,
+    cursor?: string | null,
+    limit: number = 20
+  ): Promise<VersionList | null> {
+    if (!isUuid(projectId) || !isUuid(documentId)) return null;
+    const safeLimit = Math.min(Math.max(1, limit || 20), 100);
+
+    const docRes = await this.pool.query(
+      `SELECT current_version_id, revision::text rev, unavailable
+         FROM knowledge.document
+        WHERE document_id = $1 AND project_id = $2`,
+      [documentId, projectId]
+    );
+    if ((docRes.rowCount ?? 0) === 0) return null;
+    const doc = docRes.rows[0];
+    if (doc.unavailable) return null;
+
+    let cursorDate: Date | null = null;
+    let cursorVersionId: string | null = null;
+    if (cursor) {
+      try {
+        const decoded = Buffer.from(cursor, 'base64url').toString('utf8');
+        const [dStr, vId] = decoded.split('|');
+        if (dStr && vId && isUuid(vId)) {
+          cursorDate = new Date(dStr);
+          cursorVersionId = vId;
+        }
+      } catch {}
+    }
+
+    let query: string;
+    let params: unknown[];
+    if (cursorDate && cursorVersionId) {
+      query = `SELECT version_id, state, created_at
+                 FROM knowledge.document_version
+                WHERE document_id = $1
+                  AND (created_at < $2 OR (created_at = $2 AND version_id > $3))
+                ORDER BY created_at DESC, version_id ASC
+                LIMIT $4`;
+      params = [documentId, cursorDate, cursorVersionId, safeLimit + 1];
+    } else {
+      query = `SELECT version_id, state, created_at
+                 FROM knowledge.document_version
+                WHERE document_id = $1
+                ORDER BY created_at DESC, version_id ASC
+                LIMIT $2`;
+      params = [documentId, safeLimit + 1];
+    }
+
+    const rows = (await this.pool.query(query, params)).rows;
+    const hasMore = rows.length > safeLimit;
+    const items = hasMore ? rows.slice(0, safeLimit) : rows;
+
+    let nextCursor: string | null = null;
+    if (hasMore && items.length > 0) {
+      const last = items[items.length - 1];
+      nextCursor = Buffer.from(`${new Date(last.created_at).toISOString()}|${last.version_id}`, 'utf8').toString('base64url');
+    }
+
+    return {
+      items: items.map(r => ({
+        document_id: documentId,
+        version_id: r.version_id,
+        state: r.state as VersionState,
+        created_at: new Date(r.created_at).toISOString(),
+      })),
+      next_cursor: nextCursor,
+      document_id: documentId,
+      document_revision: Number(doc.rev),
+      current_version_id: doc.current_version_id,
+    };
+  }
+
+  async getVersion(
+    projectId: string,
+    documentId: string,
+    versionId: string
+  ): Promise<KnowledgeVersion | null> {
+    if (!isUuid(projectId) || !isUuid(documentId) || !isUuid(versionId)) return null;
+
+    const docRes = await this.pool.query(
+      `SELECT revision::text rev, unavailable
+         FROM knowledge.document
+        WHERE document_id = $1 AND project_id = $2`,
+      [documentId, projectId]
+    );
+    if ((docRes.rowCount ?? 0) === 0) return null;
+    const doc = docRes.rows[0];
+    if (doc.unavailable) return null;
+
+    const verRes = await this.pool.query(
+      `SELECT version_id, state, immutable_content, created_at
+         FROM knowledge.document_version
+        WHERE document_id = $1 AND version_id = $2`,
+      [documentId, versionId]
+    );
+    if ((verRes.rowCount ?? 0) === 0) return null;
+    const ver = verRes.rows[0];
+
+    return {
+      document_id: documentId,
+      version_id: ver.version_id,
+      state: ver.state as VersionState,
+      content: ver.immutable_content,
+      content_format: 'text',
+      created_at: new Date(ver.created_at).toISOString(),
+      revision: Number(doc.rev),
+    };
+  }
+
+  async deleteDocument(
+    actor: string,
+    projectId: string,
+    documentId: string,
+    expectedRevision: number,
+    key: string,
+    correlation: string = randomUUID()
+  ): Promise<{status: 204}> {
+    if (!isUuid(actor) || !isUuid(projectId) || !isUuid(documentId)) throw invalid();
+    if (typeof expectedRevision !== 'number' || expectedRevision < 1 || !Number.isInteger(expectedRevision)) {
+      throw invalid();
+    }
+    if (typeof key !== 'string' || !key.trim()) throw invalid();
+
+    const hash = requestHash(['deleteDocument', actor, projectId, documentId, expectedRevision]);
+
+    const client = await this.pool.connect();
+    try {
+      await client.query('BEGIN');
+
+      const existing = (
+        await client.query(
+          `SELECT payload_hash, state, result_ref FROM knowledge.idempotency_record
+            WHERE actor_id = $1 AND operation = 'deleteDocument' AND idempotency_key = $2`,
+          [actor, key]
+        )
+      ).rows[0];
+
+      if (existing) {
+        if (existing.payload_hash !== hash || existing.state !== 'committed') {
+          await client.query('ROLLBACK');
+          throw conflict();
+        }
+        await client.query('COMMIT');
+        return {status: 204};
+      }
+
+      const docRes = await client.query(
+        `SELECT document_id, project_id, revision::text rev, unavailable
+           FROM knowledge.document WHERE document_id = $1 FOR UPDATE`,
+        [documentId]
+      );
+      if ((docRes.rowCount ?? 0) === 0) {
+        await client.query('ROLLBACK');
+        throw missing();
+      }
+      const doc = docRes.rows[0];
+      if (doc.project_id !== projectId) {
+        await client.query('ROLLBACK');
+        throw missing();
+      }
+      if (doc.unavailable) {
+        await client.query('ROLLBACK');
+        throw conflict();
+      }
+      if (Number(doc.rev) !== expectedRevision) {
+        await client.query('ROLLBACK');
+        throw conflict();
+      }
+
+      await client.query(
+        `UPDATE knowledge.document
+            SET unavailable = true, revision = revision + 1
+          WHERE document_id = $1`,
+        [documentId]
+      );
+
+      await client.query(
+        `INSERT INTO knowledge.business_audit(event_id, actor_id, project_id, action, entity_id, correlation_id, after_ref)
+          VALUES($1, $2, $3, 'document-delete', $4, $5, $6)`,
+        [
+          randomUUID(),
+          actor,
+          projectId,
+          documentId,
+          correlation,
+          JSON.stringify({document_id: documentId, deleted: true}),
+        ]
+      );
+
+      await client.query(
+        `INSERT INTO knowledge.idempotency_record(actor_id, operation, idempotency_key, payload_hash, state, result_ref, expires_at)
+          VALUES($1, 'deleteDocument', $2, $3, 'committed', $4, 'infinity')`,
+        [actor, key, hash, documentId]
+      );
+
+      await client.query('COMMIT');
+
+      return {status: 204};
+    } catch (error) {
+      try {
+        await client.query('ROLLBACK');
+      } catch {}
+      throw error;
+    } finally {
+      client.release();
+    }
   }
 }

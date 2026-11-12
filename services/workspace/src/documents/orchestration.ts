@@ -1,8 +1,10 @@
 import {randomUUID} from 'node:crypto';
 import type {WorkspaceDocumentStore} from './store.ts';
 import type {ProjectRWGuard} from '../policy/guard.ts';
-import {ProjectFault, invalid, missing, requestHash} from '../projects/outcomes.ts';
-import type {DocumentClassification, DocumentKind} from './types.ts';
+import {ProjectFault, invalid, missing, conflict, requestHash} from '../projects/outcomes.ts';
+import {uuid, projectAccess} from '../projects/store.ts';
+import {canWriteDocument, canReadDocument} from './authority.ts';
+import type {DocumentClassification, DocumentKind, VersionList, KnowledgeVersion} from './types.ts';
 
 export interface CreateDocumentInput {
   title: string;
@@ -10,6 +12,23 @@ export interface CreateDocumentInput {
   content: string;
   kind?: DocumentKind;
   labels?: string[];
+}
+
+export interface ReviseDocumentInput {
+  content: string;
+  content_format?: 'text' | 'markdown';
+  expected_revision: number;
+}
+
+export interface ArchiveVersionInput {
+  expected_revision: number;
+}
+
+export interface DocumentMutationReceipt {
+  document_id: string;
+  operation: 'reviseDocument' | 'archiveVersion' | 'editDocumentMetadata';
+  receipt_id: string;
+  version_id: string | null;
 }
 
 export interface DocumentResponse {
@@ -61,6 +80,50 @@ export interface KnowledgeTransport {
     };
     content: string;
   } | null>;
+  revise?(
+    actorId: string,
+    payload: {
+      project_id: string;
+      document_id: string;
+      content: string;
+      content_format?: 'text' | 'markdown';
+      expected_revision: number;
+    },
+    key: string,
+    correlationId?: string
+  ): Promise<{status: 200 | 201; receipt: DocumentMutationReceipt}>;
+  archive?(
+    actorId: string,
+    payload: {
+      project_id: string;
+      document_id: string;
+      version_id: string;
+      expected_revision: number;
+    },
+    key: string,
+    correlationId?: string
+  ): Promise<{status: 200; receipt: DocumentMutationReceipt}>;
+  delete?(
+    actorId: string,
+    payload: {
+      project_id: string;
+      document_id: string;
+      expected_revision: number;
+    },
+    key: string,
+    correlationId?: string
+  ): Promise<{status: 204}>;
+  listVersions?(
+    projectId: string,
+    documentId: string,
+    cursor?: string | null,
+    limit?: number
+  ): Promise<VersionList | null>;
+  getVersion?(
+    projectId: string,
+    documentId: string,
+    versionId: string
+  ): Promise<KnowledgeVersion | null>;
 }
 
 export class DocumentOrchestrator {
@@ -231,6 +294,234 @@ export class DocumentOrchestrator {
         }
       }
       return items;
+    } finally {
+      release();
+    }
+  }
+
+  async reviseDocument(
+    token: string,
+    projectId: string,
+    documentId: string,
+    input: ReviseDocumentInput,
+    key: string,
+    correlationId: string = randomUUID()
+  ): Promise<{status: 200 | 201; receipt: DocumentMutationReceipt}> {
+    if (!uuid(projectId) || !uuid(documentId)) throw missing();
+    projectId = projectId.toLowerCase();
+    documentId = documentId.toLowerCase();
+    if (!input || typeof input !== 'object') throw invalid();
+    if (typeof input.content !== 'string' || !input.content.trim()) throw invalid();
+    if (typeof input.expected_revision !== 'number' || input.expected_revision < 1 || !Number.isInteger(input.expected_revision)) {
+      throw invalid();
+    }
+    if (typeof key !== 'string' || !key.trim()) throw invalid();
+
+    const actorId = await this.docsStore.projects.transaction(token, async (c, actor, guard) => {
+      await projectAccess(c, actor, projectId);
+      if (!(await canWriteDocument(c, actor, projectId, documentId))) {
+        throw new ProjectFault(403, 'forbidden');
+      }
+      if (!(await guard())) return null as any;
+      return actor;
+    });
+
+    const release = await this.guard.acquireExclusive(projectId);
+    try {
+      if (!this.transport.revise) {
+        throw new ProjectFault(503, 'access_unavailable');
+      }
+      return await this.transport.revise(
+        actorId,
+        {
+          project_id: projectId,
+          document_id: documentId,
+          content: input.content,
+          ...(input.content_format ? {content_format: input.content_format} : {}),
+          expected_revision: input.expected_revision,
+        },
+        key,
+        correlationId
+      );
+    } catch (err: any) {
+      if (err instanceof ProjectFault) throw err;
+      if (err?.status === 409 || err?.code === 'state_conflict') throw conflict();
+      if (err?.status === 404 || err?.code === 'not_found') throw missing();
+      if (err?.status === 400 || err?.code === 'validation_failed') throw invalid();
+      if (err?.status === 403 || err?.code === 'forbidden') throw new ProjectFault(403, 'forbidden');
+      throw err;
+    } finally {
+      release();
+    }
+  }
+
+  async archiveVersion(
+    token: string,
+    projectId: string,
+    documentId: string,
+    versionId: string,
+    input: ArchiveVersionInput,
+    key: string,
+    correlationId: string = randomUUID()
+  ): Promise<{status: 200; receipt: DocumentMutationReceipt}> {
+    if (!uuid(projectId) || !uuid(documentId) || !uuid(versionId)) throw missing();
+    projectId = projectId.toLowerCase();
+    documentId = documentId.toLowerCase();
+    versionId = versionId.toLowerCase();
+    if (!input || typeof input !== 'object') throw invalid();
+    if (typeof input.expected_revision !== 'number' || input.expected_revision < 1 || !Number.isInteger(input.expected_revision)) {
+      throw invalid();
+    }
+    if (typeof key !== 'string' || !key.trim()) throw invalid();
+
+    const actorId = await this.docsStore.projects.transaction(token, async (c, actor, guard) => {
+      await projectAccess(c, actor, projectId);
+      if (!(await canWriteDocument(c, actor, projectId, documentId))) {
+        throw new ProjectFault(403, 'forbidden');
+      }
+      if (!(await guard())) return null as any;
+      return actor;
+    });
+
+    const release = await this.guard.acquireExclusive(projectId);
+    try {
+      if (!this.transport.archive) {
+        throw new ProjectFault(503, 'access_unavailable');
+      }
+      return await this.transport.archive(
+        actorId,
+        {
+          project_id: projectId,
+          document_id: documentId,
+          version_id: versionId,
+          expected_revision: input.expected_revision,
+        },
+        key,
+        correlationId
+      );
+    } catch (err: any) {
+      if (err instanceof ProjectFault) throw err;
+      if (err?.status === 409 || err?.code === 'state_conflict') throw conflict();
+      if (err?.status === 404 || err?.code === 'not_found') throw missing();
+      if (err?.status === 400 || err?.code === 'validation_failed') throw invalid();
+      if (err?.status === 403 || err?.code === 'forbidden') throw new ProjectFault(403, 'forbidden');
+      throw err;
+    } finally {
+      release();
+    }
+  }
+
+  async deleteDocument(
+    token: string,
+    projectId: string,
+    documentId: string,
+    expectedRevision: number,
+    key: string,
+    correlationId: string = randomUUID()
+  ): Promise<{status: 204}> {
+    if (!uuid(projectId) || !uuid(documentId)) throw missing();
+    projectId = projectId.toLowerCase();
+    documentId = documentId.toLowerCase();
+    if (typeof expectedRevision !== 'number' || expectedRevision < 1 || !Number.isInteger(expectedRevision)) {
+      throw invalid();
+    }
+    if (typeof key !== 'string' || !key.trim()) throw invalid();
+
+    const actorId = await this.docsStore.projects.transaction(token, async (c, actor, guard) => {
+      await projectAccess(c, actor, projectId);
+      if (!(await canWriteDocument(c, actor, projectId, documentId))) {
+        throw new ProjectFault(403, 'forbidden');
+      }
+      if (!(await guard())) return null as any;
+      return actor;
+    });
+
+    const release = await this.guard.acquireExclusive(projectId);
+    try {
+      if (!this.transport.delete) {
+        throw new ProjectFault(503, 'access_unavailable');
+      }
+      await this.docsStore.markUnavailable(token, projectId, documentId);
+
+      return await this.transport.delete(
+        actorId,
+        {
+          project_id: projectId,
+          document_id: documentId,
+          expected_revision: expectedRevision,
+        },
+        key,
+        correlationId
+      );
+    } catch (err: any) {
+      if (err instanceof ProjectFault) throw err;
+      if (err?.status === 409 || err?.code === 'state_conflict') throw conflict();
+      if (err?.status === 404 || err?.code === 'not_found') throw missing();
+      if (err?.status === 400 || err?.code === 'validation_failed') throw invalid();
+      if (err?.status === 403 || err?.code === 'forbidden') throw new ProjectFault(403, 'forbidden');
+      throw err;
+    } finally {
+      release();
+    }
+  }
+
+  async listVersions(
+    token: string,
+    projectId: string,
+    documentId: string,
+    cursor?: string | null,
+    limit?: number
+  ): Promise<VersionList> {
+    if (!uuid(projectId) || !uuid(documentId)) throw missing();
+    projectId = projectId.toLowerCase();
+    documentId = documentId.toLowerCase();
+
+    await this.docsStore.projects.transaction(token, async (c, actor, guard) => {
+      await projectAccess(c, actor, projectId);
+      const readable = await canReadDocument(c, actor, projectId, documentId);
+      if (!readable) throw missing();
+      if (!(await guard())) return null as any;
+    });
+
+    const release = await this.guard.acquireShared(projectId, this.guard.getGeneration());
+    try {
+      if (!this.transport.listVersions) {
+        throw new ProjectFault(503, 'access_unavailable');
+      }
+      const list = await this.transport.listVersions(projectId, documentId, cursor, limit);
+      if (!list) throw missing();
+      return list;
+    } finally {
+      release();
+    }
+  }
+
+  async getVersion(
+    token: string,
+    projectId: string,
+    documentId: string,
+    versionId: string
+  ): Promise<KnowledgeVersion> {
+    if (!uuid(projectId) || !uuid(documentId) || !uuid(versionId)) throw missing();
+    projectId = projectId.toLowerCase();
+    documentId = documentId.toLowerCase();
+    versionId = versionId.toLowerCase();
+
+    await this.docsStore.projects.transaction(token, async (c, actor, guard) => {
+      await projectAccess(c, actor, projectId);
+      const readable = await canReadDocument(c, actor, projectId, documentId);
+      if (!readable) throw missing();
+      if (!(await guard())) return null as any;
+    });
+
+    const release = await this.guard.acquireShared(projectId, this.guard.getGeneration());
+    try {
+      if (!this.transport.getVersion) {
+        throw new ProjectFault(503, 'access_unavailable');
+      }
+      const version = await this.transport.getVersion(projectId, documentId, versionId);
+      if (!version) throw missing();
+      return version;
     } finally {
       release();
     }

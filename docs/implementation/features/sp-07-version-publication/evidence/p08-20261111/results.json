@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-12",
+  "node": "v22.23.0",
+  "database": "17.10 (Debian 17.10-1.pgdg12+1)",
+  "image": "pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966",
+  "https": true,
+  "tlsBypass": false,
+  "checks": [
+    "Journey 1: native document creation and initial CURRENT version detail display",
+    "Journey 2: revision publication updating <pre> content and showing CURRENT and SUPERSEDED badges",
+    "Journey 3: historical version inspection displaying viewing-version-banner and immutable v1 content",
+    "Journey 4: historical version archiving updating state to ARCHIVED",
+    "Journey 5: return to Current version restoring active content and publish form",
+    "Journey 6: CAS revision conflict (409) gracefully displaying error feedback in p.feedback"
+  ],
+  "domErrors": []
+}
