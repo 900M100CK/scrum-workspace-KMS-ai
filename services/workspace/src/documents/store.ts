@@ -16,6 +16,27 @@ import type {
   SetClassificationInput,
 } from './types.ts';
 
+export async function readableDocumentPolicies(client: PoolClient, actor: string, projectId: string, generation: string) {
+  const result = await client.query<{document_id: string; permission_revision: string}>(
+    `SELECT p.document_id, p.permission_revision::text
+             FROM workspace.document_policy p
+            WHERE p.project_id = $1
+              AND p.registry_state = 'active'
+              AND (
+                p.classification = 'project_shared'
+                OR EXISTS (
+                  SELECT 1 FROM workspace.read_grant g
+                   WHERE g.project_id = p.project_id
+                     AND g.document_id = p.document_id
+                     AND g.user_id = $2
+                     AND g.valid
+                     AND g.membership_generation = $3
+                )
+              )
+            ORDER BY p.document_id`, [projectId, actor, generation]);
+  return result.rows;
+}
+
 export class WorkspaceDocumentStore {
   readonly projects: WorkspaceProjectStore;
 
@@ -557,30 +578,8 @@ export class WorkspaceDocumentStore {
       const {member} = await projectAccess(c, actor, projectId);
       if (!(await guard())) return null as any;
 
-      const memGen = member.membership_generation;
-      const rows = (
-        await c.query(
-          `SELECT p.document_id
-             FROM workspace.document_policy p
-            WHERE p.project_id = $1
-              AND p.registry_state = 'active'
-              AND (
-                p.classification = 'project_shared'
-                OR EXISTS (
-                  SELECT 1 FROM workspace.read_grant g
-                   WHERE g.project_id = p.project_id
-                     AND g.document_id = p.document_id
-                     AND g.user_id = $2
-                     AND g.valid
-                     AND g.membership_generation = $3
-                )
-              )
-            ORDER BY p.document_id`,
-          [projectId, actor, memGen]
-        )
-      ).rows;
-
-      return rows.map((r) => r.document_id);
+      return (await readableDocumentPolicies(c, actor, projectId, member.membership_generation))
+        .map(row => row.document_id);
     });
   }
 

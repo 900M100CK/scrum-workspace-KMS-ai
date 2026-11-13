@@ -1,3 +1,4 @@
+import {registerProjectDiscovery} from './discovery.ts';
 import {canManageDocumentAccess} from './authority.ts';
 import {deliverDocument} from './delivery.ts';
 import type {FastifyInstance} from 'fastify';
@@ -81,6 +82,8 @@ export async function registerDocumentHttp(app: FastifyInstance, options: Docume
           }
     );
   });
+
+  if (options.orchestrator.transport.discovery) registerProjectDiscovery(app, options);
 
   // POST /projects/:project_id/documents
   app.post('/projects/:project_id/documents', {bodyLimit: 65536}, async (request, reply) => {

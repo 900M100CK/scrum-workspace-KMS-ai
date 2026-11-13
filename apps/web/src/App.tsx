@@ -49,7 +49,7 @@ export function App({controller:provided}:{controller?:SessionController}={}) {
     <p className="feedback" role="status" aria-live="polite" tabIndex={-1} ref={feedback}>{state.message}</p>
     {state.session?<>
      <nav aria-label="Workspace"><a href="#session" aria-current={route!=='#workspace'?'page':undefined}>Your session</a><a href="#workspace" aria-current={route==='#workspace'?'page':undefined}>Workspace</a></nav>
-     {route==='#workspace'?<ProjectWorkspace key={state.session.user_id} userId={state.session.user_id} onSessionLost={controller.expire}/>:<p className="session-detail">Session available until <time dateTime={state.session.expires_at}>{new Intl.DateTimeFormat(undefined,{dateStyle:'medium',timeStyle:'short'}).format(new Date(state.session.expires_at))}</time></p>}
+     {route==='#workspace'?<div className="live-project"><ProjectWorkspace key={state.session.user_id} userId={state.session.user_id} onSessionLost={controller.expire}/></div>:<p className="session-detail">Session available until <time dateTime={state.session.expires_at}>{new Intl.DateTimeFormat(undefined,{dateStyle:'medium',timeStyle:'short'}).format(new Date(state.session.expires_at))}</time></p>}
      <div className="actions"><button className="primary" onClick={signOut}>Sign out</button><button onClick={()=>void controller.check()}>Check session</button></div>
     </>:<>
      {(state.phase==='signed-out'||state.phase==='expired'||state.phase==='signing-in')?<form onSubmit={signIn}>
