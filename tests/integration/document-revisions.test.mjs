@@ -307,7 +307,7 @@ test('SP07 P04 Workspace revision orchestration, independent write authority and
     assert.equal(receipt.version_id, vIdToArchive);
   });
 
-  await t.test('deleteDocument marks policy unavailable and returns 204', async () => {
+  await t.test('deleteDocument keeps Workspace policy and returns 204', async () => {
     const curDoc = knowledgeDocs.get(docId);
     assert.equal(curDoc.revision, 4);
 
@@ -326,7 +326,7 @@ test('SP07 P04 Workspace revision orchestration, independent write authority and
     const policyRow = (
       await f.db.runtime.query('SELECT registry_state FROM workspace.document_policy WHERE document_id = $1', [docId])
     ).rows[0];
-    assert.equal(policyRow.registry_state, 'unavailable');
+    assert.equal(policyRow.registry_state, 'active');
 
     // Future revision attempts yield 403/404
     const revAfterDel = await app.inject({
@@ -341,6 +341,6 @@ test('SP07 P04 Workspace revision orchestration, independent write authority and
         expected_revision: 5,
       },
     });
-    assert.equal(revAfterDel.statusCode, 403); // policy not active
+    assert.equal(revAfterDel.statusCode, 404); // policy not active
   });
 });

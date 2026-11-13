@@ -71,7 +71,7 @@ test('SP06 Document access Edge HTTPS browser test: creation, restricted detail,
   await page.locator('.document-detail .badge.project_shared:has-text("Shared")').waitFor();
 
   // 8. Capture screenshots and verify responsiveness
-  const directory = 'docs/implementation/features/sp-06-document-access/evidence/p13-20261111';
+  const directory = process.env.SACW_TEST_EVIDENCE_DIR ? process.env.SACW_TEST_EVIDENCE_DIR + '/sp06-browser' : 'docs/implementation/features/sp-06-document-access/evidence/p13-20261111';
   await mkdir(directory, {recursive: true});
 
   // Desktop screenshot

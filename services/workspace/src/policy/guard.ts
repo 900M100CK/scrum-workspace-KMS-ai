@@ -7,6 +7,7 @@ export interface GuardSocket {
 }
 
 interface ProjectLockState {
+  revision: number;
   readers: number;
   writerActive: boolean;
   waitingWriters: Array<() => void>;
@@ -17,6 +18,34 @@ interface ProjectLockState {
 
 export class ProjectRWGuard {
   private generation: number;
+  snapshot(projectId: string): number {
+    return this.projects.get(projectId)?.revision ?? 0;
+  }
+
+  async change<T>(projectId: string, work: () => Promise<T>): Promise<T> {
+    const state = this.getOrCreateProject(projectId);
+    const exclusive = this.acquireExclusive(projectId);
+    for (const socket of state.activeSockets.values()) socket.destroy();
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const deadline = new Promise<never>((_, reject) => {
+      timer = setTimeout(() => reject(new Error('GUARD_CLOSE_UNCONFIRMED')), 500);
+    });
+    let release: () => void;
+    try {
+      release = await Promise.race([exclusive, deadline]);
+    } catch (error) {
+      void exclusive.then(unlock => unlock());
+      throw error;
+    } finally {
+      clearTimeout(timer);
+    }
+    try {
+      state.revision++;
+      return await work();
+    } finally {
+      release();
+    }
+  }
   private projects = new Map<string, ProjectLockState>();
 
   constructor(initialGeneration = 1) {
@@ -37,6 +66,7 @@ export class ProjectRWGuard {
     let state = this.projects.get(projectId);
     if (!state) {
       state = {
+        revision: 0,
         readers: 0,
         writerActive: false,
         waitingWriters: [],
@@ -90,7 +120,10 @@ export class ProjectRWGuard {
       if (state.readers === 0) {
         if (state.waitingWriters.length > 0) {
           const nextWriter = state.waitingWriters.shift();
-          if (nextWriter) nextWriter();
+          if (nextWriter) {
+            state.writerActive = true;
+            nextWriter();
+          }
         } else {
           while (state.waitingReaders.length > 0) {
             const nextReader = state.waitingReaders.shift();
@@ -122,7 +155,10 @@ export class ProjectRWGuard {
       // Prefer queued writers first
       if (state.waitingWriters.length > 0) {
         const nextWriter = state.waitingWriters.shift();
-        if (nextWriter) nextWriter();
+        if (nextWriter) {
+          state.writerActive = true;
+          nextWriter();
+        }
       } else {
         // Otherwise wake all queued readers
         while (state.waitingReaders.length > 0) {

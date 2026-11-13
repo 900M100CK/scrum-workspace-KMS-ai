@@ -80,6 +80,7 @@ export async function knowledgeFixture() {
 
     return {
       name,
+      runtimeUrl,
       admin,
       runtime,
       store,

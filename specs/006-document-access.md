@@ -1,9 +1,9 @@
 # Create restricted knowledge and manage its access
 
 **Artifact ID:** SP-06  
-**Version/date:** 0.6.4 Draft · 7 November 2026
+**Version/date:** 0.6.5 Draft · 13 November 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
-**Inputs:** PRD-01 v0.10.3; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-06--create-restricted-knowledge-and-manage-its-access); [contract pack](../contracts/README.md); PLAN-01 v0.4.\; Proposed ADR-0022; Proposed ADR-0032 v0.1; Proposed ADR-0033 v0.1
+**Inputs:** PRD-01 v0.10.3; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-06--create-restricted-knowledge-and-manage-its-access); [contract pack](../contracts/README.md); PLAN-01 v0.4.\; Proposed ADR-0022; Proposed ADR-0032 v0.1; Proposed ADR-0033 v0.1; Proposed ADR-0034
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 2.  
@@ -63,3 +63,7 @@ The [owner receipt](../docs/implementation/features/sp-06-document-access/eviden
 ## Selected B03 guarded transport boundary — 9 November 2026
 
 The [owner receipt](../docs/implementation/features/sp-06-document-access/evidence/p01b-20261109/owner-receipt.json) selects fixed Workspace gateway, Workspace-only authority, trusted TLS, rotated server-side X-Service-Key compared constant-time, forwarded X-Actor-Session, project-scoped reader-writer guard with writer preference, active socket destruction with bounded close deadline, startup fencing generation, deny-on-ambiguous restart, and no automatic failover. Delivery uses shared access; membership removal, revocation and authority changes use exclusive access. Revocation sets a revoked flag, actively destroys affected sockets and waits for confirmed closure; deadline expiry is unknown. New delivery re-checks the revoked flag before acquiring shared delivery. [Proposed ADR-0033](../docs/adr/0033-guarded-transport-boundary.md) specifies the bounded transport and guard design; P05 requires real concurrency and timeout test evidence under disposable environments. This is B03 source alignment, not an implemented handler or acceptance of B02.
+
+## Document safety fix — 13 November 2026
+
+The [registered fix](../docs/implementation/features/document-safety-fix/plan.md) and [Proposed ADR-0034](../docs/adr/0034-document-safety-recovery.md) allow the bounded Workspace document, transport, membership and session integration, additive Workspace migration, Knowledge runtime and lifecycle, web and targeted tests for the reviewed failures.

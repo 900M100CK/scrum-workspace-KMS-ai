@@ -1,3 +1,5 @@
+import {canManageDocumentAccess} from './authority.ts';
+import {deliverDocument} from './delivery.ts';
 import type {FastifyInstance} from 'fastify';
 import cookie from '@fastify/cookie';
 import {SESSION_COOKIE, sessionOrigin} from '../session/http.ts';
@@ -11,7 +13,7 @@ import type {
 } from './orchestration.ts';
 import type {SetClassificationInput, GrantReadInput, RevokeReadInput} from './types.ts';
 
-import {uuid} from '../projects/store.ts';
+import {projectAccess, uuid} from '../projects/store.ts';
 
 export interface DocumentHttpOptions {
   docs: WorkspaceDocumentStore;
@@ -29,6 +31,18 @@ export async function registerDocumentHttp(app: FastifyInstance, options: Docume
     if (typeof request.id === 'string' && uuid(request.id)) return request.id;
     return undefined;
   };
+
+  async function changeAccess<T>(token: string, projectId: string, documentId: string, work: () => Promise<T>, self?: string) {
+    if (!uuid(projectId) || !uuid(documentId)) throw new ProjectFault(404, 'not_found');
+    await options.docs.projects.transaction(token, async (client, actor, current) => {
+      await projectAccess(client, actor, projectId);
+      if (actor !== self && !await canManageDocumentAccess(client, actor, projectId, documentId)) {
+        throw new ProjectFault(403, 'forbidden');
+      }
+      return await current() ? true : null;
+    });
+    return options.orchestrator.guard.change(projectId.toLowerCase(), work);
+  }
 
   app.addHook('onRequest', async (request, reply) => {
     reply.header('Cache-Control', 'no-store');
@@ -73,28 +87,24 @@ export async function registerDocumentHttp(app: FastifyInstance, options: Docume
     const key = request.headers['idempotency-key'];
     if (typeof key !== 'string' || !key) throw new ProjectFault(400, 'validation_failed');
     const {project_id} = request.params as {project_id: string};
-    const result = await options.orchestrator.createDocument(
-      request.cookies[SESSION_COOKIE]!,
-      project_id,
-      request.body as CreateDocumentInput,
-      key,
-      extractCorrelation(request)
-    );
-    return reply.code(result.status).send(result.document);
+    await deliverDocument(options.orchestrator, request.cookies[SESSION_COOKIE]!, project_id, reply,
+      () => options.orchestrator.createDocument(
+        request.cookies[SESSION_COOKIE]!, project_id, request.body as CreateDocumentInput, key, extractCorrelation(request)
+      ), value => [value.document.document_id], false, value => value.status, value => value.document);
   });
 
   // GET /documents/:document_id/policy
   app.get('/projects/:project_id/documents/:document_id/policy', async (request, reply) => {
     const {project_id, document_id} = request.params as {project_id: string; document_id: string};
-    const policy = await options.docs.getPolicy(request.cookies[SESSION_COOKIE]!, project_id, document_id);
-    return reply.code(200).send(policy);
+    await deliverDocument(options.orchestrator, request.cookies[SESSION_COOKIE]!, project_id, reply,
+      () => options.docs.getPolicy(request.cookies[SESSION_COOKIE]!, project_id, document_id), () => [document_id], true);
   });
 
   // GET /documents/:document_id/read-grants
   app.get('/projects/:project_id/documents/:document_id/read-grants', async (request, reply) => {
     const {project_id, document_id} = request.params as {project_id: string; document_id: string};
-    const grants = await options.docs.listGrants(request.cookies[SESSION_COOKIE]!, project_id, document_id);
-    return reply.code(200).send(grants);
+    await deliverDocument(options.orchestrator, request.cookies[SESSION_COOKIE]!, project_id, reply,
+      () => options.docs.listGrants(request.cookies[SESSION_COOKIE]!, project_id, document_id), () => [document_id], true);
   });
 
   // POST /documents/:document_id/classification
@@ -102,14 +112,14 @@ export async function registerDocumentHttp(app: FastifyInstance, options: Docume
     const key = request.headers['idempotency-key'];
     if (typeof key !== 'string' || !key) throw new ProjectFault(400, 'validation_failed');
     const {project_id, document_id} = request.params as {project_id: string; document_id: string};
-    const res = await options.docs.setClassification(
+    const res = await changeAccess(request.cookies[SESSION_COOKIE]!, project_id, document_id, () => options.docs.setClassification(
       request.cookies[SESSION_COOKIE]!,
       project_id,
       document_id,
       request.body as SetClassificationInput,
       key,
       extractCorrelation(request)
-    );
+    ));
     return reply.code(res.status).send(res.policy);
   });
 
@@ -118,14 +128,14 @@ export async function registerDocumentHttp(app: FastifyInstance, options: Docume
     const key = request.headers['idempotency-key'];
     if (typeof key !== 'string' || !key) throw new ProjectFault(400, 'validation_failed');
     const {project_id, document_id} = request.params as {project_id: string; document_id: string};
-    const res = await options.docs.grantRead(
+    const res = await changeAccess(request.cookies[SESSION_COOKIE]!, project_id, document_id, () => options.docs.grantRead(
       request.cookies[SESSION_COOKIE]!,
       project_id,
       document_id,
       request.body as GrantReadInput,
       key,
       extractCorrelation(request)
-    );
+    ));
     return reply.code(res.status).send({permission_revision: res.permission_revision});
   });
 
@@ -143,7 +153,7 @@ export async function registerDocumentHttp(app: FastifyInstance, options: Docume
     if (body.expected_revision === undefined && typeof headerRev === 'string' && /^[1-9][0-9]*$/.test(headerRev)) {
       body.expected_revision = Number(headerRev);
     }
-    const res = await options.docs.revokeRead(
+    const res = await changeAccess(request.cookies[SESSION_COOKIE]!, project_id, document_id, () => options.docs.revokeRead(
       request.cookies[SESSION_COOKIE]!,
       project_id,
       document_id,
@@ -151,37 +161,41 @@ export async function registerDocumentHttp(app: FastifyInstance, options: Docume
       body,
       key,
       extractCorrelation(request)
-    );
+    ), user_id.toLowerCase());
     return reply.code(res.status).send({permission_revision: res.permission_revision});
   });
 
   // GET /projects/:project_id/documents (Explorer read)
   app.get('/projects/:project_id/documents', async (request, reply) => {
     const {project_id} = request.params as {project_id: string};
-    const items = await options.orchestrator.listDocuments(request.cookies[SESSION_COOKIE]!, project_id);
-    return reply.code(200).send({items, next_cursor: null});
+    await deliverDocument(options.orchestrator, request.cookies[SESSION_COOKIE]!, project_id, reply,
+      async () => ({items: await options.orchestrator.listDocuments(request.cookies[SESSION_COOKIE]!, project_id), next_cursor: null}),
+      value => value.items.map(item => item.document_id));
   });
 
   // GET /projects/:project_id/documents/:document_id (Detail read)
   app.get('/projects/:project_id/documents/:document_id', async (request, reply) => {
     const {project_id, document_id} = request.params as {project_id: string; document_id: string};
-    const detail = await options.orchestrator.getDocument(request.cookies[SESSION_COOKIE]!, project_id, document_id);
-    return reply.code(200).send(detail);
+    await deliverDocument(options.orchestrator, request.cookies[SESSION_COOKIE]!, project_id, reply,
+      () => options.orchestrator.getDocument(request.cookies[SESSION_COOKIE]!, project_id, document_id), () => [document_id]);
   });
 
   // GET /projects/:project_id/documents/:document_id/versions (History list)
   app.get('/projects/:project_id/documents/:document_id/versions', async (request, reply) => {
     const {project_id, document_id} = request.params as {project_id: string; document_id: string};
     const query = (request.query ?? {}) as {cursor?: string; limit?: string};
-    const limit = query.limit ? parseInt(query.limit, 10) : undefined;
-    const list = await options.orchestrator.listVersions(
+    if (query.limit !== undefined && (typeof query.limit !== 'string' || !/^[1-9][0-9]{0,2}$/.test(query.limit))) {
+      throw new ProjectFault(400, 'validation_failed');
+    }
+    const limit = query.limit === undefined ? undefined : Number(query.limit);
+    await deliverDocument(options.orchestrator, request.cookies[SESSION_COOKIE]!, project_id, reply,
+      () => options.orchestrator.listVersions(
       request.cookies[SESSION_COOKIE]!,
       project_id,
       document_id,
       query.cursor,
       limit
-    );
-    return reply.code(200).send(list);
+    ), () => [document_id]);
   });
 
   // GET /projects/:project_id/documents/:document_id/versions/:version_id (Exact version read)
@@ -191,13 +205,13 @@ export async function registerDocumentHttp(app: FastifyInstance, options: Docume
       document_id: string;
       version_id: string;
     };
-    const version = await options.orchestrator.getVersion(
+    await deliverDocument(options.orchestrator, request.cookies[SESSION_COOKIE]!, project_id, reply,
+      () => options.orchestrator.getVersion(
       request.cookies[SESSION_COOKIE]!,
       project_id,
       document_id,
       version_id
-    );
-    return reply.code(200).send(version);
+    ), () => [document_id]);
   });
 
   // POST /projects/:project_id/documents/:document_id/revisions

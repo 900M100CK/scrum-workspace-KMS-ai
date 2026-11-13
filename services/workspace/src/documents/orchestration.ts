@@ -3,7 +3,7 @@ import type {WorkspaceDocumentStore} from './store.ts';
 import type {ProjectRWGuard} from '../policy/guard.ts';
 import {ProjectFault, invalid, missing, conflict, requestHash} from '../projects/outcomes.ts';
 import {uuid, projectAccess} from '../projects/store.ts';
-import {canWriteDocument, canReadDocument} from './authority.ts';
+import {canMutateDocument, canReadDocument} from './authority.ts';
 import type {DocumentClassification, DocumentKind, VersionList, KnowledgeVersion} from './types.ts';
 
 export interface CreateDocumentInput {
@@ -56,7 +56,8 @@ export interface KnowledgeTransport {
       content: string;
     },
     key: string,
-    correlationId?: string
+    correlationId?: string,
+    sessionId?: string
   ): Promise<{
     document_id: string;
     project_id: string;
@@ -67,7 +68,7 @@ export interface KnowledgeTransport {
     current_version_id: string;
     revision: number;
   }>;
-  get(documentId: string): Promise<{
+  get(documentId: string, actorId?: string, sessionId?: string): Promise<{
     document: {
       document_id: string;
       project_id: string;
@@ -90,7 +91,8 @@ export interface KnowledgeTransport {
       expected_revision: number;
     },
     key: string,
-    correlationId?: string
+    correlationId?: string,
+    sessionId?: string
   ): Promise<{status: 200 | 201; receipt: DocumentMutationReceipt}>;
   archive?(
     actorId: string,
@@ -101,7 +103,8 @@ export interface KnowledgeTransport {
       expected_revision: number;
     },
     key: string,
-    correlationId?: string
+    correlationId?: string,
+    sessionId?: string
   ): Promise<{status: 200; receipt: DocumentMutationReceipt}>;
   delete?(
     actorId: string,
@@ -111,18 +114,23 @@ export interface KnowledgeTransport {
       expected_revision: number;
     },
     key: string,
-    correlationId?: string
+    correlationId?: string,
+    sessionId?: string
   ): Promise<{status: 204}>;
   listVersions?(
     projectId: string,
     documentId: string,
     cursor?: string | null,
-    limit?: number
+    limit?: number,
+    actorId?: string,
+    sessionId?: string
   ): Promise<VersionList | null>;
   getVersion?(
     projectId: string,
     documentId: string,
-    versionId: string
+    versionId: string,
+    actorId?: string,
+    sessionId?: string
   ): Promise<KnowledgeVersion | null>;
 }
 
@@ -135,6 +143,15 @@ export class DocumentOrchestrator {
     this.docsStore = docsStore;
     this.transport = transport;
     this.guard = guard;
+  }
+
+  private async identity(token: string) {
+    const auth = await this.docsStore.projects.sessions.inspect(token);
+    if (auth.kind !== 'authenticated') {
+      throw new ProjectFault(auth.kind === 'unauthenticated' ? 401 : 503,
+        auth.kind === 'unauthenticated' ? 'authentication_required' : 'access_unavailable');
+    }
+    return auth.session;
   }
 
   async createDocument(
@@ -192,7 +209,7 @@ export class DocumentOrchestrator {
           content: input.content,
         },
         key,
-        correlationId
+        correlationId, auth.session.sessionId
       );
 
       return {
@@ -236,28 +253,27 @@ export class DocumentOrchestrator {
       ).rows[0];
     });
 
-    const release = await this.guard.acquireShared(projectId, this.guard.getGeneration());
-    try {
-      const result = await this.transport.get(documentId);
-      if (!result) throw missing();
+    if (await this.docsStore.commandPending(documentId)) throw new ProjectFault(503, 'access_unavailable');
+    const identity = await this.identity(token);
+    const result = await this.transport.get(documentId, identity.userId, identity.sessionId);
+    if (!result) throw missing();
+    if (!await this.docsStore.checkReadAccess(token, projectId, documentId)) throw missing();
+    if (await this.docsStore.commandPending(documentId)) throw new ProjectFault(503, 'access_unavailable');
 
-      return {
-        document: {
-          document_id: result.document.document_id,
-          project_id: projectId,
-          title: result.document.title,
-          kind: result.document.kind,
-          content_owner_id: result.document.owner_id,
-          classification: policy.classification,
-          labels: result.document.labels ?? [],
-          current_version_id: result.document.current_version_id,
-          revision: result.document.revision,
-        },
-        content: result.content,
-      };
-    } finally {
-      release();
-    }
+    return {
+      document: {
+        document_id: result.document.document_id,
+        project_id: projectId,
+        title: result.document.title,
+        kind: result.document.kind,
+        content_owner_id: result.document.owner_id,
+        classification: policy.classification,
+        labels: result.document.labels ?? [],
+        current_version_id: result.document.current_version_id,
+        revision: result.document.revision,
+      },
+      content: result.content,
+    };
   }
 
   async listDocuments(token: string, projectId: string): Promise<DocumentResponse[]> {
@@ -274,29 +290,75 @@ export class DocumentOrchestrator {
     });
     const policyMap = new Map(policies.map((p) => [p.document_id, p.classification]));
 
-    const release = await this.guard.acquireShared(projectId, this.guard.getGeneration());
-    try {
-      const items: DocumentResponse[] = [];
-      for (const id of readableIds) {
-        const doc = await this.transport.get(id);
-        if (doc) {
-          items.push({
-            document_id: doc.document.document_id,
-            project_id: projectId,
-            title: doc.document.title,
-            kind: doc.document.kind,
-            content_owner_id: doc.document.owner_id,
-            classification: policyMap.get(id) ?? 'restricted',
-            labels: doc.document.labels ?? [],
-            current_version_id: doc.document.current_version_id,
-            revision: doc.document.revision,
-          });
-        }
+    const items: DocumentResponse[] = [];
+    const identity = await this.identity(token);
+    for (const id of readableIds) {
+      if (await this.docsStore.commandPending(id)) continue;
+      const doc = await this.transport.get(id, identity.userId, identity.sessionId);
+      if (doc) {
+        items.push({
+          document_id: doc.document.document_id,
+          project_id: projectId,
+          title: doc.document.title,
+          kind: doc.document.kind,
+          content_owner_id: doc.document.owner_id,
+          classification: policyMap.get(id) ?? 'restricted',
+          labels: doc.document.labels ?? [],
+          current_version_id: doc.document.current_version_id,
+          revision: doc.document.revision,
+        });
       }
-      return items;
-    } finally {
-      release();
     }
+    return items;
+  }
+
+  private async executeCommand<T>(
+    token: string, projectId: string, documentId: string,
+    operation: 'reviseDocument' | 'archiveVersion' | 'deleteDocument',
+    payload: object, key: string, send: (actor: string, session: string) => Promise<T>
+  ): Promise<T> {
+    const hash = requestHash([operation, payload]);
+    await this.docsStore.projects.transaction(token, async (client, actor, current) => {
+      await projectAccess(client, actor, projectId);
+      const action = operation === 'reviseDocument' ? 'content-write' : 'lifecycle-manage';
+      if (!await canMutateDocument(client, actor, projectId, documentId, action)) {
+        throw new ProjectFault(403, 'forbidden');
+      }
+      return await current() ? true : null;
+    });
+    return this.guard.change(projectId, async () => {
+      const identity = await this.identity(token);
+      const actor = await this.docsStore.beginCommand(token, projectId, documentId, operation, key, hash);
+      let result: T;
+      try {
+        result = await this.docsStore.projects.transaction(token, async (client, currentActor, current) => {
+          await projectAccess(client, currentActor, projectId);
+          const action = operation === 'reviseDocument' ? 'content-write' : 'lifecycle-manage';
+          if (currentActor !== actor || !await canMutateDocument(client, actor, projectId, documentId, action)) {
+            throw new ProjectFault(403, 'forbidden');
+          }
+          if (!await current()) return null;
+          // Keep the session/account and project authority stable across dispatch.
+          // Wrap the remote rejection as a value so transaction handling preserves its classification.
+          return send(actor, identity.sessionId).then(value => ({value}), error => ({error}));
+        }).then(outcome => {
+          if ('error' in outcome) throw outcome.error;
+          return outcome.value;
+        });
+      } catch (error) {
+        const status = (error as {status?: number})?.status;
+        if (status !== undefined && [400, 403, 404, 409].includes(status)) {
+          await this.docsStore.finishCommand(documentId, actor, operation, key, hash);
+          if (status === 400) throw invalid();
+          if (status === 404) throw missing();
+          if (status === 409) throw conflict();
+          throw new ProjectFault(403, 'forbidden');
+        }
+        throw error;
+      }
+      await this.docsStore.finishCommand(documentId, actor, operation, key, hash);
+      return result;
+    });
   }
 
   async reviseDocument(
@@ -317,42 +379,14 @@ export class DocumentOrchestrator {
     }
     if (typeof key !== 'string' || !key.trim()) throw invalid();
 
-    const actorId = await this.docsStore.projects.transaction(token, async (c, actor, guard) => {
-      await projectAccess(c, actor, projectId);
-      if (!(await canWriteDocument(c, actor, projectId, documentId))) {
-        throw new ProjectFault(403, 'forbidden');
-      }
-      if (!(await guard())) return null as any;
-      return actor;
-    });
-
-    const release = await this.guard.acquireExclusive(projectId);
-    try {
-      if (!this.transport.revise) {
-        throw new ProjectFault(503, 'access_unavailable');
-      }
-      return await this.transport.revise(
-        actorId,
-        {
-          project_id: projectId,
-          document_id: documentId,
-          content: input.content,
-          ...(input.content_format ? {content_format: input.content_format} : {}),
-          expected_revision: input.expected_revision,
-        },
-        key,
-        correlationId
-      );
-    } catch (err: any) {
-      if (err instanceof ProjectFault) throw err;
-      if (err?.status === 409 || err?.code === 'state_conflict') throw conflict();
-      if (err?.status === 404 || err?.code === 'not_found') throw missing();
-      if (err?.status === 400 || err?.code === 'validation_failed') throw invalid();
-      if (err?.status === 403 || err?.code === 'forbidden') throw new ProjectFault(403, 'forbidden');
-      throw err;
-    } finally {
-      release();
-    }
+    if (!this.transport.revise) throw new ProjectFault(503, 'access_unavailable');
+    const payload = {
+      project_id: projectId, document_id: documentId, content: input.content,
+      ...(input.content_format ? {content_format: input.content_format} : {}),
+      expected_revision: input.expected_revision,
+    };
+    return this.executeCommand(token, projectId, documentId, 'reviseDocument', payload, key,
+      (actor, session) => this.transport.revise!(actor, payload, key, correlationId, session));
   }
 
   async archiveVersion(
@@ -374,41 +408,12 @@ export class DocumentOrchestrator {
     }
     if (typeof key !== 'string' || !key.trim()) throw invalid();
 
-    const actorId = await this.docsStore.projects.transaction(token, async (c, actor, guard) => {
-      await projectAccess(c, actor, projectId);
-      if (!(await canWriteDocument(c, actor, projectId, documentId))) {
-        throw new ProjectFault(403, 'forbidden');
-      }
-      if (!(await guard())) return null as any;
-      return actor;
-    });
-
-    const release = await this.guard.acquireExclusive(projectId);
-    try {
-      if (!this.transport.archive) {
-        throw new ProjectFault(503, 'access_unavailable');
-      }
-      return await this.transport.archive(
-        actorId,
-        {
-          project_id: projectId,
-          document_id: documentId,
-          version_id: versionId,
-          expected_revision: input.expected_revision,
-        },
-        key,
-        correlationId
-      );
-    } catch (err: any) {
-      if (err instanceof ProjectFault) throw err;
-      if (err?.status === 409 || err?.code === 'state_conflict') throw conflict();
-      if (err?.status === 404 || err?.code === 'not_found') throw missing();
-      if (err?.status === 400 || err?.code === 'validation_failed') throw invalid();
-      if (err?.status === 403 || err?.code === 'forbidden') throw new ProjectFault(403, 'forbidden');
-      throw err;
-    } finally {
-      release();
-    }
+    if (!this.transport.archive) throw new ProjectFault(503, 'access_unavailable');
+    const payload = {
+      project_id: projectId, document_id: documentId, version_id: versionId, expected_revision: input.expected_revision,
+    };
+    return this.executeCommand(token, projectId, documentId, 'archiveVersion', payload, key,
+      (actor, session) => this.transport.archive!(actor, payload, key, correlationId, session));
   }
 
   async deleteDocument(
@@ -427,42 +432,12 @@ export class DocumentOrchestrator {
     }
     if (typeof key !== 'string' || !key.trim()) throw invalid();
 
-    const actorId = await this.docsStore.projects.transaction(token, async (c, actor, guard) => {
-      await projectAccess(c, actor, projectId);
-      if (!(await canWriteDocument(c, actor, projectId, documentId))) {
-        throw new ProjectFault(403, 'forbidden');
-      }
-      if (!(await guard())) return null as any;
-      return actor;
-    });
-
-    const release = await this.guard.acquireExclusive(projectId);
-    try {
-      if (!this.transport.delete) {
-        throw new ProjectFault(503, 'access_unavailable');
-      }
-      await this.docsStore.markUnavailable(token, projectId, documentId);
-
-      return await this.transport.delete(
-        actorId,
-        {
-          project_id: projectId,
-          document_id: documentId,
-          expected_revision: expectedRevision,
-        },
-        key,
-        correlationId
-      );
-    } catch (err: any) {
-      if (err instanceof ProjectFault) throw err;
-      if (err?.status === 409 || err?.code === 'state_conflict') throw conflict();
-      if (err?.status === 404 || err?.code === 'not_found') throw missing();
-      if (err?.status === 400 || err?.code === 'validation_failed') throw invalid();
-      if (err?.status === 403 || err?.code === 'forbidden') throw new ProjectFault(403, 'forbidden');
-      throw err;
-    } finally {
-      release();
-    }
+    if (!this.transport.delete) throw new ProjectFault(503, 'access_unavailable');
+    const payload = {
+      project_id: projectId, document_id: documentId, expected_revision: expectedRevision,
+    };
+    return this.executeCommand(token, projectId, documentId, 'deleteDocument', payload, key,
+      (actor, session) => this.transport.delete!(actor, payload, key, correlationId, session));
   }
 
   async listVersions(
@@ -476,24 +451,36 @@ export class DocumentOrchestrator {
     projectId = projectId.toLowerCase();
     documentId = documentId.toLowerCase();
 
-    await this.docsStore.projects.transaction(token, async (c, actor, guard) => {
-      await projectAccess(c, actor, projectId);
-      const readable = await canReadDocument(c, actor, projectId, documentId);
-      if (!readable) throw missing();
-      if (!(await guard())) return null as any;
+    const pageSize = limit ?? 20;
+    if (!Number.isInteger(pageSize) || pageSize < 1 || pageSize > 100 ||
+        (cursor != null && typeof cursor !== 'string')) throw invalid();
+    const access = await this.docsStore.projects.transaction(token, async (c, actor, current) => {
+      const {member} = await projectAccess(c, actor, projectId);
+      if (!await canReadDocument(c, actor, projectId, documentId)) throw missing();
+      const policy = await c.query(
+        'SELECT permission_revision::text FROM workspace.document_policy WHERE document_id = $1', [documentId]
+      );
+      if (!await current()) return null;
+      return {actor, member, permission: policy.rows[0]?.permission_revision};
     });
-
-    const release = await this.guard.acquireShared(projectId, this.guard.getGeneration());
-    try {
-      if (!this.transport.listVersions) {
-        throw new ProjectFault(503, 'access_unavailable');
-      }
-      const list = await this.transport.listVersions(projectId, documentId, cursor, limit);
-      if (!list) throw missing();
-      return list;
-    } finally {
-      release();
+    if (!this.transport.listVersions || await this.docsStore.commandPending(documentId)) {
+      throw new ProjectFault(503, 'access_unavailable');
     }
+    const identity = await this.identity(token);
+    const readPage = (after?: string) =>
+      this.transport.listVersions!(projectId, documentId, after, pageSize, identity.userId, identity.sessionId);
+    const first = await readPage();
+    if (!first) throw missing();
+    const codec = this.docsStore.projects.cursor;
+    if (!codec) throw new ProjectFault(503, 'access_unavailable');
+    const scope = codec.fingerprint(['document-history', access.actor, projectId, documentId, pageSize]);
+    const generation = codec.fingerprint([access.member, access.permission, first.document_revision]);
+    const now = Date.now();
+    const after = cursor == null ? undefined :
+      codec.decode(cursor, scope, generation, now, value => /^[A-Za-z0-9_-]{1,256}$/.test(value));
+    const list = after ? await readPage(after) : first;
+    if (!list || list.document_revision !== first.document_revision) throw conflict();
+    return {...list, next_cursor: list.next_cursor ? codec.encode(scope, generation, list.next_cursor, now) : null};
   }
 
   async getVersion(
@@ -514,16 +501,14 @@ export class DocumentOrchestrator {
       if (!(await guard())) return null as any;
     });
 
-    const release = await this.guard.acquireShared(projectId, this.guard.getGeneration());
-    try {
-      if (!this.transport.getVersion) {
-        throw new ProjectFault(503, 'access_unavailable');
-      }
-      const version = await this.transport.getVersion(projectId, documentId, versionId);
-      if (!version) throw missing();
-      return version;
-    } finally {
-      release();
+    if (await this.docsStore.commandPending(documentId)) throw new ProjectFault(503, 'access_unavailable');
+    if (!this.transport.getVersion) {
+      throw new ProjectFault(503, 'access_unavailable');
     }
+    const identity = await this.identity(token);
+    const version = await this.transport.getVersion(projectId, documentId, versionId, identity.userId, identity.sessionId);
+    if (!version) throw missing();
+    if (!await this.docsStore.checkReadAccess(token, projectId, documentId)) throw missing();
+    return version;
   }
 }

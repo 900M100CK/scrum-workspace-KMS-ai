@@ -294,7 +294,7 @@ test('SP07 P08 Runtime DOM and end-to-end version publication journey verificati
   const {DocumentWorkspace} = await vite.ssrLoadModule('/src/DocumentWorkspace.tsx');
   const {DocumentController} = await vite.ssrLoadModule('/src/documents.ts');
 
-  const controller = new DocumentController(f.ids[0], f.project, () => {}, transport);
+  const controller = new DocumentController(f.ids[0], f.project, () => {}, transport, dom.window.sessionStorage);
   const root = createRoot(document.getElementById('root'));
 
   t.after(async () => {
@@ -520,7 +520,7 @@ test('SP07 P08 Runtime DOM and end-to-end version publication journey verificati
   });
 
   // Record evidence
-  const directory = 'docs/implementation/features/sp-07-version-publication/evidence/p08-20261111';
+  const directory = process.env.SACW_TEST_EVIDENCE_DIR ? process.env.SACW_TEST_EVIDENCE_DIR + '/sp07-dom' : 'docs/implementation/features/sp-07-version-publication/evidence/p08-20261111';
   await mkdir(directory, {recursive: true});
   const summary = {
     date: '2026-11-12',

@@ -23,8 +23,11 @@ export function buildApp(options:SessionHttpOptions&ProjectHttpOptions&TaskHttpO
   const status=[400,413,415].includes(code)?code:503;
   return reply.code(status).send({code:status===503?'access_unavailable':'validation_failed',message:status===503?'Session unavailable':'Invalid request',run_id:null});
  });
+ app.addHook('onRequest', async request => {
+  for (const name of ['x-service-key', 'x-actor-session', 'x-actor-user-id']) delete request.headers[name];
+ });
  app.register(async scope=>registerSessionHttp(scope,options));
- app.register(async scope=>registerProjectHttp(scope,{...options,taskOperations:options.tasks?TASK_OPERATIONS:new Set(),sprintOperations:options.sprints?SPRINT_OPERATIONS:new Set()}));
+ app.register(async scope=>registerProjectHttp(scope,{...options,documentGuard:options.orchestrator?.guard,taskOperations:options.tasks?TASK_OPERATIONS:new Set(),sprintOperations:options.sprints?SPRINT_OPERATIONS:new Set()}));
  app.register(async scope=>registerTaskHttp(scope,options));
  app.register(async scope=>registerSprintHttp(scope,options));
  if(options.docs&&options.orchestrator)app.register(async scope=>registerDocumentHttp(scope,options as DocumentHttpOptions));

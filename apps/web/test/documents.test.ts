@@ -292,3 +292,31 @@ test('SP06 P11 DocumentController manages client state and document actions', as
     }
   });
 });
+
+test('document command keeps the exact request and key after a lost response and reload', async () => {
+  const actor = '9d225167-8a29-4042-bf31-e532513e7dd9';
+  const project = '13d296ba-c9f5-4bba-9dfa-00ebae6133ac';
+  const document = 'af54d957-5f3f-4d0e-9c8b-c0d2f60fa996';
+  const values = new Map<string, string>();
+  const storage = {
+    getItem: (key: string) => values.get(key) ?? null,
+    setItem: (key: string, value: string) => { values.set(key, value); },
+    removeItem: (key: string) => { values.delete(key); },
+  };
+  const requests: {url: string; key: string | null; body: unknown}[] = [];
+  const send = async (url: string, init: RequestInit) => {
+    if (init.method !== 'POST') return new Response(null, {status: 404});
+    requests.push({url, key: new Headers(init.headers).get('idempotency-key'), body: init.body});
+    if (requests.length === 1) throw new Error('Synthetic lost response');
+    return Response.json({});
+  };
+  const original = new DocumentController(actor, project, () => {}, send, storage);
+  await original.revise(document, 'new content', 7);
+  assert.equal(original.getSnapshot().recoveryPending, true);
+  const restored = new DocumentController(actor, project, () => {}, send, storage);
+  assert.equal(restored.getSnapshot().recoveryPending, true);
+  await restored.retryPending();
+  assert.deepEqual(requests[1], requests[0]);
+  assert.equal(values.size, 0);
+  assert.equal(restored.getSnapshot().recoveryPending, false);
+});

@@ -1,7 +1,8 @@
+import type {ProjectRWGuard} from '../policy/guard.ts';
 import type {FastifyInstance} from 'fastify';
 import cookie from '@fastify/cookie';
 import {SESSION_COOKIE,sessionOrigin} from '../session/http.ts';
-import {WorkspaceProjectStore} from './store.ts';
+import {projectAccess, uuid, WorkspaceProjectStore} from './store.ts';
 import {ProjectFault,projectFailure} from './outcomes.ts';
 import {sessionValidators} from '../session/schemas.ts';
 import {readFileSync} from 'node:fs';
@@ -13,7 +14,8 @@ const ajv=new Ajv2020({strict:false,removeAdditional:false,coerceTypes:false,use
 ajv.addSchema({$id:'urn:sacw:projects',components:api.components});
 export const projectValidators=Object.fromEntries(['CreateProject','AddMember','Project','ProjectList','Member','MemberList','AllowedActions'].map(name=>[name,ajv.compile({$ref:`urn:sacw:projects#/components/schemas/${name}`})]));
 const responses=(status:number,name:string)=>Object.fromEntries([[status,{$ref:`urn:sacw:projects#/components/schemas/${name}`}],...[400,401,403,404,409,413,415,503].map(n=>[n,{}])]);
-export interface ProjectHttpOptions {projects?:WorkspaceProjectStore;origin?:string;taskOperations?:ReadonlySet<TaskOperation>;sprintOperations?:ReadonlySet<string>}
+export interface ProjectHttpOptions {
+ documentGuard?: ProjectRWGuard | undefined;projects?:WorkspaceProjectStore;origin?:string;taskOperations?:ReadonlySet<TaskOperation>;sprintOperations?:ReadonlySet<string>}
 export async function registerProjectHttp(app:FastifyInstance,options:ProjectHttpOptions){
  await app.register(cookie);const origin=options.origin?sessionOrigin(options.origin):null;
  app.setSerializerCompiler(({httpStatus,schema})=>{
@@ -71,7 +73,15 @@ export async function registerProjectHttp(app:FastifyInstance,options:ProjectHtt
   const key=request.headers['idempotency-key'],expected=request.headers['x-expected-revision'];
   if(typeof key!=='string'||!key||typeof expected!=='string'||request.body!==undefined||Object.keys(request.query as object).length)throw new ProjectFault(400,'validation_failed');
   const params=request.params as {project_id:string;user_id:string};
-  await options.projects!.remove(request.cookies[SESSION_COOKIE]!,params.project_id,params.user_id,expected,key,request.id);return reply.code(204).send();
+  const remove = () => options.projects!.remove(request.cookies[SESSION_COOKIE]!,params.project_id,params.user_id,expected,key,request.id);
+   if(options.documentGuard) {
+    if(!uuid(params.project_id)||!uuid(params.user_id))throw new ProjectFault(404,'not_found');
+    await options.projects!.transaction(request.cookies[SESSION_COOKIE]!, async(client, actor, current)=>{
+     await projectAccess(client,actor,params.project_id,true);
+     return await current()?true:null;
+    });
+    await options.documentGuard.change(params.project_id.toLowerCase(), remove);
+   } else await remove();return reply.code(204).send();
  });
  app.get('/access/allowed-actions',{schema:{response:responses(200,'AllowedActions')}},async(request)=>{
   const q=request.query as Record<string,unknown>,kind=q.resource_kind,ids=['project_id','resource_id','document_id','version_id'];

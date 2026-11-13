@@ -227,11 +227,12 @@ export class KnowledgeDocumentStore {
     }
     if (typeof key !== 'string' || !key.trim()) throw invalid();
 
-    const hash = requestHash(['reviseDocument', actor, projectId, documentId, input.content.trim(), input.expected_revision]);
+    const hash = requestHash(['reviseDocument', actor, projectId, documentId, input.content, input.content_format ?? 'text', input.expected_revision]);
 
     const client = await this.pool.connect();
     try {
       await client.query('BEGIN');
+      await client.query('SELECT pg_advisory_xact_lock(hashtextextended($1, 0))', [JSON.stringify(['reviseDocument', actor, key])]);
 
       const existing = (
         await client.query(
@@ -242,14 +243,27 @@ export class KnowledgeDocumentStore {
       ).rows[0];
 
       if (existing) {
-        if (existing.payload_hash !== hash || existing.state !== 'committed') {
+        const receipt = JSON.parse(existing.result_ref) as DocumentMutationReceipt;
+        let matches = existing.payload_hash === hash;
+        // Older receipts hashed trimmed content. Check the immutable bytes before
+        // accepting the old hash so whitespace changes cannot replay as identical.
+        if (!matches && (input.content_format === undefined || input.content_format === 'text') &&
+            existing.payload_hash === requestHash(['reviseDocument', actor, projectId, documentId,
+              input.content.trim(), input.expected_revision])) {
+          const version = await client.query(
+            'SELECT immutable_content FROM knowledge.document_version WHERE document_id = $1 AND version_id = $2',
+            [documentId, receipt.version_id]
+          );
+          matches = version.rows[0]?.immutable_content === input.content;
+        }
+        if (!matches || existing.state !== 'committed') {
           await client.query('ROLLBACK');
           throw conflict();
         }
         await client.query('COMMIT');
         return {
           status: 200,
-          receipt: JSON.parse(existing.result_ref),
+          receipt,
         };
       }
 
@@ -375,6 +389,7 @@ export class KnowledgeDocumentStore {
     const client = await this.pool.connect();
     try {
       await client.query('BEGIN');
+      await client.query('SELECT pg_advisory_xact_lock(hashtextextended($1, 0))', [JSON.stringify(['archiveVersion', actor, key])]);
 
       const existing = (
         await client.query(
@@ -496,70 +511,77 @@ export class KnowledgeDocumentStore {
     if (!isUuid(projectId) || !isUuid(documentId)) return null;
     const safeLimit = Math.min(Math.max(1, limit || 20), 100);
 
-    const docRes = await this.pool.query(
-      `SELECT current_version_id, revision::text rev, unavailable
-         FROM knowledge.document
-        WHERE document_id = $1 AND project_id = $2`,
-      [documentId, projectId]
-    );
-    if ((docRes.rowCount ?? 0) === 0) return null;
-    const doc = docRes.rows[0];
-    if (doc.unavailable) return null;
+    const client = await this.pool.connect();
+    try {
+      await client.query('BEGIN ISOLATION LEVEL REPEATABLE READ READ ONLY');
+      const docRes = await client.query(
+        `SELECT current_version_id, revision::text rev, unavailable
+           FROM knowledge.document
+          WHERE document_id = $1 AND project_id = $2`,
+        [documentId, projectId]
+      );
+      if ((docRes.rowCount ?? 0) === 0) return null;
+      const doc = docRes.rows[0];
+      if (doc.unavailable) return null;
 
-    let cursorDate: Date | null = null;
-    let cursorVersionId: string | null = null;
-    if (cursor) {
-      try {
-        const decoded = Buffer.from(cursor, 'base64url').toString('utf8');
-        const [dStr, vId] = decoded.split('|');
-        if (dStr && vId && isUuid(vId)) {
-          cursorDate = new Date(dStr);
-          cursorVersionId = vId;
-        }
-      } catch {}
-    }
+      let cursorDate: string | null = null;
+      let cursorVersionId: string | null = null;
+      if (cursor) {
+        try {
+          const decoded = Buffer.from(cursor, 'base64url').toString('utf8');
+          const [dStr, vId] = decoded.split('|');
+          if (dStr && vId && isUuid(vId)) {
+            if (Number.isFinite(Date.parse(dStr))) cursorDate = dStr;
+            cursorVersionId = vId;
+          }
+        } catch {}
+      }
 
-    let query: string;
-    let params: unknown[];
-    if (cursorDate && cursorVersionId) {
-      query = `SELECT version_id, state, created_at
-                 FROM knowledge.document_version
-                WHERE document_id = $1
-                  AND (created_at < $2 OR (created_at = $2 AND version_id > $3))
-                ORDER BY created_at DESC, version_id ASC
-                LIMIT $4`;
-      params = [documentId, cursorDate, cursorVersionId, safeLimit + 1];
-    } else {
-      query = `SELECT version_id, state, created_at
-                 FROM knowledge.document_version
-                WHERE document_id = $1
-                ORDER BY created_at DESC, version_id ASC
-                LIMIT $2`;
-      params = [documentId, safeLimit + 1];
-    }
+      let query: string;
+      let params: unknown[];
+      if (cursorDate && cursorVersionId) {
+        query = `SELECT version_id, state, created_at, created_at::text AS cursor_time
+                   FROM knowledge.document_version
+                  WHERE document_id = $1
+                    AND (created_at < $2 OR (created_at = $2 AND version_id > $3))
+                  ORDER BY created_at DESC, version_id ASC
+                  LIMIT $4`;
+        params = [documentId, cursorDate, cursorVersionId, safeLimit + 1];
+      } else {
+        query = `SELECT version_id, state, created_at, created_at::text AS cursor_time
+                   FROM knowledge.document_version
+                  WHERE document_id = $1
+                  ORDER BY created_at DESC, version_id ASC
+                  LIMIT $2`;
+        params = [documentId, safeLimit + 1];
+      }
 
-    const rows = (await this.pool.query(query, params)).rows;
-    const hasMore = rows.length > safeLimit;
-    const items = hasMore ? rows.slice(0, safeLimit) : rows;
+      const rows = (await client.query(query, params)).rows;
+      const hasMore = rows.length > safeLimit;
+      const items = hasMore ? rows.slice(0, safeLimit) : rows;
 
-    let nextCursor: string | null = null;
-    if (hasMore && items.length > 0) {
-      const last = items[items.length - 1];
-      nextCursor = Buffer.from(`${new Date(last.created_at).toISOString()}|${last.version_id}`, 'utf8').toString('base64url');
-    }
+      let nextCursor: string | null = null;
+      if (hasMore && items.length > 0) {
+        const last = items[items.length - 1];
+        nextCursor = Buffer.from(`${last.cursor_time}|${last.version_id}`, 'utf8').toString('base64url');
+      }
 
-    return {
-      items: items.map(r => ({
+      return {
+        items: items.map(r => ({
+          document_id: documentId,
+          version_id: r.version_id,
+          state: r.state as VersionState,
+          created_at: new Date(r.created_at).toISOString(),
+        })),
+        next_cursor: nextCursor,
         document_id: documentId,
-        version_id: r.version_id,
-        state: r.state as VersionState,
-        created_at: new Date(r.created_at).toISOString(),
-      })),
-      next_cursor: nextCursor,
-      document_id: documentId,
-      document_revision: Number(doc.rev),
-      current_version_id: doc.current_version_id,
-    };
+        document_revision: Number(doc.rev),
+        current_version_id: doc.current_version_id,
+      };
+    } finally {
+      try { await client.query('ROLLBACK'); }
+      finally { client.release(); }
+    }
   }
 
   async getVersion(
@@ -618,6 +640,7 @@ export class KnowledgeDocumentStore {
     const client = await this.pool.connect();
     try {
       await client.query('BEGIN');
+      await client.query('SELECT pg_advisory_xact_lock(hashtextextended($1, 0))', [JSON.stringify(['deleteDocument', actor, key])]);
 
       const existing = (
         await client.query(

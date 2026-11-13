@@ -72,6 +72,11 @@ export function DocumentWorkspace({
 
   return (
     <section className="document-workspace" aria-labelledby="documents-title" aria-busy={state.busy}>
+      {state.recoveryPending && (
+        <button type="button" disabled={state.busy} onClick={() => void controller.retryPending()}>
+          Retry pending version change
+        </button>
+      )}
       <h4 id="documents-title">Documents</h4>
       <p role="status" aria-live="polite" tabIndex={-1} ref={feedback} className="feedback">
         {state.message}
@@ -204,6 +209,11 @@ export function DocumentWorkspace({
                   </li>
                 ))}
               </ul>
+            )}
+            {detail.nextVersionCursor && (
+              <button type="button" disabled={state.busy} onClick={() => void controller.loadMoreVersions()}>
+                Load more versions
+              </button>
             )}
           </section>
 

@@ -61,6 +61,7 @@ export interface DocumentDetail {
   policy?: DocumentPolicy | undefined;
   grants?: DocumentReadGrant[] | undefined;
   versions?: VersionSummary[] | undefined;
+  nextVersionCursor?: string | null;
   viewingVersion?: KnowledgeVersion | undefined;
 }
 
@@ -69,7 +70,12 @@ export interface DocumentState {
   detail: DocumentDetail | null;
   busy: boolean;
   message: string;
+  recoveryPending?: boolean;
 }
+
+const recoveryPrefix = 'sacw:document-command:';
+type PendingCommand = {actor: string; project: string; document: string; version?: string | undefined; key: string; body: string};
+type RecoveryStorage = Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
 
 type Transport = (url: string, init: RequestInit) => Promise<Response>;
 
@@ -82,22 +88,58 @@ const initial = (): DocumentState => ({
 
 export class DocumentController {
   private readonly actor: string;
+  private readonly recoveryKey: string;
   private readonly projectId: string;
   private readonly expired: () => void;
   private readonly transport: Transport;
   private state = initial();
+  private pending: PendingCommand | undefined;
+  private storage?: RecoveryStorage;
   private readonly listeners = new Set<() => void>();
 
   constructor(
     actor: string,
     projectId: string,
     expired: () => void,
-    transport: Transport = (url, init) => fetch(url, init)
+    transport: Transport = (url, init) => fetch(url, init),
+    storage?: RecoveryStorage
   ) {
     this.actor = actor;
+    this.recoveryKey = recoveryPrefix + actor + ':' + projectId;
     this.projectId = projectId;
     this.expired = expired;
     this.transport = transport;
+    try {
+      this.storage = storage ?? globalThis.sessionStorage;
+      const raw = this.storage?.getItem(this.recoveryKey);
+      if (raw) {
+        const saved = JSON.parse(raw) as PendingCommand;
+        const uuid = (value: unknown) => typeof value === 'string' &&
+          /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(value);
+        if (saved.actor === actor && saved.project === projectId && uuid(saved.document) &&
+            uuid(saved.key) && (saved.version === undefined || uuid(saved.version)) &&
+            typeof saved.body === 'string') {
+          const body = JSON.parse(saved.body);
+          if (Number.isSafeInteger(body.expected_revision) && body.expected_revision > 0 &&
+              (saved.version ? Object.keys(body).length === 1 :
+                Object.keys(body).length === 2 && typeof body.content === 'string')) {
+            this.pending = saved;
+            this.state.recoveryPending = true;
+          }
+        }
+      }
+    } catch { /* Reads remain available if browser storage is unavailable. */ }
+  }
+
+  static clearPending() {
+    try {
+      const storage = globalThis.sessionStorage;
+      if (!storage) return;
+      for (let index = storage.length - 1; index >= 0; index--) {
+        const key = storage.key(index);
+        if (key?.startsWith(recoveryPrefix)) storage.removeItem(key);
+      }
+    } catch { /* The browser can disable storage. */ }
   }
 
   getSnapshot = () => this.state;
@@ -161,6 +203,7 @@ export class DocumentController {
       let policy: DocumentPolicy | undefined;
       let grants: DocumentReadGrant[] | undefined;
       let versions: VersionSummary[] | undefined;
+      let nextVersionCursor: string | null = null;
 
       try {
         const policyRes = await this.transport(`/api/projects/${this.projectId}/documents/${documentId}/policy`, {
@@ -185,11 +228,12 @@ export class DocumentController {
         if (versionsRes.ok) {
           const vData: VersionList = await versionsRes.json();
           versions = vData.items;
+          nextVersionCursor = vData.next_cursor;
         }
       } catch {}
 
       this.publish({
-        detail: {...detail, policy, grants, versions},
+        detail: {...detail, policy, grants, versions, nextVersionCursor},
         busy: false,
         message: '',
       });
@@ -328,73 +372,97 @@ export class DocumentController {
     }
   }
 
-  async revise(documentId: string, content: string, expectedRevision: number) {
-    this.publish({busy: true, message: ''});
+  async loadMoreVersions() {
+    const detail = this.state.detail;
+    if (!detail?.nextVersionCursor || this.state.busy) return;
+    const id = detail.document.document_id;
+    this.publish({busy: true});
     try {
-      const res = await this.transport(`/api/projects/${this.projectId}/documents/${documentId}/revisions`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-sacw-request': '1',
-          'idempotency-key': crypto.randomUUID(),
-        },
-        body: JSON.stringify({content, expected_revision: expectedRevision}),
-      });
-      if (res.status === 401) {
-        this.expired();
+      const response = await this.transport(
+        this.documentUrl(id) + '/versions?' + new URLSearchParams({cursor: detail.nextVersionCursor}),
+        {headers: {'x-sacw-request': '1'}}
+      );
+      if (response.status === 401) { this.expired(); return; }
+      if (response.status === 409) { await this.open(id); return; }
+      if (!response.ok) {
+        this.publish({detail: null, busy: false, message: 'Version history unavailable.'});
         return;
       }
-      if (res.status === 403) {
-        this.publish({busy: false, message: 'You do not have write authority to revise this document.'});
-        return;
-      }
-      if (res.status === 409) {
-        this.publish({busy: false, message: 'Revision conflict: document was concurrently updated.'});
-        return;
-      }
-      if (!res.ok) {
-        this.publish({busy: false, message: 'Document revision failed.'});
-        return;
-      }
-      await this.open(documentId);
-      this.publish({message: 'New version published successfully.'});
+      const page: VersionList = await response.json();
+      if (this.state.detail !== detail) return;
+      this.publish({busy: false, detail: {...detail, versions: [...(detail.versions ?? []), ...page.items],
+        nextVersionCursor: page.next_cursor}});
     } catch {
-      this.publish({busy: false, message: 'Network error publishing revision.'});
+      this.publish({busy: false, message: 'Could not load version history.'});
     }
   }
 
-  async archiveVersion(documentId: string, versionId: string, expectedRevision: number) {
-    this.publish({busy: true, message: ''});
+  private documentUrl(id: string) {
+    return `/api/projects/${this.projectId}/documents/${encodeURIComponent(id)}`;
+  }
+
+  revise(document: string, content: string, expectedRevision: number) {
+    return this.startCommand(document, {content, expected_revision: expectedRevision});
+  }
+
+  archiveVersion(document: string, version: string, expectedRevision: number) {
+    return this.startCommand(document, {expected_revision: expectedRevision}, version);
+  }
+
+  private async startCommand(document: string, payload: object, version?: string) {
+    if (this.state.busy) return;
+    if (this.pending) {
+      this.publish({message: 'Retry the pending version change first.'});
+      return;
+    }
+    const command = {actor: this.actor, project: this.projectId, document, version,
+      key: crypto.randomUUID(), body: JSON.stringify(payload)};
     try {
-      const res = await this.transport(`/api/projects/${this.projectId}/documents/${documentId}/versions/${versionId}/archive`, {
+      if (!this.storage && typeof window !== 'undefined') throw new Error('Storage unavailable');
+      this.storage?.setItem(this.recoveryKey, JSON.stringify(command));
+      this.pending = command;
+    } catch {
+      this.publish({message: 'Could not save recovery for the version change.'});
+      return;
+    }
+    await this.retryPending();
+  }
+
+  async retryPending() {
+    const command = this.pending;
+    if (!command || this.state.busy) return;
+    this.publish({busy: true, recoveryPending: true, message: ''});
+    const suffix = command.version ? '/versions/' + encodeURIComponent(command.version) + '/archive' : '/revisions';
+    try {
+      const response = await this.transport(this.documentUrl(command.document) + suffix, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-sacw-request': '1',
-          'idempotency-key': crypto.randomUUID(),
-        },
-        body: JSON.stringify({expected_revision: expectedRevision}),
+        headers: {'Content-Type': 'application/json', 'x-sacw-request': '1', 'idempotency-key': command.key},
+        body: command.body,
       });
-      if (res.status === 401) {
+      if (response.status === 401) {
+        this.publish({busy: false, detail: null});
         this.expired();
         return;
       }
-      if (res.status === 403) {
-        this.publish({busy: false, message: 'You do not have authority to archive this version.'});
-        return;
+      if (response.ok || [400, 403, 404, 409, 413, 415].includes(response.status)) {
+        this.storage?.removeItem(this.recoveryKey);
+        this.pending = undefined;
+        this.publish({busy: false, recoveryPending: false});
+        if (response.ok) {
+          await this.open(command.document);
+          this.publish({message: command.version ? 'Version archived successfully.' : 'New version published successfully.'});
+        } else {
+          this.publish({message: response.status === 409
+            ? (command.version ? 'Archive conflict: version is already archived or document revision changed.'
+              : 'Revision conflict: document was concurrently updated.')
+            : response.status === 403 ? 'You do not have authority for this version change.'
+              : 'Version change rejected.'});
+        }
+      } else {
+        this.publish({busy: false, detail: null, message: 'Version change outcome unknown. Retry the pending request.'});
       }
-      if (res.status === 409) {
-        this.publish({busy: false, message: 'Archive conflict: version is already archived or document revision changed.'});
-        return;
-      }
-      if (!res.ok) {
-        this.publish({busy: false, message: 'Archiving version failed.'});
-        return;
-      }
-      await this.open(documentId);
-      this.publish({message: 'Version archived successfully.'});
     } catch {
-      this.publish({busy: false, message: 'Network error archiving version.'});
+      this.publish({busy: false, detail: null, message: 'Version change outcome unknown. Retry the pending request.'});
     }
   }
 }

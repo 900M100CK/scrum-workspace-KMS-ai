@@ -10,7 +10,7 @@
     {
       "id": "REG-00",
       "path": "docs/sdlc/artifact-register.md",
-      "version": "0.140",
+      "version": "0.142",
       "adrs": [],
       "date": "7 November 2026"
     },
@@ -553,7 +553,7 @@
       "id": "DGM-DATA-01",
       "path": "docs/sdlc/diagrams/data/workspace-erd.mmd",
       "drawio": "docs/sdlc/diagrams/data/workspace-erd.drawio",
-      "version": "0.6",
+      "version": "0.7",
       "origin": "DGM-DESIGN-01",
       "sources": [
         "PRD-01",
@@ -573,7 +573,8 @@
         "ADR-0024",
         "ADR-0025",
         "ADR-0026",
-        "ADR-0027"
+        "ADR-0027",
+        "ADR-0034"
       ],
       "kind": "design",
       "purpose": "Workspace physical ERD \u00e2\u20ac\u201d owned schema",

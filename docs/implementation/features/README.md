@@ -1,7 +1,7 @@
 # Work plan register and template
 
 **Artifact ID:** IMPL-FEATURES-01\
-**Version/date:** 0.66 Draft · 7 November 2026
+**Version/date:** 0.68 Draft · 13 November 2026
 **Status:** Planning entry; no application feature accepted or implemented by this file.\
 **Inputs:** [Development rules](../../development-rules.md) v1.13; [implementation roadmap](../roadmap.md) v0.54; [PLAN-01](../../planning/five-month-plan.md) v0.4; [spec index](../../../specs/README.md) v0.8.6; [source register](../register.md).\
 **Trace:** Existing feature FR/AC/BR/SC through its canonical spec; no added scope.\
@@ -288,3 +288,11 @@ P02-A input-only companion: EVAL-CASES-ENTRY v0.8.4 updates current TEST-08 alia
 ## SP-07 version publication planning — 11 November 2026
 
 [FEAT-SP07-01 v0.1](sp-07-version-publication/plan.md), [FEAT-SP07-ENTRY v0.1](sp-07-version-publication/README.md), [SP07-WBS-01 v0.1](sp-07-version-publication/breakdown.md), and SP07-P01–P09 v0.1 register the owner-requested version publication and retirement continuation. Parent PLAN-01 Month 2 / M-05 / SP-07; FR-11/12/13/15/19/47/48/61, BR-05/07/12/14, SC-05/06. Mutable task state belongs only to the plan. FR-45 is Withdrawn (immediate Current revision, no separate Draft). Atomic Current supersession and version archiving are enforced under Knowledge transaction and trigger protect_version. Exclusive ProjectRWGuard writer lock guards revisions. Feature branch starts at codex/sp-07-version-publication.
+
+## SP-05–SP-07 integrated review — 13 November 2026
+
+[REVIEW-SP05-SP07-01 v0.1](sp-05-sp-07-review/plan.md) registers source review and disposable regression for PLAN-01 Month 2 / M-03–M-05. The linked plan owns task status and evidence.
+
+## Document safety fix — 13 November 2026
+
+[FIX-DOCUMENT-SAFETY-01 v0.1](document-safety-fix/plan.md) registers F01–F06 under M-04/M-05.

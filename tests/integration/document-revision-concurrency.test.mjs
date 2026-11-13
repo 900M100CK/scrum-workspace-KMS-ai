@@ -305,12 +305,12 @@ test('SP07 P07 Document revision concurrency, CAS race conditions, and revocatio
     assert.equal(knowledgeDocs.get(docId).revision, 3);
   });
 
-  await t.test('revocation of knowledge-author capability immediately blocks subsequent revisions with 403', async () => {
+  await t.test('revocation of document content-write capability immediately blocks subsequent revisions with 403', async () => {
     // Current revision is 3
     const curRev = knowledgeDocs.get(docId).revision;
 
     // Invalidate knowledge-author capability (advancing revision from 0 to 1)
-    await operator.project(author, project, 'knowledge-author', false, '1', 'p07-revoke-test', 'revoke author capability');
+    await f.db.admin.query("UPDATE workspace.capability_grant SET valid = false WHERE project_id = $1 AND subject_id = $2 AND resource_id = $3 AND action = 'content-write'", [project, author, docId]);
 
     // Revision attempt by author must now be rejected with 403 Forbidden
     const res = await app.inject({
