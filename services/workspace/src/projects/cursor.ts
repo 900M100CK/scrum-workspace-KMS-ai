@@ -23,12 +23,12 @@ export class ProjectCursor {
   const payload=Buffer.from(JSON.stringify([1,this.config.kid,scope,generation,after,now+this.ttlSeconds*1000])).toString('base64url');
   return payload+'.'+this.fingerprint(['cursor',payload]);
  }
- decode(token:string,scope:string,generation:string,now:number):string{
+ decode(token:string,scope:string,generation:string,now:number,validAfter:(value:string)=>boolean=value=>/^[0-9a-f-]{36}$/.test(value)):string{
   if(token.length>4096||!/^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]{43}$/.test(token))throw invalid();
   const [payload,mac]=token.split('.');const expected=Buffer.from(this.fingerprint(['cursor',payload!]),'base64url'),actual=Buffer.from(mac!,'base64url');
   if(actual.length!==32||actual.toString('base64url')!==mac||!timingSafeEqual(actual,expected))throw invalid();
   let decoded:unknown;try{const raw=Buffer.from(payload!,'base64url');if(raw.toString('base64url')!==payload)throw new Error();decoded=JSON.parse(raw.toString('utf8'));}catch{throw invalid();}
-  if(!Array.isArray(decoded)||decoded.length!==6||decoded[0]!==1||decoded[1]!==this.config.kid||decoded[2]!==scope||typeof decoded[3]!=='string'||typeof decoded[4]!=='string'||!/^[0-9a-f-]{36}$/.test(decoded[4])||!Number.isSafeInteger(decoded[5]))throw invalid();
+  if(!Array.isArray(decoded)||decoded.length!==6||decoded[0]!==1||decoded[1]!==this.config.kid||decoded[2]!==scope||typeof decoded[3]!=='string'||typeof decoded[4]!=='string'||!validAfter(decoded[4])||!Number.isSafeInteger(decoded[5]))throw invalid();
   if(decoded[5]<=now||decoded[3]!==generation)throw conflict();return decoded[4];
  }
 }

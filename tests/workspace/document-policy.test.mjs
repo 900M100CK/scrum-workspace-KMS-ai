@@ -93,10 +93,15 @@ test('SP06 P06 registerDocumentPolicy binds identity, policy, initial grants and
     assert.equal(auditRow.project_id, project);
 
     // Same-key replay returns exact same outcome
-    const replay = await docs.registerPolicy(tokens[1], project, {classification: 'restricted', document_id: createdRestrictedDocId}, key);
+    const replay = await docs.registerPolicy(tokens[1], project, {classification: 'restricted'}, key);
     assert.equal(replay.status, 200);
     assert.equal(replay.policy.document_id, createdRestrictedDocId);
     assert.equal(replay.policy.classification, 'restricted');
+
+    await assert.rejects(
+      docs.registerPolicy(tokens[1], project, {classification: 'restricted', document_id: createdRestrictedDocId}, key),
+      error => (error.cause ?? error).status === 409
+    );
 
     // Replay with different payload conflicts
     await assert.rejects(

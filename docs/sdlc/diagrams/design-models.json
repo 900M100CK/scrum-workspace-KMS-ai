@@ -1165,7 +1165,7 @@
       "title": "Workspace physical ERD — owned schema",
       "notation": "erd",
       "trace": "BR-01–BR-03, BR-06, BR-10–BR-12; SC-03/04/06",
-      "scope": "Workspace schema through selected additive migration 009, tested only in disposable PostgreSQL; development upgrade not claimed. Selected fields; database storage is not end-user authority.",
+      "scope": "Workspace schema through additive migration 016, tested only in disposable PostgreSQL; development upgrade not claimed. Selected fields; database storage is not end-user authority.",
       "legend": "Relationship label names FK columns; ||--o{ means parent 1 to child 0..many. AuthAccount is private authentication storage; no cross-store FK. Session/idempotency/authentication audit have no project FK.",
       "adrs": [
         "ADR-0004",
@@ -1179,7 +1179,8 @@
         "ADR-0024",
         "ADR-0025",
         "ADR-0026",
-        "ADR-0027"
+        "ADR-0027",
+        "ADR-0034"
       ],
       "nodes": [
         {
@@ -1264,6 +1265,17 @@
             "text classification",
             "text registry_state \"active unavailable after 002\"",
             "bigint permission_revision"
+          ]
+        },
+        {
+          "id": "document_command_journal",
+          "fields": [
+            "uuid document_id PK,FK",
+            "uuid actor_id",
+            "text operation",
+            "text idempotency_key",
+            "text payload_hash",
+            "boolean pending"
           ]
         },
         {
@@ -1434,6 +1446,12 @@
           "from": "project",
           "to": "document_policy",
           "label": "project_id"
+        },
+        {
+          "from": "document_policy",
+          "to": "document_command_journal",
+          "label": "document_id",
+          "card": "||--o|"
         },
         {
           "from": "document_policy",

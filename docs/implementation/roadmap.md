@@ -1,7 +1,7 @@
 # Dependency-based implementation roadmap
 
 **Artifact ID:** IMPL-ROADMAP-01\
-**Version/date:** 0.59 Draft · 7 November 2026
+**Version/date:** 0.61 Draft · 13 November 2026
 **Status:** Planning order, not completed work or scope acceptance.\
 **Inputs:** PRD-01 v0.10.3; SPEC-INDEX v0.8.2; PLAN-01 v0.4; [decisions](decisions.md); [task catalogue](tasks/README.md).\
 **Trace:** BR-01–BR-14; SC-01–SC-08.\
@@ -239,3 +239,11 @@ FEAT-SP06-01 / entry / SP06-WBS-01 / SP06-DECISION-BATCH-01 v0.2 and parent brie
 FEAT-SP06-01/entry/WBS/decision v0.3, P02-A v0.2, P03 parent v0.2, P04 v0.3 and new P03-A v0.1 register selected B01-only source alignment. Canonical SP-06 v0.6.4 / IMPL-SP-06 v0.2, IMPL-DEC-01 v0.15, Proposed ADR-0032 v0.1 / ADR index0.8, TEST-08 v0.24.7 / coverage0.11.6 / verification0.12.6 and spec/task indices0.8.7/0.8 identify exact private knowledge-author scope/014/operator/test paths and planned authority negatives. SP06-P02A-RESULT-01 v0.1 records actual source checks when executed; current state only in plan.md. Parent SP-06.1–06.2 / PLAN-01 Month2 / M-04, FR/AC-10 plus04/31/39/59/68, BR-01/04/10/11/14, SC-06. No public operation/contract/application/schema/dependency edit, accepted ADR change, B02/B03 adoption, runtime pass or publication. P03-A storage is separate from broader document creation storage.
 
 P02-A input-only companion: EVAL-CASES-ENTRY v0.8.4 updates current TEST-08 alias after retained initial lint failure; no evaluation definition/result change.
+
+## SP-05–SP-07 integrated review — 13 November 2026
+
+[REVIEW-SP05-SP07-01 v0.1](features/sp-05-sp-07-review/plan.md) registers source review and disposable regression for PLAN-01 Month 2 / M-03–M-05. The linked plan owns task status and evidence.
+
+## Document safety fix — 13 November 2026
+
+[FIX-DOCUMENT-SAFETY-01 v0.1](features/document-safety-fix/plan.md) registers F01–F06 under M-04/M-05.

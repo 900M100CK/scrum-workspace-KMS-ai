@@ -4,7 +4,7 @@ import type {WorkspaceSessionStore} from '../session/store.ts';
 import {WorkspaceProjectStore, projectAccess, uuid} from '../projects/store.ts';
 import type {CursorKey} from '../projects/cursor.ts';
 import {ProjectFault, invalid, missing, conflict, requestHash, wireRevision} from '../projects/outcomes.ts';
-import {canCreateDocument, canManageDocumentAccess, canReadDocument, canWriteDocument} from './authority.ts';
+import {canCreateDocument, canManageDocumentAccess, canReadDocument, canMutateDocument} from './authority.ts';
 import type {
   RegisterDocumentPolicyInput,
   RegisterDocumentPolicyOutcome,
@@ -90,8 +90,9 @@ export class WorkspaceDocumentStore {
 
       await c.query(
         `INSERT INTO workspace.capability_grant(grant_id, subject_id, project_id, resource_kind, resource_id, action, valid, permission_revision)
-          VALUES($1, $2, $3, 'document', $4, 'document-manage-access', true, 1)`,
-        [randomUUID(), actor, projectId, docId]
+          SELECT gen_random_uuid(), $1, $2, 'document', $3, action, true, 1
+            FROM unnest(ARRAY['document-manage-access', 'content-write', 'lifecycle-manage']) AS action`,
+        [actor, projectId, docId]
       );
 
       let authorGrantId: string | undefined;
@@ -599,28 +600,46 @@ export class WorkspaceDocumentStore {
     });
   }
 
-  async markUnavailable(
-    token: string,
-    projectId: string,
-    documentId: string
-  ): Promise<void> {
-    if (!uuid(projectId) || !uuid(documentId)) throw missing();
-    projectId = projectId.toLowerCase();
-    documentId = documentId.toLowerCase();
-
-    return this.projects.transaction(token, async (c, actor, guard) => {
-      await projectAccess(c, actor, projectId);
-      if (!(await canWriteDocument(c, actor, projectId, documentId))) {
+  async beginCommand(
+    token: string, projectId: string, documentId: string,
+    operation: 'reviseDocument' | 'archiveVersion' | 'deleteDocument', key: string, hash: string
+  ): Promise<string> {
+    return this.projects.transaction(token, async (client, actor, current) => {
+      await projectAccess(client, actor, projectId);
+      const action = operation === 'reviseDocument' ? 'content-write' : 'lifecycle-manage';
+      if (!await canMutateDocument(client, actor, projectId, documentId, action)) {
         throw new ProjectFault(403, 'forbidden');
       }
-      if (!(await guard())) return null as any;
-
-      await c.query(
-        `UPDATE workspace.document_policy
-            SET registry_state = 'unavailable', permission_revision = permission_revision + 1
-          WHERE project_id = $1 AND document_id = $2`,
-        [projectId, documentId]
+      if (!await current()) return null;
+      const result = await client.query(
+        `INSERT INTO workspace.document_command_journal(document_id, actor_id, operation, idempotency_key, payload_hash)
+         VALUES($1, $2, $3, $4, $5)
+         ON CONFLICT (document_id) DO UPDATE SET actor_id = EXCLUDED.actor_id, operation = EXCLUDED.operation,
+           idempotency_key = EXCLUDED.idempotency_key, payload_hash = EXCLUDED.payload_hash, pending = true
+         WHERE NOT document_command_journal.pending OR (
+           document_command_journal.actor_id = EXCLUDED.actor_id AND document_command_journal.operation = EXCLUDED.operation
+           AND document_command_journal.idempotency_key = EXCLUDED.idempotency_key
+           AND document_command_journal.payload_hash = EXCLUDED.payload_hash)
+         RETURNING document_id`,
+        [documentId, actor, operation, key, hash]
       );
+      if (!result.rowCount) throw new ProjectFault(503, 'access_unavailable');
+      return actor;
     });
+  }
+
+  async finishCommand(documentId: string, actor: string, operation: string, key: string, hash: string): Promise<void> {
+    await this.projects.pool.query(
+      `UPDATE workspace.document_command_journal SET pending = false
+        WHERE document_id = $1 AND actor_id = $2 AND operation = $3 AND idempotency_key = $4 AND payload_hash = $5`,
+      [documentId, actor, operation, key, hash]
+    );
+  }
+
+  async commandPending(documentId: string): Promise<boolean> {
+    const result = await this.projects.pool.query(
+      'SELECT 1 FROM workspace.document_command_journal WHERE document_id = $1 AND pending', [documentId]
+    );
+    return Boolean(result.rowCount);
   }
 }

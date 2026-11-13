@@ -1,9 +1,9 @@
 # Revise and retire a knowledge version
 
 **Artifact ID:** SP-07  
-**Version/date:** 0.6.3 Draft · 4 November 2026
+**Version/date:** 0.6.4 Draft · 13 November 2026
 **Status:** Owner-confirmed lifecycle direction; handlers and full acceptance unimplemented.\
-**Inputs:** PRD-01 v0.10.3; ADR-0009/0011; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-07--revise-and-retire-a-knowledge-version); [contract pack](../contracts/README.md); PLAN-01.; Proposed ADR-0022
+**Inputs:** PRD-01 v0.10.3; ADR-0009/0011; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-07--revise-and-retire-a-knowledge-version); [contract pack](../contracts/README.md); PLAN-01.; Proposed ADR-0022; Proposed ADR-0034
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Unimplemented. **Target:** Month 2.  
@@ -59,3 +59,7 @@ Call getAllowedActions with resource_kind=version, project_id, document_id and v
 Additional Knowledge getDocumentCommandPrecondition requires the selected current action (reviseDocument/archiveVersion/deleteDocument) and known project/document, plus exact already-known version for archive. It returns only opaque token and selector echoes. Bodies/headers accept one token or already-known numeric revision. Revise/archive return DocumentMutationReceipt; delete remains 204. Only the newly created or supplied version identity is acknowledged, with no content/title/lifecycle/current pointer/numeric revision. Readers fetch protected display data separately after renewed read checks. No history-list bypass for non-readers.
 
 Test revoked read with retained write/lifecycle, rejected read/manage-only caller, cross-actor/session/action/parent/version tokens, concurrent revision/revocation, rollback of state/audit/token, safe same-key receipt replay and unknown-outcome reconciliation. A fresh token is no proof of rollback. Proposed ADR-0022 supplies this design; physical token storage/guard/handler behavior remains unimplemented.
+
+## Document safety fix — 13 November 2026
+
+The [registered fix](../docs/implementation/features/document-safety-fix/plan.md) and [Proposed ADR-0034](../docs/adr/0034-document-safety-recovery.md) allow the bounded Workspace document, transport, membership and session integration, additive Workspace migration, Knowledge runtime and lifecycle, web and targeted tests for the reviewed failures.

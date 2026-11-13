@@ -72,46 +72,21 @@ export async function canReadDocument(
   return Boolean(grantRes.rowCount && grantRes.rowCount > 0);
 }
 
-export async function canWriteDocument(
+export async function canMutateDocument(
   c: PoolClient,
   actor: string,
   projectId: string,
-  documentId: string
+  documentId: string,
+  action: 'content-write' | 'lifecycle-manage'
 ): Promise<boolean> {
-  // 1. Must be active member of project
-  const memberRes = await c.query(
-    `SELECT membership_generation FROM workspace.membership
-      WHERE project_id = $1 AND user_id = $2 AND active`,
-    [projectId, actor]
+  const result = await c.query(
+    `SELECT 1 FROM workspace.document_policy p
+      JOIN workspace.membership m ON m.project_id = p.project_id AND m.user_id = $2 AND m.active
+      JOIN workspace.capability_grant g ON g.project_id = p.project_id AND g.subject_id = m.user_id
+       AND g.resource_kind = 'document' AND g.resource_id = p.document_id AND g.valid AND g.action = $4
+     WHERE p.project_id = $1 AND p.document_id = $3 AND p.registry_state = 'active'
+     LIMIT 1`,
+    [projectId, actor, documentId, action]
   );
-  if (!memberRes.rowCount || memberRes.rowCount === 0) return false;
-
-  // 2. Fetch document policy
-  const policyRes = await c.query(
-    `SELECT classification, registry_state FROM workspace.document_policy
-      WHERE project_id = $1 AND document_id = $2`,
-    [projectId, documentId]
-  );
-  if (!policyRes.rowCount || policyRes.rowCount === 0) return false;
-  const policy = policyRes.rows[0];
-  if (policy.registry_state !== 'active') return false;
-
-  // 3. Must have content-write authority
-  if (await canCreateDocument(c, actor, projectId)) return true;
-
-  const grantRes = await c.query(
-    `SELECT 1 FROM workspace.capability_grant
-      WHERE project_id = $1
-        AND subject_id = $2
-        AND valid
-        AND (
-          (resource_kind = 'document' AND resource_id = $3 AND action IN ('document-edit', 'document-write', 'knowledge-author'))
-          OR (resource_kind = 'project' AND resource_id = $1 AND action IN ('knowledge-author', 'project-administrator'))
-        )
-      LIMIT 1`,
-    [projectId, actor, documentId]
-  );
-  return Boolean(grantRes.rowCount && grantRes.rowCount > 0);
+  return Boolean(result.rowCount);
 }
-
-export const hasDocumentWriteAuthority = canWriteDocument;

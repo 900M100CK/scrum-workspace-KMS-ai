@@ -171,7 +171,7 @@ test('SP06 live HTTPS/PG document creation, reading, access management and DOM v
   });
 
   // Record evidence
-  const directory = 'docs/implementation/features/sp-06-document-access/evidence/p13-20261111';
+  const directory = process.env.SACW_TEST_EVIDENCE_DIR ? process.env.SACW_TEST_EVIDENCE_DIR + '/sp06-dom' : 'docs/implementation/features/sp-06-document-access/evidence/p13-20261111';
   await mkdir(directory, {recursive: true});
   const summary = {
     date: '2026-11-11',
