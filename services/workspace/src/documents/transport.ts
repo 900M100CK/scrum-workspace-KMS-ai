@@ -36,7 +36,8 @@ export function knowledgeTransport(base: URL, serviceKey: string, ca?: Buffer): 
           if (allowMissing && status === 404) return resolve(null as T);
           if (![200, 201, 204].includes(status)) {
             // A 403 at this boundary indicates service authentication/configuration failure.
-            return reject(new ProjectFault([400, 404, 409].includes(status) ? status : 503, 'access_unavailable'));
+            return reject(new ProjectFault([400, 404, 409].includes(status) ? status : 503,
+              status === 400 ? 'validation_failed' : status === 404 ? 'not_found' : status === 409 ? 'state_conflict' : 'access_unavailable'));
           }
           try {
             const value = status === 204 ? {status} : JSON.parse(Buffer.concat(chunks).toString('utf8'));
@@ -71,6 +72,8 @@ export function knowledgeTransport(base: URL, serviceKey: string, ca?: Buffer): 
   const withProject = (path: string, project: string, extra: Record<string, string> = {}) =>
     path + '?' + new URLSearchParams({project_id: project, ...extra});
   return {
+    discovery: (actor, action, body, key, correlation) =>
+      call(actor, '/internal/discovery/' + action, 'POST', body, key, correlation),
     persist: (actor, payload, key, correlation, session) =>
       call(identity(actor, session), '/internal/documents', 'POST', payload, key, correlation),
     get: (id, actor, session) =>

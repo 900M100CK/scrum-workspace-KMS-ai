@@ -2,7 +2,7 @@
   "openapi": "3.1.1",
   "info": {
     "title": "Knowledge service public facade through Workspace gateway",
-    "version": "0.2.9",
+    "version": "0.2.10",
     "description": "Draft contract; policy/stack decisions remain proposed. Schema validation proves shape only."
   },
   "x-status": "Draft",
@@ -842,7 +842,7 @@
         "x-requirements": [
           "FR-16"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. Workspace same-origin route: POST /api/projects/{project_id}/links; project_id is supplied by the facade path.",
         "parameters": [
           {
             "name": "Idempotency-Key",
@@ -923,7 +923,7 @@
         "x-requirements": [
           "FR-17"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. Workspace same-origin route: GET /api/projects/{project_id}/links; the from_id selector matches either endpoint.",
         "parameters": [
           {
             "name": "cursor",
@@ -953,6 +953,14 @@
           }
         ],
         "responses": {
+          "400": {
+            "description": "Malformed cursor or cursor from a different actor, project or filter",
+            "content": {"application/json": {"schema": {"$ref": "#/components/schemas/Error"}}}
+          },
+          "409": {
+            "description": "Expired cursor or changed visible projection",
+            "content": {"application/json": {"schema": {"$ref": "#/components/schemas/Error"}}}
+          },
           "200": {
             "description": "Confirmed result",
             "content": {
@@ -1071,7 +1079,7 @@
           "FR-34",
           "FR-63"
         ],
-        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims.",
+        "description": "Identity/project/document authority is checked server-side; client fields are selectors, not permission claims. Workspace same-origin route: POST /api/projects/{project_id}/search/keyword; the project path supplies project_id and omitted scope defaults to current.",
         "parameters": [],
         "responses": {
           "200": {

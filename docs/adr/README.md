@@ -1,7 +1,7 @@
 # Architecture decision index
 
 **Artifact ID:** ADR-INDEX-01\
-**Version/date:** 0.9 Draft · 13 November 2026
+**Version/date:** 0.10 Draft · 13 November 2026
 **Inputs:** Proposed ADR-0032 v0.1;  Proposed ADR-0031 v0.1; Existing ADR entries below; Proposed ADR-0027 v0.2; no change to existing decisions.; Proposed ADR-0028 v0.1; Proposed ADR-0029 v0.1
 
 Updated 3 November 2026. Owner-confirmed direction is distinct from implemented and tested behaviour. No commit or independent review is implied by this index.
@@ -65,3 +65,4 @@ ADR-0031 v0.2 records actual bounded mechanics and companion013 boolean-only pro
 [0033: guarded service transport boundary](0033-guarded-transport-boundary.md) — v0.1 Proposed mechanics implementing explicitly selected B03 only; project-scoped reader-writer guard with writer preference, active socket destruction w/ deadline, fencing generation, constant-time service key, forwarded actor session, and deny-on-ambiguous restart. P05 provides runtime evidence.
 
 - [ADR-0034 — Guarded document delivery and lifecycle reconciliation](0034-document-safety-recovery.md) (Proposed)
+- [ADR-0035 — Scoped relationship and keyword discovery](0035-sp08-guarded-discovery.md) (Proposed)

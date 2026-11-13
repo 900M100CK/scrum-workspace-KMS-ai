@@ -1,7 +1,7 @@
 # Contract-first interface pack
 
 **Artifact ID:** CONTRACT-01  
-**Version/date:** 0.25.5 Draft · 6 November 2026
+**Version/date:** 0.25.6 Draft · 13 November 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0011 direction is owner-confirmed; remaining protocol/policy gaps and handler evidence are pending.\
 **Inputs:** Proposed ADR-0027 v0.2; PRD-01 v0.10.3; [architecture](../docs/architecture.md); [data design](../docs/sdlc/data-design.md); PLAN-01 v0.4.\; Proposed ADR-0020; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; Proposed ADR-0028 v0.1; Proposed ADR-0031 v0.1
 **Author:** development agent acting sequentially; owner reviews business choices.
@@ -141,3 +141,8 @@ PATCH has the existing 8192-byte JSON limit and explicit 400/401/403/404/409/413
 ## Selected Could runtime correction and handoff — 6 November 2026
 
 Workspace0.2.16 adds task_already_done to the existing Error.code enum; C01 had described the reason but omitted the enum member, so real serializer verification initially withheld the409 as503. Actual producer/HTTP tests now enforce the enum and Done409. Existing66 operation inventory, 200 Sprint shapes, Could priorities and Knowledge contract remain unchanged. Both Could handlers, private action discovery, exact method/header recovery v2 and existing-design UI are implemented; see [author runtime result](../docs/implementation/features/sp-05-sprint-lifecycle/verification/could-runtime-result.md). Schema012 receipts/actions plus013 boolean provenance preserve owner-only provisioning audit; runtime has no direct audit read. Earlier C01 source-only observations remain historical and do not constitute runtime evidence for the final code.
+
+
+## SP-08 project facade
+
+Knowledge v0.2.10 documents the same-origin project routes for createLink, listLinks and keywordSearch. The project path supplies the authoritative selector. Link paging declares 400 for an invalid or foreign cursor and 409 for a changed or expired projection. The operation catalogue and logical storage contract remain unchanged.

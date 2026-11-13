@@ -1,4 +1,5 @@
 import {randomUUID} from 'node:crypto';
+import type {PoolClient} from 'pg';
 import type {FastifyReply} from 'fastify';
 import {canManageDocumentAccess, canReadDocument} from './authority.ts';
 import type {DocumentOrchestrator} from './orchestration.ts';
@@ -14,7 +15,8 @@ export async function deliverDocument<T>(
   documentIds: (value: T) => string[],
   management = false,
   status: (value: T) => number = () => 200,
-  body: (value: T) => unknown = value => value
+  body: (value: T) => unknown = value => value,
+  validate?: (client: PoolClient, actor: string, value: T) => Promise<void>
 ): Promise<void> {
   if (!uuid(project)) throw missing();
   project = project.toLowerCase();
@@ -42,6 +44,7 @@ export async function deliverDocument<T>(
         if (pending.rowCount) throw new ProjectFault(503, 'access_unavailable');
       }
       if (snapshot !== guard.snapshot(project) || generation !== guard.getGeneration()) throw conflict();
+      await validate?.(client, actor, value);
       if (!await current()) return null;
       if (response.destroyed || socket?.destroyed) throw new ProjectFault(503, 'access_unavailable');
       await new Promise<void>(resolve => {

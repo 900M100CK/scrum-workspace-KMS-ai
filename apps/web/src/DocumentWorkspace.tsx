@@ -1,3 +1,4 @@
+import {RelatedResources} from './KnowledgeDiscovery.tsx';
 import {useEffect, useRef, useState, useSyncExternalStore} from 'react';
 import {DocumentController, type DocumentClassification} from './documents.ts';
 
@@ -103,7 +104,7 @@ export function DocumentWorkspace({
                   <span className={`badge ${doc.classification}`}>
                     {doc.classification === 'project_shared' ? 'Shared' : 'Restricted'}
                   </span>
-                  <p className="muted">Revision {doc.revision}</p>
+          <p className="muted">Revision {doc.revision}</p>
                 </li>
               ))}
             </ul>
@@ -132,6 +133,7 @@ export function DocumentWorkspace({
 
       {!state.busy && detail ? (
         <article className="document-detail" aria-labelledby="doc-detail-title">
+          <RelatedResources key={detail.document.document_id} projectId={projectId} endpoint={{kind:detail.document.kind,id:detail.document.document_id}} onSessionLost={onSessionLost}/>
           <h5 id="doc-detail-title">{detail.document.title}</h5>
           <span className={`badge ${detail.document.classification}`}>
             {detail.document.classification === 'project_shared' ? 'Shared' : 'Restricted'}

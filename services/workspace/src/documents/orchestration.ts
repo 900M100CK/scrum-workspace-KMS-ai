@@ -44,6 +44,9 @@ export interface DocumentResponse {
 }
 
 export interface KnowledgeTransport {
+  discovery?<T>(identity: {actor: string; session: string}, action: 'create-link' | 'links' | 'keyword',
+    body: object, key?: string, correlation?: string): Promise<T>;
+
   persist(
     actorId: string,
     payload: {

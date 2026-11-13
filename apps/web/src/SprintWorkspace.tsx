@@ -1,3 +1,4 @@
+import {RelatedResources} from './KnowledgeDiscovery.tsx';
 import {useEffect,useRef,useState,useSyncExternalStore} from 'react';
 import {SprintController} from './sprints.ts';
 export function SprintWorkspace({userId,projectId,onSessionLost,onWorkChanged,onAccessLost,controller:provided}:{userId:string;projectId:string;onSessionLost:()=>void;onWorkChanged:()=>void;onAccessLost?:()=>void;controller?:SprintController}){
@@ -17,6 +18,7 @@ export function SprintWorkspace({userId,projectId,onSessionLost,onWorkChanged,on
    <ul className="task-list">{state.sprints.map(s=><li key={s.sprint_id}><button disabled={state.busy} onClick={()=>void controller.select(s.sprint_id)}>{s.goal}</button><p>{s.state} · {s.start_date} to {s.end_date}</p></li>)}</ul>
    {!state.sprints.length&&state.projectActions.includes('listSprints')?<p>No Sprints yet.</p>:null}
    {state.selected?<div className="task-detail"><h4>Selected Sprint: {state.selected.goal}</h4><p>State: {state.selected.state} · revision {state.selected.revision}</p>
+   <RelatedResources key={state.selected.sprint_id} projectId={projectId} endpoint={{kind:"sprint",id:state.selected.sprint_id}} onSessionLost={onSessionLost}/>
     {state.selected.started_at?<p>Started: <time dateTime={state.selected.started_at}>{new Intl.DateTimeFormat(undefined,{dateStyle:'medium',timeStyle:'short'}).format(new Date(state.selected.started_at))}</time></p>:null}
     {state.selected.completed_at?<p>Completed: <time dateTime={state.selected.completed_at}>{new Intl.DateTimeFormat(undefined,{dateStyle:'medium',timeStyle:'short'}).format(new Date(state.selected.completed_at))}</time></p>:null}
     <div className="actions">{state.actions.includes('startSprint')?<button disabled={locked} onClick={()=>void controller.mutate('startSprint',{expected_revision:state.selected!.revision})}>Start Sprint</button>:null}{state.actions.includes('completeSprint')?<button disabled={locked} onClick={()=>void controller.mutate('completeSprint',{expected_revision:state.selected!.revision})}>Complete Sprint</button>:null}</div>

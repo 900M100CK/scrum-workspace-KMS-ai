@@ -1,7 +1,7 @@
 # Find linked knowledge without AI
 
 **Artifact ID:** SP-08  
-**Version/date:** 0.4.3 Draft · 4 November 2026\
+**Version/date:** 0.4.4 Draft · 13 November 2026\
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
 **Inputs:** PRD-01 v0.10.3; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-08--find-linked-knowledge-without-ai); [contract pack](../contracts/README.md); PLAN-01 v0.4.\
 **Author:** development agent acting sequentially; owner reviews business choices.
@@ -49,3 +49,8 @@ FR-70 Should follows the 60 Must. Workspace searchTasks searches committed task 
 ## Input metadata reconciliation — 25 October 2026
 
 Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.
+
+
+## Selected SP-08 execution scope
+
+The [registered feature plan](../docs/implementation/features/sp-08-linked-keyword-search/plan.md) binds link creation to explicit private project link-create and readable same-project endpoints. The Workspace facade signs cursors and reuses guarded delivery. The public contract documents list cursor errors. FR-49 and FR-70 remain Should backlog.

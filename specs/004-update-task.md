@@ -3,7 +3,7 @@
 **Artifact ID:** SP-04  
 **Version/date:** 0.7.7 Draft · 5 November 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
-**Inputs:** PRD-01 v0.10.3; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-04--update-work-state-and-record-blockers); [contract pack](../contracts/README.md) v0.25.5; PLAN-01 v0.4.\; Proposed ADR-0028 v0.1; Proposed ADR-0029 v0.1
+**Inputs:** PRD-01 v0.10.3; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-04--update-work-state-and-record-blockers); [contract pack](../contracts/README.md) v0.25.6; PLAN-01 v0.4.\; Proposed ADR-0028 v0.1; Proposed ADR-0029 v0.1
 **Author:** development agent acting sequentially; owner reviews business choices.
 
 **Status:** Task handlers/UI and coordinated actual SP-05 P08 producer integration have bounded local evidence; independent/release acceptance remains open. **Target:** Month 1.
