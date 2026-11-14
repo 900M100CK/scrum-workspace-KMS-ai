@@ -6,7 +6,8 @@ const opening = 'The observatory opens at 09:00 on weekdays.';
 const conflicting = 'The observatory opens at 10:00 on weekdays.';
 const uncited = 'Visitors enter through the north gate.';
 const restricted = 'Private fixture: the observatory opens at 07:00 on weekdays.';
-export const syntheticExcerpts = [opening, conflicting, uncited, restricted];
+export const oldBlockerNote = 'The previous observatory schedule listed this task as blocked.';
+export const syntheticExcerpts = [opening, conflicting, uncited, restricted, oldBlockerNote];
 
 export function embed(question: string): number[] {
   if (/when|time|hour|schedule|observatory|open/i.test(question)) return [1, 0, 0];

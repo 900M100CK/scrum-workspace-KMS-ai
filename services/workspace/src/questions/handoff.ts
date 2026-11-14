@@ -1,3 +1,4 @@
+import {captureWork, type WorkScope, type WorkSnapshot} from '../observations/store.ts';
 import {createHash, randomUUID} from 'node:crypto';
 import {isDeepStrictEqual, TextDecoder} from 'node:util';
 import type {PoolClient} from 'pg';
@@ -13,10 +14,12 @@ export type Context = {
   membership_generation: string; documents: Record<string, string>;
 };
 export type Run = Context & {run_id: string};
-export type Evidence = {
+export type DocumentEvidence = {
   kind: 'document'; source_id: string; project_id: string; document_id: string; version_id: string;
   passage_id: string; permission_revision: string; lifecycle_revision: string; version_digest: string; excerpt_digest: string;
 };
+export type Evidence = DocumentEvidence | {kind:'operational'; source_id:string; project_id:string;
+  entity_kind:string; entity_id:string; entity_revision:string; observation_revision:number; observed_at:string; entity_digest:string};
 export type Purpose = 'provider_input' | 'answer_delivery';
 export type SendOutcome = 'completed' | 'aborted' | 'unknown';
 export type SendResult<T> = {outcome: SendOutcome; value?: T};
@@ -67,16 +70,18 @@ export class Handoff {
 
   async send<T>(options: {
     who: Identity; token: string; run: Run; call: KnowledgeCall; purpose: Purpose; destination: string;
+    work?: {selector:WorkScope; snapshot:WorkSnapshot};
     question: string; draft?: unknown; expectedPayload: unknown; evidence: Evidence[];
     signal: AbortSignal; transmit: (payload: Buffer, signal: AbortSignal) => Promise<SendResult<T>>;
   }): Promise<T> {
-    const {who, token, run, call, purpose, destination, question, draft, expectedPayload, evidence, signal, transmit} = options;
+    const {who, token, run, call, purpose, destination, question, draft, expectedPayload, evidence, signal, transmit, work} = options;
     const project = run.project_id;
     const {guard, docsStore} = this.orchestrator;
     const snapshot = guard.snapshot(project);
     const generation = guard.getGeneration();
+    const attempt = work ? run.run_id + ':' + work.snapshot.fingerprint : run.run_id;
     const prepared = await call<{handoff_id: string; payload_bytes_base64: string}>('prepare',
-      {...run, purpose, destination, question, draft, evidence});
+      {...run, purpose, destination, question, draft, evidence, work:work?.snapshot});
     const receipt = await call<Receipt>('get-handoff-manifest', {...run, handoff_id: prepared.handoff_id});
     const bytes = decode(prepared.payload_bytes_base64, 65536);
     const manifestBytes = decode(receipt.manifest_bytes_base64, 65536);
@@ -84,7 +89,7 @@ export class Handoff {
     const providerBytes = purpose === 'provider_input' ? Buffer.from(JSON.stringify(expectedPayload)) : null;
     const verify = () => {
       const {prepared_at, ...bound} = manifest;
-      const expected = {handoff_id: prepared.handoff_id, run_id: run.run_id, attempt_id: run.run_id, purpose,
+      const expected = {handoff_id: prepared.handoff_id, run_id: run.run_id, attempt_id: attempt, purpose,
         actor_id: who.actor, project_id: project, access_context_ref: who.session,
         session_generation: run.session_generation, project_permission_revision: run.project_permission_revision,
         evidence_set: evidence, payload_digest: digest(bytes), payload_length: bytes.length, destination_ref: destination,
@@ -131,7 +136,10 @@ export class Handoff {
           const now = await currentContext(client, who, project);
           if (now.session_generation !== run.session_generation ||
               now.project_permission_revision !== run.project_permission_revision || now.membership_generation !== run.membership_generation ||
-              evidence.some(source => now.documents[source.document_id] !== source.permission_revision)) throw unavailable();
+              evidence.some(source => source.kind === 'document' && now.documents[source.document_id] !== source.permission_revision)) throw unavailable();
+          if (work && (await captureWork(client,actor,project,work.selector)).fingerprint !== work.snapshot.fingerprint) {
+            throw unavailable();
+          }
           verify();
           const checked = await call<{valid: boolean}>('recheck', {...now, run_id: run.run_id, evidence});
           if (!checked.valid || cancellation.aborted) throw unavailable();

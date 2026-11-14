@@ -8,7 +8,7 @@ import {taskProjection,taskProjectionSql} from '../tasks/store.ts';
 import {SPRINT_ACTIONS,hasSprintCapability} from './authority.ts';
 import {sprintOutcome,saveSprintOutcome} from './outcomes.ts';
 import type {Sprint,SprintOperation,SprintBody,SprintOutcome,CreateSprint,Allocation,ExpectedRevision,Reorder,EditSprint,RemoveAllocation} from './types.ts';
-const columns='sprint_id,project_id,goal,start_date::text,end_date::text,state,revision::text,created_at,started_at,completed_at';
+export const sprintProjectionSql='sprint_id,project_id,goal,start_date::text,end_date::text,state,revision::text,created_at,started_at,completed_at';
 const text=(v:unknown):v is string=>typeof v==='string'&&!v.includes('\0')&&Buffer.from(v).toString('utf8')===v;
 const object=(v:unknown):v is Record<string,unknown>=>!!v&&typeof v==='object'&&!Array.isArray(v);
 const date=(v:unknown):v is string=>typeof v==='string'&&/^(?!0000)[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(v)&&Number.isFinite(Date.parse(v+'T00:00:00Z'))&&new Date(v+'T00:00:00Z').toISOString().slice(0,10)===v;
@@ -19,7 +19,7 @@ export class WorkspaceSprintStore {
  private async scoped(c:PoolClient,actor:string,id:string){
   const hint=(await c.query('SELECT project_id FROM workspace.sprint WHERE sprint_id=$1',[id])).rows[0];if(!hint)throw missing();
   const access=await projectAccess(c,actor,hint.project_id);
-  const row=(await c.query('SELECT '+columns+' FROM workspace.sprint WHERE sprint_id=$1 AND project_id=$2 FOR UPDATE',[id,hint.project_id])).rows[0];if(!row)throw missing();
+  const row=(await c.query('SELECT '+sprintProjectionSql+' FROM workspace.sprint WHERE sprint_id=$1 AND project_id=$2 FOR UPDATE',[id,hint.project_id])).rows[0];if(!row)throw missing();
   return {row,access,projectId:String(hint.project_id)};
  }
  async get(token:string,id:string):Promise<Sprint>{
@@ -29,7 +29,7 @@ export class WorkspaceSprintStore {
  async list(token:string,projectId:string,cursor?:string){
   if(!uuid(projectId))throw missing();projectId=projectId.toLowerCase();
   return this.projects.transaction(token,async(c,actor,guard)=>{const {member}=await projectAccess(c,actor,projectId);
-   const rows=(await c.query('SELECT '+columns+' FROM workspace.sprint WHERE project_id=$1 ORDER BY sprint_id',[projectId])).rows;
+   const rows=(await c.query('SELECT '+sprintProjectionSql+' FROM workspace.sprint WHERE project_id=$1 ORDER BY sprint_id',[projectId])).rows;
    const result=await this.projects.page(c,actor,'listSprints',projectId,rows,50,cursor,sprintProjection,'sprint_id',member);if(!await guard())return null;return result;
   });
  }
@@ -68,7 +68,7 @@ export class WorkspaceSprintStore {
    if(!await guard())return null;
    let body:SprintBody,reference=id;
    if(operation==='createSprint'){
-    reference=randomUUID();const row=(await c.query("INSERT INTO workspace.sprint(sprint_id,project_id,goal,start_date,end_date,state,created_at) VALUES($1,$2,$3,$4,$5,'planned',date_trunc('milliseconds',clock_timestamp())) RETURNING "+columns,[reference,projectId,normalized.goal,normalized.start_date,normalized.end_date])).rows[0];body=sprintProjection(row);
+    reference=randomUUID();const row=(await c.query("INSERT INTO workspace.sprint(sprint_id,project_id,goal,start_date,end_date,state,created_at) VALUES($1,$2,$3,$4,$5,'planned',date_trunc('milliseconds',clock_timestamp())) RETURNING "+sprintProjectionSql,[reference,projectId,normalized.goal,normalized.start_date,normalized.end_date])).rows[0];body=sprintProjection(row);
     await businessAudit(c,actor,projectId,'sprint-create',reference,correlation,null,JSON.stringify({revision:1,operation,key,payload_hash:hash}));
    }else if(operation==='reorderBacklog'){
     const generation=(await c.query('SELECT backlog_revision::text value FROM workspace.project WHERE project_id=$1',[projectId])).rows[0].value;
@@ -130,11 +130,11 @@ export class WorkspaceSprintStore {
       await businessAudit(c,actor,projectId,'sprint-item-complete',task.task_id,correlation,JSON.stringify({revision:task.revision,state:task.state,sprint_id:id}),JSON.stringify({allocation_state:done?'completed':'returned',operation,key,payload_hash:hash}));
      }
      await c.query("UPDATE workspace.sprint SET state='completed',revision=$2,completed_at=date_trunc('milliseconds',clock_timestamp()) WHERE sprint_id=$1",[id,revision]);
-     const sprint=sprintProjection((await c.query('SELECT '+columns+' FROM workspace.sprint WHERE sprint_id=$1',[id])).rows[0]);
+     const sprint=sprintProjection((await c.query('SELECT '+sprintProjectionSql+' FROM workspace.sprint WHERE sprint_id=$1',[id])).rows[0]);
      const counts={retained_done_count:tasks.filter(t=>t.state==='done').length,returned_unfinished_count:tasks.filter(t=>t.state!=='done').length};body={sprint,...counts};
      await businessAudit(c,actor,projectId,'sprint-complete',id,correlation,JSON.stringify({revision:current.revision,state:current.state}),JSON.stringify({...counts,revision,operation,key,payload_hash:hash}));
     }
-    if(operation!=='completeSprint')body=sprintProjection((await c.query('SELECT '+columns+' FROM workspace.sprint WHERE sprint_id=$1',[id])).rows[0]);
+    if(operation!=='completeSprint')body=sprintProjection((await c.query('SELECT '+sprintProjectionSql+' FROM workspace.sprint WHERE sprint_id=$1',[id])).rows[0]);
    }
    const value:SprintOutcome={status:operation==='createSprint'?201:200,body:body!,projectId};await saveSprintOutcome(c,actor,operation,key,hash,reference,value);return value;
   });

@@ -1,9 +1,10 @@
+import {captureWork, workScope, type WorkScope} from '../observations/store.ts';
 import type {FastifyInstance, FastifyReply, FastifyRequest} from 'fastify';
 import {performance} from 'node:perf_hooks';
 import {deliverDocument} from '../documents/delivery.ts';
 import type {DocumentHttpOptions} from '../documents/http.ts';
 import {SESSION_COOKIE} from '../session/http.ts';
-import {invalid, missing, ProjectFault} from '../projects/outcomes.ts';
+import {invalid, missing, ProjectFault, requestHash} from '../projects/outcomes.ts';
 import {uuid} from '../projects/store.ts';
 import {currentContext, Handoff, unavailable, type Evidence, type KnowledgeCall, type SendResult} from './handoff.ts';
 import {FixtureProviderFailure, fixtureModel, relay} from './fixture-provider.ts';
@@ -14,11 +15,11 @@ type Started = {run_id: string; evidence: Evidence[]; sources: Source[]};
 
 function questionInput(request: FastifyRequest, field: 'query' | 'question') {
   const body = request.body as Record<string, unknown> | undefined;
-  if (!body || Object.keys(body).some(key => ![field, 'scope', 'project_id', ...(field === 'query' ? ['cursor'] : [])].includes(key)) ||
+  if (!body || Object.keys(body).some(key => ![field, 'scope', 'project_id', ...(field === 'query' ? ['cursor'] : ['current_work'])].includes(key)) ||
       typeof body[field] !== 'string' || !body[field].trim() || body[field].length > 1000 ||
       body[field].includes(String.fromCharCode(0)) || (body.scope !== 'current' && body.scope !== 'historical') ||
       body.cursor != null) throw invalid();
-  return {text: body[field].trim(), scope: body.scope};
+  return {text: body[field].trim(), scope: body.scope, selector: body.current_work === undefined ? undefined : workScope(body.current_work)};
 }
 
 function sendBrowser(reply: FastifyReply, bytes: Buffer, signal: AbortSignal): Promise<SendResult<true>> {
@@ -47,7 +48,7 @@ export function registerProjectQuestions(app: FastifyInstance, options: Document
   const projects = docs.projects;
   const handoff = new Handoff(orchestrator);
 
-  async function context(request: FastifyRequest, project: string) {
+  async function context(request: FastifyRequest, project: string, selector?: WorkScope) {
     const token = request.cookies[SESSION_COOKIE]!;
     const auth = await projects.sessions.inspect(token);
     if (auth.kind !== 'authenticated') {
@@ -58,12 +59,13 @@ export function registerProjectQuestions(app: FastifyInstance, options: Document
     const transport = orchestrator.transport.question;
     if (!transport) throw unavailable();
     const call: KnowledgeCall = (action, body) => transport(who, action, body);
-    const access = await projects.transaction(token, async (client, actor, current) => {
+    const {access,work} = await projects.transaction(token, async (client, actor, current) => {
       if (actor !== who.actor) throw unavailable();
       const now = await currentContext(client, who, project);
-      return await current() ? now : null;
+      const work = selector ? {selector,snapshot:await captureWork(client,actor,project,selector)} : undefined;
+      return await current() ? {access:now,work} : null;
     });
-    return {who, token, call, access};
+    return {who, token, call, access, work};
   }
 
   function projectId(request: FastifyRequest) {
@@ -97,8 +99,8 @@ export function registerProjectQuestions(app: FastifyInstance, options: Document
 
   app.post('/projects/:project_id/questions', {bodyLimit: 8192}, async (request, reply) => {
     const project = projectId(request);
-    const {text: question, scope} = questionInput(request, 'question');
-    const {who, token, call, access} = await context(request, project);
+    const {text: question, scope, selector} = questionInput(request, 'question');
+    const {who, token, call, access, work} = await context(request, project, selector);
     if (!questionProvider) throw unavailable();
     const controller = new AbortController();
     const close = () => controller.abort();
@@ -109,13 +111,20 @@ export function registerProjectQuestions(app: FastifyInstance, options: Document
     let run: (typeof access & {run_id: string}) | undefined;
     let status = 'provider_unavailable';
     try {
-      const started = await call<Started>('start', {...access, question, scope});
+      const started = await call<Started>('start', {...access, question, scope, work:work?.snapshot});
       run = {...access, run_id: started.run_id};
-      const common = {who, token, call, run, question, evidence: started.evidence, signal: controller.signal};
+      const captured: Evidence[] = work ? work.snapshot.entities.map((entity,index)=>({
+        kind:'operational',source_id:'W'+(index+1),project_id:project,entity_kind:entity.kind,
+        entity_id:entity.id,entity_revision:entity.revision,observation_revision:work.snapshot.observation_revision,
+        observed_at:work.snapshot.observed_at,entity_digest:requestHash(entity),
+      })) : [];
+      const evidence = [...started.evidence.filter(item=>item.kind==='document'),...captured];
+      const common = {who, token, call, run, question, evidence, signal: controller.signal,...(work ? {work} : {})};
       const outbound = await handoff.send({
         ...common, purpose: 'provider_input', destination: questionProvider.href,
         expectedPayload: {model: fixtureModel, run_id: run.run_id, question, sources: started.sources.map(
-          ({source_id, document_id, version_id, passage_id, excerpt}) => ({source_id, document_id, version_id, passage_id, excerpt}))},
+          ({source_id, document_id, version_id, passage_id, excerpt}) => ({source_id, document_id, version_id, passage_id, excerpt})),
+          ...(work ? {work:work.snapshot} : {})},
         transmit: (payload, signal) => {
           bytes = payload.length;
           return relay(questionProvider, payload, signal);

@@ -1,3 +1,4 @@
+import {registerBlockedTasks} from '../observations/http.ts';
 import {registerProjectQuestions} from '../questions/http.ts';
 import {registerProjectDiscovery} from './discovery.ts';
 import {canManageDocumentAccess} from './authority.ts';
@@ -22,6 +23,7 @@ export interface DocumentHttpOptions {
   orchestrator: DocumentOrchestrator;
   origin?: string;
   questionProvider?: URL | undefined;
+  observationServiceKey?: string;
 }
 
 export async function registerDocumentHttp(app: FastifyInstance, options: DocumentHttpOptions) {
@@ -85,6 +87,7 @@ export async function registerDocumentHttp(app: FastifyInstance, options: Docume
     );
   });
 
+  registerBlockedTasks(app,options);
   if (options.orchestrator.transport.question) registerProjectQuestions(app, options);
   if (options.orchestrator.transport.discovery) registerProjectDiscovery(app, options);
 

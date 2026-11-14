@@ -1,3 +1,4 @@
+import {workInput} from './work.ts';
 import type {FastifyInstance, FastifyReply, FastifyRequest} from 'fastify';
 import {verifyServiceKey} from '../documents/auth.ts';
 import {invalid, isUuid, KnowledgeFault} from '../documents/store.ts';
@@ -56,13 +57,13 @@ export function registerQuestionHttp(app: FastifyInstance, store: QuestionStore,
             !['current', 'historical'].includes(body.scope)) throw invalid();
         const context: Context = body;
         return action === 'search' ? await store.search(context, body.question, body.scope) :
-          await store.start(actor, context, body.question, body.scope);
+          await store.start(actor, context, body.question, body.scope, workInput(body.work));
       }
       if (!isUuid(body.run_id)) throw invalid();
       if (action === 'prepare') {
         if (!['provider_input', 'answer_delivery'].includes(body.purpose) || typeof body.destination !== 'string' ||
             typeof body.question !== 'string' || !Array.isArray(body.evidence)) throw invalid();
-        return await store.prepare(actor, session, body, body.purpose, body.destination, body.question, body.draft, body.evidence);
+        return await store.prepare(actor, session, body, body.purpose, body.destination, body.question, body.draft, body.evidence, workInput(body.work));
       }
       if (action === 'recheck' && Array.isArray(body.evidence)) {
         await store.assertRun(actor, body);

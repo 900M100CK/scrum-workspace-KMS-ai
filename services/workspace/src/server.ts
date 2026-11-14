@@ -28,7 +28,7 @@ if ([knowledgeUrl, serviceKey, caPath].some(value => value !== undefined)) {
   throw new Error('Invalid Knowledge HTTPS origin');
  }
  const docs = new WorkspaceDocumentStore(session.pool, session.store, key);
- documentOptions = {docs, questionProvider, orchestrator: new DocumentOrchestrator(docs,
+ documentOptions = {docs, questionProvider, observationServiceKey:serviceKey, orchestrator: new DocumentOrchestrator(docs,
   knowledgeTransport(url, serviceKey, caPath ? readFileSync(caPath) : undefined), new ProjectRWGuard())};
 }
 const app = buildApp(session?{...documentOptions,store:session.store,origin:session.origin,projects:new WorkspaceProjectStore(session.pool,session.store,key),tasks:new WorkspaceTaskStore(session.pool,session.store,key),sprints:new WorkspaceSprintStore(session.pool,session.store,key)}:{});

@@ -11,8 +11,9 @@ import type {TaskOutcome} from './outcomes.ts';
 import type {CreateTask,EditTask,SetState,SetAssignee,RecordBlocker,Blocker,BlockerEventList,Task,TaskList} from './types.ts';
 
 const text=(s:unknown):s is string=>typeof s==='string'&&!s.includes('\0')&&Buffer.from(s).toString('utf8')===s;
+export const latestBlockerStatusSql=`(SELECT b.status FROM workspace.blocker_event b WHERE b.task_id=t.task_id ORDER BY b.sequence DESC LIMIT 1)`;
 const projection=`t.task_id,t.project_id,t.type,t.title,t.description,t.state,t.assignee_id,t.revision::text,t.location_kind,t.location_sprint_id,t.backlog_position::text,t.created_at,
- coalesce((SELECT b.status='open' FROM workspace.blocker_event b WHERE b.task_id=t.task_id ORDER BY b.sequence DESC LIMIT 1),false) blocked`;
+ coalesce(${latestBlockerStatusSql}='open',false) blocked`;
 function taskProjection(row:Record<string,any>):Task{
  if(!['backlog','sprint','completed'].includes(row.location_kind)||(row.location_kind!=='backlog'&&!row.location_sprint_id))throw Error('Invalid task location');
  return {task_id:row.task_id,project_id:row.project_id,type:row.type,title:row.title,description:row.description,state:row.state,assignee_id:row.assignee_id,blocked:row.blocked,revision:wireRevision(row.revision),work_location:row.location_kind==='backlog'?{kind:'backlog',position:row.backlog_position}:{kind:row.location_kind,sprint_id:row.location_sprint_id},created_at:row.created_at.toISOString()};
