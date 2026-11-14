@@ -868,3 +868,7 @@ P02-A input-only companion: EVAL-CASES-ENTRY v0.8.4 updates current TEST-08 alia
 [FEAT-SP10-01 v0.1](../implementation/features/sp-10-current-work-question/plan.md) and its [breakdown](../implementation/features/sp-10-current-work-question/breakdown.md) register P00–P05 under M-06.
 
 [SP10-FIXTURE-RESULT-01 v0.1](reports/SP-10-fixture-handoff-2026-11-14.md) records fixture runtime and review evidence.
+
+## Conventional Commits tooling — 14 November 2026
+
+[DEV-COMMITS-01 v0.1](../implementation/features/conventional-commits/plan.md), entry and CC-01/CC-02 v0.1 are registered for local repository tooling. AGENTS v1.17 and development rules v1.15 record the convention. IMPL-FEATURES-01 v0.73, IMPL-REG-01 v0.78 and IMPL-ROADMAP-01 v0.65 provide parent registration; DOC-REVIEW-REG-01 v0.79 syncs linked inputs only. The plan owns actual verification; no application acceptance.

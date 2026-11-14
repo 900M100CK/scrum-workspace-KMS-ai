@@ -7,6 +7,7 @@
     "node": ">=24"
   },
   "scripts": {
+    "commits:setup": "node scripts/commit-message.mjs --install",
     "db:init": "node scripts/database.mjs init",
     "db:up": "node scripts/database.mjs up",
     "db:migrate": "node scripts/database.mjs migrate",

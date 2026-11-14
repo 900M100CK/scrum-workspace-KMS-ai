@@ -1,7 +1,7 @@
 # Implementation source and artifact register
 
 **Artifact ID:** IMPL-REG-01\
-**Version/date:** 0.77 Draft · 14 November 2026
+**Version/date:** 0.78 Draft · 14 November 2026
 **Status:** Source snapshot and navigation, not approval or runtime evidence.\
 **Inputs:** REG-00; PRD-01 v0.10.3; SPEC-INDEX v0.8.2; PLAN-01 v0.4; SAD-03 v0.19.1; ADR-0001–ADR-0026.\; Proposed ADR-0029 v0.1
 **Trace:** Existing BR-01–BR-14 / SC-01–SC-08.\
@@ -347,3 +347,7 @@ P02-A input-only companion: EVAL-CASES-ENTRY v0.8.4 updates current TEST-08 alia
 ## SP-10 current work questions
 
 [FEAT-SP10-01 v0.1](features/sp-10-current-work-question/plan.md) and its [breakdown](features/sp-10-current-work-question/breakdown.md) register P00–P05 under M-06.
+
+## Conventional Commits tooling — 14 November 2026
+
+[DEV-COMMITS-01 v0.1](features/conventional-commits/plan.md), entry and CC-01/CC-02 v0.1 are registered for local repository tooling. AGENTS v1.17 and development rules v1.15 record the convention. IMPL-FEATURES-01 v0.73, IMPL-REG-01 v0.78 and IMPL-ROADMAP-01 v0.65 provide parent registration; DOC-REVIEW-REG-01 v0.79 syncs linked inputs only. The plan owns actual verification; no application acceptance.

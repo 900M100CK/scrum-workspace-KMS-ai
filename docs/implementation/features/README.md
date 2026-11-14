@@ -1,7 +1,7 @@
 # Work plan register and template
 
 **Artifact ID:** IMPL-FEATURES-01\
-**Version/date:** 0.72 Draft · 14 November 2026
+**Version/date:** 0.73 Draft · 14 November 2026
 **Status:** Planning entry; no application feature accepted or implemented by this file.\
 **Inputs:** [Development rules](../../development-rules.md) v1.13; [implementation roadmap](../roadmap.md) v0.54; [PLAN-01](../../planning/five-month-plan.md) v0.4; [spec index](../../../specs/README.md) v0.8.6; [source register](../register.md).\
 **Trace:** Existing feature FR/AC/BR/SC through its canonical spec; no added scope.\
@@ -308,3 +308,7 @@ P02-A input-only companion: EVAL-CASES-ENTRY v0.8.4 updates current TEST-08 alia
 ## SP-10 current work questions
 
 [FEAT-SP10-01 v0.1](sp-10-current-work-question/plan.md) and its [breakdown](sp-10-current-work-question/breakdown.md) register P00–P05 under M-06.
+
+## Conventional Commits tooling — 14 November 2026
+
+[DEV-COMMITS-01 v0.1](conventional-commits/plan.md) / [entry](conventional-commits/README.md): PLAN-01 Month 2 / M-05, supporting SP-08 development only. The plan owns the task results.

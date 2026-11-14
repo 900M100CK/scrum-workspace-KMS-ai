@@ -16,3 +16,5 @@ dist/
 /.tmp/
 __pycache__/
 *.pyc
+graphify-out/
+docs/graphify-out/
