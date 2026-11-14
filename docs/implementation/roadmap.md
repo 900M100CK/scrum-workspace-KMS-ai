@@ -262,4 +262,4 @@ P02-A input-only companion: EVAL-CASES-ENTRY v0.8.4 updates current TEST-08 alia
 
 ## Conventional Commits tooling — 14 November 2026
 
-[DEV-COMMITS-01 v0.1](features/conventional-commits/plan.md), entry and CC-01/CC-02 v0.1 are registered for local repository tooling. AGENTS v1.17 and development rules v1.15 record the convention. IMPL-FEATURES-01 v0.73, IMPL-REG-01 v0.78 and IMPL-ROADMAP-01 v0.65 provide parent registration; DOC-REVIEW-REG-01 v0.83 syncs linked inputs only. The plan owns actual verification; no application acceptance.
+[DEV-COMMITS-01 v0.1](features/conventional-commits/plan.md), entry and CC-01/CC-02 v0.1 are registered for local repository tooling. AGENTS v1.17 and development rules v1.15 record the convention. IMPL-FEATURES-01 v0.73, IMPL-REG-01 v0.78 and IMPL-ROADMAP-01 v0.65 provide parent registration; DOC-REVIEW-REG-01 v0.79 syncs linked inputs only. The plan owns actual verification; no application acceptance.

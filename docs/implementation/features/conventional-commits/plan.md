@@ -3,7 +3,7 @@
 **Artifact ID:** DEV-COMMITS-01\
 **Version/date:** 0.1 Draft · 14 November 2026\
 **Status:** Owner-requested repository tooling; hook enabled in the current clone.\
-**Inputs:** AGENTS v1.16; development rules v1.14; [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/); [PLAN-01 v0.4, calendar and exit gates](../../../planning/five-month-plan.md#calendar-and-exit-gates); [M-05 roadmap](../../roadmap.md#m-05-development-tooling--14-november-2026).\
+**Inputs:** AGENTS v1.16; development rules v1.14; [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/); [PLAN-01 v0.4, calendar and exit gates](../../../planning/five-month-plan.md#calendar-and-exit-gates); [M-05 roadmap](../../roadmap.md#conventional-commits-tooling--14-november-2026).\
 **Trace:** Supports upcoming [SP-08 v0.4.3](../../../../specs/008-linked-keyword-search.md) / [IMPL-SP-08 v0.1](../../tasks/08-linked-keyword-search.md) delivery hygiene. No product FR/AC/BR/SC change, new product child, data migration or application evidence.
 
 Add an English commit convention and a dependency-free, opt-in Git hook that checks new commit subjects. Retain scopes used by the project and preserve the existing agent identity and attribution rules. Git-generated merge subjects have a tooling exception. No history rewrite, release automation, CI gate or remote action.
