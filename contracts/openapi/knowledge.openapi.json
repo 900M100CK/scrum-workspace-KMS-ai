@@ -3352,6 +3352,50 @@
             "type": "string",
             "minLength": 1
           },
+          "current_work": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "kind": {
+                    "const": "project"
+                  },
+                  "include_documents": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "include_documents"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "sprint",
+                      "task"
+                    ]
+                  },
+                  "id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "include_documents": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "id",
+                  "include_documents"
+                ]
+              }
+            ]
+          },
           "scope": {
             "enum": [
               "current",

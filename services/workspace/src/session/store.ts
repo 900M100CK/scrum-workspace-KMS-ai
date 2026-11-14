@@ -70,8 +70,16 @@ export class WorkspaceSessionStore {
  /** Caller owns the transaction; typed denial commits a clock-fault latch without business effects. */
  async inspectInTransaction(c:PoolClient,token:string,renew=false,correlationId?:string):Promise<SessionResult>{
   if(!validToken(token))return {kind:'unauthenticated'};
+   return this.inspectSession(c,{digest:tokenDigest(token)},renew,correlationId);
+ }
+ async inspectServiceSession(c:PoolClient,sessionId:string,userId:string):Promise<SessionResult>{
+  return this.inspectSession(c,{sessionId,userId},false);
+ }
+ private async inspectSession(c:PoolClient,selector:{digest:string}|{sessionId:string;userId:string},renew:boolean,correlationId?:string):Promise<SessionResult>{
    const clock=await clockLock(c);
-   const hint=(await c.query('SELECT s.user_id,s.session_id FROM workspace.session s JOIN workspace.session_token t USING(session_id) WHERE t.token_digest=$1',[tokenDigest(token)])).rows[0];
+   const hint=('digest' in selector
+     ? await c.query('SELECT s.user_id,s.session_id FROM workspace.session s JOIN workspace.session_token t USING(session_id) WHERE t.token_digest=$1',[selector.digest])
+     : await c.query('SELECT user_id,session_id FROM workspace.session WHERE session_id=$1 AND user_id=$2',[selector.sessionId,selector.userId])).rows[0];
    if(!hint)return {kind:'unauthenticated'};
    const account=(await c.query('SELECT disabled FROM workspace.lock_auth_account($1)',[hint.user_id])).rows[0];
    const row=(await c.query(`SELECT ${sessionFields},s.revoked FROM workspace.session s WHERE s.session_id=$1 FOR UPDATE`,[hint.session_id])).rows[0];

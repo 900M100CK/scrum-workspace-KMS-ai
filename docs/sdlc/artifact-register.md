@@ -39,7 +39,7 @@ Prior OWNER-Q-01 verification: combined Node 24.21.0 run `node --test tests/docs
 ## Current register and handoffs
 
 **Artifact ID:** REG-00
-**Version/date:** 0.145 Draft · 13 November 2026
+**Version/date:** 0.146 Draft · 14 November 2026
 **Status:** Draft; confirmed policy corrections in progress, full coverage and remaining decisions explicit.
 **Source versions:** Proposed ADR-0024/0025 for SP-01.1; [BRD stable entry](../BRD.md) → [English BRD v1.0](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md) and two Proposed addenda, [AGENTS.md v1.13](../../AGENTS.md), [workflow](../../agents/WORKFLOW.md), PRD-01 v0.10.3, UC-02 v0.8.4, SAD-03 v0.19.1 and ADR-0007–ADR-0017. Prior review inputs remain historical. Storage has measured test evidence; bounded session runtime evidence exists; interviews, pilot and full application acceptance remain absent.; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; Proposed ADR-0026; Proposed ADR-0029 v0.1
 
@@ -134,7 +134,7 @@ The BRD leaves architecture to design while AGENTS.md directs minimal microservi
 | Artifact ID | Version | Canonical source |
 | --- | --- | --- |
 | UML-07 | v0.25.9 | [Source](diagrams/README.md) |
-| REG-00 | v0.145 | [Source](artifact-register.md) |
+| REG-00 | v0.146 | [Source](artifact-register.md) |
 | SAD-03 | v0.19.1 | [Source](../architecture.md) |
 | UX-PERM-MATRIX-02 | v0.11.3 | [Source](../ux/permission-matrix.md) |
 | UX-PERSONAS-01 | v0.5.3 | [Source](../ux/personas.md) |
@@ -862,3 +862,9 @@ P02-A input-only companion: EVAL-CASES-ENTRY v0.8.4 updates current TEST-08 alia
 ## SP-09 fixture increment — 13 November 2026
 
 [FEAT-SP09-01 v0.3](../implementation/features/sp-09-cited-question/plan.md) links the [SP09-WBS-01 breakdown](../implementation/features/sp-09-cited-question/breakdown.md) and the [SP09-FIXTURE-RESULT-01 handoff](reports/SP-09-fixture-handoff-2026-11-13.md) for M-06.
+
+## SP-10 current work questions
+
+[FEAT-SP10-01 v0.1](../implementation/features/sp-10-current-work-question/plan.md) and its [breakdown](../implementation/features/sp-10-current-work-question/breakdown.md) register P00–P05 under M-06.
+
+[SP10-FIXTURE-RESULT-01 v0.1](reports/SP-10-fixture-handoff-2026-11-14.md) records fixture runtime and review evidence.

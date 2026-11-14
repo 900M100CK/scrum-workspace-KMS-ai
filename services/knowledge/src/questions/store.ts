@@ -1,3 +1,4 @@
+import {expectedWorkAnswer, workDigest, workEvidence, type Work} from './work.ts';
 import {createHash, randomUUID} from 'node:crypto';
 import {isDeepStrictEqual} from 'node:util';
 import type {Pool, PoolClient} from 'pg';
@@ -10,10 +11,11 @@ type Locator = Pick<Passage, 'document_id' | 'version_id' | 'passage_id'>;
 type Row = Omit<Passage, 'rank'> & {
   unavailable: boolean; lifecycle_revision: string; version_digest: string; excerpt_digest: string;
 };
-export type Evidence = Locator & {
+type DocumentEvidence = Locator & {
   kind: 'document'; source_id: string; project_id: string; permission_revision: string;
   lifecycle_revision: string; version_digest: string; excerpt_digest: string;
 };
+export type Evidence = DocumentEvidence | ReturnType<typeof workEvidence>[number];
 export type Context = {
   project_id: string; session_generation: string; project_permission_revision: string;
   documents: Record<string, string>;
@@ -34,7 +36,7 @@ function passage(row: Row, rank: number): Passage {
   return {document_id, version_id, passage_id, title, excerpt, validity, rank};
 }
 
-function evidence(row: Row, context: Context, source: string): Evidence {
+function evidence(row: Row, context: Context, source: string): DocumentEvidence {
   const {document_id, version_id, passage_id, lifecycle_revision, version_digest, excerpt_digest} = row;
   return {kind: 'document', source_id: source, project_id: context.project_id, document_id, version_id, passage_id,
     permission_revision: context.documents[document_id]!, lifecycle_revision, version_digest, excerpt_digest};
@@ -106,20 +108,25 @@ export class QuestionStore {
       : passage(row, 1);
   }
 
-  async start(actor: string, context: Context, question: string, scope: Scope) {
+  async start(actor: string, context: Context, question: string, scope: Scope, work?: Work) {
     const run = randomUUID();
-    const rows = await this.candidates(context, question, scope);
+    const rows = work && !work.include_documents ? [] : await this.candidates(context, question, scope);
     const entries = rows.map((row, index) => evidence(row, context, 'S' + (index + 1)));
+    const operational = work ? workEvidence(context.project_id,work) : [];
     await this.transaction(async client => {
-      await client.query(`INSERT INTO knowledge.execution(run_id,actor_id,project_id,configuration_id)
-        VALUES($1,$2,$3,(SELECT configuration_id FROM knowledge.embedding_configuration WHERE configuration_id=$4))`,
-      [run, actor, context.project_id, configuration]);
+      await client.query(`INSERT INTO knowledge.execution(run_id,actor_id,project_id,configuration_id,validation_outcomes)
+        VALUES($1,$2,$3,(SELECT configuration_id FROM knowledge.embedding_configuration WHERE configuration_id=$4),$5)`,
+      [run, actor, context.project_id, work && !work.include_documents ? null : configuration, work ? {work_digest:workDigest(work)} : {}]);
       for (const entry of entries) {
         await client.query(`INSERT INTO knowledge.provenance(run_id,source_id,document_id,version_id,passage_id)
           VALUES($1,$2,$3,$4,$5)`, [run, entry.source_id, entry.document_id, entry.version_id, entry.passage_id]);
       }
+      for (const entry of operational) {
+        await client.query(`INSERT INTO knowledge.provenance(run_id,source_id,entity_id,observation_revision,observed_at)
+          VALUES($1,$2,$3,$4,$5)`,[run,entry.source_id,entry.entity_id,entry.observation_revision,entry.observed_at]);
+      }
     });
-    return {run_id: run, evidence: entries, sources: rows.map((row, index) => ({...passage(row, index + 1), source_id: entries[index]!.source_id}))};
+    return {run_id: run, evidence: [...entries,...operational], sources: rows.map((row, index) => ({...passage(row, index + 1), source_id: entries[index]!.source_id}))};
   }
 
   async assertRun(actor: string, context: RunContext) {
@@ -129,27 +136,31 @@ export class QuestionStore {
   }
 
   async prepare(actor: string, session: string, context: RunContext, purpose: Purpose,
-    destination: string, question: string, draft: unknown, original: Evidence[]) {
-    await this.assertRun(actor, context);
+    destination: string, question: string, draft: unknown, original: Evidence[], work?: Work) {
+    const {rows:[run]} = await this.pool.query<{work_digest:string|null}>(`SELECT validation_outcomes->>'work_digest' AS work_digest
+      FROM knowledge.execution WHERE run_id=$1 AND actor_id=$2 AND project_id=$3`,
+    [context.run_id,actor,context.project_id]);
+    if (!run || run.work_digest !== (work ? workDigest(work) : null)) throw missing();
     const {rows} = await this.pool.query<Row & {source_id: string}>(`
       SELECT ${fields}, b.source_id FROM ${tables}
       JOIN knowledge.provenance b USING(document_id,version_id,passage_id)
       WHERE b.run_id=$1 AND d.project_id=$2 ORDER BY b.source_id`, [context.run_id, context.project_id]);
-    const complete = rows.map(row => evidence(row, context, row.source_id));
+    const complete = [...rows.map(row => evidence(row, context, row.source_id)), ...(work ? workEvidence(context.project_id,work) : [])];
     if (!isDeepStrictEqual(complete, original) || rows.some(row => row.unavailable)) throw missing();
     const sources = rows.map((row, index) => ({...passage(row, index + 1), source_id: row.source_id}));
     let payload: unknown;
     if (purpose === 'provider_input') {
       payload = {model, run_id: context.run_id, question, sources: sources.map(
-        ({source_id, document_id, version_id, passage_id, excerpt}) => ({source_id, document_id, version_id, passage_id, excerpt}))};
+        ({source_id, document_id, version_id, passage_id, excerpt}) => ({source_id, document_id, version_id, passage_id, excerpt})),
+        ...(work ? {work} : {})};
     } else {
-      const expected = expectedAnswer(context.run_id, question, sources);
+      const expected = work ? expectedWorkAnswer(context.run_id,question,sources,work) : expectedAnswer(context.run_id, question, sources);
       if (!isDeepStrictEqual(draft, expected)) throw missing();
       payload = expected;
     }
     const bytes = Buffer.from(JSON.stringify(payload));
     const manifest = {
-      handoff_id: randomUUID(), run_id: context.run_id, attempt_id: context.run_id,
+      handoff_id: randomUUID(), run_id: context.run_id, attempt_id: work ? context.run_id + ':' + work.fingerprint : context.run_id,
       purpose, actor_id: actor, project_id: context.project_id, access_context_ref: session,
       session_generation: context.session_generation, project_permission_revision: context.project_permission_revision,
       evidence_set: complete, payload_digest: hash(bytes), payload_length: bytes.length,
@@ -157,7 +168,7 @@ export class QuestionStore {
     };
     await this.transaction(async client => {
       if (purpose === 'answer_delivery') {
-        await client.query(`UPDATE knowledge.execution SET validation_outcomes=jsonb_build_object(
+        await client.query(`UPDATE knowledge.execution SET validation_outcomes=validation_outcomes || jsonb_build_object(
           'claim_support','verified_fixture','exact_locators',true,'prepared_status',$2::text) WHERE run_id=$1`,
         [context.run_id, (payload as {status: string}).status]);
       }
@@ -181,6 +192,7 @@ export class QuestionStore {
 
   async recheck(context: Context, entries: Evidence[]) {
     for (const entry of entries) {
+      if (entry.kind === 'operational') continue; // Workspace revalidates its own committed projection.
       const row = await this.lookup(context.project_id, entry);
       if (row.unavailable || !context.documents[row.document_id] ||
           !isDeepStrictEqual(entry, evidence(row, context, entry.source_id))) throw missing();

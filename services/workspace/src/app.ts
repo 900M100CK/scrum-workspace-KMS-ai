@@ -1,3 +1,5 @@
+import {registerWorkObservations} from './observations/http.ts';
+import {projectFailure} from './projects/outcomes.ts';
 import {registerSprintHttp,SPRINT_OPERATIONS,type SprintHttpOptions} from './sprints/http.ts';
 import {registerDocumentHttp,type DocumentHttpOptions} from './documents/http.ts';
 import Fastify from 'fastify';
@@ -24,13 +26,24 @@ export function buildApp(options:SessionHttpOptions&ProjectHttpOptions&TaskHttpO
   return reply.code(status).send({code:status===503?'access_unavailable':'validation_failed',message:status===503?'Session unavailable':'Invalid request',run_id:null});
  });
  app.addHook('onRequest', async request => {
+  if (request.routeOptions.url === '/internal/observations') return;
   for (const name of ['x-service-key', 'x-actor-session', 'x-actor-user-id']) delete request.headers[name];
  });
  app.register(async scope=>registerSessionHttp(scope,options));
  app.register(async scope=>registerProjectHttp(scope,{...options,documentGuard:options.orchestrator?.guard,taskOperations:options.tasks?TASK_OPERATIONS:new Set(),sprintOperations:options.sprints?SPRINT_OPERATIONS:new Set()}));
  app.register(async scope=>registerTaskHttp(scope,options));
  app.register(async scope=>registerSprintHttp(scope,options));
- if(options.docs&&options.orchestrator)app.register(async scope=>registerDocumentHttp(scope,options as DocumentHttpOptions));
+ if(options.docs&&options.orchestrator){
+  app.register(async scope=>registerDocumentHttp(scope,options as DocumentHttpOptions));
+  app.register(async scope=>{
+   scope.setErrorHandler((error,_request,reply)=>{
+    const fault=projectFailure(error);
+    return reply.code(fault.status).send(fault.status===404?{code:'not_found',message:'Resource unavailable'}:
+     {code:fault.code,message:'Observation unavailable',run_id:null});
+   });
+   registerWorkObservations(scope,options as DocumentHttpOptions);
+  });
+ }
  app.get('/healthz', async () => ({ status: 'ok', service: 'workspace' }));
  app.setNotFoundHandler((_request, reply) => reply.code(404).send({ code: 'not_found', message: 'Resource unavailable' }));
  return app;
