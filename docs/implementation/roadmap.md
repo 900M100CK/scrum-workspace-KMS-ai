@@ -1,7 +1,7 @@
 # Dependency-based implementation roadmap
 
 **Artifact ID:** IMPL-ROADMAP-01\
-**Version/date:** 0.62 Draft · 13 November 2026
+**Version/date:** 0.63 Draft · 13 November 2026
 **Status:** Planning order, not completed work or scope acceptance.\
 **Inputs:** PRD-01 v0.10.3; SPEC-INDEX v0.8.2; PLAN-01 v0.4; [decisions](decisions.md); [task catalogue](tasks/README.md).\
 **Trace:** BR-01–BR-14; SC-01–SC-08.\
@@ -250,4 +250,8 @@ P02-A input-only companion: EVAL-CASES-ENTRY v0.8.4 updates current TEST-08 alia
 
 ## SP-08 linked keyword search — 13 November 2026
 
-[FEAT-SP08-01 v0.1](features/sp-08-linked-keyword-search/plan.md) registers P00–P05 under PLAN-01 Month 2 / M-05.
+[FEAT-SP08-01 v0.2](features/sp-08-linked-keyword-search/plan.md) links the [SP08-WBS-01 breakdown](features/sp-08-linked-keyword-search/breakdown.md) and [SP08-BACKTRACK-01 handoff](../sdlc/reports/SP-08-backtracking-handoff-2026-11-13.md) under PLAN-01 Month 2 / M-05.
+
+## SP-09 fixture increment — 13 November 2026
+
+[FEAT-SP09-01 v0.3](features/sp-09-cited-question/plan.md) links the [SP09-WBS-01 breakdown](features/sp-09-cited-question/breakdown.md) and the [SP09-FIXTURE-RESULT-01 handoff](../sdlc/reports/SP-09-fixture-handoff-2026-11-13.md) for M-06.

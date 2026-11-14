@@ -1,3 +1,4 @@
+import {registerProjectQuestions} from '../questions/http.ts';
 import {registerProjectDiscovery} from './discovery.ts';
 import {canManageDocumentAccess} from './authority.ts';
 import {deliverDocument} from './delivery.ts';
@@ -20,6 +21,7 @@ export interface DocumentHttpOptions {
   docs: WorkspaceDocumentStore;
   orchestrator: DocumentOrchestrator;
   origin?: string;
+  questionProvider?: URL | undefined;
 }
 
 export async function registerDocumentHttp(app: FastifyInstance, options: DocumentHttpOptions) {
@@ -83,6 +85,7 @@ export async function registerDocumentHttp(app: FastifyInstance, options: Docume
     );
   });
 
+  if (options.orchestrator.transport.question) registerProjectQuestions(app, options);
   if (options.orchestrator.transport.discovery) registerProjectDiscovery(app, options);
 
   // POST /projects/:project_id/documents

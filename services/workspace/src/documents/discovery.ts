@@ -28,7 +28,7 @@ function fields(value: unknown, allowed: string[]): Record<string, unknown> {
   return value as Record<string, unknown>;
 }
 
-async function scope(client: PoolClient, actor: string, project: string, work: boolean): Promise<Scope> {
+export async function discoveryScope(client: PoolClient, actor: string, project: string, work: boolean): Promise<Scope> {
   const {member} = await projectAccess(client, actor, project);
   const policies = await readableDocumentPolicies(client, actor, project, member.membership_generation);
   const pending = await client.query<{document_id: string}>(
@@ -93,7 +93,7 @@ export function registerProjectDiscovery(app: FastifyInstance, options: Document
     await deliverDocument(orchestrator, token, project, reply, async () => {
       const who = await identity(token);
       const access = await projects.transaction(token, async (client, actor, current) => {
-        const result = await scope(client, actor, project, work);
+        const result = await discoveryScope(client, actor, project, work);
         return await current() ? result : null;
       });
       const read = (offset: number) => send<Page<T>>(who, action, {
@@ -112,7 +112,7 @@ export function registerProjectDiscovery(app: FastifyInstance, options: Document
         ? codec.encode(selector, generation, String(offset + result.items.length), now) : null}, fingerprint};
     }, result => [...new Set(result.response.items.flatMap(getDocuments))], false, () => 200,
     result => result.response, async (client, actor, result) => {
-      if (requestHash(await scope(client, actor, project, work)) !== result.fingerprint) throw conflict();
+      if (requestHash(await discoveryScope(client, actor, project, work)) !== result.fingerprint) throw conflict();
     });
   }
 
@@ -154,7 +154,7 @@ export function registerProjectDiscovery(app: FastifyInstance, options: Document
     const token = sessionToken(request);
     const who = await identity(token);
     const check = async (client: PoolClient, actor: string) => {
-      const access = await scope(client, actor, project, true);
+      const access = await discoveryScope(client, actor, project, true);
       if (!contains(access, fromKind, from) || !contains(access, toKind, to)) throw missing();
       await checkLinkAuthority(client, actor, project);
     };

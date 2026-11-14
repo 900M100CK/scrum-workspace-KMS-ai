@@ -1,3 +1,5 @@
+import {QuestionStore} from './questions/store.ts';
+import {registerQuestionHttp} from './questions/http.ts';
 import {registerDiscoveryHttp} from './documents/discovery-http.ts';
 import type {ServerOptions} from 'node:https';
 import {registerKnowledgeDocumentHttp} from './documents/http.ts';
@@ -14,6 +16,7 @@ export function buildApp(options?: {tls: ServerOptions; store: KnowledgeDocument
   });
   registerKnowledgeDocumentHttp(scope, options);
   registerDiscoveryHttp(scope, options);
+  registerQuestionHttp(scope, new QuestionStore(options.store.pool), options.expectedKey);
  });
  app.get('/healthz', async () => ({ status: 'ok', service: 'knowledge' }));
  app.setNotFoundHandler((_request, reply) => reply.code(404).send({ code: 'not_found', message: 'Resource unavailable' }));
