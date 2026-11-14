@@ -1,12 +1,12 @@
 # Answer a question with exact accessible evidence
 
 **Artifact ID:** SP-09  
-**Version/date:** 0.9.3 Draft · 4 November 2026
+**Version/date:** 0.9.4 Draft · 13 November 2026
 **Status:** Draft for owner review; ADR-0007–ADR-0017 directions are owner-confirmed; application acceptance remains unproven.\
 **Inputs:** PRD-01 v0.10.3; [architecture](../docs/architecture.md); [use case](../docs/sdlc/use-cases.md#uc-09--answer-a-question-with-exact-accessible-evidence); [contract pack](../contracts/README.md); PLAN-01 v0.4.\; Proposed ADR-0020; Proposed ADR-0023
 **Author:** development agent acting sequentially; owner reviews business choices.
 
-**Status:** Unimplemented. **Target:** Month 3.  
+**Status:** Bounded implementation with fixture verification. **Target:** Month 3.\
 **Dependencies:** SP-07, SP-08, SP-11. SP-11 is the capture interface, not SP-13 inspection UI.  
 **Trace:** FR-21, FR-22, FR-23, FR-24, FR-28, FR-29, FR-30, FR-46, FR-53, FR-54, FR-55, FR-60, FR-69; BR-08, BR-10, BR-12, BR-07, BR-13; SC-02, SC-06, SC-07, SC-08.
 
@@ -29,7 +29,7 @@ Input: valid session, operation-specific fields, expected revision and scoped id
 
 ## Allowed paths and Done
 
-Touch only: services/knowledge/**, services/workspace/gateway/**, services/workspace/policy/**, apps/web/**, tests/**. Shared contracts/rules are read dependencies; changing them requires a recorded change and dependent-spec update. No other-service database writes.
+Touch only: services/knowledge/**, services/workspace/src/{documents,policy,questions,session}/**, Workspace startup wiring, apps/web/**, tests/** and registered feature planning records. Shared contracts/rules are read dependencies; changing them requires a recorded change and dependent-spec update. No other-service database writes.
 
 Current commands: npm run context:check and npm run context:test validate context/contracts only.
 
@@ -70,3 +70,7 @@ HANDOFF-SQL-01 supplies an executed SQL-to-StoredHandoff reference projection an
 ## Input metadata reconciliation — 25 October 2026
 
 Only input-version metadata is synchronized for the bounded architecture/UC/checklist corrections. Requirements, acceptance assertions, design body and prior observations are unchanged; no complete semantic review or runtime check is implied.
+
+## Selected fixture execution
+
+The [registered plan](../docs/implementation/features/sp-09-cited-question/plan.md) permits the bounded Workspace src gateway, document transport, session and guard integration, Knowledge runtime, web and targeted tests. This increment uses synthetic data and a loopback provider. The [fixture results](../docs/implementation/features/sp-09-cited-question/plan.md#fixture-verification) record runtime coverage and remaining transport and provider acceptance. The existing protected byte validator supplies reference cases. The fixture runtime enforces its compact JSON byte profile before each protected send.

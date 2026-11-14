@@ -1,7 +1,7 @@
 # SP-08 linked knowledge and keyword search
 
 **Artifact ID:** FEAT-SP08-01
-**Version/date:** 0.1 Draft · 13 November 2026
+**Version/date:** 0.2 Draft · 13 November 2026
 **Status:** Registered for sequential execution.
 **Planning mode:** Planned interactively before execution.
 **Inputs:** [SP-08](../../../../specs/008-linked-keyword-search.md), [PRD](../../../sdlc/PRD_SRS.md), [architecture](../../../architecture.md), [contracts](../../../../contracts/README.md), ADR-0004/0006/0007/0011/0017 and Proposed ADR-0033/0034.
@@ -33,3 +33,5 @@ Use Node 24, disposable PostgreSQL and standard Workspace/Knowledge entry points
 SP-05 88/88, SP-06 51/51 and SP-07 33/33 in the disposable suites. Existing Sprint/Document Edge regression 3/3. Typecheck, build, foundation, prototype, context, docs and contract checks passed. SP-08 runtime and Edge acceptance passed 3/3, including link creation from the browser. The fixture covers both entrypoints, link/audit transaction and replay, scoped Current/History, grant/revoke/rejoin, stale and foreign cursors, guarded handoff, and unavailable Knowledge with working Task reads. The browser path uses synthetic records and produces fresh desktop/mobile evidence. Keyword was tested without provider or embedding configuration.
 
 The [runbook](../../../../services/workspace/DISCOVERY.md) contains the repeatable corpus and startup. Semantic readiness and full AI citation delivery remain outside this evidence. The prior 5173 daemon uses its own source and bootstrap; use the standard entrypoints from this branch for an SP-08 demo.
+
+Use the [task breakdown](breakdown.md) and [backtracking handoff](../../../sdlc/reports/SP-08-backtracking-handoff-2026-11-13.md) to isolate regressions by task and test.

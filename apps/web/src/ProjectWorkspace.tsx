@@ -1,3 +1,4 @@
+import {AskWorkspace} from './AskWorkspace.tsx';
 import {KeywordWorkspace} from './KnowledgeDiscovery.tsx';
 import {SprintWorkspace} from './SprintWorkspace.tsx';
 import {useEffect,useRef,useState,useSyncExternalStore} from 'react';
@@ -9,7 +10,7 @@ export function ProjectWorkspace({userId,onSessionLost,controller:provided}:{use
  const [controller]=useState(()=>provided??new ProjectController(userId,onSessionLost));
  const state=useSyncExternalStore(controller.subscribe,controller.getSnapshot,controller.getSnapshot);
  useEffect(()=>{void controller.refresh();return()=>controller.cancel();},[controller]);
- const [view,setView]=useState<"work"|"search">("work");
+ const [view,setView]=useState<"work"|"search"|"ask">("work");
  const [workRevision,setWorkRevision]=useState(0);
  const [removing,setRemoving]=useState<Member|null>(null);
  const feedback=useRef<HTMLParagraphElement>(null),previousBusy=useRef(false);
@@ -31,8 +32,9 @@ export function ProjectWorkspace({userId,onSessionLost,controller:provided}:{use
    <nav aria-label="Project navigation" className="knowledge-navigation">
     <button aria-current={view==='work'?'page':undefined} onClick={()=>setView('work')}>Workspace</button>
     <button aria-current={view==='search'?'page':undefined} onClick={()=>setView('search')}>Search</button>
+    <button aria-current={view==='ask'?'page':undefined} onClick={()=>setView('ask')}>Ask</button>
    </nav>
-   {view==='search'?<KeywordWorkspace key={state.project.project_id} projectId={state.project.project_id} onSessionLost={onSessionLost}/>:<>
+   {view==='ask'?<AskWorkspace key={state.project.project_id} projectId={state.project.project_id} onSessionLost={onSessionLost}/>:view==='search'?<KeywordWorkspace key={state.project.project_id} projectId={state.project.project_id} onSessionLost={onSessionLost}/>:<>
    {state.actions.includes('listTasks')?<TaskWorkspace key={state.project.project_id+':'+workRevision} userId={userId} projectId={state.project.project_id} onSessionLost={onSessionLost}/>:null}{state.actions.includes('listSprints')?<SprintWorkspace key={state.project.project_id} userId={userId} projectId={state.project.project_id} onSessionLost={onSessionLost} onWorkChanged={()=>setWorkRevision(n=>n+1)} onAccessLost={()=>void controller.refresh()}/>:null}<DocumentWorkspace key={'doc:'+state.project.project_id} userId={userId} projectId={state.project.project_id} onSessionLost={onSessionLost}/><h3>Members</h3>
    <ul className="member-list">{state.members.map(m=><li key={m.user_id}><div><span className="member-id" translate="no">{m.user_id}</span><p className="muted">{m.role.replaceAll('_',' ')} · revision {m.revision}</p></div>{state.actions.includes('removeMember')?<button disabled={locked} aria-label={'Remove member '+m.user_id} onClick={()=>setRemoving(m)}>Remove</button>:null}</li>)}</ul>
    {removing?<div className="removal-confirmation" role="group" aria-label="Confirm member removal"><p>Remove member <span translate="no">{removing.user_id}</span>? This revokes individual access and clears current task assignments. Rejoining does not restore old grants.</p><button disabled={locked} onClick={()=>void controller.remove(removing)}>Confirm removal</button><button disabled={locked} onClick={()=>setRemoving(null)}>Cancel removal</button></div>:null}

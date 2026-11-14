@@ -1,7 +1,7 @@
 # Work plan register and template
 
 **Artifact ID:** IMPL-FEATURES-01\
-**Version/date:** 0.69 Draft · 13 November 2026
+**Version/date:** 0.71 Draft · 13 November 2026
 **Status:** Planning entry; no application feature accepted or implemented by this file.\
 **Inputs:** [Development rules](../../development-rules.md) v1.13; [implementation roadmap](../roadmap.md) v0.54; [PLAN-01](../../planning/five-month-plan.md) v0.4; [spec index](../../../specs/README.md) v0.8.6; [source register](../register.md).\
 **Trace:** Existing feature FR/AC/BR/SC through its canonical spec; no added scope.\
@@ -299,4 +299,8 @@ P02-A input-only companion: EVAL-CASES-ENTRY v0.8.4 updates current TEST-08 alia
 
 ## SP-08 linked keyword search — 13 November 2026
 
-[FEAT-SP08-01 v0.1](sp-08-linked-keyword-search/plan.md) registers P00–P05 under PLAN-01 Month 2 / M-05.
+[FEAT-SP08-01 v0.2](sp-08-linked-keyword-search/plan.md) links the [SP08-WBS-01 breakdown](sp-08-linked-keyword-search/breakdown.md) and [SP08-BACKTRACK-01 handoff](../../sdlc/reports/SP-08-backtracking-handoff-2026-11-13.md) under PLAN-01 Month 2 / M-05.
+
+## SP-09 fixture increment — 13 November 2026
+
+[FEAT-SP09-01 v0.3](sp-09-cited-question/plan.md) links the [SP09-WBS-01 breakdown](sp-09-cited-question/breakdown.md) and the [SP09-FIXTURE-RESULT-01 handoff](../../sdlc/reports/SP-09-fixture-handoff-2026-11-13.md) for M-06.

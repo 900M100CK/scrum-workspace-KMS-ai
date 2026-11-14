@@ -8,13 +8,13 @@ export function knowledgeTransport(base: URL, serviceKey: string, ca?: Buffer): 
   async function call<T>(
     identity: {actor: string; session: string}, path: string, method = 'GET',
     body?: object, key?: string, correlation?: string, allowMissing = false,
-    operation?: 'reviseDocument' | 'archiveVersion' | 'deleteDocument'
+    operation?: 'reviseDocument' | 'archiveVersion' | 'deleteDocument', timeout = 2500
   ): Promise<T> {
     return new Promise((resolve, reject) => {
       const payload = body === undefined ? undefined : JSON.stringify(body);
       const req = request(new URL(path, base), {
         method, ca,
-        signal: AbortSignal.timeout(2500),
+        signal: AbortSignal.timeout(timeout),
         headers: {
           ...buildInternalServiceHeaders(serviceKey, identity.session),
           'x-actor-user-id': identity.actor,
@@ -72,6 +72,16 @@ export function knowledgeTransport(base: URL, serviceKey: string, ca?: Buffer): 
   const withProject = (path: string, project: string, extra: Record<string, string> = {}) =>
     path + '?' + new URLSearchParams({project_id: project, ...extra});
   return {
+    question: (actor, action, body) => {
+      if (action === 'get-handoff-manifest') {
+        const {handoff_id, project_id, run_id, session_generation, project_permission_revision} = body as Record<string, string>;
+        const selectors = new URLSearchParams({project_id: project_id!, run_id: run_id!,
+          session_generation: session_generation!, project_permission_revision: project_permission_revision!});
+        return call(actor, '/internal/handoffs/' + encodeURIComponent(handoff_id!) + '?' + selectors);
+      }
+      return call(actor, '/internal/question-runtime/' + action, 'POST', body,
+        undefined, undefined, false, undefined, action === 'recheck' ? 250 : 2500);
+    },
     discovery: (actor, action, body, key, correlation) =>
       call(actor, '/internal/discovery/' + action, 'POST', body, key, correlation),
     persist: (actor, payload, key, correlation, session) =>
