@@ -1,6 +1,6 @@
 # Development rules
 
-Version 1.14 · 2 Nov 2026
+Version 1.15 · 14 Nov 2026
 Applies to **development agents**. It does not define the permissions of the application's runtime AI assistant (see §7).
 
 ## 1. Authority
@@ -121,9 +121,17 @@ Required tests: replacement, historical query, failed/retried indexing, stale ca
 - **Workflow:** run [agent-preflight-checklist.md](agent-preflight-checklist.md) → identify BR/SC refs and acceptance criteria → inspect code and conventions → for substantial work, state a short plan with assumptions and failure cases → make the smallest coherent change → run checks and inspect failures → run the checklist's §9 → report.
 - **Authorisation:** proceed with authorised, reversible work without repeated confirmation. Ask first before changing product scope or doing destructive operations not already authorised. Never delete user work, overwrite unrelated changes, or send real data to a new external service.
 - **Migrations:** make them reversible; never edit one that has already run.
-- **Branch / commit:** no convention is set yet. Preserve the active branch; commit only when asked, using the agent's own identity and a `Co-Authored-By` byline.
+- **Branch / commit:** preserve the active branch; commit only when asked, following [Commit messages](#commit-messages) and using the agent's identity with a `Co-Authored-By` byline.
 - **Roles:** one agent may play requirements, architect, implementer, reviewer and evaluator. Do not spawn parallel agents unless the owner asks. Do not claim independent review of your own work.
 - **Documentation agents:** profiles under `agents/` inherit this file. Follow `agents/WORKFLOW.md` for SDLC artifact order, handoffs, and review gates.
+
+### Commit messages
+
+Use [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/) for new authored commits: `type[(scope)][!]: description`. Use `feat` for new functionality and `fix` for bug fixes. Use a lowercase type such as `docs`, `test`, `refactor`, `ci`, `build` or `chore` for other work. Scope is optional; name the affected area or feature, for example `docs(sp08): record keyword search acceptance criteria`.
+
+Use `!` before the colon or a `BREAKING CHANGE:` footer to mark a breaking change. Separate the optional body and trailers with blank lines; keep the required agent `Co-Authored-By:` trailer.
+
+Run `npm run commits:setup` once per clone. The local Git hook checks the subject format, permits Git merge subjects during a merge, and keeps any existing hook or custom hooks path intact. With custom hooks, add `node scripts/commit-message.mjs "$1"` to your existing `commit-msg` hook. Linked worktrees share the default hook; checkouts predating the validator are skipped. To remove the installed hook, delete only the `commit-msg` file reported by `git rev-parse --git-path hooks/commit-msg`. Local validation does not enforce PR titles or check whether the type accurately describes the change.
 
 ### 11.1 Work planning gate
 
