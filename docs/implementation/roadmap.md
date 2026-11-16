@@ -254,7 +254,7 @@ P02-A input-only companion: EVAL-CASES-ENTRY v0.8.4 updates current TEST-08 alia
 
 ## SP-09 fixture increment — 13 November 2026
 
-[FEAT-SP09-01 v0.3](features/sp-09-cited-question/plan.md) links the [SP09-WBS-01 breakdown](features/sp-09-cited-question/breakdown.md) and the [SP09-FIXTURE-RESULT-01 handoff](../sdlc/reports/SP-09-fixture-handoff-2026-11-13.md) for M-06.
+[FEAT-SP09-01 v0.5](features/sp-09-cited-question/plan.md) links the [SP09-WBS-01 v0.2 breakdown](features/sp-09-cited-question/breakdown.md), the [SP09-FIXTURE-RESULT-01 handoff](../sdlc/reports/SP-09-fixture-handoff-2026-11-13.md) and [V01 targeted verification](features/sp-09-cited-question/tasks/V01-targeted-verification.md) for M-06.
 
 ## SP-10 current work questions
 
