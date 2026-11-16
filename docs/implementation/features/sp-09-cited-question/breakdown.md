@@ -1,7 +1,7 @@
 # SP-09 task breakdown
 
 **Artifact ID:** SP09-WBS-01\
-**Version/date:** 0.1 Draft · 13 November 2026
+**Version/date:** 0.2 Draft · 16 November 2026
 
 Parent [FEAT-SP09-01](plan.md), [SP-09](../../../../specs/009-cited-question.md) and [M-06](../../roadmap.md). This breakdown was completed during the documentation correction after implementation. Follow it for review and follow-up. The [parent plan](plan.md) owns task status.
 
@@ -15,6 +15,10 @@ Parent [FEAT-SP09-01](plan.md), [SP-09](../../../../specs/009-cited-question.md)
 | [SP09-P05](tasks/P05.md) | P01–P04 and disposable PostgreSQL/TLS fixtures | Runtime verification and handoff |
 
 Start with P00, then P01 through P04 in dependency order. P05 collects the evidence after the feature slices are available. A task can start once its brief has the prerequisites, allowed paths, steps, assertions and evidence destination. Record results in the parent plan and deliver the dated handoff before reporting completion.
+
+## Targeted verification follow-up
+
+[V01](tasks/V01-targeted-verification.md) orders candidate isolation, disposable runtime verification, the Edge regression or handoff, and draft publication. Use the owning plan for live results.
 
 ## Publication sequence
 

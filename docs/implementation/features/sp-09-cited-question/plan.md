@@ -1,10 +1,12 @@
 # SP-09 cited question fixture increment
 
 **Artifact ID:** FEAT-SP09-01
-**Version/date:** 0.3 Draft · 14 November 2026
+**Version/date:** 0.5 Draft · 16 November 2026
 **Planning mode:** The owner supplied the execution plan. Plan mode was unavailable for the documentation correction in Default mode. The original implementation began before the task briefs were complete.
 **Inputs:** [SP-09](../../../../specs/009-cited-question.md), [SP-11](../../../../specs/011-audit-and-source-inspection.md), [PRD](../../../sdlc/PRD_SRS.md), [ADR-0012](../../../adr/0012-audit-visibility-and-durable-evidence.md), [Proposed ADR-0020](../../../adr/0020-manifest-bound-ai-transport.md), [Proposed ADR-0023](../../../adr/0023-immutable-handoff-storage.md).
 **Trace:** FR/AC-21/22/23/24/28/29/30/32/46/53/54/55/57/60/69; SC-02/06/07/08.
+
+Targeted verification V01 was planned in Plan mode against `94136ee`.
 
 Parent [PLAN-01](../../../planning/five-month-plan.md) Month 3 / [M-06](../../roadmap.md). [SP-09.1–09.4](../../tasks/09-cited-question.md) and [SP-11.2/3](../../tasks/11-audit-and-source-inspection.md). Base 723e443 includes SP-08.
 
@@ -20,6 +22,10 @@ D-06 selects synthetic fixtures first. One fixed cosine configuration and a loop
 | [P03](tasks/P03.md) | Validated answer, separate guarded delivery, exact passage | Implemented |
 | [P04](tasks/P04.md) | Ask UI, evidence panel and independent keyword fallback | Implemented |
 | [P05](tasks/P05.md) | Disposable PostgreSQL/TLS, TC-26 byte boundaries, Edge, regression and structural gates | Bounded fixture verification recorded |
+| [V01.1](tasks/V01-targeted-verification.md#v011--isolate-the-candidate) | Isolate the fixture, suite and registered tasks | Candidate prepared in an isolated worktree based on `94136ee`. |
+| [V01.2](tasks/V01-targeted-verification.md#v012--verify-disposable-http-and-postgresql) | Verify GAP-01 and GAP-02 over disposable PostgreSQL and TLS | GAP-01 and GAP-02 passed on Node 24.22.1 with Docker 29.3.1 and disposable PostgreSQL 17/pgvector over TLS. Combined run: 7 passed, 0 failed, 1 Edge skip. |
+| [V01.3](tasks/V01-targeted-verification.md#v013--verify-edge-or-hand-off) | Run or hand off Edge coverage | Edge passed at 1280 and 390 px in the separate run (5 passed, 0 skipped). [Reproduction handoff](verification-handoff.md). |
+| [V01.4](tasks/V01-targeted-verification.md#v014--publish-and-hand-back) | Publish the scoped draft and return to static review | Scoped draft publication tasks tracked by the pull request. Continue the static review at the baseline. |
 
 Use the [task breakdown](breakdown.md) for dependencies and the [dated handoff](../../../sdlc/reports/SP-09-fixture-handoff-2026-11-13.md) for observed results, review steps and follow-up.
 
