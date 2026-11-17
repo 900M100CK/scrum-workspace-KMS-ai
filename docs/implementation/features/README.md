@@ -13,7 +13,7 @@ Follow [the planning gate](../../development-rules.md#111-work-planning-gate) fo
 
 | Work plan ID / kind / file | Version / status | Parent PLAN-01 section / roadmap milestone | Canonical spec / pack children | Next ready task / result |
 | --- | --- | --- | --- | --- |
-| [FEAT-SP01-01 / feature / session foundation](sp-01-session-foundation/plan.md) / [folder entry](sp-01-session-foundation/README.md) | Plan v0.9 Draft; entry/task briefs v0.8; application gated | PLAN-01 Month 1 / M-01 | SP-01 / SP-01.1–01.4; applicable SP-11.1 capture | P01–P04 laboratory preparation verified with limits; P05 clock evidence partial; P06 core policy direction selected; bounded P07 interfaces/HTTPS verified; P08 verified with actual role/storage regression evidence; bounded P09 verified; bounded P10 verified; P11 bounded DOM/live/browser observations verified; P12 bounded regression/handoff executed; release gates open; see authoritative plan |
+| [FEAT-SP01-01 / feature / session foundation](sp-01-session-foundation/plan.md) / [folder entry](sp-01-session-foundation/README.md) | Plan v0.10 Draft; entry v0.9; original briefs v0.8; R01/R02 v0.1; application gated | PLAN-01 Month 1 / M-01 | SP-01 / SP-01.1–01.4; applicable SP-11.1 capture | P01–P04 laboratory preparation verified with limits; P05 clock evidence partial; P06 core policy direction selected; bounded P07 interfaces/HTTPS verified; P08 verified with actual role/storage regression evidence; bounded P09 verified; bounded P10 verified; P11 bounded DOM/live/browser observations verified; P12 bounded regression/handoff executed; release gates open; see authoritative plan |
 | [FEAT-SP02-01 / feature / project membership](sp-02-project-membership/plan.md) / [entry](sp-02-project-membership/README.md) | Plan/entry v0.6; corrected task versions in their headers | PLAN-01 Month 1 / M-02 and M-03 | SP-02 / SP-02.1–02.4; co-delivered SP-11 capture | P03A–P08/P10 bounded implementation verified; optional P09 not selected; actual results/source identities in parent plan; future SP02-F01 and D-07 open |
 
 | [PUB-SP01-SP02-01 / reports and publication](sp-01-sp-02-test-audit-publication/plan.md) / [entry](sp-01-sp-02-test-audit-publication/README.md) | v0.1; owner-authorised | PLAN-01 Month 1 / M-01–M-03 | Existing SP-01/SP-02 evidence; no new feature | Two testing/audit reports, source/publication checks, current-branch commit/push; actual outcome reported after execution |
@@ -312,3 +312,7 @@ P02-A input-only companion: EVAL-CASES-ENTRY v0.8.4 updates current TEST-08 alia
 ## Conventional Commits tooling — 14 November 2026
 
 [DEV-COMMITS-01 v0.1](conventional-commits/plan.md) / [entry](conventional-commits/README.md): PLAN-01 Month 2 / M-05, supporting SP-08 development only. The plan owns the task results.
+
+## SP-01 readability follow-up — 17 November 2026
+
+[FEAT-SP01-01 v0.10](sp-01-session-foundation/plan.md#readability-follow-up--17-november-2026) registers SP01-R01/R02 under PLAN-01 Month 1 / M-01 for behavior-preserving refactoring and regression.

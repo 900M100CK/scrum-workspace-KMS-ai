@@ -3,7 +3,7 @@ import { pathToFileURL } from 'node:url';
 import { resolve } from 'node:path';
 import { workspacePool } from './database.ts';
 import { ScryptVerifier } from './kdf.ts';
-import { WorkspaceSessionOperator } from './store.ts';
+import { WorkspaceSessionOperator } from './operator-store.ts';
 import type { RecoveryInput } from './store.ts';
 
 async function input():Promise<Record<string,unknown>>{

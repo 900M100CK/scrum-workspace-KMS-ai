@@ -1,7 +1,7 @@
 # SP-01 session foundation work plan
 
 **Artifact ID:** FEAT-SP01-01\
-**Version/date:** 0.9 Draft · 28 October 2026\
+**Version/date:** 0.10 Draft · 17 November 2026\
 **Status:** P01–P04 laboratory preparation verified with limits; P05 clock evidence partial; P06 core policy direction selected; P07 verified; bounded P08 verified; P09 verified; bounded P10 verified; P11 bounded DOM/live integration and actual browser observations verified; P12 bounded integrated regression/evidence handoff executed; release gates open.\
 **Inputs:** [SP-01](../../../../specs/001-session.md) v0.5; [PRD](../../../sdlc/PRD_SRS.md) v0.9; [UC](../../../sdlc/use-cases.md) v0.8; [test plan](../../../sdlc/test-plan.md) v0.22; Workspace contract v0.2.10; TECH-STACK-01 v1.6; [canonical brief](../../briefs/SP-01.1-session-foundation.md) v0.4; [runtime spike brief](../../../../SP-01.1-spike-brief.md) v0.2; Proposed ADR-0024/0025 v0.5.\
 **Trace:** FR-01/36/37/68; AC-01/36/37/68; UC-01 including EX-03; TC-01, applicable TC-18/22; BR-01/10; SC-06 relevance, not passed coverage.\
@@ -16,6 +16,30 @@ Authenticated users can sign in, recover their current server-derived session, s
 Parent links: [PLAN-01 Month 1 / Calendar and exit gates](../../../planning/five-month-plan.md#calendar-and-exit-gates), [M-01 authenticated foundation](../../roadmap.md), [SP-01 pack / children 01.1–01.4](../../tasks/01-session.md), [canonical SP-01](../../../../specs/001-session.md). Register links: [work plans](../README.md), [source register](../../register.md), [central register](../../../sdlc/artifact-register.md). Applicable SP-11.1 capture is co-delivered with its producer, not deferred or used as a circular whole-pack prerequisite.
 
 Non-goals: projects/Scrum/document/AI features, provider integration, registration/reset/MFA, a frontend redesign, horizontal guard deployment, physical retention policy, unrelated dependency upgrades, commits/pushes or independent acceptance. Cross-project/document tests are later slices; a session-only result cannot close TC-02 or SC-06 as a whole.
+
+## Readability follow-up — 17 November 2026
+
+Plan mode is unavailable; this written gate precedes edits and regression. Baseline: 94136ee on the active branch. Scope: [SP-01 v0.5.3](../../../../specs/001-session.md), [IMPL-SP-01 v0.7](../../tasks/01-session.md) children 01.2–01.4, [PLAN-01 Month 1](../../../planning/five-month-plan.md), [M-01](../../roadmap.md), FR/AC-01/36/37/68, BR-01/10 and SC-06. Proposed ADR-0024/0025 guide the existing implementation.
+
+| Task | Outcome | Status |
+| --- | --- | --- |
+| [SP01-R01](tasks/SP01-R01-session-readability.md) | Separate runtime storage, operator storage and shared clock/audit; simplify HTTP and web session flow | Implemented; checked by R02 |
+| [SP01-R02](tasks/SP01-R02-session-regression.md) | Compare existing regression before and after; record author evidence and limitations | 71/71 passed before and on final source; bounded author regression |
+
+Preserve callers, transaction lock/query order, expiry, failure responses, atomic audit, requester identity, cookie scope and UI observations. No migration, wire shape, permission/version/citation policy, dependency or visual change. Product writes: Workspace session modules and web session controller only. Documentation writes: owning plan/task/entry and parent registers. Prior evidence and release gates stay open.
+
+**Author handoff.** Start at [runtime storage](../../../../services/workspace/src/session/store.ts) for issue/inspect/renew/revoke, [operator storage](../../../../services/workspace/src/session/operator-store.ts) for account and recovery transactions, and [clock/audit](../../../../services/workspace/src/session/auth-state.ts) for shared persistence. [HTTP](../../../../services/workspace/src/session/http.ts) keeps route-specific checks while sharing mutation screening and session-cookie output. [Web](../../../../apps/web/src/session.ts) makes request phases and response handling explicit. Existing callers and test assertions were retained.
+
+| Existing check | Baseline | Final |
+| --- | ---: | ---: |
+| Session configuration/runtime and web controller unit tests (R02 command) | 8/8 | 8/8 |
+| `npm run test:session:storage` | 17/17 | 17/17 |
+| `npm run test:session:http` | 15/15 | 15/15 |
+| `npm run test:session:lifecycle` | 18/18 | 18/18 |
+| `npm run test:session:ui` | 10/10 | 10/10 |
+| `node --test tests/workspace/session-transaction.test.mjs` | 3/3 | 3/3 |
+
+Node 24.22.3; disposable PostgreSQL 17.10 / pgvector 0.8.2; existing local HTTPS. An intermediate build caught a recovery-audit field mapping typo; it was corrected before the complete final rerun. Workspace/Web builds, workspace typechecks, context lint/check (45 tests), docs lint/test (20 tests), contract tests (27 tests) and diff hygiene passed. React DOM integration uses a simulated cookie jar; no fresh browser, independent review, D-07 or deployment acceptance. Keep unrelated work on the active branch separate; no commit was requested.
 
 ## Historical planning baseline — 27 October 2026
 
