@@ -48,8 +48,8 @@ Artifacts below are owned by the sequential development coordinator. IMPL-REG-01
 | IMPL-ROADMAP-01 (v0.11) | [roadmap](roadmap.md) | Milestones using existing slices and feature-plan backlinks |
 | IMPL-EXEC-01 (v0.7) | [execution](execution.md) | Agent workflow and saved feature-plan gate |
 | IMPL-FEATURES-01 (v0.18) | [work plan register/template](features/README.md) | Plan mode → saved plan → parent registration → small tasks → actual evidence; FEAT-SP01-01 registered under M-01 |
-| FEAT-SP01-01 (v0.9) | [session foundation work plan](features/sp-01-session-foundation/plan.md) | M-01 / PLAN-01 Month 1; 12 small tasks; P01–P04 laboratory preparation verified with limits, P05 partial, P06 material decisions open |
-| FEAT-SP01-ENTRY / SP01-P01–SP01-P12 (all v0.8) | [feature folder entry](features/sp-01-session-foundation/README.md); individual task links in [plan](features/sp-01-session-foundation/plan.md#tasks-and-acceptance) | Bounded task briefs; execution status/results remain in the authoritative parent table |
+| FEAT-SP01-01 (v0.10) | [session foundation work plan](features/sp-01-session-foundation/plan.md) | M-01 / PLAN-01 Month 1; Original P01–P12 and [SP01-R01/R02](features/sp-01-session-foundation/plan.md#readability-follow-up--17-november-2026) |
+| FEAT-SP01-ENTRY (v0.9) / SP01-P01–SP01-P12 (v0.8) / SP01-R01/R02 (v0.1) | [feature folder entry](features/sp-01-session-foundation/README.md); individual task links in [plan](features/sp-01-session-foundation/plan.md#tasks-and-acceptance) | Bounded task briefs; execution status/results remain in the authoritative parent table |
 | IMPL-HANDOFF-01 | [handoff template](handoff-template.md) | Brief and result record |
 | IMPL-TASKS-01 | [task catalogue](tasks/README.md) | Maps all 13 packs to specs, tiers and dependencies |
 | IMPL-SP-01 (v0.6) | [session preparation](tasks/01-session.md) | SP-01.1 preparation In progress; remaining application children Not started |

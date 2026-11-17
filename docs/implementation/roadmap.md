@@ -28,7 +28,7 @@ The [work plan register](features/README.md) links feature, fix, hotfix and test
 
 | Milestone / parent | Child work plan | Scope / next task |
 | --- | --- | --- |
-| M-01 / PLAN-01 Month 1 | [FEAT-SP01-01 v0.9](features/sp-01-session-foundation/plan.md) | Bounded P12 session evidence merged to main at 52a10dd after owner instruction; formal ADR/deployment/D-07 and release limits remain open |
+| M-01 / PLAN-01 Month 1 | [FEAT-SP01-01 v0.10](features/sp-01-session-foundation/plan.md) | [SP01-R01/R02](features/sp-01-session-foundation/plan.md#readability-follow-up--17-november-2026); bounded P12 session evidence merged to main at 52a10dd after owner instruction; formal ADR/deployment/D-07 and release limits remain open |
 | M-02/M-03 / PLAN-01 Month 1 | [FEAT-SP02-01 v0.6](features/sp-02-project-membership/plan.md) | P02 feedback reconciliation; proposed session refactor P03A, reduced authority 007/P03, replay/paging design at P04 before public mutations; bounded sequential implementation owner-authorised |
 
 SP-11 is cross-cutting: its mutation-capture child accompanies every first mutation. Its AI evidence children are later, after work and knowledge prerequisites. SP-06's SP-11 dependency means applicable capture readiness, not completion of the entire AI manifest/inspection pipeline. SP-01 and SP-11 capture are co-delivered where session-producing operations require records; do not create a circular wait or defer audit.
