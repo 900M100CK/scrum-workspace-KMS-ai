@@ -1,7 +1,7 @@
 # Work plan register and template
 
 **Artifact ID:** IMPL-FEATURES-01\
-**Version/date:** 0.73 Draft · 14 November 2026
+**Version/date:** 0.74 Draft · 18 November 2026
 **Status:** Planning entry; no application feature accepted or implemented by this file.\
 **Inputs:** [Development rules](../../development-rules.md) v1.13; [implementation roadmap](../roadmap.md) v0.54; [PLAN-01](../../planning/five-month-plan.md) v0.4; [spec index](../../../specs/README.md) v0.8.6; [source register](../register.md).\
 **Trace:** Existing feature FR/AC/BR/SC through its canonical spec; no added scope.\
@@ -316,3 +316,7 @@ P02-A input-only companion: EVAL-CASES-ENTRY v0.8.4 updates current TEST-08 alia
 ## SP-01 readability follow-up — 17 November 2026
 
 [FEAT-SP01-01 v0.10](sp-01-session-foundation/plan.md#readability-follow-up--17-november-2026) registers SP01-R01/R02 under PLAN-01 Month 1 / M-01 for behavior-preserving refactoring and regression.
+
+## Ask and Task reliability corrections — 18 November 2026
+
+[FIX-ASK-TASK-01 v0.2](ask-task-reliability/plan.md) / [entry](ask-task-reliability/README.md) covers SP-03/04/09/10 under M-02 and M-06.

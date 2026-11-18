@@ -101,12 +101,19 @@ export class TaskController {
    return {detail:current,members,actions:actions.filter(a=>a==='createTask'||a==='listTasks'||currentActions.includes(a)),blockers:items,blockerCursor:page.next_cursor};
   },this.state.location,()=>this.open(detail.task_id));
  };
+ private savePending(p:Pending){
+  if(!this.storage)throw Error('Storage unavailable');
+  const raw=JSON.stringify(p);
+  this.storage.setItem(storageKey,raw);
+  if(this.storage.getItem(storageKey)!==raw)throw Error('Recovery not saved');
+  this.pending=p;
+ }
  mutate=async(operation:Mutation,input:unknown)=>{
   const detail=this.state.detail;if(this.pending||this.state.busy||!detail)return;
   if(!this.state.actions.includes(operation)){this.publish({message:'Current access does not allow this change. Refresh the task to check access.'});return;}
   const body=JSON.stringify(input);if(!validMutation(operation,input)||new TextEncoder().encode(body).length>8192){this.publish({message:'Check the fields and shorten the text if needed.'});return;}
   const p:Pending={actor:this.actor,project_id:this.projectId,key:crypto.randomUUID(),body,operation,task_id:detail.task_id};
-  try{if(!this.storage)throw Error('Storage unavailable');const raw=JSON.stringify(p);this.storage.setItem(storageKey,raw);if(this.storage.getItem(storageKey)!==raw)throw Error('Recovery not saved');this.pending=p;}catch{this.publish({message:'This browser cannot save recovery information. Allow site storage before changing a task.'});return;}
+  try{this.savePending(p);}catch{this.publish({message:'This browser cannot save recovery information. Allow site storage before changing a task.'});return;}
   await this.retry();
  };
  private async retryMutation(p:Pending){
@@ -134,7 +141,7 @@ export class TaskController {
   if(!this.state.actions.includes('createTask')){this.publish({message:'Current access does not allow task creation. Refresh tasks to check your access.'});return;}
   const input={type,title,description},body=JSON.stringify(input);if(!validInput(input)||new TextEncoder().encode(body).length>8192){this.publish({message:'Choose Story, Task or Bug and enter a title. Shorten the title or description if needed.'});return;}
   const p:Pending={actor:this.actor,project_id:this.projectId,key:crypto.randomUUID(),body};
-  try{if(!this.storage)throw Error('Storage unavailable');const raw=JSON.stringify(p);this.storage.setItem(storageKey,raw);if(this.storage.getItem(storageKey)!==raw)throw Error('Recovery not saved');this.pending=p;}catch{this.publish({message:'This browser cannot save recovery information. Allow site storage before creating a task.'});return;}
+  try{this.savePending(p);}catch{this.publish({message:'This browser cannot save recovery information. Allow site storage before creating a task.'});return;}
   await this.retry();
  };
  retry=async()=>{

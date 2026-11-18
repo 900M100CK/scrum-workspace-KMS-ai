@@ -32,7 +32,7 @@ export async function service(t, name, environment) {
   const deadline = Date.now() + 6000;
   while (Date.now() < deadline && child.exitCode === null) {
     const response = await fetch(base + '/healthz').catch(() => null);
-    if (response?.ok) return {base, stop: async () => {child.kill(); await exited;}};
+    if (response?.ok) return {base, get diagnostics() { return diagnostics; }, stop: async () => {child.kill(); await exited;}};
     await new Promise(done => setTimeout(done, 40));
   }
   assert.fail(name + ' startup failed: ' + diagnostics.split('\n').slice(0, 12).join('\n'));
@@ -48,6 +48,12 @@ export async function knowledgeFaults(t, target, certificate) {
         for await (const chunk of request) chunks.push(chunk);
         const raw = Buffer.concat(chunks);
         const input = raw.length ? JSON.parse(raw) : null;
+        if (fault?.dropBeforeForward && fault.matches(request.url, input)) {
+          const {reached} = fault;
+          fault = undefined;
+          reached();
+          return reply.destroy();
+        }
         const upstream = await fetch(target + request.url, {method:request.method,headers:{
           ...request.headers, host:new URL(target).host,
         }, ...(raw.length ? {body:raw} : {})});
@@ -68,10 +74,10 @@ export async function knowledgeFaults(t, target, certificate) {
   server.listen(0,'127.0.0.1');
   await once(server,'listening');
   t.after(()=>{server.closeAllConnections();return new Promise(done=>server.close(done));});
-  return {base:'https://localhost:'+server.address().port, once(matches,apply) {
+  return {base:'https://localhost:'+server.address().port, once(matches,apply,{dropBeforeForward = false} = {}) {
     assert.equal(fault,undefined);
     const reached = Promise.withResolvers();
-    fault = {matches,apply,reached:reached.resolve};
+    fault = {matches,apply,reached:reached.resolve,dropBeforeForward};
     return reached.promise;
   }};
 }

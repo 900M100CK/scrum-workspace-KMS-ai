@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {once} from 'node:events';
+import {setTimeout as delay} from 'node:timers/promises';
 import {createHash, randomUUID} from 'node:crypto';
 import {createServer as createHttp} from 'node:http';
 import {resolve} from 'node:path';
@@ -172,6 +173,27 @@ test('SP-09 standard entry points persist two guarded handoffs and return exact 
   const manifests = await knowledge.admin.query("SELECT manifest->>'purpose' AS purpose, jsonb_array_length(manifest->'evidence_set') AS count FROM knowledge.handoff_manifest WHERE run_id=$1 ORDER BY purpose",[answer.run_id]);
   assert.deepEqual(manifests.rows,[{purpose:'answer_delivery',count:2},{purpose:'provider_input',count:2}]);
   assert.equal((await knowledge.admin.query('SELECT count(*)::int n FROM knowledge.provenance WHERE run_id=$1',[answer.run_id])).rows[0].n,2);
+
+  await t.test('failed final execution recording leaves the delivered answer intact and emits a safe warning', async () => {
+    const reached = faults.once((path, input) => path === '/internal/question-runtime/record' &&
+      input?.run_id !== answer.run_id, undefined, {dropBeforeForward: true});
+    const result = await ask(paraphrase);
+    await reached;
+    assert.deepEqual(result.claims, answer.claims);
+    assert.deepEqual(result.citations, answer.citations);
+    const deadline = Date.now() + 3000;
+    let line;
+    while (Date.now() < deadline && !line) {
+      line = workspaceServer.diagnostics.split('\n').find(item => item.includes('question_execution_record_failed'));
+      if (!line) await delay(20);
+    }
+    assert.ok(line, 'Workspace emits a warning for the failed record request');
+    const warning = JSON.parse(line);
+    assert.match(warning.reqId, /^[a-f0-9-]{36}$/);
+    assert.deepEqual(warning, {code:'question_execution_record_failed', reqId:warning.reqId});
+    const stored = await knowledge.admin.query('SELECT duration_ms FROM knowledge.execution WHERE run_id=$1',[result.run_id]);
+    assert.deepEqual(stored.rows, [{duration_ms:null}]);
+  });
 
   assert.equal((await ask(paraphrase + ' And what is the ticket price?')).status,'partially_answered');
   assert.equal((await ask('What is the distance to the moon?')).status,'insufficient_evidence');

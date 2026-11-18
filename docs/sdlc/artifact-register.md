@@ -39,7 +39,7 @@ Prior OWNER-Q-01 verification: combined Node 24.21.0 run `node --test tests/docs
 ## Current register and handoffs
 
 **Artifact ID:** REG-00
-**Version/date:** 0.146 Draft · 14 November 2026
+**Version/date:** 0.147 Draft · 18 November 2026
 **Status:** Draft; confirmed policy corrections in progress, full coverage and remaining decisions explicit.
 **Source versions:** Proposed ADR-0024/0025 for SP-01.1; [BRD stable entry](../BRD.md) → [English BRD v1.0](../baseline/BRD_Scrum_Workspace_AI_KMS_EN_v1.0.md) and two Proposed addenda, [AGENTS.md v1.13](../../AGENTS.md), [workflow](../../agents/WORKFLOW.md), PRD-01 v0.10.3, UC-02 v0.8.4, SAD-03 v0.19.1 and ADR-0007–ADR-0017. Prior review inputs remain historical. Storage has measured test evidence; bounded session runtime evidence exists; interviews, pilot and full application acceptance remain absent.; Proposed ADR-0019; Proposed ADR-0021; Proposed ADR-0022; Proposed ADR-0023; Proposed ADR-0026; Proposed ADR-0029 v0.1
 
@@ -134,7 +134,7 @@ The BRD leaves architecture to design while AGENTS.md directs minimal microservi
 | Artifact ID | Version | Canonical source |
 | --- | --- | --- |
 | UML-07 | v0.25.9 | [Source](diagrams/README.md) |
-| REG-00 | v0.146 | [Source](artifact-register.md) |
+| REG-00 | v0.147 | [Source](artifact-register.md) |
 | SAD-03 | v0.19.1 | [Source](../architecture.md) |
 | UX-PERM-MATRIX-02 | v0.11.3 | [Source](../ux/permission-matrix.md) |
 | UX-PERSONAS-01 | v0.5.3 | [Source](../ux/personas.md) |
@@ -872,3 +872,7 @@ P02-A input-only companion: EVAL-CASES-ENTRY v0.8.4 updates current TEST-08 alia
 ## Conventional Commits tooling — 14 November 2026
 
 [DEV-COMMITS-01 v0.1](../implementation/features/conventional-commits/plan.md), entry and CC-01/CC-02 v0.1 are registered for local repository tooling. AGENTS v1.17 and development rules v1.15 record the convention. IMPL-FEATURES-01 v0.73, IMPL-REG-01 v0.78 and IMPL-ROADMAP-01 v0.65 provide parent registration; DOC-REVIEW-REG-01 v0.79 syncs linked inputs only. The plan owns actual verification; no application acceptance.
+
+## Ask and Task reliability corrections — 18 November 2026
+
+[FIX-ASK-TASK-01 v0.2](../implementation/features/ask-task-reliability/plan.md), [FIX-ASK-TASK-ENTRY-01 v0.1](../implementation/features/ask-task-reliability/README.md) and briefs F01–F04 v0.1 register a bounded reliability fix through IMPL-FEATURES-01 v0.74, IMPL-ROADMAP-01 v0.66 and IMPL-REG-01 v0.79; the plan owns execution results.
