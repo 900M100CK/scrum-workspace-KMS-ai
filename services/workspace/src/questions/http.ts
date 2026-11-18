@@ -151,7 +151,13 @@ export function registerProjectQuestions(app: FastifyInstance, options: Document
       }
     } finally {
       reply.raw.off('close', close);
-      if (run) await call('record', {...run, result: {status, duration: duration(), bytes}}).catch(() => {});
+      if (run) {
+        try {
+          await call('record', {...run, result: {status, duration: duration(), bytes}});
+        } catch {
+          console.warn(JSON.stringify({code: 'question_execution_record_failed', reqId: request.id}));
+        }
+      }
     }
   });
 }
